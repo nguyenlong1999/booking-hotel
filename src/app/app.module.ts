@@ -7,7 +7,7 @@ import {RouterModule} from '@angular/router';
 import {CookieService} from 'ngx-cookie-service';
 import {SocketIoConfig, SocketIoModule} from 'ngx-socket-io';
 import {AppComponent} from './app.component';
-import {AppRoutingModule} from './app.routing';
+import {AppRoutes} from './app.routing';
 import {AppSetting} from './appsetting';
 import {ComponentsModule} from './components/components.module';
 import {ErrorModule} from './error/error.module';
@@ -21,6 +21,8 @@ import {MatRippleModule} from '@angular/material/core';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {CommonModule} from '@angular/common';
+import {BrowserModule} from '@angular/platform-browser';
 
 const config: SocketIoConfig = {url: AppSetting.BASE_SERVER_URL, options: {}};
 
@@ -29,11 +31,13 @@ const config: SocketIoConfig = {url: AppSetting.BASE_SERVER_URL, options: {}};
         HttpClientModule,
         BrowserAnimationsModule,
         FormsModule,
+        CommonModule,
+        BrowserModule,
         ReactiveFormsModule,
         HttpModule,
         ComponentsModule,
         RouterModule,
-        AppRoutingModule,
+        RouterModule.forRoot(AppRoutes, { onSameUrlNavigation: 'reload' }),
         ErrorModule,
         SharedModule,
         SocketIoModule.forRoot(config),

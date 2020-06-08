@@ -1,0 +1,106 @@
+<!-- <div class="container">
+  <div class="card card-container" style="max-width: 500px;">
+    <div style="text-align: center;margin: 2%;font-size: 24px;">
+      <h3>ĐĂNG NHẬP</h3>
+    </div>
+    <img id="profile-img" class="profile-img-card" src="../../../assets/images/avatar_2x.png" />
+    <form class="form-signin" (ngSubmit)="loginUser()" [formGroup]="registerForm">
+
+      <input type="text" id="email" class="form-control" name="email" autocomplete="off" formControlName="email"
+        [(ngModel)]="userObject.email" placeholder="Email" title="Please enter the email" required autofocus
+        [ngClass]="{ 'is-invalid': submitted &amp;&amp; registerForm.controls.email.errors }" />
+      <div *ngIf="submitted &amp;&amp; registerForm.controls.email.errors" class="text-danger">
+        <div *ngIf="registerForm.controls.email.errors.required">Vui lòng không để trống Email</div>
+      </div>
+      <input type="password" id="password" class="form-control" name="password" autocomplete="off"
+        formControlName="password" [(ngModel)]="userObject.password" placeholder="Mật khẩu"
+        title="Please enter the password" required
+        [ngClass]="{ 'is-invalid': submitted &amp;&amp; registerForm.controls.password.errors }" />
+
+      <div *ngIf="submitted &amp;&amp; registerForm.controls.password.errors" class="text-danger">
+        <div *ngIf="registerForm.controls.password.errors.required">Vui lòng không để trống Mật khẩu</div>
+        <div *ngIf="registerForm.controls.password.errors.minlength">Mật khẩu phải trên 6 kí tự</div>
+      </div>
+      <input type="text" id="authcode" class="form-control" *ngIf="this.tfaFlag" name="authcode" autocomplete="off"
+        #authcode="ngModel" [(ngModel)]="userObject.authcode" placeholder="Two-Factor Auth code"
+        title="Please enter the code" required />
+      <button class="btn btn-lg btn-success btn-block btn-signin" type="submit" style="height: 50px; font-size: 20px;">
+        Đăng nhập
+      </button>
+      <p style="text-align:center;">
+        Tài khoản mới ? <a [routerLink]="['/register']">Đăng ký</a>
+      </p> -->
+<!-- <p class="text-danger" style="text-align:center;" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </p>
+    </form>  -->
+<!-- [disabled]="
+          email?.errors?.required ||
+          upass?.errors?.required ||
+          (this.tfaFlag && authcode?.errors?.required)
+        " -->
+<!-- <hr style="border-top: 1px solid #eee;" />
+    <div class="row">
+      <div class="col-6">
+        <button class="loginBtn loginBtn--facebook">
+          Login with Facebook
+        </button>
+      </div>
+      <div class="col-6 text-right">
+        <button class="loginBtn loginBtn--google">
+          Login with Google
+        </button>
+      </div>
+    </div> -->
+<!-- </div>
+</div> -->
+<div class="limiter">
+  <div class="container-login100">
+    <div class="wrap-login100">
+      <form class="login100-form validate-form" [formGroup]="registerForm" (ngSubmit)="loginUser()">
+        <span class="login100-form-title p-b-34">
+          ĐĂNG NHẬP TRANG QUẢN TRỊ
+        </span>
+
+        <div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20" data-validate="Type user name">
+
+          <input id="first-name" class="input100" formControlName="email" type="text" name="email" placeholder="Email">
+          <span class="focus-input100"></span>
+        </div>
+        <div class="wrap-input100 rs2-wrap-input100 validate-input m-b-20" data-validate="Type password">
+
+          <input class="input100" type="password" formControlName="password" name="pass" placeholder="Password">
+
+          <span class="focus-input100"></span>
+        </div>
+
+        <div class="container-login100-form-btn">
+          <a class="login100-form-btn" (click)="loginUser()" type="submit" style="color: white;">
+            ĐĂNG NHẬP
+          </a>
+        </div>
+
+        <div class="w-full text-center p-t-27 p-b-239">
+          <span class="txt1">
+            Quên
+          </span>
+
+          <a class="txt2">
+            Tên đăng nhập / mật khẩu?
+          </a>
+        </div>
+
+        <div class="w-full text-right">
+          <a class="txt3">
+            Đăng ký
+          </a>
+        </div>
+        <p class="text-danger" style="text-align:center;" *ngIf="errorMessage">
+          {{ errorMessage }}
+        </p>
+      </form>
+
+      <div class="login100-more" style="background-image: url('../assets/img/bg-01.jpg');"></div>
+    </div>
+  </div>
+</div>

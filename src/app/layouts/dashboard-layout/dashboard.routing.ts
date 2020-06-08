@@ -1,6 +1,6 @@
 import {Routes} from '@angular/router';
 import {DashboardLayoutComponent} from './dashboard-layout.component';
-
+import {IndexLayoutComponent} from './index-layout/index-layout.component';
 export const DashBoardRoutes: Routes = [
 
   {
@@ -14,7 +14,7 @@ export const DashBoardRoutes: Routes = [
       },
       {
         path: 'index',
-        component: DashboardLayoutComponent
+        component: IndexLayoutComponent
       },
         // <= thêm children vào cho trang người dùng
       /*{

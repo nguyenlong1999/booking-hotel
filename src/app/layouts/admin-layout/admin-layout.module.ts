@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -11,16 +11,17 @@ import { IconsComponent } from '../../icons/icons.component';
 import { MapsComponent } from '../../maps/maps.component';
 import { NotificationsComponent } from '../../notifications/notifications.component';
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
-import {MatButtonModule} from '@angular/material/button';
-import {MatInputModule} from '@angular/material/input';
-import {MatRippleModule} from '@angular/material/core';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatTooltipModule} from '@angular/material/tooltip';
-import {MatSelectModule} from '@angular/material/select';
-import {HotelComponentComponent} from '../../hotel-component/hotel-component.component';
-import {BookingComponent} from '../../booking/booking.component';
-import {HotelAccessComponent} from '../../hotel-access/hotel-access.component';
-import {UserAccessComponent} from '../../user-access/user-access.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatRippleModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSelectModule } from '@angular/material/select';
+import { HotelComponentComponent } from '../../hotel-component/hotel-component.component';
+import { BookingComponent } from '../../booking/booking.component';
+import { HotelAccessComponent } from '../../hotel-access/hotel-access.component';
+import { UserAccessComponent } from '../../user-access/user-access.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   imports: [
@@ -34,6 +35,7 @@ import {UserAccessComponent} from '../../user-access/user-access.component';
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
+    CommonModule,
   ],
   declarations: [
     DashboardComponent,
@@ -48,8 +50,12 @@ import {UserAccessComponent} from '../../user-access/user-access.component';
     BookingComponent,
     HotelAccessComponent,
     UserAccessComponent,
+    LoginComponent
     // add các component trang admin vào đây
-  ]
+  ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ],
 })
 
-export class AdminLayoutModule {}
+export class AdminLayoutModule { }

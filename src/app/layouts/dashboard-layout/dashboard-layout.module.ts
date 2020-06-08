@@ -10,10 +10,12 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { IndexLayoutComponent } from './index-layout/index-layout.component';
 
 @NgModule({
   declarations: [
-      DashboardLayoutComponent
+      DashboardLayoutComponent,
+      IndexLayoutComponent
     // add các component của trang người dùng vào đây
   ],
   imports: [
