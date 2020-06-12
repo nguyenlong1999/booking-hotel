@@ -23,9 +23,6 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {CommonModule} from '@angular/common';
 import {BrowserModule} from '@angular/platform-browser';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
-import {MAT_DIALOG_DEFAULT_OPTIONS} from "@angular/material/dialog";
 
 const config: SocketIoConfig = {url: AppSetting.BASE_SERVER_URL, options: {}};
 
@@ -51,8 +48,6 @@ const config: SocketIoConfig = {url: AppSetting.BASE_SERVER_URL, options: {}};
         MatInputModule,
         MatSelectModule,
         MatTooltipModule,
-        NgbModule,
-        NgxDaterangepickerMd.forRoot(),
     ],
     declarations: [
         AppComponent,
@@ -62,7 +57,7 @@ const config: SocketIoConfig = {url: AppSetting.BASE_SERVER_URL, options: {}};
     schemas: [
         CUSTOM_ELEMENTS_SCHEMA
     ],
-    providers: [{provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}},CookieService, {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}],
+    providers: [CookieService, {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}],
     bootstrap: [AppComponent]
 })
 export class AppModule {

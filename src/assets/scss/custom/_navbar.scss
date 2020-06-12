@@ -155,6 +155,28 @@
     }
 }
 
+// Transparent navbar
+.navbar-transparent {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    background-color: transparent;
+    border: 0;
+    box-shadow: none;
+
+    .navbar-brand {
+        color: rgba(255, 255, 255, 1);
+    }
+
+    .navbar-toggler {
+        color: rgba(255, 255, 255, 1);
+    }
+
+    .navbar-toggler-icon {
+        background-image: $navbar-dark-toggler-icon-bg;
+    }
+}
 
 @include media-breakpoint-up(md) {
     .navbar-transparent {
