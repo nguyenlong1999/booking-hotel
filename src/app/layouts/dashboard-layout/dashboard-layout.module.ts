@@ -16,6 +16,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatIconModule} from '@angular/material/icon';
 import {MatRadioModule} from '@angular/material/radio';
 import {SharedModule} from '../../shared/shared.module';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
     declarations: [
@@ -39,6 +40,7 @@ import {SharedModule} from '../../shared/shared.module';
         MatIconModule,
         MatRadioModule,
         SharedModule,
+        MatCheckboxModule,
     ],
     providers: [
     ],

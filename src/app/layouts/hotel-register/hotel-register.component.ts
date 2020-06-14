@@ -23,7 +23,8 @@ export class HotelRegisterComponent implements OnInit {
     starColorW: StarRatingColor = StarRatingColor.warn;
 
     // selected tab
-    public TabIndex = 1;
+    public TabIndex = 3;
+
     public tabNext() {
         const tabCount = 4;
         this.TabIndex = (this.TabIndex + 1) % tabCount;
@@ -40,26 +41,25 @@ export class HotelRegisterComponent implements OnInit {
             guideToHotel: [''],
             starHotel: [''],
             image: [''],
-            // squareMeter: [''],
-            // thông tin cơ bản
-            // dien tich
-            // so phong
-            // ten
-            // mo ta
-            // hinh ảnh
 
             // tab 2
-            // địa chỉ ......
+            address: [''],
+            country: [''],
+            province: [''],
+            city: [''],
+            zip: [''],
 
             // tab 3
-            // vật dụng object Facilities
+            // Facilities
+            facilities: this.formbuilder.group({
+                television: this.formbuilder.control(''),
+                internet: this.formbuilder.control('')
+            }),
 
             // tab 4 Thông tin phòng Room detail array và priceExtra + extra-person
 
-            // tab 5 thông tin hồ sơ Object user
-
             totalBedRoom: this.formbuilder.array([
-                this.addControl()
+                this.addControlTotalBedRoom()
             ])
         })
     }
@@ -82,7 +82,16 @@ export class HotelRegisterComponent implements OnInit {
 
     }
 
-    addControl() {
+    addControlFacilities() {
+        console.log('facilities nè')
+        return this.formbuilder.group({
+            television: this.formbuilder.control(''),
+            internet: this.formbuilder.control('')
+
+        })
+    }
+
+    addControlTotalBedRoom() {
         console.log('x')
         return this.formbuilder.group({
             test: this.formbuilder.control('')
