@@ -7,22 +7,26 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import { HotelMapComponent } from './animation/hotel-map/hotel-map.component';
 import {AgmCoreModule} from '@agm/core';
+import { AutocompleteComponent } from './autocomplete/autocomplete.component';
+import {FormsModule} from "@angular/forms";
 
 
 
 @NgModule({
-  declarations: [StarRatingComponent, HotelMapComponent],
+  declarations: [StarRatingComponent, HotelMapComponent, AutocompleteComponent],
     imports: [
         CommonModule,
         MatTooltipModule,
         MatButtonModule,
         MatIconModule,
         MatInputModule,
-        AgmCoreModule
+        AgmCoreModule,
+        FormsModule
     ],
     exports: [
         StarRatingComponent,
-        HotelMapComponent
+        HotelMapComponent,
+        AutocompleteComponent
     ],
 })
 export class SharedModule { }

@@ -24,22 +24,24 @@ import { UserAccessComponent } from '../../user-access/user-access.component';
 import { LoginComponent } from './login/login.component';
 import {FileSelectDirective} from "ng2-file-upload";
 import {ToastrModule} from "ngx-toastr";
+import {SharedModule} from "../../shared/shared.module";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule.forChild(AdminLayoutRoutes),
-    FormsModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatRippleModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-    MatTooltipModule,
-    CommonModule,
-    ToastrModule.forRoot(),
-  ],
+    imports: [
+        CommonModule,
+        RouterModule.forChild(AdminLayoutRoutes),
+        FormsModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+        MatRippleModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSelectModule,
+        MatTooltipModule,
+        CommonModule,
+        ToastrModule.forRoot(),
+        SharedModule,
+    ],
   declarations: [
     DashboardComponent,
     UserProfileComponent,

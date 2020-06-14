@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./index-layout.component.scss']
 })
 export class IndexLayoutComponent implements OnInit {
-
+  private address;
   constructor() {
     window.addEventListener('wheel', function (event) {
       if (event.deltaY < 0) {
@@ -28,5 +28,7 @@ export class IndexLayoutComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  getEstablishmentAddress(place: object) {
+    this.address = place['formatted_address'];
+  }
 }
