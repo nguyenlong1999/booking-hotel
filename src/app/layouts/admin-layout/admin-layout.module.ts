@@ -22,6 +22,8 @@ import { BookingComponent } from '../../booking/booking.component';
 import { HotelAccessComponent } from '../../hotel-access/hotel-access.component';
 import { UserAccessComponent } from '../../user-access/user-access.component';
 import { LoginComponent } from './login/login.component';
+import {FileSelectDirective} from "ng2-file-upload";
+import {ToastrModule} from "ngx-toastr";
 
 @NgModule({
   imports: [
@@ -36,6 +38,7 @@ import { LoginComponent } from './login/login.component';
     MatSelectModule,
     MatTooltipModule,
     CommonModule,
+    ToastrModule.forRoot(),
   ],
   declarations: [
     DashboardComponent,
@@ -50,7 +53,8 @@ import { LoginComponent } from './login/login.component';
     BookingComponent,
     HotelAccessComponent,
     UserAccessComponent,
-    LoginComponent
+    LoginComponent,
+    FileSelectDirective
     // add các component trang admin vào đây
   ],
   schemas: [

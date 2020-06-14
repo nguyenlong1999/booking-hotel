@@ -23,7 +23,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {CommonModule} from '@angular/common';
 import {BrowserModule} from '@angular/platform-browser';
-
+import { ToastrModule } from 'ngx-toastr';
 const config: SocketIoConfig = {url: AppSetting.BASE_SERVER_URL, options: {}};
 
 @NgModule({
@@ -48,6 +48,7 @@ const config: SocketIoConfig = {url: AppSetting.BASE_SERVER_URL, options: {}};
         MatInputModule,
         MatSelectModule,
         MatTooltipModule,
+        ToastrModule.forRoot()
     ],
     declarations: [
         AppComponent,
