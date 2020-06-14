@@ -1,6 +1,7 @@
 import {Routes} from '@angular/router';
 import {DashboardLayoutComponent} from './dashboard-layout.component';
 import {IndexLayoutComponent} from './index-layout/index-layout.component';
+import {HotelRegisterComponent} from '../hotel-register/hotel-register.component';
 export const DashBoardRoutes: Routes = [
 
   {
@@ -17,11 +18,11 @@ export const DashBoardRoutes: Routes = [
         component: IndexLayoutComponent
       },
         // <= thêm children vào cho trang người dùng
-      /*{
-        path: 'addRecipe',
-        component: RegisterPassengerComponent
+     {
+        path: 'hotel-register',
+        component: HotelRegisterComponent
       },
-      {
+      /* {
         path: 'about',
         component: AboutComponent
       },
