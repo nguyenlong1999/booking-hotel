@@ -5,20 +5,24 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
+import { HotelMapComponent } from './animation/hotel-map/hotel-map.component';
+import {AgmCoreModule} from '@agm/core';
 
 
 
 @NgModule({
-  declarations: [StarRatingComponent],
-  imports: [
-    CommonModule,
-    MatTooltipModule,
-    MatButtonModule,
-    MatIconModule,
-    MatInputModule
-  ],
-  exports: [
-    StarRatingComponent
-  ],
+  declarations: [StarRatingComponent, HotelMapComponent],
+    imports: [
+        CommonModule,
+        MatTooltipModule,
+        MatButtonModule,
+        MatIconModule,
+        MatInputModule,
+        AgmCoreModule
+    ],
+    exports: [
+        StarRatingComponent,
+        HotelMapComponent
+    ],
 })
 export class SharedModule { }
