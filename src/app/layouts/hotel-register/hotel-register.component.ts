@@ -30,7 +30,6 @@ export class HotelRegisterComponent implements OnInit {
         this.TabIndex = (this.TabIndex + 1) % tabCount;
     }
 
-
     constructor(private formbuilder: FormBuilder) {
         this.registerHotelForm = this.formbuilder.group({
             name: [''],
@@ -41,6 +40,7 @@ export class HotelRegisterComponent implements OnInit {
             guideToHotel: [''],
             starHotel: [''],
             image: [''],
+            totalRoomNumber: [''],
 
             // tab 2
             address: [''],
@@ -57,7 +57,9 @@ export class HotelRegisterComponent implements OnInit {
             }),
 
             // tab 4 Thông tin phòng Room detail array và priceExtra + extra-person
-
+            formArrayRoomNumber: this.formbuilder.array([
+                this.addControlRoom()
+            ]),
             totalBedRoom: this.formbuilder.array([
                 this.addControlTotalBedRoom()
             ])
@@ -78,8 +80,22 @@ export class HotelRegisterComponent implements OnInit {
         return this.registerHotelForm.controls;
     }
 
+    get formArrayRoomNumber() {
+        return this.registerHotelForm.get('formArrayRoomNumber') as FormArray
+    }
+
     onSubmit() {
 
+    }
+
+    addControlRoom() {
+        return this.formbuilder.group({
+            accommodates: this.formbuilder.control('')
+        });
+    }
+
+    deleteControlRoom() {
+        this.formArrayRoomNumber.removeAt(this.formArrayRoomNumber.length - 1);
     }
 
     addControlFacilities() {
@@ -100,10 +116,12 @@ export class HotelRegisterComponent implements OnInit {
 
     minusTotalRoomNumber() {
         this.totalRoomNumber--;
+        this.deleteControlRoom();
     }
 
     plusTotalRoomNumber() {
         this.totalRoomNumber++;
+        this.formArrayRoomNumber.push(this.addControlRoom());
     }
 
 
@@ -123,11 +141,15 @@ export class HotelRegisterComponent implements OnInit {
         this.numberOfBathrooms--;
     }
 
-    plusAccommodates() {
+    plusAccommodates(i) {
+        console.log(i);
+        // document.getElementById('accommodates' + i).set
         this.accommodates++;
     }
 
-    minusAccommodates() {
+    minusAccommodates(i) {
+        console.log(i);
         this.accommodates--;
     }
+
 }

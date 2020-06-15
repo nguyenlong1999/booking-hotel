@@ -205,6 +205,7 @@
                                                                     <span class="input-number-decrement">-</span>
                                                                 </div>
                                                                 <input class="input-number" type="number"
+                                                                       formControlName="totalRoomNumber"
                                                                        [value]="totalRoomNumber" min="0" max="1000">
                                                                 <div class="input-group-button"
                                                                      (click)="plusTotalRoomNumber()">
@@ -410,14 +411,16 @@
                                     <div class="card-header card-header-info">
                                         <div class="row">
                                             <div class="col">
-                                                <h4 class="card-title">Tất cả các tiện nghi và những vật dụng nhỏ bạn cung
+                                                <h4 class="card-title">Tất cả các tiện nghi và những vật dụng nhỏ bạn
+                                                    cung
                                                     cấp.
                                                 </h4>
                                                 <p class="card-category">Nhà bạn có sẵn những vật dụng và tiện nghi gì?
                                                 </p>
                                             </div>
                                             <div class="col">
-                                                <img src="assets/booking/tienichHotel.png" class="img-thumbnail  img-fluid"
+                                                <img src="assets/booking/tienichHotel.png"
+                                                     class="img-thumbnail  img-fluid"
                                                      style="max-width:200px;"/>
                                             </div>
                                         </div>
@@ -428,7 +431,8 @@
                                                 <h3><span
                                                         style="font-weight: bold">Tiện nghi thiết yếu</span>
                                                 </h3>
-                                                <label>Những tiện nghi thiết yếu thường được du khách chú trọng khi đặt nhà
+                                                <label>Những tiện nghi thiết yếu thường được du khách chú trọng khi đặt
+                                                    nhà
                                                     riêng.
                                                 </label>
                                             </div>
@@ -449,7 +453,8 @@
                                                             <mat-checkbox>Máy ủi ( bàn là )</mat-checkbox>
                                                         </div>
                                                         <div class="col">
-                                                            <mat-checkbox formControlName="television">Tivi</mat-checkbox>
+                                                            <mat-checkbox formControlName="television">Tivi
+                                                            </mat-checkbox>
                                                         </div>
                                                     </div>
                                                     <div class="row">
@@ -597,7 +602,8 @@
                                                 <h3><span
                                                         style="font-weight: bold">Tiện nghi</span>
                                                 </h3>
-                                                <label>Những gì du khách thường tìm kiếm và có khả năng thúc đẩy lượng khách
+                                                <label>Những gì du khách thường tìm kiếm và có khả năng thúc đẩy lượng
+                                                    khách
                                                     đặt phòng.
                                                 </label>
                                             </div>
@@ -657,7 +663,8 @@
                                                 <h3><span
                                                         style="font-weight: bold">An toàn</span>
                                                 </h3>
-                                                <label>Những tiện nghi và tính năng đảm bảo sự an toàn, an ninh cho du khách
+                                                <label>Những tiện nghi và tính năng đảm bảo sự an toàn, an ninh cho du
+                                                    khách
                                                 </label>
                                             </div>
                                         </div>
@@ -735,107 +742,47 @@
                 <mat-icon>bubble_chart</mat-icon>
                 Thông tin phòng
             </ng-template>
-            <div class="row">
-                <div class="col">
-                    <fieldset class="the-fieldset">
-                        <legend class="the-legend">Chi tiết phòng ở số 1
-                        </legend>
-                        <div>
-                            <div class="row">
-                                <div class="col-3">
-                                    <h3><span style="font-weight: bold">Sức chứa</span></h3>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    Số lượng người tối đa có thể ngủ thoải mái theo số lượng
-                                    giường và sofa cung cấp.
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <div class="input-group input-number-group">
-                                        <div class="input-group-button"
-                                             (click)="minusAccommodates()">
-                                            <span class="input-number-decrement">-</span>
+
+            <div formArrayName="formArrayRoomNumber">
+                <div [formGroup]="romNumber"
+                     *ngFor="let romNumber of formArrayRoomNumber.controls; let i = index ">
+                    <div class="row">
+                        <div class="col">
+                            <fieldset class="the-fieldset">
+                                <legend class="the-legend">Chi tiết phòng ở số {{i}}
+                                </legend>
+                                <div>
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <h3><span style="font-weight: bold">Sức chứa</span></h3>
                                         </div>
-                                        <input class="input-number" type="number"
-                                               [value]="accommodates" min="0" max="1000">
-                                        <div class="input-group-button"
-                                             (click)="plusAccommodates()">
-                                            <span class="input-number-increment">+</span>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            Số lượng người tối đa có thể ngủ thoải mái theo số lượng
+                                            giường và sofa cung cấp.
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="input-group input-number-group">
+                                                <div class="input-group-button"
+                                                     (click)="minusAccommodates(i)">
+                                                    <span class="input-number-decrement">-</span>
+                                                </div>
+                                                <input class="input-number" type="number" id="{{accommodates + i}}"
+                                                       formControlName="accommodates"
+                                                       min="0" max="1000">
+                                                <div class="input-group-button"
+                                                     (click)="plusAccommodates(i)">
+                                                    <span class="input-number-increment">+</span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </fieldset>
                         </div>
-                        <div>
-                            <div class="row">
-                                <div class="col-3">
-                                    <h3><span style="font-weight: bold">Phòng tắm</span>
-                                    </h3>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    Chỉ đếm số lượng phòng tắm trong nơi ở của bạn, không
-                                    phải phòng tắm chung trong toà nhà hoặc chung cư.
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <div class="input-group input-number-group">
-                                        <div class="input-group-button"
-                                             (click)="minusNumberOfBathrooms()">
-                                            <span class="input-number-decrement">-</span>
-                                        </div>
-                                        <input class="input-number" type="number"
-                                               [value]="numberOfBathrooms" min="0"
-                                               max="1000">
-                                        <div class="input-group-button"
-                                             (click)="plusNumberOfBathrooms()">
-                                            <span class="input-number-increment">+</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="row">
-                                <div class="col-3">
-                                    <h3><span style="font-weight: bold">Phòng ngủ</span>
-                                    </h3>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    Nếu chỗ ở của bạn là phòng gác mái hoặc studio, số lượng
-                                    phòng ngủ là 0.
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <div class="input-group input-number-group">
-                                        <div class="input-group-button"
-                                             (click)="minusNumberOfBedrooms()">
-                                            <span class="input-number-decrement">-</span>
-                                        </div>
-                                        <input class="input-number" type="number"
-                                               [value]="numberOfBedrooms" min="0"
-                                               max="1000">
-                                        <div class="input-group-button"
-                                             (click)="plusNumberOfBedrooms()">
-                                            <span class="input-number-increment">+</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <hr>
-                        <!--                                                    <div formArrayName="totalBedRoom">-->
-                        <!--                                                        <div [formGroup]="bedRoom"-->
-                        <!--                                                             *ngFor="let bedRoom in totalBedRoom.controls; let i = index;">-->
-                        <!--                                                            <div class="row">-->
                         <!--                                                                <div class="col-3">-->
                         <!--                                                                    <input type="text" formControlName="test"-->
                         <!--                                                                           class="form-control"-->
@@ -843,15 +790,113 @@
                         <!--                                                                    <h3><span style="font-weight: bold">Phòng ngủ</span>-->
                         <!--                                                                    </h3>-->
                         <!--                                                                </div>-->
-                        <!--                                                            </div>-->
-                        <!--                                                        </div>-->
-                        <!--                                                    </div>-->
-                    </fieldset>
-                    <!--                                            <mat-form-field class="example-full-width">-->
-                    <!--                                                <input matInput placeholder="Company (disabled)" disabled>-->
-                    <!--                                            </mat-form-field>-->
+                    </div>
                 </div>
             </div>
+
+            <!--            <div class="row">-->
+            <!--                <div class="col">-->
+            <!--                    <fieldset class="the-fieldset">-->
+            <!--                        <legend class="the-legend">Chi tiết phòng ở số 1-->
+            <!--                        </legend>-->
+            <!--                        <div>-->
+            <!--                            <div class="row">-->
+            <!--                                <div class="col-3">-->
+            <!--                                    <h3><span style="font-weight: bold">Sức chứa</span></h3>-->
+            <!--                                </div>-->
+            <!--                            </div>-->
+            <!--                            <div class="row">-->
+            <!--                                <div class="col">-->
+            <!--                                    Số lượng người tối đa có thể ngủ thoải mái theo số lượng-->
+            <!--                                    giường và sofa cung cấp.-->
+            <!--                                </div>-->
+            <!--                            </div>-->
+            <!--                            <div class="row">-->
+            <!--                                <div class="col">-->
+            <!--                                    <div class="input-group input-number-group">-->
+            <!--                                        <div class="input-group-button"-->
+            <!--                                             (click)="minusAccommodates()">-->
+            <!--                                            <span class="input-number-decrement">-</span>-->
+            <!--                                        </div>-->
+            <!--                                        <input class="input-number" type="number"-->
+            <!--                                               [value]="accommodates" min="0" max="1000">-->
+            <!--                                        <div class="input-group-button"-->
+            <!--                                             (click)="plusAccommodates()">-->
+            <!--                                            <span class="input-number-increment">+</span>-->
+            <!--                                        </div>-->
+            <!--                                    </div>-->
+            <!--                                </div>-->
+            <!--                            </div>-->
+            <!--                        </div>-->
+            <!--                        <div>-->
+            <!--                            <div class="row">-->
+            <!--                                <div class="col-3">-->
+            <!--                                    <h3><span style="font-weight: bold">Phòng tắm</span>-->
+            <!--                                    </h3>-->
+            <!--                                </div>-->
+            <!--                            </div>-->
+            <!--                            <div class="row">-->
+            <!--                                <div class="col">-->
+            <!--                                    Chỉ đếm số lượng phòng tắm trong nơi ở của bạn, không-->
+            <!--                                    phải phòng tắm chung trong toà nhà hoặc chung cư.-->
+            <!--                                </div>-->
+            <!--                            </div>-->
+            <!--                            <div class="row">-->
+            <!--                                <div class="col">-->
+            <!--                                    <div class="input-group input-number-group">-->
+            <!--                                        <div class="input-group-button"-->
+            <!--                                             (click)="minusNumberOfBathrooms()">-->
+            <!--                                            <span class="input-number-decrement">-</span>-->
+            <!--                                        </div>-->
+            <!--                                        <input class="input-number" type="number"-->
+            <!--                                               [value]="numberOfBathrooms" min="0"-->
+            <!--                                               max="1000">-->
+            <!--                                        <div class="input-group-button"-->
+            <!--                                             (click)="plusNumberOfBathrooms()">-->
+            <!--                                            <span class="input-number-increment">+</span>-->
+            <!--                                        </div>-->
+            <!--                                    </div>-->
+            <!--                                </div>-->
+            <!--                            </div>-->
+            <!--                        </div>-->
+            <!--                        <div>-->
+            <!--                            <div class="row">-->
+            <!--                                <div class="col-3">-->
+            <!--                                    <h3><span style="font-weight: bold">Phòng ngủ</span>-->
+            <!--                                    </h3>-->
+            <!--                                </div>-->
+            <!--                            </div>-->
+            <!--                            <div class="row">-->
+            <!--                                <div class="col">-->
+            <!--                                    Nếu chỗ ở của bạn là phòng gác mái hoặc studio, số lượng-->
+            <!--                                    phòng ngủ là 0.-->
+            <!--                                </div>-->
+            <!--                            </div>-->
+            <!--                            <div class="row">-->
+            <!--                                <div class="col">-->
+            <!--                                    <div class="input-group input-number-group">-->
+            <!--                                        <div class="input-group-button"-->
+            <!--                                             (click)="minusNumberOfBedrooms()">-->
+            <!--                                            <span class="input-number-decrement">-</span>-->
+            <!--                                        </div>-->
+            <!--                                        <input class="input-number" type="number"-->
+            <!--                                               [value]="numberOfBedrooms" min="0"-->
+            <!--                                               max="1000">-->
+            <!--                                        <div class="input-group-button"-->
+            <!--                                             (click)="plusNumberOfBedrooms()">-->
+            <!--                                            <span class="input-number-increment">+</span>-->
+            <!--                                        </div>-->
+            <!--                                    </div>-->
+            <!--                                </div>-->
+            <!--                            </div>-->
+            <!--                        </div>-->
+            <!--                        <hr>-->
+            <!--                    </fieldset>-->
+            <!--                    &lt;!&ndash;                                            <mat-form-field class="example-full-width">&ndash;&gt;-->
+            <!--                    &lt;!&ndash;                                                <input matInput placeholder="Company (disabled)" disabled>&ndash;&gt;-->
+            <!--                    &lt;!&ndash;                                            </mat-form-field>&ndash;&gt;-->
+            <!--                </div>-->
+            <!--            </div>-->
         </mat-tab>
     </mat-tab-group>
 </form>
