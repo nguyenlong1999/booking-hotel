@@ -9,11 +9,10 @@ import {StarRatingColor} from '../../shared/animation/star-rating/star-rating.co
 })
 export class HotelRegisterComponent implements OnInit {
     registerHotelForm: FormGroup;
-    totalBedRoom: FormArray;
-    totalRoomNumber = 0
-    accommodates = 0
-    numberOfBathrooms = 0
-    numberOfBedrooms = 0
+    totaltypeRoomNumber = 0
+    countAccommodates = 0;
+    countBedrooms = 0;
+    countBathrooms = 0;
 
     // rating
     rating = 3;
@@ -59,15 +58,11 @@ export class HotelRegisterComponent implements OnInit {
             // tab 4 Thông tin phòng Room detail array và priceExtra + extra-person
             formArrayRoomNumber: this.formbuilder.array([
                 this.addControlRoom()
-            ]),
-            totalBedRoom: this.formbuilder.array([
-                this.addControlTotalBedRoom()
             ])
         })
     }
 
     ngOnInit(): void {
-        // this.totalBedRoom = this.registerHotelForm.get('totalBedRoom') as FormArray;
 
     }
 
@@ -90,11 +85,18 @@ export class HotelRegisterComponent implements OnInit {
 
     addControlRoom() {
         return this.formbuilder.group({
-            accommodates: this.formbuilder.control('')
+            accommodates: this.formbuilder.control(''),
+            bathRooms: this.formbuilder.control(''),
+            bedRooms: this.formbuilder.control(''),
+            bedRoomDetails: this.formbuilder.group({
+                bedType: this.formbuilder.control(''),
+                quantityBed: this.formbuilder.control('')
+            }),
         });
     }
 
     deleteControlRoom() {
+        console.log(this.formArrayRoomNumber.length );
         this.formArrayRoomNumber.removeAt(this.formArrayRoomNumber.length - 1);
     }
 
@@ -115,41 +117,51 @@ export class HotelRegisterComponent implements OnInit {
     }
 
     minusTotalRoomNumber() {
-        this.totalRoomNumber--;
+        this.totaltypeRoomNumber--;
         this.deleteControlRoom();
     }
 
     plusTotalRoomNumber() {
-        this.totalRoomNumber++;
+        this.totaltypeRoomNumber++;
         this.formArrayRoomNumber.push(this.addControlRoom());
     }
 
 
-    plusNumberOfBedrooms() {
-        this.numberOfBedrooms++;
+    plusNumberOfBedrooms(i) {
+        this.countBedrooms = this.registerHotelForm.get('formArrayRoomNumber').get([i]).get('bedRooms').value
+        this.countBedrooms++
+        this.registerHotelForm.get('formArrayRoomNumber').get([i]).get('bedRooms').setValue(this.countBedrooms)
     }
 
-    minusNumberOfBedrooms() {
-        this.numberOfBedrooms--;
+    minusNumberOfBedrooms(i) {
+        this.countBedrooms = this.registerHotelForm.get('formArrayRoomNumber').get([i]).get('bedRooms').value
+        this.countBedrooms--
+        this.registerHotelForm.get('formArrayRoomNumber').get([i]).get('bedRooms').setValue(this.countBedrooms)
     }
 
-    plusNumberOfBathrooms() {
-        this.numberOfBathrooms++;
+    plusNumberOfBathrooms(i) {
+        this.countBathrooms = this.registerHotelForm.get('formArrayRoomNumber').get([i]).get('bathRooms').value
+        this.countBathrooms++
+        this.registerHotelForm.get('formArrayRoomNumber').get([i]).get('bathRooms').setValue(this.countBathrooms)
     }
 
-    minusNumberOfBathrooms() {
-        this.numberOfBathrooms--;
+    minusNumberOfBathrooms(i) {
+        this.countBathrooms = this.registerHotelForm.get('formArrayRoomNumber').get([i]).get('bathRooms').value
+        this.countBathrooms--
+        this.registerHotelForm.get('formArrayRoomNumber').get([i]).get('bathRooms').setValue(this.countBathrooms)
+
     }
 
     plusAccommodates(i) {
-        console.log(i);
-        // document.getElementById('accommodates' + i).set
-        this.accommodates++;
+        this.countAccommodates = this.registerHotelForm.get('formArrayRoomNumber').get([i]).get('accommodates').value
+        this.countAccommodates++
+        this.registerHotelForm.get('formArrayRoomNumber').get([i]).get('accommodates').setValue(this.countAccommodates)
     }
 
     minusAccommodates(i) {
-        console.log(i);
-        this.accommodates--;
+        this.countAccommodates = this.registerHotelForm.get('formArrayRoomNumber').get([i]).get('accommodates').value
+        this.countAccommodates--;
+        this.registerHotelForm.get('formArrayRoomNumber').get([i]).get('accommodates').setValue(this.countAccommodates)
     }
 
 }
