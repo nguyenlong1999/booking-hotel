@@ -16,7 +16,8 @@ export class HotelRegisterComponent implements OnInit {
     countBathrooms = 0;
     isDisable = true;
     private address;
-
+    lat = 0;
+    lng = 0;
     // rating
     rating = 3;
     starCount = 5;
@@ -25,7 +26,7 @@ export class HotelRegisterComponent implements OnInit {
     starColorW: StarRatingColor = StarRatingColor.warn;
 
     // selected tab
-    public TabIndex = 3;
+    public TabIndex = 1;
 
     public tabNext() {
         const tabCount = 4;
@@ -81,6 +82,7 @@ export class HotelRegisterComponent implements OnInit {
         return this.registerHotelForm.controls;
     }
 
+
     get formArrayRoomNumber() {
         return this.registerHotelForm.get('formArrayRoomNumber') as FormArray
     }
@@ -93,7 +95,8 @@ export class HotelRegisterComponent implements OnInit {
         return this.formbuilder.group({
             accommodates: this.formbuilder.control(''),
             bathRooms: this.formbuilder.control('0'),
-            bedRooms: this.formbuilder.control('1'),
+            bedRooms: this.formbuilder.control('0'),
+            bedRoomsDetails: this.formbuilder.array([]),
             bedTypedual: this.formbuilder.control(''),
             bedTypeSingle: this.formbuilder.control('')
         });
@@ -103,6 +106,15 @@ export class HotelRegisterComponent implements OnInit {
         console.log(this.formArrayRoomNumber.length);
         this.formArrayRoomNumber.removeAt(this.formArrayRoomNumber.length - 1);
     }
+
+    addControlTypeBedroom(i) {
+        console.log('thêm loại giường ngủ')
+        return this.formbuilder.group({
+            bedType: this.formbuilder.control(''),
+            bedQuantity: this.formbuilder.control('')
+        })
+    }
+
 
     addControlFacilities() {
         console.log('facilities nè')
@@ -143,12 +155,22 @@ export class HotelRegisterComponent implements OnInit {
         this.countBedrooms = this.registerHotelForm.get('formArrayRoomNumber').get([i]).get('bedRooms').value
         this.countBedrooms++
         this.registerHotelForm.get('formArrayRoomNumber').get([i]).get('bedRooms').setValue(this.countBedrooms)
+
+        // form multiple
+        const control = (<FormArray>this.registerHotelForm.controls['formArrayRoomNumber']).at(i).get('bedRoomsDetails') as FormArray;
+        control.push(this.addControlTypeBedroom(i));
     }
 
     minusNumberOfBedrooms(i) {
         this.countBedrooms = this.registerHotelForm.get('formArrayRoomNumber').get([i]).get('bedRooms').value
         this.countBedrooms--
         this.registerHotelForm.get('formArrayRoomNumber').get([i]).get('bedRooms').setValue(this.countBedrooms)
+
+        // this.formArrayRoomNumber.removeAt(this.formArrayRoomNumber.at(i).get('bedRoomsDetails') as .length - 1);
+
+        const control = (<FormArray>this.registerHotelForm.controls['formArrayRoomNumber']).at(i).get('bedRoomsDetails') as FormArray;
+        control.removeAt(i);
+
     }
 
     plusNumberOfBathrooms(i) {
@@ -176,8 +198,14 @@ export class HotelRegisterComponent implements OnInit {
         this.registerHotelForm.get('formArrayRoomNumber').get([i]).get('accommodates').setValue(this.countAccommodates)
     }
 
+    // get address
     getEstablishmentAddress(place: object) {
         this.address = place['formatted_address'];
+        this.lat = place.geometry.location.lat();
+        this.lng = place.geometry.location.lng()
+        console.log(this.lat)
+        console.log(this.lng)
+        console.log(place)
     }
 
 }

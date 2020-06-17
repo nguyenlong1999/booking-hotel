@@ -1,4 +1,4 @@
-import {Component, ElementRef, NgZone, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, NgZone, OnInit, ViewChild} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {MapsAPILoader} from '@agm/core';
 
@@ -8,8 +8,10 @@ import {MapsAPILoader} from '@agm/core';
     styleUrls: ['./hotel-map.component.css']
 })
 export class HotelMapComponent implements OnInit {
-    public map: any = {lat: 51.678418, lng: 7.809007};
 
+    @Input() lat
+    @Input() lng
+    public map: any = {lat: this.lat, lng: this.lng};
 
     constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone) {
     }

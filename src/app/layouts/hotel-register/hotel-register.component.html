@@ -284,7 +284,9 @@
                                                     </div>
                                                     <div class="row">
                                                         <div class="col">
-                                                            <AutocompleteComponent (setAddress)="getEstablishmentAddress($event)" adressType="establishment"></AutocompleteComponent>
+                                                            <AutocompleteComponent
+                                                                    (setAddress)="getEstablishmentAddress($event)"
+                                                                    adressType="establishment"></AutocompleteComponent>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -387,7 +389,7 @@
                                                     </div>
                                                     <div class="row">
                                                         <div class="col">
-                                                            <app-hotel-map></app-hotel-map>
+                                                            <app-hotel-map [lat]="lat" [lng]="lng"></app-hotel-map>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -882,6 +884,29 @@
                                                     </div>
                                                 </div>
                                                 <hr>
+
+                                                <div formArrayName="bedRoomsDetails">
+                                                    <div [formGroup]="roomDetails"
+                                                         *ngFor="let roomDetails of romNumber['controls'].bedRoomsDetails['controls']; let iz=index">
+                                                        <div class="row">
+                                                            <div class="col-lg-3">
+                                                                <mat-form-field>
+                                                                    <input matInput placeholder="Số lượng"
+                                                                           formControlName="bedQuantity">
+                                                                </mat-form-field>
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <mat-form-field>
+                                                                    <mat-label>Giường</mat-label>
+                                                                    <select matNativeControl formControlName="bedType">
+                                                                        <option selected>Giường đôi</option>
+                                                                    </select>
+                                                                </mat-form-field>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
                                                 <div *ngFor="let bedNumber of [].constructor(romNumber.get('bedRooms').value);let i = index">
                                                     <div>
                                                         <div class="row">
@@ -1002,7 +1027,8 @@
                                         <div class="col">
                                             <mat-radio-button value="1"><b>Linh hoạt</b>
                                                 <br>
-                                                    Khách hàng hủy trước ngày nhận phòng 1 ngày sẽ được hoàn lại tiền 100%. Trong trường hợp khách không đến, bạn được nhận 100% giá tiền đặt phòng.
+                                                Khách hàng hủy trước ngày nhận phòng 1 ngày sẽ được hoàn lại tiền 100%.
+                                                Trong trường hợp khách không đến, bạn được nhận 100% giá tiền đặt phòng.
                                             </mat-radio-button>
                                         </div>
                                     </div>
@@ -1010,8 +1036,10 @@
                                         <div class="col">
                                             <mat-radio-button value="2"><b>Nghiêm ngặt</b>
                                                 <br>
-                                                Khách hàng hủy trước ngày nhận phòng 7 ngày sẽ được hoàn lại tiền 50%. Trong trường hợp khách không đến, bạn được nhận 100% giá tiền đặt phòng.
-                                            </mat-radio-button>                                        </div>
+                                                Khách hàng hủy trước ngày nhận phòng 7 ngày sẽ được hoàn lại tiền 50%.
+                                                Trong trường hợp khách không đến, bạn được nhận 100% giá tiền đặt phòng.
+                                            </mat-radio-button>
+                                        </div>
                                     </div>
                                 </mat-radio-group>
 
