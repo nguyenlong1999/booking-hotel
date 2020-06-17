@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Renderer2} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {StarRatingColor} from '../../shared/animation/star-rating/star-rating.component';
 
@@ -16,8 +16,9 @@ export class HotelRegisterComponent implements OnInit {
     countBathrooms = 0;
     isDisable = true;
     private address;
-    lat = 0;
-    lng = 0;
+    private name;
+    lat = 19.973349;
+    lng = 105.468750;
     // rating
     rating = 3;
     starCount = 5;
@@ -71,7 +72,6 @@ export class HotelRegisterComponent implements OnInit {
     ngOnInit(): void {
         console.log(this.address);
     }
-
 
     onRatingChanged(rating) {
         console.log(this.address);
@@ -201,11 +201,14 @@ export class HotelRegisterComponent implements OnInit {
     // get address
     getEstablishmentAddress(place: object) {
         this.address = place['formatted_address'];
-        this.lat = place.geometry.location.lat();
-        this.lng = place.geometry.location.lng()
+        this.lat = place['geometry'].location.lat();
+        this.lng = place['geometry'].location.lng();
+        this.name=  place['name'];
         console.log(this.lat)
         console.log(this.lng)
-        console.log(place)
+        console.log(place);
+        console.log(this.name);
+       document.getElementById('check-input').focus();
     }
 
 }

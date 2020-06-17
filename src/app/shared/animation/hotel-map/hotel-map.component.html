@@ -1,3 +1,10 @@
-<agm-map [latitude]="map.lat" [longitude]="map.lng" style="height: 300px">
-    <agm-marker [latitude]="map.lat" [longitude]="map.lng"></agm-marker>
+<agm-map [latitude]="map.lat" [longitude]="map.lng" [maxZoom]="zoom" style="height: 300px">
+    <agm-marker [latitude]="map.lat" [longitude]="map.lng" [openInfoWindow]="true" (markerClick)="clickedMarker(infowindow)">
+        <agm-info-window #infowindow >
+           Tên: {{name}}
+            <br/>
+            <strong>{{address}}</strong>
+        </agm-info-window>
+    </agm-marker>
+
 </agm-map>

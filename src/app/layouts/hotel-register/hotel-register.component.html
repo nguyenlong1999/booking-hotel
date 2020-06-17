@@ -284,7 +284,7 @@
                                                     </div>
                                                     <div class="row">
                                                         <div class="col">
-                                                            <AutocompleteComponent
+                                                            <AutocompleteComponent id="check-input"
                                                                     (setAddress)="getEstablishmentAddress($event)"
                                                                     adressType="establishment"></AutocompleteComponent>
                                                         </div>
@@ -389,7 +389,7 @@
                                                     </div>
                                                     <div class="row">
                                                         <div class="col">
-                                                            <app-hotel-map [lat]="lat" [lng]="lng"></app-hotel-map>
+                                                            <app-hotel-map [lat]="lat" [lng]="lng" [address]="address" [name]="name"></app-hotel-map>
                                                         </div>
                                                     </div>
                                                 </div>
