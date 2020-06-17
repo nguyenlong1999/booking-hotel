@@ -26,7 +26,7 @@ export class HotelRegisterComponent implements OnInit {
     starColorW: StarRatingColor = StarRatingColor.warn;
 
     // selected tab
-    public TabIndex = 1;
+    public TabIndex = 3;
 
     public tabNext() {
         const tabCount = 4;
@@ -107,14 +107,28 @@ export class HotelRegisterComponent implements OnInit {
         this.formArrayRoomNumber.removeAt(this.formArrayRoomNumber.length - 1);
     }
 
-    addControlTypeBedroom(i) {
+    addControlArrayTypeBedroom(i) {
         console.log('thêm loại giường ngủ')
+        return this.formbuilder.group({
+            arrayTypeBedRooms: this.formbuilder.array([
+                this.addControlTypeBedroom()
+            ])
+        })
+    }
+
+    plusAddTypeBedRoom(i, iz) {
+
+        const control = ((<FormArray>this.registerHotelForm.controls['formArrayRoomNumber']).at(i).get('bedRoomsDetails') as FormArray)
+            .at(iz).get('arrayTypeBedRooms') as FormArray;
+        control.push(this.addControlTypeBedroom());
+    }
+
+    addControlTypeBedroom() {
         return this.formbuilder.group({
             bedType: this.formbuilder.control(''),
             bedQuantity: this.formbuilder.control('')
         })
     }
-
 
     addControlFacilities() {
         console.log('facilities nè')
@@ -158,7 +172,7 @@ export class HotelRegisterComponent implements OnInit {
 
         // form multiple
         const control = (<FormArray>this.registerHotelForm.controls['formArrayRoomNumber']).at(i).get('bedRoomsDetails') as FormArray;
-        control.push(this.addControlTypeBedroom(i));
+        control.push(this.addControlArrayTypeBedroom(i));
     }
 
     minusNumberOfBedrooms(i) {
@@ -201,8 +215,8 @@ export class HotelRegisterComponent implements OnInit {
     // get address
     getEstablishmentAddress(place: object) {
         this.address = place['formatted_address'];
-        this.lat = place.geometry.location.lat();
-        this.lng = place.geometry.location.lng()
+        // this.lat = place.geometry.location.lat();
+        // this.lng = place.geometry.location.lng()
         console.log(this.lat)
         console.log(this.lng)
         console.log(place)

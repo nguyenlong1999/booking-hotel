@@ -889,67 +889,93 @@
                                                     <div [formGroup]="roomDetails"
                                                          *ngFor="let roomDetails of romNumber['controls'].bedRoomsDetails['controls']; let iz=index">
                                                         <div class="row">
-                                                            <div class="col-lg-3">
-                                                                <mat-form-field>
-                                                                    <input matInput placeholder="Số lượng"
-                                                                           formControlName="bedQuantity">
-                                                                </mat-form-field>
+                                                            <div class="col-3">
+                                                                <h3><span
+                                                                        style="font-weight: bold">Phòng {{iz + 1}} </span>
+                                                                </h3>
                                                             </div>
-                                                            <div class="col-lg-3">
-                                                                <mat-form-field>
-                                                                    <mat-label>Giường</mat-label>
-                                                                    <select matNativeControl formControlName="bedType">
-                                                                        <option selected>Giường đôi</option>
-                                                                    </select>
-                                                                </mat-form-field>
+                                                        </div>
+                                                        <div formArrayName="arrayTypeBedRooms">
+                                                            <div [formGroup]="typeBedRoom"
+                                                                 *ngFor="let typeBedRoom of roomDetails['controls'].arrayTypeBedRooms['controls'];let ia=index">
+                                                                <div class="row">
+                                                                    <div class="col-lg-3">
+                                                                        <mat-form-field>
+                                                                            <input matInput placeholder="Số lượng"
+                                                                                   formControlName="bedQuantity">
+                                                                        </mat-form-field>
+                                                                    </div>
+                                                                    <div class="col-lg-3">
+                                                                        <mat-form-field>
+                                                                            <mat-label>Loại giường</mat-label>
+                                                                            <mat-select formControlName="bedType">
+                                                                                <mat-option value="0">None</mat-option>
+                                                                                <mat-option value="1">Giường đôi
+                                                                                </mat-option>
+                                                                                <mat-option value="2">Giường đơn
+                                                                                </mat-option>
+                                                                                <mat-option value="3">Giường King
+                                                                                </mat-option>
+                                                                            </mat-select>
+                                                                        </mat-form-field>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <p (click)="plusAddTypeBedRoom(i,iz)" class="evtHover">Thêm loại
+                                                                    giường
+                                                                </p>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
 
-                                                <div *ngFor="let bedNumber of [].constructor(romNumber.get('bedRooms').value);let i = index">
-                                                    <div>
-                                                        <div class="row">
-                                                            <div class="col-3">
-                                                                <h3><span
-                                                                        style="font-weight: bold">Phòng {{i + 1}} </span>
-                                                                </h3>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-lg-3">
-                                                                <mat-form-field>
-                                                                    <input matInput placeholder="Số lượng"
-                                                                           formControlName="bedTypeSingle">
-                                                                </mat-form-field>
-                                                            </div>
-                                                            <div class="col-lg-3">
-                                                                <mat-form-field>
-                                                                    <mat-label>Giường</mat-label>
-                                                                    <select matNativeControl>
-                                                                        <option selected> Giường đơn</option>
-                                                                    </select>
-                                                                </mat-form-field>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-lg-3">
-                                                                <mat-form-field>
-                                                                    <input matInput placeholder="Số lượng"
-                                                                           formControlName="bedTypedual">
-                                                                </mat-form-field>
-                                                            </div>
-                                                            <div class="col-lg-3">
-                                                                <mat-form-field>
-                                                                    <mat-label>Giường</mat-label>
-                                                                    <select matNativeControl>
-                                                                        <option selected>Giường đôi</option>
-                                                                    </select>
-                                                                </mat-form-field>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <!--                                                <div *ngFor="let bedNumber of [].constructor(romNumber.get('bedRooms').value);let i = index">-->
+                                                <!--                                                    <div>-->
+                                                <!--                                                        <div class="row">-->
+                                                <!--                                                            <div class="col-3">-->
+                                                <!--                                                                <h3><span-->
+                                                <!--                                                                        style="font-weight: bold">Phòng {{i + 1}} </span>-->
+                                                <!--                                                                </h3>-->
+                                                <!--                                                            </div>-->
+                                                <!--                                                        </div>-->
+                                                <!--                                                        <div class="row">-->
+                                                <!--                                                            <div class="col-lg-3">-->
+                                                <!--                                                                <mat-form-field>-->
+                                                <!--                                                                    <input matInput placeholder="Số lượng"-->
+                                                <!--                                                                           formControlName="bedTypeSingle">-->
+                                                <!--                                                                </mat-form-field>-->
+                                                <!--                                                            </div>-->
+                                                <!--                                                            <div class="col-lg-3">-->
+                                                <!--                                                                <mat-form-field>-->
+                                                <!--                                                                    <mat-label>Giường</mat-label>-->
+                                                <!--                                                                    <select matNativeControl>-->
+                                                <!--                                                                        <option selected> Giường đơn</option>-->
+                                                <!--                                                                    </select>-->
+                                                <!--                                                                </mat-form-field>-->
+                                                <!--                                                            </div>-->
+                                                <!--                                                        </div>-->
+                                                <!--                                                        <div class="row">-->
+                                                <!--                                                            <div class="col-lg-3">-->
+                                                <!--                                                                <mat-form-field>-->
+                                                <!--                                                                    <input matInput placeholder="Số lượng"-->
+                                                <!--                                                                           formControlName="bedTypedual">-->
+                                                <!--                                                                </mat-form-field>-->
+                                                <!--                                                            </div>-->
+                                                <!--                                                            <div class="col-lg-3">-->
+                                                <!--                                                                <mat-form-field>-->
+                                                <!--                                                                    <mat-label>Giường</mat-label>-->
+                                                <!--                                                                    <select matNativeControl>-->
+                                                <!--                                                                        <option selected>Giường đôi</option>-->
+                                                <!--                                                                    </select>-->
+                                                <!--                                                                </mat-form-field>-->
+                                                <!--                                                            </div>-->
+                                                <!--                                                        </div>-->
+                                                <!--                                                    </div>-->
+                                                <!--                                                </div>-->
                                             </fieldset>
                                         </div>
                                     </div>
