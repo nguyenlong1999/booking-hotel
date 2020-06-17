@@ -189,7 +189,8 @@
                                                 <div>
                                                     <div class="row">
                                                         <div class="col-3">
-                                                            <h3><span style="font-weight: bold">Số loại phòng</span></h3>
+                                                            <h3><span style="font-weight: bold">Số loại phòng</span>
+                                                            </h3>
                                                         </div>
                                                     </div>
                                                     <div class="row">
@@ -790,7 +791,8 @@
                                                                      (click)="minusAccommodates(i)">
                                                                     <span class="input-number-decrement">-</span>
                                                                 </div>
-                                                                <input class="input-number" type="number" id="accommodates{{i}}"
+                                                                <input class="input-number" type="number"
+                                                                       id="accommodates{{i}}"
                                                                        formControlName="accommodates"
                                                                        min="0" max="1000">
                                                                 <div class="input-group-button"
@@ -867,17 +869,143 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
                                                 <hr>
-
-
-
+                                                <div *ngFor="let bedNumber of [].constructor(romNumber.get('bedRooms').value);let i = index">
+                                                    <div>
+                                                        <div class="row">
+                                                            <div class="col-3">
+                                                                <h3><span
+                                                                        style="font-weight: bold">Phòng {{i + 1}} </span>
+                                                                </h3>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-3">
+                                                                <mat-form-field>
+                                                                    <input matInput placeholder="Số lượng"
+                                                                           formControlName="bedTypeSingle">
+                                                                </mat-form-field>
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <mat-form-field>
+                                                                    <mat-label>Giường</mat-label>
+                                                                    <select matNativeControl>
+                                                                        <option selected> Giường đơn</option>
+                                                                    </select>
+                                                                </mat-form-field>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-3">
+                                                                <mat-form-field>
+                                                                    <input matInput placeholder="Số lượng"
+                                                                           formControlName="bedTypedual">
+                                                                </mat-form-field>
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <mat-form-field>
+                                                                    <mat-label>Giường</mat-label>
+                                                                    <select matNativeControl>
+                                                                        <option selected>Giường đôi</option>
+                                                                    </select>
+                                                                </mat-form-field>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </fieldset>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
+                            <div>
+                                <div class="row">
+                                    <div class="col">
+                                        <h3><span style="font-weight: bold">Khách hàng có thể đặt nơi ở của bạn trước bao lâu?
+</span>
+                                        </h3>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <mat-button-toggle-group style="background: #ffffff"
+                                                                 formControlName="reservationTime">
+                                            <mat-button-toggle value="1" style="margin:10px 5px">Mọi lúc
+                                            </mat-button-toggle>
+                                            <mat-button-toggle value="2" style="margin:10px 5px">1 năm
+                                            </mat-button-toggle>
+                                            <mat-button-toggle value="3" style="margin:10px 5px">6 tháng
+                                            </mat-button-toggle>
+                                            <mat-button-toggle value="4" style="margin:10px 5px">3 tháng
+                                            </mat-button-toggle>
+                                        </mat-button-toggle-group>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="row">
+                                    <div class="col">
+                                        <h3><span style="font-weight: bold">Thời gian lưu trú
+</span>
+                                        </h3>
+                                    </div>
+                                </div>
+
+                                <div class="row" style="padding-left: 2%">
+                                    <div class="col">
+                                        <h4><span style="font-weight: bold">Số ngày tối thiểu cho mỗi lần đặt
+</span>
+                                        </h4>
+                                    </div>
+                                </div>
+                                <div class="row" style="padding-left: 2%">
+                                    <div class="col">
+                                        <div class="input-group input-number-group">
+                                            <div class="input-group-button"
+                                                 (click)="minusMaxDay()">
+                                                <span class="input-number-decrement">-</span>
+                                            </div>
+                                            <input class="input-number" type="number" [value]="maxDayNumber"
+                                                   formControlName="maxDay"
+                                                   min="0" max="1000">
+                                            <div class="input-group-button" (click)="plusMaxDay()">
+                                                <span class="input-number-increment">+</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="row">
+                                    <div class="col">
+                                        <h3><span style="font-weight: bold">Chính sách hủy phòng
+</span>
+                                        </h3>
+                                    </div>
+                                </div>
+                                <mat-radio-group>
+                                    <div class="row">
+                                        <div class="col">
+                                            <mat-radio-button value="1"><b>Linh hoạt</b>
+                                                <br>
+                                                    Khách hàng hủy trước ngày nhận phòng 1 ngày sẽ được hoàn lại tiền 100%. Trong trường hợp khách không đến, bạn được nhận 100% giá tiền đặt phòng.
+                                            </mat-radio-button>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <mat-radio-button value="2"><b>Nghiêm ngặt</b>
+                                                <br>
+                                                Khách hàng hủy trước ngày nhận phòng 7 ngày sẽ được hoàn lại tiền 50%. Trong trường hợp khách không đến, bạn được nhận 100% giá tiền đặt phòng.
+                                            </mat-radio-button>                                        </div>
+                                    </div>
+                                </mat-radio-group>
+
+                            </div>
+
+
                         </div>
                     </div>
                 </div>

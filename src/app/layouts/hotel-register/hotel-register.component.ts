@@ -9,10 +9,12 @@ import {StarRatingColor} from '../../shared/animation/star-rating/star-rating.co
 })
 export class HotelRegisterComponent implements OnInit {
     registerHotelForm: FormGroup;
-    totaltypeRoomNumber = 0
+    totaltypeRoomNumber = 0;
+    maxDayNumber = 0;
     countAccommodates = 0;
     countBedrooms = 0;
     countBathrooms = 0;
+    isDisable = true;
 
     // rating
     rating = 3;
@@ -58,7 +60,9 @@ export class HotelRegisterComponent implements OnInit {
             // tab 4 Thông tin phòng Room detail array và priceExtra + extra-person
             formArrayRoomNumber: this.formbuilder.array([
                 this.addControlRoom()
-            ])
+            ]),
+            reservationTime: [''],
+            maxDay: [''],
         })
     }
 
@@ -86,17 +90,15 @@ export class HotelRegisterComponent implements OnInit {
     addControlRoom() {
         return this.formbuilder.group({
             accommodates: this.formbuilder.control(''),
-            bathRooms: this.formbuilder.control(''),
-            bedRooms: this.formbuilder.control(''),
-            bedRoomDetails: this.formbuilder.group({
-                bedType: this.formbuilder.control(''),
-                quantityBed: this.formbuilder.control('')
-            }),
+            bathRooms: this.formbuilder.control('0'),
+            bedRooms: this.formbuilder.control('1'),
+            bedTypedual: this.formbuilder.control(''),
+            bedTypeSingle: this.formbuilder.control('')
         });
     }
 
     deleteControlRoom() {
-        console.log(this.formArrayRoomNumber.length );
+        console.log(this.formArrayRoomNumber.length);
         this.formArrayRoomNumber.removeAt(this.formArrayRoomNumber.length - 1);
     }
 
@@ -114,6 +116,14 @@ export class HotelRegisterComponent implements OnInit {
         return this.formbuilder.group({
             test: this.formbuilder.control('')
         });
+    }
+
+    minusMaxDay() {
+        this.maxDayNumber--;
+    }
+
+    plusMaxDay() {
+        this.maxDayNumber++;
     }
 
     minusTotalRoomNumber() {

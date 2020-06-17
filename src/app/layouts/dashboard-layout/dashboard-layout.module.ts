@@ -17,6 +17,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatRadioModule} from '@angular/material/radio';
 import {SharedModule} from '../../shared/shared.module';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 @NgModule({
     declarations: [
@@ -41,6 +42,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
         MatRadioModule,
         SharedModule,
         MatCheckboxModule,
+        MatButtonToggleModule,
     ],
     providers: [
     ],
