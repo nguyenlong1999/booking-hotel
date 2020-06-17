@@ -15,6 +15,7 @@ export class HotelRegisterComponent implements OnInit {
     countBedrooms = 0;
     countBathrooms = 0;
     isDisable = true;
+    private address;
 
     // rating
     rating = 3;
@@ -67,11 +68,12 @@ export class HotelRegisterComponent implements OnInit {
     }
 
     ngOnInit(): void {
-
+        console.log(this.address);
     }
 
 
     onRatingChanged(rating) {
+        console.log(this.address);
         this.rating = rating;
     }
 
@@ -172,6 +174,10 @@ export class HotelRegisterComponent implements OnInit {
         this.countAccommodates = this.registerHotelForm.get('formArrayRoomNumber').get([i]).get('accommodates').value
         this.countAccommodates--;
         this.registerHotelForm.get('formArrayRoomNumber').get([i]).get('accommodates').setValue(this.countAccommodates)
+    }
+
+    getEstablishmentAddress(place: object) {
+        this.address = place['formatted_address'];
     }
 
 }
