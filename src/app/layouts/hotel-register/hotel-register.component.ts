@@ -14,7 +14,6 @@ export class HotelRegisterComponent implements OnInit {
     countAccommodates = 0;
     countBedrooms = 0;
     countBathrooms = 0;
-    isDisable = true;
     private address;
     private name;
     lat = 19.973349;
@@ -107,6 +106,15 @@ export class HotelRegisterComponent implements OnInit {
         this.formArrayRoomNumber.removeAt(this.formArrayRoomNumber.length - 1);
     }
 
+    deleteControlBedRoomType(i, iz, ia) {
+        console.log(i)
+        console.log(iz)
+        console.log(ia)
+        const control = ((<FormArray>this.registerHotelForm.controls['formArrayRoomNumber']).at(i).get('bedRoomsDetails') as FormArray)
+            .at(iz).get('arrayTypeBedRooms') as FormArray;
+        control.removeAt(ia);
+    }
+
     addControlArrayTypeBedroom(i) {
         console.log('thêm loại giường ngủ')
         return this.formbuilder.group({
@@ -117,7 +125,6 @@ export class HotelRegisterComponent implements OnInit {
     }
 
     plusAddTypeBedRoom(i, iz) {
-
         const control = ((<FormArray>this.registerHotelForm.controls['formArrayRoomNumber']).at(i).get('bedRoomsDetails') as FormArray)
             .at(iz).get('arrayTypeBedRooms') as FormArray;
         control.push(this.addControlTypeBedroom());
@@ -219,12 +226,12 @@ export class HotelRegisterComponent implements OnInit {
         // this.lng = place.geometry.location.lng()
         this.lat = place['geometry'].location.lat();
         this.lng = place['geometry'].location.lng();
-        this.name=  place['name'];
+        this.name = place['name'];
         console.log(this.lat)
         console.log(this.lng)
         console.log(place);
         console.log(this.name);
-       document.getElementById('check-input').focus();
+        document.getElementById('check-input').focus();
     }
 
 }

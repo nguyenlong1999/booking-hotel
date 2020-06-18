@@ -285,8 +285,8 @@
                                                     <div class="row">
                                                         <div class="col">
                                                             <AutocompleteComponent id="check-input"
-                                                                    (setAddress)="getEstablishmentAddress($event)"
-                                                                    adressType="establishment"></AutocompleteComponent>
+                                                                                   (setAddress)="getEstablishmentAddress($event)"
+                                                                                   adressType="establishment"></AutocompleteComponent>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -389,7 +389,8 @@
                                                     </div>
                                                     <div class="row">
                                                         <div class="col">
-                                                            <app-hotel-map [lat]="lat" [lng]="lng" [address]="address" [name]="name"></app-hotel-map>
+                                                            <app-hotel-map [lat]="lat" [lng]="lng" [address]="address"
+                                                                           [name]="name"></app-hotel-map>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -919,63 +920,27 @@
                                                                             </mat-select>
                                                                         </mat-form-field>
                                                                     </div>
+                                                                    <div class="col-lg-3">
+                                                                        <button mat-fab color="primary"
+                                                                                matTooltip="Delete"
+                                                                                (click)="deleteControlBedRoomType(i,iz,ia)">
+                                                                            <mat-icon>delete</mat-icon>
+                                                                        </button>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
 
                                                         <div class="row">
                                                             <div class="col">
-                                                                <p (click)="plusAddTypeBedRoom(i,iz)" class="evtHover">Thêm loại
+                                                                <p (click)="plusAddTypeBedRoom(i,iz)" class="evtHover">
+                                                                    Thêm loại
                                                                     giường
                                                                 </p>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-
-                                                <!--                                                <div *ngFor="let bedNumber of [].constructor(romNumber.get('bedRooms').value);let i = index">-->
-                                                <!--                                                    <div>-->
-                                                <!--                                                        <div class="row">-->
-                                                <!--                                                            <div class="col-3">-->
-                                                <!--                                                                <h3><span-->
-                                                <!--                                                                        style="font-weight: bold">Phòng {{i + 1}} </span>-->
-                                                <!--                                                                </h3>-->
-                                                <!--                                                            </div>-->
-                                                <!--                                                        </div>-->
-                                                <!--                                                        <div class="row">-->
-                                                <!--                                                            <div class="col-lg-3">-->
-                                                <!--                                                                <mat-form-field>-->
-                                                <!--                                                                    <input matInput placeholder="Số lượng"-->
-                                                <!--                                                                           formControlName="bedTypeSingle">-->
-                                                <!--                                                                </mat-form-field>-->
-                                                <!--                                                            </div>-->
-                                                <!--                                                            <div class="col-lg-3">-->
-                                                <!--                                                                <mat-form-field>-->
-                                                <!--                                                                    <mat-label>Giường</mat-label>-->
-                                                <!--                                                                    <select matNativeControl>-->
-                                                <!--                                                                        <option selected> Giường đơn</option>-->
-                                                <!--                                                                    </select>-->
-                                                <!--                                                                </mat-form-field>-->
-                                                <!--                                                            </div>-->
-                                                <!--                                                        </div>-->
-                                                <!--                                                        <div class="row">-->
-                                                <!--                                                            <div class="col-lg-3">-->
-                                                <!--                                                                <mat-form-field>-->
-                                                <!--                                                                    <input matInput placeholder="Số lượng"-->
-                                                <!--                                                                           formControlName="bedTypedual">-->
-                                                <!--                                                                </mat-form-field>-->
-                                                <!--                                                            </div>-->
-                                                <!--                                                            <div class="col-lg-3">-->
-                                                <!--                                                                <mat-form-field>-->
-                                                <!--                                                                    <mat-label>Giường</mat-label>-->
-                                                <!--                                                                    <select matNativeControl>-->
-                                                <!--                                                                        <option selected>Giường đôi</option>-->
-                                                <!--                                                                    </select>-->
-                                                <!--                                                                </mat-form-field>-->
-                                                <!--                                                            </div>-->
-                                                <!--                                                        </div>-->
-                                                <!--                                                    </div>-->
-                                                <!--                                                </div>-->
                                             </fieldset>
                                         </div>
                                     </div>
