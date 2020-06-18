@@ -26,7 +26,7 @@ export class HotelRegisterComponent implements OnInit {
     starColorW: StarRatingColor = StarRatingColor.warn;
 
     // selected tab
-    public TabIndex = 3;
+    public TabIndex = 4;
 
     public tabNext() {
         const tabCount = 4;
@@ -64,7 +64,7 @@ export class HotelRegisterComponent implements OnInit {
                 this.addControlRoom()
             ]),
             reservationTime: [''],
-            maxDay: [''],
+
         })
     }
 
@@ -87,17 +87,18 @@ export class HotelRegisterComponent implements OnInit {
     }
 
     onSubmit() {
-
+        console.log('submit')
+        console.log(this.registerHotelForm.value);
     }
 
     addControlRoom() {
         return this.formbuilder.group({
-            accommodates: this.formbuilder.control(''),
+            accommodates: this.formbuilder.control('0'),
             bathRooms: this.formbuilder.control('0'),
             bedRooms: this.formbuilder.control('0'),
             bedRoomsDetails: this.formbuilder.array([]),
-            bedTypedual: this.formbuilder.control(''),
-            bedTypeSingle: this.formbuilder.control('')
+            maxDay: ['0'],
+            price: ['']
         });
     }
 

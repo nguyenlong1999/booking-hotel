@@ -523,10 +523,10 @@
                                                 <fieldset class="the-fieldset">
                                                     <div class="row">
                                                         <div class="col-lg-3">
-                                                            <mat-checkbox>Máy điều hòa</mat-checkbox>
+                                                            <mat-checkbox>Wifi tính phí</mat-checkbox>
                                                         </div>
                                                         <div class="col-lg-3">
-                                                            <mat-checkbox>Máy sấy tóc</mat-checkbox>
+                                                            <mat-checkbox>Internet tính phí</mat-checkbox>
                                                         </div>
                                                     </div>
                                                 </fieldset>
@@ -789,7 +789,7 @@
                                                 </legend>
                                                 <div>
                                                     <div class="row">
-                                                        <div class="col-3">
+                                                        <div class="col">
                                                             <h3><span style="font-weight: bold">Sức chứa</span></h3>
                                                         </div>
                                                     </div>
@@ -808,8 +808,8 @@
                                                                 </div>
                                                                 <input class="input-number" type="number"
                                                                        id="accommodates{{i}}"
-                                                                       formControlName="accommodates"
-                                                                       min="0" max="1000">
+                                                                       formControlName="accommodates" min="0" max="100"
+                                                                >
                                                                 <div class="input-group-button"
                                                                      (click)="plusAccommodates(i)">
                                                                     <span class="input-number-increment">+</span>
@@ -821,7 +821,40 @@
 
                                                 <div>
                                                     <div class="row">
-                                                        <div class="col-3">
+                                                        <div class="col">
+                                                            <h3><span style="font-weight: bold">Thời gian lưu trú
+</span>
+                                                            </h3>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            Số ngày tối thiểu cho mỗi lần đặt.
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div class="input-group input-number-group">
+                                                                <div class="input-group-button"
+                                                                     (click)="minusMaxDay()">
+                                                                    <span class="input-number-decrement">-</span>
+                                                                </div>
+                                                                <input class="input-number" type="number"
+                                                                       [value]="maxDayNumber"
+                                                                       formControlName="maxDay"
+                                                                       min="0" max="1000">
+                                                                <div class="input-group-button" (click)="plusMaxDay()">
+                                                                    <span class="input-number-increment">+</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div>
+                                                    <div class="row">
+                                                        <div class="col">
                                                             <h3><span style="font-weight: bold">Phòng tắm</span>
                                                             </h3>
                                                         </div>
@@ -855,7 +888,7 @@
 
                                                 <div>
                                                     <div class="row">
-                                                        <div class="col-3">
+                                                        <div class="col">
                                                             <h3><span style="font-weight: bold">Phòng ngủ</span>
                                                             </h3>
                                                         </div>
@@ -896,6 +929,7 @@
                                                                 </h3>
                                                             </div>
                                                         </div>
+
                                                         <div formArrayName="arrayTypeBedRooms">
                                                             <div [formGroup]="typeBedRoom"
                                                                  *ngFor="let typeBedRoom of roomDetails['controls'].arrayTypeBedRooms['controls'];let ia=index">
@@ -941,6 +975,41 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
+                                                <hr>
+
+                                                <div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <h3><span style="font-weight: bold">Giá mỗi đêm</span></h3>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            Vui lòng nhập giá mỗi đêm của quý đối tác cho loại phòng
+                                                            này.
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <h5>Lượng người tối đa có thể ngủ ở chỗ bạn
+                                                                là: {{ romNumber.get('accommodates').value }}. <a
+                                                                        href="hotel-register#accommodates{{i}}">Thay
+                                                                    đổi</a></h5>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-3">
+                                                            <mat-form-field>
+                                                                <mat-label>
+                                                                    <b>Giá tối thiểu mỗi đêm là bao nhiêu?</b>
+                                                                </mat-label>
+                                                                <input matInput formControlName="price">
+                                                            </mat-form-field>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
                                             </fieldset>
                                         </div>
                                     </div>
@@ -971,39 +1040,6 @@
                                 </div>
                             </div>
 
-                            <div>
-                                <div class="row">
-                                    <div class="col">
-                                        <h3><span style="font-weight: bold">Thời gian lưu trú
-</span>
-                                        </h3>
-                                    </div>
-                                </div>
-
-                                <div class="row" style="padding-left: 2%">
-                                    <div class="col">
-                                        <h4><span style="font-weight: bold">Số ngày tối thiểu cho mỗi lần đặt
-</span>
-                                        </h4>
-                                    </div>
-                                </div>
-                                <div class="row" style="padding-left: 2%">
-                                    <div class="col">
-                                        <div class="input-group input-number-group">
-                                            <div class="input-group-button"
-                                                 (click)="minusMaxDay()">
-                                                <span class="input-number-decrement">-</span>
-                                            </div>
-                                            <input class="input-number" type="number" [value]="maxDayNumber"
-                                                   formControlName="maxDay"
-                                                   min="0" max="1000">
-                                            <div class="input-group-button" (click)="plusMaxDay()">
-                                                <span class="input-number-increment">+</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
                             <div>
                                 <div class="row">
@@ -1036,6 +1072,85 @@
 
                             </div>
 
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </mat-tab>
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <mat-icon>bubble_chart</mat-icon>
+                Đăng bài
+            </ng-template>
+            <div class="main-content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header card-header-info">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h4 class="card-title">Ký hợp đồng và bắt đầu nhận đặt phòng.
+                                            </h4>
+                                            <p class="card-category">Chỉ cần một vài chi tiết nữa thôi!
+                                            </p>
+                                        </div>
+                                        <div class="col">
+                                            <img src="assets/booking/chapnhandkphong.png"
+                                                 class="img-thumbnail  img-fluid"
+                                                 style="max-width:200px;"/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h3><span
+                                                    style="font-weight: bold">Am hiểu luật lệ, quy định và các chính sách thuế tại địa phương.
+</span>
+                                            </h3>
+                                            <label>Tìm hiểu về luật lệ và chính sách thuế tại địa phương là trách nhiệm
+                                                của bạn.<br>
+                                                <br>
+                                                Tìm hiểu về luật lệ và chính sách thuế tại địa phương trước khi nhận đơn
+                                                đặt phòng. Rất nhiều quốc gia và một số thành phố có ban hành luật pháp
+                                                cụ thể về việc dùng nơi ở của bạn để cho thuê ngắn hạn, ở chung nhà và
+                                                hoặc cho thuê chỗ ở chuyên nghiệp. Hoạt động trong khuôn khổ pháp luật
+                                                của quốc gia nơi cư trú là trách nhiệm của bạn, bao gồm các loại giấy
+                                                phép, giấy chứng nhận hoặc đăng ký cần có trước khi nhận đơn đặt phòng,
+                                                cũng như trả thuế hiện hành áp dụng cho thu nhập từ các đơn đặt phòng
+                                                này.
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h3><span
+                                                    style="font-weight: bold">Đồng ý với điều khoản và điều kiện là bạn đã sẵn sàng rồi đó!
+</span>
+                                            </h3>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <mat-checkbox>Tôi đồng ý với các điều khoản và điều kiện của Agoda và xác nhận tôi sẽ tuân thủ theo luật pháp và quy định hiện hành.</mat-checkbox>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <a style="padding: 15px 20px;background-image: linear-gradient(to right, #3cc603 0%, #3cc908  51%, #32a103  100%); cursor: pointer;color: white ; height: 80px;width: 250px;border-radius: 5px; margin-left: 40%; "
+                                               (click)="onSubmit()">Giới thiệu hotel của tôi</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
 
                         </div>
                     </div>
