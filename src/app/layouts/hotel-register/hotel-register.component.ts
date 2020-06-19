@@ -81,6 +81,8 @@ export class HotelRegisterComponent implements OnInit {
     }
     onChange(deviceValue,index) {
         console.log(deviceValue,index);
+        const radio: HTMLElement = document.getElementById('addMoreRoom'+index);
+        radio.style.display='none';
     }
 
     get formArrayRoomNumber() {
