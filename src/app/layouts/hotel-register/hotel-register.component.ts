@@ -61,7 +61,7 @@ export class HotelRegisterComponent implements OnInit {
 
             // tab 4 Thông tin phòng Room detail array và priceExtra + extra-person
             formArrayRoomNumber: this.formbuilder.array([
-                this.addControlRoom()
+               // this.addControlRoom()
             ]),
             reservationTime: [''],
 
@@ -79,7 +79,9 @@ export class HotelRegisterComponent implements OnInit {
     get f() {
         return this.registerHotelForm.controls;
     }
-
+    onChange(deviceValue,index) {
+        console.log(deviceValue,index);
+    }
 
     get formArrayRoomNumber() {
         return this.registerHotelForm.get('formArrayRoomNumber') as FormArray

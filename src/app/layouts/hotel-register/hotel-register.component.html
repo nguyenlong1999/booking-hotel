@@ -782,9 +782,13 @@
                                 </div>
                             </div>
                             <div formArrayName="formArrayRoomNumber">
-                                <div [formGroup]="romNumber"
-                                     *ngFor="let romNumber of formArrayRoomNumber.controls; let i = index ">
-                                    <div class="row">
+                            <mat-tab-group>
+                                <mat-tab [formGroup]="romNumber" *ngFor="let romNumber of formArrayRoomNumber.controls; let i = index ">
+                                    <ng-template mat-tab-label>
+                                        <mat-icon>bubble_chart</mat-icon>
+                                       Loại phòng {{i+1}}
+                                    </ng-template>
+                                    <div class="row" style="width: 100%;">
                                         <div class="col">
                                             <fieldset class="the-fieldset">
                                                 <legend class="the-legend">Chi tiết loại phòng ở số {{i}}
@@ -945,13 +949,15 @@
                                                                     <div class="col-lg-3">
                                                                         <mat-form-field>
                                                                             <mat-label>Loại giường</mat-label>
-                                                                            <mat-select formControlName="bedType">
+                                                                            <mat-select formControlName="bedType" (selectionChange)="onChange($event,ia)">
                                                                                 <mat-option value="0">None</mat-option>
                                                                                 <mat-option value="1">Giường đôi
                                                                                 </mat-option>
                                                                                 <mat-option value="2">Giường đơn
                                                                                 </mat-option>
                                                                                 <mat-option value="3">Giường King
+                                                                                </mat-option>
+                                                                                <mat-option value="4">Giường Queen
                                                                                 </mat-option>
                                                                             </mat-select>
                                                                         </mat-form-field>
@@ -967,7 +973,7 @@
                                                             </div>
                                                         </div>
 
-                                                        <div class="row">
+                                                        <div class="row" id="addMoreRoom{{i}}">
                                                             <div class="col">
                                                                 <p (click)="plusAddTypeBedRoom(i,iz)" class="evtHover">
                                                                     Thêm loại
@@ -1015,7 +1021,13 @@
                                             </fieldset>
                                         </div>
                                     </div>
-                                </div>
+                                </mat-tab>
+                            </mat-tab-group>
+
+<!--                                <div -->
+<!--                                    >-->
+<!--                                 -->
+<!--                                </div>-->
                             </div>
                             <div>
                                 <div class="row">

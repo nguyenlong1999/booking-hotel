@@ -20,15 +20,15 @@ export class HotelMapComponent implements OnInit, OnChanges {
     }
     ;
 
+    ngOnInit(): void {
+        this.map = {lat: this.lat, lng: this.lng};
+    }
+
     clickedMarker(infowindow) {
         if (this.previous) {
             this.previous.close();
         }
         this.previous = infowindow;
-    }
-
-    ngOnInit(): void {
-        this.map = {lat: this.lat, lng: this.lng};
     }
 
     ngOnChanges(changes: SimpleChanges) {
