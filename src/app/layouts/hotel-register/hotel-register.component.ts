@@ -26,7 +26,7 @@ export class HotelRegisterComponent implements OnInit {
     starColorW: StarRatingColor = StarRatingColor.warn;
 
     // selected tab
-    public TabIndex = 4;
+    public TabIndex = 0;
 
     public tabNext() {
         const tabCount = 4;
@@ -73,7 +73,6 @@ export class HotelRegisterComponent implements OnInit {
     }
 
     onRatingChanged(rating) {
-        console.log(this.address);
         this.rating = rating;
     }
 
@@ -88,6 +87,8 @@ export class HotelRegisterComponent implements OnInit {
 
     onSubmit() {
         console.log('submit')
+        this.registerHotelForm.get('starHotel').setValue(this.rating)
+
         console.log(this.registerHotelForm.value);
     }
 
