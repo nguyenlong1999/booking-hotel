@@ -61,5 +61,7 @@
   "user.profile": "User Profile",
   "table.list": "Table List",
   "user.space": "Used Space",
-  "user.forget.password": "Forget password"
+  "user.forget.password": "Forget password",
+  "book.room": "Booking",
+  "book.promotion": "Promotion"
 }

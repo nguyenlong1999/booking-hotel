@@ -61,5 +61,7 @@
   "table.list": "Danh sách bảng",
   "user.space": "Đăng nhập",
   "user.login": " ĐĂNG NHẬP TRANG QUẢN TRỊ",
-  "user.forget.password": "QUÊN MẬT KHẨU"
+  "user.forget.password": "QUÊN MẬT KHẨU",
+  "book.room": "Đặt phòng",
+  "book.promotion": "Ưu đãi"
 }
