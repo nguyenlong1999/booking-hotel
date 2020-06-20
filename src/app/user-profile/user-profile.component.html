@@ -1,105 +1,119 @@
-<div class="main-content">
+<div class="main-profile">
   <div class="container-fluid">
-      <div class="row">
-          <div class="col-md-8">
-              <div class="card">
-                  <div class="card-header card-header-danger">
-                      <h4 class="card-title">Edit Profile</h4>
-                      <p class="card-category">Complete your profile</p>
-                  </div>
-                  <div class="card-body">
-                      <form>
-                          <div class="row">
-                              <div class="col-md-5">
-                                <mat-form-field class="example-full-width">
-                                    <input matInput placeholder="Company (disabled)" disabled>
-                                  </mat-form-field>
-                              </div>
-                              <div class="col-md-3">
-                                  <mat-form-field class="example-full-width">
-                                    <input matInput placeholder="Username">
-                                  </mat-form-field>
-                              </div>
-                              <div class="col-md-4">
-                                  <mat-form-field class="example-full-width">
-                                    <input matInput placeholder="Email address" type="email">
-                                  </mat-form-field>
-                              </div>
-                          </div>
-                          <div class="row">
-                              <div class="col-md-6">
-                                <mat-form-field class="example-full-width">
-                                  <input matInput placeholder="Fist Name" type="text">
-                                </mat-form-field>
-                              </div>
-                              <div class="col-md-6">
-                                <mat-form-field class="example-full-width">
-                                  <input matInput placeholder="Last Name" type="text">
-                                </mat-form-field>
-                              </div>
-                          </div>
-                          <div class="row">
-                              <div class="col-md-12">
-                                <mat-form-field class="example-full-width">
-                                  <input matInput placeholder="Adress" type="text">
-                                </mat-form-field>
-                              </div>
-                          </div>
-                          <div class="row">
-                              <div class="col-md-4">
-                                <mat-form-field class="example-full-width">
-                                  <input matInput placeholder="City" type="text">
-                                </mat-form-field>
-                              </div>
-                              <div class="col-md-4">
-                                <mat-form-field class="example-full-width">
-                                  <input matInput placeholder="Country" type="text">
-                                </mat-form-field>
-                              </div>
-                              <div class="col-md-4">
-                                <mat-form-field class="example-full-width">
-                                  <input matInput placeholder="Postal Code" type="text">
-                                </mat-form-field>
-                              </div>
-                          </div>
-                          <div class="row">
-                              <div class="col-md-12">
-                                <label>About Me</label>
-                                <mat-form-field class="example-full-width">
-                                   <textarea matInput placeholder="Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo."></textarea>
-                                 </mat-form-field>
-                                  <!-- <div class="form-group">
-
-                                      <div class="form-group">
-                                          <label class="bmd-label-floating"> Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</label>
-                                          <textarea class="form-control" rows="5"></textarea>
-                                      </div>
-                                  </div> -->
-                              </div>
-                          </div>
-                          <button mat-raised-button type="submit" class="btn btn-danger pull-right">Update Profile</button>
-                          <div class="clearfix"></div>
-                      </form>
-                  </div>
-              </div>
-          </div>
-          <div class="col-md-4">
-              <div class="card card-profile">
-                  <div class="card-avatar">
-                      <a href="javascript:void(0)">
-                          <img class="img" src="./assets/img/faces/marc.jpg" />
-                      </a>
-                  </div>
-                  <div class="card-body">
-                      <h6 class="card-category text-gray">CEO / Co-Founder</h6>
-                      <h4 class="card-title">Alec Thompson</h4>
-                      <p class="card-description">
-                          Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-                      </p>
-                      <a href="javascript:void(0)" class="btn btn-danger btn-round">Follow</a>
-                  </div>
-              </div>
-          </div>
+    <div class="row" style="background: #0086f3;height: 100px">
+      <div class="col-md-5">
+        <h2 class="card-title">Thông tin cá nhân</h2>
       </div>
+    </div>
+    <div class="row">
+      <form style="width: 100%">
+        <div class="row">
+          <div class="col-md-3">
+            <div style="padding-top: 30px;">
+              <label class="hoverable" for="fileInput" style="height: 200px;
+            width: 200px; margin: 0 auto">
+                <img [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png'"
+                  style="border: 1px solid #ffffff;">
+              </label>
+              <br />
+              <input id="fileInput" type='file' (change)="onSelectFile($event)">
+              <div>
+              </div>
+              <div class="card-body">
+                <h6>Nhấn để cập nhật ảnh đại diện</h6>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-1"></div>
+          <div class="col-md-6" style="padding: 0 35px;">
+            <div class="row">
+              <h2 style="text-transform: none;font-weight: 400;">Chỉnh sửa hồ sơ</h2>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <p class="input-title">Email:</p>
+              </div>
+              <div class="col-md-8">
+                <mat-form-field class="example-full-width">
+                  <input matInput value="{{user.email}}" disabled>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <p class="input-title">Tên người dùng:</p>
+              </div>
+              <div class="col-md-8">
+                <mat-form-field class="example-full-width">
+                  <input matInput value="{{user.name}}">
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <p class="input-title">Năm sinh:</p>
+              </div>
+              <div class="col-md-3">
+                <mat-form-field class="example-full-width">
+                  <mat-select [(ngModel)]="year" name="year">
+                    <mat-option *ngFor="let year of years" [value]="year">
+                      {{year}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-3">
+                <p class="input-title">Giới tính:</p>
+              </div>
+              <div class="col-md-3">
+                <mat-form-field class="example-full-width">
+                  <mat-select [(ngModel)]="genderValue" name="gender">
+                    <mat-option *ngFor="let gender of genders; let i = index" [value]="i">
+                      {{gender.viewValue}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <p class="input-title">Quốc gia:</p>
+              </div>
+              <div class="col-md-8">
+                <mat-form-field class="example-full-width">
+                  <input matInput type="text">
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <p class="input-title">Chữ kí:</p>
+              </div>
+              <div class="col-md-8">
+                <mat-form-field class="example-full-width">
+                  <input matInput type="text">
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <p class="input-about">Giới thiệu bản thân:</p>
+              </div>
+              <div class="col-md-8">
+                <mat-form-field class="example-full-width">
+                  <textarea matInput placeholder=""></textarea>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="submit">
+            <button mat-raised-button type="submit" class="btn">Lưu thay đổi</button>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
 </div>

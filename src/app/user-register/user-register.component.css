@@ -1,0 +1,21 @@
+.label-input {
+  font-size: 13px;
+  margin-left: 15px;
+  color: #212529;
+}
+.space-input {
+  margin-top: 10px;
+}
+
+.logo-booking {
+  width: 230px;
+  margin-top: 20px;
+  margin-left: -10px;
+  margin-bottom: -15px;
+}
+.message-error {
+  text-align: center;
+  color: red;
+  font-size: 15px;
+  font-weight: 500;
+}

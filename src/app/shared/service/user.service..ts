@@ -158,8 +158,8 @@ export class UserService {
   findMessage(user: any) {
     return this._http.post(`${this.baseUrl}/findMessage`, { user: user }, { observe: "response" });
   }
-  getMemberInfo = (id: string): Observable<User> => {
-    const url = `${this.baseUrl}/getMemerInfo/${id}`;
+  getMemberInfo = (email: string): Observable<User> => {
+    const url = `${this.baseUrl}/getMemerInfo/${email}`;
     return this._http.get<User>(url).pipe(
       tap(_ => console.log('helo'))
     );
