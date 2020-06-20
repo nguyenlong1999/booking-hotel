@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { UserService } from 'app/shared/service/user.service.';
-import { User } from 'app/shared/model/user';
-import { CookieService } from 'ngx-cookie-service';
-import { OrderPipe } from 'ngx-order-pipe';
+import {Component, OnInit} from '@angular/core';
+import {UserService} from 'app/shared/service/user.service.';
+import {User} from 'app/shared/model/user';
+import {CookieService} from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-user-access',

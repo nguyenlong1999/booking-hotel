@@ -23,23 +23,23 @@
                 <li class="nav-item">
                     <a class="nav-link" href="javascript:void(0)" id="navbarDropdownMenuLink1" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
-                        <div *ngIf="translate.currentLang === 'vi'; else elseBlock ">
-<!--                            <i class="material-icons">notifications</i>-->
-                            <img src="/assets/img/en.png" style="width: 30px;height: auto;" (click)="useLanguage('en')"/>
+                        <div >
+                            <i class="material-icons">sync_alt</i>
+
                         </div>
-                        <ng-template #elseBlock>
-                            <img src="/assets/img/vi.png" style="width: 30px;height: auto;" (click)="useLanguage('vi')"/>
-                        </ng-template>
+<!--                        <ng-template #elseBlock>-->
+<!--                            -->
+<!--                        </ng-template>-->
                         <p>
                             <span class="d-lg-none d-md-block">Some Actions</span>
                         </p>
                     </a>
-<!--                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">-->
-<!--                        <a class="dropdown-item" href="javascript:void(0)"-->
-<!--                           (click)="useLanguage('en')">{{ "language.en" | translate }}</a>-->
-<!--                        <a class="dropdown-item" href="javascript:void(0)"-->
-<!--                           (click)="useLanguage('vi')">{{ "language.vi" | translate }}</a>-->
-<!--                    </div>-->
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink1">
+                        <a class="dropdown-item" href="javascript:void(0)"
+                           (click)="useLanguage('en')">  <img src="/assets/img/en.png" style="width: 30px;height: auto; padding-right: 3px;" (click)="useLanguage('en')"/>{{ "language.en" | translate }}</a>
+                        <a class="dropdown-item" href="javascript:void(0)"
+                           (click)="useLanguage('vi')"><img src="/assets/img/vi.png" style="width: 30px;height: auto; padding-right: 3px;" (click)="useLanguage('vi')"/>{{ "language.vi" | translate }}</a>
+                    </div>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link" href="javascript:void(0)" id="navbarDropdownMenuLink" data-toggle="dropdown"
