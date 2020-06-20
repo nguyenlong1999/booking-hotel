@@ -10,7 +10,8 @@ import { } from 'googlemaps';
         [(ngModel)]="autocompleteInput"
         #addresstext style="padding: 12px 20px; border: 1px solid #ccc; width: 400px"
         >
-    `,
+      <div id="map" style="display: none;"></div>
+  `,
 })
 export class AutocompleteComponent implements OnInit, AfterViewInit {
   @Input() adressType: string;
@@ -19,7 +20,7 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
 
   autocompleteInput: string;
   queryWait: boolean;
-
+  private map;
   constructor() {
   }
 
@@ -43,7 +44,28 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
   }
 
   invokeEvent(place: Object) {
+      this.map= new google.maps.Map(document.getElementById('map'), {
+          zoom: 7,
+          center:{ lat: 54.8, lng: -4.6 },
+          mapTypeControl: false,
+          panControl: false,
+          zoomControl: false,
+          streetViewControl: false
+      });
+    let  places = new google.maps.places.PlacesService(this.map);
+    let search = {
+    types: ['tourist_attraction']
+    };
+    places.nearbySearch(search, function (results, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+        console.log(results);
+
+        } else {
+        console.log(results);
+        }
+        });
     this.setAddress.emit(place);
+    console.log(place);
   }
 
 }

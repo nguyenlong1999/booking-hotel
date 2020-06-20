@@ -22,9 +22,13 @@ import {BookingComponent} from '../../booking/booking.component';
 import {HotelAccessComponent} from '../../hotel-access/hotel-access.component';
 import {UserAccessComponent} from '../../user-access/user-access.component';
 import {LoginComponent} from './login/login.component';
-import {FileSelectDirective} from 'ng2-file-upload';
 import {ToastrModule} from 'ngx-toastr';
 import {SharedModule} from '../../shared/shared.module';
+import {MatTabsModule} from "@angular/material/tabs";
+import {MatIconModule} from "@angular/material/icon";
+import {MatRadioModule} from "@angular/material/radio";
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
 
 @NgModule({
     imports: [
@@ -32,15 +36,23 @@ import {SharedModule} from '../../shared/shared.module';
         RouterModule.forChild(AdminLayoutRoutes),
         FormsModule,
         ReactiveFormsModule,
+        MatRippleModule,
+        MatFormFieldModule,
+        MatSelectModule,
         MatButtonModule,
         MatRippleModule,
         MatFormFieldModule,
         MatInputModule,
-        MatSelectModule,
         MatTooltipModule,
         CommonModule,
         ToastrModule.forRoot(),
         SharedModule,
+        MatTabsModule,
+        MatIconModule,
+        MatRadioModule,
+        SharedModule,
+        MatCheckboxModule,
+        MatButtonToggleModule,
     ],
   declarations: [
     DashboardComponent,
