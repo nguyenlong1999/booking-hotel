@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {FileUploader} from 'ng2-file-upload';
 import {ToastrService} from 'ngx-toastr';
 import {AppSetting} from '../appsetting';
-import {FormArray, FormBuilder, FormGroup} from "@angular/forms";
-import {StarRatingColor} from "../shared/animation/star-rating/star-rating.component";
+import {FormArray, FormBuilder, FormGroup} from '@angular/forms';
+import {StarRatingColor} from '../shared/animation/star-rating/star-rating.component';
 
 @Component({
     selector: 'app-hotel-access',
@@ -29,7 +29,7 @@ export class HotelAccessComponent implements OnInit {
     starColorW: StarRatingColor = StarRatingColor.warn;
 
     // selected tab
-    public TabIndex = 0;
+    public TabIndex = 3;
 
     public tabNext() {
         const tabCount = 4;
@@ -67,6 +67,7 @@ export class HotelAccessComponent implements OnInit {
                 // this.addControlRoom()
             ]),
             reservationTime: [''],
+            cancellationPolicy: ['']
 
         })
     }
@@ -82,10 +83,10 @@ export class HotelAccessComponent implements OnInit {
     get f() {
         return this.registerHotelForm.controls;
     }
-    onChange(deviceValue,index) {
-        console.log(deviceValue,index);
-        const radio: HTMLElement = document.getElementById('addMoreRoom'+index);
-        radio.style.display='none';
+    onChange(deviceValue, index) {
+        console.log(deviceValue, index);
+        const radio: HTMLElement = document.getElementById('addMoreRoom' + index);
+        radio.style.display = 'none';
     }
 
     get formArrayRoomNumber() {
