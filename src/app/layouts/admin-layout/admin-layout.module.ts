@@ -29,6 +29,9 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatRadioModule} from "@angular/material/radio";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {HttpClient} from "@angular/common/http";
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 
 @NgModule({
     imports: [
@@ -53,6 +56,13 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
         SharedModule,
         MatCheckboxModule,
         MatButtonToggleModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            }
+        }),
     ],
   declarations: [
     DashboardComponent,
@@ -77,3 +87,7 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
 })
 
 export class AdminLayoutModule { }
+
+export function HttpLoaderFactory(http: HttpClient) {
+    return new TranslateHttpLoader(http);
+}

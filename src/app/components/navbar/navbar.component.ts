@@ -3,6 +3,8 @@ import { ROUTES } from '../sidebar/sidebar.component';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { Router } from '@angular/router';
 import { LoginServiceService } from 'app/shared/service/login-service.service';
+import {TranslateService} from "@ngx-translate/core";
+import {Title} from "@angular/platform-browser";
 
 @Component({
     selector: 'app-navbar',
@@ -15,10 +17,19 @@ export class NavbarComponent implements OnInit {
     mobile_menu_visible: any = 0;
     private toggleButton: any;
     private sidebarVisible: boolean;
+    languageChangeImage: any
 
-    constructor(location: Location, private element: ElementRef, private router: Router, private _loginService: LoginServiceService) {
+    constructor(
+        private title:Title,
+        location: Location,
+        private element: ElementRef,
+        private router: Router,
+        private _loginService: LoginServiceService,
+        private  translate:TranslateService) {
         this.location = location;
         this.sidebarVisible = false;
+        translate.setDefaultLang('vi');
+        sessionStorage.setItem('currentLang', 'vi');
     }
 
     ngOnInit() {
@@ -127,5 +138,21 @@ export class NavbarComponent implements OnInit {
     logout() {
         this._loginService.logoutUser()
         this.router.navigateByUrl('/login')
+    }
+    useLanguage(language: string) {
+        console.log(this.translate)
+        console.log(language);
+        this.translate.use(language);
+        if (language === 'en') {
+            this.translate.get('Booking Hotel').subscribe(name => {
+                this.title.setTitle(name);
+            });
+        } else {
+            this.translate.get('Đặt phòng khách sạn').subscribe(name => {
+                this.title.setTitle(name);
+            });
+        }
+        sessionStorage.setItem('currentLang', language);
+
     }
 }

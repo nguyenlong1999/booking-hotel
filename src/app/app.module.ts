@@ -25,6 +25,10 @@ import {CommonModule} from '@angular/common';
 import {BrowserModule} from '@angular/platform-browser';
 import { ToastrModule } from 'ngx-toastr';
 import { AgmCoreModule } from '@agm/core';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
 const config: SocketIoConfig = {url: AppSetting.BASE_SERVER_URL, options: {}};
 
 @NgModule({
@@ -54,7 +58,14 @@ const config: SocketIoConfig = {url: AppSetting.BASE_SERVER_URL, options: {}};
             apiKey: 'AIzaSyDbIf1-IDfQ0DGaOvAfu5lNZ0bZm0VaisM',
             libraries: ['places']
         }),
-        AgmCoreModule.forRoot()
+        AgmCoreModule.forRoot(),
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            }
+        }),
     ],
     declarations: [
         AppComponent,
@@ -68,4 +79,7 @@ const config: SocketIoConfig = {url: AppSetting.BASE_SERVER_URL, options: {}};
     bootstrap: [AppComponent]
 })
 export class AppModule {
+}
+export function HttpLoaderFactory(http: HttpClient) {
+    return new TranslateHttpLoader(http);
 }
