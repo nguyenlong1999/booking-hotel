@@ -22,26 +22,27 @@ import { BookingComponent } from '../../booking/booking.component';
 import { HotelAccessComponent } from '../../hotel-access/hotel-access.component';
 import { UserAccessComponent } from '../../user-access/user-access.component';
 import { LoginComponent } from './login/login.component';
-import {FileSelectDirective} from "ng2-file-upload";
-import {ToastrModule} from "ngx-toastr";
-import {SharedModule} from "../../shared/shared.module";
+import { FileSelectDirective } from "ng2-file-upload";
+import { ToastrModule } from "ngx-toastr";
+import { SharedModule } from "../../shared/shared.module";
+import { UserRegisterComponent } from 'app/user-register/user-register.component';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        RouterModule.forChild(AdminLayoutRoutes),
-        FormsModule,
-        ReactiveFormsModule,
-        MatButtonModule,
-        MatRippleModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatSelectModule,
-        MatTooltipModule,
-        CommonModule,
-        ToastrModule.forRoot(),
-        SharedModule,
-    ],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(AdminLayoutRoutes),
+    FormsModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatRippleModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatTooltipModule,
+    CommonModule,
+    ToastrModule.forRoot(),
+    SharedModule,
+  ],
   declarations: [
     DashboardComponent,
     UserProfileComponent,
@@ -56,7 +57,8 @@ import {SharedModule} from "../../shared/shared.module";
     HotelAccessComponent,
     UserAccessComponent,
     LoginComponent,
-    FileSelectDirective
+    FileSelectDirective,
+    UserRegisterComponent
     // add các component trang admin vào đây
   ],
   schemas: [
