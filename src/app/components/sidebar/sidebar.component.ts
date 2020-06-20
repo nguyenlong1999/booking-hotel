@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {CookieService} from "ngx-cookie-service";
 
 declare const $: any;
 declare interface RouteInfo {
@@ -19,7 +20,12 @@ export const ROUTES: RouteInfo[] = [
     { path: '/hotels', title: 'Hotel',  icon: 'house', class: '' },
     { path: '/users', title: 'User',  icon: 'person', class: '' },
     { path: '/bookings', title: 'Bookings',  icon: 'book', class: '' },
-    { path: '/upgrade', title: 'Upgrade to PRO',  icon: 'unarchive', class: 'active-pro' },
+    // <= thêm tiếp vào đây
+];
+// thêm menu cho phân quyền tài khoản khách sạn
+export const ROUTES_HOTEL: RouteInfo[] = [
+    { path: '/hotels', title: 'Hotel',  icon: 'house', class: '' },
+    { path: '/bookings', title: 'Bookings',  icon: 'book', class: '' },
     // <= thêm tiếp vào đây
 ];
 
@@ -31,10 +37,15 @@ export const ROUTES: RouteInfo[] = [
 export class SidebarComponent implements OnInit {
   menuItems: any[];
 
-  constructor() { }
+  constructor(private cookieService: CookieService) { }
 
   ngOnInit() {
-    this.menuItems = ROUTES.filter(menuItem => menuItem);
+      if(this.cookieService.get('role')==='2'){
+          this.menuItems = ROUTES.filter(menuItem => menuItem);
+      }else{
+          this.menuItems = ROUTES_HOTEL.filter(menuItem => menuItem);
+      }
+
   }
   isMobileMenu() {
       if ($(window).width() > 991) {
