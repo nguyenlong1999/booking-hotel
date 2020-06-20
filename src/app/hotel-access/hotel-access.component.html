@@ -1074,58 +1074,89 @@
                                     <!--                                </div>-->
                                 </div>
                             </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <h3><span style="font-weight: bold">Khách hàng có thể đặt nơi ở của bạn trước bao lâu </span>
+                                        </h3>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <mat-button-toggle-group style="background: #ffffff"
+                                                                 formControlName="reservationTime">
+                                            <mat-button-toggle value="1" style="margin:10px 5px">Mọi lúc
+                                            </mat-button-toggle>
+                                            <mat-button-toggle value="2" style="margin:10px 5px">1 năm
+                                            </mat-button-toggle>
+                                            <mat-button-toggle value="3" style="margin:10px 5px">6 tháng
+                                            </mat-button-toggle>
+                                            <mat-button-toggle value="4" style="margin:10px 5px">3 tháng
+                                            </mat-button-toggle>
+                                        </mat-button-toggle-group>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <h3><span style="font-weight: bold">Chính sách hủy phòng</span>
+                                        </h3>
+                                    </div>
+                                </div>
+                                <mat-radio-group formControlName="cancellationPolicy">
+                                    <div class="row">
+                                        <div class="col">
+                                            <mat-radio-button value="1" ><b>Linh hoạt</b>
+                                                <br>
+                                                <div class="wrap-mat-radio-label">
+                                                    Khách hàng hủy trước ngày nhận phòng 1 ngày sẽ được hoàn lại tiền 100%.
+                                                    Trong trường hợp khách không đến, bạn được nhận 100% giá tiền đặt phòng.
+                                                </div>
+                                            </mat-radio-button>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <mat-radio-button value="2"><b>Nghiêm ngặt</b>
+                                                <br>
+                                                <div class="wrap-mat-radio-label">
+                                                    Khách hàng hủy trước ngày nhận phòng 7 ngày sẽ được hoàn lại tiền 50%.
+                                                    Trong trường hợp khách không đến, bạn được nhận 100% giá tiền đặt phòng.
+                                                </div>
+                                            </mat-radio-button>
+                                        </div>
+                                    </div>
+
+                                </mat-radio-group>
+
+
+                            </div>
 
                         </div>
 
-                        <!--                                <div class="row">-->
-                        <!--                                    <div class="col">-->
-                        <!--                                        <h3><span style="font-weight: bold">Khách hàng có thể đặt nơi ở của bạn trước bao lâu?-->
-                        <!--</span>-->
-                        <!--                                        </h3>-->
-                        <!--                                    </div>-->
-                        <!--                                </div>-->
-                        <!--                                <div class="row">-->
-                        <!--                                    <div class="col">-->
-                        <!--                                        <mat-button-toggle-group style="background: #ffffff"-->
-                        <!--                                                                 formControlName="reservationTime">-->
-                        <!--                                            <mat-button-toggle value="1" style="margin:10px 5px">Mọi lúc-->
-                        <!--                                            </mat-button-toggle>-->
-                        <!--                                            <mat-button-toggle value="2" style="margin:10px 5px">1 năm-->
-                        <!--                                            </mat-button-toggle>-->
-                        <!--                                            <mat-button-toggle value="3" style="margin:10px 5px">6 tháng-->
-                        <!--                                            </mat-button-toggle>-->
-                        <!--                                            <mat-button-toggle value="4" style="margin:10px 5px">3 tháng-->
-                        <!--                                            </mat-button-toggle>-->
-                        <!--                                        </mat-button-toggle-group>-->
-                        <!--                                    </div>-->
-                        <!--                                </div>-->
 
+                        <!--                        <div class="row">-->
+                        <!--                            <div class="col">-->
 
-                        <!--                                <div class="row">-->
-                        <!--                                    <div class="col">-->
-                        <!--                                        <h3><span style="font-weight: bold">Chính sách hủy phòng-->
-                        <!--</span>-->
-                        <!--                                        </h3>-->
-                        <!--                                    </div>-->
-                        <!--                                </div>-->
-                        <!--                                <div class="row">-->
-                        <!--                                    <div class="col">-->
-                        <!--                                        <mat-radio-button value="1"><b>Linh hoạt</b>-->
-                        <!--                                            <br>-->
-                        <!--                                            Khách hàng hủy trước ngày nhận phòng 1 ngày sẽ được hoàn lại tiền 100%.-->
-                        <!--                                            Trong trường hợp khách không đến, bạn được nhận 100% giá tiền đặt phòng.-->
-                        <!--                                        </mat-radio-button>-->
-                        <!--                                    </div>-->
-                        <!--                                </div>-->
-                        <!--                                <div class="row">-->
-                        <!--                                    <div class="col">-->
-                        <!--                                        <mat-radio-button value="2"><b>Nghiêm ngặt</b>-->
-                        <!--                                            <br>-->
-                        <!--                                            Khách hàng hủy trước ngày nhận phòng 7 ngày sẽ được hoàn lại tiền 50%.-->
-                        <!--                                            Trong trường hợp khách không đến, bạn được nhận 100% giá tiền đặt phòng.-->
-                        <!--                                        </mat-radio-button>-->
-                        <!--                                    </div>-->
-                        <!--                                </div>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+                        <!--                        <div class="row">-->
+                        <!--                            <div class="col">-->
+                        <!--                                <mat-radio-button value="1"><b>Linh hoạt</b>-->
+                        <!--                                    <br>-->
+                        <!--                                    Khách hàng hủy trước ngày nhận phòng 1 ngày sẽ được hoàn lại tiền 100%.-->
+                        <!--                                    Trong trường hợp khách không đến, bạn được nhận 100% giá tiền đặt phòng.-->
+                        <!--                                </mat-radio-button>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+                        <!--                        <div class="row">-->
+                        <!--                            <div class="col">-->
+                        <!--                                <mat-radio-button value="2"><b>Nghiêm ngặt</b>-->
+                        <!--                                    <br>-->
+                        <!--                                    Khách hàng hủy trước ngày nhận phòng 7 ngày sẽ được hoàn lại tiền 50%.-->
+                        <!--                                    Trong trường hợp khách không đến, bạn được nhận 100% giá tiền đặt phòng.-->
+                        <!--                                </mat-radio-button>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
 
 
                     </div>
