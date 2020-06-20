@@ -6,6 +6,7 @@
   "index.servie": "Gallery",
   "index.about": "Top member",
   "index.register": "Login",
+  "user.login": "LOGIN ADMINISTRATOR",
   "register.recipe": "Register new recipe",
   "cong.thuc": "Recipe",
   "phan.loai": "Classify",
@@ -59,5 +60,6 @@
   "Dashboard": "Dashboard",
   "user.profile": "User Profile",
   "table.list": "Table List",
-  "user.space": "Used Space"
+  "user.space": "Used Space",
+  "user.forget.password": "Forget password"
 }
