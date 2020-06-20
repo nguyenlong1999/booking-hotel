@@ -29,7 +29,7 @@ export class HotelAccessComponent implements OnInit {
     starColorW: StarRatingColor = StarRatingColor.warn;
 
     // selected tab
-    public TabIndex = 3;
+    public TabIndex = 0;
 
     public tabNext() {
         const tabCount = 4;
