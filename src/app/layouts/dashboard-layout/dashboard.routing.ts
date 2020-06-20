@@ -2,6 +2,7 @@ import {Routes} from '@angular/router';
 import {DashboardLayoutComponent} from './dashboard-layout.component';
 import {IndexLayoutComponent} from './index-layout/index-layout.component';
 import {HotelRegisterComponent} from '../hotel-register/hotel-register.component';
+import {UserRegiterComponent} from "../user-regiter/user-regiter.component";
 export const DashBoardRoutes: Routes = [
 
   {
@@ -22,6 +23,10 @@ export const DashBoardRoutes: Routes = [
         path: 'hotel-register',
         component: HotelRegisterComponent
       },
+        {
+            path: 'user-register',
+            component: UserRegiterComponent
+        },
       /* {
         path: 'about',
         component: AboutComponent
