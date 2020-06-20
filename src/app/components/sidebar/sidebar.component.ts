@@ -24,6 +24,7 @@ export const ROUTES: RouteInfo[] = [
 ];
 // thêm menu cho phân quyền tài khoản khách sạn
 export const ROUTES_HOTEL: RouteInfo[] = [
+    { path: '/dashboard', title: 'Dashboard',  icon: 'dashboard', class: '' },
     { path: '/hotels', title: 'Hotel',  icon: 'house', class: '' },
     { path: '/bookings', title: 'Bookings',  icon: 'book', class: '' },
     // <= thêm tiếp vào đây
