@@ -9,11 +9,13 @@ import { HotelMapComponent } from './animation/hotel-map/hotel-map.component';
 import {AgmCoreModule} from '@agm/core';
 import { AutocompleteComponent } from './autocomplete/autocomplete.component';
 import {FormsModule} from "@angular/forms";
+import { ImageComponent } from './animation/image/image.component';
+import {FileUploadModule} from 'ng2-file-upload';
 
 
 
 @NgModule({
-  declarations: [StarRatingComponent, HotelMapComponent, AutocompleteComponent],
+  declarations: [StarRatingComponent, HotelMapComponent, AutocompleteComponent, ImageComponent],
     imports: [
         CommonModule,
         MatTooltipModule,
@@ -21,12 +23,14 @@ import {FormsModule} from "@angular/forms";
         MatIconModule,
         MatInputModule,
         AgmCoreModule,
-        FormsModule
+        FormsModule,
+        FileUploadModule
     ],
     exports: [
         StarRatingComponent,
         HotelMapComponent,
-        AutocompleteComponent
+        AutocompleteComponent,
+        ImageComponent
     ],
 })
 export class SharedModule { }

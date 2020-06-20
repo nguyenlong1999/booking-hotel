@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CookieService } from "ngx-cookie-service";
 
 declare const $: any;
 declare interface RouteInfo {
@@ -10,17 +11,22 @@ declare interface RouteInfo {
 // thêm menu trang admin
 export const ROUTES: RouteInfo[] = [
   { path: '/dashboard', title: 'Dashboard', icon: 'dashboard', class: '' },
-  { path: '/hotels', title: 'Hotel', icon: 'house', class: '' },
-  { path: '/users', title: 'User', icon: 'person', class: '' },
   { path: '/user-profile', title: 'User Profile', icon: 'person', class: '' },
-  { path: '/user-register', title: 'User Register', icon: 'person', class: '' },
   { path: '/table-list', title: 'Table List', icon: 'content_paste', class: '' },
   { path: '/typography', title: 'Typography', icon: 'library_books', class: '' },
   { path: '/icons', title: 'Icons', icon: 'bubble_chart', class: '' },
   { path: '/maps', title: 'Maps', icon: 'location_on', class: '' },
   { path: '/notifications', title: 'Notifications', icon: 'notifications', class: '' },
+  { path: '/hotels', title: 'Hotel', icon: 'house', class: '' },
+  { path: '/users', title: 'User', icon: 'person', class: '' },
   { path: '/bookings', title: 'Bookings', icon: 'book', class: '' },
-  { path: '/upgrade', title: 'Upgrade to PRO', icon: 'unarchive', class: 'active-pro' },
+  // <= thêm tiếp vào đây
+];
+// thêm menu cho phân quyền tài khoản khách sạn
+export const ROUTES_HOTEL: RouteInfo[] = [
+  { path: '/dashboard', title: 'Dashboard', icon: 'dashboard', class: '' },
+  { path: '/hotels', title: 'Hotel', icon: 'house', class: '' },
+  { path: '/bookings', title: 'Bookings', icon: 'book', class: '' },
   // <= thêm tiếp vào đây
 ];
 
@@ -32,10 +38,15 @@ export const ROUTES: RouteInfo[] = [
 export class SidebarComponent implements OnInit {
   menuItems: any[];
 
-  constructor() { }
+  constructor(private cookieService: CookieService) { }
 
   ngOnInit() {
-    this.menuItems = ROUTES.filter(menuItem => menuItem);
+    if (this.cookieService.get('role') === '2') {
+      this.menuItems = ROUTES.filter(menuItem => menuItem);
+    } else {
+      this.menuItems = ROUTES_HOTEL.filter(menuItem => menuItem);
+    }
+
   }
   isMobileMenu() {
     if ($(window).width() > 991) {

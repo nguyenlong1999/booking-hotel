@@ -1,9 +1,1225 @@
-<div class="wrapper">
-    <h2>Angular Image Upload Demo</h2>
-    <div class="file-upload">
-        <input type="file" name="image" ng2FileSelect [uploader]="uploader" accept="image/x-png,image/gif,image/jpeg" />
-        <button type="button" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
-            Upload
-        </button>
-    </div>
-</div>
+<form [formGroup]="registerHotelForm" class="form-signin" (ngSubmit)="onSubmit()" style="width: 100%;margin-top: 50px;">
+    <mat-tab-group [(selectedIndex)]="TabIndex">
+        <mat-tab>
+            <ng-template mat-tab-label>
+                Thông tin cơ bản
+            </ng-template>
+            <div class="main-content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="card">
+                            <div class="card-header card-header-info">
+                                <div class="row">
+                                    <div class="col">
+                                        <h4 class="card-title">Giúp bạn tiếp cận đối tượng khách hàng phù hợp
+                                            nhất.</h4>
+                                        <p class="card-category">Vui lòng cung cấp mọi thông tin được yêu cầu
+                                            trừ
+                                            khi có
+                                            đánh
+                                            dấu không bắt buộc.
+                                        </p>
+                                    </div>
+                                    <div class="col">
+                                        <img src="assets/booking/image-header.png"
+                                             class="img-thumbnail  img-fluid"
+                                             style="height:auto;width: 50%;"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <fieldset class="the-fieldset">
+                                            <legend class="the-legend">Cơ sở kinh doanh</legend>
+                                            <div class="layout-box">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <label>
+                                                            <input type="radio" name="type" value="1" checked>
+                                                            <img src="assets/booking/bed-and-breakfast.png"
+                                                                 style="height:auto;width: 100%;">
+                                                        </label>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <h3><span
+                                                                        style="font-weight: bold">Tên hotel</span>
+                                                                </h3>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <mat-form-field>
+                                                                    <input matInput placeholder="Tên hotel"
+                                                                           type="text" formControlName="name">
+                                                                </mat-form-field>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <h3><span
+                                                                        style="font-weight: bold">Miêu tả khách sạn</span>
+                                                                </h3>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <mat-form-field class="example-full-width">
+                                                                    <mat-label>Những đặc điểm nổi bật của căn hộ
+                                                                        để
+                                                                        thu hút du khách
+                                                                    </mat-label>
+                                                                    <textarea matInput placeholder="Ví dụ
+• Cách phương tiện công cộng 5 phút đi bộ " formControlName="desHotel"></textarea>
+                                                                </mat-form-field>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col">
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <h3><span
+                                                                        style="font-weight: bold">Diện tích mặt bằng</span>
+                                                                </h3>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <mat-form-field>
+                                                                    <input matInput placeholder="Mét vuông"
+                                                                           type="text" formControlName="sqm">
+                                                                </mat-form-field>
+                                                            </div>
+                                                            <div class="col" style="padding: 4% 0 0 0"><h5>
+                                                                m2</h5>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <h3><span style="font-weight: bold">Gợi ý vui chơi ăn uống</span>
+                                                                </h3>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <mat-form-field class="example-full-width">
+                                                                    <mat-label>Có điểm tham quan du lịch, vui
+                                                                        chơi
+                                                                        nào ở gần đây không?
+                                                                    </mat-label>
+                                                                    <textarea matInput
+                                                                              formControlName="suggestPlayground"></textarea>
+                                                                </mat-form-field>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <h3><span
+                                                                style="font-weight: bold">Quy định khách sạn(tùy chọn)</span>
+                                                        </h3>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <mat-form-field>
+                                                            <mat-label>Báo trước cho du khách những quy định cụ
+                                                                thể
+                                                                trong khách sạn
+                                                            </mat-label>
+                                                            <textarea matInput placeholder="Ví dụ:
+• Giữ yên lặng sau 11:00 PM
+• Không xả rác xuống đường ống" rows="3" formControlName="rulerHotel"></textarea>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <h3><span
+                                                                style="font-weight: bold">Khi đến nơi, làm thế nào để khách hàng đi đến chỗ bạn?</span>
+                                                        </h3>
+                                                        <label>Hướng dẫn rõ ràng thật sự rất quan trọng. Khả
+                                                            năng
+                                                            khách
+                                                            hàng lần đầu đến đây là rất lớn và bị lạc đường là
+                                                            một
+                                                            khởi
+                                                            đầu không ai muốn.
+                                                            Hệ thống sẽ tự động gửi những hướng dẫn này cho
+                                                            khách
+                                                            sau
+                                                            khi đặt phòng được xác nhận.
+                                                            Nếu muốn bạn vẫn có thể liên lạc với khách hàng lần
+                                                            nữa.
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <mat-form-field>
+                                                                <textarea matInput
+                                                                          formControlName="guideToHotel"></textarea>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div class="row">
+                                                    <div class="col-3">
+                                                        <h3><span style="font-weight: bold">Xếp hạng sao</span>
+                                                        </h3>
+                                                    </div>
+                                                    <app-star-rating [rating]="rating" [starCount]="starCount"
+                                                                     [color]="starColor"
+                                                                     (ratingUpdated)="onRatingChanged($event)"></app-star-rating>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div class="row">
+                                                    <div class="col-3">
+                                                        <h3><span style="font-weight: bold">Hình ảnh</span></h3>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <app-image></app-image>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div class="row">
+                                                    <div class="col-3">
+                                                        <h3><span style="font-weight: bold">Số loại phòng</span>
+                                                        </h3>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        Số loại phòng mà khách sạn bạn có thể cung cấp.
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="input-group input-number-group">
+                                                            <div class="input-group-button"
+                                                                 (click)="minusTotalRoomNumber()">
+                                                                <span class="input-number-decrement">-</span>
+                                                            </div>
+                                                            <input class="input-number" type="number"
+                                                                   formControlName="totalRoomNumber"
+                                                                   [value]="totaltypeRoomNumber" min="0"
+                                                                   max="1000">
+                                                            <div class="input-group-button"
+                                                                 (click)="plusTotalRoomNumber()">
+                                                                <span class="input-number-increment">+</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col text-right">
+                                                    <button class="prevtab btn btn-success">Prev</button>
+                                                    <button class="nexttab btn btn-success" (click)="tabNext()">
+                                                        Next
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <mat-icon>house</mat-icon>
+                Địa chỉ
+            </ng-template>
+            <div class="main-content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="card">
+                            <div class="card-header card-header-info">
+                                <div class="row">
+                                    <div class="col">
+                                        <h4 class="card-title">Xác định vị trí chỗ ở của bạn trên bản đồ.
+                                        </h4>
+                                        <p class="card-category">Khách hàng sẽ ở đâu?
+                                        </p>
+                                    </div>
+                                    <div class="col">
+                                        <img src="assets/booking/addressHotel.png"
+                                             class="img-thumbnail  img-fluid"
+                                             style="height:auto;width: 50%;"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <h3><span
+                                                style="font-weight: bold">Địa điểm</span>
+                                        </h3>
+                                        <label>Khách hàng chỉ nhận được địa chỉ cụ thể một khi đã xác nhận đặt
+                                            phòng.
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <fieldset class="the-fieldset">
+                                            <legend class="the-legend">Địa điểm</legend>
+                                            <div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        Autocomplate Map
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <AutocompleteComponent id="check-input"
+                                                                               (setAddress)="getEstablishmentAddress($event)"
+                                                                               adressType="establishment"></AutocompleteComponent>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <h4><span
+                                                                style="font-weight: bold">Địa chỉ</span>
+                                                        </h4>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <mat-form-field>
+                                                            <input matInput placeholder="Nhập địa chỉ đi"
+                                                                   formControlName="address">
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <h4><span
+                                                                style="font-weight: bold">Tên tòa nhà, tầng và căn hộ (không bắt buộc)</span>
+                                                        </h4>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <mat-form-field>
+                                                            <input matInput placeholder="Điền vào đây">
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div class="row">
+                                                    <div class="col-lg-3">
+                                                        <mat-form-field>
+                                                            <mat-label>Quốc gia</mat-label>
+                                                            <mat-select formControlName="country">
+                                                                <mat-option>None</mat-option>
+                                                                <mat-option value="option1">Option 1
+                                                                </mat-option>
+                                                                <mat-option value="option2">Option 2
+                                                                </mat-option>
+                                                                <mat-option value="option3">Option 3
+                                                                </mat-option>
+                                                            </mat-select>
+                                                        </mat-form-field>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <mat-form-field>
+                                                            <mat-label>Tiểu bang / Tỉnh</mat-label>
+                                                            <mat-select formControlName="province">
+                                                                <mat-option>None</mat-option>
+                                                                <mat-option value="option1">Option 1
+                                                                </mat-option>
+                                                                <mat-option value="option2">Option 2
+                                                                </mat-option>
+                                                                <mat-option value="option3">Option 3
+                                                                </mat-option>
+                                                            </mat-select>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div class="row">
+                                                    <div class="col-lg-3">
+                                                        <mat-form-field>
+                                                            <mat-label>Thành phố</mat-label>
+                                                            <mat-select formControlName="city">
+                                                                <mat-option>None</mat-option>
+                                                                <mat-option value="option1">Option 1
+                                                                </mat-option>
+                                                                <mat-option value="option2">Option 2
+                                                                </mat-option>
+                                                                <mat-option value="option3">Option 3
+                                                                </mat-option>
+                                                            </mat-select>
+                                                        </mat-form-field>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <mat-form-field class="example-full-width">
+                                                            <mat-label>Zip</mat-label>
+                                                            <input matInput placeholder="Mã zip nè"
+                                                                   value="Sushi"
+                                                                   formControlName="zip">
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <h4><span
+                                                                style="font-weight: bold">Map</span>
+                                                        </h4>
+                                                        <label>Khách hàng chỉ nhận được địa chỉ cụ thể một khi
+                                                            đã
+                                                            xác nhận đặt
+                                                            phòng.
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <app-hotel-map [lat]="lat" [lng]="lng"
+                                                                       [address]="address"
+                                                                       [name]="name"></app-hotel-map>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col text-right">
+                                                    <button class="prevtab btn btn-success">Prev</button>
+                                                    <button class="nexttab btn btn-success" (click)="tabNext()">
+                                                        Next
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab>
+            <div formGroupName="facilities">
+                <ng-template mat-tab-label>
+                    <mat-icon>book</mat-icon>
+                    Vật dụng
+                </ng-template>
+                <div class="main-content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="card">
+                                <div class="card-header card-header-info">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h4 class="card-title">Tất cả các tiện nghi và những vật dụng nhỏ
+                                                bạn
+                                                cung
+                                                cấp.
+                                            </h4>
+                                            <p class="card-category">Nhà bạn có sẵn những vật dụng và tiện nghi
+                                                gì?
+                                            </p>
+                                        </div>
+                                        <div class="col">
+                                            <img src="assets/booking/tienichHotel.png"
+                                                 class="img-thumbnail  img-fluid"
+                                                 style="height:auto;width: 50%;"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h3><span
+                                                    style="font-weight: bold">Tiện nghi thiết yếu</span>
+                                            </h3>
+                                            <label>Những tiện nghi thiết yếu thường được du khách chú trọng khi
+                                                đặt
+                                                nhà
+                                                riêng.
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <fieldset class="the-fieldset">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <mat-checkbox>Máy điều hòa</mat-checkbox>
+                                                    </div>
+                                                    <div class="col">
+                                                        <mat-checkbox>Máy sấy tóc</mat-checkbox>
+                                                    </div>
+                                                    <div class="col">
+                                                        <mat-checkbox>Máy ủi ( bàn là )</mat-checkbox>
+                                                    </div>
+                                                    <div class="col">
+                                                        <mat-checkbox formControlName="television">Tivi
+                                                        </mat-checkbox>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <mat-checkbox>Truyền hình cáp</mat-checkbox>
+                                                    </div>
+                                                    <div class="col">
+                                                        <mat-checkbox>Wifi miễn phí</mat-checkbox>
+                                                    </div>
+                                                    <div class="col">
+                                                        <mat-checkbox>Internet miễn phí</mat-checkbox>
+                                                    </div>
+                                                    <div class="col">
+                                                        <mat-checkbox>Máy giặt</mat-checkbox>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <mat-checkbox>Dầu gội đầu</mat-checkbox>
+                                                    </div>
+                                                    <div class="col">
+                                                        <mat-checkbox>Bộ ga giường</mat-checkbox>
+                                                    </div>
+                                                    <div class="col">
+                                                        <mat-checkbox>Khăn các loại</mat-checkbox>
+                                                    </div>
+                                                    <div class="col">
+                                                        <mat-checkbox>Chìa khóa thông minh</mat-checkbox>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h3><span
+                                                    style="font-weight: bold">Mạng Internet</span>
+                                            </h3>
+                                            <label>Những hình thức kết nối mạng Internet.
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <fieldset class="the-fieldset">
+                                                <div class="row">
+                                                    <div class="col-lg-3">
+                                                        <mat-checkbox>Wifi tính phí</mat-checkbox>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <mat-checkbox>Internet tính phí</mat-checkbox>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h3><span
+                                                    style="font-weight: bold">Sự thoải mái</span>
+                                            </h3>
+                                            <label>Những tiện nghi phụ trợ cho một kỳ nghỉ thuận tiện và vừa ý
+                                                nhất.
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <fieldset class="the-fieldset">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <mat-checkbox>Xe lăn vào được</mat-checkbox>
+                                                    </div>
+                                                    <div class="col">
+                                                        <mat-checkbox>Thang máy trong hotel</mat-checkbox>
+                                                    </div>
+                                                    <div class="col">
+                                                        <mat-checkbox>Xe lăn vào được</mat-checkbox>
+                                                    </div>
+                                                    <div class="col">
+                                                        <mat-checkbox>Chuông/liên lạc không dây</mat-checkbox>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <mat-checkbox>Nhân viên trực cửa</mat-checkbox>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h3><span
+                                                    style="font-weight: bold">Nhà bếp</span>
+                                            </h3>
+                                            <label>Những tiện nghi và trang thiết bị phục vụ cho hoạt động ăn
+                                                uống.
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <fieldset class="the-fieldset">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <mat-checkbox>Máy pha cà phê/trà</mat-checkbox>
+                                                    </div>
+                                                    <div class="col">
+                                                        <mat-checkbox>Cà phê</mat-checkbox>
+                                                    </div>
+                                                    <div class="col">
+                                                        <mat-checkbox>Trà</mat-checkbox>
+                                                    </div>
+                                                    <div class="col">
+                                                        <mat-checkbox>Nhà bếp</mat-checkbox>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <mat-checkbox>Ăn sáng miễn phí</mat-checkbox>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h3><span
+                                                    style="font-weight: bold">Tiện nghi</span>
+                                            </h3>
+                                            <label>Những gì du khách thường tìm kiếm và có khả năng thúc đẩy
+                                                lượng
+                                                khách
+                                                đặt phòng.
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <fieldset class="the-fieldset">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <mat-checkbox>Bàn/không gian làm việc</mat-checkbox>
+                                                    </div>
+                                                    <div class="col">
+                                                        <mat-checkbox>Hồ bơi riêng</mat-checkbox>
+                                                    </div>
+                                                    <div class="col">
+                                                        <mat-checkbox>Máy sưởi</mat-checkbox>
+                                                    </div>
+                                                    <div class="col">
+                                                        <mat-checkbox>Máy sấy</mat-checkbox>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <mat-checkbox>Lò sưởi trong nhà</mat-checkbox>
+                                                    </div>
+                                                    <div class="col">
+                                                        <mat-checkbox>Tủ áo</mat-checkbox>
+                                                    </div>
+                                                    <div class="col">
+                                                        <mat-checkbox>Hồ bơi trong nhà</mat-checkbox>
+                                                    </div>
+                                                    <div class="col">
+                                                        <mat-checkbox>Bồn tắm nước nóng</mat-checkbox>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-3">
+                                                        <mat-checkbox>Phòng tập gym</mat-checkbox>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <mat-checkbox>Hồ bơi ngoài trời</mat-checkbox>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <mat-checkbox>Đậu xe miễn phí</mat-checkbox>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h3><span
+                                                    style="font-weight: bold">An toàn</span>
+                                            </h3>
+                                            <label>Những tiện nghi và tính năng đảm bảo sự an toàn, an ninh cho
+                                                du
+                                                khách
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <fieldset class="the-fieldset">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <mat-checkbox>Cảm biến báo khói</mat-checkbox>
+                                                    </div>
+                                                    <div class="col">
+                                                        <mat-checkbox>Cảm biến báo khí CO</mat-checkbox>
+                                                    </div>
+                                                    <div class="col">
+                                                        <mat-checkbox>Bộ sơ cấp cứu</mat-checkbox>
+                                                    </div>
+                                                    <div class="col">
+                                                        <mat-checkbox>Bình chữa cháy</mat-checkbox>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h3><span
+                                                    style="font-weight: bold">Tiện nghi khác</span>
+                                            </h3>
+                                            <label>Những tiện nghi cho du khách có nhu cầu đặc biệt.
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <fieldset class="the-fieldset">
+                                                <div class="row">
+                                                    <div class="col-lg-3">
+                                                        <mat-checkbox>Được hút thuốc</mat-checkbox>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <mat-checkbox>Cho phép vật nuôi</mat-checkbox>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col text-right">
+                                            <button class="prevtab btn btn-success">Prev</button>
+                                            <button class="nexttab btn btn-success" (click)="tabNext()">
+                                                Next
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <mat-icon>bubble_chart</mat-icon>
+                Thông tin phòng
+            </ng-template>
+            <div class="main-content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="card">
+                            <div class="card-header card-header-info">
+                                <div class="row">
+                                    <div class="col">
+                                        <h4 class="card-title">Thông tin phòng bạn cung cấp
+                                        </h4>
+                                        <p class="card-category">Những loại phòng, yêu cầu giá cả
+                                        </p>
+                                    </div>
+                                    <div class="col">
+                                        <img src="assets/booking/GiacaHotel.png"
+                                             class="img-thumbnail  img-fluid"
+                                             style="height:auto;width: 50%;"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div formArrayName="formArrayRoomNumber">
+                                    <mat-tab-group>
+                                        <mat-tab [formGroup]="romNumber"
+                                                 *ngFor="let romNumber of formArrayRoomNumber.controls; let i = index ">
+                                            <ng-template mat-tab-label>
+                                                <mat-icon>bubble_chart</mat-icon>
+                                                Loại phòng {{i + 1}}
+                                            </ng-template>
+                                            <div class="row" style="width: 100%;">
+                                                <div class="col">
+                                                    <fieldset class="the-fieldset">
+                                                        <legend class="the-legend">Chi tiết loại phòng ở số {{i}}
+                                                        </legend>
+                                                        <div>
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <h3><span style="font-weight: bold">Sức chứa</span>
+                                                                    </h3>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    Số lượng người tối đa có thể ngủ thoải mái theo số
+                                                                    lượng
+                                                                    giường và sofa cung cấp.
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <div class="input-group input-number-group">
+                                                                        <div class="input-group-button"
+                                                                             (click)="minusAccommodates(i)">
+                                                                            <span class="input-number-decrement">-</span>
+                                                                        </div>
+                                                                        <input class="input-number" type="number"
+                                                                               id="accommodates{{i}}"
+                                                                               formControlName="accommodates" min="0"
+                                                                               max="100"
+                                                                        >
+                                                                        <div class="input-group-button"
+                                                                             (click)="plusAccommodates(i)">
+                                                                            <span class="input-number-increment">+</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div>
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <h3><span style="font-weight: bold">Thời gian lưu trú
+</span>
+                                                                    </h3>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    Số ngày tối thiểu cho mỗi lần đặt.
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <div class="input-group input-number-group">
+                                                                        <div class="input-group-button"
+                                                                             (click)="minusMaxDay()">
+                                                                            <span class="input-number-decrement">-</span>
+                                                                        </div>
+                                                                        <input class="input-number" type="number"
+                                                                               [value]="maxDayNumber"
+                                                                               formControlName="maxDay"
+                                                                               min="0" max="1000">
+                                                                        <div class="input-group-button"
+                                                                             (click)="plusMaxDay()">
+                                                                            <span class="input-number-increment">+</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div>
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <h3><span style="font-weight: bold">Phòng tắm</span>
+                                                                    </h3>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    Chỉ đếm số lượng phòng tắm trong nơi ở của bạn,
+                                                                    không
+                                                                    phải phòng tắm chung trong toà nhà hoặc chung cư.
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <div class="input-group input-number-group">
+                                                                        <div class="input-group-button"
+                                                                             (click)="minusNumberOfBathrooms(i)">
+                                                                            <span class="input-number-decrement">-</span>
+                                                                        </div>
+                                                                        <input class="input-number" type="number"
+                                                                               formControlName="bathRooms"
+                                                                               min="0"
+                                                                               max="1000"
+                                                                        >
+                                                                        <div class="input-group-button"
+                                                                             (click)="plusNumberOfBathrooms(i)">
+                                                                            <span class="input-number-increment">+</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div>
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <h3><span style="font-weight: bold">Phòng ngủ</span>
+                                                                    </h3>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    Nếu chỗ ở của bạn là phòng gác mái hoặc studio, số
+                                                                    lượng
+                                                                    phòng ngủ là 0.
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <div class="input-group input-number-group">
+                                                                        <div class="input-group-button"
+                                                                             (click)="minusNumberOfBedrooms(i)">
+                                                                            <span class="input-number-decrement">-</span>
+                                                                        </div>
+                                                                        <input class="input-number" type="number"
+                                                                               min="0" formControlName="bedRooms"
+                                                                               max="1000">
+                                                                        <div class="input-group-button"
+                                                                             (click)="plusNumberOfBedrooms(i)">
+                                                                            <span class="input-number-increment">+</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <hr>
+
+                                                        <div formArrayName="bedRoomsDetails">
+                                                            <div [formGroup]="roomDetails"
+                                                                 *ngFor="let roomDetails of romNumber['controls'].bedRoomsDetails['controls']; let iz=index">
+                                                                <div class="row">
+                                                                    <div class="col-3">
+                                                                        <h3><span
+                                                                                style="font-weight: bold">Phòng {{iz + 1}} </span>
+                                                                        </h3>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div formArrayName="arrayTypeBedRooms">
+                                                                    <div [formGroup]="typeBedRoom"
+                                                                         *ngFor="let typeBedRoom of roomDetails['controls'].arrayTypeBedRooms['controls'];let ia=index">
+                                                                        <div class="row">
+                                                                            <div class="col-lg-3">
+                                                                                <mat-form-field>
+                                                                                    <input matInput
+                                                                                           placeholder="Số lượng"
+                                                                                           formControlName="bedQuantity">
+                                                                                </mat-form-field>
+                                                                            </div>
+                                                                            <div class="col-lg-3">
+                                                                                <mat-form-field>
+                                                                                    <mat-label>Loại giường</mat-label>
+                                                                                    <mat-select
+                                                                                            formControlName="bedType"
+                                                                                            (selectionChange)="onChange($event,ia)">
+                                                                                        <mat-option value="0">None
+                                                                                        </mat-option>
+                                                                                        <mat-option value="1">Giường đôi
+                                                                                        </mat-option>
+                                                                                        <mat-option value="2">Giường đơn
+                                                                                        </mat-option>
+                                                                                        <mat-option value="3">Giường
+                                                                                            King
+                                                                                        </mat-option>
+                                                                                        <mat-option value="4">Giường
+                                                                                            Queen
+                                                                                        </mat-option>
+                                                                                    </mat-select>
+                                                                                </mat-form-field>
+                                                                            </div>
+                                                                            <div class="col-lg-3">
+                                                                                <button mat-fab color="primary"
+                                                                                        matTooltip="Delete"
+                                                                                        (click)="deleteControlBedRoomType(i,iz,ia)">
+                                                                                    <mat-icon>delete</mat-icon>
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="row" id="addMoreRoom{{iz}}">
+                                                                    <div class="col">
+                                                                        <p (click)="plusAddTypeBedRoom(i,iz)"
+                                                                           class="evtHover">
+                                                                            Thêm loại
+                                                                            giường
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <hr>
+
+                                                        <div>
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <h3><span
+                                                                            style="font-weight: bold">Giá mỗi đêm</span>
+                                                                    </h3>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    Vui lòng nhập giá mỗi đêm của quý đối tác cho loại
+                                                                    phòng
+                                                                    này.
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <h5>Lượng người tối đa có thể ngủ ở chỗ bạn
+                                                                        là: {{ romNumber.get('accommodates').value }}.
+                                                                        <a
+                                                                                href="hotel-register#accommodates{{i}}">Thay
+                                                                            đổi</a></h5>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-3">
+                                                                    <mat-form-field>
+                                                                        <mat-label>
+                                                                            <b>Giá tối thiểu mỗi đêm là bao nhiêu?</b>
+                                                                        </mat-label>
+                                                                        <input matInput formControlName="price">
+                                                                    </mat-form-field>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </fieldset>
+                                                </div>
+                                            </div>
+                                        </mat-tab>
+                                    </mat-tab-group>
+
+                                    <!--                                <div -->
+                                    <!--                                    >-->
+                                    <!--                                 -->
+                                    <!--                                </div>-->
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!--                                <div class="row">-->
+                        <!--                                    <div class="col">-->
+                        <!--                                        <h3><span style="font-weight: bold">Khách hàng có thể đặt nơi ở của bạn trước bao lâu?-->
+                        <!--</span>-->
+                        <!--                                        </h3>-->
+                        <!--                                    </div>-->
+                        <!--                                </div>-->
+                        <!--                                <div class="row">-->
+                        <!--                                    <div class="col">-->
+                        <!--                                        <mat-button-toggle-group style="background: #ffffff"-->
+                        <!--                                                                 formControlName="reservationTime">-->
+                        <!--                                            <mat-button-toggle value="1" style="margin:10px 5px">Mọi lúc-->
+                        <!--                                            </mat-button-toggle>-->
+                        <!--                                            <mat-button-toggle value="2" style="margin:10px 5px">1 năm-->
+                        <!--                                            </mat-button-toggle>-->
+                        <!--                                            <mat-button-toggle value="3" style="margin:10px 5px">6 tháng-->
+                        <!--                                            </mat-button-toggle>-->
+                        <!--                                            <mat-button-toggle value="4" style="margin:10px 5px">3 tháng-->
+                        <!--                                            </mat-button-toggle>-->
+                        <!--                                        </mat-button-toggle-group>-->
+                        <!--                                    </div>-->
+                        <!--                                </div>-->
+
+
+                        <!--                                <div class="row">-->
+                        <!--                                    <div class="col">-->
+                        <!--                                        <h3><span style="font-weight: bold">Chính sách hủy phòng-->
+                        <!--</span>-->
+                        <!--                                        </h3>-->
+                        <!--                                    </div>-->
+                        <!--                                </div>-->
+                        <!--                                <div class="row">-->
+                        <!--                                    <div class="col">-->
+                        <!--                                        <mat-radio-button value="1"><b>Linh hoạt</b>-->
+                        <!--                                            <br>-->
+                        <!--                                            Khách hàng hủy trước ngày nhận phòng 1 ngày sẽ được hoàn lại tiền 100%.-->
+                        <!--                                            Trong trường hợp khách không đến, bạn được nhận 100% giá tiền đặt phòng.-->
+                        <!--                                        </mat-radio-button>-->
+                        <!--                                    </div>-->
+                        <!--                                </div>-->
+                        <!--                                <div class="row">-->
+                        <!--                                    <div class="col">-->
+                        <!--                                        <mat-radio-button value="2"><b>Nghiêm ngặt</b>-->
+                        <!--                                            <br>-->
+                        <!--                                            Khách hàng hủy trước ngày nhận phòng 7 ngày sẽ được hoàn lại tiền 50%.-->
+                        <!--                                            Trong trường hợp khách không đến, bạn được nhận 100% giá tiền đặt phòng.-->
+                        <!--                                        </mat-radio-button>-->
+                        <!--                                    </div>-->
+                        <!--                                </div>-->
+
+
+                    </div>
+                </div>
+            </div>
+
+        </mat-tab>
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <mat-icon>bubble_chart</mat-icon>
+                Đăng bài
+            </ng-template>
+            <div class="main-content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="card">
+                            <div class="card-header card-header-info">
+                                <div class="row">
+                                    <div class="col">
+                                        <h4 class="card-title">Ký hợp đồng và bắt đầu nhận đặt phòng.
+                                        </h4>
+                                        <p class="card-category">Chỉ cần một vài chi tiết nữa thôi!
+                                        </p>
+                                    </div>
+                                    <div class="col">
+                                        <img src="assets/booking/chapnhandkphong.png"
+                                             class="img-thumbnail  img-fluid"
+                                             style="height:auto;width: 50%;"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <h3><span
+                                                style="font-weight: bold">Am hiểu luật lệ, quy định và các chính sách thuế tại địa phương.
+</span>
+                                        </h3>
+                                        <label>Tìm hiểu về luật lệ và chính sách thuế tại địa phương là trách
+                                            nhiệm
+                                            của bạn.<br>
+                                            <br>
+                                            Tìm hiểu về luật lệ và chính sách thuế tại địa phương trước khi nhận
+                                            đơn
+                                            đặt phòng. Rất nhiều quốc gia và một số thành phố có ban hành luật
+                                            pháp
+                                            cụ thể về việc dùng nơi ở của bạn để cho thuê ngắn hạn, ở chung nhà
+                                            và
+                                            hoặc cho thuê chỗ ở chuyên nghiệp. Hoạt động trong khuôn khổ pháp
+                                            luật
+                                            của quốc gia nơi cư trú là trách nhiệm của bạn, bao gồm các loại
+                                            giấy
+                                            phép, giấy chứng nhận hoặc đăng ký cần có trước khi nhận đơn đặt
+                                            phòng,
+                                            cũng như trả thuế hiện hành áp dụng cho thu nhập từ các đơn đặt
+                                            phòng
+                                            này.
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <h3><span
+                                                style="font-weight: bold">Đồng ý với điều khoản và điều kiện là bạn đã sẵn sàng rồi đó!
+</span>
+                                        </h3>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <mat-checkbox>Tôi đồng ý với các điều khoản và điều kiện của Agoda và
+                                            xác
+                                            nhận tôi sẽ tuân thủ theo luật pháp và quy định hiện hành.
+                                        </mat-checkbox>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <a style="padding: 15px 20px;background-image: linear-gradient(to right, #3cc603 0%, #3cc908  51%, #32a103  100%); cursor: pointer;color: white ; height: 80px;width: 250px;border-radius: 5px; margin-left: 40%; "
+                                           (click)="onSubmit()">Giới thiệu hotel của tôi</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </mat-tab>
+    </mat-tab-group>
+</form>

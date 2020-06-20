@@ -1,4 +1,4 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -22,10 +22,13 @@ import { BookingComponent } from '../../booking/booking.component';
 import { HotelAccessComponent } from '../../hotel-access/hotel-access.component';
 import { UserAccessComponent } from '../../user-access/user-access.component';
 import { LoginComponent } from './login/login.component';
-import { FileSelectDirective } from "ng2-file-upload";
-import { ToastrModule } from "ngx-toastr";
-import { SharedModule } from "../../shared/shared.module";
-import { UserRegisterComponent } from 'app/user-register/user-register.component';
+import { ToastrModule } from 'ngx-toastr';
+import { SharedModule } from '../../shared/shared.module';
+import { MatTabsModule } from "@angular/material/tabs";
+import { MatIconModule } from "@angular/material/icon";
+import { MatRadioModule } from "@angular/material/radio";
+import { MatCheckboxModule } from "@angular/material/checkbox";
+import { MatButtonToggleModule } from "@angular/material/button-toggle";
 
 @NgModule({
   imports: [
@@ -33,15 +36,23 @@ import { UserRegisterComponent } from 'app/user-register/user-register.component
     RouterModule.forChild(AdminLayoutRoutes),
     FormsModule,
     ReactiveFormsModule,
+    MatRippleModule,
+    MatFormFieldModule,
+    MatSelectModule,
     MatButtonModule,
     MatRippleModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule,
     MatTooltipModule,
     CommonModule,
     ToastrModule.forRoot(),
     SharedModule,
+    MatTabsModule,
+    MatIconModule,
+    MatRadioModule,
+    SharedModule,
+    MatCheckboxModule,
+    MatButtonToggleModule,
   ],
   declarations: [
     DashboardComponent,
@@ -57,8 +68,6 @@ import { UserRegisterComponent } from 'app/user-register/user-register.component
     HotelAccessComponent,
     UserAccessComponent,
     LoginComponent,
-    FileSelectDirective,
-    UserRegisterComponent
     // add các component trang admin vào đây
   ],
   schemas: [
