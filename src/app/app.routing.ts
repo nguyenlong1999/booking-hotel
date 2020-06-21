@@ -8,11 +8,11 @@ export const AppRoutes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'dashboard',
+      path: 'dashboard',
     loadChildren: './layouts/dashboard-layout/dashboard-layout.module#DashboardLayoutModule'
   },
   {
-    path: '',
+    path: 'admin',
     loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
   },
   { path: 'no-access', component: NoAccessComponent },
