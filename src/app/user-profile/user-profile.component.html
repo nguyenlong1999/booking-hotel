@@ -6,7 +6,7 @@
       </div>
     </div>
     <div class="row">
-      <form style="width: 100%">
+      <form style="width: 100%" [formGroup]="profileForm" (ngSubmit)="updateProfile()">
         <div class="row">
           <div class="col-md-3">
             <div style="padding-top: 30px;">
@@ -35,7 +35,7 @@
               </div>
               <div class="col-md-8">
                 <mat-form-field class="example-full-width">
-                  <input matInput value="{{user.email}}" disabled>
+                  <input matInput disabled formControlName="email" name="email" type="text">
                 </mat-form-field>
               </div>
             </div>
@@ -45,7 +45,7 @@
               </div>
               <div class="col-md-8">
                 <mat-form-field class="example-full-width">
-                  <input matInput value="{{user.name}}">
+                  <input matInput formControlName="name" name="name" type="text">
                 </mat-form-field>
               </div>
             </div>
@@ -55,7 +55,7 @@
               </div>
               <div class="col-md-3">
                 <mat-form-field class="example-full-width">
-                  <mat-select [(ngModel)]="year" name="year">
+                  <mat-select matNativeControl formControlName="birthday" name="birthday">
                     <mat-option *ngFor="let year of years" [value]="year">
                       {{year}}
                     </mat-option>
@@ -67,8 +67,8 @@
               </div>
               <div class="col-md-3">
                 <mat-form-field class="example-full-width">
-                  <mat-select [(ngModel)]="genderValue" name="gender">
-                    <mat-option *ngFor="let gender of genders; let i = index" [value]="i">
+                  <mat-select formControlName="gender" name="gender">
+                    <mat-option *ngFor="let gender of genders" [value]="gender.value">
                       {{gender.viewValue}}
                     </mat-option>
                   </mat-select>
@@ -77,11 +77,15 @@
             </div>
             <div class="row">
               <div class="col-md-4">
-                <p class="input-title">Quốc gia:</p>
+                <p class="input-title">Tình trạng hôn nhân:</p>
               </div>
               <div class="col-md-8">
                 <mat-form-field class="example-full-width">
-                  <input matInput type="text">
+                  <mat-select formControlName="materialStatus" name="materialStatus">
+                    <mat-option *ngFor="let material of materials" [value]="material.value">
+                      {{material.viewValue}}
+                    </mat-option>
+                  </mat-select>
                 </mat-form-field>
               </div>
             </div>
@@ -91,7 +95,7 @@
               </div>
               <div class="col-md-8">
                 <mat-form-field class="example-full-width">
-                  <input matInput type="text">
+                  <input matInput type="text" formControlName="signature" name="signature">
                 </mat-form-field>
               </div>
             </div>
@@ -101,7 +105,7 @@
               </div>
               <div class="col-md-8">
                 <mat-form-field class="example-full-width">
-                  <textarea matInput placeholder=""></textarea>
+                  <textarea matInput placeholder="" formControlName="introduction" name="introduction"></textarea>
                 </mat-form-field>
               </div>
             </div>
