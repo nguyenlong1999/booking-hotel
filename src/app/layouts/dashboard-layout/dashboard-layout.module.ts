@@ -18,12 +18,17 @@ import {MatRadioModule} from '@angular/material/radio';
 import {SharedModule} from '../../shared/shared.module';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
+import {HttpClient} from "@angular/common/http";
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+import {ScrollTopComponent} from "../../shared/animation/scroll-top/scroll-top.component";
 
 @NgModule({
     declarations: [
         DashboardLayoutComponent,
         IndexLayoutComponent,
         HotelRegisterComponent,
+        ScrollTopComponent
         // add các component của trang người dùng vào đây
     ],
     imports: [
@@ -43,6 +48,13 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
         SharedModule,
         MatCheckboxModule,
         MatButtonToggleModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            }
+        }),
     ],
     providers: [
     ],
@@ -51,4 +63,8 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     ],
 })
 export class DashboardLayoutModule {
+}
+
+export function HttpLoaderFactory(http: HttpClient) {
+    return new TranslateHttpLoader(http);
 }
