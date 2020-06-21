@@ -30,6 +30,18 @@ export class DashboardLayoutComponent implements OnInit {
     this.sidebarVisible = false;
     translate.setDefaultLang('vi');
     sessionStorage.setItem('currentLang', 'vi');
+    window.addEventListener('wheel', function (event) {
+      if (event.deltaY < 0) {
+        console.log('scrolling up');
+        const element = document.getElementById('check-point');
+        element.setAttribute('style', 'background-color:white!important;');
+      } else if (event.deltaY > 0) {
+        console.log('scrolling down');
+        // tslint:disable-next-line:no-duplicate-variable
+        const element = document.getElementById('check-point');
+        element.setAttribute('style', 'background-color:black!important;');
+      }
+    });
   }
 
   ngOnInit() {

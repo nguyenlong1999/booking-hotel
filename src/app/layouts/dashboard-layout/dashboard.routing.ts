@@ -21,7 +21,7 @@ export const DashBoardRoutes: Routes = [
             },
             // <= thêm children vào cho trang người dùng
             {
-                path: 'hotel-register',
+                path: 'booking-room',
                 component: HotelRegisterComponent
             },
             {
