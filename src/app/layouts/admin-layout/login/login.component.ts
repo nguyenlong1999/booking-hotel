@@ -4,6 +4,7 @@ import {LoginServiceService} from '../../../shared/service/login-service.service
 import {CookieService} from 'ngx-cookie-service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {TranslateService} from "@ngx-translate/core";
+import {ChatService} from "../../../shared/service/chat.service";
 
 @Component({
     selector: 'app-login',
@@ -24,7 +25,8 @@ export class LoginComponent implements OnInit {
         private cookie: CookieService,
         private _loginService: LoginServiceService,
         private _router: Router,
-        private formBuilder: FormBuilder
+        private formBuilder: FormBuilder,
+        private chatService: ChatService
     ) {
         this.registerForm = this.formBuilder.group({
             email: ['', [Validators.required, Validators.email]],
@@ -56,6 +58,7 @@ export class LoginComponent implements OnInit {
                 let role;
                 let token;
                 let users;
+                let objectId;
                 for (let key in user) {
                     if (key === 'user') {
                         users = user[key];
@@ -66,6 +69,9 @@ export class LoginComponent implements OnInit {
                         role = user[key];
                         console.log(role);
 
+                    }else if (key === 'objectId') {
+                        objectId = user[key];
+                        console.log(objectId);
                     }
 
                 }
@@ -85,9 +91,11 @@ export class LoginComponent implements OnInit {
                     sessionStorage.setItem('token', token);
                     this.cookie.set('isAuthenicate', 'true');
                     this.cookie.set('email', this.userObject.email);
+                    this.cookie.set('ObjectId', objectId);
                     sessionStorage.setItem('user', this.userObject.email);
                     this._loginService.updateAuthStatus(true);
-                    console.log('log in ')
+                    console.log('log in ');
+                    this.chatService.identifyUser();
                     this._router.navigateByUrl('/dashboard');
                 }
 

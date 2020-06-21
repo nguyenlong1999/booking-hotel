@@ -6,4 +6,7 @@ export class Message {
     imageUrl: any;
     videoUrl: any;
     news: any;
+    time:any;
+    objectId:any;
+    message:any;
 }

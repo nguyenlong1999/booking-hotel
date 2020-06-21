@@ -1,13 +1,15 @@
-import {Component, OnInit, ViewChild, AfterViewInit} from '@angular/core';
-import {Location, LocationStrategy, PathLocationStrategy, PopStateEvent} from '@angular/common';
+import {Component, Input, OnInit} from '@angular/core';
+import {Location, PopStateEvent} from '@angular/common';
 import 'rxjs/add/operator/filter';
-import {NavbarComponent} from '../../components/navbar/navbar.component';
-import {Router, NavigationEnd, NavigationStart} from '@angular/router';
+import {NavigationEnd, NavigationStart, Router} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
 import PerfectScrollbar from 'perfect-scrollbar';
 import * as $ from "jquery";
 import {TranslateService} from "@ngx-translate/core";
 import {Title} from "@angular/platform-browser";
+import {ChatService} from "../../shared/service/chat.service";
+import {Message} from "../../shared/model/message";
+import {CookieService} from "ngx-cookie-service";
 
 @Component({
     selector: 'app-admin-layout',
@@ -18,14 +20,21 @@ export class AdminLayoutComponent implements OnInit {
     private _router: Subscription;
     private lastPoppedUrl: string;
     private yScrollStack: number[] = [];
+    private newMessage = false;
+    private userMessages: Message[] = [];
+    private guessMessages: Message[] = [];
+    @Input('ngModel') message;
 
     constructor(
         public location: Location, private router: Router,
         private translate: TranslateService,
         private title: Title,
+        private  chatService: ChatService,
+        private cookieService: CookieService
     ) {
         translate.setDefaultLang('vi');
         sessionStorage.setItem('currentLang', 'vi');
+        this.mailBox();
     }
 
     ngOnInit() {
@@ -138,10 +147,84 @@ export class AdminLayoutComponent implements OnInit {
                 $sidebar_responsive.css('background-image', 'url("' + new_image + '")');
             }
         });
+        let message = new Message();
+        message.objectId = this.cookieService.get('ObjectId');
+        message.message = 'get list user';
+        this.chatService.getListMember(message);
+
     }
 
     ngAfterViewInit() {
         this.runOnRouteChange();
+    }
+
+    mailBox() {
+        this.chatService.getMessages().subscribe(mail => {
+            console.log("mail", mail)
+            if (mail !== undefined) {
+                this.newMessage = true;
+                let mess = new Message;
+                mess.content = mail;
+                mess.news = true;
+                console.log(mess);
+                this.userMessages.push(mess);
+                console.log(this.userMessages);
+            }
+        })
+    }
+
+    sendMessage() {
+        console.log(this.message)
+        let message = new Message();
+        message.objectId = this.cookieService.get('ObjectId');
+        message.message = this.message;
+        let time = new Date();
+        message.time = this.formatDate(time);
+        this.userMessages.push(message);
+        this.chatService.sendMessage(message);
+        console.log(message)
+        const radio: HTMLElement = document.getElementById('msg_history');
+        radio.innerHTML += ' <div class="outgoing_msg" style="float: right;display: inline-block;">\n' +
+            '<div class="sent_msg" style="overflow:hidden; margin:26px 0 26px;">\n' +
+            '<p style="background: #05728f none repeat scroll 0 0;\n' +
+            '  border-radius: 3px;\n' +
+            '  font-size: 10px;\n' +
+            '  margin: 0; color:#fff;\n' +
+            '  padding: 5px 10px 5px 12px;\n' +
+            '  width:100%;\n' +
+            '  display: block;\n' +
+            '  text-align: left;">' + this.message + '</p>\n' +
+            '<span class="time_date" style="font-size: 8px;">' + message.time + '</span>' +
+            '</div>\n' +
+            '                                    </div>';
+        this.message = '';
+
+    }
+    reponse(){
+        let message = new Message();
+        message.objectId = this.cookieService.get('ObjectId');
+        message.message = 'reponse';
+        let time = new Date();
+        message.time = this.formatDate(time);
+        this.guessMessages.push(message);
+        this.chatService.sendMessage(message);
+        console.log(message)
+        const radio: HTMLElement = document.getElementById('msg_history');
+        radio.innerHTML += ' <div class="outgoing_msg" style="float: left;display: inline-block;">\n' +
+            '<img  src="https://ptetutorials.com/images/user-profile.png" alt="sunil" style="width: 20px;height: 20px;float:left;"/>' +
+            '<span class="time_date" style="font-size: 8px;">' + message.time + '</span>' +
+            '<div class="sent_msg" style="overflow:hidden; margin:26px 0 26px;">\n' +
+            '<p style="background: lightgrey none repeat scroll 0 0;\n' +
+            '  border-radius: 3px;\n' +
+            '  font-size: 10px;\n' +
+            '  margin: 0; color:#fff;\n' +
+            '  padding: 5px 10px 5px 12px;\n' +
+            '  width:100%;\n' +
+            '  display: block;\n' +
+            '  text-align: left;">' + this.message + '</p>\n' +
+            '</div>\n' +
+            '                                    </div>';
+        this.message = '';
     }
 
     useLanguage(language: string) {
@@ -168,6 +251,11 @@ export class AdminLayoutComponent implements OnInit {
         } else {
             return true;
         }
+    }
+
+    formatDate(dt) {
+        let normalizeHour = dt.getHours() >= 13 ? dt.getHours() - 12 : dt.getHours()
+        return dt.getHours() >= 13 ? normalizeHour + ': ' + dt.getMinutes() + ' PM' : normalizeHour + ': ' + dt.getMinutes() + ' AM ' + dt.getDate() + '-' + dt.getMonth();
     }
 
     onActivate(event) {

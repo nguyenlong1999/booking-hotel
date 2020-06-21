@@ -20,6 +20,11 @@ export class ChatService {
             });
         });
     }
+    public getListMember(message) {
+        console.log('gưi thong báo socket lấy danh sach' + message)
+        this.socket.emit('get-list-online', message);
+    }
+
     identifyUser() {
         this.socket = io(AppSetting.BASE_SERVER_URL);
         console.log('connect')
