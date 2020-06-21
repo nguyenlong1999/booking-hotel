@@ -63,5 +63,6 @@
   "user.login": " ĐĂNG NHẬP TRANG QUẢN TRỊ",
   "user.forget.password": "QUÊN MẬT KHẨU",
   "book.room": "Đặt phòng",
-  "book.promotion": "Ưu đãi"
+  "book.promotion": "Ưu đãi",
+  "side.bar.chat": "Tin nhắn"
 }

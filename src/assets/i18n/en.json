@@ -63,5 +63,6 @@
   "user.space": "Used Space",
   "user.forget.password": "Forget password",
   "book.room": "Booking",
-  "book.promotion": "Promotion"
+  "book.promotion": "Promotion",
+  "side.bar.chat": "Message"
 }

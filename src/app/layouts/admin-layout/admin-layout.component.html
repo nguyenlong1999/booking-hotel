@@ -13,9 +13,10 @@
     <div class="fixed-plugin">
         <div class="dropdown show-dropdown open show">
             <a href="#" data-toggle="dropdown" aria-expanded="true">
-                <i class="fa fa-cog fa-2x"> </i>
+                <i class="fa fa-cog fa-lg"> </i>
             </a>
-            <ul class="dropdown-menu show" x-placement="bottom-start" style="position: absolute; top: 41px; left: -231px; will-change: top, left;">
+            <ul class="dropdown-menu show" x-placement="bottom-start"
+                style="position: absolute; top: 41px; left: -231px; will-change: top, left;">
                 <li class="header-title">{{ "side.bar.filter" | translate }} </li>
                 <li class="adjustments-line">
                     <a href="javascript:void(0)" class="switch-trigger active-color">
@@ -27,7 +28,8 @@
                             <span class="badge filter badge-danger active" data-color="danger"></span>
                         </div>
                         <div class="clearfix"></div>
-                    <div class="ripple-container"></div></a>
+                        <div class="ripple-container"></div>
+                    </a>
                 </li>
                 <li class="header-title">Images</li>
                 <li>
@@ -38,7 +40,8 @@
                 <li>
                     <a class="img-holder switch-trigger" href="javascript:void(0)">
                         <img src="./assets/img/sidebar-2.jpg" alt="">
-                    <div class="ripple-container"></div></a>
+                        <div class="ripple-container"></div>
+                    </a>
                 </li>
                 <li>
                     <a class="img-holder switch-trigger" href="javascript:void(0)">
@@ -50,99 +53,215 @@
                         <img src="./assets/img/sidebar-4.jpg" alt="">
                     </a>
                 </li>
-<!--                <li class="button-container">-->
-<!--                    <div>-->
-<!--                        <button class="btn btn-info btn-block btn-fill" data-toggle="modal" data-target="#buy">-->
-<!--                            Download Free-->
-<!--                        </button>-->
-<!--                    </div>-->
-<!--                </li>-->
-<!--                <li class="button-container">-->
-<!--                    <div>-->
-<!--                        <button class="btn btn-warning btn-block btn-fill" data-toggle="modal" data-target="#buy">-->
-<!--                            Buy Pro-->
-<!--                        </button>-->
-<!--                    </div>-->
-<!--                </li>-->
+                <!--                <li class="button-container">-->
+                <!--                    <div>-->
+                <!--                        <button class="btn btn-info btn-block btn-fill" data-toggle="modal" data-target="#buy">-->
+                <!--                            Download Free-->
+                <!--                        </button>-->
+                <!--                    </div>-->
+                <!--                </li>-->
+                <!--                <li class="button-container">-->
+                <!--                    <div>-->
+                <!--                        <button class="btn btn-warning btn-block btn-fill" data-toggle="modal" data-target="#buy">-->
+                <!--                            Buy Pro-->
+                <!--                        </button>-->
+                <!--                    </div>-->
+                <!--                </li>-->
                 <li class="button-container text-center" routerLinkActive="active">
-                  <div>
-                    <a class="btn btn-default btn-block" href="https://demos.creative-tim.com/material-dashboard-angular2/#/documentation/tutorial">
-                        View Documentation
-                    </a>
-                  </div>
+                    <div>
+                        <a class="btn btn-default btn-block"
+                           href="https://demos.creative-tim.com/material-dashboard-angular2/#/documentation/tutorial">
+                            View Documentation
+                        </a>
+                    </div>
                 </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="fixed-plugin" style="margin-top: 20%;">
+        <div class="dropdown show-dropdown open show">
+            <a href="#" data-toggle="dropdown" aria-expanded="true">
+                <i class="fa fa-comment fa-lg"> </i>
+            </a>
+            <ul class="dropdown-menu show" x-placement="bottom-start"
+                style="position: absolute; top: -41px; left: -231px; will-change: top, right;">
+                <li class="header-title">{{ "side.bar.chat" | translate }} </li>
+                <li class="adjustments-line">
+                    <a href="javascript:void(0)" class="switch-trigger active-color">
+                        <div class="ml-auto mr-auto">
+                            <span class="badge filter badge-purple" data-color="purple"></span>
+                            <span class="badge filter badge-azure" data-color="azure"></span>
+                            <span class="badge filter badge-green" data-color="green"></span>
+                            <span class="badge filter badge-orange" data-color="orange"></span>
+                            <span class="badge filter badge-danger active" data-color="danger"></span>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="ripple-container"></div>
+                    </a>
+                </li>
+                <li class="button-container text-center" style="max-height: 140px;overflow-y: auto;">
+                    <div class="messaging">
+                        <div class="inbox_msg">
+                            <div class="mesgs">
+                                <div class="msg_history">
+                                    <div class="incoming_msg">
+                                        <div class="incoming_msg_img"><img
+                                                src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
+                                        </div>
+                                        <div class="received_msg">
+                                            <div class="received_withd_msg">
+                                                <p>Test which is a new approach to have all
+                                                    solutions</p>
+                                                <span class="time_date"> 11:01 AM    |    June 9</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="outgoing_msg">
+                                        <div class="sent_msg">
+                                            <p>Test which is a new approach to have all
+                                                solutions</p>
+                                            <span class="time_date"> 11:01 AM    |    June 9</span></div>
+                                    </div>
+                                    <div class="incoming_msg">
+                                        <div class="incoming_msg_img"><img
+                                                src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
+                                        </div>
+                                        <div class="received_msg">
+                                            <div class="received_withd_msg">
+                                                <p>Test, which is a new approach to have</p>
+                                                <span class="time_date"> 11:01 AM    |    Yesterday</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="outgoing_msg">
+                                        <div class="sent_msg">
+                                            <p>Apollo University, Delhi, India Test</p>
+                                            <span class="time_date"> 11:01 AM    |    Today</span></div>
+                                    </div>
+                                    <div class="incoming_msg">
+                                        <div class="incoming_msg_img"><img
+                                                src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
+                                        </div>
+                                        <div class="received_msg">
+                                            <div class="received_withd_msg">
+                                                <p>We work directly with our designers and suppliers,
+                                                    and sell direct to you, which means quality, exclusive
+                                                    products, at a price anyone can afford.</p>
+                                                <span class="time_date"> 11:01 AM    |    Today</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="button-container text-center">
+                    <div class="type_msg">
+                        <div class="input_msg_write">
+                            <input type="text" class="write_msg" placeholder="Type a message"/>
+                            <button class="msg_send_btn" type="button"><i class="fa fa-paper-plane-o"
+                                                                          aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                </li>
+                <!--                <li class="button-container">-->
+                <!--                    <div>-->
+                <!--                        <button class="btn btn-info btn-block btn-fill" data-toggle="modal" data-target="#buy">-->
+                <!--                            Download Free-->
+                <!--                        </button>-->
+                <!--                    </div>-->
+                <!--                </li>-->
+                <!--                <li class="button-container">-->
+                <!--                    <div>-->
+                <!--                        <button class="btn btn-warning btn-block btn-fill" data-toggle="modal" data-target="#buy">-->
+                <!--                            Buy Pro-->
+                <!--                        </button>-->
+                <!--                    </div>-->
+                <!--                </li>-->
+                <!--                <li class="button-container text-center" routerLinkActive="active">-->
+                <!--                    <div>-->
+                <!--                        <a class="btn btn-default btn-block"-->
+                <!--                           href="https://demos.creative-tim.com/material-dashboard-angular2/#/documentation/tutorial">-->
+                <!--                            View Documentation-->
+                <!--                        </a>-->
+                <!--                    </div>-->
+                <!--                </li>-->
             </ul>
         </div>
     </div>
 </div>
 <!-- Buy-Modal-angular -->
 <div class="modal modal-angular fade" id="buy" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-<div class="modal-dialog" role="document">
-    <div class="modal-content">
-        <div class="modal-body text-center">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="margin-top">
-                Free Version
-            </h4>
-            <div class="separator"></div>
-            <a href="https://www.creative-tim.com/product/material-dashboard" class="modal-button" target="_blank">
-                <div class="wrapper-card">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="margin-top">
+                    Free Version
+                </h4>
+                <div class="separator"></div>
+                <a href="https://www.creative-tim.com/product/material-dashboard" class="modal-button" target="_blank">
+                    <div class="wrapper-card">
+                        <div class="image-container">
+                            <img src="./assets/img/html.png" alt="unloaded">
+                        </div>
+                        Html5
+                        <div class="separator"></div>
+                        <div class="product-type">
+                            FREE
+                        </div>
+                    </div>
+                </a>
+                <a href="https://www.creative-tim.com/product/material-dashboard-angular2" class="modal-button"
+                   target="_blank">
+                    <div class="wrapper-card">
+                        <div class="image-container image-angular-cli">
+                            <img src="./assets/img/angular.png" alt="unloaded">
+                        </div>
+                        Angular
+                        <div class="separator"></div>
+                        <div class="product-type">
+                            FREE
+                        </div>
+                    </div>
+                </a>
+                <h4>
+                    PRO Version
+                </h4>
+                <div class="separator"></div>
+                <a href="https://www.creative-tim.com/product/material-dashboard-pro" class="modal-button"
+                   target="_blank">
                     <div class="image-container">
                         <img src="./assets/img/html.png" alt="unloaded">
                     </div>
                     Html5
                     <div class="separator"></div>
-                    <div class="product-type">
-                        FREE
+                    <div class="price">
+                        from
+                        <span>
+                        49
+                        <i class="fa fa-usd" aria-hidden="true"></i>
+                    </span>
                     </div>
-                </div>
-            </a>
-            <a href="https://www.creative-tim.com/product/material-dashboard-angular2" class="modal-button" target="_blank">
-                <div class="wrapper-card">
+                </a>
+                <a href="https://www.creative-tim.com/product/material-dashboard-pro-angular2" class="modal-button"
+                   target="_blank">
                     <div class="image-container image-angular-cli">
                         <img src="./assets/img/angular.png" alt="unloaded">
                     </div>
                     Angular
                     <div class="separator"></div>
-                    <div class="product-type">
-                        FREE
-                    </div>
-                </div>
-            </a>
-            <h4>
-                PRO Version
-            </h4>
-            <div class="separator"></div>
-            <a href="https://www.creative-tim.com/product/material-dashboard-pro" class="modal-button" target="_blank">
-                <div class="image-container">
-                    <img src="./assets/img/html.png" alt="unloaded">
-                </div>
-                Html5
-                <div class="separator"></div>
-                <div class="price">
-                    from
-                    <span>
-                        49
-                        <i class="fa fa-usd" aria-hidden="true"></i>
-                    </span>
-                </div>
-            </a>
-            <a href="https://www.creative-tim.com/product/material-dashboard-pro-angular2" class="modal-button" target="_blank">
-                <div class="image-container image-angular-cli">
-                    <img src="./assets/img/angular.png" alt="unloaded">
-                </div>
-                Angular
-                <div class="separator"></div>
-                <div class="price">
-                    from
-                    <span>
+                    <div class="price">
+                        from
+                        <span>
                         59
                         <i class="fa fa-usd" aria-hidden="true"></i>
                     </span>
-                </div>
-            </a>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
-</div>
 
 </div>
