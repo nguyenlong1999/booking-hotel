@@ -1,7 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {FileUploader} from 'ng2-file-upload';
-import {ToastrService} from 'ngx-toastr';
-import {AppSetting} from '../appsetting';
 import {FormArray, FormBuilder, FormGroup} from '@angular/forms';
 import {StarRatingColor} from '../shared/animation/star-rating/star-rating.component';
 
@@ -46,7 +43,7 @@ export class HotelAccessComponent implements OnInit {
             guideToHotel: [''],
             starHotel: [''],
             image: [''],
-            totalRoomNumber: [''],
+            totalRoomNumber: '',
 
             // tab 2
             address: [''],
@@ -83,6 +80,7 @@ export class HotelAccessComponent implements OnInit {
     get f() {
         return this.registerHotelForm.controls;
     }
+
     onChange(deviceValue, index) {
         console.log(deviceValue, index);
         const radio: HTMLElement = document.getElementById('addMoreRoom' + index);
@@ -95,6 +93,7 @@ export class HotelAccessComponent implements OnInit {
 
     onSubmit() {
         console.log('submit')
+        this.registerHotelForm.get('totalRoomNumber').setValue(this.totaltypeRoomNumber)
         this.registerHotelForm.get('starHotel').setValue(this.rating)
 
         console.log(this.registerHotelForm.value);
@@ -163,20 +162,30 @@ export class HotelAccessComponent implements OnInit {
         });
     }
 
-    minusMaxDay() {
+    minusMaxDay(i) {
+        if (this.maxDayNumber === 1) {
+            $('#maxDay' + i).addClass('disabledbutton');
+        }
         this.maxDayNumber--;
     }
 
-    plusMaxDay() {
+    plusMaxDay(i) {
+        $('#maxDay' + i).removeClass('disabledbutton');
         this.maxDayNumber++;
     }
 
     minusTotalRoomNumber() {
+        console.log('change')
+        console.log(this.totaltypeRoomNumber)
+        if (this.totaltypeRoomNumber === 1) {
+            $('#totalRoomNumber').addClass('disabledbutton');
+        }
         this.totaltypeRoomNumber--;
         this.deleteControlRoom();
     }
 
     plusTotalRoomNumber() {
+        $('#totalRoomNumber').removeClass('disabledbutton');
         this.totaltypeRoomNumber++;
         this.formArrayRoomNumber.push(this.addControlRoom());
     }
@@ -218,12 +227,17 @@ export class HotelAccessComponent implements OnInit {
     }
 
     plusAccommodates(i) {
+        $('#accommondates' + i).removeClass('disabledbutton');
         this.countAccommodates = this.registerHotelForm.get('formArrayRoomNumber').get([i]).get('accommodates').value
         this.countAccommodates++
         this.registerHotelForm.get('formArrayRoomNumber').get([i]).get('accommodates').setValue(this.countAccommodates)
     }
 
     minusAccommodates(i) {
+        if (this.countAccommodates === 1) {
+            $('#accommondates' + i).addClass('disabledbutton');
+        }
+
         this.countAccommodates = this.registerHotelForm.get('formArrayRoomNumber').get([i]).get('accommodates').value
         this.countAccommodates--;
         this.registerHotelForm.get('formArrayRoomNumber').get([i]).get('accommodates').setValue(this.countAccommodates)
@@ -242,6 +256,10 @@ export class HotelAccessComponent implements OnInit {
         console.log(place);
         console.log(this.name);
         document.getElementById('check-input').focus();
+    }
+
+    changeInputHidden() {
+
     }
 
 }
