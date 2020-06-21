@@ -214,14 +214,13 @@
                                                 <div class="row">
                                                     <div class="col">
                                                         <div class="input-group input-number-group">
-                                                            <div class="input-group-button"
+                                                            <div class="input-group-button" id="totalRoomNumber" class="disabledbutton"
                                                                  (click)="minusTotalRoomNumber()">
                                                                 <span class="input-number-decrement">-</span>
                                                             </div>
                                                             <input class="input-number" type="number"
                                                                    formControlName="totalRoomNumber"
-                                                                   [value]="totaltypeRoomNumber" min="0"
-                                                                   max="1000">
+                                                                   [value]="totaltypeRoomNumber">
                                                             <div class="input-group-button"
                                                                  (click)="plusTotalRoomNumber()">
                                                                 <span class="input-number-increment">+</span>
@@ -838,6 +837,7 @@
                                                                 <div class="col">
                                                                     <div class="input-group input-number-group">
                                                                         <div class="input-group-button"
+                                                                             id="accommondates{{i}}"
                                                                              (click)="minusAccommodates(i)">
                                                                             <span class="input-number-decrement">-</span>
                                                                         </div>
@@ -872,8 +872,8 @@
                                                             <div class="row">
                                                                 <div class="col">
                                                                     <div class="input-group input-number-group">
-                                                                        <div class="input-group-button"
-                                                                             (click)="minusMaxDay()">
+                                                                        <div class="input-group-button" id="maxDay{{i}}"
+                                                                             (click)="minusMaxDay(i)">
                                                                             <span class="input-number-decrement">-</span>
                                                                         </div>
                                                                         <input class="input-number" type="number"
@@ -881,7 +881,7 @@
                                                                                formControlName="maxDay"
                                                                                min="0" max="1000">
                                                                         <div class="input-group-button"
-                                                                             (click)="plusMaxDay()">
+                                                                             (click)="plusMaxDay(i)">
                                                                             <span class="input-number-increment">+</span>
                                                                         </div>
                                                                     </div>
@@ -1105,11 +1105,13 @@
                                 <mat-radio-group formControlName="cancellationPolicy">
                                     <div class="row">
                                         <div class="col">
-                                            <mat-radio-button value="1" ><b>Linh hoạt</b>
+                                            <mat-radio-button value="1"><b>Linh hoạt</b>
                                                 <br>
                                                 <div class="wrap-mat-radio-label">
-                                                    Khách hàng hủy trước ngày nhận phòng 1 ngày sẽ được hoàn lại tiền 100%.
-                                                    Trong trường hợp khách không đến, bạn được nhận 100% giá tiền đặt phòng.
+                                                    Khách hàng hủy trước ngày nhận phòng 1 ngày sẽ được hoàn lại tiền
+                                                    100%.
+                                                    Trong trường hợp khách không đến, bạn được nhận 100% giá tiền đặt
+                                                    phòng.
                                                 </div>
                                             </mat-radio-button>
                                         </div>
@@ -1119,8 +1121,10 @@
                                             <mat-radio-button value="2"><b>Nghiêm ngặt</b>
                                                 <br>
                                                 <div class="wrap-mat-radio-label">
-                                                    Khách hàng hủy trước ngày nhận phòng 7 ngày sẽ được hoàn lại tiền 50%.
-                                                    Trong trường hợp khách không đến, bạn được nhận 100% giá tiền đặt phòng.
+                                                    Khách hàng hủy trước ngày nhận phòng 7 ngày sẽ được hoàn lại tiền
+                                                    50%.
+                                                    Trong trường hợp khách không đến, bạn được nhận 100% giá tiền đặt
+                                                    phòng.
                                                 </div>
                                             </mat-radio-button>
                                         </div>
