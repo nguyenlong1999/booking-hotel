@@ -194,7 +194,8 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col">
-                                                        <app-image (imageSrcUrl)="getImageSrc($event)" [multiple]="true"></app-image>
+                                                        <app-image (imageSrcUrl)="getImageSrc($event)"
+                                                                   [multiple]="true"></app-image>
                                                     </div>
                                                 </div>
                                             </div>
@@ -995,19 +996,25 @@
                                                                                     <mat-label>Loại giường</mat-label>
                                                                                     <mat-select
                                                                                             formControlName="bedType"
-                                                                                            (selectionChange)="onChange($event,ia)">
-                                                                                        <mat-option value="0">None
+                                                                                            (selectionChange)="onChangeBedType($event,iz)">
+                                                                                        <mat-option
+                                                                                                *ngFor="let typeBedRoom of lstTypeBedRoom;let in=index"
+                                                                                                [value]="typeBedRoom.value"
+                                                                                                >
+                                                                                            {{typeBedRoom.name}}
                                                                                         </mat-option>
-                                                                                        <mat-option value="1">Giường đôi
-                                                                                        </mat-option>
-                                                                                        <mat-option value="2">Giường đơn
-                                                                                        </mat-option>
-                                                                                        <mat-option value="3">Giường
-                                                                                            King
-                                                                                        </mat-option>
-                                                                                        <mat-option value="4">Giường
-                                                                                            Queen
-                                                                                        </mat-option>
+                                                                                        <!--                                                                                        <mat-option value="0">None-->
+                                                                                        <!--                                                                                        </mat-option>-->
+                                                                                        <!--                                                                                        <mat-option value="1">Giường đôi-->
+                                                                                        <!--                                                                                        </mat-option>-->
+                                                                                        <!--                                                                                        <mat-option value="2">Giường đơn-->
+                                                                                        <!--                                                                                        </mat-option>-->
+                                                                                        <!--                                                                                        <mat-option value="3">Giường-->
+                                                                                        <!--                                                                                            King-->
+                                                                                        <!--                                                                                        </mat-option>-->
+                                                                                        <!--                                                                                        <mat-option value="4">Giường-->
+                                                                                        <!--                                                                                            Queen-->
+                                                                                        <!--                                                                                        </mat-option>-->
                                                                                     </mat-select>
                                                                                 </mat-form-field>
                                                                             </div>

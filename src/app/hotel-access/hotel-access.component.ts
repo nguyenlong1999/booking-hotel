@@ -26,6 +26,27 @@ export class HotelAccessComponent implements OnInit {
     starColorW: StarRatingColor = StarRatingColor.warn;
     arrayImage = '';
 
+    // type bed rooms
+    lstTypeBedRoom = [
+        {
+            value: 1,
+            name: 'Giường đôi'
+        },
+        {
+            value: 2,
+            name: 'Giường đơn'
+        },
+        {
+            value: 3,
+            name: 'Giường King'
+        },
+        {
+            value: 4,
+            name: 'Giường Queen'
+        }
+
+    ]
+
     // selected tab
     public TabIndex = 0;
 
@@ -82,11 +103,23 @@ export class HotelAccessComponent implements OnInit {
         return this.registerHotelForm.controls;
     }
 
-    onChange(deviceValue, index) {
-        console.log(deviceValue, index);
+    onChangeBedType(deviceValue, index) {
         const radio: HTMLElement = document.getElementById('addMoreRoom' + index);
-        radio.style.display = 'none';
+        if (deviceValue.value === 3 || deviceValue.value === 4) {
+            radio.style.display = 'none';
+        } else {
+            radio.style.display = 'block'
+        }
+        console.log(deviceValue);
+        console.log(index)
     }
+
+    // flowwChange(event: any, index) {
+    //     console.log(index)
+    //     const option: HTMLElement = document.getElementById('BedRoomIndex' + index)
+    //     option.style.display = 'none'
+    //     console.log(event)
+    // }
 
     get formArrayRoomNumber() {
         return this.registerHotelForm.get('formArrayRoomNumber') as FormArray
@@ -267,7 +300,7 @@ export class HotelAccessComponent implements OnInit {
         const str = '[' + event.toString().replace(/}\n?{/g, '},{') + ']';
         JSON.parse(str).forEach((obj) => {
             pshArrayImage.add(obj.filePath)
-           console.log(obj.filePath)
+            console.log(obj.filePath)
         });
         console.log(pshArrayImage)
         // this.arrayImage = [...pshArrayImage].join(',')
