@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormGroup} from '@angular/forms';
 import {StarRatingColor} from '../shared/animation/star-rating/star-rating.component';
 
@@ -10,7 +10,7 @@ import {StarRatingColor} from '../shared/animation/star-rating/star-rating.compo
 export class HotelAccessComponent implements OnInit {
     registerHotelForm: FormGroup;
     totaltypeRoomNumber = 0;
-    maxDayNumber = 0;
+    countMaxDayNumber = 0;
     countAccommodates = 0;
     countBedrooms = 0;
     countBathrooms = 0;
@@ -24,14 +24,10 @@ export class HotelAccessComponent implements OnInit {
     starColor: StarRatingColor = StarRatingColor.accent;
     starColorP: StarRatingColor = StarRatingColor.primary;
     starColorW: StarRatingColor = StarRatingColor.warn;
+    arrayImage = '';
 
     // selected tab
     public TabIndex = 0;
-
-    public tabNext() {
-        const tabCount = 4;
-        this.TabIndex = (this.TabIndex + 1) % tabCount;
-    }
 
     constructor(private formbuilder: FormBuilder) {
         this.registerHotelForm = this.formbuilder.group({
@@ -69,6 +65,11 @@ export class HotelAccessComponent implements OnInit {
         })
     }
 
+    public tabNext() {
+        const tabCount = 4;
+        this.TabIndex = (this.TabIndex + 1) % tabCount;
+    }
+
     ngOnInit(): void {
         console.log(this.address);
     }
@@ -92,7 +93,7 @@ export class HotelAccessComponent implements OnInit {
     }
 
     onSubmit() {
-        console.log('submit')
+        this.registerHotelForm.get('image').setValue(this.arrayImage)
         this.registerHotelForm.get('totalRoomNumber').setValue(this.totaltypeRoomNumber)
         this.registerHotelForm.get('starHotel').setValue(this.rating)
 
@@ -105,7 +106,7 @@ export class HotelAccessComponent implements OnInit {
             bathRooms: this.formbuilder.control('0'),
             bedRooms: this.formbuilder.control('0'),
             bedRoomsDetails: this.formbuilder.array([]),
-            maxDay: ['0'],
+            maxDay: this.formbuilder.control('0'),
             price: ['']
         });
     }
@@ -155,27 +156,24 @@ export class HotelAccessComponent implements OnInit {
         })
     }
 
-    addControlTotalBedRoom() {
-        console.log('x')
-        return this.formbuilder.group({
-            test: this.formbuilder.control('')
-        });
-    }
-
     minusMaxDay(i) {
-        if (this.maxDayNumber === 1) {
+        if (this.countMaxDayNumber === 1) {
             $('#maxDay' + i).addClass('disabledbutton');
         }
-        this.maxDayNumber--;
+        this.countMaxDayNumber = this.registerHotelForm.get('formArrayRoomNumber').get([i]).get('maxDay').value
+        this.countMaxDayNumber--;
+        this.registerHotelForm.get('formArrayRoomNumber').get([i]).get('maxDay').setValue(this.countMaxDayNumber)
     }
 
     plusMaxDay(i) {
         $('#maxDay' + i).removeClass('disabledbutton');
-        this.maxDayNumber++;
+        this.countMaxDayNumber = this.registerHotelForm.get('formArrayRoomNumber').get([i]).get('maxDay').value
+        this.countMaxDayNumber++;
+        this.registerHotelForm.get('formArrayRoomNumber').get([i]).get('maxDay').setValue(this.countMaxDayNumber)
+
     }
 
     minusTotalRoomNumber() {
-        console.log('change')
         console.log(this.totaltypeRoomNumber)
         if (this.totaltypeRoomNumber === 1) {
             $('#totalRoomNumber').addClass('disabledbutton');
@@ -192,6 +190,7 @@ export class HotelAccessComponent implements OnInit {
 
 
     plusNumberOfBedrooms(i) {
+        $('#bedRooms' + i).removeClass('disabledbutton');
         this.countBedrooms = this.registerHotelForm.get('formArrayRoomNumber').get([i]).get('bedRooms').value
         this.countBedrooms++
         this.registerHotelForm.get('formArrayRoomNumber').get([i]).get('bedRooms').setValue(this.countBedrooms)
@@ -202,11 +201,12 @@ export class HotelAccessComponent implements OnInit {
     }
 
     minusNumberOfBedrooms(i) {
+        if (this.countBedrooms === 1) {
+            $('#bedRooms' + i).addClass('disabledbutton');
+        }
         this.countBedrooms = this.registerHotelForm.get('formArrayRoomNumber').get([i]).get('bedRooms').value
         this.countBedrooms--
         this.registerHotelForm.get('formArrayRoomNumber').get([i]).get('bedRooms').setValue(this.countBedrooms)
-
-        // this.formArrayRoomNumber.removeAt(this.formArrayRoomNumber.at(i).get('bedRoomsDetails') as .length - 1);
 
         const control = (<FormArray>this.registerHotelForm.controls['formArrayRoomNumber']).at(i).get('bedRoomsDetails') as FormArray;
         control.removeAt(i);
@@ -214,12 +214,16 @@ export class HotelAccessComponent implements OnInit {
     }
 
     plusNumberOfBathrooms(i) {
+        $('#bathRooms' + i).removeClass('disabledbutton');
         this.countBathrooms = this.registerHotelForm.get('formArrayRoomNumber').get([i]).get('bathRooms').value
         this.countBathrooms++
         this.registerHotelForm.get('formArrayRoomNumber').get([i]).get('bathRooms').setValue(this.countBathrooms)
     }
 
     minusNumberOfBathrooms(i) {
+        if (this.countBathrooms === 1) {
+            $('#bathRooms' + i).addClass('disabledbutton');
+        }
         this.countBathrooms = this.registerHotelForm.get('formArrayRoomNumber').get([i]).get('bathRooms').value
         this.countBathrooms--
         this.registerHotelForm.get('formArrayRoomNumber').get([i]).get('bathRooms').setValue(this.countBathrooms)
@@ -258,8 +262,19 @@ export class HotelAccessComponent implements OnInit {
         document.getElementById('check-input').focus();
     }
 
-    changeInputHidden() {
-
+    getImageSrc(event: any) {
+        let pshArrayImage = new Set()
+        const str = '[' + event.toString().replace(/}\n?{/g, '},{') + ']';
+        JSON.parse(str).forEach((obj) => {
+            pshArrayImage.add(obj.filePath)
+           console.log(obj.filePath)
+        });
+        console.log(pshArrayImage)
+        // this.arrayImage = [...pshArrayImage].join(',')
+        this.arrayImage = Array.from(pshArrayImage).join(',')
+        // let evt = JSON.parse(event.toString());
+        // this.arrayImage += evt.filePath + ','
+        // event.path
     }
 
 }

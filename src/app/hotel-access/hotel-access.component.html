@@ -194,7 +194,7 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col">
-                                                        <app-image></app-image>
+                                                        <app-image (imageSrcUrl)="getImageSrc($event)" [multiple]="true"></app-image>
                                                     </div>
                                                 </div>
                                             </div>
@@ -214,9 +214,11 @@
                                                 <div class="row">
                                                     <div class="col">
                                                         <div class="input-group input-number-group">
-                                                            <div class="input-group-button" id="totalRoomNumber" class="disabledbutton"
+                                                            <div class="input-group-button" id="totalRoomNumber"
+                                                                 class="disabledbutton"
                                                                  (click)="minusTotalRoomNumber()">
-                                                                <span class="input-number-decrement">-</span>
+                                                                <span class="input-number-decrement"> <div
+                                                                        style="margin-top: 10%">-</div></span>
                                                             </div>
                                                             <input class="input-number" type="number"
                                                                    formControlName="totalRoomNumber"
@@ -836,10 +838,11 @@
                                                             <div class="row">
                                                                 <div class="col">
                                                                     <div class="input-group input-number-group">
-                                                                        <div class="input-group-button"
+                                                                        <div class="input-group-button disabledbutton"
                                                                              id="accommondates{{i}}"
                                                                              (click)="minusAccommodates(i)">
-                                                                            <span class="input-number-decrement">-</span>
+                                                                            <span class="input-number-decrement"> <div
+                                                                                    style="margin-top: 5%">-</div></span>
                                                                         </div>
                                                                         <input class="input-number" type="number"
                                                                                id="accommodates{{i}}"
@@ -872,12 +875,15 @@
                                                             <div class="row">
                                                                 <div class="col">
                                                                     <div class="input-group input-number-group">
-                                                                        <div class="input-group-button" id="maxDay{{i}}"
+                                                                        <div class="input-group-button "
+                                                                             class="disabledbutton"
+                                                                             id="maxDay{{i}}"
                                                                              (click)="minusMaxDay(i)">
-                                                                            <span class="input-number-decrement">-</span>
+                                                                            <span class="input-number-decrement"><div
+                                                                                    style="margin-top: 5%">-</div></span>
                                                                         </div>
+
                                                                         <input class="input-number" type="number"
-                                                                               [value]="maxDayNumber"
                                                                                formControlName="maxDay"
                                                                                min="0" max="1000">
                                                                         <div class="input-group-button"
@@ -906,9 +912,11 @@
                                                             <div class="row">
                                                                 <div class="col">
                                                                     <div class="input-group input-number-group">
-                                                                        <div class="input-group-button"
+                                                                        <div class="input-group-button "
+                                                                             class="disabledbutton" id="bathRooms{{i}}"
                                                                              (click)="minusNumberOfBathrooms(i)">
-                                                                            <span class="input-number-decrement">-</span>
+                                                                            <span class="input-number-decrement"><div
+                                                                                    style="margin-top: 5%">-</div></span>
                                                                         </div>
                                                                         <input class="input-number" type="number"
                                                                                formControlName="bathRooms"
@@ -942,8 +950,10 @@
                                                                 <div class="col">
                                                                     <div class="input-group input-number-group">
                                                                         <div class="input-group-button"
+                                                                             class="disabledbutton" id="bedRooms{{i}}"
                                                                              (click)="minusNumberOfBedrooms(i)">
-                                                                            <span class="input-number-decrement">-</span>
+                                                                            <span class="input-number-decrement"><div
+                                                                                    style="margin-top: 5%">-</div></span>
                                                                         </div>
                                                                         <input class="input-number" type="number"
                                                                                min="0" formControlName="bedRooms"
@@ -1041,15 +1051,15 @@
                                                                     này.
                                                                 </div>
                                                             </div>
-                                                            <div class="row">
-                                                                <div class="col">
-                                                                    <h5>Lượng người tối đa có thể ngủ ở chỗ bạn
-                                                                        là: {{ romNumber.get('accommodates').value }}.
-                                                                        <a
-                                                                                href="hotel-register#accommodates{{i}}">Thay
-                                                                            đổi</a></h5>
-                                                                </div>
-                                                            </div>
+                                                            <!--                                                            <div class="row">-->
+                                                            <!--                                                                <div class="col">-->
+                                                            <!--                                                                    <h5>Lượng người tối đa có thể ngủ ở chỗ bạn-->
+                                                            <!--                                                                        là: {{ romNumber.get('accommodates').value }}.-->
+                                                            <!--                                                                        <a-->
+                                                            <!--                                                                                href="hotel-register#accommodates{{i}}">Thay-->
+                                                            <!--                                                                            đổi</a></h5>-->
+                                                            <!--                                                                </div>-->
+                                                            <!--                                                            </div>-->
                                                             <div class="row">
                                                                 <div class="col-3">
                                                                     <mat-form-field>

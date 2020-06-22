@@ -1,9 +1,34 @@
 <div class="wrapper">
-    <h2>Angular Image Upload Demo</h2>
-    <div class="file-upload">
-        <input type="file" name="image" ng2FileSelect [uploader]="uploader" accept="image/x-png,image/gif,image/jpeg" />
-        <button type="button" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
-            Upload
-        </button>
+    <div class="row">
+        <div class="col">
+            <div class="file-upload">
+                <input type="file" name="image" ng2FileSelect [uploader]="uploader"
+                       accept="image/x-png,image/gif,image/jpeg" [multiple]="multiple"
+                />
+                <button type="button" (click)="uploader.uploadAll()"
+                        [disabled]="!uploader.getNotUploadedItems().length">
+                    Upload
+                </button>
+            </div>
+        </div>
     </div>
+    <div class="row">
+        <div *ngFor="let imagePre of listImgPreview; let i = index">
+            <div class="row">
+                <div class="col">
+                    <div tyle="position: relative">
+                        <img [src]="imagePre" style="max-width:200px; height: auto;"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <button mat-icon-button color="warn" (click)="removeSelectedFile(i)" style="">
+                        <mat-icon>favorite</mat-icon>
+                    </button>Delete
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
