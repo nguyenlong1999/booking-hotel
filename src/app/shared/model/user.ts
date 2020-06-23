@@ -9,7 +9,7 @@ export class User {
     totalPoint: any;
     role: any;
     birthday: number;
-    gender: string;
+    gender: number;
     materialStatus: string;
     signature: string;
     address: string;

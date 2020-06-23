@@ -1,8 +1,8 @@
-import {Component, Directive, ElementRef, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FileUploader} from 'ng2-file-upload';
-import {AppSetting} from '../../../appsetting';
-import {ToastrService} from 'ngx-toastr';
-import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
+import { Component, Directive, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FileUploader } from 'ng2-file-upload';
+import { AppSetting } from '../../../appsetting';
+import { ToastrService } from 'ngx-toastr';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-image',
@@ -10,8 +10,8 @@ import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
     styleUrls: ['./image.component.css']
 })
 export class ImageComponent implements OnInit {
-
-
+    @Input('imageProp') private imageProp: String;
+    @Input('url') private url: any;
     @Output() private imageSrcUrl = new EventEmitter();
 
     // tslint:disable-next-line:no-input-rename
@@ -22,6 +22,7 @@ export class ImageComponent implements OnInit {
         itemAlias: 'image'
     });
     public imageUrl = '';
+
     listImgPreview: SafeUrl[] = [];
 
     // previewImg: SafeUrl;
@@ -37,8 +38,6 @@ export class ImageComponent implements OnInit {
             this.listImgPreview.push(this.sanitizer.bypassSecurityTrustUrl((window.URL.createObjectURL(file._file))));
             console.log(this.listImgPreview)
             // console.log(this.previewImg)
-
-
         };
         this.uploader.onCompleteItem = (data) => {
             console.log('Uploaded File Details:', data._xhr.response);
@@ -54,6 +53,20 @@ export class ImageComponent implements OnInit {
         this.uploader.queue[i].remove()
     }
 
+    onSelectFile(event) {
+        if (event.target.files && event.target.files[0]) {
+            var reader = new FileReader();
+            reader.readAsDataURL(event.target.files[0]); // read file as data url
+            reader.onload = (event) => { // called once readAsDataURL is completed
+                this.url = event.target.result;
+            }
+        }
+        console.log(this.uploader.queue);
+        this.uploader.uploadAll();
+    }
 }
+// export enum ImageUpload {
+//     profile = 'profile'
+// }
 
 

@@ -1,12 +1,12 @@
-<div class="wrapper">
+<!-- hotel-access -->
+<div class="wrapper" *ngIf="imageProp == 'hotelAccess'">
     <div class="row">
         <div class="col">
             <div class="file-upload">
                 <input type="file" name="image" ng2FileSelect [uploader]="uploader"
-                       accept="image/x-png,image/gif,image/jpeg" [multiple]="multiple"
-                />
+                    accept="image/x-png,image/gif,image/jpeg" [multiple]="multiple" />
                 <button type="button" (click)="uploader.uploadAll()"
-                        [disabled]="!uploader.getNotUploadedItems().length">
+                    [disabled]="!uploader.getNotUploadedItems().length">
                     Upload
                 </button>
             </div>
@@ -17,7 +17,7 @@
             <div class="row">
                 <div class="col">
                     <div tyle="position: relative">
-                        <img [src]="imagePre" style="max-width:200px; height: auto;"/>
+                        <img [src]="imagePre" style="max-width:200px; height: auto;" />
                     </div>
                 </div>
             </div>
@@ -31,4 +31,20 @@
         </div>
     </div>
 
+</div>
+<!-- user-profile -->
+<div *ngIf="imageProp == 'profile'">
+    <label class="hoverable" for="fileInput" style="height: 200px;
+    width: 200px; margin: 30px auto">
+        <img [src]=" 'https://www.w3schools.com/howto/img_avatar.png'" style="border: 1px solid #ffffff;">
+        <!-- <img [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png'" style="border: 1px solid #ffffff;"> -->
+    </label>
+    <br />
+    <input id="fileInput" type='file' (change)="onSelectFile($event)" ng2FileSelect [uploader]="uploader">
+    <div>
+    </div>
+    <div class="card-body">
+        <h6>Nhấn để cập nhật ảnh diện {{url}}</h6>
+        <!-- <button type="button" (click)="uploader.uploadAll()">Cap nhat</button> .-->
+    </div>
 </div>
