@@ -8,7 +8,7 @@ import {} from 'googlemaps';
         <input class="input"
                type="text"
                [(ngModel)]="autocompleteInput"
-               #addresstext style="padding: 12px 20px; border: 1px solid #ccc; width: 400px"
+               #addresstext style="padding: 12px 20px; border: 1px solid #ccc; width: 100%"
         >
         <div id="map" style="display: none;"></div>
         <div id="info-content" style="display: none;"></div>
@@ -16,13 +16,17 @@ import {} from 'googlemaps';
 })
 export class AutocompleteComponent implements OnInit, AfterViewInit {
     @Input() adressType: string;
+    // tslint:disable-next-line:no-input-rename
+    @Input('width') private width = '600px';
     @Output() setAddress: EventEmitter<any> = new EventEmitter();
     @ViewChild('addresstext') addresstext: any;
+
 
     autocompleteInput: string;
     queryWait: boolean;
     private map;
     private infoWindow;
+
     constructor() {
     }
 

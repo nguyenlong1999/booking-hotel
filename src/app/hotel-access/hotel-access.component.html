@@ -195,7 +195,8 @@
                                                 <div class="row">
                                                     <div class="col">
                                                         <app-image (imageSrcUrl)="getImageSrc($event)"
-                                                                   [multiple]="true"></app-image>
+                                                                   [multiple]="true"
+                                                        [imageProp]="imageProp" ></app-image>
                                                     </div>
                                                 </div>
                                             </div>
@@ -235,7 +236,7 @@
 
                                             <div class="row">
                                                 <div class="col text-right">
-                                                    <button class="prevtab btn btn-success">Prev</button>
+                                                    <!--                                                    <button class="prevtab btn btn-success">Prev</button>-->
                                                     <button class="nexttab btn btn-success" (click)="tabNext()">
                                                         Next
                                                     </button>
@@ -291,20 +292,7 @@
                                     <div class="col">
                                         <fieldset class="the-fieldset">
                                             <legend class="the-legend">Địa điểm</legend>
-                                            <div>
-                                                <div class="row">
-                                                    <div class="col">
-                                                        Autocomplate Map
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <AutocompleteComponent id="check-input"
-                                                                               (setAddress)="getEstablishmentAddress($event)"
-                                                                               adressType="establishment"></AutocompleteComponent>
-                                                    </div>
-                                                </div>
-                                            </div>
+
                                             <div>
                                                 <div class="row">
                                                     <div class="col">
@@ -315,12 +303,19 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-lg-6">
-                                                        <mat-form-field>
-                                                            <input matInput placeholder="Nhập địa chỉ đi"
-                                                                   formControlName="address">
-                                                        </mat-form-field>
+                                                        <AutocompleteComponent id="check-input"
+                                                                               (setAddress)="getEstablishmentAddress($event)"
+                                                                               adressType="establishment"></AutocompleteComponent>
                                                     </div>
                                                 </div>
+                                                <!--                                                <div class="row">-->
+                                                <!--                                                    <div class="col-lg-6">-->
+                                                <!--                                                        <mat-form-field>-->
+                                                <!--                                                            <input matInput placeholder="Nhập địa chỉ đi"-->
+                                                <!--                                                                   formControlName="address">-->
+                                                <!--                                                        </mat-form-field>-->
+                                                <!--                                                    </div>-->
+                                                <!--                                                </div>-->
                                             </div>
 
                                             <div>
@@ -334,66 +329,87 @@
                                                 <div class="row">
                                                     <div class="col-lg-6">
                                                         <mat-form-field>
-                                                            <input matInput placeholder="Điền vào đây">
+                                                            <input matInput placeholder="Địa chỉ"
+                                                                   formControlName="address">
                                                         </mat-form-field>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <div>
-                                                <div class="row">
-                                                    <div class="col-lg-3">
-                                                        <mat-form-field>
-                                                            <mat-label>Quốc gia</mat-label>
-                                                            <mat-select formControlName="country">
-                                                                <mat-option>None</mat-option>
-                                                                <mat-option value="option1">Option 1
-                                                                </mat-option>
-                                                                <mat-option value="option2">Option 2
-                                                                </mat-option>
-                                                                <mat-option value="option3">Option 3
-                                                                </mat-option>
-                                                            </mat-select>
-                                                        </mat-form-field>
-                                                    </div>
-                                                    <div class="col-lg-3">
-                                                        <mat-form-field>
-                                                            <mat-label>Tiểu bang / Tỉnh</mat-label>
-                                                            <mat-select formControlName="province">
-                                                                <mat-option>None</mat-option>
-                                                                <mat-option value="option1">Option 1
-                                                                </mat-option>
-                                                                <mat-option value="option2">Option 2
-                                                                </mat-option>
-                                                                <mat-option value="option3">Option 3
-                                                                </mat-option>
-                                                            </mat-select>
-                                                        </mat-form-field>
-                                                    </div>
-                                                </div>
-                                            </div>
+<!--                                            <div>-->
+<!--                                                <div class="row">-->
+<!--                                                    <div class="col-lg-3">-->
+<!--                                                        <mat-form-field class="example-full-width">-->
+<!--                                                            <mat-label>Quốc gia</mat-label>-->
+<!--                                                            <input matInput placeholder="Quốc gia"-->
+<!--                                                                   formControlName="country">-->
+<!--                                                        </mat-form-field>-->
+<!--                                                        &lt;!&ndash;                                                        <mat-form-field>&ndash;&gt;-->
+<!--                                                        &lt;!&ndash;                                                            <mat-label>Quốc gia</mat-label>&ndash;&gt;-->
+<!--                                                        &lt;!&ndash;                                                            &ndash;&gt;-->
+<!--                                                        &lt;!&ndash;                                                            <mat-select formControlName="country">&ndash;&gt;-->
+<!--                                                        &lt;!&ndash;                                                                <mat-option>None</mat-option>&ndash;&gt;-->
+<!--                                                        &lt;!&ndash;                                                                <mat-option value="option1">Option 1&ndash;&gt;-->
+<!--                                                        &lt;!&ndash;                                                                </mat-option>&ndash;&gt;-->
+<!--                                                        &lt;!&ndash;                                                                <mat-option value="option2">Option 2&ndash;&gt;-->
+<!--                                                        &lt;!&ndash;                                                                </mat-option>&ndash;&gt;-->
+<!--                                                        &lt;!&ndash;                                                                <mat-option value="option3">Option 3&ndash;&gt;-->
+<!--                                                        &lt;!&ndash;                                                                </mat-option>&ndash;&gt;-->
+<!--                                                        &lt;!&ndash;                                                            </mat-select>&ndash;&gt;-->
+<!--                                                        &lt;!&ndash;                                                        </mat-form-field>&ndash;&gt;-->
+<!--                                                    </div>-->
+<!--                                                    <div class="col-lg-3">-->
+<!--                                                        <mat-form-field class="example-full-width">-->
+<!--                                                            <mat-label>Tiểu bang / Tỉnh</mat-label>-->
+<!--                                                            <input matInput placeholder="Tiểu bang / Tỉnh"-->
+<!--                                                                   formControlName="province">-->
+<!--                                                        </mat-form-field>-->
+<!--                                                        &lt;!&ndash;                                                        <mat-form-field>&ndash;&gt;-->
+<!--                                                        &lt;!&ndash;                                                            <mat-label>Tiểu bang / Tỉnh</mat-label>&ndash;&gt;-->
+<!--                                                        &lt;!&ndash;                                                            <mat-select formControlName="province">&ndash;&gt;-->
+<!--                                                        &lt;!&ndash;                                                                <mat-option>None</mat-option>&ndash;&gt;-->
+<!--                                                        &lt;!&ndash;                                                                <mat-option value="option1">Option 1&ndash;&gt;-->
+<!--                                                        &lt;!&ndash;                                                                </mat-option>&ndash;&gt;-->
+<!--                                                        &lt;!&ndash;                                                                <mat-option value="option2">Option 2&ndash;&gt;-->
+<!--                                                        &lt;!&ndash;                                                                </mat-option>&ndash;&gt;-->
+<!--                                                        &lt;!&ndash;                                                                <mat-option value="option3">Option 3&ndash;&gt;-->
+<!--                                                        &lt;!&ndash;                                                                </mat-option>&ndash;&gt;-->
+<!--                                                        &lt;!&ndash;                                                            </mat-select>&ndash;&gt;-->
+<!--                                                        &lt;!&ndash;                                                        </mat-form-field>&ndash;&gt;-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
 
                                             <div>
                                                 <div class="row">
                                                     <div class="col-lg-3">
-                                                        <mat-form-field>
-                                                            <mat-label>Thành phố</mat-label>
-                                                            <mat-select formControlName="city">
-                                                                <mat-option>None</mat-option>
-                                                                <mat-option value="option1">Option 1
-                                                                </mat-option>
-                                                                <mat-option value="option2">Option 2
-                                                                </mat-option>
-                                                                <mat-option value="option3">Option 3
-                                                                </mat-option>
-                                                            </mat-select>
-                                                        </mat-form-field>
-                                                    </div>
-                                                    <div class="col-lg-3">
+
                                                         <mat-form-field class="example-full-width">
+                                                            <mat-label>Quốc gia</mat-label>
+                                                            <input matInput placeholder="Quốc gia"
+                                                                   formControlName="country">
+                                                        </mat-form-field>
+                                                        <!--                                                            <mat-label>Thành phố</mat-label>-->
+                                                        <!--                                                            <input matInput placeholder="Thành phố"-->
+                                                        <!--                                                                   formControlName="city">-->
+                                                        <!--                                                        </mat-form-field>-->
+                                                        <!--                                                        <mat-form-field>-->
+                                                        <!--                                                            <mat-label>Thành phố</mat-label>-->
+                                                        <!--                                                            <mat-select formControlName="city">-->
+                                                        <!--                                                                <mat-option>None</mat-option>-->
+                                                        <!--                                                                <mat-option value="option1">Option 1-->
+                                                        <!--                                                                </mat-option>-->
+                                                        <!--                                                                <mat-option value="option2">Option 2-->
+                                                        <!--                                                                </mat-option>-->
+                                                        <!--                                                                <mat-option value="option3">Option 3-->
+                                                        <!--                                                                </mat-option>-->
+                                                        <!--                                                            </mat-select>-->
+                                                        <!--                                                        </mat-form-field>-->
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <mat-form-field>
                                                             <mat-label>Zip</mat-label>
                                                             <input matInput placeholder="Mã zip nè"
-                                                                   value="Sushi"
                                                                    formControlName="zip">
                                                         </mat-form-field>
                                                     </div>
@@ -415,7 +431,7 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col">
-                                                        <app-hotel-map [lat]="lat" [lng]="lng"
+                                                        <app-hotel-map style="height: 40%" [lat]="lat" [lng]="lng"
                                                                        [address]="address"
                                                                        [name]="name"></app-hotel-map>
                                                     </div>
@@ -424,7 +440,9 @@
 
                                             <div class="row">
                                                 <div class="col text-right">
-                                                    <button class="prevtab btn btn-success">Prev</button>
+                                                    <button class="prevtab btn btn-success" (click)="tabPrevios()">
+                                                        Prev
+                                                    </button>
                                                     <button class="nexttab btn btn-success" (click)="tabNext()">
                                                         Next
                                                     </button>
@@ -488,45 +506,44 @@
                                             <fieldset class="the-fieldset">
                                                 <div class="row">
                                                     <div class="col">
-                                                        <mat-checkbox>Máy điều hòa</mat-checkbox>
+                                                        <mat-checkbox formControlName="airConditional">Máy điều hòa</mat-checkbox>
                                                     </div>
                                                     <div class="col">
-                                                        <mat-checkbox>Máy sấy tóc</mat-checkbox>
+                                                        <mat-checkbox formControlName="Hairdryer">Máy sấy tóc</mat-checkbox>
                                                     </div>
                                                     <div class="col">
-                                                        <mat-checkbox>Máy ủi ( bàn là )</mat-checkbox>
+                                                        <mat-checkbox formControlName="ironingMachine">Máy ủi ( bàn là )</mat-checkbox>
                                                     </div>
                                                     <div class="col">
-                                                        <mat-checkbox formControlName="television">Tivi
-                                                        </mat-checkbox>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <mat-checkbox>Truyền hình cáp</mat-checkbox>
-                                                    </div>
-                                                    <div class="col">
-                                                        <mat-checkbox>Wifi miễn phí</mat-checkbox>
-                                                    </div>
-                                                    <div class="col">
-                                                        <mat-checkbox>Internet miễn phí</mat-checkbox>
-                                                    </div>
-                                                    <div class="col">
-                                                        <mat-checkbox>Máy giặt</mat-checkbox>
+                                                        <mat-checkbox  formControlName="television">Tivi</mat-checkbox>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col">
-                                                        <mat-checkbox>Dầu gội đầu</mat-checkbox>
+                                                        <mat-checkbox formControlName="cableTelevision">Truyền hình cáp</mat-checkbox>
                                                     </div>
                                                     <div class="col">
-                                                        <mat-checkbox>Bộ ga giường</mat-checkbox>
+                                                        <mat-checkbox formControlName="freeWifi">Wifi miễn phí</mat-checkbox>
                                                     </div>
                                                     <div class="col">
-                                                        <mat-checkbox>Khăn các loại</mat-checkbox>
+                                                        <mat-checkbox formControlName="freeInternet">Internet miễn phí</mat-checkbox>
                                                     </div>
                                                     <div class="col">
-                                                        <mat-checkbox>Chìa khóa thông minh</mat-checkbox>
+                                                        <mat-checkbox formControlName="washingMachine">Máy giặt</mat-checkbox>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <mat-checkbox formControlName="Shampoo">Dầu gội đầu</mat-checkbox>
+                                                    </div>
+                                                    <div class="col">
+                                                        <mat-checkbox formControlName="beddingSet">Bộ ga giường</mat-checkbox>
+                                                    </div>
+                                                    <div class="col">
+                                                        <mat-checkbox formControlName="TowelsOfAllKinds">Khăn các loại</mat-checkbox>
+                                                    </div>
+                                                    <div class="col">
+                                                        <mat-checkbox  formControlName="smartKey">Chìa khóa thông minh</mat-checkbox>
                                                     </div>
                                                 </div>
                                             </fieldset>
@@ -551,10 +568,10 @@
                                             <fieldset class="the-fieldset">
                                                 <div class="row">
                                                     <div class="col-lg-3">
-                                                        <mat-checkbox>Wifi tính phí</mat-checkbox>
+                                                        <mat-checkbox formControlName="wifiCharge">Wifi tính phí</mat-checkbox>
                                                     </div>
                                                     <div class="col-lg-3">
-                                                        <mat-checkbox>Internet tính phí</mat-checkbox>
+                                                        <mat-checkbox formControlName="internetCharge">Internet tính phí</mat-checkbox>
                                                     </div>
                                                 </div>
                                             </fieldset>
@@ -580,21 +597,16 @@
                                             <fieldset class="the-fieldset">
                                                 <div class="row">
                                                     <div class="col">
-                                                        <mat-checkbox>Xe lăn vào được</mat-checkbox>
+                                                        <mat-checkbox formControlName="wheelchairAccessible">Xe lăn vào được</mat-checkbox>
                                                     </div>
                                                     <div class="col">
-                                                        <mat-checkbox>Thang máy trong hotel</mat-checkbox>
+                                                        <mat-checkbox formControlName="elevatorInHotel">Thang máy trong hotel</mat-checkbox>
                                                     </div>
-                                                    <div class="col">
-                                                        <mat-checkbox>Xe lăn vào được</mat-checkbox>
+                                                    <div class="col" >
+                                                        <mat-checkbox formControlName="wirelessBell">Chuông/liên lạc không dây</mat-checkbox>
                                                     </div>
-                                                    <div class="col">
-                                                        <mat-checkbox>Chuông/liên lạc không dây</mat-checkbox>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <mat-checkbox>Nhân viên trực cửa</mat-checkbox>
+                                                    <div class="col" >
+                                                        <mat-checkbox formControlName="doorStaff">Nhân viên trực cửa</mat-checkbox>
                                                     </div>
                                                 </div>
                                             </fieldset>
@@ -620,21 +632,21 @@
                                             <fieldset class="the-fieldset">
                                                 <div class="row">
                                                     <div class="col">
-                                                        <mat-checkbox>Máy pha cà phê/trà</mat-checkbox>
+                                                        <mat-checkbox formControlName="teaMaker">Máy pha cà phê/trà</mat-checkbox>
                                                     </div>
                                                     <div class="col">
-                                                        <mat-checkbox>Cà phê</mat-checkbox>
+                                                        <mat-checkbox formControlName="coffee">Cà phê</mat-checkbox>
                                                     </div>
                                                     <div class="col">
-                                                        <mat-checkbox>Trà</mat-checkbox>
+                                                        <mat-checkbox formControlName="tea">Trà</mat-checkbox>
                                                     </div>
                                                     <div class="col">
-                                                        <mat-checkbox>Nhà bếp</mat-checkbox>
+                                                        <mat-checkbox formControlName="Kitchen">Nhà bếp</mat-checkbox>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col">
-                                                        <mat-checkbox>Ăn sáng miễn phí</mat-checkbox>
+                                                        <mat-checkbox formControlName="freeBreakfast">Ăn sáng miễn phí</mat-checkbox>
                                                     </div>
                                                 </div>
                                             </fieldset>
@@ -662,41 +674,41 @@
                                             <fieldset class="the-fieldset">
                                                 <div class="row">
                                                     <div class="col">
-                                                        <mat-checkbox>Bàn/không gian làm việc</mat-checkbox>
+                                                        <mat-checkbox formControlName="workspace">Bàn/không gian làm việc</mat-checkbox>
                                                     </div>
                                                     <div class="col">
-                                                        <mat-checkbox>Hồ bơi riêng</mat-checkbox>
+                                                        <mat-checkbox formControlName="privatePool">Hồ bơi riêng</mat-checkbox>
                                                     </div>
                                                     <div class="col">
-                                                        <mat-checkbox>Máy sưởi</mat-checkbox>
+                                                        <mat-checkbox formControlName="heaters">Máy sưởi</mat-checkbox>
                                                     </div>
-                                                    <div class="col">
-                                                        <mat-checkbox>Máy sấy</mat-checkbox>
+                                                    <div class="col" >
+                                                        <mat-checkbox formControlName="Dryer">Máy sấy</mat-checkbox>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col">
-                                                        <mat-checkbox>Lò sưởi trong nhà</mat-checkbox>
+                                                        <mat-checkbox formControlName="Fireplace">Lò sưởi trong nhà</mat-checkbox>
                                                     </div>
                                                     <div class="col">
-                                                        <mat-checkbox>Tủ áo</mat-checkbox>
+                                                        <mat-checkbox formControlName="Wardrobe">Tủ áo</mat-checkbox>
                                                     </div>
                                                     <div class="col">
-                                                        <mat-checkbox>Hồ bơi trong nhà</mat-checkbox>
+                                                        <mat-checkbox formControlName="indooPool">Hồ bơi trong nhà</mat-checkbox>
                                                     </div>
                                                     <div class="col">
-                                                        <mat-checkbox>Bồn tắm nước nóng</mat-checkbox>
+                                                        <mat-checkbox formControlName="hotTub">Bồn tắm nước nóng</mat-checkbox>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-lg-3">
-                                                        <mat-checkbox>Phòng tập gym</mat-checkbox>
+                                                        <mat-checkbox formControlName="gymRoom">Phòng tập gym</mat-checkbox>
                                                     </div>
                                                     <div class="col-lg-3">
-                                                        <mat-checkbox>Hồ bơi ngoài trời</mat-checkbox>
+                                                        <mat-checkbox formControlName="outdoorSwimmingPool">Hồ bơi ngoài trời</mat-checkbox>
                                                     </div>
                                                     <div class="col-lg-3">
-                                                        <mat-checkbox>Đậu xe miễn phí</mat-checkbox>
+                                                        <mat-checkbox formControlName="freeParking">Đậu xe miễn phí</mat-checkbox>
                                                     </div>
                                                 </div>
                                             </fieldset>
@@ -723,16 +735,16 @@
                                             <fieldset class="the-fieldset">
                                                 <div class="row">
                                                     <div class="col">
-                                                        <mat-checkbox>Cảm biến báo khói</mat-checkbox>
+                                                        <mat-checkbox formControlName="SmokeDetector">Cảm biến báo khói</mat-checkbox>
                                                     </div>
                                                     <div class="col">
-                                                        <mat-checkbox>Cảm biến báo khí CO</mat-checkbox>
+                                                        <mat-checkbox formControlName="COAlarmSensor">Cảm biến báo khí CO</mat-checkbox>
                                                     </div>
                                                     <div class="col">
-                                                        <mat-checkbox>Bộ sơ cấp cứu</mat-checkbox>
+                                                        <mat-checkbox formControlName="FirstAidKit">Bộ sơ cấp cứu</mat-checkbox>
                                                     </div>
                                                     <div class="col">
-                                                        <mat-checkbox>Bình chữa cháy</mat-checkbox>
+                                                        <mat-checkbox formControlName="fireExtinguisher">Bình chữa cháy</mat-checkbox>
                                                     </div>
                                                 </div>
                                             </fieldset>
@@ -757,10 +769,10 @@
                                             <fieldset class="the-fieldset">
                                                 <div class="row">
                                                     <div class="col-lg-3">
-                                                        <mat-checkbox>Được hút thuốc</mat-checkbox>
+                                                        <mat-checkbox formControlName="Smoking">Được hút thuốc</mat-checkbox>
                                                     </div>
                                                     <div class="col-lg-3">
-                                                        <mat-checkbox>Cho phép vật nuôi</mat-checkbox>
+                                                        <mat-checkbox formControlName="petsAllowed">Cho phép vật nuôi</mat-checkbox>
                                                     </div>
                                                 </div>
                                             </fieldset>
@@ -771,7 +783,9 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col text-right">
-                                            <button class="prevtab btn btn-success">Prev</button>
+                                            <button class="prevtab btn btn-success" (click)="tabPrevios()">
+                                                Prev
+                                            </button>
                                             <button class="nexttab btn btn-success" (click)="tabNext()">
                                                 Next
                                             </button>
@@ -995,26 +1009,13 @@
                                                                                 <mat-form-field>
                                                                                     <mat-label>Loại giường</mat-label>
                                                                                     <mat-select
-                                                                                            formControlName="bedType"
-                                                                                            (selectionChange)="onChangeBedType($event,iz)">
+                                                                                            formControlName="bedType">
                                                                                         <mat-option
                                                                                                 *ngFor="let typeBedRoom of lstTypeBedRoom;let in=index"
                                                                                                 [value]="typeBedRoom.value"
-                                                                                                >
+                                                                                        >
                                                                                             {{typeBedRoom.name}}
                                                                                         </mat-option>
-                                                                                        <!--                                                                                        <mat-option value="0">None-->
-                                                                                        <!--                                                                                        </mat-option>-->
-                                                                                        <!--                                                                                        <mat-option value="1">Giường đôi-->
-                                                                                        <!--                                                                                        </mat-option>-->
-                                                                                        <!--                                                                                        <mat-option value="2">Giường đơn-->
-                                                                                        <!--                                                                                        </mat-option>-->
-                                                                                        <!--                                                                                        <mat-option value="3">Giường-->
-                                                                                        <!--                                                                                            King-->
-                                                                                        <!--                                                                                        </mat-option>-->
-                                                                                        <!--                                                                                        <mat-option value="4">Giường-->
-                                                                                        <!--                                                                                            Queen-->
-                                                                                        <!--                                                                                        </mat-option>-->
                                                                                     </mat-select>
                                                                                 </mat-form-field>
                                                                             </div>
@@ -1146,6 +1147,16 @@
                                             </mat-radio-button>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col text-right">
+                                            <button class="prevtab btn btn-success" (click)="tabPrevios()">
+                                                Prev
+                                            </button>
+                                            <button class="nexttab btn btn-success" (click)="tabNext()">
+                                                Next
+                                            </button>
+                                        </div>
+                                    </div>
 
                                 </mat-radio-group>
 
@@ -1153,33 +1164,6 @@
                             </div>
 
                         </div>
-
-
-                        <!--                        <div class="row">-->
-                        <!--                            <div class="col">-->
-
-                        <!--                            </div>-->
-                        <!--                        </div>-->
-                        <!--                        <div class="row">-->
-                        <!--                            <div class="col">-->
-                        <!--                                <mat-radio-button value="1"><b>Linh hoạt</b>-->
-                        <!--                                    <br>-->
-                        <!--                                    Khách hàng hủy trước ngày nhận phòng 1 ngày sẽ được hoàn lại tiền 100%.-->
-                        <!--                                    Trong trường hợp khách không đến, bạn được nhận 100% giá tiền đặt phòng.-->
-                        <!--                                </mat-radio-button>-->
-                        <!--                            </div>-->
-                        <!--                        </div>-->
-                        <!--                        <div class="row">-->
-                        <!--                            <div class="col">-->
-                        <!--                                <mat-radio-button value="2"><b>Nghiêm ngặt</b>-->
-                        <!--                                    <br>-->
-                        <!--                                    Khách hàng hủy trước ngày nhận phòng 7 ngày sẽ được hoàn lại tiền 50%.-->
-                        <!--                                    Trong trường hợp khách không đến, bạn được nhận 100% giá tiền đặt phòng.-->
-                        <!--                                </mat-radio-button>-->
-                        <!--                            </div>-->
-                        <!--                        </div>-->
-
-
                     </div>
                 </div>
             </div>
@@ -1252,7 +1236,8 @@
                                 </div>
                                 <div class="row">
                                     <div class="col">
-                                        <mat-checkbox>Tôi đồng ý với các điều khoản và điều kiện của Agoda và
+                                        <mat-checkbox (click)="changeValueAccept(checked)">Tôi đồng ý với các điều khoản
+                                            và điều kiện của Agoda và
                                             xác
                                             nhận tôi sẽ tuân thủ theo luật pháp và quy định hiện hành.
                                         </mat-checkbox>
@@ -1260,11 +1245,26 @@
                                 </div>
                                 <div class="row">
                                     <div class="col">
-                                        <a style="padding: 15px 20px;background-image: linear-gradient(to right, #3cc603 0%, #3cc908  51%, #32a103  100%); cursor: pointer;color: white ; height: 80px;width: 250px;border-radius: 5px; margin-left: 40%; "
+                                        <mat-error *ngIf="isCheckAfterSubmit">
+                                            Bạn phải đồng ý điều khoản trước khi hoàn thành bài đăng!!!!!!
+                                        </mat-error>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col" style="margin-top: 2%">
+                                        <a style="padding: 15px 20px;background-image: linear-gradient(to right, #3cc603 0%, #3cc908  51%, #32a103  100%); cursor: pointer;color: white ; height: 80px;width: 250px;border-radius: 5px; margin-left: 40%; margin-top: 5% "
                                            (click)="onSubmit()">Giới thiệu hotel của tôi</a>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <button class="prevtab btn btn-success" (click)="tabPrevios()">
+                                            Prev
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
+
 
                         </div>
 

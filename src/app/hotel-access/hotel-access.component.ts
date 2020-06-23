@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormGroup} from '@angular/forms';
 import {StarRatingColor} from '../shared/animation/star-rating/star-rating.component';
+import {last} from 'rxjs/operators';
 
 @Component({
     selector: 'app-hotel-access',
@@ -21,6 +22,7 @@ export class HotelAccessComponent implements OnInit {
     // rating
     rating = 3;
     starCount = 5;
+    imageProp = 'hotelAccess';
     starColor: StarRatingColor = StarRatingColor.accent;
     starColorP: StarRatingColor = StarRatingColor.primary;
     starColorW: StarRatingColor = StarRatingColor.warn;
@@ -48,7 +50,11 @@ export class HotelAccessComponent implements OnInit {
     ]
 
     // selected tab
-    public TabIndex = 0;
+    public TabIndex = 2;
+
+    // đồng ý điều khoản
+    checked = false;
+    isCheckAfterSubmit = false;
 
     constructor(private formbuilder: FormBuilder) {
         this.registerHotelForm = this.formbuilder.group({
@@ -65,16 +71,13 @@ export class HotelAccessComponent implements OnInit {
             // tab 2
             address: [''],
             country: [''],
-            province: [''],
-            city: [''],
+            // province: [''],
+            // city: [''],
             zip: [''],
 
             // tab 3
             // Facilities
-            facilities: this.formbuilder.group({
-                television: this.formbuilder.control(''),
-                internet: this.formbuilder.control('')
-            }),
+            facilities: this.addControlFacilities(),
 
             // tab 4 Thông tin phòng Room detail array và priceExtra + extra-person
             formArrayRoomNumber: this.formbuilder.array([
@@ -87,8 +90,13 @@ export class HotelAccessComponent implements OnInit {
     }
 
     public tabNext() {
-        const tabCount = 4;
+        const tabCount = 5;
         this.TabIndex = (this.TabIndex + 1) % tabCount;
+    }
+
+    public tabPrevios() {
+        const tabCount = 5;
+        this.TabIndex = (this.TabIndex - 1) % tabCount;
     }
 
     ngOnInit(): void {
@@ -103,29 +111,18 @@ export class HotelAccessComponent implements OnInit {
         return this.registerHotelForm.controls;
     }
 
-    onChangeBedType(deviceValue, index) {
-        const radio: HTMLElement = document.getElementById('addMoreRoom' + index);
-        if (deviceValue.value === 3 || deviceValue.value === 4) {
-            radio.style.display = 'none';
-        } else {
-            radio.style.display = 'block'
-        }
-        console.log(deviceValue);
-        console.log(index)
-    }
-
-    // flowwChange(event: any, index) {
-    //     console.log(index)
-    //     const option: HTMLElement = document.getElementById('BedRoomIndex' + index)
-    //     option.style.display = 'none'
-    //     console.log(event)
-    // }
 
     get formArrayRoomNumber() {
         return this.registerHotelForm.get('formArrayRoomNumber') as FormArray
     }
 
     onSubmit() {
+        if (this.checked === false) {
+            console.log('xxxxxx')
+            this.isCheckAfterSubmit = true;
+            return
+        }
+
         this.registerHotelForm.get('image').setValue(this.arrayImage)
         this.registerHotelForm.get('totalRoomNumber').setValue(this.totaltypeRoomNumber)
         this.registerHotelForm.get('starHotel').setValue(this.rating)
@@ -183,8 +180,52 @@ export class HotelAccessComponent implements OnInit {
     addControlFacilities() {
         console.log('facilities nè')
         return this.formbuilder.group({
+            airConditional: this.formbuilder.control(''),
+            Hairdryer: this.formbuilder.control(''),
+            ironingMachine: this.formbuilder.control(''),
             television: this.formbuilder.control(''),
-            internet: this.formbuilder.control('')
+            cableTelevision: this.formbuilder.control(''),
+            freeWifi: this.formbuilder.control(''),
+            freeInternet: this.formbuilder.control(''),
+            washingMachine: this.formbuilder.control(''),
+            Shampoo: this.formbuilder.control(''),
+            beddingSet: this.formbuilder.control(''),
+            TowelsOfAllKinds: this.formbuilder.control(''),
+            smartKey: this.formbuilder.control(''),
+
+            wifiCharge: this.formbuilder.control(''),
+            internetCharge: this.formbuilder.control(''),
+
+
+            wheelchairAccessible: this.formbuilder.control(''),
+            elevatorInHotel: this.formbuilder.control(''),
+            wirelessBell: this.formbuilder.control(''),
+            doorStaff: this.formbuilder.control(''),
+
+            teaMaker: this.formbuilder.control(''),
+            coffee: this.formbuilder.control(''),
+            tea: this.formbuilder.control(''),
+            Kitchen: this.formbuilder.control(''),
+            freeBreakfast: this.formbuilder.control(''),
+            workspace: this.formbuilder.control(''),
+            privatePool: this.formbuilder.control(''),
+            heaters: this.formbuilder.control(''),
+            Dryer: this.formbuilder.control(''),
+            Fireplace: this.formbuilder.control(''),
+            Wardrobe: this.formbuilder.control(''),
+            indooPool: this.formbuilder.control(''),
+            hotTub: this.formbuilder.control(''),
+            gymRoom: this.formbuilder.control(''),
+            outdoorSwimmingPool: this.formbuilder.control(''),
+            freeParking: this.formbuilder.control(''),
+
+            SmokeDetector: this.formbuilder.control(''),
+            COAlarmSensor: this.formbuilder.control(''),
+            FirstAidKit: this.formbuilder.control(''),
+            fireExtinguisher: this.formbuilder.control(''),
+
+            Smoking: this.formbuilder.control(''),
+            petsAllowed: this.formbuilder.control('')
 
         })
     }
@@ -288,10 +329,17 @@ export class HotelAccessComponent implements OnInit {
         this.lat = place['geometry'].location.lat();
         this.lng = place['geometry'].location.lng();
         this.name = place['name'];
-        console.log(this.lat)
-        console.log(this.lng)
-        console.log(place);
-        console.log(this.name);
+        // console.log(this.lat)
+        // console.log(this.lng)
+        // console.log(place);
+        // console.log(this.name);
+        // console.log(place['formatted_address']);
+        // console.log(place['formatted_address'].split(',').pop());
+        // console.log(place['formatted_address'].split(',').slice(0, -2)[2])
+        // this.registerHotelForm.get('province').setValue(place['formatted_address'].split(',').slice(0, -2)[2])
+
+        this.registerHotelForm.get('address').setValue(this.name)
+        this.registerHotelForm.get('country').setValue(place['formatted_address'].split(',').pop())
         document.getElementById('check-input').focus();
     }
 
@@ -308,6 +356,12 @@ export class HotelAccessComponent implements OnInit {
         // let evt = JSON.parse(event.toString());
         // this.arrayImage += evt.filePath + ','
         // event.path
+    }
+
+    changeValueAccept(value) {
+        this.checked = !value;
+        this.isCheckAfterSubmit = false
+        console.log(this.checked)
     }
 
 }
