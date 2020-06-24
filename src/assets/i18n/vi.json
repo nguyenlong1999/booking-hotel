@@ -94,5 +94,6 @@
   "hotelRegister.ratingStar": "Xếp hạng sao",
   "hotelRegister.image": "Hình ảnh",
   "hotelRegister.CountTypeRooms" : "Số loại phòng",
-  "hotelRegister.countTypeRoomsV2": "Số loại phòng mà khách sạn bạn có thể cung cấp."
+  "hotelRegister.countTypeRoomsV2": "Số loại phòng mà khách sạn bạn có thể cung cấp.",
+  "hotelRegister.address": "Địa chỉ"
 }
