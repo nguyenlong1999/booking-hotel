@@ -10,13 +10,14 @@ import {Title} from "@angular/platform-browser";
 import {ChatService} from "../../shared/service/chat.service";
 import {Message} from "../../shared/model/message";
 import {CookieService} from "ngx-cookie-service";
+import {UserService} from "../../shared/service/user.service.";
 
 @Component({
     selector: 'app-admin-layout',
     templateUrl: './admin-layout.component.html',
     styleUrls: ['./admin-layout.component.scss']
 })
-export class AdminLayoutComponent implements OnInit,AfterViewInit {
+export class AdminLayoutComponent implements OnInit, AfterViewInit {
     private _router: Subscription;
     private lastPoppedUrl: string;
     private yScrollStack: number[] = [];
@@ -24,13 +25,15 @@ export class AdminLayoutComponent implements OnInit,AfterViewInit {
     private userMessages: Message[] = [];
     private guessMessages: Message[] = [];
     @Input('ngModel') message;
+    private userOnline: String[] = [];
 
     constructor(
         public location: Location, private router: Router,
         private translate: TranslateService,
         private title: Title,
         private  chatService: ChatService,
-        private cookieService: CookieService
+        private cookieService: CookieService,
+        private userService: UserService
     ) {
         translate.setDefaultLang('vi');
         sessionStorage.setItem('currentLang', 'vi');
@@ -147,21 +150,23 @@ export class AdminLayoutComponent implements OnInit,AfterViewInit {
                 $sidebar_responsive.css('background-image', 'url("' + new_image + '")');
             }
         });
-        setTimeout( ()=>{
+        setTimeout(() => {
             this.getListOnline();
-        },5000);
+        }, 5000);
     }
 
     ngAfterViewInit() {
         this.runOnRouteChange();
         this.getListOnline();
     }
-    getListOnline(){
+
+    getListOnline() {
         let message = new Message();
         message.objectId = this.cookieService.get('ObjectId');
         message.message = 'get list user';
         this.chatService.getListMember(message);
     }
+
     mailBox() {
         this.chatService.getMessages().subscribe(mail => {
             console.log("mail", mail)
@@ -170,8 +175,30 @@ export class AdminLayoutComponent implements OnInit,AfterViewInit {
                 let mess = new Message;
                 mess.content = mail;
                 mess.news = true;
-                console.log(mess['content']['get-list-online']);
-                this.userMessages.push(mess);
+
+                if (mess['content']['get-list-online'] !== undefined) {
+                    console.log(mess['content']['get-list-online']);
+                    let userOnline = JSON.stringify(mess['content']['get-list-online']);
+                    userOnline = userOnline.substring(1);
+                    userOnline = userOnline.substring(0, userOnline.length - 1);
+                    let userOnlineArray = userOnline.split(',');
+                    userOnlineArray.forEach(user => {
+                        let tempArr = user.split(':');
+                        if (tempArr.length > 0) {
+                            let mystring= tempArr[0];
+                            mystring = mystring.substring(1);
+                            mystring = mystring.substring(0, mystring.length - 1);
+                            this.userOnline.push(mystring);
+                        }
+                    });
+                    this.userService.getUserOnlineInfo(this.userOnline).subscribe(data=>{
+                        console.log(data)
+                    });
+                    console.log(this.userOnline);
+
+                }else{
+                    this.userMessages.push(mess);
+                }
                 console.log(this.userMessages);
             }
         })
@@ -204,7 +231,8 @@ export class AdminLayoutComponent implements OnInit,AfterViewInit {
         this.message = '';
 
     }
-    reponse(){
+
+    reponse() {
         let message = new Message();
         message.objectId = this.cookieService.get('ObjectId');
         message.message = 'reponse';
