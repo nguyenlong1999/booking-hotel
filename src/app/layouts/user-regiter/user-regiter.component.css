@@ -1,6 +1,6 @@
 .label-input {
   font-size: 13px;
-  margin-left: 15px;
+  /*margin-left: 15px;*/
   color: #212529;
 }
 .space-input {
@@ -16,6 +16,6 @@
 .message-error {
   text-align: center;
   color: red;
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 500;
 }

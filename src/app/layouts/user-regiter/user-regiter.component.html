@@ -1,147 +1,166 @@
-<div class="wrapper"  style="background: url(./assets/img/wallpaper2you_259268.jpg) no-repeat center center fixed;
+<div class="wrapper" style="background: url(./assets/img/wallpaper2you_259268.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover; height: auto;">
-  <div class="container-fluid" >
-    <div class="row" style="padding: 5% 20%;">
-      <div class="card">
-        <div class="card-body" style="padding: 0.9375rem 40px;">
-          <form (ngSubmit)="registerUser()" [formGroup]="registerForm">
-            <div class="row" style="padding: 0 15px">
-              <img class="logo-booking" src="assets/img/logo-booking.png" alt="">
+    <div class="container-fluid">
+        <div class="row" style="padding: 5% 20%;">
+            <div class="card">
+                <div class="card-body" style="padding: 0.9375rem 40px;">
+                    <form (ngSubmit)="registerUser()" [formGroup]="registerForm" style="height: auto">
+                        <div class="row">
+                            <img class="logo-booking" src="assets/img/logo-booking.png" alt="">
+                        </div>
+                        <h3 style="text-transform: none;font-weight: 500;">Tạo tài khoản Booking</h3>
+                        <div class="row">
+                            <div class="col-lg-6" style="padding: 1% 3% 0  1.5%;">
+                                <div class="row space-input">
+                                    <div class="col-lg-12">
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput placeholder="Họ Tên" type="text" id="name" name="name"
+                                                   formControlName="name"
+                                                   [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+                                        </mat-form-field>
+                                        <div *ngIf="submitted && f.name.errors">
+                                            <div class="row" style="padding-left:15px">
+                                                <i class="material-icons message-error">error</i>
+                                                <span style="margin-left: 8px;" class="message-error">
+                                                    Hãy nhập tên
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row space-input">
+                                    <div class="col-lg-12">
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput placeholder="Email" type="text" type="text" id="email"
+                                                   name="email"
+                                                   formControlName="email"
+                                                   [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                                        </mat-form-field>
+                                    </div>
+
+                                    <!-- <label class="label-input">Không t</label> -->
+                                </div>
+                                <div *ngIf="submitted && f.email.errors" class="is-invalid row">
+                                    <div *ngIf="f.email.errors.email" class="col">
+                                        <i class="material-icons message-error">error</i>
+                                        <span class="message-error">
+                                                    Mail chưa hợp lệ
+                                                </span>
+                                    </div>
+                                    <div *ngIf="f.email.errors.required" class="col">
+                                        <i class="material-icons message-error">error</i>
+                                        <span class="message-error">
+                                                    Hãy nhập Email
+                                                </span>
+                                    </div>
+                                </div>
+                                <div class="row is-invalid"
+                                     *ngIf="!submitted">
+                                    <div class="col">
+                                        <div class="label-input">Bạn có thể sử dụng chữ cái, số và dấu
+                                            chấm
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row space-input">
+                                    <div class="col-lg-6">
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput placeholder="Mật khẩu" type="password" id="password"
+                                                   name="password"
+                                                   [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+                                                   formControlName="password" autocomplete="off" required>
+                                        </mat-form-field>
+                                        <div *ngIf="submitted && f.password.errors"
+                                             class="is-invalid">
+                                            <div *ngIf="f.password.errors.required"
+                                                 style="">
+                                                <i class="material-icons message-error">error</i>
+                                                <span class="message-error">
+                                                    Vui lòng không để trống kí tự
+                                                </span>
+                                            </div>
+                                            <div *ngIf="f.password.errors.minlength">
+                                                <i class="material-icons message-error">error</i>
+                                                <span style="" class="message-error">
+                                                    Mật khẩu phải ít nhất 6 kí tự
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput placeholder="Nhập lại mật khẩu" type="password"
+                                                   id="confirmpass" value=""
+                                                   name="confirmPassword"
+                                                   [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }"
+                                                   formControlName="confirmPassword" placeholder="Xác nhận mật khẩu">
+                                        </mat-form-field>
+                                        <div *ngIf="submitted && f.confirmPassword.errors"
+                                             class="is-invalid">
+                                            <div *ngIf="f.confirmPassword.errors.required"
+                                                 style="">
+                                                <i class="material-icons message-error">error</i>
+                                                <span style="" class="message-error">
+                                                    Vui lòng xác nhận mật khẩu
+                                                </span>
+                                            </div>
+                                            <div *ngIf="f.confirmPassword.errors.mustMatch">
+                                                <i class="material-icons message-error">error</i>
+                                                <span class="message-error">
+                                                    Phải trùng khớp mật khẩu!
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="is-invalid"
+                                             *ngIf="!submitted">
+                                            <div class="label-input">Sử dụng 6 ký tự trở lên và kết hợp chữ cái, chữ số
+                                                và
+                                                biểu tượng
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6" style="padding: 1% 1.5% 0  3%;">
+                                <img style="width: 70% !important; display: block; margin: 0 auto"
+                                     src="assets/booking/bed-and-breakfast.png"
+                                     alt="booking online"/>
+                                <div style="font-size: 16px; text-transform: none; text-align: center; margin-top: 10px">
+                                    <p>Hãy tạo một tài khoản để sở hữu nhiều ưu đãi từ hệ thống hơn.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <i class="material-icons message-error" *ngIf="errorMessage">error</i>
+                                <span class="message-error" *ngIf="errorMessage">
+                                {{ errorMessage }}
+                            </span>
+                            </div>
+                        </div>
+                        <div class="row" style="position: relative  ">
+                            <button mat-raised-button type="submit" class="btn btn-outline-primary" style="text-transform: none; margin: 0 auto;font-size: 17px;
+                width: 100px;height: 35px;padding: initial;">
+                                Đăng ký
+                            </button>
+                            <div style="position: absolute;left: 3%;bottom: 3%;">
+                                <a href="/login">
+                                    <h4 style="font-size: 15px; font-weight: 500;color: #1a73e8;">Đăng nhập</h4>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </form>
+                </div>
             </div>
-            <h3 style="text-transform: none;font-weight: 500;">Tạo tài khoản Booking</h3>
-            <div class="row">
-              <div class="col-md-6" style="padding: 15px 20px;">
-                <div class="row space-input">
-                  <div class="col-md-12">
-                    <mat-form-field class="example-full-width">
-                      <input matInput placeholder="Họ Tên" type="text" id="name" name="name" formControlName="name"
-                        [ngClass]="{ 'is-invalid': submitted && registerForm.controls.name.errors }">
-                    </mat-form-field>
-                    <div *ngIf="submitted && registerForm.controls.name.errors">
-                      <div class="row" style="padding-left:15px">
-                        <i class="material-icons message-error">error</i>
-                        <p style="margin-left: 8px;" class="message-error">
-                          Hãy nhập tên
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row space-input">
-                  <div class="col-md-12">
-                    <mat-form-field class="example-full-width">
-                      <input matInput placeholder="Email" type="text" type="text" id="email" name="email"
-                        formControlName="email"
-                        [ngClass]="{ 'is-invalid': submitted && registerForm.controls.email.errors }">
-                    </mat-form-field>
-                    <div *ngIf="submitted && registerForm.controls.email.errors" class="is-invalid">
-                      <div *ngIf="registerForm.controls.email.errors.email" class="row" style="padding-left:15px">
-                        <i class="material-icons message-error">error</i>
-                        <p style="margin-left: 8px;" class="message-error">
-                          Mail chưa hợp lệ
-                        </p>
-                      </div>
-                      <div *ngIf="registerForm.controls.email.errors.required" class="row" style="padding-left:15px">
-                        <i class="material-icons message-error">error</i>
-                        <p style="margin-left: 8px;" class="message-error">
-                          Hãy nhập Email
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div *ngIf="!submitted && !registerForm.controls.email.required && !registerForm.controls.email.email"
-                    class="is-invalid">
-                    <div class="label-input">Bạn có thể sử dụng chữ cái, số và dấu chấm</div>
-                  </div>
-                  <!-- <label class="label-input">Không t</label> -->
-                </div>
-                <div class="row space-input">
-                  <div class="col-md-6">
-                    <mat-form-field class="example-full-width">
-                      <input matInput placeholder="Mật khẩu" type="password" id="password" name="password"
-                        [ngClass]="{ 'is-invalid': submitted && registerForm.controls.password.errors }"
-                        formControlName="password" autocomplete="off" required>
-                    </mat-form-field>
-                  </div>
-                  <div class="col-md-6">
-                    <mat-form-field class="example-full-width">
-                      <input matInput placeholder="Nhập lại mật khẩu" type="password" id="confirmpass" value=""
-                        name="confirmPassword"
-                        [ngClass]="{ 'is-invalid': submitted && registerForm.controls.confirmPassword.errors }"
-                        formControlName="confirmPassword" placeholder="Xác nhận mật khẩu">
-                    </mat-form-field>
-                  </div>
-                  <div *ngIf="submitted && registerForm.controls.password.errors" class="is-invalid">
-                    <div *ngIf="registerForm.controls.password.errors.required" class="row" style="padding-left:15px">
-                      <i class="material-icons message-error">error</i>
-                      <p style="margin-left: 8px;" class="message-error">
-                        Vui lòng không để trống kí tự
-                      </p>
-                    </div>
-                    <div *ngIf="registerForm.controls.password.errors.minlength" class="row" style="padding-left:15px">
-                      <i class="material-icons message-error">error</i>
-                      <p style="margin-left: 8px;" class="message-error">
-                        Mật khẩu phải ít nhất 6 kí tự
-                      </p>
-                    </div>
-                  </div>
-                  <div *ngIf="submitted && registerForm.controls.confirmPassword.errors" class="is-invalid">
-                    <div *ngIf="registerForm.controls.confirmPassword.errors.required" class="row"
-                      style="padding-left:15px">
-                      <i class="material-icons message-error">error</i>
-                      <p style="margin-left: 8px;" class="message-error">
-                        Vui lòng xác nhận mật khẩu
-                      </p>
-                    </div>
-                    <div *ngIf="registerForm.controls.confirmPassword.errors.mustMatch" class="row"
-                      style="padding-left:15px">
-                      <i class="material-icons message-error">error</i>
-                      <p style="margin-left: 8px;" class="message-error">
-                        Phải trùng khớp mật khẩu!
-                      </p>
-                    </div>
-                  </div>
-                  <div class="is-invalid">
-                    <!-- *ngIf="!submitted && !registerForm.controls.confirmPassword.errors.mustMatch && !registerForm.controls.confirmPassword.errors.required && !registerForm.controls.password.errors && !registerForm.controls.password.errors.minlength" -->
-                    <div class="label-input">Sử dụng 8 ký tự trở lên và kết hợp chữ cái, chữ số và biểu tượng</div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6" style="padding: 10px 50px;">
-                <div class="">
-                  <img style="width: 100%; height:auto;" src="assets/img/booking-online.png" alt="booking online"/>
-                </div>
-                <div style="font-size: 18px; text-transform: none; text-align: center;">
-                  <p>Hãy tạo một tài khoản để sở hữu nhiều ưu đãi hơn.</p>
-                </div>
-              </div>
-            </div>
-            <div class="row" style="position: relative;margin-top: 20px;">
-              <button mat-raised-button type="submit" class="btn btn-outline-primary" style="text-transform: none; margin: 0 auto;font-size: 17px;
-                width: 100px;
-                height: 35px;
-                padding: initial;">
-                Đăng ký
-              </button>
-              <div style="position: absolute;left: 3%;bottom: 3%;">
-                <a href="/login">
-                  <h4 style="font-size: 15px; font-weight: 500;color: #1a73e8;">Đăng nhập</h4>
-                </a>
-              </div>
-            </div>
-            <div class="row" style="padding-left:20px; margin-top: 10px">
-              <i class="material-icons message-error" *ngIf="errorMessage">error</i>
-              <p style="margin-left: 8px;" class="message-error" *ngIf="errorMessage">
-                {{ errorMessage }}
-              </p>
-            </div>
-            <div class="clearfix"></div>
-          </form>
         </div>
-      </div>
     </div>
-  </div>
 </div>
