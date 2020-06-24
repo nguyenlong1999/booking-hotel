@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import {Location, PopStateEvent} from '@angular/common';
 import 'rxjs/add/operator/filter';
 import {NavigationEnd, NavigationStart, Router} from '@angular/router';
@@ -10,13 +10,14 @@ import {Title} from "@angular/platform-browser";
 import {ChatService} from "../../shared/service/chat.service";
 import {Message} from "../../shared/model/message";
 import {CookieService} from "ngx-cookie-service";
+import {UserService} from "../../shared/service/user.service.";
 
 @Component({
     selector: 'app-admin-layout',
     templateUrl: './admin-layout.component.html',
     styleUrls: ['./admin-layout.component.scss']
 })
-export class AdminLayoutComponent implements OnInit {
+export class AdminLayoutComponent implements OnInit, AfterViewInit {
     private _router: Subscription;
     private lastPoppedUrl: string;
     private yScrollStack: number[] = [];
@@ -24,13 +25,15 @@ export class AdminLayoutComponent implements OnInit {
     private userMessages: Message[] = [];
     private guessMessages: Message[] = [];
     @Input('ngModel') message;
+    private userOnline: String[] = [];
 
     constructor(
         public location: Location, private router: Router,
         private translate: TranslateService,
         private title: Title,
         private  chatService: ChatService,
-        private cookieService: CookieService
+        private cookieService: CookieService,
+        private userService: UserService
     ) {
         translate.setDefaultLang('vi');
         sessionStorage.setItem('currentLang', 'vi');
@@ -147,17 +150,21 @@ export class AdminLayoutComponent implements OnInit {
                 $sidebar_responsive.css('background-image', 'url("' + new_image + '")');
             }
         });
-        setTimeout( ()=>{
-            let message = new Message();
-            message.objectId = this.cookieService.get('ObjectId');
-            message.message = 'get list user';
-            this.chatService.getListMember(message);
-        },5000);
-
+        setTimeout(() => {
+            this.getListOnline();
+        }, 5000);
     }
 
     ngAfterViewInit() {
         this.runOnRouteChange();
+        this.getListOnline();
+    }
+
+    getListOnline() {
+        let message = new Message();
+        message.objectId = this.cookieService.get('ObjectId');
+        message.message = 'get list user';
+        this.chatService.getListMember(message);
     }
 
     mailBox() {
@@ -168,8 +175,30 @@ export class AdminLayoutComponent implements OnInit {
                 let mess = new Message;
                 mess.content = mail;
                 mess.news = true;
-                console.log(mess);
-                this.userMessages.push(mess);
+
+                if (mess['content']['get-list-online'] !== undefined) {
+                    console.log(mess['content']['get-list-online']);
+                    let userOnline = JSON.stringify(mess['content']['get-list-online']);
+                    userOnline = userOnline.substring(1);
+                    userOnline = userOnline.substring(0, userOnline.length - 1);
+                    let userOnlineArray = userOnline.split(',');
+                    userOnlineArray.forEach(user => {
+                        let tempArr = user.split(':');
+                        if (tempArr.length > 0) {
+                            let mystring= tempArr[0];
+                            mystring = mystring.substring(1);
+                            mystring = mystring.substring(0, mystring.length - 1);
+                            this.userOnline.push(mystring);
+                        }
+                    });
+                    this.userService.getUserOnlineInfo(this.userOnline).subscribe(data=>{
+                        console.log(data)
+                    });
+                    console.log(this.userOnline);
+
+                }else{
+                    this.userMessages.push(mess);
+                }
                 console.log(this.userMessages);
             }
         })
@@ -186,8 +215,8 @@ export class AdminLayoutComponent implements OnInit {
         this.chatService.sendMessage(message);
         console.log(message)
         const radio: HTMLElement = document.getElementById('msg_history');
-        radio.innerHTML += ' <div class="outgoing_msg" style="float: right;display: inline-block;">\n' +
-            '<div class="sent_msg" style="overflow:hidden; margin:26px 0 26px;">\n' +
+        radio.innerHTML += ' <div class="outgoing_msg" style="float: right;display:block;overflow:hidden;clear: both;">\n' +
+            '<div class="sent_msg" style="overflow:hidden; margin:6px 0 6px;">\n' +
             '<p style="background: #05728f none repeat scroll 0 0;\n' +
             '  border-radius: 3px;\n' +
             '  font-size: 10px;\n' +
@@ -202,7 +231,8 @@ export class AdminLayoutComponent implements OnInit {
         this.message = '';
 
     }
-    reponse(){
+
+    reponse() {
         let message = new Message();
         message.objectId = this.cookieService.get('ObjectId');
         message.message = 'reponse';
@@ -212,10 +242,10 @@ export class AdminLayoutComponent implements OnInit {
         this.chatService.sendMessage(message);
         console.log(message)
         const radio: HTMLElement = document.getElementById('msg_history');
-        radio.innerHTML += ' <div class="outgoing_msg" style="float: left;display: inline-block;">\n' +
+        radio.innerHTML += ' <div class="outgoing_msg" style="float: left;display: block;clear: both;">\n' +
             '<img  src="https://ptetutorials.com/images/user-profile.png" alt="sunil" style="width: 20px;height: 20px;float:left;"/>' +
             '<span class="time_date" style="font-size: 8px;">' + message.time + '</span>' +
-            '<div class="sent_msg" style="overflow:hidden; margin:26px 0 26px;">\n' +
+            '<div class="sent_msg" style="overflow:hidden; margin:6px 0 6px;">\n' +
             '<p style="background: lightgrey none repeat scroll 0 0;\n' +
             '  border-radius: 3px;\n' +
             '  font-size: 10px;\n' +
