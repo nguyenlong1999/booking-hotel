@@ -1,178 +1,241 @@
 <div class="main-content">
-  <div class="container-fluid">
-    <div class="row" style="background-color: rgb(0, 153, 213); ">
-      <div class="col-md-5">
-        <h2 style="color: #403131; font-weight: 400;">Thông tin cá nhân</h2>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-3">
-        <app-image [imageProp]="imageProp" [url]="url"></app-image>
-        <!-- <label class="hoverable" for="fileInput" style="height: 200px;
-            width: 200px; margin: 30px auto">
-          <img [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png'" style="border: 1px solid #ffffff;">
-        </label>
-        <br />
-        <input id="fileInput" type='file' (change)="onSelectFile($event)" ng2FileSelect [uploader]="uploader">
-        <div>
+    <div class="container-fluid">
+        <div class="row" style="background-color: rgb(0, 153, 213); ">
+            <div class="col-md-5">
+                <h2 style="color: #403131; font-weight: 400;">Thông tin cá nhân</h2>
+            </div>
         </div>
-        <div class="card-body">
-          <h6>Nhấn để cập nhật ảnh đại diện</h6>
-          <!-- <button type="button" (click)="uploader.uploadAll()">Cap nhat</button> -->
-      </div>
-      <div class="col-md-1"></div>
-      <div class="col-md-6">
-        <mat-tab-group [(selectedIndex)]="TabIndex">
-          <mat-tab>
-            <ng-template mat-tab-label>
-              Đổi thông tin
-            </ng-template>
-            <div class="main-content">
-              <form style="width: 100%; " [formGroup]="profileForm" (ngSubmit)="updateProfile()">
-                <div class="row">
-                  <h3 style="text-transform: none;font-weight: 400;">Chỉnh sửa hồ sơ</h3>
-                </div>
-                <div class="row">
-                  <div class="col-lg-4">
-                    <p class="input-title">Email:</p>
-                  </div>
-                  <div class="col-lg-6">
-                    <mat-form-field class="example-full-width">
-                      <input matInput disabled formControlName="email" name="email" type="text">
-                    </mat-form-field>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-lg-4">
-                    <p class="input-title">Tên người dùng:</p>
-                  </div>
-                  <div class="col-lg-6">
-                    <mat-form-field class="example-full-width">
-                      <input matInput formControlName="name" name="name" type="text">
-                    </mat-form-field>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-lg-3">
-                    <p class="input-title">Năm sinh:</p>
-                  </div>
-                  <div class="col-lg-3">
-                    <mat-form-field class="example-full-width">
-                      <mat-select matNativeControl formControlName="birthday" name="birthday">
-                        <mat-option *ngFor="let year of years" [value]="year">
-                          {{year}}
-                        </mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                  </div>
-                  <div class="col-lg-3">
-                    <p class="input-title">Giới tính:</p>
-                  </div>
-                  <div class="col-lg-3">
-                    <mat-form-field class="example-full-width">
-                      <mat-select formControlName="gender" name="gender">
-                        <mat-option *ngFor="let gender of genders" [value]="gender.value">
-                          {{gender.viewValue}}
-                        </mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-lg-4">
-                    <p class="input-title">Tình trạng hôn nhân:</p>
-                  </div>
-                  <div class="col-lg-6">
-                    <mat-form-field class="example-full-width">
-                      <mat-select formControlName="materialStatus" name="materialStatus">
-                        <mat-option *ngFor="let material of materials" [value]="material.value">
-                          {{material.viewValue}}
-                        </mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-lg-4">
-                    <p class="input-title">Chữ kí:</p>
-                  </div>
-                  <div class="col-lg-6">
-                    <mat-form-field class="example-full-width">
-                      <input matInput type="text" formControlName="signature" name="signature">
-                    </mat-form-field>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-lg-4">
-                    <p class="input-about">Giới thiệu bản thân:</p>
-                  </div>
-                  <div class="col-lg-6">
-                    <mat-form-field class="example-full-width">
-                      <textarea matInput placeholder="" formControlName="introduction" name="introduction"></textarea>
-                    </mat-form-field>
-                  </div>
-                </div>
-                <div class="clearfix"></div>
-                <div class="row">
-                  <div class="submit">
-                    <button mat-raised-button type="submit" class="btn btn-outline-primary">Lưu thay đổi</button>
-                  </div>
-                </div>
-              </form>
+        <div class="row">
+            <div class="col-md-3">
+                <app-image [imageProp]="imageProp" [url]="url" (imageSrcUrl)="getImageSrc($event)"></app-image>
             </div>
-          </mat-tab>
-          <mat-tab>
-            <ng-template mat-tab-label>
-              Đổi mật khẩu
-            </ng-template>
-            <div class="main-content">
-              <form style="width: 100%;" [formGroup]="changePasswordForm" (ngSubmit)="updatePassword()">
-                <div class="row">
-                  <h3 style="text-transform: none;font-weight: 400;">Đổi mật khẩu</h3>
-                </div>
-                <div class="row">
-                  <div class="col-lg-4">
-                    <p class="input-title">Mật khẩu cũ:</p>
-                  </div>
-                  <div class="col-lg-6">
-                    <mat-form-field class="example-full-width">
-                      <input matInput disabled formControlName="oldPassword" name="oldPassword" type="text">
-                    </mat-form-field>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-lg-4">
-                    <p class="input-title">Mật khẩu mới:</p>
-                  </div>
-                  <div class="col-lg-6">
-                    <mat-form-field class="example-full-width">
-                      <input matInput formControlName="password" name="password" type="v">
-                    </mat-form-field>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-lg-4">
-                    <p class="input-title">Nhập lại mật khẩu:</p>
-                  </div>
-                  <div class="col-lg-6">
-                    <mat-form-field class="example-full-width">
-                      <input matInput formControlName="confirmPassword" name="confirmPassword" type="text">
-                    </mat-form-field>
-                  </div>
-                </div>
-                <div class="clearfix"></div>
-                <div class="row">
-                  <div class="submit">
-                    <button mat-raised-button type="submit" class="btn btn-outline-primary">Đổi mật khẩu</button>
-                  </div>
-                </div>
-              </form>
+            <div class="col-md-1"></div>
+            <div class="col-md-6">
+                <mat-tab-group>
+                    <mat-tab>
+                        <ng-template mat-tab-label>
+                            Đổi thông tin
+                        </ng-template>
+                        <div class="main-content">
+                            <form style="width: 100%; " [formGroup]="profileForm" (ngSubmit)="updateProfile()">
+                                <div class="row">
+                                    <h3 style="text-transform: none;font-weight: 400;">Chỉnh sửa hồ sơ</h3>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <p class="input-title">Email:</p>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput disabled formControlName="email" name="email" type="text">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <p class="input-title">Tên người dùng:</p>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput formControlName="name" name="name" type="text">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <p class="input-title">Năm sinh:</p>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <mat-form-field class="example-full-width">
+                                            <mat-select matNativeControl formControlName="birthday" name="birthday">
+                                                <mat-option *ngFor="let year of years" [value]="year">
+                                                    {{year}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <p class="input-title">Giới tính:</p>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <mat-form-field class="example-full-width">
+                                            <mat-select formControlName="gender" name="gender">
+                                                <mat-option *ngFor="let gender of genders" [value]="gender.value">
+                                                    {{gender.viewValue}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <p class="input-title">Tình trạng hôn nhân:</p>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <mat-form-field class="example-full-width">
+                                            <mat-select formControlName="materialStatus" name="materialStatus">
+                                                <mat-option *ngFor="let material of materials" [value]="material.value">
+                                                    {{material.viewValue}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <p class="input-title">Chữ kí:</p>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput type="text" formControlName="signature" name="signature">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <p class="input-about">Giới thiệu bản thân:</p>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <mat-form-field class="example-full-width">
+                                            <textarea matInput placeholder="" formControlName="introduction"
+                                                      name="introduction"></textarea>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="row">
+                                    <div class="submit">
+                                        <button mat-raised-button type="submit" class="btn btn-outline-primary">Lưu thay
+                                            đổi
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </mat-tab>
+                    <mat-tab>
+                        <ng-template mat-tab-label>
+                            Đổi mật khẩu
+                        </ng-template>
+                        <div class="main-content">
+                            <form style="width: 100%;" [formGroup]="changePasswordForm" (ngSubmit)="changePassword()">
+                                <div class="row">
+                                    <h3 style="text-transform: none;font-weight: 400;">Đổi mật khẩu</h3>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <p class="input-title">Mật khẩu cũ:</p>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput disabled formControlName="oldPassword" name="oldPassword"
+                                                   type="password"
+                                                   [ngClass]="{ 'is-invalid': passSubmitted && f.oldPassword.errors }"
+                                                   placeholder="Mật khẩu cũ"
+                                                   title="Vui lòng điền mật khẩu cũ">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4"></div>
+                                    <div class="col-lg-6">
+                                        <div *ngIf="passSubmitted && f.oldPassword.errors" class="is-invalid">
+                                            <div *ngIf="f.oldPassword.errors.required">
+                                                <i class="material-icons message-error">error</i>
+                                                <span class="message-error">
+                                                    Nhập mật khẩu cũ
+                                                </span>
+                                            </div>
+                                            <div *ngIf="f .oldPassword.errors.minlength">
+                                                <i class="material-icons message-error">error</i>
+                                                <span class="message-error">
+                                                    Mật khẩu phải ít nhất 6 kí tự
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <p class="input-title">Mật khẩu mới:</p>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput formControlName="password" name="password" type="password"
+                                                   [ngClass]="{ 'is-invalid': passSubmitted && f.password.errors }"
+                                                   placeholder="Mật khẩu mới"
+                                                   title="Please enter the password">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4"></div>
+                                    <div class="col-lg-6">
+                                        <div *ngIf="passSubmitted && f.password.errors" class="is-invalid">
+                                            <div *ngIf="f.password.errors.required">
+                                                <i class="material-icons message-error">error</i>
+                                                <span class="message-error">
+                                                    Nhập mật khẩu mới
+                                                </span>
+                                            </div>
+                                            <div *ngIf="f.password.errors.minlength">
+                                                <i class="material-icons message-error">error</i>
+                                                <span class="message-error">
+                                                    Mật khẩu phải ít nhất 6 kí tự
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <p class="input-title">Nhập lại mật khẩu:</p>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput formControlName="confirmPassword" name="confirmPassword"
+                                                   type="password"
+                                                   [ngClass]="{ 'is-invalid': passSubmitted && f.confirmPassword.errors }"
+                                                   placeholder="Xác nhận mật khẩu" title="Please re-enter the password">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4"></div>
+                                    <div class="col-lg-6">
+                                        <div *ngIf="passSubmitted && f.confirmPassword.errors" class="is-invalid">
+                                            <div *ngIf="f.confirmPassword.errors.required">
+                                                <i class="material-icons message-error">error</i>
+                                                <span class="message-error">
+                                                    Vui lòng xác nhận mật khẩu
+                                                </span>
+                                            </div>
+                                            <div *ngIf="f.confirmPassword.errors.mustMatch">
+                                                <i class="material-icons message-error">error</i>
+                                                <span class="message-error">
+                                                    Phải trùng khớp mật khẩu!
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="row">
+                                    <div class="submit">
+                                        <button mat-raised-button type="submit" class="btn btn-outline-primary">Đổi mật
+                                            khẩu
+                                        </button>
+                                        <p style="text-align:center; color: red;font-size: 12px;">
+                                            {{ errorPassMessage }}
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </mat-tab>
+                </mat-tab-group>
+
             </div>
-          </mat-tab>
-        </mat-tab-group>
 
-      </div>
-
+        </div>
     </div>
-  </div>
 </div>

@@ -11,7 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class UserRegiterComponent implements OnInit {
   registerForm: FormGroup;
-  submitted: boolean = false;
+  submitted: boolean;
   userObj: {
     name: '',
     email: '',
@@ -26,15 +26,15 @@ export class UserRegiterComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required]
     }, {
       validator: MustMatch('password', 'confirmPassword')
     });
   }
-
+  get f() { return this.registerForm.controls; }
   ngOnInit() {
-
+    this.submitted = false;
   }
   registerUser() {
     this.submitted = true;

@@ -1,8 +1,8 @@
-import { Component, Directive, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FileUploader } from 'ng2-file-upload';
-import { AppSetting } from '../../../appsetting';
-import { ToastrService } from 'ngx-toastr';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import {Component, Directive, ElementRef, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {FileUploader} from 'ng2-file-upload';
+import {AppSetting} from '../../../appsetting';
+import {ToastrService} from 'ngx-toastr';
+import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
 
 @Component({
     selector: 'app-image',
@@ -22,7 +22,6 @@ export class ImageComponent implements OnInit {
         itemAlias: 'image'
     });
     public imageUrl = '';
-
     listImgPreview: SafeUrl[] = [];
 
     // previewImg: SafeUrl;
@@ -55,16 +54,17 @@ export class ImageComponent implements OnInit {
 
     onSelectFile(event) {
         if (event.target.files && event.target.files[0]) {
-            var reader = new FileReader();
+            const reader = new FileReader();
             reader.readAsDataURL(event.target.files[0]); // read file as data url
+            // tslint:disable-next-line:no-shadowed-variable
             reader.onload = (event) => { // called once readAsDataURL is completed
                 this.url = event.target.result;
             }
         }
-        console.log(this.uploader.queue);
         this.uploader.uploadAll();
     }
 }
+
 // export enum ImageUpload {
 //     profile = 'profile'
 // }
