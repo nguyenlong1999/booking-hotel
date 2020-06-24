@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import {Location, PopStateEvent} from '@angular/common';
 import 'rxjs/add/operator/filter';
 import {NavigationEnd, NavigationStart, Router} from '@angular/router';
@@ -16,7 +16,7 @@ import {CookieService} from "ngx-cookie-service";
     templateUrl: './admin-layout.component.html',
     styleUrls: ['./admin-layout.component.scss']
 })
-export class AdminLayoutComponent implements OnInit {
+export class AdminLayoutComponent implements OnInit,AfterViewInit {
     private _router: Subscription;
     private lastPoppedUrl: string;
     private yScrollStack: number[] = [];
@@ -148,18 +148,20 @@ export class AdminLayoutComponent implements OnInit {
             }
         });
         setTimeout( ()=>{
-            let message = new Message();
-            message.objectId = this.cookieService.get('ObjectId');
-            message.message = 'get list user';
-            this.chatService.getListMember(message);
+            this.getListOnline();
         },5000);
-
     }
 
     ngAfterViewInit() {
         this.runOnRouteChange();
+        this.getListOnline();
     }
-
+    getListOnline(){
+        let message = new Message();
+        message.objectId = this.cookieService.get('ObjectId');
+        message.message = 'get list user';
+        this.chatService.getListMember(message);
+    }
     mailBox() {
         this.chatService.getMessages().subscribe(mail => {
             console.log("mail", mail)
@@ -168,7 +170,7 @@ export class AdminLayoutComponent implements OnInit {
                 let mess = new Message;
                 mess.content = mail;
                 mess.news = true;
-                console.log(mess);
+                console.log(mess['content']['get-list-online']);
                 this.userMessages.push(mess);
                 console.log(this.userMessages);
             }
@@ -186,8 +188,8 @@ export class AdminLayoutComponent implements OnInit {
         this.chatService.sendMessage(message);
         console.log(message)
         const radio: HTMLElement = document.getElementById('msg_history');
-        radio.innerHTML += ' <div class="outgoing_msg" style="float: right;display: inline-block;">\n' +
-            '<div class="sent_msg" style="overflow:hidden; margin:26px 0 26px;">\n' +
+        radio.innerHTML += ' <div class="outgoing_msg" style="float: right;display:block;overflow:hidden;clear: both;">\n' +
+            '<div class="sent_msg" style="overflow:hidden; margin:6px 0 6px;">\n' +
             '<p style="background: #05728f none repeat scroll 0 0;\n' +
             '  border-radius: 3px;\n' +
             '  font-size: 10px;\n' +
@@ -212,10 +214,10 @@ export class AdminLayoutComponent implements OnInit {
         this.chatService.sendMessage(message);
         console.log(message)
         const radio: HTMLElement = document.getElementById('msg_history');
-        radio.innerHTML += ' <div class="outgoing_msg" style="float: left;display: inline-block;">\n' +
+        radio.innerHTML += ' <div class="outgoing_msg" style="float: left;display: block;clear: both;">\n' +
             '<img  src="https://ptetutorials.com/images/user-profile.png" alt="sunil" style="width: 20px;height: 20px;float:left;"/>' +
             '<span class="time_date" style="font-size: 8px;">' + message.time + '</span>' +
-            '<div class="sent_msg" style="overflow:hidden; margin:26px 0 26px;">\n' +
+            '<div class="sent_msg" style="overflow:hidden; margin:6px 0 6px;">\n' +
             '<p style="background: lightgrey none repeat scroll 0 0;\n' +
             '  border-radius: 3px;\n' +
             '  font-size: 10px;\n' +
