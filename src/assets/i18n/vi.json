@@ -103,8 +103,7 @@
   "user.register" : {
     "createAccountBooking": "Tạo tài khoản Booking",
     "email": "Email",
-    "password": "Mật khẩu",
-    ""
+    "password": "Mật khẩu"
   },
   "///": "bookinghotelcualongdeptrai",
   "hotelRegister.basicInfo": "Thông tin cơ bản",
