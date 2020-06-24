@@ -185,18 +185,20 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
                     userOnlineArray.forEach(user => {
                         let tempArr = user.split(':');
                         if (tempArr.length > 0) {
-                            let mystring= tempArr[0];
+                            let mystring = tempArr[0];
                             mystring = mystring.substring(1);
                             mystring = mystring.substring(0, mystring.length - 1);
-                            this.userOnline.push(mystring);
+                            if (!this.userOnline.includes(mystring)) {
+                                this.userOnline.push(mystring);
+                            }
                         }
                     });
-                    this.userService.getUserOnlineInfo(this.userOnline).subscribe(data=>{
+                    this.userService.getUserOnlineInfo(this.userOnline).subscribe(data => {
                         console.log(data)
                     });
                     console.log(this.userOnline);
 
-                }else{
+                } else {
                     this.userMessages.push(mess);
                 }
                 console.log(this.userMessages);
