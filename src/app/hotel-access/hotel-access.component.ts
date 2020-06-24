@@ -50,7 +50,7 @@ export class HotelAccessComponent implements OnInit {
     ]
 
     // selected tab
-    public TabIndex = 2;
+    public TabIndex = 0;
 
     // đồng ý điều khoản
     checked = false;
@@ -66,7 +66,7 @@ export class HotelAccessComponent implements OnInit {
             guideToHotel: [''],
             starHotel: [''],
             image: [''],
-            totalRoomNumber: '',
+            totalRoomNumber: '1',
 
             // tab 2
             address: [''],
@@ -85,8 +85,8 @@ export class HotelAccessComponent implements OnInit {
             ]),
             reservationTime: [''],
             cancellationPolicy: ['']
-
         })
+        this.plusTotalRoomNumber();
     }
 
     public tabNext() {
@@ -252,7 +252,7 @@ export class HotelAccessComponent implements OnInit {
 
     minusTotalRoomNumber() {
         console.log(this.totaltypeRoomNumber)
-        if (this.totaltypeRoomNumber === 1) {
+        if (this.totaltypeRoomNumber === 2) {
             $('#totalRoomNumber').addClass('disabledbutton');
         }
         this.totaltypeRoomNumber--;
