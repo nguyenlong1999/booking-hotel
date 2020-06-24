@@ -147,10 +147,12 @@ export class AdminLayoutComponent implements OnInit {
                 $sidebar_responsive.css('background-image', 'url("' + new_image + '")');
             }
         });
-        let message = new Message();
-        message.objectId = this.cookieService.get('ObjectId');
-        message.message = 'get list user';
-        this.chatService.getListMember(message);
+        setTimeout( ()=>{
+            let message = new Message();
+            message.objectId = this.cookieService.get('ObjectId');
+            message.message = 'get list user';
+            this.chatService.getListMember(message);
+        },5000);
 
     }
 
