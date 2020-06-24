@@ -164,6 +164,8 @@
                                                             style="font-weight: bold">{{"hotelRegister.ratingStar" | translate}}</span>
                                                     </h3>
                                                 </div>
+                                            </div>
+                                            <div class="row">
                                                 <div class="col">
                                                     <app-star-rating [rating]="rating" [starCount]="starCount"
                                                                      [color]="starColor"
@@ -656,84 +658,14 @@
                                                                 formControlName="tea">{{"facilities.tea"|translate}}</mat-checkbox>
                                                     </div>
                                                     <div class="col">
-                                                        <mat-checkbox formControlName="Kitchen">Nhà bếp</mat-checkbox>
+                                                        <mat-checkbox
+                                                                formControlName="Kitchen">{{"facilities.Kitchen"|translate}}</mat-checkbox>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col">
-                                                        <mat-checkbox formControlName="freeBreakfast">Ăn sáng miễn phí
-                                                        </mat-checkbox>
-                                                    </div>
-                                                </div>
-                                            </fieldset>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <h3><span
-                                                    style="font-weight: bold">Tiện nghi</span>
-                                            </h3>
-                                            <label>Những gì du khách thường tìm kiếm và có khả năng thúc đẩy
-                                                lượng
-                                                khách
-                                                đặt phòng.
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <fieldset class="the-fieldset">
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <mat-checkbox formControlName="workspace">Bàn/không gian làm
-                                                            việc
-                                                        </mat-checkbox>
-                                                    </div>
-                                                    <div class="col">
-                                                        <mat-checkbox formControlName="privatePool">Hồ bơi riêng
-                                                        </mat-checkbox>
-                                                    </div>
-                                                    <div class="col">
-                                                        <mat-checkbox formControlName="heaters">Máy sưởi</mat-checkbox>
-                                                    </div>
-                                                    <div class="col">
-                                                        <mat-checkbox formControlName="Dryer">Máy sấy</mat-checkbox>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <mat-checkbox formControlName="Fireplace">Lò sưởi trong nhà
-                                                        </mat-checkbox>
-                                                    </div>
-                                                    <div class="col">
-                                                        <mat-checkbox formControlName="Wardrobe">Tủ áo</mat-checkbox>
-                                                    </div>
-                                                    <div class="col">
-                                                        <mat-checkbox formControlName="indooPool">Hồ bơi trong nhà
-                                                        </mat-checkbox>
-                                                    </div>
-                                                    <div class="col">
-                                                        <mat-checkbox formControlName="hotTub">Bồn tắm nước nóng
-                                                        </mat-checkbox>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-lg-3">
-                                                        <mat-checkbox formControlName="gymRoom">Phòng tập gym
-                                                        </mat-checkbox>
-                                                    </div>
-                                                    <div class="col-lg-3">
-                                                        <mat-checkbox formControlName="outdoorSwimmingPool">Hồ bơi ngoài
-                                                            trời
-                                                        </mat-checkbox>
-                                                    </div>
-                                                    <div class="col-lg-3">
-                                                        <mat-checkbox formControlName="freeParking">Đậu xe miễn phí
+                                                        <mat-checkbox
+                                                                formControlName="freeBreakfast">{{"facilities.freeBreakfast" | translate}}
                                                         </mat-checkbox>
                                                     </div>
                                                 </div>
@@ -746,11 +678,9 @@
                                     <div class="row">
                                         <div class="col">
                                             <h3><span
-                                                    style="font-weight: bold">An toàn</span>
+                                                    style="font-weight: bold">{{"facilities.Convenient" | translate}}</span>
                                             </h3>
-                                            <label>Những tiện nghi và tính năng đảm bảo sự an toàn, an ninh cho
-                                                du
-                                                khách
+                                            <label>{{"facilities.Convenientv2" | translate}}
                                             </label>
                                         </div>
                                     </div>
@@ -761,22 +691,59 @@
                                             <fieldset class="the-fieldset">
                                                 <div class="row">
                                                     <div class="col">
-                                                        <mat-checkbox formControlName="SmokeDetector">Cảm biến báo
-                                                            khói
+                                                        <mat-checkbox
+                                                                formControlName="workspace">{{"facilities.workspace" | translate}}
                                                         </mat-checkbox>
                                                     </div>
                                                     <div class="col">
-                                                        <mat-checkbox formControlName="COAlarmSensor">Cảm biến báo khí
-                                                            CO
+                                                        <mat-checkbox
+                                                                formControlName="privatePool">{{"facilities.privatePool" | translate}}
                                                         </mat-checkbox>
                                                     </div>
                                                     <div class="col">
-                                                        <mat-checkbox formControlName="FirstAidKit">Bộ sơ cấp cứu
+                                                        <mat-checkbox
+                                                                formControlName="heaters">{{"facilities.heaters" | translate}}</mat-checkbox>
+                                                    </div>
+                                                    <div class="col">
+                                                        <mat-checkbox
+                                                                formControlName="Dryer">{{"facilities.Dryer" | translate}}</mat-checkbox>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <mat-checkbox
+                                                                formControlName="Fireplace">{{"facilities.Fireplace" | translate}}
                                                         </mat-checkbox>
                                                     </div>
                                                     <div class="col">
-                                                        <mat-checkbox formControlName="fireExtinguisher">Bình chữa
-                                                            cháy
+                                                        <mat-checkbox
+                                                                formControlName="Wardrobe">{{"facilities.Wardrobe" | translate}}</mat-checkbox>
+                                                    </div>
+                                                    <div class="col">
+                                                        <mat-checkbox
+                                                                formControlName="indooPool">{{"facilities.indooPool" | translate}}
+                                                        </mat-checkbox>
+                                                    </div>
+                                                    <div class="col">
+                                                        <mat-checkbox
+                                                                formControlName="hotTub">{{"facilities.hotTub" | translate}}
+                                                        </mat-checkbox>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-3">
+                                                        <mat-checkbox
+                                                                formControlName="gymRoom">{{"facilities.gymRoom" | translate}}
+                                                        </mat-checkbox>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <mat-checkbox
+                                                                formControlName="outdoorSwimmingPool">{{"facilities.outdoorSwimmingPool" | translate}}
+                                                        </mat-checkbox>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <mat-checkbox
+                                                                formControlName="freeParking">{{"facilities.freeParking" | translate}}
                                                         </mat-checkbox>
                                                     </div>
                                                 </div>
@@ -789,9 +756,50 @@
                                     <div class="row">
                                         <div class="col">
                                             <h3><span
-                                                    style="font-weight: bold">Tiện nghi khác</span>
+                                                    style="font-weight: bold">{{"facilities.safe" | translate}}</span>
                                             </h3>
-                                            <label>Những tiện nghi cho du khách có nhu cầu đặc biệt.
+                                            <label>{{"facilities.safeV2" | translate}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <fieldset class="the-fieldset">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <mat-checkbox
+                                                                formControlName="SmokeDetector">{{"facilities.SmokeDetector" | translate}}
+                                                        </mat-checkbox>
+                                                    </div>
+                                                    <div class="col">
+                                                        <mat-checkbox
+                                                                formControlName="COAlarmSensor">{{"facilities.COAlarmSensor" | translate}}
+                                                        </mat-checkbox>
+                                                    </div>
+                                                    <div class="col">
+                                                        <mat-checkbox
+                                                                formControlName="FirstAidKit">{{"facilities.FirstAidKit" | translate}}
+                                                        </mat-checkbox>
+                                                    </div>
+                                                    <div class="col">
+                                                        <mat-checkbox
+                                                                formControlName="fireExtinguisher">{{"facilities.fireExtinguisher" | translate}}
+                                                        </mat-checkbox>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h3><span
+                                                    style="font-weight: bold">{{"facilities.OtherFacilities" | translate}}</span>
+                                            </h3>
+                                            <label>{{"facilities.OtherFacilitiesV2" | translate}}
                                             </label>
                                         </div>
                                     </div>
@@ -802,11 +810,13 @@
                                             <fieldset class="the-fieldset">
                                                 <div class="row">
                                                     <div class="col-lg-3">
-                                                        <mat-checkbox formControlName="Smoking">Được hút thuốc
+                                                        <mat-checkbox
+                                                                formControlName="Smoking">{{"facilities.Smoking" | translate}}
                                                         </mat-checkbox>
                                                     </div>
                                                     <div class="col-lg-3">
-                                                        <mat-checkbox formControlName="petsAllowed">Cho phép vật nuôi
+                                                        <mat-checkbox
+                                                                formControlName="petsAllowed">{{"facilities.petsAllowed" | translate}}
                                                         </mat-checkbox>
                                                     </div>
                                                 </div>
@@ -836,7 +846,7 @@
         <mat-tab>
             <ng-template mat-tab-label>
                 <mat-icon>bubble_chart</mat-icon>
-                Thông tin phòng
+                {{"room.RoomInformation" |translate}}
             </ng-template>
             <div class="main-content">
                 <div class="container-fluid">
@@ -845,9 +855,9 @@
                             <div class="card-header card-header-info">
                                 <div class="row">
                                     <div class="col">
-                                        <h4 class="card-title">Thông tin phòng bạn cung cấp
+                                        <h4 class="card-title">{{"room.RoomInformationYourProvide" | translate}}
                                         </h4>
-                                        <p class="card-category">Những loại phòng, yêu cầu giá cả
+                                        <p class="card-category">{{"room.whatKindOfRoom"|translate}}
                                         </p>
                                     </div>
                                     <div class="col">
@@ -864,25 +874,24 @@
                                                  *ngFor="let romNumber of formArrayRoomNumber.controls; let i = index ">
                                             <ng-template mat-tab-label>
                                                 <mat-icon>bubble_chart</mat-icon>
-                                                Loại phòng {{i + 1}}
+                                                {{"room.type"|translate}} {{i + 1}}
                                             </ng-template>
                                             <div class="row" style="width: 100%;">
                                                 <div class="col">
                                                     <fieldset class="the-fieldset">
-                                                        <legend class="the-legend">Chi tiết loại phòng ở số {{i}}
+                                                        <legend class="the-legend">{{"room.detailsOfRoomTypeAtNumber"|translate}} {{i+1}}
                                                         </legend>
                                                         <div>
                                                             <div class="row">
                                                                 <div class="col">
-                                                                    <h3><span style="font-weight: bold">Sức chứa</span>
+                                                                    <h3><span
+                                                                            style="font-weight: bold">{{"room.Capacity"|translate}} </span>
                                                                     </h3>
                                                                 </div>
                                                             </div>
                                                             <div class="row">
                                                                 <div class="col">
-                                                                    Số lượng người tối đa có thể ngủ thoải mái theo số
-                                                                    lượng
-                                                                    giường và sofa cung cấp.
+                                                                    {{"room.MaximumNumberOfPeople"|translate}}
                                                                 </div>
                                                             </div>
                                                             <div class="row">
@@ -911,15 +920,15 @@
                                                         <div>
                                                             <div class="row">
                                                                 <div class="col">
-                                                                    <h3><span style="font-weight: bold">Thời gian lưu trú
-</span>
+                                                                    <h3><span
+                                                                            style="font-weight: bold">{{"room.LenghtOfStay"|translate}}</span>
                                                                     </h3>
                                                                 </div>
                                                             </div>
 
                                                             <div class="row">
                                                                 <div class="col">
-                                                                    Số ngày tối thiểu cho mỗi lần đặt.
+                                                                    {{"room.MinimumNumberOfDaysPerBooking" |translate}}
                                                                 </div>
                                                             </div>
                                                             <div class="row">
@@ -948,15 +957,14 @@
                                                         <div>
                                                             <div class="row">
                                                                 <div class="col">
-                                                                    <h3><span style="font-weight: bold">Phòng tắm</span>
+                                                                    <h3><span
+                                                                            style="font-weight: bold">{{"room.Bathroom"|translate}}</span>
                                                                     </h3>
                                                                 </div>
                                                             </div>
                                                             <div class="row">
                                                                 <div class="col">
-                                                                    Chỉ đếm số lượng phòng tắm trong nơi ở của bạn,
-                                                                    không
-                                                                    phải phòng tắm chung trong toà nhà hoặc chung cư.
+                                                                    {{"room.countOnlyNumberBathroomsOfYourResidence"|translate}}
                                                                 </div>
                                                             </div>
                                                             <div class="row">
@@ -985,15 +993,14 @@
                                                         <div>
                                                             <div class="row">
                                                                 <div class="col">
-                                                                    <h3><span style="font-weight: bold">Phòng ngủ</span>
+                                                                    <h3><span
+                                                                            style="font-weight: bold">{{"room.BedRoom"|translate}}</span>
                                                                     </h3>
                                                                 </div>
                                                             </div>
                                                             <div class="row">
                                                                 <div class="col">
-                                                                    Nếu chỗ ở của bạn là phòng gác mái hoặc studio, số
-                                                                    lượng
-                                                                    phòng ngủ là 0.
+                                                                    {{"room.IfYourAccommodationIsAnAtticOrStudio"|translate}}
                                                                 </div>
                                                             </div>
                                                             <div class="row">
@@ -1024,7 +1031,7 @@
                                                                 <div class="row">
                                                                     <div class="col-3">
                                                                         <h3><span
-                                                                                style="font-weight: bold">Phòng {{iz + 1}} </span>
+                                                                                style="font-weight: bold">{{"room.room"|translate}} {{iz + 1}} </span>
                                                                         </h3>
                                                                     </div>
                                                                 </div>
@@ -1036,13 +1043,13 @@
                                                                             <div class="col-lg-3">
                                                                                 <mat-form-field>
                                                                                     <input matInput
-                                                                                           placeholder="Số lượng"
+                                                                                           [placeholder]="'room.quantity'|translate"
                                                                                            formControlName="bedQuantity">
                                                                                 </mat-form-field>
                                                                             </div>
                                                                             <div class="col-lg-3">
                                                                                 <mat-form-field>
-                                                                                    <mat-label>Loại giường</mat-label>
+                                                                                    <mat-label>{{"room.bedType"|translate}}</mat-label>
                                                                                     <mat-select
                                                                                             formControlName="bedType">
                                                                                         <mat-option
@@ -1069,8 +1076,7 @@
                                                                     <div class="col">
                                                                         <p (click)="plusAddTypeBedRoom(i,iz)"
                                                                            class="evtHover">
-                                                                            Thêm loại
-                                                                            giường
+                                                                            {{"room.addBedType"|translate}}
                                                                         </p>
                                                                     </div>
                                                                 </div>
@@ -1083,31 +1089,20 @@
                                                             <div class="row">
                                                                 <div class="col">
                                                                     <h3><span
-                                                                            style="font-weight: bold">Giá mỗi đêm</span>
+                                                                            style="font-weight: bold">{{"room.PricePerNight"|translate}}</span>
                                                                     </h3>
                                                                 </div>
                                                             </div>
                                                             <div class="row">
                                                                 <div class="col">
-                                                                    Vui lòng nhập giá mỗi đêm của quý đối tác cho loại
-                                                                    phòng
-                                                                    này.
+                                                                    {{"room.PleaseEnterAPartnerNightlyPrice"|translate}}
                                                                 </div>
                                                             </div>
-                                                            <!--                                                            <div class="row">-->
-                                                            <!--                                                                <div class="col">-->
-                                                            <!--                                                                    <h5>Lượng người tối đa có thể ngủ ở chỗ bạn-->
-                                                            <!--                                                                        là: {{ romNumber.get('accommodates').value }}.-->
-                                                            <!--                                                                        <a-->
-                                                            <!--                                                                                href="hotel-register#accommodates{{i}}">Thay-->
-                                                            <!--                                                                            đổi</a></h5>-->
-                                                            <!--                                                                </div>-->
-                                                            <!--                                                            </div>-->
                                                             <div class="row">
                                                                 <div class="col-3">
                                                                     <mat-form-field>
                                                                         <mat-label>
-                                                                            <b>Giá tối thiểu mỗi đêm là bao nhiêu?</b>
+                                                                            <b>{{"room.WhatisTheMinimumPricePerNight"|translate}}</b>
                                                                         </mat-label>
                                                                         <input matInput formControlName="price">
                                                                     </mat-form-field>
@@ -1120,17 +1115,13 @@
                                             </div>
                                         </mat-tab>
                                     </mat-tab-group>
-
-                                    <!--                                <div -->
-                                    <!--                                    >-->
-                                    <!--                                 -->
-                                    <!--                                </div>-->
                                 </div>
                             </div>
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
-                                        <h3><span style="font-weight: bold">Khách hàng có thể đặt nơi ở của bạn trước bao lâu </span>
+                                        <h3><span
+                                                style="font-weight: bold">{{"room.HowLongCanCustomersBookYourAccommodation"|translate}}</span>
                                         </h3>
                                     </div>
                                 </div>
@@ -1138,46 +1129,45 @@
                                     <div class="col">
                                         <mat-button-toggle-group style="background: #ffffff"
                                                                  formControlName="reservationTime">
-                                            <mat-button-toggle value="1" style="margin:10px 5px">Mọi lúc
+                                            <mat-button-toggle value="1"
+                                                               style="margin:10px 5px">{{"room.Anytime"|translate}}
                                             </mat-button-toggle>
-                                            <mat-button-toggle value="2" style="margin:10px 5px">1 năm
+                                            <mat-button-toggle value="2"
+                                                               style="margin:10px 5px">{{"room.Ayear"|translate}}
                                             </mat-button-toggle>
-                                            <mat-button-toggle value="3" style="margin:10px 5px">6 tháng
+                                            <mat-button-toggle value="3"
+                                                               style="margin:10px 5px">{{"room.SixMonth"|translate}}
                                             </mat-button-toggle>
-                                            <mat-button-toggle value="4" style="margin:10px 5px">3 tháng
+                                            <mat-button-toggle value="4"
+                                                               style="margin:10px 5px">{{"room.ThreeMonth"|translate}}
                                             </mat-button-toggle>
                                         </mat-button-toggle-group>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col">
-                                        <h3><span style="font-weight: bold">Chính sách hủy phòng</span>
+                                        <h3><span
+                                                style="font-weight: bold">{{"room.CancellationPolicy"|translate}}</span>
                                         </h3>
                                     </div>
                                 </div>
                                 <mat-radio-group formControlName="cancellationPolicy">
                                     <div class="row">
                                         <div class="col">
-                                            <mat-radio-button value="1"><b>Linh hoạt</b>
+                                            <mat-radio-button value="1"><b>{{"room.flexible"|translate}}</b>
                                                 <br>
                                                 <div class="wrap-mat-radio-label">
-                                                    Khách hàng hủy trước ngày nhận phòng 1 ngày sẽ được hoàn lại tiền
-                                                    100%.
-                                                    Trong trường hợp khách không đến, bạn được nhận 100% giá tiền đặt
-                                                    phòng.
+                                                    {{"room.flexiblev1"|translate}}
                                                 </div>
                                             </mat-radio-button>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col">
-                                            <mat-radio-button value="2"><b>Nghiêm ngặt</b>
+                                            <mat-radio-button value="2"><b>{{"room.Strict"|translate}}</b>
                                                 <br>
                                                 <div class="wrap-mat-radio-label">
-                                                    Khách hàng hủy trước ngày nhận phòng 7 ngày sẽ được hoàn lại tiền
-                                                    50%.
-                                                    Trong trường hợp khách không đến, bạn được nhận 100% giá tiền đặt
-                                                    phòng.
+                                                    {{"room.Strictv1"|translate}}
                                                 </div>
                                             </mat-radio-button>
                                         </div>
@@ -1192,12 +1182,8 @@
                                             </button>
                                         </div>
                                     </div>
-
                                 </mat-radio-group>
-
-
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -1207,7 +1193,7 @@
         <mat-tab>
             <ng-template mat-tab-label>
                 <mat-icon>bubble_chart</mat-icon>
-                Đăng bài
+                {{"post.post"|translate}}
             </ng-template>
             <div class="main-content">
                 <div class="container-fluid">
@@ -1216,9 +1202,9 @@
                             <div class="card-header card-header-info">
                                 <div class="row">
                                     <div class="col">
-                                        <h4 class="card-title">Ký hợp đồng và bắt đầu nhận đặt phòng.
+                                        <h4 class="card-title">{{"post.SignAcontract"|translate}}
                                         </h4>
-                                        <p class="card-category">Chỉ cần một vài chi tiết nữa thôi!
+                                        <p class="card-category">{{"post.JustAfewMoreDetails"|translate}}
                                         </p>
                                     </div>
                                     <div class="col">
@@ -1233,28 +1219,12 @@
                                 <div class="row">
                                     <div class="col">
                                         <h3><span
-                                                style="font-weight: bold">Am hiểu luật lệ, quy định và các chính sách thuế tại địa phương.
+                                                style="font-weight: bold">{{"post.ruler1"|translate}}
 </span>
                                         </h3>
-                                        <label>Tìm hiểu về luật lệ và chính sách thuế tại địa phương là trách
-                                            nhiệm
-                                            của bạn.<br>
+                                        <label>{{"post.ruler2"|translate}}<br>
                                             <br>
-                                            Tìm hiểu về luật lệ và chính sách thuế tại địa phương trước khi nhận
-                                            đơn
-                                            đặt phòng. Rất nhiều quốc gia và một số thành phố có ban hành luật
-                                            pháp
-                                            cụ thể về việc dùng nơi ở của bạn để cho thuê ngắn hạn, ở chung nhà
-                                            và
-                                            hoặc cho thuê chỗ ở chuyên nghiệp. Hoạt động trong khuôn khổ pháp
-                                            luật
-                                            của quốc gia nơi cư trú là trách nhiệm của bạn, bao gồm các loại
-                                            giấy
-                                            phép, giấy chứng nhận hoặc đăng ký cần có trước khi nhận đơn đặt
-                                            phòng,
-                                            cũng như trả thuế hiện hành áp dụng cho thu nhập từ các đơn đặt
-                                            phòng
-                                            này.
+                                            {{"post.ruler3"|translate}}
                                         </label>
                                     </div>
                                 </div>
@@ -1264,45 +1234,39 @@
                                 <div class="row">
                                     <div class="col">
                                         <h3><span
-                                                style="font-weight: bold">Đồng ý với điều khoản và điều kiện là bạn đã sẵn sàng rồi đó!
+                                                style="font-weight: bold">{{"post.accept"|translate}}
 </span>
                                         </h3>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col">
-                                        <mat-checkbox (click)="changeValueAccept(checked)">Tôi đồng ý với các điều khoản
-                                            và điều kiện của Agoda và
-                                            xác
-                                            nhận tôi sẽ tuân thủ theo luật pháp và quy định hiện hành.
+                                        <mat-checkbox (click)="changeValueAccept(checked)">{{"post.acceptWithBooking"|translate}}
                                         </mat-checkbox>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col">
                                         <mat-error *ngIf="isCheckAfterSubmit">
-                                            Bạn phải đồng ý điều khoản trước khi hoàn thành bài đăng!!!!!!
+                                           {{"post.acceptEroor"|translate}}
                                         </mat-error>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col" style="margin-top: 2%">
                                         <a style="padding: 15px 20px;background-image: linear-gradient(to right, #3cc603 0%, #3cc908  51%, #32a103  100%); cursor: pointer;color: white ; height: 80px;width: 250px;border-radius: 5px; margin-left: 40%; margin-top: 5% "
-                                           (click)="onSubmit()">Giới thiệu hotel của tôi</a>
+                                           (click)="onSubmit()">{{"post.introMyHotel"|translate}}</a>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col">
                                         <button class="prevtab btn btn-success" (click)="tabPrevios()">
-                                            Prev
+                                            {{"common.button.back"|translate}}
                                         </button>
                                     </div>
                                 </div>
                             </div>
-
-
                         </div>
-
                     </div>
                 </div>
             </div>
