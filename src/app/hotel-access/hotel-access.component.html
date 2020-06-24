@@ -2,7 +2,7 @@
     <mat-tab-group [(selectedIndex)]="TabIndex">
         <mat-tab>
             <ng-template mat-tab-label>
-                Thông tin cơ bản
+                {{ "hotelRegister.basicInfo" | translate }}
             </ng-template>
             <div class="main-content">
                 <div class="container-fluid">
@@ -11,13 +11,8 @@
                             <div class="card-header card-header-info">
                                 <div class="row">
                                     <div class="col">
-                                        <h4 class="card-title">Giúp bạn tiếp cận đối tượng khách hàng phù hợp
-                                            nhất.</h4>
-                                        <p class="card-category">Vui lòng cung cấp mọi thông tin được yêu cầu
-                                            trừ
-                                            khi có
-                                            đánh
-                                            dấu không bắt buộc.
+                                        <h4 class="card-title"> {{ "hotelRegister.helpyoureach" | translate}}</h4>
+                                        <p class="card-category"> {{ "hotelRegister.provideInformation" | translate }}
                                         </p>
                                     </div>
                                     <div class="col">
@@ -31,7 +26,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <fieldset class="the-fieldset">
-                                            <legend class="the-legend">Cơ sở kinh doanh</legend>
+                                            <legend class="the-legend">{{ "hotelRegister.businessPremises" | translate }}</legend>
                                             <div class="layout-box">
                                                 <div class="row">
                                                     <div class="col">
@@ -45,14 +40,15 @@
                                                         <div class="row">
                                                             <div class="col">
                                                                 <h3><span
-                                                                        style="font-weight: bold">Tên hotel</span>
+                                                                        style="font-weight: bold">{{"hotelRegister.hotelName" | translate}}</span>
                                                                 </h3>
                                                             </div>
                                                         </div>
                                                         <div class="row">
                                                             <div class="col">
                                                                 <mat-form-field>
-                                                                    <input matInput placeholder="Tên hotel"
+                                                                    <input matInput
+                                                                           [placeholder]="'hotelRegister.hotelName' | translate"
                                                                            type="text" formControlName="name">
                                                                 </mat-form-field>
                                                             </div>
@@ -60,19 +56,18 @@
                                                         <div class="row">
                                                             <div class="col">
                                                                 <h3><span
-                                                                        style="font-weight: bold">Miêu tả khách sạn</span>
+                                                                        style="font-weight: bold">{{"hotelRegister.hotelDes" | translate}}</span>
                                                                 </h3>
                                                             </div>
                                                         </div>
                                                         <div class="row">
                                                             <div class="col">
                                                                 <mat-form-field class="example-full-width">
-                                                                    <mat-label>Những đặc điểm nổi bật của căn hộ
-                                                                        để
-                                                                        thu hút du khách
+                                                                    <mat-label>{{"hotelRegister.hotelDesv2" | translate}}
                                                                     </mat-label>
-                                                                    <textarea matInput placeholder="Ví dụ
-• Cách phương tiện công cộng 5 phút đi bộ " formControlName="desHotel"></textarea>
+                                                                    <textarea matInput
+                                                                              [placeholder]="'hotelRegister.hotelDesv3'|translate"
+                                                                              formControlName="desHotel"></textarea>
                                                                 </mat-form-field>
                                                             </div>
                                                         </div>
@@ -82,16 +77,20 @@
                                                         <div class="row">
                                                             <div class="col">
                                                                 <h3><span
-                                                                        style="font-weight: bold">Diện tích mặt bằng</span>
+                                                                        style="font-weight: bold">{{"hotelRegister.sqm" | translate}}</span>
                                                                 </h3>
                                                             </div>
                                                         </div>
                                                         <div class="row">
                                                             <div class="col">
                                                                 <mat-form-field>
-                                                                    <input matInput placeholder="Mét vuông"
+                                                                    <input matInput
+                                                                           [placeholder]="'hotelRegister.sqmv2' | translate"
                                                                            type="text" formControlName="sqm">
                                                                 </mat-form-field>
+                                                                <mat-error *ngIf="sqm.hasError('pattern')">
+                                                                    {{"hotelRegister.sqm.error" | translate}}
+                                                                </mat-error>
                                                             </div>
                                                             <div class="col" style="padding: 4% 0 0 0"><h5>
                                                                 m2</h5>
@@ -99,16 +98,15 @@
                                                         </div>
                                                         <div class="row">
                                                             <div class="col">
-                                                                <h3><span style="font-weight: bold">Gợi ý vui chơi ăn uống</span>
+                                                                <h3><span
+                                                                        style="font-weight: bold">{{"hotelRegister.suggestPlayground" | translate }}</span>
                                                                 </h3>
                                                             </div>
                                                         </div>
                                                         <div class="row">
                                                             <div class="col">
                                                                 <mat-form-field class="example-full-width">
-                                                                    <mat-label>Có điểm tham quan du lịch, vui
-                                                                        chơi
-                                                                        nào ở gần đây không?
+                                                                    <mat-label>{{"hotelRegister.areAttractions" | translate}}
                                                                     </mat-label>
                                                                     <textarea matInput
                                                                               formControlName="suggestPlayground"></textarea>
@@ -123,20 +121,18 @@
                                                 <div class="row">
                                                     <div class="col">
                                                         <h3><span
-                                                                style="font-weight: bold">Quy định khách sạn(tùy chọn)</span>
+                                                                style="font-weight: bold">{{"hotelRegister.ruleHotel" | translate}}</span>
                                                         </h3>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col">
                                                         <mat-form-field>
-                                                            <mat-label>Báo trước cho du khách những quy định cụ
-                                                                thể
-                                                                trong khách sạn
+                                                            <mat-label>{{"hotelRegister.ruleHotelv2" | translate}}
                                                             </mat-label>
-                                                            <textarea matInput placeholder="Ví dụ:
-• Giữ yên lặng sau 11:00 PM
-• Không xả rác xuống đường ống" rows="3" formControlName="rulerHotel"></textarea>
+                                                            <textarea matInput
+                                                                      [placeholder]="'hotelRegister.ruleHotelv3' | translate"
+                                                                      rows="3" formControlName="rulerHotel"></textarea>
                                                         </mat-form-field>
                                                     </div>
                                                 </div>
@@ -146,21 +142,9 @@
                                                 <div class="row">
                                                     <div class="col">
                                                         <h3><span
-                                                                style="font-weight: bold">Khi đến nơi, làm thế nào để khách hàng đi đến chỗ bạn?</span>
+                                                                style="font-weight: bold">{{"hotelRegister.howCustomerGotoPlaceYour" | translate}}</span>
                                                         </h3>
-                                                        <label>Hướng dẫn rõ ràng thật sự rất quan trọng. Khả
-                                                            năng
-                                                            khách
-                                                            hàng lần đầu đến đây là rất lớn và bị lạc đường là
-                                                            một
-                                                            khởi
-                                                            đầu không ai muốn.
-                                                            Hệ thống sẽ tự động gửi những hướng dẫn này cho
-                                                            khách
-                                                            sau
-                                                            khi đặt phòng được xác nhận.
-                                                            Nếu muốn bạn vẫn có thể liên lạc với khách hàng lần
-                                                            nữa.
+                                                        <label>{{"hotelRegister.howCustomerGotoPlaceYourv2" | translate}}
                                                         </label>
                                                     </div>
                                                 </div>
@@ -174,12 +158,13 @@
                                                 </div>
                                             </div>
 
-                                            <div>
-                                                <div class="row">
-                                                    <div class="col-3">
-                                                        <h3><span style="font-weight: bold">Xếp hạng sao</span>
-                                                        </h3>
-                                                    </div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <h3><span
+                                                            style="font-weight: bold">{{"hotelRegister.ratingStar" | translate}}</span>
+                                                    </h3>
+                                                </div>
+                                                <div class="col">
                                                     <app-star-rating [rating]="rating" [starCount]="starCount"
                                                                      [color]="starColor"
                                                                      (ratingUpdated)="onRatingChanged($event)"></app-star-rating>
@@ -188,29 +173,32 @@
 
                                             <div>
                                                 <div class="row">
-                                                    <div class="col-3">
-                                                        <h3><span style="font-weight: bold">Hình ảnh</span></h3>
+                                                    <div class="col">
+                                                        <h3><span
+                                                                style="font-weight: bold">{{"hotelRegister.image" | translate}}</span>
+                                                        </h3>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col">
                                                         <app-image (imageSrcUrl)="getImageSrc($event)"
                                                                    [multiple]="true"
-                                                        [imageProp]="imageProp" ></app-image>
+                                                                   [imageProp]="imageProp"></app-image>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div>
                                                 <div class="row">
-                                                    <div class="col-3">
-                                                        <h3><span style="font-weight: bold">Số loại phòng</span>
+                                                    <div class="col">
+                                                        <h3><span
+                                                                style="font-weight: bold">{{"hotelRegister.CountTypeRooms"|translate}}</span>
                                                         </h3>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col">
-                                                        Số loại phòng mà khách sạn bạn có thể cung cấp.
+                                                        {{"hotelRegister.countTypeRoomsV2"|translate}}
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -236,9 +224,8 @@
 
                                             <div class="row">
                                                 <div class="col text-right">
-                                                    <!--                                                    <button class="prevtab btn btn-success">Prev</button>-->
                                                     <button class="nexttab btn btn-success" (click)="tabNext()">
-                                                        Next
+                                                        {{"common.button.next"|translate}}
                                                     </button>
                                                 </div>
                                             </div>
@@ -254,7 +241,7 @@
         <mat-tab>
             <ng-template mat-tab-label>
                 <mat-icon>house</mat-icon>
-                Địa chỉ
+                {{"hotelRegister.address"|translate}}
             </ng-template>
             <div class="main-content">
                 <div class="container-fluid">
@@ -263,9 +250,9 @@
                             <div class="card-header card-header-info">
                                 <div class="row">
                                     <div class="col">
-                                        <h4 class="card-title">Xác định vị trí chỗ ở của bạn trên bản đồ.
+                                        <h4 class="card-title">{{"hotelRegister.positionYourOnMap" | translate}}
                                         </h4>
-                                        <p class="card-category">Khách hàng sẽ ở đâu?
+                                        <p class="card-category">{{"hotelRegister.whereWillCustomerBe" | translate}}
                                         </p>
                                     </div>
                                     <div class="col">
@@ -279,10 +266,9 @@
                                 <div class="row">
                                     <div class="col">
                                         <h3><span
-                                                style="font-weight: bold">Địa điểm</span>
+                                                style="font-weight: bold">{{"hotelRegister.Place"|translate}}</span>
                                         </h3>
-                                        <label>Khách hàng chỉ nhận được địa chỉ cụ thể một khi đã xác nhận đặt
-                                            phòng.
+                                        <label>{{"hotelRegister.Placev2" | translate}}
                                         </label>
                                     </div>
                                 </div>
@@ -291,13 +277,13 @@
                                 <div class="row">
                                     <div class="col">
                                         <fieldset class="the-fieldset">
-                                            <legend class="the-legend">Địa điểm</legend>
+                                            <legend class="the-legend">{{"hotelRegister.Place" | translate}}</legend>
 
                                             <div>
                                                 <div class="row">
                                                     <div class="col">
                                                         <h4><span
-                                                                style="font-weight: bold">Địa chỉ</span>
+                                                                style="font-weight: bold">{{"hotelRegister.address" | translate}}</span>
                                                         </h4>
                                                     </div>
                                                 </div>
@@ -322,71 +308,73 @@
                                                 <div class="row">
                                                     <div class="col">
                                                         <h4><span
-                                                                style="font-weight: bold">Tên tòa nhà, tầng và căn hộ (không bắt buộc)</span>
+                                                                style="font-weight: bold">{{"hotelRegister.nameHotelOptional" | translate }}</span>
                                                         </h4>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-lg-6">
                                                         <mat-form-field>
-                                                            <input matInput placeholder="Địa chỉ"
+                                                            <input matInput
+                                                                   [placeholder]="'hotelRegister.address' | translate"
                                                                    formControlName="address">
                                                         </mat-form-field>
                                                     </div>
                                                 </div>
                                             </div>
 
-<!--                                            <div>-->
-<!--                                                <div class="row">-->
-<!--                                                    <div class="col-lg-3">-->
-<!--                                                        <mat-form-field class="example-full-width">-->
-<!--                                                            <mat-label>Quốc gia</mat-label>-->
-<!--                                                            <input matInput placeholder="Quốc gia"-->
-<!--                                                                   formControlName="country">-->
-<!--                                                        </mat-form-field>-->
-<!--                                                        &lt;!&ndash;                                                        <mat-form-field>&ndash;&gt;-->
-<!--                                                        &lt;!&ndash;                                                            <mat-label>Quốc gia</mat-label>&ndash;&gt;-->
-<!--                                                        &lt;!&ndash;                                                            &ndash;&gt;-->
-<!--                                                        &lt;!&ndash;                                                            <mat-select formControlName="country">&ndash;&gt;-->
-<!--                                                        &lt;!&ndash;                                                                <mat-option>None</mat-option>&ndash;&gt;-->
-<!--                                                        &lt;!&ndash;                                                                <mat-option value="option1">Option 1&ndash;&gt;-->
-<!--                                                        &lt;!&ndash;                                                                </mat-option>&ndash;&gt;-->
-<!--                                                        &lt;!&ndash;                                                                <mat-option value="option2">Option 2&ndash;&gt;-->
-<!--                                                        &lt;!&ndash;                                                                </mat-option>&ndash;&gt;-->
-<!--                                                        &lt;!&ndash;                                                                <mat-option value="option3">Option 3&ndash;&gt;-->
-<!--                                                        &lt;!&ndash;                                                                </mat-option>&ndash;&gt;-->
-<!--                                                        &lt;!&ndash;                                                            </mat-select>&ndash;&gt;-->
-<!--                                                        &lt;!&ndash;                                                        </mat-form-field>&ndash;&gt;-->
-<!--                                                    </div>-->
-<!--                                                    <div class="col-lg-3">-->
-<!--                                                        <mat-form-field class="example-full-width">-->
-<!--                                                            <mat-label>Tiểu bang / Tỉnh</mat-label>-->
-<!--                                                            <input matInput placeholder="Tiểu bang / Tỉnh"-->
-<!--                                                                   formControlName="province">-->
-<!--                                                        </mat-form-field>-->
-<!--                                                        &lt;!&ndash;                                                        <mat-form-field>&ndash;&gt;-->
-<!--                                                        &lt;!&ndash;                                                            <mat-label>Tiểu bang / Tỉnh</mat-label>&ndash;&gt;-->
-<!--                                                        &lt;!&ndash;                                                            <mat-select formControlName="province">&ndash;&gt;-->
-<!--                                                        &lt;!&ndash;                                                                <mat-option>None</mat-option>&ndash;&gt;-->
-<!--                                                        &lt;!&ndash;                                                                <mat-option value="option1">Option 1&ndash;&gt;-->
-<!--                                                        &lt;!&ndash;                                                                </mat-option>&ndash;&gt;-->
-<!--                                                        &lt;!&ndash;                                                                <mat-option value="option2">Option 2&ndash;&gt;-->
-<!--                                                        &lt;!&ndash;                                                                </mat-option>&ndash;&gt;-->
-<!--                                                        &lt;!&ndash;                                                                <mat-option value="option3">Option 3&ndash;&gt;-->
-<!--                                                        &lt;!&ndash;                                                                </mat-option>&ndash;&gt;-->
-<!--                                                        &lt;!&ndash;                                                            </mat-select>&ndash;&gt;-->
-<!--                                                        &lt;!&ndash;                                                        </mat-form-field>&ndash;&gt;-->
-<!--                                                    </div>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
+                                            <!--                                            <div>-->
+                                            <!--                                                <div class="row">-->
+                                            <!--                                                    <div class="col-lg-3">-->
+                                            <!--                                                        <mat-form-field class="example-full-width">-->
+                                            <!--                                                            <mat-label>Quốc gia</mat-label>-->
+                                            <!--                                                            <input matInput placeholder="Quốc gia"-->
+                                            <!--                                                                   formControlName="country">-->
+                                            <!--                                                        </mat-form-field>-->
+                                            <!--                                                        &lt;!&ndash;                                                        <mat-form-field>&ndash;&gt;-->
+                                            <!--                                                        &lt;!&ndash;                                                            <mat-label>Quốc gia</mat-label>&ndash;&gt;-->
+                                            <!--                                                        &lt;!&ndash;                                                            &ndash;&gt;-->
+                                            <!--                                                        &lt;!&ndash;                                                            <mat-select formControlName="country">&ndash;&gt;-->
+                                            <!--                                                        &lt;!&ndash;                                                                <mat-option>None</mat-option>&ndash;&gt;-->
+                                            <!--                                                        &lt;!&ndash;                                                                <mat-option value="option1">Option 1&ndash;&gt;-->
+                                            <!--                                                        &lt;!&ndash;                                                                </mat-option>&ndash;&gt;-->
+                                            <!--                                                        &lt;!&ndash;                                                                <mat-option value="option2">Option 2&ndash;&gt;-->
+                                            <!--                                                        &lt;!&ndash;                                                                </mat-option>&ndash;&gt;-->
+                                            <!--                                                        &lt;!&ndash;                                                                <mat-option value="option3">Option 3&ndash;&gt;-->
+                                            <!--                                                        &lt;!&ndash;                                                                </mat-option>&ndash;&gt;-->
+                                            <!--                                                        &lt;!&ndash;                                                            </mat-select>&ndash;&gt;-->
+                                            <!--                                                        &lt;!&ndash;                                                        </mat-form-field>&ndash;&gt;-->
+                                            <!--                                                    </div>-->
+                                            <!--                                                    <div class="col-lg-3">-->
+                                            <!--                                                        <mat-form-field class="example-full-width">-->
+                                            <!--                                                            <mat-label>Tiểu bang / Tỉnh</mat-label>-->
+                                            <!--                                                            <input matInput placeholder="Tiểu bang / Tỉnh"-->
+                                            <!--                                                                   formControlName="province">-->
+                                            <!--                                                        </mat-form-field>-->
+                                            <!--                                                        &lt;!&ndash;                                                        <mat-form-field>&ndash;&gt;-->
+                                            <!--                                                        &lt;!&ndash;                                                            <mat-label>Tiểu bang / Tỉnh</mat-label>&ndash;&gt;-->
+                                            <!--                                                        &lt;!&ndash;                                                            <mat-select formControlName="province">&ndash;&gt;-->
+                                            <!--                                                        &lt;!&ndash;                                                                <mat-option>None</mat-option>&ndash;&gt;-->
+                                            <!--                                                        &lt;!&ndash;                                                                <mat-option value="option1">Option 1&ndash;&gt;-->
+                                            <!--                                                        &lt;!&ndash;                                                                </mat-option>&ndash;&gt;-->
+                                            <!--                                                        &lt;!&ndash;                                                                <mat-option value="option2">Option 2&ndash;&gt;-->
+                                            <!--                                                        &lt;!&ndash;                                                                </mat-option>&ndash;&gt;-->
+                                            <!--                                                        &lt;!&ndash;                                                                <mat-option value="option3">Option 3&ndash;&gt;-->
+                                            <!--                                                        &lt;!&ndash;                                                                </mat-option>&ndash;&gt;-->
+                                            <!--                                                        &lt;!&ndash;                                                            </mat-select>&ndash;&gt;-->
+                                            <!--                                                        &lt;!&ndash;                                                        </mat-form-field>&ndash;&gt;-->
+                                            <!--                                                    </div>-->
+                                            <!--                                                </div>-->
+                                            <!--                                            </div>-->
 
                                             <div>
                                                 <div class="row">
                                                     <div class="col-lg-3">
 
                                                         <mat-form-field class="example-full-width">
-                                                            <mat-label>Quốc gia</mat-label>
-                                                            <input matInput placeholder="Quốc gia"
+                                                            <mat-label>{{"hotelRegister.country" | translate}}</mat-label>
+                                                            <input matInput
+                                                                   [placeholder]="'hotelRegister.country' | translate"
                                                                    formControlName="country">
                                                         </mat-form-field>
                                                         <!--                                                            <mat-label>Thành phố</mat-label>-->
@@ -408,8 +396,9 @@
                                                     </div>
                                                     <div class="col-lg-3">
                                                         <mat-form-field>
-                                                            <mat-label>Zip</mat-label>
-                                                            <input matInput placeholder="Mã zip nè"
+                                                            <mat-label>{{"hotelRegister.zipCode" | translate}}</mat-label>
+                                                            <input matInput
+                                                                   [placeholder]="'hotelRegister.zipCode' | translate"
                                                                    formControlName="zip">
                                                         </mat-form-field>
                                                     </div>
@@ -420,13 +409,8 @@
                                                 <div class="row">
                                                     <div class="col">
                                                         <h4><span
-                                                                style="font-weight: bold">Map</span>
+                                                                style="font-weight: bold">{{"hotelRegister.map" | translate}}</span>
                                                         </h4>
-                                                        <label>Khách hàng chỉ nhận được địa chỉ cụ thể một khi
-                                                            đã
-                                                            xác nhận đặt
-                                                            phòng.
-                                                        </label>
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -441,10 +425,10 @@
                                             <div class="row">
                                                 <div class="col text-right">
                                                     <button class="prevtab btn btn-success" (click)="tabPrevios()">
-                                                        Prev
+                                                        {{"common.button.back"|translate}}
                                                     </button>
                                                     <button class="nexttab btn btn-success" (click)="tabNext()">
-                                                        Next
+                                                        {{"common.button.next"|translate}}
                                                     </button>
                                                 </div>
                                             </div>
@@ -461,7 +445,7 @@
             <div formGroupName="facilities">
                 <ng-template mat-tab-label>
                     <mat-icon>book</mat-icon>
-                    Vật dụng
+                    {{"hotelRegister.item" |translate}}
                 </ng-template>
                 <div class="main-content">
                     <div class="container-fluid">
@@ -470,13 +454,9 @@
                                 <div class="card-header card-header-info">
                                     <div class="row">
                                         <div class="col">
-                                            <h4 class="card-title">Tất cả các tiện nghi và những vật dụng nhỏ
-                                                bạn
-                                                cung
-                                                cấp.
+                                            <h4 class="card-title">{{"hotelRegister.allItemYouProvide" | translate}}
                                             </h4>
-                                            <p class="card-category">Nhà bạn có sẵn những vật dụng và tiện nghi
-                                                gì?
+                                            <p class="card-category">{{"hotelRegister.whatFacilitiesAvailable" | translate}}
                                             </p>
                                         </div>
                                         <div class="col">
@@ -490,12 +470,9 @@
                                     <div class="row">
                                         <div class="col">
                                             <h3><span
-                                                    style="font-weight: bold">Tiện nghi thiết yếu</span>
+                                                    style="font-weight: bold">{{"hotelRegister.EssentialAmenities" | translate}}</span>
                                             </h3>
-                                            <label>Những tiện nghi thiết yếu thường được du khách chú trọng khi
-                                                đặt
-                                                nhà
-                                                riêng.
+                                            <label>{{"hotelRegister.EssentialAmenitiesV2" | translate}}
                                             </label>
                                         </div>
                                     </div>
@@ -506,44 +483,67 @@
                                             <fieldset class="the-fieldset">
                                                 <div class="row">
                                                     <div class="col">
-                                                        <mat-checkbox formControlName="airConditional">Máy điều hòa</mat-checkbox>
+                                                        <mat-checkbox
+                                                                formControlName="airConditional">{{"facilities.airConditional" | translate}}
+                                                        </mat-checkbox>
                                                     </div>
                                                     <div class="col">
-                                                        <mat-checkbox formControlName="Hairdryer">Máy sấy tóc</mat-checkbox>
+                                                        <mat-checkbox
+                                                                formControlName="Hairdryer">{{"facilities.Hairdryer" | translate}}
+                                                        </mat-checkbox>
                                                     </div>
                                                     <div class="col">
-                                                        <mat-checkbox formControlName="ironingMachine">Máy ủi ( bàn là )</mat-checkbox>
+                                                        <mat-checkbox
+                                                                formControlName="ironingMachine">{{"facilities.ironingMachine" | translate}}
+                                                        </mat-checkbox>
                                                     </div>
                                                     <div class="col">
-                                                        <mat-checkbox  formControlName="television">Tivi</mat-checkbox>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <mat-checkbox formControlName="cableTelevision">Truyền hình cáp</mat-checkbox>
-                                                    </div>
-                                                    <div class="col">
-                                                        <mat-checkbox formControlName="freeWifi">Wifi miễn phí</mat-checkbox>
-                                                    </div>
-                                                    <div class="col">
-                                                        <mat-checkbox formControlName="freeInternet">Internet miễn phí</mat-checkbox>
-                                                    </div>
-                                                    <div class="col">
-                                                        <mat-checkbox formControlName="washingMachine">Máy giặt</mat-checkbox>
+                                                        <mat-checkbox
+                                                                formControlName="television">{{"facilities.televison" | translate}}</mat-checkbox>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col">
-                                                        <mat-checkbox formControlName="Shampoo">Dầu gội đầu</mat-checkbox>
+                                                        <mat-checkbox
+                                                                formControlName="cableTelevision">{{"facilities.cableTV" | translate}}
+                                                        </mat-checkbox>
                                                     </div>
                                                     <div class="col">
-                                                        <mat-checkbox formControlName="beddingSet">Bộ ga giường</mat-checkbox>
+                                                        <mat-checkbox
+                                                                formControlName="freeWifi">{{"facilities.freeWifi"|translate}}
+                                                        </mat-checkbox>
                                                     </div>
                                                     <div class="col">
-                                                        <mat-checkbox formControlName="TowelsOfAllKinds">Khăn các loại</mat-checkbox>
+                                                        <mat-checkbox
+                                                                formControlName="freeInternet">{{"facilities.freeInternet"| translate}}
+                                                        </mat-checkbox>
                                                     </div>
                                                     <div class="col">
-                                                        <mat-checkbox  formControlName="smartKey">Chìa khóa thông minh</mat-checkbox>
+                                                        <mat-checkbox
+                                                                formControlName="washingMachine">{{"facilities.washingMachine" | translate}}
+                                                        </mat-checkbox>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <mat-checkbox
+                                                                formControlName="Shampoo">{{"facilities.shampoo"|translate}}
+                                                        </mat-checkbox>
+                                                    </div>
+                                                    <div class="col">
+                                                        <mat-checkbox
+                                                                formControlName="beddingSet">{{"facilities.beddingSet" | translate}}
+                                                        </mat-checkbox>
+                                                    </div>
+                                                    <div class="col">
+                                                        <mat-checkbox
+                                                                formControlName="TowelsOfAllKinds">{{"facilities.TowelsOfAllKinds" | translate}}
+                                                        </mat-checkbox>
+                                                    </div>
+                                                    <div class="col">
+                                                        <mat-checkbox
+                                                                formControlName="smartKey">{{"facilities.smartKey"|translate}}
+                                                        </mat-checkbox>
                                                     </div>
                                                 </div>
                                             </fieldset>
@@ -555,9 +555,9 @@
                                     <div class="row">
                                         <div class="col">
                                             <h3><span
-                                                    style="font-weight: bold">Mạng Internet</span>
+                                                    style="font-weight: bold">{{"facilities.internet"|translate}}</span>
                                             </h3>
-                                            <label>Những hình thức kết nối mạng Internet.
+                                            <label>{{"facilities.internetConnection" | translate}}
                                             </label>
                                         </div>
                                     </div>
@@ -568,10 +568,14 @@
                                             <fieldset class="the-fieldset">
                                                 <div class="row">
                                                     <div class="col-lg-3">
-                                                        <mat-checkbox formControlName="wifiCharge">Wifi tính phí</mat-checkbox>
+                                                        <mat-checkbox
+                                                                formControlName="wifiCharge">{{"facilities.wifiCharge"|translate}}
+                                                        </mat-checkbox>
                                                     </div>
                                                     <div class="col-lg-3">
-                                                        <mat-checkbox formControlName="internetCharge">Internet tính phí</mat-checkbox>
+                                                        <mat-checkbox
+                                                                formControlName="internetCharge">{{"facilities.internetCharge" | translate}}
+                                                        </mat-checkbox>
                                                     </div>
                                                 </div>
                                             </fieldset>
@@ -583,10 +587,10 @@
                                     <div class="row">
                                         <div class="col">
                                             <h3><span
-                                                    style="font-weight: bold">Sự thoải mái</span>
+                                                    style="font-weight: bold">{{"facilities.comfortable"|translate}}
+                                                </span>
                                             </h3>
-                                            <label>Những tiện nghi phụ trợ cho một kỳ nghỉ thuận tiện và vừa ý
-                                                nhất.
+                                            <label>{{"facilities.comfortableV2"|translate}}
                                             </label>
                                         </div>
                                     </div>
@@ -597,16 +601,24 @@
                                             <fieldset class="the-fieldset">
                                                 <div class="row">
                                                     <div class="col">
-                                                        <mat-checkbox formControlName="wheelchairAccessible">Xe lăn vào được</mat-checkbox>
+                                                        <mat-checkbox
+                                                                formControlName="wheelchairAccessible">{{"facilities.wheelchairAccessible" |translate}}
+                                                        </mat-checkbox>
                                                     </div>
                                                     <div class="col">
-                                                        <mat-checkbox formControlName="elevatorInHotel">Thang máy trong hotel</mat-checkbox>
+                                                        <mat-checkbox
+                                                                formControlName="elevatorInHotel">{{"facilities.elevatorInHotel"|translate}}
+                                                        </mat-checkbox>
                                                     </div>
-                                                    <div class="col" >
-                                                        <mat-checkbox formControlName="wirelessBell">Chuông/liên lạc không dây</mat-checkbox>
+                                                    <div class="col">
+                                                        <mat-checkbox
+                                                                formControlName="wirelessBell">{{"facilities.wirelessBell"|translate}}
+                                                        </mat-checkbox>
                                                     </div>
-                                                    <div class="col" >
-                                                        <mat-checkbox formControlName="doorStaff">Nhân viên trực cửa</mat-checkbox>
+                                                    <div class="col">
+                                                        <mat-checkbox
+                                                                formControlName="doorStaff">{{"facilities.doorStaff"|translate}}
+                                                        </mat-checkbox>
                                                     </div>
                                                 </div>
                                             </fieldset>
@@ -618,10 +630,9 @@
                                     <div class="row">
                                         <div class="col">
                                             <h3><span
-                                                    style="font-weight: bold">Nhà bếp</span>
+                                                    style="font-weight: bold">{{"facilities.kitchen"|translate}}</span>
                                             </h3>
-                                            <label>Những tiện nghi và trang thiết bị phục vụ cho hoạt động ăn
-                                                uống.
+                                            <label>{{"facilities.equipment"|translate}}
                                             </label>
                                         </div>
                                     </div>
@@ -632,13 +643,17 @@
                                             <fieldset class="the-fieldset">
                                                 <div class="row">
                                                     <div class="col">
-                                                        <mat-checkbox formControlName="teaMaker">Máy pha cà phê/trà</mat-checkbox>
+                                                        <mat-checkbox
+                                                                formControlName="teaMaker">{{"facilities.teaMaker"|translate}}
+                                                        </mat-checkbox>
                                                     </div>
                                                     <div class="col">
-                                                        <mat-checkbox formControlName="coffee">Cà phê</mat-checkbox>
+                                                        <mat-checkbox
+                                                                formControlName="coffee">{{"facilities.coffe"|translate}}</mat-checkbox>
                                                     </div>
                                                     <div class="col">
-                                                        <mat-checkbox formControlName="tea">Trà</mat-checkbox>
+                                                        <mat-checkbox
+                                                                formControlName="tea">{{"facilities.tea"|translate}}</mat-checkbox>
                                                     </div>
                                                     <div class="col">
                                                         <mat-checkbox formControlName="Kitchen">Nhà bếp</mat-checkbox>
@@ -646,7 +661,8 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col">
-                                                        <mat-checkbox formControlName="freeBreakfast">Ăn sáng miễn phí</mat-checkbox>
+                                                        <mat-checkbox formControlName="freeBreakfast">Ăn sáng miễn phí
+                                                        </mat-checkbox>
                                                     </div>
                                                 </div>
                                             </fieldset>
@@ -674,41 +690,51 @@
                                             <fieldset class="the-fieldset">
                                                 <div class="row">
                                                     <div class="col">
-                                                        <mat-checkbox formControlName="workspace">Bàn/không gian làm việc</mat-checkbox>
+                                                        <mat-checkbox formControlName="workspace">Bàn/không gian làm
+                                                            việc
+                                                        </mat-checkbox>
                                                     </div>
                                                     <div class="col">
-                                                        <mat-checkbox formControlName="privatePool">Hồ bơi riêng</mat-checkbox>
+                                                        <mat-checkbox formControlName="privatePool">Hồ bơi riêng
+                                                        </mat-checkbox>
                                                     </div>
                                                     <div class="col">
                                                         <mat-checkbox formControlName="heaters">Máy sưởi</mat-checkbox>
                                                     </div>
-                                                    <div class="col" >
+                                                    <div class="col">
                                                         <mat-checkbox formControlName="Dryer">Máy sấy</mat-checkbox>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col">
-                                                        <mat-checkbox formControlName="Fireplace">Lò sưởi trong nhà</mat-checkbox>
+                                                        <mat-checkbox formControlName="Fireplace">Lò sưởi trong nhà
+                                                        </mat-checkbox>
                                                     </div>
                                                     <div class="col">
                                                         <mat-checkbox formControlName="Wardrobe">Tủ áo</mat-checkbox>
                                                     </div>
                                                     <div class="col">
-                                                        <mat-checkbox formControlName="indooPool">Hồ bơi trong nhà</mat-checkbox>
+                                                        <mat-checkbox formControlName="indooPool">Hồ bơi trong nhà
+                                                        </mat-checkbox>
                                                     </div>
                                                     <div class="col">
-                                                        <mat-checkbox formControlName="hotTub">Bồn tắm nước nóng</mat-checkbox>
+                                                        <mat-checkbox formControlName="hotTub">Bồn tắm nước nóng
+                                                        </mat-checkbox>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-lg-3">
-                                                        <mat-checkbox formControlName="gymRoom">Phòng tập gym</mat-checkbox>
+                                                        <mat-checkbox formControlName="gymRoom">Phòng tập gym
+                                                        </mat-checkbox>
                                                     </div>
                                                     <div class="col-lg-3">
-                                                        <mat-checkbox formControlName="outdoorSwimmingPool">Hồ bơi ngoài trời</mat-checkbox>
+                                                        <mat-checkbox formControlName="outdoorSwimmingPool">Hồ bơi ngoài
+                                                            trời
+                                                        </mat-checkbox>
                                                     </div>
                                                     <div class="col-lg-3">
-                                                        <mat-checkbox formControlName="freeParking">Đậu xe miễn phí</mat-checkbox>
+                                                        <mat-checkbox formControlName="freeParking">Đậu xe miễn phí
+                                                        </mat-checkbox>
                                                     </div>
                                                 </div>
                                             </fieldset>
@@ -735,16 +761,23 @@
                                             <fieldset class="the-fieldset">
                                                 <div class="row">
                                                     <div class="col">
-                                                        <mat-checkbox formControlName="SmokeDetector">Cảm biến báo khói</mat-checkbox>
+                                                        <mat-checkbox formControlName="SmokeDetector">Cảm biến báo
+                                                            khói
+                                                        </mat-checkbox>
                                                     </div>
                                                     <div class="col">
-                                                        <mat-checkbox formControlName="COAlarmSensor">Cảm biến báo khí CO</mat-checkbox>
+                                                        <mat-checkbox formControlName="COAlarmSensor">Cảm biến báo khí
+                                                            CO
+                                                        </mat-checkbox>
                                                     </div>
                                                     <div class="col">
-                                                        <mat-checkbox formControlName="FirstAidKit">Bộ sơ cấp cứu</mat-checkbox>
+                                                        <mat-checkbox formControlName="FirstAidKit">Bộ sơ cấp cứu
+                                                        </mat-checkbox>
                                                     </div>
                                                     <div class="col">
-                                                        <mat-checkbox formControlName="fireExtinguisher">Bình chữa cháy</mat-checkbox>
+                                                        <mat-checkbox formControlName="fireExtinguisher">Bình chữa
+                                                            cháy
+                                                        </mat-checkbox>
                                                     </div>
                                                 </div>
                                             </fieldset>
@@ -769,10 +802,12 @@
                                             <fieldset class="the-fieldset">
                                                 <div class="row">
                                                     <div class="col-lg-3">
-                                                        <mat-checkbox formControlName="Smoking">Được hút thuốc</mat-checkbox>
+                                                        <mat-checkbox formControlName="Smoking">Được hút thuốc
+                                                        </mat-checkbox>
                                                     </div>
                                                     <div class="col-lg-3">
-                                                        <mat-checkbox formControlName="petsAllowed">Cho phép vật nuôi</mat-checkbox>
+                                                        <mat-checkbox formControlName="petsAllowed">Cho phép vật nuôi
+                                                        </mat-checkbox>
                                                     </div>
                                                 </div>
                                             </fieldset>
@@ -784,10 +819,10 @@
                                     <div class="row">
                                         <div class="col text-right">
                                             <button class="prevtab btn btn-success" (click)="tabPrevios()">
-                                                Prev
+                                                {{"common.button.back"|translate}}
                                             </button>
                                             <button class="nexttab btn btn-success" (click)="tabNext()">
-                                                Next
+                                                {{"common.button.next"|translate}}
                                             </button>
                                         </div>
                                     </div>
@@ -1150,10 +1185,10 @@
                                     <div class="row">
                                         <div class="col text-right">
                                             <button class="prevtab btn btn-success" (click)="tabPrevios()">
-                                                Prev
+                                                {{"common.button.back"|translate}}
                                             </button>
                                             <button class="nexttab btn btn-success" (click)="tabNext()">
-                                                Next
+                                                {{"common.button.next"|translate}}
                                             </button>
                                         </div>
                                     </div>

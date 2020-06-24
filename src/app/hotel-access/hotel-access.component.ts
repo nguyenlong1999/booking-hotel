@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormArray, FormBuilder, FormGroup} from '@angular/forms';
+import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {StarRatingColor} from '../shared/animation/star-rating/star-rating.component';
 import {last} from 'rxjs/operators';
 
@@ -59,7 +59,7 @@ export class HotelAccessComponent implements OnInit {
     constructor(private formbuilder: FormBuilder) {
         this.registerHotelForm = this.formbuilder.group({
             name: [''],
-            sqm: [''],
+            sqm: ['', [Validators.pattern(/^[0-9]\d*$/)]],
             desHotel: [''],
             suggestPlayground: [''],
             rulerHotel: [''],
@@ -111,6 +111,9 @@ export class HotelAccessComponent implements OnInit {
         return this.registerHotelForm.controls;
     }
 
+    get sqm() {
+        return this.registerHotelForm.get('sqm');
+    }
 
     get formArrayRoomNumber() {
         return this.registerHotelForm.get('formArrayRoomNumber') as FormArray
