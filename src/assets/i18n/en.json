@@ -1,4 +1,10 @@
 {
+  "common" : {
+    "button": {
+      "back": "Previos",
+      "next": "Next"
+    }
+  },
   "demo.title": "Translation demo",
   "demo.text": "This is a simple demonstration app for ngx-translate",
   "index.home": "Home",
@@ -64,5 +70,8 @@
   "user.forget.password": "Forget password",
   "book.room": "Booking",
   "book.promotion": "Promotion",
-  "side.bar.chat": "Message"
+  "side.bar.chat": "Message",
+  "///": "bookinghotelcualongdeptrai",
+  "hotelRegister.basicInfo": "Basic information",
+  "hotelRegister.helpyoureach": "Help you reach the right customers Best."
 }

@@ -1,4 +1,10 @@
 {
+  "common" : {
+    "button": {
+      "back": "Trở về",
+      "next": "Tiếp theo"
+    }
+  },
   "demo.title": "Dịch tiếng việt demo",
   "demo.text": "Hà nội mùa lạnh giá",
   "index.home": "Trang chủ",
@@ -65,7 +71,7 @@
   "book.room": "Đặt phòng",
   "book.promotion": "Ưu đãi",
   "side.bar.chat": "Tin nhắn",
-  "user.profile.edit": "Chỉnh sửa hồ sơ",// 6/24: Quang add
+  "user.profile.edit": "Chỉnh sửa hồ sơ",
   "user.profile.changeInfo": "Đổi thông tin",
   "user.profile.email": "Email",
   "user.profile.gender": "Giới tính",
@@ -99,5 +105,28 @@
     "email": "Email",
     "password": "Mật khẩu",
     ""
-  }
+  },
+  "///": "bookinghotelcualongdeptrai",
+  "hotelRegister.basicInfo": "Thông tin cơ bản",
+  "hotelRegister.helpyoureach": "Giúp bạn tiếp cận đối tượng khách hàng phù hợp nhất.",
+  "hotelRegister.provideInformation": "Vui lòng cung cấp mọi thông tin được yêu cầu trừ khi có đánh dấu không bắt buộc.",
+  "hotelRegister.businessPremises": "Cơ sở kinh doanh",
+  "hotelRegister.hotelName": "Tên khách sạn",
+  "hotelRegister.sqm": "Diện tích mặt bằng",
+  "hotelRegister.sqmv2": "Mét vuông",
+  "hotelRegister.sqm.error": "Sai định dạng số",
+  "hotelRegister.hotelDes": "Mô tả khách sạn",
+  "hotelRegister.hotelDesv2": "Những đặc điểm nổi bật của căn hộ để thu hút khách",
+  "hotelRegister.hotelDesv3": "Ví dụ: • Cách phương tiện công cộng 5 phút đi bộ",
+  "hotelRegister.suggestPlayground": "Gợi ý vui chơi ăn uống",
+  "hotelRegister.areAttractions" : "Có điểm tham quan du lịch, vui chơi nào ở gần đây không?",
+  "hotelRegister.ruleHotel": "Quy định khách sạn (Tùy chọn)",
+  "hotelRegister.ruleHotelv2" : "Báo trước cho du khách những quy định cụ thể trong khách sạn",
+  "hotelRegister.ruleHotelv3" : "Ví dụ:\n• Giữ yên lặng sau 11:00 PM \n• Không xả rác xuống đường ống",
+  "hotelRegister.howCustomerGotoPlaceYour": "Khi đến nơi, làm thế nào để khách hàng đi đến chỗ bạn?",
+  "hotelRegister.howCustomerGotoPlaceYourv2": "Hướng dẫn rõ ràng thật sự rất quan trọng. Khả năng khách hàng lần đầu đến đây là rất lớn và bị lạc đường là một khởi đầu không ai muốn. Hệ thống sẽ tự động gửi những hướng dẫn này cho khách sau khi đặt phòng được xác nhận. Nếu muốn bạn vẫn có thể liên lạc với khách hàng lần nữa.",
+  "hotelRegister.ratingStar": "Xếp hạng sao",
+  "hotelRegister.image": "Hình ảnh",
+  "hotelRegister.CountTypeRooms" : "Số loại phòng",
+  "hotelRegister.countTypeRoomsV2": "Số loại phòng mà khách sạn bạn có thể cung cấp."
 }
