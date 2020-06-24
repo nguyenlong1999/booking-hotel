@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row" style="background-color: rgb(0, 153, 213); ">
             <div class="col-md-5">
-                <h2 style="color: #403131; font-weight: 400;">Thông tin cá nhân</h2>
+                <h2 style="color: #403131; font-weight: 400;">{{ "user.profile" | translate}}</h2>
             </div>
         </div>
         <div class="row">
@@ -14,16 +14,16 @@
                 <mat-tab-group>
                     <mat-tab>
                         <ng-template mat-tab-label>
-                            Đổi thông tin
+                            {{ "user.profile.changeInfo" | translate}}
                         </ng-template>
                         <div class="main-content">
                             <form style="width: 100%; " [formGroup]="profileForm" (ngSubmit)="updateProfile()">
                                 <div class="row">
-                                    <h3 style="text-transform: none;font-weight: 400;">Chỉnh sửa hồ sơ</h3>
+                                    <h3 style="text-transform: none;font-weight: 400;">{{ "user.profile.edit" | translate}}</h3>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-4">
-                                        <p class="input-title">Email:</p>
+                                        <p class="input-title">{{ "common.userRegister.email" | translate}}:</p>
                                     </div>
                                     <div class="col-lg-6">
                                         <mat-form-field class="example-full-width">
@@ -33,7 +33,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-4">
-                                        <p class="input-title">Tên người dùng:</p>
+                                        <p class="input-title">{{ "common.userRegister.username" | translate}}:</p>
                                     </div>
                                     <div class="col-lg-6">
                                         <mat-form-field class="example-full-width">
@@ -43,7 +43,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-3">
-                                        <p class="input-title">Năm sinh:</p>
+                                        <p class="input-title">{{ "user.profile.birthday" | translate}}:</p>
                                     </div>
                                     <div class="col-lg-3">
                                         <mat-form-field class="example-full-width">
@@ -55,7 +55,7 @@
                                         </mat-form-field>
                                     </div>
                                     <div class="col-lg-3">
-                                        <p class="input-title">Giới tính:</p>
+                                        <p class="input-title">{{ "user.profile.gender" | translate}}:</p>
                                     </div>
                                     <div class="col-lg-3">
                                         <mat-form-field class="example-full-width">
@@ -69,7 +69,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-4">
-                                        <p class="input-title">Tình trạng hôn nhân:</p>
+                                        <p class="input-title">{{ "user.profile.materialStatus" | translate}}:</p>
                                     </div>
                                     <div class="col-lg-6">
                                         <mat-form-field class="example-full-width">
@@ -83,7 +83,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-4">
-                                        <p class="input-title">Chữ kí:</p>
+                                        <p class="input-title">{{ "user.profile.signature" | translate}}:</p>
                                     </div>
                                     <div class="col-lg-6">
                                         <mat-form-field class="example-full-width">
@@ -93,7 +93,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-4">
-                                        <p class="input-about">Giới thiệu bản thân:</p>
+                                        <p class="input-about">{{ "user.profile.introduction" | translate}}:</p>
                                     </div>
                                     <div class="col-lg-6">
                                         <mat-form-field class="example-full-width">
@@ -105,8 +105,8 @@
                                 <div class="clearfix"></div>
                                 <div class="row">
                                     <div class="submit">
-                                        <button mat-raised-button type="submit" class="btn btn-outline-primary">Lưu thay
-                                            đổi
+                                        <button mat-raised-button type="submit" class="btn btn-outline-primary">
+                                            {{ "user.profile.saveChang" | translate}}
                                         </button>
                                     </div>
                                 </div>
@@ -115,23 +115,23 @@
                     </mat-tab>
                     <mat-tab>
                         <ng-template mat-tab-label>
-                            Đổi mật khẩu
+                            {{ "user.profile.changPassword" | translate}}
                         </ng-template>
                         <div class="main-content">
                             <form style="width: 100%;" [formGroup]="changePasswordForm" (ngSubmit)="changePassword()">
                                 <div class="row">
-                                    <h3 style="text-transform: none;font-weight: 400;">Đổi mật khẩu</h3>
+                                    <h3 style="text-transform: none;font-weight: 400;">{{ "user.profile.changPassword" | translate}}</h3>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-4">
-                                        <p class="input-title">Mật khẩu cũ:</p>
+                                        <p class="input-title">{{ "common.userRegister.oldPassword" | translate}}:</p>
                                     </div>
                                     <div class="col-lg-6">
                                         <mat-form-field class="example-full-width">
                                             <input matInput disabled formControlName="oldPassword" name="oldPassword"
                                                    type="password"
                                                    [ngClass]="{ 'is-invalid': passSubmitted && f.oldPassword.errors }"
-                                                   placeholder="Mật khẩu cũ"
+                                                   [placeholder] = "'common.userRegister.oldPassword' | translate"
                                                    title="Vui lòng điền mật khẩu cũ">
                                         </mat-form-field>
                                     </div>
@@ -143,13 +143,13 @@
                                             <div *ngIf="f.oldPassword.errors.required">
                                                 <i class="material-icons message-error">error</i>
                                                 <span class="message-error">
-                                                    Nhập mật khẩu cũ
+                                                    {{ "common.userRegister.errorPasswordOld" | translate}}
                                                 </span>
                                             </div>
                                             <div *ngIf="f .oldPassword.errors.minlength">
                                                 <i class="material-icons message-error">error</i>
                                                 <span class="message-error">
-                                                    Mật khẩu phải ít nhất 6 kí tự
+                                                    {{ "common.userRegister.errorPasswordValidate" | translate}}
                                                 </span>
                                             </div>
                                         </div>
@@ -157,13 +157,13 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-4">
-                                        <p class="input-title">Mật khẩu mới:</p>
+                                        <p class="input-title">{{ "common.userRegister.newPassword" | translate}}:</p>
                                     </div>
                                     <div class="col-lg-6">
                                         <mat-form-field class="example-full-width">
                                             <input matInput formControlName="password" name="password" type="password"
                                                    [ngClass]="{ 'is-invalid': passSubmitted && f.password.errors }"
-                                                   placeholder="Mật khẩu mới"
+                                                   [placeholder]="'common.userRegister.newPassword' | translate"
                                                    title="Please enter the password">
                                         </mat-form-field>
                                     </div>
@@ -175,13 +175,13 @@
                                             <div *ngIf="f.password.errors.required">
                                                 <i class="material-icons message-error">error</i>
                                                 <span class="message-error">
-                                                    Nhập mật khẩu mới
+                                                    {{ "common.userRegister.errorPasswordNew" | translate}}
                                                 </span>
                                             </div>
                                             <div *ngIf="f.password.errors.minlength">
                                                 <i class="material-icons message-error">error</i>
                                                 <span class="message-error">
-                                                    Mật khẩu phải ít nhất 6 kí tự
+                                                    {{ "common.userRegister.errorPasswordValidate" | translate}}
                                                 </span>
                                             </div>
                                         </div>
@@ -189,14 +189,15 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-4">
-                                        <p class="input-title">Nhập lại mật khẩu:</p>
+                                        <p class="input-title">{{ "common.userRegister.errorPasswordConfirm" | translate}}
+                                            :</p>
                                     </div>
                                     <div class="col-lg-6">
                                         <mat-form-field class="example-full-width">
                                             <input matInput formControlName="confirmPassword" name="confirmPassword"
                                                    type="password"
                                                    [ngClass]="{ 'is-invalid': passSubmitted && f.confirmPassword.errors }"
-                                                   placeholder="Xác nhận mật khẩu" title="Please re-enter the password">
+                                                   [placeholder]="'common.userRegister.errorPasswordConfirm' | translate">
                                         </mat-form-field>
                                     </div>
                                 </div>
@@ -207,13 +208,13 @@
                                             <div *ngIf="f.confirmPassword.errors.required">
                                                 <i class="material-icons message-error">error</i>
                                                 <span class="message-error">
-                                                    Vui lòng xác nhận mật khẩu
+                                                    {{ "common.userRegister.errorPasswordConfirm" | translate}}
                                                 </span>
                                             </div>
                                             <div *ngIf="f.confirmPassword.errors.mustMatch">
                                                 <i class="material-icons message-error">error</i>
                                                 <span class="message-error">
-                                                    Phải trùng khớp mật khẩu!
+                                                    {{ "common.userRegister.errorPasswordConfirmFalse" | translate}}
                                                 </span>
                                             </div>
                                         </div>
@@ -222,8 +223,8 @@
                                 <div class="clearfix"></div>
                                 <div class="row">
                                     <div class="submit">
-                                        <button mat-raised-button type="submit" class="btn btn-outline-primary">Đổi mật
-                                            khẩu
+                                        <button mat-raised-button type="submit" class="btn btn-outline-primary">
+                                            {{"user.profile.changPassword"|translate}}
                                         </button>
                                         <p style="text-align:center; color: red;font-size: 12px;">
                                             {{ errorPassMessage }}
@@ -233,7 +234,6 @@
                         </div>
                     </mat-tab>
                 </mat-tab-group>
-
             </div>
 
         </div>

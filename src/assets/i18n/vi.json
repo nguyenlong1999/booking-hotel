@@ -3,6 +3,25 @@
     "button": {
       "back": "Trở về",
       "next": "Tiếp theo"
+    },
+    "userRegister": {
+      "username": "Tên người dùng",
+      "email": "Email",
+      "password": "Mật khẩu",
+      "oldPassword": "Mật khẩu cũ",
+      "newPassword": "Mật khẩu mới",
+      "errorEmail": "Nhập Email",
+      "errorEmailValidate": "Email chưa hợp lệ",
+      "errorPasswordOld": "Nhập mật khẩu cũ",
+      "errorPasswordNew": "Nhập mật khẩu mới",
+      "errorPasswordConfirm": "Nhập lại mật khẩu",
+      "errorPasswordFalse": "Mật khẩu không đúng",
+      "errorPasswordOldFalse": "Mật khẩu cũ không đúng",
+      "errorPasswordConfirmFalse": "Nhập lại mật khẩu không chính xác",
+      "errorPasswordValidate": "Mật khẩu phải ít nhất 6 kí tự",
+      "createSuggest":"Hãy tạo một tài khoản để sở hữu nhiều ưu đãi từ hệ thống hơn",
+      "passwordSuggest": "Sử dụng 6 ký tự trở lên và kết hợp chữ cái, chữ số và biểu tượng",
+      "user.register.checkInfo": "Bạn hãy kiểm tra lại thông tin!"
     }
   },
   "demo.title": "Dịch tiếng việt demo",
@@ -63,7 +82,7 @@
   "language.vi": "Tiếng việt",
   "language.en": "Tiếng Anh",
   "Dashboard": "Trang chủ",
-  "user.profile": "Thông tin User",
+  "user.profile": "Thông tin cá nhân",
   "table.list": "Danh sách bảng",
   "user.space": "Đăng nhập",
   "user.login": " ĐĂNG NHẬP TRANG QUẢN TRỊ",
@@ -71,15 +90,14 @@
   "book.room": "Đặt phòng",
   "book.promotion": "Ưu đãi",
   "side.bar.chat": "Tin nhắn",
+  "///": "user cua quang dep jai",
   "user.profile.edit": "Chỉnh sửa hồ sơ",
   "user.profile.changeInfo": "Đổi thông tin",
-  "user.profile.email": "Email",
   "user.profile.gender": "Giới tính",
   "user.profile.male": "Nam",
   "user.profile.female": "Nữ",
   "user.profile.unknown": "không xác định",
   "user.profile.birthday": "Năm sinh",
-  "user.profile.username": "Tên người dùng",
   "user.profile.materialStatus": "Tình trạng hôn nhân",
   "user.profile.married": "Đã kết hôn",
   "user.profile.divorced": "Đã ly hôn",
@@ -89,23 +107,11 @@
   "user.profile.introduction": "Giới thiệu bản thân",
   "user.profile.saveChang": "Lưu thay đổi",
   "user.profile.changPassword": "Đổi mật khẩu",
-  "user.profile.oldPassword": "Mật khẩu cũ",
-  "user.profile.newPassword": "Mật khẩu mới",
-  "user.profile.errorPassword": {
-    "old": "Nhập mật khẩu cũ",
-    "new": "Nhập mật khẩu mới",
-    "confirm": "Nhập lại mật khẩu",
-    "false": "Mật khẩu không đúng",
-    "oldFalse": "Mật khẩu cũ không đúng",
-    "confirmFalse": "Nhập lại mật khẩu không chính xác",
-    "sixChar": "Mật khẩu phải ít nhất 6 kí tự"
-  },
-  "user.register" : {
-    "createAccountBooking": "Tạo tài khoản Booking",
-    "email": "Email",
-    "password": "Mật khẩu",
-    ""
-  },
+  "user.register.createAccountBooking": "Tạo tài khoản Booking",
+  "user.register.createTitle": "Hãy tạo một tài khoản để sở hữu nhiều ưu đãi từ hệ thống hơn",
+
+
+
   "///": "bookinghotelcualongdeptrai",
   "hotelRegister.basicInfo": "Thông tin cơ bản",
   "hotelRegister.helpyoureach": "Giúp bạn tiếp cận đối tượng khách hàng phù hợp nhất.",
