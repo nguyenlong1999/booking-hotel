@@ -1,5 +1,5 @@
 {
-  "common" : {
+  "common": {
     "button": {
       "back": "Trở về",
       "next": "Tiếp theo"
@@ -19,7 +19,7 @@
       "errorPasswordOldFalse": "Mật khẩu cũ không đúng",
       "errorPasswordConfirmFalse": "Nhập lại mật khẩu không chính xác",
       "errorPasswordValidate": "Mật khẩu phải ít nhất 6 kí tự",
-      "createSuggest":"Hãy tạo một tài khoản để sở hữu nhiều ưu đãi từ hệ thống hơn",
+      "createSuggest": "Hãy tạo một tài khoản để sở hữu nhiều ưu đãi từ hệ thống hơn",
       "passwordSuggest": "Sử dụng 6 ký tự trở lên và kết hợp chữ cái, chữ số và biểu tượng",
       "user.register.checkInfo": "Bạn hãy kiểm tra lại thông tin!"
     }
@@ -109,9 +109,22 @@
   "user.profile.changPassword": "Đổi mật khẩu",
   "user.register.createAccountBooking": "Tạo tài khoản Booking",
   "user.register.createTitle": "Hãy tạo một tài khoản để sở hữu nhiều ưu đãi từ hệ thống hơn",
-
-
-
+  "user.profile.oldPassword": "Mật khẩu cũ",
+  "user.profile.newPassword": "Mật khẩu mới",
+  "user.profile.errorPassword": {
+    "old": "Nhập mật khẩu cũ",
+    "new": "Nhập mật khẩu mới",
+    "confirm": "Nhập lại mật khẩu",
+    "false": "Mật khẩu không đúng",
+    "oldFalse": "Mật khẩu cũ không đúng",
+    "confirmFalse": "Nhập lại mật khẩu không chính xác",
+    "sixChar": "Mật khẩu phải ít nhất 6 kí tự"
+  },
+  "user.register": {
+    "createAccountBooking": "Tạo tài khoản Booking",
+    "email": "Email",
+    "password": "Mật khẩu"
+  },
   "///": "bookinghotelcualongdeptrai",
   "hotelRegister.basicInfo": "Thông tin cơ bản",
   "hotelRegister.helpyoureach": "Giúp bạn tiếp cận đối tượng khách hàng phù hợp nhất.",
@@ -125,14 +138,55 @@
   "hotelRegister.hotelDesv2": "Những đặc điểm nổi bật của căn hộ để thu hút khách",
   "hotelRegister.hotelDesv3": "Ví dụ: • Cách phương tiện công cộng 5 phút đi bộ",
   "hotelRegister.suggestPlayground": "Gợi ý vui chơi ăn uống",
-  "hotelRegister.areAttractions" : "Có điểm tham quan du lịch, vui chơi nào ở gần đây không?",
+  "hotelRegister.areAttractions": "Có điểm tham quan du lịch, vui chơi nào ở gần đây không?",
   "hotelRegister.ruleHotel": "Quy định khách sạn (Tùy chọn)",
-  "hotelRegister.ruleHotelv2" : "Báo trước cho du khách những quy định cụ thể trong khách sạn",
-  "hotelRegister.ruleHotelv3" : "Ví dụ:\n• Giữ yên lặng sau 11:00 PM \n• Không xả rác xuống đường ống",
+  "hotelRegister.ruleHotelv2": "Báo trước cho du khách những quy định cụ thể trong khách sạn",
+  "hotelRegister.ruleHotelv3": "Ví dụ:\n• Giữ yên lặng sau 11:00 PM \n• Không xả rác xuống đường ống",
   "hotelRegister.howCustomerGotoPlaceYour": "Khi đến nơi, làm thế nào để khách hàng đi đến chỗ bạn?",
   "hotelRegister.howCustomerGotoPlaceYourv2": "Hướng dẫn rõ ràng thật sự rất quan trọng. Khả năng khách hàng lần đầu đến đây là rất lớn và bị lạc đường là một khởi đầu không ai muốn. Hệ thống sẽ tự động gửi những hướng dẫn này cho khách sau khi đặt phòng được xác nhận. Nếu muốn bạn vẫn có thể liên lạc với khách hàng lần nữa.",
   "hotelRegister.ratingStar": "Xếp hạng sao",
   "hotelRegister.image": "Hình ảnh",
-  "hotelRegister.CountTypeRooms" : "Số loại phòng",
-  "hotelRegister.countTypeRoomsV2": "Số loại phòng mà khách sạn bạn có thể cung cấp."
+  "hotelRegister.CountTypeRooms": "Số loại phòng",
+  "hotelRegister.countTypeRoomsV2": "Số loại phòng mà khách sạn bạn có thể cung cấp.",
+  "hotelRegister.address": "Địa chỉ",
+  "hotelRegister.positionYourOnMap": "Xác định vị trí chỗ ở của bạn trên bản đồ.",
+  "hotelRegister.whereWillCustomerBe": "Khách hàng sẽ ở đâu?",
+  "hotelRegister.Place": "Địa điểm",
+  "hotelRegister.Placev2": "Khách hàng chỉ nhận được địa chỉ cụ thể một khi đã xác nhận đặt phòng.",
+  "hotelRegister.nameHotelOptional": "Tên tòa nhà, tầng và căn hộ (không bắt buộc)",
+  "hotelRegister.country": "Quốc gia",
+  "hotelRegister.zipCode": "Mã Zip",
+  "hotelRegister.map": "Bản đồ",
+  "hotelRegister.item": "Vật dụng",
+  "hotelRegister.allItemYouProvide": "Tất cả các tiện nghi và những vật dụng nhỏ bạn cung cấp.",
+  "hotelRegister.whatFacilitiesAvailable": "Khách sạn của bạn có sẵn những vật dụng và tiện nghi gì?",
+  "hotelRegister.EssentialAmenities": "Tiện nghi thiết yếu",
+  "hotelRegister.EssentialAmenitiesV2": "Những tiện nghi thiết yếu thường được du khách chú trọng khi đặt phòng riêng.",
+  "facilities.airConditional": "Máy điều hòa",
+  "facilities.Hairdryer": "Máy sấy tóc",
+  "facilities.ironingMachine": "Máy ủi (bàn là)",
+  "facilities.televison": "Tivi",
+  "facilities.cableTV": "Truyền hình cáp",
+  "facilities.freeWifi": "Wifi miễn phí",
+  "facilities.freeInternet": "Internet miễn phí",
+  "facilities.washingMachine": "Máy giặt",
+  "facilities.shampoo": "Dầu gội đầu",
+  "facilities.beddingSet": "Bộ ga giường",
+  "facilities.TowelsOfAllKinds": "Khăn các loại",
+  "facilities.smartKey": "Chìa khóa thông minh",
+  "facilities.internet": "Mạng Internet",
+  "facilities.internetConnection": "Những hình thức kết nối mạng Internet.",
+  "facilities.wifiCharge": "Wifi tính phí",
+  "facilities.internetCharge": "Internet tính phí",
+  "facilities.comfortable": "Sự thoải mái",
+  "facilities.comfortableV2": "Những tiện nghi phụ trợ cho một kỳ nghỉ thuận tiện và vừa ý nhất.",
+  "facilities.wheelchairAccessible": "Xe lăn vào được",
+  "facilities.elevatorInHotel": "Thang máy trong khách sạn",
+  "facilities.wirelessBell": "Chuông/liên lạc không dây",
+  "facilities.doorStaff": "Nhân viên trực cửa",
+  "facilities.kitchen": "Nhà bếp",
+  "facilities.equipment": "Những tiện nghi và trang thiết bị phục vụ cho hoạt động ăn uống.",
+  "facilities.teaMaker": "Máy pha cà phê/trà",
+  "facilities.coffe": "Cà phê",
+  "facilities.tea": "Trà"
 }
