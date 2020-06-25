@@ -127,6 +127,13 @@
   },
   "///": "bookinghotelcualongdeptrai",
   "hotelRegister": {
+    "price.errorRequired": "Giá mỗi đêm không được bỏ trống",
+    "price.errorTypeNumber": "Giá mỗi đêm phải là kiểu số",
+
+    "nameError": "Tên khách sạn không được để trống",
+    "desError": "Mô tả khách sạn không được để trống",
+    "guideToHotelError": "Hướng dẫn khách không được để trống",
+
     "basicInfo": "Thông tin cơ bản",
     "helpyoureach": "Giúp bạn tiếp cận đối tượng khách hàng phù hợp nhất.",
     "provideInformation": "Vui lòng cung cấp mọi thông tin được yêu cầu trừ khi có đánh dấu không bắt buộc.",

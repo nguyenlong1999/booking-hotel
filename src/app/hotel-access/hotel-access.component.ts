@@ -2,6 +2,9 @@ import {Component, Input, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {StarRatingColor} from '../shared/animation/star-rating/star-rating.component';
 import {last} from 'rxjs/operators';
+import {LoginServiceService} from '../shared/service/login-service.service';
+import {Router} from '@angular/router';
+import {HotelService} from '../shared/service/hotel.service.';
 
 @Component({
     selector: 'app-hotel-access',
@@ -27,6 +30,14 @@ export class HotelAccessComponent implements OnInit {
     starColorP: StarRatingColor = StarRatingColor.primary;
     starColorW: StarRatingColor = StarRatingColor.warn;
     arrayImage = '';
+    isNext = false;
+    isNext1 = false;
+    isSubmitted = false;
+    errorMessage: String;
+    tab2 = true;
+    tab3 = true;
+    tab4 = true;
+    tab5 = true;
 
     // type bed rooms
     lstTypeBedRoom = [
@@ -54,16 +65,18 @@ export class HotelAccessComponent implements OnInit {
 
     // đồng ý điều khoản
     checked = false;
-    isCheckAfterSubmit = false;
 
-    constructor(private formbuilder: FormBuilder) {
+    constructor(private formbuilder: FormBuilder,
+                private _hotelService: HotelService,
+                private _router: Router
+    ) {
         this.registerHotelForm = this.formbuilder.group({
-            name: [''],
+            name: ['', [Validators.required]],
             sqm: ['', [Validators.pattern(/^[0-9]\d*$/)]],
-            desHotel: [''],
+            desHotel: ['', [Validators.required]],
             suggestPlayground: [''],
             rulerHotel: [''],
-            guideToHotel: [''],
+            guideToHotel: ['', [Validators.required]],
             starHotel: [''],
             image: [''],
             totalRoomNumber: '1',
@@ -89,6 +102,33 @@ export class HotelAccessComponent implements OnInit {
         this.plusTotalRoomNumber();
     }
 
+    public changeTabValid(event: any) {
+        this.isNext = true
+        if (event.index === 1) { // validate form 1
+            this.tab2 = true;
+            if (this.registerHotelForm.controls['name'].invalid || this.registerHotelForm.controls['desHotel'].invalid
+                || this.registerHotelForm.controls['guideToHotel'].invalid) {
+                this.TabIndex = 0;
+                this.tab3 = true
+                this.tab4 = true
+                this.tab5 = true
+                return;
+            }
+            this.tab2 = false
+        }
+        if (event.index === 2) {
+            this.tab3 = false
+        }
+        if (event.index === 3) {
+            console.log('xxx')
+            this.tab4 = false
+        }
+        if (event.index === 4) {
+            this.isNext1 = true
+            this.tab5 = false
+        }
+    }
+
     public tabNext() {
         const tabCount = 5;
         this.TabIndex = (this.TabIndex + 1) % tabCount;
@@ -111,18 +151,30 @@ export class HotelAccessComponent implements OnInit {
         return this.registerHotelForm.controls;
     }
 
+    get nameHotel() {
+        return this.registerHotelForm.get('name');
+    }
+
     get sqm() {
         return this.registerHotelForm.get('sqm');
     }
+
+    // @ts-ignore
+    // get price(index) {
+    //     if (index) {
+    //         return this.registerHotelForm.get('formArrayRoomNumber').get(index).get('price');
+    //     }
+    //     return;
+    // }
 
     get formArrayRoomNumber() {
         return this.registerHotelForm.get('formArrayRoomNumber') as FormArray
     }
 
+
     onSubmit() {
         if (this.checked === false) {
-            console.log('xxxxxx')
-            this.isCheckAfterSubmit = true;
+            this.isSubmitted = true
             return
         }
 
@@ -131,6 +183,20 @@ export class HotelAccessComponent implements OnInit {
         this.registerHotelForm.get('starHotel').setValue(this.rating)
 
         console.log(this.registerHotelForm.value);
+
+        this._hotelService.createHotel(this.registerHotelForm.value).subscribe((data) => {
+            const result = data.body
+            if (result['status'] === 200) {
+                // this.message = result['message'];
+                // const radio: HTMLElement = document.getElementById('modal-button20');
+                // radio.click();
+                setTimeout(() => {
+                    this._router.navigate(['/']);
+                }, 5000);
+            } else if (result['status'] !== 200) {
+                this.errorMessage = result['message'];
+            }
+        })
     }
 
     addControlRoom() {
@@ -140,7 +206,7 @@ export class HotelAccessComponent implements OnInit {
             bedRooms: this.formbuilder.control('0'),
             bedRoomsDetails: this.formbuilder.array([]),
             maxDay: this.formbuilder.control('0'),
-            price: ['']
+            price: ['', [Validators.required, Validators.pattern(/^[0-9]\d*$/)]]
         });
     }
 
@@ -363,8 +429,7 @@ export class HotelAccessComponent implements OnInit {
 
     changeValueAccept(value) {
         this.checked = !value;
-        this.isCheckAfterSubmit = false
-        console.log(this.checked)
+        this.isSubmitted = false
     }
 
 }

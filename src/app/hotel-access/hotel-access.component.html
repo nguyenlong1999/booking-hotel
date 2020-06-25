@@ -1,5 +1,5 @@
 <form [formGroup]="registerHotelForm" class="form-signin" (ngSubmit)="onSubmit()" style="width: 100%;margin-top: 50px;">
-    <mat-tab-group [(selectedIndex)]="TabIndex">
+    <mat-tab-group [(selectedIndex)]="TabIndex" (selectedTabChange)="changeTabValid($event)">
         <mat-tab>
             <ng-template mat-tab-label>
                 {{ "hotelRegister.basicInfo" | translate }}
@@ -51,6 +51,10 @@
                                                                            [placeholder]="'hotelRegister.hotelName' | translate"
                                                                            type="text" formControlName="name">
                                                                 </mat-form-field>
+                                                                <mat-error
+                                                                        *ngIf="isNext && registerHotelForm.get('name').hasError('required')">
+                                                                    {{"hotelRegister.nameError" | translate}}
+                                                                </mat-error>
                                                             </div>
                                                         </div>
                                                         <div class="row">
@@ -68,6 +72,10 @@
                                                                     <textarea matInput
                                                                               [placeholder]="'hotelRegister.hotelDesv3'|translate"
                                                                               formControlName="desHotel"></textarea>
+                                                                    <mat-error
+                                                                            *ngIf="registerHotelForm.get('desHotel').hasError('required')">
+                                                                        {{"hotelRegister.desError" | translate}}
+                                                                    </mat-error>
                                                                 </mat-form-field>
                                                             </div>
                                                         </div>
@@ -154,6 +162,10 @@
                                                                 <textarea matInput
                                                                           formControlName="guideToHotel"></textarea>
                                                         </mat-form-field>
+                                                        <mat-error
+                                                                *ngIf="isNext &&registerHotelForm.get('guideToHotel').hasError('required')">
+                                                            {{"hotelRegister.guideToHotelError" | translate}}
+                                                        </mat-error>
                                                     </div>
                                                 </div>
                                             </div>
@@ -240,7 +252,7 @@
                 </div>
             </div>
         </mat-tab>
-        <mat-tab>
+        <mat-tab [disabled]='this.tab2'>
             <ng-template mat-tab-label>
                 <mat-icon>house</mat-icon>
                 {{"hotelRegister.address"|translate}}
@@ -443,7 +455,7 @@
                 </div>
             </div>
         </mat-tab>
-        <mat-tab>
+        <mat-tab [disabled]='this.tab3'>
             <div formGroupName="facilities">
                 <ng-template mat-tab-label>
                     <mat-icon>book</mat-icon>
@@ -843,7 +855,7 @@
                 </div>
             </div>
         </mat-tab>
-        <mat-tab>
+        <mat-tab [disabled]='this.tab4'>
             <ng-template mat-tab-label>
                 <mat-icon>bubble_chart</mat-icon>
                 {{"room.RoomInformation" |translate}}
@@ -879,7 +891,7 @@
                                             <div class="row" style="width: 100%;">
                                                 <div class="col">
                                                     <fieldset class="the-fieldset">
-                                                        <legend class="the-legend">{{"room.detailsOfRoomTypeAtNumber"|translate}} {{i+1}}
+                                                        <legend class="the-legend">{{"room.detailsOfRoomTypeAtNumber"|translate}} {{i + 1}}
                                                         </legend>
                                                         <div>
                                                             <div class="row">
@@ -1106,6 +1118,14 @@
                                                                         </mat-label>
                                                                         <input matInput formControlName="price">
                                                                     </mat-form-field>
+                                                                    <mat-error
+                                                                            *ngIf="this.isNext1 &&formArrayRoomNumber.controls[i].get('price').hasError('required')">
+                                                                        {{"hotelRegister.price.errorRequired" | translate}}
+                                                                    </mat-error>
+                                                                    <mat-error
+                                                                            *ngIf="this.isNext1 &&formArrayRoomNumber.controls[i].get('price').hasError('pattern')">
+                                                                        {{"hotelRegister.price.errorTypeNumber" | translate}}
+                                                                    </mat-error>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1188,9 +1208,8 @@
                     </div>
                 </div>
             </div>
-
         </mat-tab>
-        <mat-tab>
+        <mat-tab [disabled]="this.tab5">
             <ng-template mat-tab-label>
                 <mat-icon>bubble_chart</mat-icon>
                 {{"post.post"|translate}}
@@ -1241,14 +1260,15 @@
                                 </div>
                                 <div class="row">
                                     <div class="col">
-                                        <mat-checkbox (click)="changeValueAccept(checked)">{{"post.acceptWithBooking"|translate}}
+                                        <mat-checkbox
+                                                (click)="changeValueAccept(checked)">{{"post.acceptWithBooking"|translate}}
                                         </mat-checkbox>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col">
-                                        <mat-error *ngIf="isCheckAfterSubmit">
-                                           {{"post.acceptEroor"|translate}}
+                                        <mat-error *ngIf="this.isSubmitted">
+                                            {{"post.acceptEroor"|translate}}
                                         </mat-error>
                                     </div>
                                 </div>

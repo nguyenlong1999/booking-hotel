@@ -111,6 +111,8 @@
 
   "///": "bookinghotelcualongdeptrai",
   "hotelRegister": {
+    "price.errorRequired": "Price per night must not be empty",
+    "price.errorTypeNumber": "Price per night must be numeric",
     "basicInfo": "Basic information",
     "helpyoureach": "Help you reach the most appropriate audience.",
     "provideInformation": "Please provide all requested information unless otherwise marked.",
