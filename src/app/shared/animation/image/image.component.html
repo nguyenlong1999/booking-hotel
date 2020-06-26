@@ -13,11 +13,11 @@
         </div>
     </div>
     <div class="row">
-        <div *ngFor="let imagePre of listImgPreview; let i = index">
+        <div class="col-lg-2"  *ngFor="let imagePre of listImgPreview; let i = index">
             <div class="row">
                 <div class="col">
                     <div tyle="position: relative">
-                        <img [src]="imagePre" style="max-width:200px; height: auto;" />
+                        <img [src]="imagePre" style="max-width:100%; height: auto;" />
                     </div>
                 </div>
             </div>
@@ -34,7 +34,7 @@
 </div>
 <!-- user-profile -->
 <div *ngIf="imageProp == 'profile'">
-    <label class="hoverable" for="fileInput" style="height: 200px;
+    <label class="hoverablee" for="fileInput" style="height: 200px;
     width: 200px; margin: 30px auto">
         <!-- <img [src]=" 'https://www.w3schools.com/howto/img_avatar.png'" style="border: 1px solid #ffffff;"> -->
         <img [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png'"

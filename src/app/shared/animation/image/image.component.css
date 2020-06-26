@@ -33,7 +33,7 @@
     border-radius: 5px;
     cursor: pointer;
 }
-.hoverable .background {
+.hoverablee .background {
     position: absolute;
     display: none;
     top: 0;
@@ -45,7 +45,7 @@
     border-radius: 50%;
     z-index: 1;
 }
-.hoverable .hover-text {
+.hoverablee .hover-text {
     position: absolute;
     display: none;
     top: 50%;
@@ -53,7 +53,7 @@
     transform: translate(-50%, -50%);
     z-index: 2;
 }
-.hoverable {
+.hoverablee {
     position: relative;
     display: block;
     cursor: pointer;
@@ -67,17 +67,12 @@
     box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12),
         0 8px 10px -5px rgba(0, 0, 0, 0.2);
 }
-.hoverable:hover .hover-text {
+.hoverablee:hover .hover-text {
     display: block;
 }
-.hoverable:hover .background {
+.hoverablee:hover .background {
     display: block;
 }
 #fileInput {
     display: none;
-}
-img {
-    height: 100%;
-    width: 100%;
-    border-radius: 50%;
 }
