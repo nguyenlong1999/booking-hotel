@@ -9,6 +9,7 @@ import {retry, catchError, tap} from 'rxjs/operators';
 import {User} from '../model/user';
 import {Message} from '../model/message';
 import {Summary} from '../model/summary';
+import {Hotel} from '../model/hotel';
 
 @Injectable({
     providedIn: 'root'
@@ -22,6 +23,12 @@ export class HotelService {
     createHotel(hotel: any) {
         return this._http.post(`${this.baseUrl}/createHotel`, {hotel: hotel}, {observe: 'response'});
     }
+
+    getHotels = (): Observable<Hotel[]> => {
+        return this._http
+            .get<Hotel[]>(`${this.baseUrl}/getHotels`)
+            .pipe(tap(_ => console.log('load hotels')));
+    };
 
     // changePassword(user: any) {
     //     return this._http.post(`${this.baseUrl}/changePassword`, {user: user}, {observe: 'response'});

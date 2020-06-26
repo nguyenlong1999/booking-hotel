@@ -32,38 +32,42 @@ import { MatButtonToggleModule } from "@angular/material/button-toggle";
 import { HttpClient } from "@angular/common/http";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule.forChild(AdminLayoutRoutes),
-    FormsModule,
-    ReactiveFormsModule,
-    MatRippleModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatButtonModule,
-    MatRippleModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatTooltipModule,
-    CommonModule,
-    ToastrModule.forRoot(),
-    SharedModule,
-    MatTabsModule,
-    MatIconModule,
-    MatRadioModule,
-    SharedModule,
-    MatCheckboxModule,
-    MatButtonToggleModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    }),
-  ],
+    imports: [
+        CommonModule,
+        RouterModule.forChild(AdminLayoutRoutes),
+        FormsModule,
+        ReactiveFormsModule,
+        MatRippleModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatButtonModule,
+        MatRippleModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatTooltipModule,
+        CommonModule,
+        ToastrModule.forRoot(),
+        SharedModule,
+        MatTabsModule,
+        MatIconModule,
+        MatRadioModule,
+        SharedModule,
+        MatCheckboxModule,
+        MatButtonToggleModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            }
+        }),
+        MatTableModule,
+        MatPaginatorModule,
+    ],
   declarations: [
     DashboardComponent,
     UserProfileComponent,
