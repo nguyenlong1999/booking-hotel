@@ -38,7 +38,7 @@
     width: 200px; margin: 30px auto">
         <!-- <img [src]=" 'https://www.w3schools.com/howto/img_avatar.png'" style="border: 1px solid #ffffff;"> -->
         <img [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png'"
-            style="border: 1px solid #ffffff;">
+            style="border: 1px solid #ffffff;height: 100%;width: 100%;border-radius: 50%;">
     </label>
     <br />
     <input id="fileInput" type='file' (change)="onSelectFile($event)" ng2FileSelect [uploader]="uploader">
