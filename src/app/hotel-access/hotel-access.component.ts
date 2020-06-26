@@ -5,6 +5,7 @@ import {last} from 'rxjs/operators';
 import {LoginServiceService} from '../shared/service/login-service.service';
 import {Router} from '@angular/router';
 import {HotelService} from '../shared/service/hotel.service.';
+import {CookieService} from 'ngx-cookie-service';
 
 @Component({
     selector: 'app-hotel-access',
@@ -68,7 +69,8 @@ export class HotelAccessComponent implements OnInit {
 
     constructor(private formbuilder: FormBuilder,
                 private _hotelService: HotelService,
-                private _router: Router
+                private _router: Router,
+                private cookies: CookieService
     ) {
         this.registerHotelForm = this.formbuilder.group({
             name: ['', [Validators.required]],
@@ -183,7 +185,8 @@ export class HotelAccessComponent implements OnInit {
         this.registerHotelForm.get('starHotel').setValue(this.rating)
 
         console.log(this.registerHotelForm.value);
-
+        let hoTelsObject = this.registerHotelForm.value;
+        hoTelsObject.email = this.cookies.get('email');
         this._hotelService.createHotel(this.registerHotelForm.value).subscribe((data) => {
             const result = data.body
             if (result['status'] === 200) {
@@ -249,52 +252,52 @@ export class HotelAccessComponent implements OnInit {
     addControlFacilities() {
         console.log('facilities nè')
         return this.formbuilder.group({
-            airConditional: this.formbuilder.control(''),
-            Hairdryer: this.formbuilder.control(''),
-            ironingMachine: this.formbuilder.control(''),
-            television: this.formbuilder.control(''),
-            cableTelevision: this.formbuilder.control(''),
-            freeWifi: this.formbuilder.control(''),
-            freeInternet: this.formbuilder.control(''),
-            washingMachine: this.formbuilder.control(''),
-            Shampoo: this.formbuilder.control(''),
-            beddingSet: this.formbuilder.control(''),
-            TowelsOfAllKinds: this.formbuilder.control(''),
-            smartKey: this.formbuilder.control(''),
+            airConditional: this.formbuilder.control(false),
+            Hairdryer: this.formbuilder.control(false),
+            ironingMachine: this.formbuilder.control(false),
+            television: this.formbuilder.control(false),
+            cableTelevision: this.formbuilder.control(false),
+            freeWifi: this.formbuilder.control(false),
+            freeInternet: this.formbuilder.control(false),
+            washingMachine: this.formbuilder.control(false),
+            Shampoo: this.formbuilder.control(false),
+            beddingSet: this.formbuilder.control(false),
+            TowelsOfAllKinds: this.formbuilder.control(false),
+            smartKey: this.formbuilder.control(false),
 
-            wifiCharge: this.formbuilder.control(''),
-            internetCharge: this.formbuilder.control(''),
+            wifiCharge: this.formbuilder.control(false),
+            internetCharge: this.formbuilder.control(false),
 
 
-            wheelchairAccessible: this.formbuilder.control(''),
-            elevatorInHotel: this.formbuilder.control(''),
-            wirelessBell: this.formbuilder.control(''),
-            doorStaff: this.formbuilder.control(''),
+            wheelchairAccessible: this.formbuilder.control(false),
+            elevatorInHotel: this.formbuilder.control(false),
+            wirelessBell: this.formbuilder.control(false),
+            doorStaff: this.formbuilder.control(false),
 
-            teaMaker: this.formbuilder.control(''),
-            coffee: this.formbuilder.control(''),
-            tea: this.formbuilder.control(''),
-            Kitchen: this.formbuilder.control(''),
-            freeBreakfast: this.formbuilder.control(''),
-            workspace: this.formbuilder.control(''),
-            privatePool: this.formbuilder.control(''),
-            heaters: this.formbuilder.control(''),
-            Dryer: this.formbuilder.control(''),
-            Fireplace: this.formbuilder.control(''),
-            Wardrobe: this.formbuilder.control(''),
-            indooPool: this.formbuilder.control(''),
-            hotTub: this.formbuilder.control(''),
-            gymRoom: this.formbuilder.control(''),
-            outdoorSwimmingPool: this.formbuilder.control(''),
-            freeParking: this.formbuilder.control(''),
+            teaMaker: this.formbuilder.control(false),
+            coffee: this.formbuilder.control(false),
+            tea: this.formbuilder.control(false),
+            Kitchen: this.formbuilder.control(false),
+            freeBreakfast: this.formbuilder.control(false),
+            workspace: this.formbuilder.control(false),
+            privatePool: this.formbuilder.control(false),
+            heaters: this.formbuilder.control(false),
+            Dryer: this.formbuilder.control(false),
+            Fireplace: this.formbuilder.control(false),
+            Wardrobe: this.formbuilder.control(false),
+            indooPool: this.formbuilder.control(false),
+            hotTub: this.formbuilder.control(false),
+            gymRoom: this.formbuilder.control(false),
+            outdoorSwimmingPool: this.formbuilder.control(false),
+            freeParking: this.formbuilder.control(false),
 
-            SmokeDetector: this.formbuilder.control(''),
-            COAlarmSensor: this.formbuilder.control(''),
-            FirstAidKit: this.formbuilder.control(''),
-            fireExtinguisher: this.formbuilder.control(''),
+            SmokeDetector: this.formbuilder.control(false),
+            COAlarmSensor: this.formbuilder.control(false),
+            FirstAidKit: this.formbuilder.control(false),
+            fireExtinguisher: this.formbuilder.control(false),
 
-            Smoking: this.formbuilder.control(''),
-            petsAllowed: this.formbuilder.control('')
+            Smoking: this.formbuilder.control(false),
+            petsAllowed: this.formbuilder.control(false)
 
         })
     }
