@@ -7,167 +7,47 @@
                         <h4 class="card-title mt-0"> Table on Plain Background</h4>
                         <p class="card-category"> Here is a subtitle for this table</p>
                     </div>
+                    <div class="example-header">
+                        <mat-form-field>
+                            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                        </mat-form-field>
+                    </div>
                     <div class="card-body">
                         <mat-table [dataSource]="dataSource" matSort>
                             <ng-container matColumnDef="id">
-                                <mat-header-cell *matHeaderCellDef mat-sort-header> ID</mat-header-cell>
-                                <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+                                <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
+                                <mat-cell *matCellDef="let row ; index as i"> {{paginator.pageSize * paginator.pageIndex + i + 1}}  </mat-cell>
                             </ng-container>
 
                             <!-- Progress Column -->
-                            <ng-container matColumnDef="progress">
-                                <mat-header-cell *matHeaderCellDef mat-sort-header> Name</mat-header-cell>
-                                <mat-cell *matCellDef="let row"> {{row.name}}%</mat-cell>
+                            <ng-container matColumnDef="name">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+                                <mat-cell *matCellDef="let row"> {{row.name}}</mat-cell>
                             </ng-container>
 
                             <!-- Name Column -->
-                            <ng-container matColumnDef="name">
+                            <ng-container matColumnDef="sqm">
                                 <mat-header-cell *matHeaderCellDef mat-sort-header>Mét vuông</mat-header-cell>
                                 <mat-cell *matCellDef="let row"> {{row.sqm}} </mat-cell>
                             </ng-container>
 
+                            <ng-container matColumnDef="add">
+                                <mat-header-cell *matHeaderCellDef>
+                                    <button mat-icon-button color="warn" (click)="this.route.navigate(['/hotel-access'])">
+                                        <mat-icon>add</mat-icon>
+                                    </button>
+                                </mat-header-cell>
+                                <mat-cell *matCellDef="let row">
+                                    <button mat-icon-button color="warn" (click)="onClickEditRow(row._id)">
+                                        <mat-icon>create</mat-icon>
+                                    </button>
+                                </mat-cell>
+                            </ng-container>
 
-                            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-
+                            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
                         </mat-table>
-                        <!--                        <div class="table-responsive">-->
-                        <!--                            <table class="table table-hover">-->
-                        <!--                                <thead class="">-->
-                        <!--                                <th>-->
-                        <!--                                    ID-->
-                        <!--                                </th>-->
-                        <!--                                <th>-->
-                        <!--                                    Name-->
-                        <!--                                </th>-->
-                        <!--                                <th>-->
-                        <!--                                    Country-->
-                        <!--                                </th>-->
-                        <!--                                <th>-->
-                        <!--                                    City-->
-                        <!--                                </th>-->
-                        <!--                                <th>-->
-                        <!--                                    Salary-->
-                        <!--                                </th>-->
-                        <!--                                <th>-->
-                        <!--                                    <a class="nav-link" routerLink="/hotel-access">-->
-                        <!--                                        <i class="material-icons">add</i>-->
-                        <!--                                    </a>-->
-                        <!--                                </th>-->
-                        <!--                                </thead>-->
-                        <!--                                <tbody>-->
-                        <!--                                <tr>-->
-                        <!--                                    <td>-->
-                        <!--                                        1-->
-                        <!--                                    </td>-->
-                        <!--                                    <td>-->
-                        <!--                                        Dakota Rice-->
-                        <!--                                    </td>-->
-                        <!--                                    <td>-->
-                        <!--                                        Niger-->
-                        <!--                                    </td>-->
-                        <!--                                    <td>-->
-                        <!--                                        Oud-Turnhout-->
-                        <!--                                    </td>-->
-                        <!--                                    <td>-->
-                        <!--                                        $36,738-->
-                        <!--                                    </td>-->
-                        <!--                                    <td>-->
-                        <!--                                        <a  routerLink="/hotel-access">-->
-                        <!--                                            <i class="material-icons">edit</i>-->
-                        <!--                                        </a>-->
-                        <!--                                        <a  routerLink="/hotel-access">-->
-                        <!--                                            <i class="material-icons">delete</i>-->
-                        <!--                                        </a>-->
-                        <!--                                    </td>-->
-                        <!--                                </tr>-->
-                        <!--                                <tr>-->
-                        <!--                                    <td>-->
-                        <!--                                        2-->
-                        <!--                                    </td>-->
-                        <!--                                    <td>-->
-                        <!--                                        Minerva Hooper-->
-                        <!--                                    </td>-->
-                        <!--                                    <td>-->
-                        <!--                                        Curaçao-->
-                        <!--                                    </td>-->
-                        <!--                                    <td>-->
-                        <!--                                        Sinaai-Waas-->
-                        <!--                                    </td>-->
-                        <!--                                    <td>-->
-                        <!--                                        $23,789-->
-                        <!--                                    </td>-->
-                        <!--                                </tr>-->
-                        <!--                                <tr>-->
-                        <!--                                    <td>-->
-                        <!--                                        3-->
-                        <!--                                    </td>-->
-                        <!--                                    <td>-->
-                        <!--                                        Sage Rodriguez-->
-                        <!--                                    </td>-->
-                        <!--                                    <td>-->
-                        <!--                                        Netherlands-->
-                        <!--                                    </td>-->
-                        <!--                                    <td>-->
-                        <!--                                        Baileux-->
-                        <!--                                    </td>-->
-                        <!--                                    <td>-->
-                        <!--                                        $56,142-->
-                        <!--                                    </td>-->
-                        <!--                                </tr>-->
-                        <!--                                <tr>-->
-                        <!--                                    <td>-->
-                        <!--                                        4-->
-                        <!--                                    </td>-->
-                        <!--                                    <td>-->
-                        <!--                                        Philip Chaney-->
-                        <!--                                    </td>-->
-                        <!--                                    <td>-->
-                        <!--                                        Korea, South-->
-                        <!--                                    </td>-->
-                        <!--                                    <td>-->
-                        <!--                                        Overland Park-->
-                        <!--                                    </td>-->
-                        <!--                                    <td>-->
-                        <!--                                        $38,735-->
-                        <!--                                    </td>-->
-                        <!--                                </tr>-->
-                        <!--                                <tr>-->
-                        <!--                                    <td>-->
-                        <!--                                        5-->
-                        <!--                                    </td>-->
-                        <!--                                    <td>-->
-                        <!--                                        Doris Greene-->
-                        <!--                                    </td>-->
-                        <!--                                    <td>-->
-                        <!--                                        Malawi-->
-                        <!--                                    </td>-->
-                        <!--                                    <td>-->
-                        <!--                                        Feldkirchen in Kärnten-->
-                        <!--                                    </td>-->
-                        <!--                                    <td>-->
-                        <!--                                        $63,542-->
-                        <!--                                    </td>-->
-                        <!--                                </tr>-->
-                        <!--                                <tr>-->
-                        <!--                                    <td>-->
-                        <!--                                        6-->
-                        <!--                                    </td>-->
-                        <!--                                    <td>-->
-                        <!--                                        Mason Porter-->
-                        <!--                                    </td>-->
-                        <!--                                    <td>-->
-                        <!--                                        Chile-->
-                        <!--                                    </td>-->
-                        <!--                                    <td>-->
-                        <!--                                        Gloucester-->
-                        <!--                                    </td>-->
-                        <!--                                    <td>-->
-                        <!--                                        $78,615-->
-                        <!--                                    </td>-->
-                        <!--                                </tr>-->
-                        <!--                                </tbody>-->
-                        <!--                            </table>-->
-                        <!--                        </div>-->
+                        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
                     </div>
                 </div>
             </div>
