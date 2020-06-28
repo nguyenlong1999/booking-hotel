@@ -19,9 +19,82 @@
   width: 110px;
   height: 110px;
 }
-.button2 {
-  border-radius: 10%;
+.btn-action {
   width: 70%;
-  padding: 0;
-  background: #efbf16;
+}
+.btn-role {
+  position: absolute;
+  left: 15%;
+  width: 110px; height: 45px;
+  background: #2196f3;
+  color: #0a0a0a;
+}
+.btn-cancel {
+  position: absolute;
+  right: 15%;
+  width: 110px; height: 45px;
+  background: #8e8885;
+  color: #0a0a0a;
+}
+
+
+/* mat-table-style*/
+table{
+  width: 100%;
+}
+
+.mat-column-id {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 8% !important;
+  width: 8% !important;
+  word-break: break-word;
+}
+
+.mat-column-avatar {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 8% !important;
+  width: 8% !important;
+  word-break: break-word;
+}
+
+.mat-column-name {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 20% !important;
+  width: 20% !important;
+  word-break: break-word;
+}
+
+.mat-column-email {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 20% !important;
+  width: 20% !important;
+  word-break: break-word;
+}
+
+.mat-column-role {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 10% !important;
+  width: 10% !important;
+  word-break: break-word;
+}
+
+.mat-column-actionRole {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 17% !important;
+  width: 17% !important;
+  word-break: break-word;
+}
+
+.mat-column-block {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 17% !important;
+  width: 17% !important;
+  word-break: break-word;
 }
