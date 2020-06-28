@@ -13,7 +13,7 @@ import {Router} from '@angular/router';
 })
 export class HotelComponentComponent implements OnInit, AfterViewInit {
     hotels: Hotel[] = []
-    displayedColumns = ['id', 'name', 'sqm', 'add'];
+    displayedColumns = ['id', 'user', 'name', 'sqm', 'add'];
 
 
     dataSource: MatTableDataSource<Hotel>;

@@ -44,6 +44,7 @@ export const AdminLayoutRoutes: Routes = [
             { path: 'upgrade', component: UpgradeComponent },
             { path: 'hotels', component: HotelComponentComponent },
             { path: 'hotel-access', component: HotelAccessComponent },
+            { path: 'hotelEdit/:id', component: HotelAccessComponent },
             { path: 'bookings', component: BookingComponent },
             { path: 'users', component: UserAccessComponent },
             { path: 'user-register', component: UserRegisterComponent },
