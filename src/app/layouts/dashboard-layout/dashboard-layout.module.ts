@@ -22,13 +22,18 @@ import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {HttpClient} from "@angular/common/http";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {ScrollTopComponent} from "../../shared/animation/scroll-top/scroll-top.component";
+import {MatDialogModule} from "@angular/material/dialog";
+import {UserRegiterComponent} from "../user-regiter/user-regiter.component";
+import {ChooseRoomTypeDialogComponent} from "../choose-room-type-dialog/choose-room-type-dialog.component";
 
 @NgModule({
     declarations: [
         DashboardLayoutComponent,
         IndexLayoutComponent,
         HotelRegisterComponent,
-        ScrollTopComponent
+        ScrollTopComponent,
+        UserRegiterComponent,
+        ChooseRoomTypeDialogComponent
         // add các component của trang người dùng vào đây
     ],
     imports: [
@@ -48,6 +53,7 @@ import {ScrollTopComponent} from "../../shared/animation/scroll-top/scroll-top.c
         SharedModule,
         MatCheckboxModule,
         MatButtonToggleModule,
+        MatDialogModule,
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
@@ -58,6 +64,7 @@ import {ScrollTopComponent} from "../../shared/animation/scroll-top/scroll-top.c
     ],
     providers: [
     ],
+    entryComponents: [ChooseRoomTypeDialogComponent],
     schemas: [
         CUSTOM_ELEMENTS_SCHEMA
     ],
