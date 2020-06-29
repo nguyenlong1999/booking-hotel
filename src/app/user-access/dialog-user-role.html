@@ -2,8 +2,8 @@
 <div mat-dialog-content>
     <p>{{data.messageDialog}}</p>
 </div>
-<div *ngIf="data.action !== 'ADMIN'" mat-dialog-actions style="position: relative; margin: 0">
+<div *ngIf="data.action.actionName !== 'ADMIN'" mat-dialog-actions style="position: relative; margin: 0">
     <button class="btn-role btn-outline-primary" mat-button [mat-dialog-close]="data.action"
-            cdkFocusInitial>{{data.action}}</button>
+            cdkFocusInitial>{{data.action.actionName}}</button>
     <button class="btn-cancel btn-outline-dark" mat-button (click)="onNoClick()">Hủy</button>
 </div>

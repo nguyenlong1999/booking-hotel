@@ -24,29 +24,26 @@ export class UserAccessComponent implements OnInit {
     dataSource: MatTableDataSource<User>;
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
-    config: any;
     userObject = {
         role: 0,
         id: '',
     };
+    actionObject = {
+        actionName: '',
+        user: User
+    };
+    config: any;
     key: any;
-    admin: boolean = false;
-    message: string = '';
-    actionName: string = '';
-    imageUrl: String;
+    admin = false;
+    message = '';
     user: User;
-    openMember = false;
-    updateMember = false;
-    messageModal = false;
-    disableAdmin = true;
-    pageSize = 10;
     loading = false;
 
     constructor(
         private userService: UserService,
         private cookies: CookieService,
         private dialog: MatDialog,
-        private route: Router
+        private route: Router,
     ) {
     }
 
@@ -116,174 +113,174 @@ export class UserAccessComponent implements OnInit {
     }
 
     openDialog(user: any, actionValue: any) {
-        this.user = user;
-        console.log(user);
+        this.actionObject.user = user;
         if (actionValue === 0 && user.role !== 'Admin') {
-            this.actionName = 'Hạ cấp';
+            this.actionObject.actionName = 'Hạ cấp';
             this.message = 'Bạn muốn hạ cấp tài khoản này?';
         } else if (actionValue === 1 && user.role !== 'Admin') {
             this.message = 'Bạn muốn phân quyền quản trị cho tài khoản này?';
-            this.actionName = 'Quản trị';
+            this.actionObject.actionName = 'Quản trị';
         } else if (actionValue === 2 && user.role !== 'Admin') {
             this.message = 'Bạn muốn khóa tài khoản này?';
-            this.actionName = 'Khóa';
+            this.actionObject.actionName = 'Khóa';
         } else if (actionValue === 3 && user.role !== 'Admin') {
             this.message = 'Bạn muốn mở khóa tài khoản này?';
-            this.actionName = 'Mở khóa';
+            this.actionObject.actionName = 'Mở khóa';
         } else if (user.role === 'Admin') {
             this.message = 'Bạn không có quyền khóa, thay đổi quyền của tài khoản ADMIN';
-            this.actionName = 'ADMIN';
+            this.actionObject.actionName = 'ADMIN';
         }
         const dialogRef = this.dialog.open(UserRoleDialog, {
             width: '500px',
             data: {
                 messageDialog: this.message,
-                action: this.actionName
+                action: this.actionObject
             }
         })
 
         dialogRef.afterClosed().subscribe(result => {
-            console.log(`Dialog result: ${result}`);
+            console.log(result);
+            if (result) {
+                if (result.actionName === 'Hạ cấp' || result.actionName === 'Quản trị') {
+                    console.log('func- quan tri');
+                    this.updateRole(result.user);
+                } else if (result.actionName === 'Khóa') {
+                    console.log('func- khoa');
+                    this.bannedUser(result.user);
+                } else if (result.actionName === 'Mở khóa') {
+                    console.log('func- mo khoa');
+                    this.openUser(result.user);
+                }
+            } else {
+                console.log('hello bấy bề');
+            }
         });
     }
 
-    // keyUp() {
-    //   console.log(this.pageSize)
-    //   if (this.searchText.length > 2) {
-    //     this.pageSize = this.users.length;
-    //     this.pageChanged(1);
-    //   } else {
-    //     this.pageSize = 10;
-    //   }
-    // }
+    updateRole(user: any) {
+        this.userObject.role = user.role === 'Quản trị KS' ? 0 : 1;
+        this.userObject.id = user._id;
+        this.userService.updateRole(this.userObject).subscribe(data => {
+            if (data.body['status'] === 200) {
+                user = data.body['user'];
+                for (let userAccess of this.users) {
+                    if (userAccess.email === user.email) {
+                        userAccess = user;
+                        this.users = this.users.filter(user => user._id !== userAccess._id);
+                        if (user.role === -1) {
+                            user.role = 'Chưa xác thực';
+                        } else if (user.role === 0) {
+                            user.role = 'Thành viên';
+                        } else if (user.role === 1) {
+                            user.role = 'Quản trị KS';
+                            user.isAdmin === true;
+                        } else if (user.role > 1) {
+                            user.isAdmin === true;
+                            user.role = 'Admin';
+                        } else {
+                            user.role = 'Khóa';
+                        }
+                        user.id = this.users.length + 1;
+                        if (user.imageUrl === undefined) {
+                            user.imageUrl = 'default-avatar.png';
+                        }
+                        this.users.push(user);
+                        // this.messageModal = true;
+                        if (this.userObject.role === 0) {
+                            this.message = 'Hạ quyền quản trị viên thành công';
+                        } else {
+                            this.message = 'Thêm quản trị viên thành công';
+                        }
+                        console.log(this.message)
+                        setTimeout(() => {
+                            this.message = '';
+                            // const radio: HTMLElement = document.getElementById('close-button');
+                            // radio.click();
+                        }, 1000);
+                    }
+                }
+            }
+        });
+    }
 
-    // updateRole(user: any) {
-    //   if (user.warningReport === 0) {
-    //     this.userObject.role = 1;
-    //   } else {
-    //     this.userObject.role = 0;
-    //   }
-    //   this.userObject.id = user._id;
-    //   this.userService.updateRole(this.userObject).subscribe(data => {
-    //     if (data.body['status'] === 200) {
-    //       user = data.body['user'];
-    //       for (let userAccess of this.users) {
-    //         if (userAccess.email === user.email) {
-    //           userAccess = user;
-    //           this.users = this.users.filter(user => user._id !== userAccess._id);
-    //           if (user.role === -1) {
-    //             user.role = 'Chưa xác thực';
-    //           } else if (user.role === 0) {
-    //             user.role = 'Thành viên';
-    //           } else if (user.role === 1) {
-    //             user.role = 'Quản trị';
-    //             user.isAdmin === true;
-    //           } else if (user.role > 1) {
-    //             user.isAdmin === true;
-    //             user.role = 'Admin';
-    //           } else {
-    //             user.role = 'Khóa';
-    //           }
-    //           user.id = this.users.length + 1;
-    //           if (user.imageUrl === undefined) {
-    //             user.imageUrl = 'jbiajl3qqdzshdw0z749';
-    //           }
-    //           this.users.push(user);
-    //           this.messageModal = true;
-    //           if (this.userObject.role === 0) {
-    //             this.message = 'Hạ quyền quản trị viên thành công';
-    //           } else {
-    //             this.message = 'Thêm quản trị viên thành công';
-    //           }
+    bannedUser(user: any) {
+        console.log('ban user');
+        this.userObject.id = user._id;
+        this.userService.bannedUser(this.userObject).subscribe(data => {
+            if (data.body['status'] === 200) {
+                user = data.body['user'];
+                for (let userAccess of this.users) {
+                    if (userAccess.email === user.email) {
+                        userAccess = user;
+                        this.users = this.users.filter(user => user._id !== userAccess._id);
+                        if (user.imageUrl === undefined) {
+                            user.imageUrl = 'default-avatar.png';
+                        }
+                        if (user.role === -1) {
+                            user.role = 'Chưa xác thực';
+                        } else if (user.role === 0) {
+                            user.role = 'Thành viên';
+                        } else if (user.role === 1) {
+                            user.role = 'Quản trị KS';
+                        } else if (user.role > 1) {
+                            user.role = 'Admin';
+                        } else {
+                            user.role = 'Khóa';
+                        }
+                        user.id = this.users.length + 1;
+                        this.users.push(user);
+                        this.message = 'Khóa thành viên thành công';
+                        console.log(this.message);
+                        // setTimeout(() => {
+                        //     const radio: HTMLElement = document.getElementById('close-button');
+                        //     radio.click();
+                        // }, 2000);
+                    }
+                }
+            }
+        });
+    }
 
-    //           setTimeout(() => {
-    //             this.message = '';
-    //             const radio: HTMLElement = document.getElementById('close-button');
-    //             radio.click();
-    //           }, 2000);
-    //         }
-    //       }
-    //     }
-    //   });
-    // }
-
-    // bannedUser(user: any) {
-    //   console.log('ban user');
-    //   this.userObject.id = user._id;
-    //   this.userService.bannedUser(this.userObject).subscribe(data => {
-    //     if (data.body['status'] === 200) {
-    //       user = data.body['user'];
-    //       for (let userAccess of this.users) {
-    //         if (userAccess.email === user.email) {
-    //           userAccess = user;
-    //           this.users = this.users.filter(user => user._id !== userAccess._id);
-    //           if (user.imageUrl === undefined) {
-    //             user.imageUrl = 'jbiajl3qqdzshdw0z749';
-    //           }
-    //           if (user.role === -1) {
-    //             user.role = 'Chưa xác thực';
-    //           } else if (user.role === 0) {
-    //             user.role = 'Thành viên';
-    //           } else if (user.role === 1) {
-    //             user.role = 'Quản trị';
-    //           } else if (user.role > 1) {
-    //             user.role = 'Admin';
-    //           } else {
-    //             user.role = 'Khóa';
-    //           }
-    //           user.id = this.users.length + 1;
-    //           this.users.push(user);
-    //           this.messageModal = true;
-    //           this.message = 'Khóa thành viên thành công';
-    //           setTimeout(() => {
-    //             const radio: HTMLElement = document.getElementById('close-button');
-    //             radio.click();
-    //           }, 2000);
-    //         }
-    //       }
-    //     }
-    //   });
-    // }
-
-    // activeMember(user: any) {
-    //   console.log('active user');
-    //   this.userObject.id = user._id;
-    //   this.userService.openUser(this.userObject).subscribe(data => {
-    //     if (data.body['status'] === 200) {
-    //       user = data.body['user'];
-    //       for (let userAccess of this.users) {
-    //         if (userAccess.email === user.email) {
-    //           userAccess = user;
-    //           this.users = this.users.filter(user => user._id !== userAccess._id);
-    //           if (user.imageUrl === undefined) {
-    //             user.imageUrl = 'jbiajl3qqdzshdw0z749';
-    //           }
-    //           if (user.role === -1) {
-    //             user.role = 'Chưa xác thực';
-    //           } else if (user.role === 0) {
-    //             user.role = 'Thành viên';
-    //           } else if (user.role === 1) {
-    //             user.role = 'Quản trị';
-    //           } else if (user.role > 1) {
-    //             user.role = 'Admin';
-    //           } else {
-    //             user.role = 'Khóa';
-    //           }
-    //           user.id = this.users.length + 1;
-    //           this.users.push(user);
-    //           this.messageModal = true;
-    //           this.message = 'Mở khóa thành viên thành công';
-    //           setTimeout(() => {
-    //             this.message = '';
-    //             const radio: HTMLElement = document.getElementById('close-button');
-    //             radio.click();
-    //           }, 2000);
-    //         }
-    //       }
-    //     }
-    //     console.log(data.body['status'])
-    //   });
-    // }
+    openUser(user: any) {
+      console.log('active user');
+      this.userObject.id = user._id;
+      this.userService.openUser(this.userObject).subscribe(data => {
+        if (data.body['status'] === 200) {
+          user = data.body['user'];
+          for (let userAccess of this.users) {
+            if (userAccess.email === user.email) {
+              userAccess = user;
+              this.users = this.users.filter(user => user._id !== userAccess._id);
+              if (user.imageUrl === undefined) {
+                user.imageUrl = 'default-avatar.png';
+              }
+              if (user.role === -1) {
+                user.role = 'Chưa xác thực';
+              } else if (user.role === 0) {
+                user.role = 'Thành viên';
+              } else if (user.role === 1) {
+                user.role = 'Quản trị KS';
+              } else if (user.role > 1) {
+                user.role = 'Admin';
+              } else {
+                user.role = 'Khóa';
+              }
+              user.id = this.users.length + 1;
+              this.users.push(user);
+              this.message = 'Mở khóa thành viên thành công';
+              console.log(this.message);
+              this.route.getCurrentNavigation();
+              // setTimeout(() => {
+              //   this.message = '';
+              //   const radio: HTMLElement = document.getElementById('close-button');
+              //   radio.click();
+              // }, 2000);
+            }
+          }
+        }
+        console.log(data.body['status'])
+      });
+    }
 }
 
 @Component({

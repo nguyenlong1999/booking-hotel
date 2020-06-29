@@ -86,7 +86,7 @@ table{
 .mat-column-actionRole {
   word-wrap: break-word !important;
   white-space: unset !important;
-  flex: 0 0 17% !important;
+  flex: 0 0 20% !important;
   width: 17% !important;
   word-break: break-word;
 }
@@ -94,7 +94,7 @@ table{
 .mat-column-block {
   word-wrap: break-word !important;
   white-space: unset !important;
-  flex: 0 0 17% !important;
-  width: 17% !important;
+  flex: 0 0 20% !important;
+  width: 20% !important;
   word-break: break-word;
 }

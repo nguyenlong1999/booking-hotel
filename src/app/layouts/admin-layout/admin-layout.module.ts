@@ -93,7 +93,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     entryComponents: [UserAccessComponent, UserRoleDialog],
     bootstrap: [UserAccessComponent],
     providers: [
-      { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }
+      { provide: MatFormFieldModule, useValue: { appearance: 'fill' } }
     ],
 })
 
