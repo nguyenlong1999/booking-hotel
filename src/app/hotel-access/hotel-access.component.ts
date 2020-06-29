@@ -40,8 +40,30 @@ export class HotelAccessComponent implements OnInit {
     tab4 = true;
     tab5 = true;
 
+
+    listRadioCancel = [{name: 'room.flexiblev1', value: 1, checked: true},
+        {name: 'room.Strictv1', value: 2, checked: false}];
+    listMatButton = [
+        {
+            name: 'room.Anytime', value: 1
+        },
+        {
+            name: 'room.Ayear', value: 2
+        },
+        {
+            name: 'room.SixMonth', value: 3
+        },
+        {
+            name: 'room.ThreeMonth', value: 4
+        }
+    ]
+    selectedCancellationPolicy = '2';
+
     editForm = false;
     idEdit: string;
+
+    isStrict = false;
+    isFlexible = false;
 
     // type bed rooms
     lstTypeBedRoom = [
@@ -102,7 +124,7 @@ export class HotelAccessComponent implements OnInit {
             formArrayRoomNumber: this.formbuilder.array([
                 // this.addControlRoom()
             ]),
-            reservationTime: [''],
+            reservationTime: '',
             cancellationPolicy: ['']
         })
         this.plusTotalRoomNumber();
@@ -175,18 +197,130 @@ export class HotelAccessComponent implements OnInit {
 
     isEdit(idObject) {
         this.registerHotelForm.reset();
-        // this._hotelService.getHotelById(idObject).subscribe(data => {
-        //     const result = data
-        //     console.log(result)
-        //     this.tab2 = false;
-        //     this.tab3 = false;
-        //     this.tab4 = false;
-        //     this.registerHotelForm = this.formbuilder.group({
-        //         name: result[0][0].hotelObj.name
-        //     })
-        // })
-    }
+        this._hotelService.getHotelById(idObject).subscribe(data => {
+            const result = data
+            console.log(result)
+            this.tab2 = false;
+            this.tab3 = false;
+            this.tab4 = false;
+            console.log(result)
+            $('#totalRoomNumber').removeClass('disabledbutton');
+            if (result[0][0].hotelObj.reservationTime === 1) {
+                $('#matBtn0').addClass('viewMatButton');
+            } else if (result[0][0].hotelObj.reservationTime === 2) {
+                $('#matBtn1').addClass('viewMatButton');
+            } else if (result[0][0].hotelObj.reservationTime === 3) {
+                $('#matBtn2').addClass('viewMatButton');
+            } else if (result[0][0].hotelObj.reservationTime === 4) {
+                $('#matBtn3').addClass('viewMatButton');
+            }
 
+            if (result[0][0].hotelObj.cancellationPolicy === 1) {
+                console.log('1')
+                this.listRadioCancel = [{name: 'room.flexiblev1', value: 1, checked: true},
+                    {name: 'room.Strictv1', value: 2, checked: false}]
+            } else {
+                console.log('2')
+                this.listRadioCancel = [{name: 'room.flexiblev1', value: 1, checked: false},
+                    {name: 'room.Strictv1', value: 2, checked: true}]
+            }
+
+            this.registerHotelForm = this.formbuilder.group({
+                name: result[0][0].hotelObj.name,
+                sqm: result[0][0].hotelObj.sqm,
+                address: result[0][0].hotelObj.address,
+                country: result[0][0].hotelObj.country,
+                desHotel: result[0][0].hotelObj.desHotel,
+                guideToHotel: result[0][0].hotelObj.guideToHotel,
+                reservationTime: result[0][0].hotelObj.reservationTime,
+                rulerHotel: result[0][0].hotelObj.rulerHotel,
+                cancellationPolicy: result[0][0].hotelObj.cancellationPolicy,
+                totalRoomNumber: result[1][0].length,
+                formArrayRoomNumber: this.formbuilder.array([]),
+                facilities: this.formbuilder.group({
+                    airConditional: this.formbuilder.control(result[0][0].airConditional),
+                    Hairdryer: this.formbuilder.control(result[0][0].Hairdryer),
+                    ironingMachine: this.formbuilder.control(result[0][0].ironingMachine),
+                    television: this.formbuilder.control(result[0][0].television),
+                    cableTelevision: this.formbuilder.control(result[0][0].cableTelevision),
+                    freeWifi: this.formbuilder.control(result[0][0].freeWifi),
+                    freeInternet: this.formbuilder.control(result[0][0].freeInternet),
+                    washingMachine: this.formbuilder.control(result[0][0].washingMachine),
+                    Shampoo: this.formbuilder.control(result[0][0].Shampoo),
+                    beddingSet: this.formbuilder.control(result[0][0].beddingSet),
+                    TowelsOfAllKinds: this.formbuilder.control(result[0][0].TowelsOfAllKinds),
+                    smartKey: this.formbuilder.control(result[0][0].smartKey),
+
+                    wifiCharge: this.formbuilder.control(result[0][0].wifiCharge),
+                    internetCharge: this.formbuilder.control(result[0][0].internetCharge),
+
+                    wheelchairAccessible: this.formbuilder.control(result[0][0].wheelchairAccessible),
+                    elevatorInHotel: this.formbuilder.control(result[0][0].elevatorInHotel),
+                    wirelessBell: this.formbuilder.control(result[0][0].wirelessBell),
+                    doorStaff: this.formbuilder.control(result[0][0].doorStaff),
+
+                    teaMaker: this.formbuilder.control(result[0][0].teaMaker),
+                    coffee: this.formbuilder.control(result[0][0].coffee),
+                    tea: this.formbuilder.control(result[0][0].tea),
+                    Kitchen: this.formbuilder.control(result[0][0].Kitchen),
+                    freeBreakfast: this.formbuilder.control(result[0][0].freeBreakfast),
+                    workspace: this.formbuilder.control(result[0][0].workspace),
+                    privatePool: this.formbuilder.control(result[0][0].privatePool),
+                    heaters: this.formbuilder.control(result[0][0].heaters),
+                    Dryer: this.formbuilder.control(result[0][0].Dryer),
+                    Fireplace: this.formbuilder.control(result[0][0].Fireplace),
+                    Wardrobe: this.formbuilder.control(result[0][0].Wardrobe),
+                    indooPool: this.formbuilder.control(result[0][0].indooPool),
+                    hotTub: this.formbuilder.control(result[0][0].hotTub),
+                    gymRoom: this.formbuilder.control(result[0][0].gymRoom),
+                    outdoorSwimmingPool: this.formbuilder.control(result[0][0].outdoorSwimmingPool),
+                    freeParking: this.formbuilder.control(result[0][0].freeParking),
+
+                    SmokeDetector: this.formbuilder.control(result[0][0].SmokeDetector),
+                    COAlarmSensor: this.formbuilder.control(result[0][0].COAlarmSensor),
+                    FirstAidKit: this.formbuilder.control(result[0][0].FirstAidKit),
+                    fireExtinguisher: this.formbuilder.control(result[0][0].fireExtinguisher),
+
+                    Smoking: this.formbuilder.control(result[0][0].Smoking),
+                    petsAllowed: this.formbuilder.control(result[0][0].petsAllowed)
+
+                }),
+
+            })
+            this.totaltypeRoomNumber = result[1][0].length;
+            let z = 0;
+            for (const i of result[1][0]) {
+                this.formArrayRoomNumber.push(this.formbuilder.group({
+                    accommodates: this.formbuilder.control(i.accommodates),
+                    bathRooms: this.formbuilder.control(i.bathRooms),
+                    bedRooms: this.formbuilder.control(i.bedRooms),
+                    bedRoomsDetails: this.formbuilder.array([]),
+                    maxDay: this.formbuilder.control(i.maxDay),
+                    price: [i.price, [Validators.required, Validators.pattern(/^[0-9]\d*$/)]]
+                }));
+
+                // xử lý push control array
+                const control = (<FormArray>this.registerHotelForm.controls['formArrayRoomNumber'])
+                    .at(z).get('bedRoomsDetails') as FormArray;
+                let h = 0;
+                for (const y of i.bedroomDetail) {
+                    control.push(this.addControlArrayTypeBedroom(z));
+                    const addTypebedRoom = ((<FormArray>this.registerHotelForm.controls['formArrayRoomNumber']).at(z).get('bedRoomsDetails') as FormArray)
+                        .at(h).get('arrayTypeBedRooms') as FormArray;
+                    for (const j of y.arrayTypeBedRooms) {
+                        addTypebedRoom.push(this.formbuilder.group({
+                            bedType: this.formbuilder.control(j.bedType),
+                            bedQuantity: this.formbuilder.control(j.bedQuantity)
+                        }))
+                    }
+                    h++
+                }
+
+                z++; // index
+
+            }
+        })
+    }
 
     onSubmit() {
         if (this.checked === false) {
@@ -199,7 +333,7 @@ export class HotelAccessComponent implements OnInit {
         this.registerHotelForm.get('starHotel').setValue(this.rating)
 
         console.log(this.registerHotelForm.value);
-        let hoTelsObject = this.registerHotelForm.value;
+        const hoTelsObject = this.registerHotelForm.value;
         hoTelsObject.email = this.cookies.get('email');
         this._hotelService.createHotel(this.registerHotelForm.value).subscribe((data) => {
             const result = data.body
@@ -242,7 +376,7 @@ export class HotelAccessComponent implements OnInit {
         console.log('thêm loại giường ngủ')
         return this.formbuilder.group({
             arrayTypeBedRooms: this.formbuilder.array([
-                this.addControlTypeBedroom()
+                // this.addControlTypeBedroom() //k cho tự động add giường
             ])
         })
     }
@@ -347,6 +481,7 @@ export class HotelAccessComponent implements OnInit {
 
 
     plusNumberOfBedrooms(i) {
+        console.log(i)
         $('#bedRooms' + i).removeClass('disabledbutton');
         this.countBedrooms = this.registerHotelForm.get('formArrayRoomNumber').get([i]).get('bedRooms').value
         this.countBedrooms++
@@ -427,7 +562,7 @@ export class HotelAccessComponent implements OnInit {
     }
 
     getImageSrc(event: any) {
-        let pshArrayImage = new Set()
+        const pshArrayImage = new Set()
         const str = '[' + event.toString().replace(/}\n?{/g, '},{') + ']';
         JSON.parse(str).forEach((obj) => {
             pshArrayImage.add(obj.filePath)
