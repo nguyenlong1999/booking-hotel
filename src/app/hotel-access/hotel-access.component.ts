@@ -3,7 +3,7 @@ import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {StarRatingColor} from '../shared/animation/star-rating/star-rating.component';
 import {last} from 'rxjs/operators';
 import {LoginServiceService} from '../shared/service/login-service.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {HotelService} from '../shared/service/hotel.service.';
 import {CookieService} from 'ngx-cookie-service';
 
@@ -40,6 +40,9 @@ export class HotelAccessComponent implements OnInit {
     tab4 = true;
     tab5 = true;
 
+    editForm = false;
+    idEdit: string;
+
     // type bed rooms
     lstTypeBedRoom = [
         {
@@ -70,7 +73,8 @@ export class HotelAccessComponent implements OnInit {
     constructor(private formbuilder: FormBuilder,
                 private _hotelService: HotelService,
                 private _router: Router,
-                private cookies: CookieService
+                private cookies: CookieService,
+                private route: ActivatedRoute
     ) {
         this.registerHotelForm = this.formbuilder.group({
             name: ['', [Validators.required]],
@@ -102,6 +106,10 @@ export class HotelAccessComponent implements OnInit {
             cancellationPolicy: ['']
         })
         this.plusTotalRoomNumber();
+
+        if (this.route.snapshot.paramMap.get('id')) {
+            this.isEdit(this.route.snapshot.paramMap.get('id'))
+        }
     }
 
     public changeTabValid(event: any) {
@@ -161,16 +169,22 @@ export class HotelAccessComponent implements OnInit {
         return this.registerHotelForm.get('sqm');
     }
 
-    // @ts-ignore
-    // get price(index) {
-    //     if (index) {
-    //         return this.registerHotelForm.get('formArrayRoomNumber').get(index).get('price');
-    //     }
-    //     return;
-    // }
-
     get formArrayRoomNumber() {
         return this.registerHotelForm.get('formArrayRoomNumber') as FormArray
+    }
+
+    isEdit(idObject) {
+        this.registerHotelForm.reset();
+        // this._hotelService.getHotelById(idObject).subscribe(data => {
+        //     const result = data
+        //     console.log(result)
+        //     this.tab2 = false;
+        //     this.tab3 = false;
+        //     this.tab4 = false;
+        //     this.registerHotelForm = this.formbuilder.group({
+        //         name: result[0][0].hotelObj.name
+        //     })
+        // })
     }
 
 
@@ -219,9 +233,6 @@ export class HotelAccessComponent implements OnInit {
     }
 
     deleteControlBedRoomType(i, iz, ia) {
-        console.log(i)
-        console.log(iz)
-        console.log(ia)
         const control = ((<FormArray>this.registerHotelForm.controls['formArrayRoomNumber']).at(i).get('bedRoomsDetails') as FormArray)
             .at(iz).get('arrayTypeBedRooms') as FormArray;
         control.removeAt(ia);

@@ -30,6 +30,14 @@ export class HotelService {
             .pipe(tap(_ => console.log('load hotels')));
     };
 
+    getHotelById = (idHotel): Observable<any> => {
+        const url = `${this.baseUrl}/getHotel/${idHotel}`;
+        return this._http
+            .get<any>(url)
+            .pipe(tap(_ => console.log('load hotels')));
+    };
+
+
     // changePassword(user: any) {
     //     return this._http.post(`${this.baseUrl}/changePassword`, {user: user}, {observe: 'response'});
     // }

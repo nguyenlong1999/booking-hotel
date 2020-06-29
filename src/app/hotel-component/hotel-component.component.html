@@ -16,14 +16,23 @@
                         <mat-table [dataSource]="dataSource" matSort>
                             <ng-container matColumnDef="id">
                                 <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
-                                <mat-cell *matCellDef="let row ; index as i"> {{paginator.pageSize * paginator.pageIndex + i + 1}}  </mat-cell>
+                                <mat-cell
+                                        *matCellDef="let row ; index as i"> {{paginator.pageSize * paginator.pageIndex + i + 1}}  </mat-cell>
                             </ng-container>
 
                             <!-- Progress Column -->
+
+                            <ng-container matColumnDef="user">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header>User</mat-header-cell>
+                                <mat-cell *matCellDef="let row"> {{row.user.email}}</mat-cell>
+                            </ng-container>
+
+
                             <ng-container matColumnDef="name">
                                 <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
                                 <mat-cell *matCellDef="let row"> {{row.name}}</mat-cell>
                             </ng-container>
+
 
                             <!-- Name Column -->
                             <ng-container matColumnDef="sqm">
@@ -33,12 +42,13 @@
 
                             <ng-container matColumnDef="add">
                                 <mat-header-cell *matHeaderCellDef>
-                                    <button mat-icon-button color="warn" (click)="this.route.navigate(['/hotel-access'])">
+                                    <button mat-icon-button color="warn"
+                                            (click)="this.route.navigate(['/hotel-access'])">
                                         <mat-icon>add</mat-icon>
                                     </button>
                                 </mat-header-cell>
                                 <mat-cell *matCellDef="let row">
-                                    <button mat-icon-button color="warn" (click)="onClickEditRow(row._id)">
+                                    <button mat-icon-button color="warn" (click)="this.route.navigate(['/hotelEdit',row._id])">
                                         <mat-icon>create</mat-icon>
                                     </button>
                                 </mat-cell>
