@@ -4,6 +4,19 @@
             <img src="./assets/img/back-ground.jpg"
                  style="width: 100%;height: auto; position: absolute;" class="img-fluid" alt="booking hotel"/>
             <div style="position: absolute; top:43%;left: 25%;width: 50%;background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5));height: 400px;">
+                <div style=" top: 100px; left:100px; width: 70%;position: absolute ;">
+                    <mat-form-field>
+                        <input matInput placeholder="Address" type="text" style="color: white;"/>
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field>
+                        <input matInput style="color: white;" placeholder="Information" type="text" (click)="openDialogChooseHotelType($event)"/>
+                    </mat-form-field>
+                    <br>
+                    <button class="btn btn-outline-primary" style="float: right;border: 0.5px solid blue; color: #0c83e2;">
+                        {{"common.button.next"|translate}}
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -46,7 +59,8 @@
                 </div>
             </div>
         </div>
-        <div class="row" style=" justify-content:center;margin-top: 5%;"><a class="header-title">Điểm đến nổi tiếng nhất</a></div>
+        <div class="row" style=" justify-content:center;margin-top: 5%;"><a class="header-title">Điểm đến nổi tiếng
+            nhất</a></div>
         <div class="row">
             <div class="col">
                 <div class="card" style="border-radius: 0">
