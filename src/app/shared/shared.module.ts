@@ -11,11 +11,12 @@ import { AutocompleteComponent } from './autocomplete/autocomplete.component';
 import {FormsModule} from "@angular/forms";
 import { ImageComponent } from './animation/image/image.component';
 import {FileUploadModule} from 'ng2-file-upload';
+import {ScrollTopComponent} from './animation/scroll-top/scroll-top.component';
 
 
 
 @NgModule({
-  declarations: [StarRatingComponent, HotelMapComponent, AutocompleteComponent, ImageComponent],
+  declarations: [StarRatingComponent, HotelMapComponent, AutocompleteComponent, ImageComponent, ScrollTopComponent],
     imports: [
         CommonModule,
         MatTooltipModule,
@@ -24,13 +25,14 @@ import {FileUploadModule} from 'ng2-file-upload';
         MatInputModule,
         AgmCoreModule,
         FormsModule,
-        FileUploadModule
+        FileUploadModule,
     ],
     exports: [
         StarRatingComponent,
         HotelMapComponent,
         AutocompleteComponent,
-        ImageComponent
+        ImageComponent,
+        ScrollTopComponent
     ],
 })
 export class SharedModule { }

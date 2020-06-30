@@ -207,15 +207,12 @@ export class HotelAccessComponent implements OnInit {
             this.tab3 = false;
             this.tab4 = false;
             this.tab5 = false;
-            console.log(result)
             $('#totalRoomNumber').removeClass('disabledbutton');
 
             if (result[0][0].hotelObj.cancellationPolicy === 1) {
-                console.log('1')
                 this.listRadioCancel = [{name: 'room.flexiblev1', value: 1, checked: true},
                     {name: 'room.Strictv1', value: 2, checked: false}]
             } else {
-                console.log('2')
                 this.listRadioCancel = [{name: 'room.flexiblev1', value: 1, checked: false},
                     {name: 'room.Strictv1', value: 2, checked: true}]
             }
@@ -319,7 +316,9 @@ export class HotelAccessComponent implements OnInit {
                 z++; // index
 
             }
+
         })
+
     }
 
     onSubmit() {
@@ -339,7 +338,7 @@ export class HotelAccessComponent implements OnInit {
         if (this.isEdited) {
             console.log('vao day de edit')
             console.log(this.registerHotelForm.value);
-            this._hotelService.createHotel(this.registerHotelForm.value).subscribe((data) => {
+            this._hotelService.editHotel(this.registerHotelForm.value).subscribe((data) => {
                 const result = data.body
             })
 
@@ -368,6 +367,7 @@ export class HotelAccessComponent implements OnInit {
             accommodates: this.formbuilder.control('0'),
             bathRooms: this.formbuilder.control('0'),
             bedRooms: this.formbuilder.control('0'),
+            order: this.formbuilder.control(this.totaltypeRoomNumber),
             bedRoomsDetails: this.formbuilder.array([]),
             maxDay: this.formbuilder.control('0'),
             price: ['', [Validators.required, Validators.pattern(/^[0-9]\d*$/)]]
@@ -388,6 +388,7 @@ export class HotelAccessComponent implements OnInit {
     addControlArrayTypeBedroom(i) {
         console.log('thêm loại giường ngủ')
         return this.formbuilder.group({
+            order: i,
             arrayTypeBedRooms: this.formbuilder.array([
                 // this.addControlTypeBedroom() //k cho tự động add giường
             ])

@@ -246,6 +246,7 @@
     "accept": "Agree to the terms and conditions and you're ready to go!",
     "acceptWithBooking": "I agree to the terms and conditions of Booking.com and confirm I will comply with applicable laws and regulations.",
     "acceptEroor": " You must agree to the terms before completing the post !!!!!!",
-    "introMyHotel": "Introduce my hotel"
+    "introMyHotel": "Introduce my hotel",
+    "editMyHotel": "Edit Hotel"
   }
 }

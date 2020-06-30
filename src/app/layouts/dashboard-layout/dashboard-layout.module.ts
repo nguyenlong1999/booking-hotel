@@ -31,7 +31,6 @@ import {ChooseRoomTypeDialogComponent} from "../choose-room-type-dialog/choose-r
         DashboardLayoutComponent,
         IndexLayoutComponent,
         HotelRegisterComponent,
-        ScrollTopComponent,
         UserRegiterComponent,
         ChooseRoomTypeDialogComponent
         // add các component của trang người dùng vào đây
@@ -66,9 +65,6 @@ import {ChooseRoomTypeDialogComponent} from "../choose-room-type-dialog/choose-r
     entryComponents: [ChooseRoomTypeDialogComponent],
     schemas: [
         CUSTOM_ELEMENTS_SCHEMA
-    ],
-    exports: [
-        ScrollTopComponent
     ]
 })
 export class DashboardLayoutModule {
