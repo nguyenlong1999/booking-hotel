@@ -21,8 +21,11 @@ export class HotelAccessComponent implements OnInit {
     countBathrooms = 0;
     private address;
     private name;
+    isEdited = false
     lat = 19.973349;
     lng = 105.468750;
+    successMessage = '';
+
     // rating
     rating = 3;
     starCount = 5;
@@ -57,13 +60,6 @@ export class HotelAccessComponent implements OnInit {
             name: 'room.ThreeMonth', value: 4
         }
     ]
-    selectedCancellationPolicy = '2';
-
-    editForm = false;
-    idEdit: string;
-
-    isStrict = false;
-    isFlexible = false;
 
     // type bed rooms
     lstTypeBedRoom = [
@@ -108,6 +104,7 @@ export class HotelAccessComponent implements OnInit {
             starHotel: [''],
             image: [''],
             totalRoomNumber: '1',
+            status: 0, // 0 inActive 1: Active
 
             // tab 2
             address: [''],
@@ -131,6 +128,7 @@ export class HotelAccessComponent implements OnInit {
 
         if (this.route.snapshot.paramMap.get('id')) {
             this.isEdit(this.route.snapshot.paramMap.get('id'))
+            this.isEdited = true
         }
     }
 
@@ -162,11 +160,16 @@ export class HotelAccessComponent implements OnInit {
     }
 
     public tabNext() {
+        const radio: HTMLElement = document.getElementById('scroll-to-top');
+        radio.click();
         const tabCount = 5;
         this.TabIndex = (this.TabIndex + 1) % tabCount;
+
     }
 
     public tabPrevios() {
+        const radio: HTMLElement = document.getElementById('scroll-to-top');
+        radio.click();
         const tabCount = 5;
         this.TabIndex = (this.TabIndex - 1) % tabCount;
     }
@@ -203,17 +206,9 @@ export class HotelAccessComponent implements OnInit {
             this.tab2 = false;
             this.tab3 = false;
             this.tab4 = false;
+            this.tab5 = false;
             console.log(result)
             $('#totalRoomNumber').removeClass('disabledbutton');
-            if (result[0][0].hotelObj.reservationTime === 1) {
-                $('#matBtn0').addClass('viewMatButton');
-            } else if (result[0][0].hotelObj.reservationTime === 2) {
-                $('#matBtn1').addClass('viewMatButton');
-            } else if (result[0][0].hotelObj.reservationTime === 3) {
-                $('#matBtn2').addClass('viewMatButton');
-            } else if (result[0][0].hotelObj.reservationTime === 4) {
-                $('#matBtn3').addClass('viewMatButton');
-            }
 
             if (result[0][0].hotelObj.cancellationPolicy === 1) {
                 console.log('1')
@@ -305,7 +300,8 @@ export class HotelAccessComponent implements OnInit {
                 let h = 0;
                 for (const y of i.bedroomDetail) {
                     control.push(this.addControlArrayTypeBedroom(z));
-                    const addTypebedRoom = ((<FormArray>this.registerHotelForm.controls['formArrayRoomNumber']).at(z).get('bedRoomsDetails') as FormArray)
+                    const addTypebedRoom = ((<FormArray>this.registerHotelForm.controls['formArrayRoomNumber'])
+                        .at(z).get('bedRoomsDetails') as FormArray)
                         .at(h).get('arrayTypeBedRooms') as FormArray;
                     for (const j of y.arrayTypeBedRooms) {
                         addTypebedRoom.push(this.formbuilder.group({
@@ -335,19 +331,28 @@ export class HotelAccessComponent implements OnInit {
         console.log(this.registerHotelForm.value);
         const hoTelsObject = this.registerHotelForm.value;
         hoTelsObject.email = this.cookies.get('email');
-        this._hotelService.createHotel(this.registerHotelForm.value).subscribe((data) => {
-            const result = data.body
-            if (result['status'] === 200) {
-                // this.message = result['message'];
-                // const radio: HTMLElement = document.getElementById('modal-button20');
-                // radio.click();
-                setTimeout(() => {
-                    this._router.navigate(['/']);
-                }, 5000);
-            } else if (result['status'] !== 200) {
-                this.errorMessage = result['message'];
-            }
-        })
+
+        if (this.isEdited) {
+            console.log('vao day de edit')
+
+        } else {
+            this._hotelService.createHotel(this.registerHotelForm.value).subscribe((data) => {
+                const result = data.body
+                console.log(result)
+                if (result['status'] === 200) {
+                    // this.successMessage = result['message'];
+                    this.successMessage = result['message'];
+                    const radio: HTMLElement = document.getElementById('modal-button');
+                    radio.click();
+                    setTimeout(() => {
+                        // window.location.reload()
+                        window.location.assign('/hotels')
+                    }, 3000);
+                } else if (result['status'] !== 200) {
+                    this.errorMessage = result['message'];
+                }
+            })
+        }
     }
 
     addControlRoom() {

@@ -62,12 +62,14 @@ import {ChooseRoomTypeDialogComponent} from "../choose-room-type-dialog/choose-r
             }
         }),
     ],
-    providers: [
-    ],
+    providers: [],
     entryComponents: [ChooseRoomTypeDialogComponent],
     schemas: [
         CUSTOM_ELEMENTS_SCHEMA
     ],
+    exports: [
+        ScrollTopComponent
+    ]
 })
 export class DashboardLayoutModule {
 }
