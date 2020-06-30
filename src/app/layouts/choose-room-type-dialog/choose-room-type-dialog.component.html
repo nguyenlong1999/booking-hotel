@@ -1,52 +1,118 @@
 <div class="container">
     <div class="row">
-        <div class="col-7">
-            <div class="row hover" style="border-bottom: 0.5px solid lightgray; padding: 5px 0; ">
-                <div class="col-6 room-count1">
-                    <a>Đi một mình</a>
+        <div class="col-7" style="background: rgba(255,255,255,0.75);">
+            <div class="row hover card" style="height: 35px;margin: 3px 2px;" (click)="checkIndex(1)">
+                <div class="card-body row" style="padding: 5px 3px;">
+                    <div class="col-6 room-count1">
+                        <a>Đi một mình</a>
+                    </div>
+                    <div class="col-6 room-count">
+                        <a *ngIf="checkAlone">{{searchHotel.roomCount}} phòng,{{searchHotel.roomCount}} người lớn</a>
+                        <span *ngIf="!checkAlone"
+                              style="float: right; font-size: 30px; padding-right: 5px;">&rsaquo;</span>
+                    </div>
                 </div>
-                <div class="col-6 room-count">
-                    <a>1 phòng,1 người lớn</a>
+
+            </div>
+            <div class="row hover card" style="height: 35px;margin: 3px 2px;" (click)="checkIndex(2)">
+                <div class="card-body row" style="padding: 5px 3px;">
+                    <div class="col-6 room-count1">
+                        <a>Cặp đôi/2 người</a>
+                    </div>
+                    <div class="col-6 room-count">
+                        <a *ngIf="checkPair">{{searchHotel.roomCount}} phòng,{{searchHotel.personCount}} người lớn</a>
+                        <span *ngIf="!checkPair"
+                              style="float: right; font-size: 30px; padding-right: 5px;">&rsaquo;</span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row hover card" style="height: 35px;margin: 3px 2px;" (click)="checkIndex(3)">
+                <div class="card-body row" style="padding: 5px 3px;">
+                    <div class="col-6 room-count1">
+                        <a>Theo gia đình</a>
+                    </div>
+                    <div class="col-6 room-count">
+                        <a *ngIf="checkFamily">{{searchHotel.roomCount}} phòng,{{searchHotel.personCount}} người lớn</a>
+                        <span *ngIf="!checkFamily"
+                              style="float: right; font-size: 30px; padding-right: 5px;">&rsaquo;</span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row hover card" style="height: 35px;margin: 3px 2px;" (click)="checkIndex(4)">
+                <div class="card-body row" style="padding: 5px 3px;">
+                    <div class="col-6 room-count1">
+                        <a>Theo đoàn/ nhóm</a>
+                    </div>
+                    <div class="col-6 room-count">
+                        <a *ngIf="checkGroup">{{searchHotel.roomCount}} phòng,{{searchHotel.personCount}} người lớn</a>
+                        <span *ngIf="!checkGroup"
+                              style="float: right; font-size: 30px; padding-right: 5px;">&rsaquo;</span>
+                    </div>
                 </div>
             </div>
-            <div class="row hover" style="border-bottom: 0.5px solid lightgray; padding: 5px 0; ">
-                <div class="col-6 room-count1">
-                    <a>Cặp đôi/2 người</a>
-                </div>
-                <div class="col-6 room-count">
-                    <a>1 phòng,2 người lớn</a>
-                </div>
-            </div>
-            <div class="row hover" style="border-bottom: 0.5px solid lightgray; padding: 5px 0; ">
-                <div class="col-6 room-count1">
-                    <a>Theo gia đình</a>
-                </div>
-                <div class="col-6 room-count">
-                    <a>1 phòng,2 người lớn</a>
-                </div>
-            </div>
-            <div class="row hover" style="border-bottom: 0.5px solid lightgray; padding: 5px 0; ">
-                <div class="col-6 room-count1">
-                    <a>Theo đoàn/nhóm</a>
-                </div>
-                <div class="col-6 room-count">
-                    <a>1 phòng,2 người lớn</a>
-                </div>
-            </div>
-            <div class="row hover" style="border-bottom: 0.5px solid lightgray; padding: 5px 0; ">
-                <div class="col-6 room-count1">
-                    <a>Đi công tác</a>
-                </div>
-                <div class="col-6 room-count">
-                    <a>1 phòng,1 người lớn</a>
+            <div class="row hover card" style="height: 35px;margin: 3px 2px;" (click)="checkIndex(5)">
+                <div class="card-body row" style="padding: 5px 3px;">
+                    <div class="col-6 room-count1">
+                        <a>Đi công tác</a>
+                    </div>
+                    <div class="col-6 room-count">
+                        <a *ngIf="checkJob">{{searchHotel.roomCount}} phòng,{{searchHotel.personCount}} người lớn</a>
+                        <span *ngIf="!checkJob"
+                              style="float: right; font-size: 30px; padding-right: 5px;">&rsaquo;</span>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-5">
-
+        <div class="col-5" *ngIf="openCount">
+            <div class="row hover card" style="height: 35px;margin: 3px 2px;" >
+                <div class="card-body " style="padding: 5px 3px;">
+                    <div class="row" style=" justify-content: center !important;">
+                        <div class="col">
+                            <span style=" font-size: 25px;padding-left: 5px; cursor: pointer;" (click)="removeRoomCount()">-</span>
+                        </div>
+                        <div class="col-6">
+                            <a class="room-count">{{searchHotel.roomCount}} Phòng</a>
+                        </div>
+                        <div class="col">
+                            <span style=" font-size: 25px;padding-right: 5px; cursor: pointer;" (click)="addRoomCount()">+</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row hover card" style="height: 35px;margin: 3px 2px;">
+                <div class="card-body " style="padding: 5px 3px;">
+                    <div class="row" style=" justify-content: center !important;">
+                        <div class="col">
+                            <span style=" font-size: 25px;padding-left: 5px; cursor: pointer;" (click)="removePersonCount()">-</span>
+                        </div>
+                        <div class="col-6">
+                            <a class="room-count">{{searchHotel.personCount}} Người lớn</a>
+                        </div>
+                        <div class="col">
+                            <span style=" font-size: 25px;padding-right: 5px; cursor: pointer;" (click)="addPersonCount()">+</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row hover card" style="height: 35px;margin: 3px 2px;" *ngIf="childrenCheck" >
+                <div class="card-body " style="padding: 5px 3px;">
+                    <div class="row" style=" justify-content: center !important;">
+                        <div class="col">
+                        <span style=" font-size: 25px;padding-left: 5px; cursor: pointer;" (click)="removeChildCount()">-</span>
+                    </div>
+                        <div class="col-6">
+                            <a class="room-count">{{searchHotel.childrenCount}} Trẻ em</a>
+                        </div>
+                        <div class="col">
+                            <span style=" font-size: 25px;padding-right: 5px; cursor: pointer;" (click)="addChildCount()">+</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+    <button mat-raised-button (click)="onCloseDialog()" type="submit" color="primary" [mat-dialog-close]="output" class="Update-btn" style="float: right;">Ok
+    </button>
 </div>
-<button mat-raised-button (click)="onCloseDialogNoData()" color="primary" class="Update-btn" style="float: right;">No
-    Thanks
-</button>
