@@ -195,7 +195,7 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col">
-                                                        <app-image (imageSrcUrl)="getImageSrc($event)"
+                                                        <app-image (imageSrcUrl)="getImageSrc($event)" (indexDelete)="getIndexDelete($event)"
                                                                    [multiple]="true"
                                                                    [imageProp]="imageProp"></app-image>
                                                     </div>
@@ -1147,19 +1147,11 @@
                                 </div>
                                 <div class="row">
                                     <div class="col">
-                                        <mat-button-toggle-group style="background: #ffffff"
-                                                                 formControlName="reservationTime">
-                                            <mat-button-toggle value="1"
-                                                               style="margin:10px 5px">{{"room.Anytime"|translate}}
-                                            </mat-button-toggle>
-                                            <mat-button-toggle value="2"
-                                                               style="margin:10px 5px">{{"room.Ayear"|translate}}
-                                            </mat-button-toggle>
-                                            <mat-button-toggle value="3"
-                                                               style="margin:10px 5px">{{"room.SixMonth"|translate}}
-                                            </mat-button-toggle>
-                                            <mat-button-toggle value="4"
-                                                               style="margin:10px 5px">{{"room.ThreeMonth"|translate}}
+                                        <mat-button-toggle-group
+                                                formControlName="reservationTime">
+                                            <mat-button-toggle id="matBtn{{i}}"
+                                                               *ngFor="let btn of listMatButton;let i = index">
+                                                {{btn.name | translate}}
                                             </mat-button-toggle>
                                         </mat-button-toggle-group>
                                     </div>
@@ -1174,35 +1166,22 @@
                                 <mat-radio-group formControlName="cancellationPolicy">
                                     <div class="row">
                                         <div class="col">
-                                            <mat-radio-button value="1"><b>{{"room.flexible"|translate}}</b>
-                                                <br>
-                                                <div class="wrap-mat-radio-label">
-                                                    {{"room.flexiblev1"|translate}}
-                                                </div>
-                                            </mat-radio-button>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <mat-radio-button value="2"><b>{{"room.Strict"|translate}}</b>
-                                                <br>
-                                                <div class="wrap-mat-radio-label">
-                                                    {{"room.Strictv1"|translate}}
-                                                </div>
-                                            </mat-radio-button>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col text-right">
-                                            <button class="prevtab btn btn-success" (click)="tabPrevios()">
-                                                {{"common.button.back"|translate}}
-                                            </button>
-                                            <button class="nexttab btn btn-success" (click)="tabNext()">
-                                                {{"common.button.next"|translate}}
-                                            </button>
+                                            <mat-radio-button *ngFor="let op of listRadioCancel"
+                                                              [checked]="op.checked" [value]="op.value"
+                                                              name="cancelPolicy">{{ op.name|translate}}</mat-radio-button>
                                         </div>
                                     </div>
                                 </mat-radio-group>
+                                <div class="row">
+                                    <div class="col text-right">
+                                        <button class="prevtab btn btn-success" (click)="tabPrevios()">
+                                            {{"common.button.back"|translate}}
+                                        </button>
+                                        <button class="nexttab btn btn-success" (click)="tabNext()">
+                                            {{"common.button.next"|translate}}
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1274,8 +1253,10 @@
                                 </div>
                                 <div class="row">
                                     <div class="col" style="margin-top: 2%">
-                                        <a style="padding: 15px 20px;background-image: linear-gradient(to right, #3cc603 0%, #3cc908  51%, #32a103  100%); cursor: pointer;color: white ; height: 80px;width: 250px;border-radius: 5px; margin-left: 40%; margin-top: 5% "
+                                        <a *ngIf="!isEdited" style="padding: 15px 20px;background-image: linear-gradient(to right, #3cc603 0%, #3cc908  51%, #32a103  100%); cursor: pointer;color: white ; height: 80px;width: 250px;border-radius: 5px; margin-left: 40%; margin-top: 5% "
                                            (click)="onSubmit()">{{"post.introMyHotel"|translate}}</a>
+                                        <a  *ngIf="isEdited" style="padding: 15px 20px;background-image: linear-gradient(to right, #3cc603 0%, #3cc908  51%, #32a103  100%); cursor: pointer;color: white ; height: 80px;width: 250px;border-radius: 5px; margin-left: 40%; margin-top: 5% "
+                                           (click)="onSubmit()">{{"post.editMyHotel"|translate}}</a>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -1285,12 +1266,36 @@
                                         </button>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </mat-tab>
     </mat-tab-group>
 </form>
+<button type="button" class="btn btn-primary" hidden="true" data-toggle="modal" data-target="#exampleModalCenter"
+        id="modal-button">
+    Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background:  #008325;">
+                <h5 class="modal-title" id="exampleModalLongTitle" style="color: white;">Thông báo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="color: red;">
+                <!--                            {{message}}-->
+                <a> {{successMessage}}</a>
+            </div>
+        </div>
+    </div>
+</div>
+<app-scroll-top></app-scroll-top>
