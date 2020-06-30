@@ -220,11 +220,15 @@ export class HotelAccessComponent implements OnInit {
                     {name: 'room.Strictv1', value: 2, checked: true}]
             }
 
+
             this.registerHotelForm = this.formbuilder.group({
+                id: result[0][0].hotelObj._id,
                 name: result[0][0].hotelObj.name,
                 sqm: result[0][0].hotelObj.sqm,
                 address: result[0][0].hotelObj.address,
                 country: result[0][0].hotelObj.country,
+                image: result[0][0].hotelObj.image,
+                starHotel: result[0][0].hotelObj.starHotel,
                 desHotel: result[0][0].hotelObj.desHotel,
                 guideToHotel: result[0][0].hotelObj.guideToHotel,
                 reservationTime: result[0][0].hotelObj.reservationTime,
@@ -334,6 +338,10 @@ export class HotelAccessComponent implements OnInit {
 
         if (this.isEdited) {
             console.log('vao day de edit')
+            console.log(this.registerHotelForm.value);
+            this._hotelService.createHotel(this.registerHotelForm.value).subscribe((data) => {
+                const result = data.body
+            })
 
         } else {
             this._hotelService.createHotel(this.registerHotelForm.value).subscribe((data) => {

@@ -24,6 +24,10 @@ export class HotelService {
         return this._http.post(`${this.baseUrl}/createHotel`, {hotel: hotel}, {observe: 'response'});
     }
 
+    editHotel(hotel: any) {
+        return this._http.post(`${this.baseUrl}/updateHotel`, {hotel: hotel}, {observe: 'response'});
+    }
+
     getHotels = (): Observable<Hotel[]> => {
         return this._http
             .get<Hotel[]>(`${this.baseUrl}/getHotels`)
