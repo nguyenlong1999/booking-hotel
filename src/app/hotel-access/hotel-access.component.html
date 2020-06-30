@@ -195,7 +195,7 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col">
-                                                        <app-image (imageSrcUrl)="getImageSrc($event)"
+                                                        <app-image (imageSrcUrl)="getImageSrc($event)" (indexDelete)="getIndexDelete($event)"
                                                                    [multiple]="true"
                                                                    [imageProp]="imageProp"></app-image>
                                                     </div>

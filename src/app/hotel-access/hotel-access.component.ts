@@ -160,6 +160,7 @@ export class HotelAccessComponent implements OnInit {
     }
 
     public tabNext() {
+
         const radio: HTMLElement = document.getElementById('scroll-to-top');
         radio.click();
         const tabCount = 5;
@@ -208,7 +209,7 @@ export class HotelAccessComponent implements OnInit {
             this.tab4 = false;
             this.tab5 = false;
             $('#totalRoomNumber').removeClass('disabledbutton');
-
+            this.rating = result[0][0].hotelObj.starHotel;
             if (result[0][0].hotelObj.cancellationPolicy === 1) {
                 this.listRadioCancel = [{name: 'room.flexiblev1', value: 1, checked: true},
                     {name: 'room.Strictv1', value: 2, checked: false}]
@@ -588,6 +589,12 @@ export class HotelAccessComponent implements OnInit {
         // let evt = JSON.parse(event.toString());
         // this.arrayImage += evt.filePath + ','
         // event.path
+    }
+
+    getIndexDelete(event: any) {
+        const arraySlice = this.arrayImage.split(',')
+        arraySlice.splice(event, 1)
+        this.arrayImage = arraySlice.toString();
     }
 
     changeValueAccept(value) {

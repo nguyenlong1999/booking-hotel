@@ -13,6 +13,7 @@ export class ImageComponent implements OnInit {
     @Input('imageProp') private imageProp: String;
     @Input('url') private url: any;
     @Output() private imageSrcUrl = new EventEmitter();
+    @Output() private indexDelete =  new EventEmitter<string>();
 
     // tslint:disable-next-line:no-input-rename
     @Input('multiple') private multiple = true
@@ -47,9 +48,9 @@ export class ImageComponent implements OnInit {
     }
 
     removeSelectedFile(i) {
-        console.log(this.uploader);
         this.listImgPreview.splice(i, 1)
         this.uploader.queue[i].remove()
+        this.indexDelete.emit(i)
     }
 
     onSelectFile(event) {
