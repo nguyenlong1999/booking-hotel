@@ -228,6 +228,7 @@ export class HotelAccessComponent implements OnInit {
                 image: result[0][0].hotelObj.image,
                 starHotel: result[0][0].hotelObj.starHotel,
                 desHotel: result[0][0].hotelObj.desHotel,
+                suggestPlayground: result[0][0].hotelObj.suggestPlayground,
                 guideToHotel: result[0][0].hotelObj.guideToHotel,
                 reservationTime: result[0][0].hotelObj.reservationTime,
                 rulerHotel: result[0][0].hotelObj.rulerHotel,
