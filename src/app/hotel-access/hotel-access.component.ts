@@ -347,6 +347,17 @@ export class HotelAccessComponent implements OnInit {
             console.log(this.registerHotelForm.value);
             this._hotelService.editHotel(this.registerHotelForm.value).subscribe((data) => {
                 const result = data.body
+                console.log(result)
+                if (result['status'] === 200) {
+                    // this.successMessage = result['message'];
+                    this.successMessage = result['message'];
+                    const radio: HTMLElement = document.getElementById('modal-button');
+                    radio.click();
+                    setTimeout(() => {
+                        // window.location.reload()
+                        window.location.assign('/hotels')
+                    }, 3000);
+                }
             })
 
         } else {
