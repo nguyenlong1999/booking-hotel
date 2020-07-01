@@ -3,62 +3,199 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card card-plain">
-                    <div class="card-header card-header-danger">
-                        <h4 class="card-title mt-0"> Table on Plain Background</h4>
-                        <p class="card-category"> Here is a subtitle for this table</p>
-                    </div>
-                    <div class="example-header">
-                        <mat-form-field>
-                            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-                        </mat-form-field>
-                    </div>
-                    <div class="card-body">
-                        <mat-table [dataSource]="dataSource" matSort>
-                            <ng-container matColumnDef="id">
-                                <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
-                                <mat-cell
-                                        *matCellDef="let row ; index as i"> {{paginator.pageSize * paginator.pageIndex + i + 1}}  </mat-cell>
-                            </ng-container>
+                    <mat-tab-group>
+                        <mat-tab>
+                            <ng-template mat-tab-label>
+                                Khách sạn đã duyệt
+                            </ng-template>
 
-                            <!-- Progress Column -->
+                            <div class="example-header">
+                                <mat-form-field>
+                                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                                </mat-form-field>
+                            </div>
+                            <div class="card-body">
+                                <mat-table [dataSource]="dataSource" matSort>
 
-                            <ng-container matColumnDef="user">
-                                <mat-header-cell *matHeaderCellDef mat-sort-header>User</mat-header-cell>
-                                <mat-cell *matCellDef="let row"> {{row.user.email}}</mat-cell>
-                            </ng-container>
+                                    <ng-container matColumnDef="id">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
+                                        <mat-cell
+                                                *matCellDef="let row ; index as i"> {{paginator.pageSize * paginator.pageIndex + i + 1}}  </mat-cell>
+                                    </ng-container>
 
-
-                            <ng-container matColumnDef="name">
-                                <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
-                                <mat-cell *matCellDef="let row"> {{row.name}}</mat-cell>
-                            </ng-container>
+                                    <!-- Progress Column -->
+                                    <ng-container matColumnDef="user">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
+                                        <mat-cell *matCellDef="let row"> {{row.user.email}}</mat-cell>
+                                    </ng-container>
 
 
-                            <!-- Name Column -->
-                            <ng-container matColumnDef="sqm">
-                                <mat-header-cell *matHeaderCellDef mat-sort-header>Mét vuông</mat-header-cell>
-                                <mat-cell *matCellDef="let row"> {{row.sqm}} </mat-cell>
-                            </ng-container>
+                                    <ng-container matColumnDef="name">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header>Tên khách sạn
+                                        </mat-header-cell>
+                                        <mat-cell *matCellDef="let row"> {{row.name}}</mat-cell>
+                                    </ng-container>
 
-                            <ng-container matColumnDef="add">
-                                <mat-header-cell *matHeaderCellDef>
-                                    <button mat-icon-button color="warn"
-                                            (click)="this.route.navigate(['/hotel-access'])">
-                                        <mat-icon>add</mat-icon>
-                                    </button>
-                                </mat-header-cell>
-                                <mat-cell *matCellDef="let row">
-                                    <button mat-icon-button color="warn" (click)="this.route.navigate(['/hotelEdit',row._id])">
-                                        <mat-icon>create</mat-icon>
-                                    </button>
-                                </mat-cell>
-                            </ng-container>
+                                    <ng-container matColumnDef="address">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header>Địa chỉ</mat-header-cell>
+                                        <mat-cell *matCellDef="let row"> {{row.address}}</mat-cell>
+                                    </ng-container>
 
-                            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-                        </mat-table>
-                        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-                    </div>
+                                    <ng-container matColumnDef="starHotel">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header>Chất lượng
+                                        </mat-header-cell>
+                                        <mat-cell *matCellDef="let row"> {{row.starHotel}} sao</mat-cell>
+                                    </ng-container>
+
+                                    <!-- Name Column -->
+                                    <ng-container matColumnDef="sqm">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header>Mét vuông
+                                        </mat-header-cell>
+                                        <mat-cell *matCellDef="let row"> {{row.sqm}} </mat-cell>
+                                    </ng-container>
+
+                                    <!-- Name Column -->
+                                    <ng-container matColumnDef="totalRoom">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header>Số loại phòng
+                                        </mat-header-cell>
+                                        <mat-cell *matCellDef="let row"> {{row.totalRoomNumber}} </mat-cell>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="approval">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header>Xét duyệt
+                                        </mat-header-cell>
+                                        <mat-cell *matCellDef="let row">
+                                            <button mat-button class="btn btn-outline-success">
+                                                Duyệt KS
+                                            </button>
+                                        </mat-cell>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="block">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header>Khóa KS</mat-header-cell>
+                                        <mat-cell *matCellDef="let row">
+                                            <button mat-button class="btn btn-outline-warning">
+                                                Khóa
+                                            </button>
+                                        </mat-cell>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="add">
+                                        <mat-header-cell *matHeaderCellDef>
+                                            <button mat-icon-button color="warn"
+                                                    (click)="this.route.navigate(['/hotel-access'])">
+                                                <mat-icon>add</mat-icon>
+                                            </button>
+                                        </mat-header-cell>
+                                        <mat-cell *matCellDef="let row">
+                                            <button mat-icon-button color="warn"
+                                                    (click)="this.route.navigate(['/hotelEdit',row._id])">
+                                                <mat-icon>create</mat-icon>
+                                            </button>
+                                        </mat-cell>
+                                    </ng-container>
+
+                                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                                </mat-table>
+                                <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                            </div>
+                        </mat-tab>
+                        <mat-tab>
+                            <ng-template mat-tab-label>
+                                Khách sạn chưa duyệt
+                            </ng-template>
+                            <mat-form-field>
+                                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                            </mat-form-field>
+                            <div class="card-body">
+                                <mat-table [dataSource]="hehe" matSort>
+
+                                    <ng-container matColumnDef="id">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
+                                        <mat-cell
+                                                *matCellDef="let row ; index as i"> {{paginator.pageSize * paginator.pageIndex + i + 1}}  </mat-cell>
+                                    </ng-container>
+
+                                    <!-- Progress Column -->
+                                    <ng-container matColumnDef="user">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
+                                        <mat-cell *matCellDef="let row"> {{row.user.email}}</mat-cell>
+                                    </ng-container>
+
+
+                                    <ng-container matColumnDef="name">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header>Tên khách sạn
+                                        </mat-header-cell>
+                                        <mat-cell *matCellDef="let row"> {{row.name}}</mat-cell>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="address">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header>Địa chỉ</mat-header-cell>
+                                        <mat-cell *matCellDef="let row"> {{row.address}}</mat-cell>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="starHotel">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header>Chất lượng
+                                        </mat-header-cell>
+                                        <mat-cell *matCellDef="let row"> {{row.starHotel}} sao</mat-cell>
+                                    </ng-container>
+
+                                    <!-- Name Column -->
+                                    <ng-container matColumnDef="sqm">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header>Mét vuông
+                                        </mat-header-cell>
+                                        <mat-cell *matCellDef="let row"> {{row.sqm}} </mat-cell>
+                                    </ng-container>
+
+                                    <!-- Name Column -->
+                                    <ng-container matColumnDef="totalRoom">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header>Số loại phòng
+                                        </mat-header-cell>
+                                        <mat-cell *matCellDef="let row"> {{row.totalRoomNumber}} </mat-cell>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="approval">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header>Xét duyệt
+                                        </mat-header-cell>
+                                        <mat-cell *matCellDef="let row">
+                                            <button mat-button class="btn btn-outline-success">
+                                                Duyệt KS
+                                            </button>
+                                        </mat-cell>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="block">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header>Khóa KS</mat-header-cell>
+                                        <mat-cell *matCellDef="let row">
+                                            <button mat-button class="btn btn-outline-warning">
+                                                Khóa
+                                            </button>
+                                        </mat-cell>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="add">
+                                        <mat-header-cell *matHeaderCellDef>
+                                            <button mat-icon-button color="warn"
+                                                    (click)="this.route.navigate(['/hotel-access'])">
+                                                <mat-icon>add</mat-icon>
+                                            </button>
+                                        </mat-header-cell>
+                                        <mat-cell *matCellDef="let row">
+                                            <button mat-icon-button color="warn"
+                                                    (click)="this.route.navigate(['/hotelEdit',row._id])">
+                                                <mat-icon>create</mat-icon>
+                                            </button>
+                                        </mat-cell>
+                                    </ng-container>
+
+                                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                                </mat-table>
+                                <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                            </div>
+                        </mat-tab>
+                    </mat-tab-group>
                 </div>
             </div>
         </div>

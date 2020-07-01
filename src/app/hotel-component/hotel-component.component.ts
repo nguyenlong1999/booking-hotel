@@ -12,11 +12,13 @@ import {Router} from '@angular/router';
     styleUrls: ['./hotel-component.component.css']
 })
 export class HotelComponentComponent implements OnInit, AfterViewInit {
-    hotels: Hotel[] = []
-    displayedColumns = ['id', 'user', 'name', 'sqm', 'add'];
-
+    hotels: Hotel[] = [];
+    hotelss: Hotel[] = [];
+    displayedColumns = ['id', 'user', 'name', 'address', 'starHotel', 'sqm', 'totalRoom', 'approval', 'block', 'add'];
+    typeHotel = 0;
 
     dataSource: MatTableDataSource<Hotel>;
+    hehe: MatTableDataSource<Hotel>
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
 
@@ -24,7 +26,7 @@ export class HotelComponentComponent implements OnInit, AfterViewInit {
     }
 
     async ngOnInit() {
-        await this.getHotel();
+        await this.getHotel(1);
     }
 
     applyFilter(filterValue: string) {
@@ -41,13 +43,26 @@ export class HotelComponentComponent implements OnInit, AfterViewInit {
         console.log(row_id)
     }
 
-    getHotel(): Promise<any> {
+    onChange(event) {
+        console.log(this.typeHotel);
+    }
+
+    getHotel(status: number): Promise<any> {
         return this.hotelService.getHotels().toPromise().then(hotels => {
                 console.log(hotels)
                 if (hotels === undefined) {
                     return;
                 }
-                this.hotels = hotels;
+                for (let item of hotels) {
+                    if (item.status === status) {
+                        this.hotels.push(item);
+                    } else {
+                        this.hotelss.push(item)
+                    }
+                }
+                this.hehe = new MatTableDataSource(this.hotelss);
+                this.hehe.paginator = this.paginator;
+                this.hehe.sort = this.sort;
                 this.dataSource = new MatTableDataSource(this.hotels)
                 this.dataSource.paginator = this.paginator;
                 this.dataSource.sort = this.sort;
