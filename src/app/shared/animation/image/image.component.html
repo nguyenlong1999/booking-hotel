@@ -13,6 +13,22 @@
         </div>
     </div>
     <div class="row">
+        <div class="col-lg-2"  *ngFor="let imageCurrent of listImgCurrent; let i = index">
+            <div class="row" *ngIf="imageCurrent">
+                <div class="col">
+                    <div tyle="position: relative">
+                        <img [src]="'http://localhost:8000/api/images/'+imageCurrent" style="max-width:100%; height: auto;" />
+                    </div>
+                </div>
+            </div>
+            <div class="row" *ngIf="imageCurrent">
+                <div class="col">
+                    <button mat-icon-button color="warn" (click)="removeImageCurrent(i)" style="">
+                        <mat-icon>favorite</mat-icon>Delete
+                    </button>
+                </div>
+            </div>
+        </div>
         <div class="col-lg-2"  *ngFor="let imagePre of listImgPreview; let i = index">
             <div class="row">
                 <div class="col">

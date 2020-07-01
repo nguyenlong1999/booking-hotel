@@ -25,7 +25,8 @@ export class HotelAccessComponent implements OnInit {
     lat = 19.973349;
     lng = 105.468750;
     successMessage = '';
-
+    listImgCurrent = [];
+    a = [];
     // rating
     rating = 3;
     starCount = 5;
@@ -160,7 +161,6 @@ export class HotelAccessComponent implements OnInit {
     }
 
     public tabNext() {
-
         const radio: HTMLElement = document.getElementById('scroll-to-top');
         radio.click();
         const tabCount = 5;
@@ -202,8 +202,8 @@ export class HotelAccessComponent implements OnInit {
     isEdit(idObject) {
         this.registerHotelForm.reset();
         this._hotelService.getHotelById(idObject).subscribe(data => {
-            const result = data
-            console.log(result)
+            const result = data;
+            this.listImgCurrent = result[0][0].hotelObj.image.split(',');
             this.tab2 = false;
             this.tab3 = false;
             this.tab4 = false;
@@ -327,7 +327,13 @@ export class HotelAccessComponent implements OnInit {
             this.isSubmitted = true
             return
         }
-
+        if (this.listImgCurrent.length > 0) {
+            let imgCurrent = Array.from(this.listImgCurrent).join();
+            if (this.arrayImage.length > 0) {
+                imgCurrent = imgCurrent + ',';
+                this.arrayImage = imgCurrent.concat(this.arrayImage);
+            }
+        }
         this.registerHotelForm.get('image').setValue(this.arrayImage)
         this.registerHotelForm.get('totalRoomNumber').setValue(this.totaltypeRoomNumber)
         this.registerHotelForm.get('starHotel').setValue(this.rating)
@@ -581,9 +587,9 @@ export class HotelAccessComponent implements OnInit {
         const str = '[' + event.toString().replace(/}\n?{/g, '},{') + ']';
         JSON.parse(str).forEach((obj) => {
             pshArrayImage.add(obj.filePath)
-            console.log(obj.filePath)
+            // console.log(obj.filePath)
         });
-        console.log(pshArrayImage)
+        // console.log(pshArrayImage)
         // this.arrayImage = [...pshArrayImage].join(',')
         this.arrayImage = Array.from(pshArrayImage).join(',')
         // let evt = JSON.parse(event.toString());
