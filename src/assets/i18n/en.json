@@ -1,5 +1,5 @@
 {
-  "common" : {
+  "common": {
     "button": {
       "back": "Previos",
       "next": "Next"
@@ -19,9 +19,12 @@
       "errorPasswordOldFalse": "Old password is incorrect",
       "errorPasswordConfirmFalse": "The confirmation password is incorrect",
       "errorPasswordValidate": "Password must be at least 6 characters",
-      "createSuggest":"Please create an account to own more offers from the system",
+      "createSuggest": "Please create an account to own more offers from the system",
       "passwordSuggest": "Use 6 or more characters and combine letters, numbers and symbols",
       "checkInfo": "Please check the information!"
+    },
+    "login": {
+      "login": "Login"
     }
   },
   "demo.title": "Translation demo",
@@ -108,7 +111,6 @@
   "user.profile.saveChang": "Save changes",
   "user.profile.changPassword": "Change Password",
   "user.register.createAccountBooking": "Create a Booking account",
-
   "///": "bookinghotelcualongdeptrai",
   "hotelRegister": {
     "price.errorRequired": "Price per night must not be empty",

@@ -57,10 +57,7 @@ export const DashBoardRoutes: Routes = [
               path: 'recipe',
               component: RecipeComponent
             },
-            {
-              path: 'active/:id',
-              component: WelcomeComponent
-            },
+
             {
 
               path: 'gallery',

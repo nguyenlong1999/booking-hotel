@@ -13,11 +13,14 @@
                (click)="useLanguage('vi')"><img src="/assets/img/vi.png"
                                                 style="width: 30px;height: auto; padding-right: 3px;"
                                                 (click)="useLanguage('vi')" alt=""/></a>
+            <a class="navbar1">{{ "common.login.login" | translate }}</a>
+            <a class="navbar1">{{ "index.home" | translate }}</a>
             <a class="navbar1">{{ "book.promotion" | translate }}</a>
             <a class="navbar1">{{ "book.room" | translate }}</a>
-            <a class="navbar1">{{ "index.home" | translate }}</a>
+
         </div>
     </div>
 </nav>
+
 <router-outlet></router-outlet>
 <app-scroll-top></app-scroll-top>

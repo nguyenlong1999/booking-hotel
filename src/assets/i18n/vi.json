@@ -22,6 +22,9 @@
       "createSuggest": "Hãy tạo một tài khoản để sở hữu nhiều ưu đãi từ hệ thống hơn",
       "passwordSuggest": "Sử dụng 6 ký tự trở lên và kết hợp chữ cái, chữ số và biểu tượng",
       "user.register.checkInfo": "Bạn hãy kiểm tra lại thông tin!"
+    },
+    "login": {
+      "login": "Đăng nhập"
     }
   },
   "demo.title": "Dịch tiếng việt demo",

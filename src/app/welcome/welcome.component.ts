@@ -10,7 +10,7 @@ import {UserService} from '../shared/service/user.service.';
 })
 export class WelcomeComponent implements OnInit {
     id: string;
-    message = '';
+    message: string = null;
 
     constructor(private route: ActivatedRoute,
                 private cookie: CookieService,

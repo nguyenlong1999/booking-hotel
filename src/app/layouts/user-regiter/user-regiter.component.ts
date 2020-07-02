@@ -18,6 +18,8 @@ export class UserRegiterComponent implements OnInit {
         password: ''
     };
     errorMessage: String;
+    message: string = null;
+
 
     constructor(
         private formBuilder: FormBuilder,
@@ -52,9 +54,9 @@ export class UserRegiterComponent implements OnInit {
         this._loginService.registerUser(this.userObj).subscribe((data) => {
             const result = data.body
             if (result['status'] === 200) {
-                // this.message = result['message'];
-                // const radio: HTMLElement = document.getElementById('modal-button20');
-                // radio.click();
+                this.message = result['message'];
+                const radio: HTMLElement = document.getElementById('modal-button20');
+                radio.click();
                 setTimeout(() => {
                     this._router.navigate(['/']);
                 }, 5000);
