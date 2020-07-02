@@ -12,11 +12,8 @@
                     <div style="border-bottom: 0.5px solid gray; margin-top: 10px;" (click) ="openDialogChooseHotelType($event)">
                         <a >{{searchHotel.total}}</a>
                     </div>
-<!--                    <mat-form-field>-->
-<!--                        <input matInput [disabled]="true" [(ngModel)]="searchHotel.total" placeholder="Thông tin phòng" type="text" (dblclick) ="openDialogChooseHotelType($event)"/>-->
-<!--                    </mat-form-field>-->
                     <br>
-                    <button class="btn btn-outline-primary" style="float: right;border: 0.5px solid blue; color: #0c83e2;">
+                    <button class="btn btn-outline-primary" (click)="searchHotelServer($event)" style="float: right;border: 0.5px solid blue; color: #0c83e2;">
                         {{"common.button.next"|translate}}
                     </button>
                 </div>

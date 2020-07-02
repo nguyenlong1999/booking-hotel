@@ -3,6 +3,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {Observable} from 'rxjs';
 import {ChooseRoomTypeDialogComponent} from "../../choose-room-type-dialog/choose-room-type-dialog.component";
 import {SearchHotel} from "../../../shared/model/search-hotel";
+import {ChatService} from "../../../shared/service/chat.service";
 
 @Component({
     selector: 'app-index-layout',
@@ -15,6 +16,7 @@ export class IndexLayoutComponent implements OnInit {
 
     constructor(
         public dialog: MatDialog,
+        private chatService: ChatService
     ) {
 
     }
@@ -52,5 +54,8 @@ export class IndexLayoutComponent implements OnInit {
             data: {searchHotel: this.searchHotel},
         });
         return dialogRef.afterClosed();
+    }
+    searchHotelServer(event){
+        this.chatService.showNotification('success','Tìm kiếm thành công');
     }
 }
