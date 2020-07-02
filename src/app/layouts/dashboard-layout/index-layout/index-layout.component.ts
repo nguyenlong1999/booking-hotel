@@ -51,7 +51,7 @@ export class IndexLayoutComponent implements OnInit {
     constructor(
         private _loginService: LoginServiceService,
         public dialog: MatDialog,
-        private chatService: ChatService
+        private chatService: ChatService,
         private _router: Router,
         private userService: UserService,
         private formBuilder: FormBuilder,
