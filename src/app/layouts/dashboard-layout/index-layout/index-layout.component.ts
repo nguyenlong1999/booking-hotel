@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
-import { ChatService } from "../../../shared/service/chat.service";
+import { ChatService } from '../../../shared/service/chat.service';
 import { ChooseRoomTypeDialogComponent } from '../../choose-room-type-dialog/choose-room-type-dialog.component';
 import { SearchHotel } from '../../../shared/model/search-hotel';
 import { AppSetting } from '../../../appsetting';

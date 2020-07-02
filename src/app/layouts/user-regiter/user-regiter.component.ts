@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators, FormControl, NgForm, ReactiveFormsMo
 import {MustMatch} from 'app/shared/helper/must-match-validator';
 import {LoginServiceService} from 'app/shared/service/login-service.service';
 import {Router, ActivatedRoute} from '@angular/router';
+import {ChatService} from '../../shared/service/chat.service';
 
 @Component({
     selector: 'app-user-regiter',
@@ -25,6 +26,7 @@ export class UserRegiterComponent implements OnInit {
         private formBuilder: FormBuilder,
         private _loginService: LoginServiceService,
         private _router: Router,
+        private chatService: ChatService
     ) {
         this.registerForm = this.formBuilder.group({
             name: ['', Validators.required],
@@ -55,19 +57,22 @@ export class UserRegiterComponent implements OnInit {
             const result = data.body
             if (result['status'] === 200) {
                 this.message = result['message'];
-                const radio: HTMLElement = document.getElementById('modal-button20');
-                radio.click();
+                this.chatService.showNotification('success', this.message);
                 setTimeout(() => {
                     this._router.navigate(['/']);
                 }, 5000);
             } else if (result['status'] !== 200) {
                 this.errorMessage = result['message'];
+                this.chatService.showNotification('warning', this.errorMessage);
             } else if (data.body['status'] !== 200) {
                 this.errorMessage = data.body['message'];
+                this.chatService.showNotification('warning', this.errorMessage);
             } else if (data.body['status'] === 404) {
                 this.errorMessage = data.body['message'];
+                this.chatService.showNotification('warning', this.errorMessage);
             } else {
                 this.errorMessage = data.body['message'];
+                this.chatService.showNotification('warning', this.errorMessage);
             }
         });
     }
