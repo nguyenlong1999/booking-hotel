@@ -3,8 +3,8 @@ import {Router} from '@angular/router'
 import {LoginServiceService} from '../../../shared/service/login-service.service';
 import {CookieService} from 'ngx-cookie-service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {TranslateService} from "@ngx-translate/core";
-import {ChatService} from "../../../shared/service/chat.service";
+import {TranslateService} from '@ngx-translate/core';
+import {ChatService} from '../../../shared/service/chat.service';
 
 @Component({
     selector: 'app-login',
@@ -15,12 +15,13 @@ export class LoginComponent implements OnInit {
     registerForm: FormGroup;
     tfaFlag: boolean = false;
     userObject = {
-        email: "",
-        password: ""
+        email: '',
+        password: ''
     };
     submitted: boolean = false;
     errorMessage: string = null;
-    login_check=true;
+    login_check = true;
+
     constructor(
         private cookie: CookieService,
         private _loginService: LoginServiceService,
@@ -42,9 +43,10 @@ export class LoginComponent implements OnInit {
 
     }
 
-    forget_password(){
-        this.login_check=!this.login_check;
+    forget_password() {
+        this.login_check = !this.login_check;
     }
+
     loginUser() {
         console.log('log in ')
         this.submitted = true;
@@ -69,7 +71,7 @@ export class LoginComponent implements OnInit {
                         role = user[key];
                         console.log(role);
 
-                    }else if (key === 'objectId') {
+                    } else if (key === 'objectId') {
                         objectId = user[key];
                         console.log(objectId);
                     }
@@ -117,7 +119,8 @@ export class LoginComponent implements OnInit {
 
         })
     }
-    getNewPassword(){
+
+    getNewPassword() {
 
     }
 }

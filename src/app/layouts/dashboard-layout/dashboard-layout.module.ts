@@ -18,13 +18,14 @@ import {MatRadioModule} from '@angular/material/radio';
 import {SharedModule} from '../../shared/shared.module';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
-import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
-import {HttpClient} from "@angular/common/http";
-import {TranslateHttpLoader} from "@ngx-translate/http-loader";
-import {ScrollTopComponent} from "../../shared/animation/scroll-top/scroll-top.component";
-import {MatDialogModule} from "@angular/material/dialog";
-import {UserRegiterComponent} from "../user-regiter/user-regiter.component";
-import {ChooseRoomTypeDialogComponent} from "../choose-room-type-dialog/choose-room-type-dialog.component";
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {HttpClient} from '@angular/common/http';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {ScrollTopComponent} from '../../shared/animation/scroll-top/scroll-top.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {UserRegiterComponent} from '../user-regiter/user-regiter.component';
+import {ChooseRoomTypeDialogComponent} from '../choose-room-type-dialog/choose-room-type-dialog.component';
+import {WelcomeComponent} from '../../welcome/welcome.component';
 
 @NgModule({
     declarations: [
@@ -32,7 +33,8 @@ import {ChooseRoomTypeDialogComponent} from "../choose-room-type-dialog/choose-r
         IndexLayoutComponent,
         HotelRegisterComponent,
         UserRegiterComponent,
-        ChooseRoomTypeDialogComponent
+        ChooseRoomTypeDialogComponent,
+        WelcomeComponent
         // add các component của trang người dùng vào đây
     ],
     imports: [

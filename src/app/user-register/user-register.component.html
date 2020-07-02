@@ -105,6 +105,9 @@
                   <div class="is-invalid">
                     <!-- *ngIf="!submitted && !registerForm.controls.confirmPassword.errors.mustMatch && !registerForm.controls.confirmPassword.errors.required && !registerForm.controls.password.errors && !registerForm.controls.password.errors.minlength" -->
                     <div class="label-input">Sử dụng 8 ký tự trở lên và kết hợp chữ cái, chữ số và biểu tượng</div>
+                    <p class="text-danger" style="text-align:center;" *ngIf="errorMessage">
+                      {{ errorMessage }}
+                    </p>
                   </div>
                 </div>
               </div>

@@ -1,19 +1,23 @@
 <div class="wrapper">
     <div class="container-fluid">
         <div class="row" style="position: relative;height: 300px;">
-            <img src="./assets/img/back-ground.jpg"
-                 style="width: 100%;height: auto; position: absolute;" class="img-fluid" alt="booking hotel"/>
-            <div style="position: absolute; top:65%;left: 25%;width: 50%;background: linear-gradient(rgba(255,255,255,.8), rgba(255,255,255,.8));height: 400px;">
+            <img src="./assets/img/back-ground.jpg" style="width: 100%;height: auto; position: absolute;"
+                class="img-fluid" alt="booking hotel" />
+            <div
+                style="position: absolute; top:65%;left: 25%;width: 50%;background: linear-gradient(rgba(255,255,255,.8), rgba(255,255,255,.8));height: 400px;">
                 <div style=" top: 100px; left:100px; width: 70%;position: absolute ;">
                     <mat-form-field>
-                        <input matInput [(ngModel)]="searchHotel.address" placeholder="Tên khách sạn hoặc địa điểm" type="text" style="color: white;"/>
+                        <input matInput [(ngModel)]="searchHotel.address" placeholder="Tên khách sạn hoặc địa điểm"
+                            type="text" style="color: white;" />
                     </mat-form-field>
                     <br>
-                    <div style="border-bottom: 0.5px solid gray; margin-top: 10px;" (click) ="openDialogChooseHotelType($event)">
-                        <a >{{searchHotel.total}}</a>
+                    <div style="border-bottom: 0.5px solid gray; margin-top: 10px;"
+                        (click)="openDialogChooseHotelType($event)">
+                        <a>{{searchHotel.total}}</a>
                     </div>
                     <br>
-                    <button class="btn btn-outline-primary" (click)="searchHotelServer($event)" style="float: right;border: 0.5px solid blue; color: #0c83e2;">
+                    <button class="btn btn-outline-primary" (click)="searchHotelServer($event)"
+                        style="float: right;border: 0.5px solid blue; color: #0c83e2;">
                         {{"common.button.next"|translate}}
                     </button>
                 </div>
@@ -27,8 +31,8 @@
         <div class="row">
             <div class="col">
                 <div class="card" style="border-radius: 0">
-                    <img src="./assets/img/khach-san-intercontinental-nha-trang.png"
-                         style="width: 100%;height: auto; " class="img-fluid">
+                    <img src="./assets/img/khach-san-intercontinental-nha-trang.png" style="width: 100%;height: auto; "
+                        class="img-fluid">
                     <a class="title">Khách sạn Intercontinental Nha Trang</a>
                     <a class="title-small"><strong>Đà Nẵng:</strong> 1,200 chỗ nghỉ</a>
                 </div>
@@ -36,36 +40,35 @@
             </div>
             <div class="col">
                 <div class="card" style="border-radius: 0">
-                    <img src="./assets/img/sol-beach-house-phu-quoc.jpg"
-                         style="width: 100%;height: auto; " class="img-fluid">
+                    <img src="./assets/img/sol-beach-house-phu-quoc.jpg" style="width: 100%;height: auto; "
+                        class="img-fluid">
                     <a class="title">Sol Beach House Phú Quốc</a>
                     <a class="title-small"><strong>Phú Quốc:</strong> 500 chỗ nghỉ</a>
                 </div>
             </div>
             <div class="col">
                 <div class="card" style="border-radius: 0">
-                    <img src="./assets/img/canho-saigon.jpg"
-                         style="width: 100%;height: auto; " class="img-fluid">
+                    <img src="./assets/img/canho-saigon.jpg" style="width: 100%;height: auto; " class="img-fluid">
                     <a class="title">Bể bơi vô cực - Sài Gòn</a>
                     <a class="title-small"><strong>Sài Gòn:</strong> 5200 chỗ nghỉ</a>
                 </div>
             </div>
             <div class="col">
                 <div class="card" style="border-radius: 0">
-                    <img src="./assets/img/vedana-lagoon-resort-hue.png"
-                         style="width: 100%;height: auto; " class="img-fluid">
+                    <img src="./assets/img/vedana-lagoon-resort-hue.png" style="width: 100%;height: auto; "
+                        class="img-fluid">
                     <a class="title">Vedana Lagoon resort - Huế</a>
                     <a class="title-small"><strong>Huế:</strong> 350 chỗ nghỉ</a>
                 </div>
             </div>
         </div>
         <div class="row" style=" justify-content:center;margin-top: 5%;"><a class="header-title">Điểm đến nổi tiếng
-            nhất</a></div>
+                nhất</a></div>
         <div class="row">
             <div class="col">
                 <div class="card" style="border-radius: 0">
-                    <img src="./assets/img/cung-dinh-hue-square.jpg"
-                         style="width: 100%;height: auto; " class="img-fluid">
+                    <img src="./assets/img/cung-dinh-hue-square.jpg" style="width: 100%;height: auto; "
+                        class="img-fluid">
                     <a class="title-1">Huế</a>
                     <a class="title-small-1"><strong>Việt Nam</strong></a>
                 </div>
@@ -73,16 +76,16 @@
             </div>
             <div class="col">
                 <div class="card" style="border-radius: 0;position: relative;">
-                    <img src="./assets/img/danang-squre.jpg"
-                         style="width: 100%;height: auto; " class="img-fluid" style="position: relative;">
+                    <img src="./assets/img/danang-squre.jpg" style="width: 100%;height: auto; " class="img-fluid"
+                        style="position: relative;">
                     <a class="title-1">Đà Nẵng</a>
                     <a class="title-small-1"><strong>Việt Nam</strong></a>
                 </div>
             </div>
             <div class="col">
                 <div class="card" style="border-radius: 0">
-                    <img src="./assets/img/hanoi-top-10-attraction1s.jpg"
-                         style="width: 100%;height: auto; " class="img-fluid">
+                    <img src="./assets/img/hanoi-top-10-attraction1s.jpg" style="width: 100%;height: auto; "
+                        class="img-fluid">
                     <a class="title-1">Hà Nội</a>
                     <a class="title-small-1"><strong>Việt Nam</strong></a>
                 </div>
@@ -90,25 +93,101 @@
             <div class="col">
                 <div class="card" style="border-radius: 0">
                     <img src="./assets/img/1554722331_du-lich-da%20-lat-ngam-hoa1-3.jpg"
-                         style="width: 100%;height: auto; " class="img-fluid">
+                        style="width: 100%;height: auto; " class="img-fluid">
                     <a class="title-1">Đà Lạt</a>
                     <a class="title-small-1"><strong>Việt Nam</strong></a>
                 </div>
             </div>
             <div class="col">
                 <div class="card" style="border-radius: 0">
-                    <img src="./assets/img/bien-phanthiet.jpg"
-                         style="width: 100%;height: auto; " class="img-fluid">
+                    <img src="./assets/img/bien-phanthiet.jpg" style="width: 100%;height: auto; " class="img-fluid">
                     <a class="title-1">Phan Thiết</a>
                     <a class="title-small-1"><strong>Việt Nam</strong></a>
                 </div>
             </div>
             <div class="col">
                 <div class="card" style="border-radius: 0">
-                    <img src="./assets/img/phu-quoc-1515654489_1200x0-min.jpg"
-                         style="width: 100%;height: auto; " class="img-fluid">
+                    <img src="./assets/img/phu-quoc-1515654489_1200x0-min.jpg" style="width: 100%;height: auto; "
+                        class="img-fluid">
                     <a class="title-1">Phú Quốc</a>
                     <a class="title-small-1"><strong>Việt Nam</strong></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<a type="button" class="py-2 d-none d-md-inline-block register-button" hidden="true" data-toggle="modal"
+    style="opacity: 0;" data-target="#exampleModalCenter" id="modal-button">
+</a>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" *ngIf="!isAuthenicate"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background:  #008325;">
+                <h5 class="modal-title" style="color:  white;" id="exampleModalLongTitle">
+                    {{ "common.login.login" | translate }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="close-modal">
+                    <span style="color:  white;" aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card card-container" style="max-width: 500px;">
+                    <img id="profile-img" class="profile-img-card" src="assets/booking/avatar_2x.png" />
+                    <form class="form-signin" (ngSubmit)="loginUser()" #loginForm="ngForm" [formGroup]="registerForm">
+                        <input type="text" id="email" class="form-control" name="email" autocomplete="off"
+                            [(ngModel)]="userObject.email" placeholder="email" title="Please enter the email" required
+                            autofocus formControlName="email"
+                            [ngClass]="{ 'is-invalid': submitted &amp;&amp; registerForm.controls.email.errors }" />
+                        <div *ngIf="submitted &amp;&amp; registerForm.controls.email.errors" class="text-danger">
+                            <div *ngIf="registerForm.controls.email.errors.required">
+                                Yêu cầu bạn nhập Email
+                            </div>
+                            <div *ngIf="registerForm.controls.email.errors.email">
+                                Email không đúng định dạng
+                            </div>
+                        </div>
+                        <input type="password" id="password" class="form-control" name="password" autocomplete="off"
+                            [(ngModel)]="userObject.password" placeholder="Password" title="Please enter the password"
+                            formControlName="password"
+                            [ngClass]="{ 'is-invalid': submitted &amp;&amp; registerForm.controls.password.errors }"
+                            required />
+                        <div *ngIf="submitted &amp;&amp; registerForm.controls.password.errors" class="text-danger">
+                            <div *ngIf="registerForm.controls.password.errors.required">
+                                Yêu cầu bạn nhập password
+                            </div>
+                            <div *ngIf="registerForm.controls.password.errors.minlength">
+                                PassWord phải lớn hơn 6 kí tự
+                            </div>
+                        </div>
+                        <input type="text" id="authcode" class="form-control" *ngIf="this.tfaFlag" name="authcode"
+                            autocomplete="off" #authcode="ngModel" [(ngModel)]="userObject.authcode"
+                            placeholder="Two-Factor Auth code" title="Please enter the code" required />
+                        <button class="btn btn-lg btn-success btn-block btn-signin" type="submit">
+                            Đăng nhập
+                        </button>
+                        <p style="text-align:center;">
+                            <a routerLink="/resetPassword" class="link">Quên mật khẩu</a>&#160;&#160;&#160;&#160;Tài
+                            khoản mới ? <a [routerLink]="['/register']" class="link">Đăng ký</a>
+                        </p>
+                        <p class="text-danger" style="text-align:center;" *ngIf="errorMessage">
+                            {{ errorMessage }}
+                        </p>
+                    </form>
+                    <hr style="border-top: 1px solid #eee;" />
+                    <!-- <div class="row">
+                                      <div class="col-6">
+                                          <button class="loginBtn loginBtn--facebook">
+                                              Login with Facebook
+                                          </button>
+                                      </div>
+                                      <div class="col-6 text-right">
+                                          <button class="loginBtn loginBtn--google">
+                                              Login with Google
+                                          </button>
+                                      </div>
+                                  </div> -->
                 </div>
             </div>
         </div>

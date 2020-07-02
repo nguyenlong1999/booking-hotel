@@ -12,6 +12,7 @@ import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
 export class ImageComponent implements OnInit {
     @Input('imageProp') private imageProp: String;
     @Input('url') private url: any;
+    @Input('listImgCurrent') private listImgCurrent: any;
     @Output() private imageSrcUrl = new EventEmitter();
     @Output() private indexDelete =  new EventEmitter<string>();
 
@@ -51,6 +52,9 @@ export class ImageComponent implements OnInit {
         this.listImgPreview.splice(i, 1)
         this.uploader.queue[i].remove()
         this.indexDelete.emit(i)
+    }
+    removeImageCurrent(i) {
+        this.listImgCurrent.splice(i, 1);
     }
 
     onSelectFile(event) {

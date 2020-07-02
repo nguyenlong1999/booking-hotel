@@ -2,7 +2,8 @@ import {Routes} from '@angular/router';
 import {DashboardLayoutComponent} from './dashboard-layout.component';
 import {IndexLayoutComponent} from './index-layout/index-layout.component';
 import {HotelRegisterComponent} from '../hotel-register/hotel-register.component';
-import {UserRegiterComponent} from "../user-regiter/user-regiter.component";
+import {UserRegiterComponent} from '../user-regiter/user-regiter.component';
+import {WelcomeComponent} from '../../welcome/welcome.component';
 
 export const DashBoardRoutes: Routes = [
 
@@ -28,6 +29,10 @@ export const DashBoardRoutes: Routes = [
                 path: 'user-register',
                 component: UserRegiterComponent
             },
+            {
+                path: 'active/:id',
+                component: WelcomeComponent
+            },
             /* {
               path: 'about',
               component: AboutComponent
@@ -52,10 +57,7 @@ export const DashBoardRoutes: Routes = [
               path: 'recipe',
               component: RecipeComponent
             },
-            {
-              path: 'active/:id',
-              component: WelcomeComponent
-            },
+
             {
 
               path: 'gallery',

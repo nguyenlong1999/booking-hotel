@@ -1,0 +1,80 @@
+/* row id */
+.mat-column-id {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 5% !important;
+    width: 5% !important;
+    word-break: break-word;
+}
+/* row userEmail */
+.mat-column-user {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 16% !important;
+    width: 16% !important;
+    word-break: break-word;
+    padding: 0 0.5% !important;
+}
+/* row name KS */
+.mat-column-name {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 15% !important;
+    width: 15% !important;
+    word-break: break-word;
+    padding: 0 0.5% !important;
+}
+/* row address */
+.mat-column-address {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 8% !important;
+    width: 8% !important;
+    word-break: break-word;
+    padding: 0 0.5% !important;
+}
+/* row starHotel */
+.mat-column-starHotel {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 7% !important;
+    width: 7% !important;
+    word-break: break-word;
+    padding: 0 0.5% !important;
+}
+/* row sqm */
+.mat-column-sqm {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 7% !important;
+    width: 7% !important;
+    word-break: break-word;
+    padding: 0 0.5% !important;
+}
+/* row totalRoom */
+.mat-column-totalRoom {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 7% !important;
+    width: 7% !important;
+    word-break: break-word;
+    padding: 0 0.5% !important;
+}
+/* row approval */
+.mat-column-approval {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 12% !important;
+    width: 12% !important;
+    word-break: break-word;
+    padding: 0 0.5% !important;
+}
+/* row block */
+.mat-column-block {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 12% !important;
+    width: 12% !important;
+    word-break: break-word;
+    padding: 0 0.5% !important;
+}

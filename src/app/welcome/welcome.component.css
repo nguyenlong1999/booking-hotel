@@ -1,0 +1,19 @@
+.geeks {
+    width: 70%;
+    height: auto;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+}
+
+
+.dep {
+    color: #d54d7b;
+    font-family: "Great Vibes", cursive;
+    font-weight: normal;
+    margin-bottom: 0px;
+    text-align: center;
+    text-shadow: 0 1px 1px #fff;
+}
