@@ -7,6 +7,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import {Router} from '@angular/router';
+import {ChatService} from '../shared/service/chat.service';
 
 export interface DialogData {
     action: any;
@@ -19,9 +20,9 @@ export interface DialogData {
     styleUrls: ['./user-access.component.css']
 })
 export class UserAccessComponent implements OnInit {
-    users: User[] = [];
-    displayedColumns = ['id', 'avatar', 'name', 'email', 'role', 'actionRole', 'block'];
-    dataSource: MatTableDataSource<User>;
+    public users: User[] = [];
+    public displayedColumns = ['id', 'avatar', 'name', 'phone', 'email', 'role', 'actionRole', 'block', 'add'];
+    public dataSource: MatTableDataSource<User>;
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
     userObject = {
@@ -44,6 +45,7 @@ export class UserAccessComponent implements OnInit {
         private cookies: CookieService,
         private dialog: MatDialog,
         private route: Router,
+        private chatService: ChatService
     ) {
     }
 
@@ -188,8 +190,10 @@ export class UserAccessComponent implements OnInit {
                         // this.messageModal = true;
                         if (this.userObject.role === 0) {
                             this.message = 'Hạ quyền quản trị viên thành công';
+                            this.chatService.showNotification('success', this.message);
                         } else {
                             this.message = 'Thêm quản trị viên thành công';
+                            this.chatService.showNotification('success', this.message);
                         }
                         console.log(this.message)
                         setTimeout(() => {
@@ -199,6 +203,9 @@ export class UserAccessComponent implements OnInit {
                         }, 1000);
                     }
                 }
+            } else {
+                this.message = 'Phân quyền không thành công';
+                this.chatService.showNotification('warning', this.message);
             }
         });
     }
@@ -230,56 +237,53 @@ export class UserAccessComponent implements OnInit {
                         user.id = this.users.length + 1;
                         this.users.push(user);
                         this.message = 'Khóa thành viên thành công';
-                        console.log(this.message);
-                        // setTimeout(() => {
-                        //     const radio: HTMLElement = document.getElementById('close-button');
-                        //     radio.click();
-                        // }, 2000);
+                        this.chatService.showNotification('success', this.message);
                     }
                 }
+            } else {
+                this.message = 'Khóa thành viên không thành công';
+                this.chatService.showNotification('warning', this.message);
             }
         });
     }
 
     openUser(user: any) {
-      console.log('active user');
-      this.userObject.id = user._id;
-      this.userService.openUser(this.userObject).subscribe(data => {
-        if (data.body['status'] === 200) {
-          user = data.body['user'];
-          for (let userAccess of this.users) {
-            if (userAccess.email === user.email) {
-              userAccess = user;
-              this.users = this.users.filter(user => user._id !== userAccess._id);
-              if (user.imageUrl === undefined) {
-                user.imageUrl = 'default-avatar.png';
-              }
-              if (user.role === -1) {
-                user.role = 'Chưa xác thực';
-              } else if (user.role === 0) {
-                user.role = 'Thành viên';
-              } else if (user.role === 1) {
-                user.role = 'Quản trị KS';
-              } else if (user.role > 1) {
-                user.role = 'Admin';
-              } else {
-                user.role = 'Khóa';
-              }
-              user.id = this.users.length + 1;
-              this.users.push(user);
-              this.message = 'Mở khóa thành viên thành công';
-              console.log(this.message);
-              this.route.getCurrentNavigation();
-              // setTimeout(() => {
-              //   this.message = '';
-              //   const radio: HTMLElement = document.getElementById('close-button');
-              //   radio.click();
-              // }, 2000);
+        console.log('active user');
+        this.userObject.id = user._id;
+        this.userService.openUser(this.userObject).subscribe(data => {
+            if (data.body['status'] === 200) {
+                user = data.body['user'];
+                for (let userAccess of this.users) {
+                    if (userAccess.email === user.email) {
+                        userAccess = user;
+                        this.users = this.users.filter(user => user._id !== userAccess._id);
+                        if (user.imageUrl === undefined) {
+                            user.imageUrl = 'default-avatar.png';
+                        }
+                        if (user.role === -1) {
+                            user.role = 'Chưa xác thực';
+                        } else if (user.role === 0) {
+                            user.role = 'Thành viên';
+                        } else if (user.role === 1) {
+                            user.role = 'Quản trị KS';
+                        } else if (user.role > 1) {
+                            user.role = 'Admin';
+                        } else {
+                            user.role = 'Khóa';
+                        }
+                        user.id = this.users.length + 1;
+                        this.users.push(user);
+                        this.message = 'Mở khóa thành viên thành công';
+                        this.chatService.showNotification('success', this.message);
+                        // this.route.getCurrentNavigation();
+                    }
+                }
+            } else {
+                this.message = 'Mở khóa thành viên không thành công';
+                this.chatService.showNotification('warning', this.message);
             }
-          }
-        }
-        console.log(data.body['status'])
-      });
+            console.log(data.body['status'])
+        });
     }
 }
 

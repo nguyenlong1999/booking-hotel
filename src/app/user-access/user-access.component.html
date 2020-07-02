@@ -12,12 +12,6 @@
                             <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
                         </mat-form-field>
                     </div>
-                    <div>
-                        <button mat-icon-button color="warn"
-                                (click)="this.route.navigate(['/user-register'])">
-                            <mat-icon>add</mat-icon>
-                        </button>
-                    </div>
                     <div class="card-body">
                         <mat-table [dataSource]="dataSource" matSort>
                             <!-- stt Column -->
@@ -42,6 +36,12 @@
                                 <mat-cell *matCellDef="let row"> {{row.name}}</mat-cell>
                             </ng-container>
 
+                            <!-- name Column -->
+                            <ng-container matColumnDef="phone">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header>Số điện thoại</mat-header-cell>
+                                <mat-cell *matCellDef="let row"> {{row.phone}}</mat-cell>
+                            </ng-container>
+
                             <!-- email Column -->
                             <ng-container matColumnDef="email">
                                 <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
@@ -59,17 +59,17 @@
                                 <mat-header-cell *matHeaderCellDef mat-sort-header>Phân quyền</mat-header-cell>
                                 <mat-cell *matCellDef="let row">
                                     <button *ngIf="row.role == 'Quản trị KS'" (click)="openDialog(row,0)"
-                                            title="Phân quyền tài  khoản"
+                                            title="Phân quyền hạ cấp"
                                             mat-icon-button style="color: red">
                                         <mat-icon>trending_down</mat-icon>
                                     </button>
                                     <button *ngIf="row.role == 'Thành viên'" (click)="openDialog(row,1)"
-                                            title="Phân quyền tài  khoản"
+                                            title="Phân quyền Admin"
                                             mat-icon-button style="color: green">
                                         <mat-icon>admin_panel_settings</mat-icon>
                                     </button>
                                     <button *ngIf="row.role == 'Admin'" (click)="openDialog(row,-1)"
-                                            title="Phân quyền tài  khoản"
+                                            title="Quyền Admin"
                                             mat-icon-button style="color: gray">
                                         <mat-icon>check_circle</mat-icon>
                                     </button>
@@ -80,18 +80,27 @@
                             <ng-container matColumnDef="block">
                                 <mat-header-cell *matHeaderCellDef mat-sort-header>Khóa TK</mat-header-cell>
                                 <mat-cell *matCellDef="let row">
-                                    <button *ngIf="row.status===1; else other" (click)="openDialog(row,2)"
-                                            class="btn btn-outline-danger btn-action"
-                                            title="Khóa tài khoản">
-                                        <span class="ng-scope"></span>Khóa
+                                    <button *ngIf="row.status===1; else other" (click)="openDialog(row,2)" title="Khóa tài khoản"
+                                            mat-icon-button style="color: yellow">
+                                        <mat-icon>lock</mat-icon>
                                     </button>
                                     <ng-template #other>
-                                        <button class="btn btn-outline-success btn-action" (click)="openDialog(row,3)"
-                                                title="Mở khóa tài khoản">
-                                            <span class="ng-scope"></span>Mở khóa
+                                        <button (click)="openDialog(row,3)" title="Mở khóa tài khoản"
+                                                mat-icon-button style="color: green">
+                                            <mat-icon>lock_open</mat-icon>
                                         </button>
                                     </ng-template>
                                 </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="add">
+                                <mat-header-cell *matHeaderCellDef>
+                                    <button mat-icon-button color="warn"
+                                            (click)="this.route.navigate(['/user-register'])">
+                                        <mat-icon>add</mat-icon>
+                                    </button>
+                                </mat-header-cell>
+                                <mat-cell *matCellDef="let row"></mat-cell>
                             </ng-container>
 
                             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
