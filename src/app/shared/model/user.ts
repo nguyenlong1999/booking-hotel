@@ -4,6 +4,7 @@ export class User {
     token: string;
     email: string;
     name: string;
+    phone: String;
     lastName: string;
     imageUrl: string;
     totalPoint: any;

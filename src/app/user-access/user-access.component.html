@@ -60,18 +60,18 @@
                                 <mat-cell *matCellDef="let row">
                                     <button *ngIf="row.role == 'Quản trị KS'" (click)="openDialog(row,0)"
                                             title="Phân quyền tài  khoản"
-                                            class="btn btn-outline-danger btn-action">
-                                        <span class="ng-scope">Hạ cấp</span>
+                                            mat-icon-button style="color: red">
+                                        <mat-icon>trending_down</mat-icon>
                                     </button>
                                     <button *ngIf="row.role == 'Thành viên'" (click)="openDialog(row,1)"
                                             title="Phân quyền tài  khoản"
-                                            class="btn btn-outline-success btn-action">
-                                        <span class="ng-scope">Quản trị</span>
+                                            mat-icon-button style="color: green">
+                                        <mat-icon>admin_panel_settings</mat-icon>
                                     </button>
                                     <button *ngIf="row.role == 'Admin'" (click)="openDialog(row,-1)"
                                             title="Phân quyền tài  khoản"
-                                            class="btn btn-outline-info btn-action">
-                                        <span class="ng-scope">ADMIN</span>
+                                            mat-icon-button style="color: gray">
+                                        <mat-icon>check_circle</mat-icon>
                                     </button>
                                 </mat-cell>
                             </ng-container>

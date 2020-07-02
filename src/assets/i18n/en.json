@@ -6,6 +6,7 @@
     },
     "userRegister": {
       "username": "User name",
+      "phone": "Phone",
       "email": "Email",
       "password": "Password",
       "oldPassword": "Old password",

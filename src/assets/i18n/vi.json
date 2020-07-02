@@ -6,6 +6,7 @@
     },
     "userRegister": {
       "username": "Tên người dùng",
+      "phone": "Số điện thoại",
       "email": "Email",
       "password": "Mật khẩu",
       "oldPassword": "Mật khẩu cũ",
