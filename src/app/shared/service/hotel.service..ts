@@ -28,6 +28,10 @@ export class HotelService {
         return this._http.post(`${this.baseUrl}/updateHotel`, {hotel: hotel}, {observe: 'response'});
     }
 
+    updateStatusHotel(hotel: any) {
+        return this._http.post(`${this.baseUrl}/updateStatusHotel`, {hotel: hotel}, {observe: 'response'});
+    }
+
     getHotels = (): Observable<Hotel[]> => {
         return this._http
             .get<Hotel[]>(`${this.baseUrl}/getHotels`)

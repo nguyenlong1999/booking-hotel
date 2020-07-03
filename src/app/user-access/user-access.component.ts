@@ -8,10 +8,20 @@ import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import {Router} from '@angular/router';
 import {ChatService} from '../shared/service/chat.service';
+import {AbstractControl, FormBuilder} from '@angular/forms';
 
 export interface DialogData {
     action: any;
     messageDialog: string;
+}
+
+export interface PeriodicElement {
+    name: string;
+    email: string;
+    address: string;
+    phone: string;
+    status: string;
+    role: any;
 }
 
 @Component({
@@ -21,7 +31,13 @@ export interface DialogData {
 })
 export class UserAccessComponent implements OnInit {
     public users: User[] = [];
-    public displayedColumns = ['id', 'avatar', 'name', 'phone', 'email', 'role', 'actionRole', 'block', 'add'];
+    public displayedColumns = ['id', 'avatar', 'name', 'phone', 'address', 'email', 'role', 'actionRole', 'block', 'add'];
+    selectListRole: string[] = ['Admin', 'Quản trị KS', 'Thành viên', 'Chưa xác thực'];
+    selectListStatus: any[] = [
+        {title: 'Hoạt động', value: 1},
+        {title: 'Đã khóa', value: -2}
+    ];
+    readonly formControl: AbstractControl;
     public dataSource: MatTableDataSource<User>;
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
@@ -45,27 +61,22 @@ export class UserAccessComponent implements OnInit {
         private cookies: CookieService,
         private dialog: MatDialog,
         private route: Router,
-        private chatService: ChatService
+        private chatService: ChatService,
+        private formBuilder: FormBuilder
     ) {
-    }
-
-    ngOnInit() {
-        this.getUser();
-        let role = this.cookies.get('role');
-        if (parseInt(role) > 1) {
-            this.admin = true;
-        }
-    }
-
-    getUser() {
+        this.formControl = formBuilder.group({
+            name: [''],
+            email: [''],
+            address: [''],
+            phone: [''],
+            status: [''],
+            role: ['']
+        })
         this.userService.getUsers().subscribe(users => {
             if (users === undefined) {
                 return;
             }
             this.users = users;
-            this.dataSource = new MatTableDataSource(this.users)
-            this.dataSource.paginator = this.paginator;
-            this.dataSource.sort = this.sort;
             // this.imageUrl = '../../assets/img/booking.png';
             for (let user of this.users) {
                 if (user.imageUrl === undefined) {
@@ -82,30 +93,58 @@ export class UserAccessComponent implements OnInit {
                 } else if (user.role > 1) {
                     user.isAdmin === true;
                     user.role = 'Admin';
-                } else {
-                    user.role = 'Khóa';
                 }
                 let userAccess = user;
                 this.users = this.users.filter(use => use._id !== userAccess._id);
-
                 this.users.push(user);
             }
-            this.users.sort((a, b) => {
-                if (a.totalPoint > b.totalPoint) {
-                    return -1;
-                } else if (a.totalPoint < b.totalPoint) {
-                    return 1;
-                } else {
-                    return 0;
-                }
+            this.dataSource = new MatTableDataSource(this.users)
+            this.dataSource.paginator = this.paginator;
+            this.dataSource.sort = this.sort;
+            this.dataSource.filterPredicate = ((data, filter) => {
+                // console.log(data);
+                const name = !filter.name || data.name.trim().toLowerCase().includes(filter.name);
+                const email = !filter.email || data.email.trim().toLowerCase().includes(filter.email);
+                const address = !filter.address || data.address.trim().toLowerCase().includes(filter.address);
+                const phone = !filter.phone || data.phone.trim().toLowerCase().includes(filter.phone);
+                const status = !filter.status || data.status === filter.status;
+                const role = !filter.role || data.role === filter.role;
+                return name && address && email && phone && status && role;
+            }) as (PeriodicElement, string) => boolean;
+            this.formControl.valueChanges.subscribe(value => {
+                const filter = {
+                    ...value, name: value.name.trim().toLowerCase(),
+                    email: value.email.trim().toLowerCase(),
+                    address: value.address.trim().toLowerCase(),
+                    phone: value.phone.trim().toLowerCase()
+                    // status: value.status.trim().toLowerCase(),
+                    // role: value.role.trim().toLowerCase()
+                } as string;
+                console.log(filter);
+                this.dataSource.filter = filter;
             });
+            // this.users.sort((a, b) => {
+            //     if (a.totalPoint > b.totalPoint) {
+            //         return -1;
+            //     } else if (a.totalPoint < b.totalPoint) {
+            //         return 1;
+            //     } else {
+            //         return 0;
+            //     }
+            // });
 
             for (let i = 0; i < this.users.length; i++) {
                 let user = this.users[i];
                 user.id = i + 1;
             }
-            this.loading = true
         });
+    }
+
+    ngOnInit() {
+        let role = this.cookies.get('role');
+        if (parseInt(role) > 1) {
+            this.admin = true;
+        }
     }
 
     applyFilter(filterValue: string) {
@@ -195,12 +234,12 @@ export class UserAccessComponent implements OnInit {
                             this.message = 'Thêm quản trị viên thành công';
                             this.chatService.showNotification('success', this.message);
                         }
-                        console.log(this.message)
                         setTimeout(() => {
                             this.message = '';
-                            // const radio: HTMLElement = document.getElementById('close-button');
-                            // radio.click();
-                        }, 1000);
+                            this.route.navigateByUrl('/dashboard', {skipLocationChange: true}).then(() => {
+                                this.route.navigate(['/users']);
+                            });
+                        }, 1500);
                     }
                 }
             } else {
@@ -238,6 +277,12 @@ export class UserAccessComponent implements OnInit {
                         this.users.push(user);
                         this.message = 'Khóa thành viên thành công';
                         this.chatService.showNotification('success', this.message);
+                        setTimeout(() => {
+                            this.message = '';
+                            this.route.navigateByUrl('/dashboard', {skipLocationChange: true}).then(() => {
+                                this.route.navigate(['/users']);
+                            });
+                        }, 1000);
                     }
                 }
             } else {
@@ -275,7 +320,12 @@ export class UserAccessComponent implements OnInit {
                         this.users.push(user);
                         this.message = 'Mở khóa thành viên thành công';
                         this.chatService.showNotification('success', this.message);
-                        // this.route.getCurrentNavigation();
+                        setTimeout(() => {
+                            this.message = '';
+                            this.route.navigateByUrl('/dashboard', {skipLocationChange: true}).then(() => {
+                                this.route.navigate(['/users']);
+                            });
+                        }, 1000);
                     }
                 }
             } else {

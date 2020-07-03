@@ -17,7 +17,7 @@ import {MatRippleModule} from '@angular/material/core';
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule} from '@angular/material/form-field';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSelectModule} from '@angular/material/select';
-import {HotelComponentComponent} from '../../hotel-component/hotel-component.component';
+import {HotelComponentComponent, HotelDialogComponent} from '../../hotel-component/hotel-component.component';
 import {BookingComponent} from '../../booking/booking.component';
 import {HotelAccessComponent} from '../../hotel-access/hotel-access.component';
 import {UserAccessComponent, UserRoleDialog} from '../../user-access/user-access.component';
@@ -82,6 +82,7 @@ import {DashboardLayoutModule} from '../dashboard-layout/dashboard-layout.module
         NotificationsComponent,
         UpgradeComponent,
         HotelComponentComponent,
+        HotelDialogComponent,
         BookingComponent,
         HotelAccessComponent,
         UserAccessComponent,
@@ -92,7 +93,7 @@ import {DashboardLayoutModule} from '../dashboard-layout/dashboard-layout.module
     schemas: [
         CUSTOM_ELEMENTS_SCHEMA
     ],
-    entryComponents: [UserAccessComponent, UserRoleDialog],
+    entryComponents: [UserAccessComponent, UserRoleDialog, HotelComponentComponent, HotelDialogComponent],
     bootstrap: [UserAccessComponent],
     providers: [
       { provide: MatFormFieldModule, useValue: { appearance: 'fill' } }

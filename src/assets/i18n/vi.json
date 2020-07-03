@@ -7,6 +7,7 @@
     "userRegister": {
       "username": "Tên người dùng",
       "phone": "Số điện thoại",
+      "address": "Địa chỉ",
       "email": "Email",
       "password": "Mật khẩu",
       "oldPassword": "Mật khẩu cũ",
@@ -23,6 +24,32 @@
       "createSuggest": "Hãy tạo một tài khoản để sở hữu nhiều ưu đãi từ hệ thống hơn",
       "passwordSuggest": "Sử dụng 6 ký tự trở lên và kết hợp chữ cái, chữ số và biểu tượng",
       "user.register.checkInfo": "Bạn hãy kiểm tra lại thông tin!"
+    },
+    "user": {
+      "username": "Tên người dùng",
+      "phone": "Số điện thoại",
+      "address": "Địa chỉ",
+      "email": "Email",
+      "memberName": "Tên thành viên",
+      "role": "Vai trò",
+      "avatar": "Ảnh đại điện",
+      "addAccount": "Thêm tài khoản",
+      "setPer": "Phân quyền",
+      "adminPer":"Quyền Admin",
+      "setAdminPer": "Phân quyền quản trị",
+      "removePer": "Phân quyền hạ cấp",
+      "active": "Hoạt động",
+      "blocked": "Đã khóa",
+      "blockTitle": "Khóa TK",
+      "blockAccount": "Khóa tài khoản",
+      "unblockAccount": "Mở khóa tài khoản",
+      "status": "Trạng thái",
+      "searchName": "Tìm kiếm tên",
+      "searchAdd": "Tìm kiếm địa chỉ",
+      "searchPhone": "Tìm kiếm số điện thoại",
+      "searchEmail": "Tìm kiếm email",
+      "undefined": "Chưa xác định",
+      "all": "Tất cả"
     },
     "login": {
       "login": "Đăng nhập"

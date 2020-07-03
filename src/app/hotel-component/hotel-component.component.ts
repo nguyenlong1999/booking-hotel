@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, Inject, OnInit, ViewChild} from '@angular/core';
 import {HotelService} from '../shared/service/hotel.service.';
 import {Hotel} from '../shared/model/hotel';
 import {MatPaginator} from '@angular/material/paginator';
@@ -6,12 +6,18 @@ import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import {Router} from '@angular/router';
 import {AbstractControl, FormBuilder} from '@angular/forms';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
+import {DialogData, UserRoleDialog} from '../user-access/user-access.component';
+import {User} from '../shared/model/user';
+import {CookieService} from 'ngx-cookie-service';
+import {ChatService} from '../shared/service/chat.service';
 
 export interface PeriodicElement {
+    name: string;
+    email: string;
+    address: string;
     status: string;
     starHotel: number;
-    // weight: number;
-    // symbol: string;
 }
 
 @Component({
@@ -19,14 +25,27 @@ export interface PeriodicElement {
     templateUrl: './hotel-component.component.html',
     styleUrls: ['./hotel-component.component.css']
 })
-export class HotelComponentComponent implements OnInit, AfterViewInit {
+export class HotelComponentComponent implements OnInit {
     hotels: Hotel[] = [];
+    actionObject = {
+        actionName: '',
+        hotel: Hotel
+    };
+    updateStatusObject = {
+        actionName: '',
+        idUser: '',
+        idHotel: ''
+    }
+    message = '';
     displayedColumns = ['id', 'user', 'name', 'address', 'starHotel', 'sqm', 'totalRoom', 'status', 'active', 'block', 'add'];
-    selectListApproval: string[] = ['Chưa duyệt', 'Hoạt động'];
-    selectListStarhotel: string[] = [
-        {}
+    selectListApproval: string[] = ['Chưa duyệt', 'Hoạt động', 'Đã khóa'];
+    selectListStarhotel: any[] = [
+        {title: '1 sao', value: 1},
+        {title: '2 sao', value: 2},
+        {title: '3 sao', value: 3},
+        {title: '4 sao', value: 4},
+        {title: '5 sao', value: 5}
     ];
-    selectListStarhotel: string[] = ['Chưa duyệt', 'Hoạt động'];
 
     readonly formControl: AbstractControl;
     dataSource: MatTableDataSource<Hotel>;
@@ -36,15 +55,20 @@ export class HotelComponentComponent implements OnInit, AfterViewInit {
     constructor(
         private hotelService: HotelService,
         private route: Router,
-        private formBuilder: FormBuilder
+        private formBuilder: FormBuilder,
+        private dialog: MatDialog,
+        private cookies: CookieService,
+        private chatService: ChatService
     ) {
         this.formControl = formBuilder.group({
+            name: [''],
+            email: [''],
+            address: [''],
             status: [''],
-            starHotel: [''],
-            // symbol: '',
+            starHotel: ['']
         })
         this.hotelService.getHotels().subscribe(hotels => {
-            console.log(hotels)
+            // console.log(hotels);
             if (hotels === undefined) {
                 return;
             }
@@ -55,24 +79,28 @@ export class HotelComponentComponent implements OnInit, AfterViewInit {
                 }
                 if (item.status === 0) {
                     item.status = 'Chưa duyệt';
-                } else {
+                } else if (item.status === 1) {
                     item.status = 'Hoạt động';
+                } else if (item.isBlock === 0) {
+                    item.status = 'Đã khóa';
                 }
-                item.starHotel = item.starHotel + ' sao';
+                console.log(item.status);
             }
             this.dataSource = new MatTableDataSource(this.hotels)
             this.dataSource.paginator = this.paginator;
             this.dataSource.sort = this.sort;
             this.dataSource.filterPredicate = ((data, filter) => {
-                console.log(data.status)
-                const a = !filter.status || data.status.toLowerCase() === filter.status;
-                const b = !filter.starHotel || data.starHotel.includes(filter.starHotel);
-                // const c = !filter.symbol || data.symbol.toLowerCase().includes(filter.symbol);
-                return a && b;
+                // console.log(data);
+                const name = !filter.name || data.name.trim().toLowerCase().includes(filter.name);
+                const email = !filter.email || data.user.email.trim().toLowerCase().includes(filter.email);
+                const address = !filter.address || data.address.trim().toLowerCase().includes(filter.address);
+                const status = !filter.status || data.status === filter.status;
+                const starHotel = !filter.starHotel || data.starHotel === filter.starHotel;
+                return name && email && address && status && starHotel;
             }) as (PeriodicElement, string) => boolean;
             this.formControl.valueChanges.subscribe(value => {
-                const filter = {...value, status: value.status.trim().toLowerCase()} as string;
-                console.log(filter);
+                const filter = {...value, name: value.name.trim().toLowerCase()} as string;
+                // console.log(filter);
                 this.dataSource.filter = filter;
             });
         });
@@ -81,28 +109,89 @@ export class HotelComponentComponent implements OnInit, AfterViewInit {
     async ngOnInit() {
     }
 
-    // applyFilter(filterValue: string) {
-    //     // filterValue = filterValue.trim(); // Remove whitespace
-    //     // filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
-    //     const filter = {...filterValue, status: filterValue.status.trim().toLowerCase()} as string;
-    //     this.dataSource.filter = filter;
-    // }
-    //
-    // selectStage(event) {
-    //     console.log(event);
-    //     this.applyFilter(event.value);
-    // }
+    openDialog(hotel: any, actionValue: any) {
+        this.actionObject.hotel = hotel;
+        if (actionValue === 0 && hotel.status === 'Hoạt động') {
+            this.actionObject.actionName = 'Bỏ duyệt';
+            this.message = 'Bạn muốn bỏ duyệt khách sạn này?';
+        } else if (actionValue === 1 && hotel.status === 'Chưa duyệt') {
+            this.message = 'Bạn muốn duyệt khách sạn này?';
+            this.actionObject.actionName = 'Duyệt';
+        } else if (actionValue === 2 && hotel.isBlock === 1) {
+            this.message = 'Bạn muốn khóa khách sạn này?';
+            this.actionObject.actionName = 'Khóa';
+        } else if (actionValue === 3 && hotel.isBlock === 0) {
+            this.message = 'Bạn muốn mở khóa khách sạn này?';
+            this.actionObject.actionName = 'Mở khóa';
+        }
+        // else if (hotel.user.role === 'Admin') {
+        //     this.message = 'Bạn không có quyền khóa, thay đổi quyền của tài khoản ADMIN';
+        //     this.actionObject.actionName = 'ADMIN';
+        // }
+        const dialogRef = this.dialog.open(HotelDialogComponent, {
+            width: '500px',
+            data: {
+                messageDialog: this.message,
+                action: this.actionObject
+            }
+        })
 
-    ngAfterViewInit() {
-
+        dialogRef.afterClosed().subscribe(result => {
+            console.log(result);
+            if (result) {
+                this.updateStatusHotel(result.actionName, result.hotel);
+            } else {
+                console.log('hello bấy bề');
+            }
+        });
     }
 
-    onClickEditRow(row_id) {
-        console.log(row_id)
+    updateStatusHotel(actionName: any, hotel: any) {
+        console.log('func-updateStatus');
+        const idUser = this.cookies.get('ObjectId');
+        const idHotel = hotel._id;
+        this.updateStatusObject.idUser = idUser;
+        this.updateStatusObject.idHotel = idHotel;
+        this.updateStatusObject.actionName = actionName;
+        this.hotelService.updateStatusHotel(this.updateStatusObject).subscribe(res => {
+            if (res.body['status'] === 200) {
+                if (res.body['actionName'] === 'Duyệt') {
+                    this.message = 'Duyệt khách sạn thành công'
+                } else if (res.body['actionName'] === 'Bỏ duyệt') {
+                    this.message = 'Bỏ duyệt khách sạn thành công'
+                } else if (res.body['actionName'] === 'Khóa') {
+                    this.message = 'Khóa khách sạn thành công'
+                } else if (res.body['actionName'] === 'Mở khóa') {
+                    this.message = 'Mở khóa khách sạn thành công'
+                }
+                this.chatService.showNotification('success', this.message);
+                setTimeout(() => {
+                    this.message = '';
+                    this.route.navigateByUrl('/dashboard', {skipLocationChange: true}).then(() => {
+                        this.route.navigate(['/hotels']);
+                    });
+                }, 1500);
+            } else {
+                this.chatService.showNotification('warning', res.body['message']);
+            }
+        });
     }
 
-    // onChange(event) {
-    //     console.log(this.typeHotel);
-    // }
+}
 
+@Component({
+    selector: 'app-dialog-hotel',
+    templateUrl: 'dialog-hotel.html',
+    styleUrls: ['./hotel-component.component.css']
+})
+export class HotelDialogComponent {
+    constructor(
+        public dialogRef: MatDialogRef<HotelDialogComponent>,
+        @Inject(MAT_DIALOG_DATA) public data: DialogData
+    ) {
+    }
+
+    onNoClick(): void {
+        this.dialogRef.close();
+    }
 }

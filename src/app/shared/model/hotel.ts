@@ -18,4 +18,5 @@ export class Hotel {
     desHotel: string;
     zip: string;
     status: any;
+    isBlock: any;
 }

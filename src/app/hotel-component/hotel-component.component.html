@@ -3,41 +3,53 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card card-plain">
+
                     <div class="example-header">
-                        <mat-form-field>
-                            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-                        </mat-form-field>
+                        <form [formGroup]="formControl">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <mat-form-field>
+                                        <input matInput formControlName="name" placeholder="Tìm tên">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-lg-4">
+                                    <mat-form-field>
+                                        <input matInput formControlName="email" placeholder="Tìm email">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-lg-4">
+                                    <mat-form-field>
+                                        <input matInput formControlName="address" placeholder="Tìm địa chỉ">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <mat-form-field appearance="fill">
+                                        <mat-label>Trạng thái</mat-label>
+                                        <mat-select formControlName="status">
+                                            <mat-option value=" ">Tất cả</mat-option>
+                                            <mat-option *ngFor="let status of selectListApproval" [value]="status">
+                                                {{status}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-lg-3">
+                                    <mat-form-field appearance="fill">
+                                        <mat-label>Số sao</mat-label>
+                                        <mat-select formControlName="starHotel">
+                                            <mat-option value=" ">Tất cả</mat-option>
+                                            <mat-option *ngFor="let star of selectListStarhotel" [value]="star.value">
+                                                {{star.title}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                    <form [formGroup]="formControl">
-                        <div class="row">
-                            <div class="col-lg-3">
-                                <mat-form-field appearance="fill">
-                                    <mat-label>Trạng thái</mat-label>
-                                    <mat-select placeholder="Hotel" formControlName="status">
-                                        <mat-option *ngFor="let status of selectList" [value]="status">
-                                            {{status}}
-                                        </mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                            </div>
-                            <div class="col-lg-3">
-                                <mat-form-field appearance="fill">
-                                    <mat-label>số sao</mat-label>
-                                    <mat-select placeholder="Hotel" formControlName="starHotel">
-                                        <mat-option value="1">
-                                            1 sao
-                                        </mat-option>
-                                        <mat-option value="2 sao">
-                                            2 sao
-                                        </mat-option>
-                                        <mat-option value="3 sao">
-                                            3 sao
-                                        </mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                            </div>
-                        </div>
-                    </form>
+
                     <div class="card-body">
                         <mat-table [dataSource]="dataSource" matSort>
                             <ng-container matColumnDef="id">
@@ -67,14 +79,14 @@
                             <ng-container matColumnDef="starHotel">
                                 <mat-header-cell *matHeaderCellDef mat-sort-header>Chất lượng
                                 </mat-header-cell>
-                                <mat-cell *matCellDef="let row"> {{row.starHotel}}</mat-cell>
+                                <mat-cell *matCellDef="let row"> {{row.starHotel}} sao</mat-cell>
                             </ng-container>
 
                             <!-- Name Column -->
                             <ng-container matColumnDef="sqm">
-                                <mat-header-cell *matHeaderCellDef mat-sort-header>Mét vuông
+                                <mat-header-cell *matHeaderCellDef mat-sort-header>Diện tích
                                 </mat-header-cell>
-                                <mat-cell *matCellDef="let row"> {{row.sqm}} </mat-cell>
+                                <mat-cell *matCellDef="let row"> {{row.sqm}} m<p class="caret-up" style="font-size: 0.7rem">2</p></mat-cell>
                             </ng-container>
 
                             <!-- Name Column -->
@@ -95,8 +107,16 @@
                                 <mat-header-cell *matHeaderCellDef mat-sort-header>Xét duyệt
                                 </mat-header-cell>
                                 <mat-cell *matCellDef="let row">
-                                    <button mat-icon-button style="color: green">
+                                    <button *ngIf="row.status === 'Chưa duyệt'" mat-icon-button style="color: green"
+                                            title="Duyệt khách sạn" (click)="openDialog(row,1)">
                                         <mat-icon>check_circle</mat-icon>
+                                    </button>
+                                    <button *ngIf="row.status === 'Hoạt động'" mat-icon-button style="color: red"
+                                            title="Bỏ duyệt khách sạn" (click)="openDialog(row,0)">
+                                        <mat-icon>trending_down</mat-icon>
+                                    </button>
+                                    <button *ngIf="row.status === 'Đã khóa'" mat-icon-button style="color: gray" title="Khách sạn đã bị khóa">
+                                        <mat-icon>lock</mat-icon>
                                     </button>
                                 </mat-cell>
                             </ng-container>
@@ -104,21 +124,28 @@
                             <ng-container matColumnDef="block">
                                 <mat-header-cell *matHeaderCellDef mat-sort-header>Khóa KS</mat-header-cell>
                                 <mat-cell *matCellDef="let row">
-                                    <button mat-icon-button style="color: yellow">
-                                        <mat-icon>lock</mat-icon>
+                                    <button *ngIf="row.status === 'Đã khóa'; else otherStatus" mat-icon-button style="color: green"
+                                            title="Mở khóa khách sạn"  (click)="openDialog(row,3)">
+                                        <mat-icon>lock_open</mat-icon>
                                     </button>
+                                    <ng-template #otherStatus>
+                                        <button  mat-icon-button style="color: yellow"
+                                                 title="Khóa khách sạn"  (click)="openDialog(row,2)">
+                                            <mat-icon>lock</mat-icon>
+                                        </button>
+                                    </ng-template>
                                 </mat-cell>
                             </ng-container>
 
                             <ng-container matColumnDef="add">
                                 <mat-header-cell *matHeaderCellDef>
-                                    <button mat-icon-button color="warn"
+                                    <button mat-icon-button style="color: blue; font-size: 1.7rem" title="Thêm khách sạn"
                                             (click)="this.route.navigate(['/hotel-access'])">
                                         <mat-icon>add</mat-icon>
                                     </button>
                                 </mat-header-cell>
                                 <mat-cell *matCellDef="let row">
-                                    <button mat-icon-button color="warn"
+                                    <button mat-icon-button color="warn" title="Sửa khách sạn"
                                             (click)="this.route.navigate(['/hotelEdit',row._id])">
                                         <mat-icon>create</mat-icon>
                                     </button>
@@ -130,6 +157,7 @@
                         </mat-table>
                         <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
                     </div>
+
                 </div>
             </div>
         </div>

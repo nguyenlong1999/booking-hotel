@@ -1,10 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from 'app/shared/service/user.service.';
 import {User} from 'app/shared/model/user';
-import {ActivatedRoute} from '@angular/router';
 import {CookieService} from 'ngx-cookie-service';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {AppSetting} from 'app/appsetting';
 import {FileUploader} from 'ng2-file-upload';
 import {MustMatch} from 'app/shared/helper/must-match-validator';
 
@@ -23,6 +21,7 @@ export class UserProfileComponent implements OnInit {
         email: '',
         name: '',
         phone: '',
+        address: '',
         birthday: '',
         gender: '',
         materialStatus: '',
@@ -69,6 +68,7 @@ export class UserProfileComponent implements OnInit {
             email: [''],
             name: [''],
             phone: [''],
+            address: [''],
             birthday: [''],
             gender: [''],
             materialStatus: [''],
@@ -134,6 +134,7 @@ export class UserProfileComponent implements OnInit {
                     this.profileForm.controls['email'].patchValue(this.user.email);
                     this.profileForm.controls['name'].patchValue(name);
                     this.profileForm.controls['phone'].patchValue(phone);
+                    this.profileForm.controls['address'].patchValue(this.user.address);
                     this.profileForm.controls['birthday'].patchValue(birthday);
                     this.profileForm.controls['gender'].patchValue(gender);
                     this.profileForm.controls['materialStatus'].patchValue(materialStatus);

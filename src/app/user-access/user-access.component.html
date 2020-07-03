@@ -3,15 +3,58 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card card-plain">
-                    <div class="card-header card-header-danger">
-                        <h4 class="card-title mt-0"> Table on Plain Background</h4>
-                        <p class="card-category"> Here is a subtitle for this table</p>
-                    </div>
+
                     <div class="example-header">
-                        <mat-form-field>
-                            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-                        </mat-form-field>
+                        <form [formGroup]="formControl">
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <mat-form-field>
+                                        <input matInput formControlName="name" [placeholder]="'common.user.searchName' | translate">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-lg-3">
+                                    <mat-form-field>
+                                        <input matInput formControlName="email" [placeholder]="'common.user.searchEmail' | translate">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-lg-3">
+                                    <mat-form-field>
+                                        <input matInput formControlName="address" [placeholder]="'common.user.searchAdd' | translate">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-lg-3">
+                                    <mat-form-field>
+                                        <input matInput formControlName="phone" [placeholder]="'common.user.searchPhone' | translate">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <mat-form-field appearance="fill">
+                                        <mat-label>{{"common.user.status" | translate}}</mat-label>
+                                        <mat-select formControlName="status">
+                                            <mat-option value=""><!--{{"common.user.all" | translate}}-->All</mat-option>
+                                            <mat-option *ngFor="let status of selectListStatus" [value]="status.value">
+                                                {{status.title}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-lg-3">
+                                    <mat-form-field appearance="fill">
+                                        <mat-label>{{"common.user.role" | translate}}</mat-label>
+                                        <mat-select placeholder="Vai trò" formControlName="role">
+                                            <mat-option value=""><!--{{"common.user.all" | translate}}-->All</mat-option>
+                                            <mat-option *ngFor="let role of selectListRole" [value]="role">
+                                                {{role}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </form>
                     </div>
+
                     <div class="card-body">
                         <mat-table [dataSource]="dataSource" matSort>
                             <!-- stt Column -->
@@ -23,69 +66,75 @@
 
                             <!-- avatar Column -->
                             <ng-container matColumnDef="avatar">
-                                <mat-header-cell *matHeaderCellDef mat-sort-header>Avatar</mat-header-cell>
+                                <mat-header-cell *matHeaderCellDef mat-sort-header>{{ "common.user.avatar" | translate}}</mat-header-cell>
                                 <mat-cell *matCellDef="let row">
-                                    <img [src]="'http://localhost:8000/api/images/'+row.imageUrl" alt="Avatar"
+                                    <img [src]="'http://localhost:8000/api/images/'+row.imageUrl" [alt]="'common.user.avatar' | translate"
                                          class="md-avatar rounded">
                                 </mat-cell>
                             </ng-container>
 
                             <!-- name Column -->
                             <ng-container matColumnDef="name">
-                                <mat-header-cell *matHeaderCellDef mat-sort-header>Tên thành viên</mat-header-cell>
+                                <mat-header-cell *matHeaderCellDef mat-sort-header>{{"common.user.memberName" | translate}}</mat-header-cell>
                                 <mat-cell *matCellDef="let row"> {{row.name}}</mat-cell>
                             </ng-container>
 
                             <!-- name Column -->
+                            <ng-container matColumnDef="address">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header>{{"common.user.address" | translate}}</mat-header-cell>
+                                <mat-cell *matCellDef="let row"> {{row.address}}</mat-cell>
+                            </ng-container>
+
+                            <!-- name Column -->
                             <ng-container matColumnDef="phone">
-                                <mat-header-cell *matHeaderCellDef mat-sort-header>Số điện thoại</mat-header-cell>
+                                <mat-header-cell *matHeaderCellDef mat-sort-header>{{"common.user.phone" | translate}}</mat-header-cell>
                                 <mat-cell *matCellDef="let row"> {{row.phone}}</mat-cell>
                             </ng-container>
 
                             <!-- email Column -->
                             <ng-container matColumnDef="email">
-                                <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
+                                <mat-header-cell *matHeaderCellDef mat-sort-header>{{"common.user.email" | translate}}</mat-header-cell>
                                 <mat-cell *matCellDef="let row"> {{row.email}} </mat-cell>
                             </ng-container>
 
                             <!-- role Column -->
                             <ng-container matColumnDef="role">
-                                <mat-header-cell *matHeaderCellDef mat-sort-header>Vai trò</mat-header-cell>
+                                <mat-header-cell *matHeaderCellDef mat-sort-header>{{"common.user.role" | translate}}</mat-header-cell>
                                 <mat-cell *matCellDef="let row"> {{row.role}} </mat-cell>
                             </ng-container>
 
                             <!-- actionRole Column -->
                             <ng-container *ngIf="admin" matColumnDef="actionRole">
-                                <mat-header-cell *matHeaderCellDef mat-sort-header>Phân quyền</mat-header-cell>
+                                <mat-header-cell *matHeaderCellDef mat-sort-header>{{"common.user.setPer" | translate}}</mat-header-cell>
                                 <mat-cell *matCellDef="let row">
                                     <button *ngIf="row.role == 'Quản trị KS'" (click)="openDialog(row,0)"
-                                            title="Phân quyền hạ cấp"
+                                            [title]="'common.user.removePer' | translate"
                                             mat-icon-button style="color: red">
                                         <mat-icon>trending_down</mat-icon>
                                     </button>
                                     <button *ngIf="row.role == 'Thành viên'" (click)="openDialog(row,1)"
-                                            title="Phân quyền Admin"
+                                            [title]="'common.user.setAdminPer' | translate"
                                             mat-icon-button style="color: green">
-                                        <mat-icon>admin_panel_settings</mat-icon>
+                                        <mat-icon>check_circle</mat-icon>
                                     </button>
                                     <button *ngIf="row.role == 'Admin'" (click)="openDialog(row,-1)"
-                                            title="Quyền Admin"
+                                            [title]="'common.user.adminPer' | translate"
                                             mat-icon-button style="color: gray">
-                                        <mat-icon>check_circle</mat-icon>
+                                        <mat-icon>admin_panel_settings</mat-icon>
                                     </button>
                                 </mat-cell>
                             </ng-container>
 
                             <!-- block Column -->
                             <ng-container matColumnDef="block">
-                                <mat-header-cell *matHeaderCellDef mat-sort-header>Khóa TK</mat-header-cell>
+                                <mat-header-cell *matHeaderCellDef mat-sort-header>{{ "common.user.blockTitle" | translate}}</mat-header-cell>
                                 <mat-cell *matCellDef="let row">
-                                    <button *ngIf="row.status===1; else other" (click)="openDialog(row,2)" title="Khóa tài khoản"
+                                    <button *ngIf="row.status===1; else other" (click)="openDialog(row,2)" [title]="'common.user.blockAccount' | translate"
                                             mat-icon-button style="color: yellow">
                                         <mat-icon>lock</mat-icon>
                                     </button>
                                     <ng-template #other>
-                                        <button (click)="openDialog(row,3)" title="Mở khóa tài khoản"
+                                        <button (click)="openDialog(row,3)" [title]="'common.user.unblockAccount' | translate"
                                                 mat-icon-button style="color: green">
                                             <mat-icon>lock_open</mat-icon>
                                         </button>
@@ -95,7 +144,7 @@
 
                             <ng-container matColumnDef="add">
                                 <mat-header-cell *matHeaderCellDef>
-                                    <button mat-icon-button color="warn"
+                                    <button mat-icon-button style="color: blue; font-size: 1.7rem" [title]="'common.user.addAccount' | translate"
                                             (click)="this.route.navigate(['/user-register'])">
                                         <mat-icon>add</mat-icon>
                                     </button>

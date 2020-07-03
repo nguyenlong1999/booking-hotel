@@ -7,6 +7,7 @@
     "userRegister": {
       "username": "User name",
       "phone": "Phone",
+      "address": "Address",
       "email": "Email",
       "password": "Password",
       "oldPassword": "Old password",
@@ -23,6 +24,33 @@
       "createSuggest": "Please create an account to own more offers from the system",
       "passwordSuggest": "Use 6 or more characters and combine letters, numbers and symbols",
       "checkInfo": "Please check the information!"
+    },
+    "user": {
+      "username": "User name",
+      "phone": "Phone",
+      "address": "Address",
+      "email": "Email",
+      "memberName": "Member's name",
+      "role": "Role",
+      "avatar": "Avatar",
+      "addAccount": "Add account",
+      "setPer": "Set permission",
+      "adminPer":"Admin permission",
+      "setAdminPer": "Set admin permission",
+      "removePer": "Remove permissions",
+      "active": "Active",
+      "blocked": "Blocked",
+      "blockAccount": "Block",
+      "blockTitle": "Block Member",
+      "blockAccount": "Block Member",
+      "unblockAccount": "Unblock Member",
+      "status": "Status",
+      "searchName": "Search name",
+      "searchAdd": "Search address",
+      "searchPhone": "Search phone",
+      "searchEmail": "Search email",
+      "undefined": "Undefined",
+      "all": "All"
     },
     "login": {
       "login": "Login"
