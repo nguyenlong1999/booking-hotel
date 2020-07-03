@@ -1,9 +1,9 @@
-<div mat-dialog-title><h2>Thông báo hệ thống</h2></div>
+<div mat-dialog-title><h4>Thông báo hệ thống</h4></div>
 <div mat-dialog-content>
     <p>{{data.messageDialog}}</p>
 </div>
-<div *ngIf="data.action.actionName !== 'ADMIN'" mat-dialog-actions style="position: relative; margin: 0">
-    <button class="btn-role btn-outline-primary" mat-button [mat-dialog-close]="data.action"
-            cdkFocusInitial>{{data.action.actionName}}</button>
-    <button class="btn-cancel btn-outline-dark" mat-button (click)="onNoClick()">Hủy</button>
+<div *ngIf="data.action.actionName !== 'ADMIN'" mat-dialog-actions style="position: relative; margin: 0; float: right; ">
+    <button class="btn btn-outline-primary" mat-button [mat-dialog-close]="data.action"
+    >{{data.action.actionName}}</button>
+    <button class="btn btn-outline-secondary" mat-raised-button (click)="onNoClick()">Hủy</button>
 </div>

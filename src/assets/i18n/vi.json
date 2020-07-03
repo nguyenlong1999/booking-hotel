@@ -6,6 +6,7 @@
     },
     "userRegister": {
       "username": "Tên người dùng",
+      "phone": "Số điện thoại",
       "email": "Email",
       "password": "Mật khẩu",
       "oldPassword": "Mật khẩu cũ",
@@ -24,7 +25,14 @@
       "user.register.checkInfo": "Bạn hãy kiểm tra lại thông tin!"
     },
     "login": {
-      "login": "Đăng nhập"
+      "login": "Đăng nhập",
+      "email": "Yêu cầu bạn nhập Email",
+      "emailError": " Email không đúng định dạng",
+      "password": "Yêu cầu bạn nhập password",
+      "validPassword": "Password phải lớn hơn 6 kí tự",
+      "newAccount": "Tài khoản mới ?",
+      "forget": "Quên mật khẩu",
+      "register": "Đăng kí"
     }
   },
   "demo.title": "Dịch tiếng việt demo",

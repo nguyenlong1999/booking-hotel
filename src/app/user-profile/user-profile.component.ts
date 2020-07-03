@@ -22,6 +22,7 @@ export class UserProfileComponent implements OnInit {
         id: '',
         email: '',
         name: '',
+        phone: '',
         birthday: '',
         gender: '',
         materialStatus: '',
@@ -67,6 +68,7 @@ export class UserProfileComponent implements OnInit {
             id: [''],
             email: [''],
             name: [''],
+            phone: [''],
             birthday: [''],
             gender: [''],
             materialStatus: [''],
@@ -90,12 +92,17 @@ export class UserProfileComponent implements OnInit {
         const email = this.cookies.get('email');
         if (email !== '') {
             this.userService.getMemberInfo(email).subscribe(user => {
+                console.log('get User data:');
+                console.log(user);
                 if (user !== undefined) {
                     this.user = user;
-                    console.log(this.user);
                     let name = this.user.name
                     if (name === undefined) {
                         name = ''
+                    }
+                    let phone = this.user.phone
+                    if (phone === undefined) {
+                        phone = ''
                     }
                     let birthday = this.user.birthday
                     if (this.user.birthday === undefined) {
@@ -110,7 +117,6 @@ export class UserProfileComponent implements OnInit {
                     if (materialStatus === undefined) {
                         materialStatus = '1'
                     }
-                    console.log(materialStatus);
                     let signature = this.user.signature
                     if (signature === undefined) {
                         signature = ''
@@ -119,7 +125,7 @@ export class UserProfileComponent implements OnInit {
                     if (introduction === undefined) {
                         introduction = ''
                     }
-                    if (this.user.imageUrl !== undefined) {
+                    if (this.user.imageUrl !== undefined || this.user.imageUrl === '') {
                         this.url = 'http://localhost:8000/api/images/' + this.user.imageUrl;
                     } else {
                         this.url = 'http://localhost:8000/api/images/default-avatar.png'
@@ -127,12 +133,13 @@ export class UserProfileComponent implements OnInit {
                     this.profileForm.controls['id'].patchValue(this.user._id);
                     this.profileForm.controls['email'].patchValue(this.user.email);
                     this.profileForm.controls['name'].patchValue(name);
+                    this.profileForm.controls['phone'].patchValue(phone);
                     this.profileForm.controls['birthday'].patchValue(birthday);
                     this.profileForm.controls['gender'].patchValue(gender);
                     this.profileForm.controls['materialStatus'].patchValue(materialStatus);
                     this.profileForm.controls['signature'].patchValue(signature);
                     this.profileForm.controls['introduction'].patchValue(introduction);
-                    console.log(this.profileForm.value);
+                    this.profileForm.controls['imageUrl'].patchValue(this.user.imageUrl);
                 }
             });
         }
@@ -147,13 +154,10 @@ export class UserProfileComponent implements OnInit {
         this.userObject = this.profileForm.value;
         this.userService.updateUser(this.userObject).subscribe(user => {
             const status = user.body['status']
-            console.log(status)
             if (status === 200) {
-                console.log(user)
                 if (this.user.signature !== undefined) {
                     this.user.signature = atob(this.user.signature)
                 }
-                console.log(this.user.signature);
             }
         });
     }
@@ -162,8 +166,6 @@ export class UserProfileComponent implements OnInit {
         this.passSubmitted = true;
         if (this.changePasswordForm.invalid) {
             this.message = 'Không để trống các trường mật khẩu';
-            // const radio: HTMLElement = document.getElementById('modal-button2');
-            // radio.click();
             return;
         }
         // this.loading = true;
@@ -172,7 +174,6 @@ export class UserProfileComponent implements OnInit {
         this.userPassObject.user = email;
         this.userService.changePassword(this.userPassObject)
           .subscribe(data => {
-            console.log(data)
             const status = data.body['status']
             if (status === 200) {
               this.message = data.body['message']
@@ -191,16 +192,15 @@ export class UserProfileComponent implements OnInit {
     }
 
     getAllYear() {
-        let temp = parseInt(new Date().getFullYear().toString()) - 4;
+        const temp = parseInt(new Date().getFullYear().toString()) - 4;
         for (let i = 0; i < 100; i++) {
-            let year = (temp - i);
+            const year = (temp - i);
             this.years.push(year)
         }
     }
 
     getImageSrc(event: any) {
-        let imageRes = JSON.parse(event)
+        const imageRes = JSON.parse(event)
         this.profileForm.controls['imageUrl'].patchValue(imageRes.filePath);
-        console.log(this.profileForm.value);
     }
 }

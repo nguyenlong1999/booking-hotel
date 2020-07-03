@@ -30,7 +30,7 @@ export class ChatService {
         console.log('connect')
     }
 
-    showNotification(type,message){
+    showNotification(type, message) {
         // const type = ['','info','success','warning','danger'];
 
         // const color = Math.floor((Math.random() * 4) + 1);

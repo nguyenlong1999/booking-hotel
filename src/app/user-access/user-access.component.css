@@ -49,6 +49,7 @@ table{
   flex: 0 0 8% !important;
   width: 8% !important;
   word-break: break-word;
+  padding: 0 0.5% !important;
 }
 
 .mat-column-avatar {
@@ -57,14 +58,25 @@ table{
   flex: 0 0 8% !important;
   width: 8% !important;
   word-break: break-word;
+  padding: 0 0.5% !important;
 }
 
 .mat-column-name {
   word-wrap: break-word !important;
   white-space: unset !important;
-  flex: 0 0 20% !important;
-  width: 20% !important;
+  flex: 0 0 16% !important;
+  width: 16% !important;
   word-break: break-word;
+  padding: 0 0.5% !important;
+}
+
+.mat-column-phone {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 13% !important;
+  width: 13% !important;
+  word-break: break-word;
+  padding: 0 0.5% !important;
 }
 
 .mat-column-email {
@@ -73,6 +85,7 @@ table{
   flex: 0 0 20% !important;
   width: 20% !important;
   word-break: break-word;
+  padding: 0 0.5% !important;
 }
 
 .mat-column-role {
@@ -81,20 +94,23 @@ table{
   flex: 0 0 10% !important;
   width: 10% !important;
   word-break: break-word;
+  padding: 0 0.5% !important;
 }
 
 .mat-column-actionRole {
   word-wrap: break-word !important;
   white-space: unset !important;
-  flex: 0 0 20% !important;
-  width: 17% !important;
+  flex: 0 0 8% !important;
+  width: 8% !important;
   word-break: break-word;
+  padding: 0 0.5% !important;
 }
 
 .mat-column-block {
   word-wrap: break-word !important;
   white-space: unset !important;
-  flex: 0 0 20% !important;
-  width: 20% !important;
+  flex: 0 0 8% !important;
+  width: 8% !important;
   word-break: break-word;
+  padding: 0 0.5% !important;
 }

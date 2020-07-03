@@ -11,11 +11,11 @@ export class Hotel {
     image: string;
     rulerHotel: string;
     sqm: number;
-    starHotel: number;
+    starHotel: any;
     suggestPlayground: string;
     totalRoomNumber: number;
     pointRating: number;
     desHotel: string;
     zip: string;
-    status: number;
+    status: any;
 }

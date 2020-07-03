@@ -6,6 +6,7 @@
     },
     "userRegister": {
       "username": "User name",
+      "phone": "Phone",
       "email": "Email",
       "password": "Password",
       "oldPassword": "Old password",
@@ -24,7 +25,14 @@
       "checkInfo": "Please check the information!"
     },
     "login": {
-      "login": "Login"
+      "login": "Login",
+      "email": "Please enter your Email",
+      "emailError": "Email invalidate",
+      "password": "Please enter your password",
+      "validPassword": "Password must be greater than 6 characters",
+      "newAccount": "New account?",
+      "forget": "Forgot password",
+      "register": "Register"
     }
   },
   "demo.title": "Translation demo",
