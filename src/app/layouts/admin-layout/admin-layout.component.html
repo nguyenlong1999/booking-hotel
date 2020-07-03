@@ -87,40 +87,18 @@
             <ul class="dropdown-menu show" x-placement="bottom-start"
                 style="position: absolute; top: -41px; left: -231px; will-change: top, right;">
                 <li class="header-title" (click)="reponse()">{{ "side.bar.chat" | translate }} </li>
-                <li class="adjustments-line">
-                    <a href="javascript:void(0)" class="switch-trigger active-color">
-                        <div class="ml-auto mr-auto" style="overflow-x: auto;
-                            white-space: nowrap;">
-                            <span ><a data-toggle="tooltip" style="background: none;" title="Hooray!"><img  src="https://ptetutorials.com/images/user-profile.png" alt="sunil" style="width: 20px;height: 20px; margin-right: 2px;"/></a></span>
-                            <span><img  src="https://ptetutorials.com/images/user-profile.png" alt="sunil" style="width: 20px;height: 20px;margin-right: 2px;"/></span>
-                            <span><img  src="https://ptetutorials.com/images/user-profile.png" alt="sunil" style="width: 20px;height: 20px; margin-right: 2px;"/></span>
-                            <span><img  src="https://ptetutorials.com/images/user-profile.png" alt="sunil" style="width: 20px;height: 20px;margin-right: 2px;"/></span>
-                            <span><img  src="https://ptetutorials.com/images/user-profile.png" alt="sunil" style="width: 20px;height: 20px; margin-right: 2px;"/></span>
-                            <span><img  src="https://ptetutorials.com/images/user-profile.png" alt="sunil" style="width: 20px;height: 20px;margin-right: 2px;"/></span>
-                            <span><img  src="https://ptetutorials.com/images/user-profile.png" alt="sunil" style="width: 20px;height: 20px;margin-right: 2px;"/></span>
-                            <span><img  src="https://ptetutorials.com/images/user-profile.png" alt="sunil" style="width: 20px;height: 20px;margin-right: 2px;"/></span>
-                            <span><img  src="https://ptetutorials.com/images/user-profile.png" alt="sunil" style="width: 20px;height: 20px;margin-right: 2px;"/></span>
-                            <span><img  src="https://ptetutorials.com/images/user-profile.png" alt="sunil" style="width: 20px;height: 20px;margin-right: 2px;"/></span>
-                            <span><img  src="https://ptetutorials.com/images/user-profile.png" alt="sunil" style="width: 20px;height: 20px; margin-right: 2px;"/></span>
-                            <span><img  src="https://ptetutorials.com/images/user-profile.png" alt="sunil" style="width: 20px;height: 20px;margin-right: 2px;"/></span>
-                            <span><img  src="https://ptetutorials.com/images/user-profile.png" alt="sunil" style="width: 20px;height: 20px;margin-right: 2px;"/></span>
-                            <span><img  src="https://ptetutorials.com/images/user-profile.png" alt="sunil" style="width: 20px;height: 20px; margin-right: 2px;"/></span>
-                            <span><img  src="https://ptetutorials.com/images/user-profile.png" alt="sunil" style="width: 20px;height: 20px;margin-right: 2px;"/></span>
-                            <span><img  src="https://ptetutorials.com/images/user-profile.png" alt="sunil" style="width: 20px;height: 20px; margin-right: 2px;"/></span>
-                            <span><img  src="https://ptetutorials.com/images/user-profile.png" alt="sunil" style="width: 20px;height: 20px;margin-right: 2px;"/></span>
-                            <span><img  src="https://ptetutorials.com/images/user-profile.png" alt="sunil" style="width: 20px;height: 20px; margin-right: 2px;"/></span>
-                            <span><img  src="https://ptetutorials.com/images/user-profile.png" alt="sunil" style="width: 20px;height: 20px;margin-right: 2px;"/></span>
-                            <span><img  src="https://ptetutorials.com/images/user-profile.png" alt="sunil" style="width: 20px;height: 20px;margin-right: 2px;"/></span>
-                            <span><img  src="https://ptetutorials.com/images/user-profile.png" alt="sunil" style="width: 20px;height: 20px;margin-right: 2px;"/></span>
-                            <span><img  src="https://ptetutorials.com/images/user-profile.png" alt="sunil" style="width: 20px;height: 20px;margin-right: 2px;"/></span>
-                            <span><img  src="https://ptetutorials.com/images/user-profile.png" alt="sunil" style="width: 20px;height: 20px;margin-right: 2px;"/></span>
-                            <span><img  src="https://ptetutorials.com/images/user-profile.png" alt="sunil" style="width: 20px;height: 20px; margin-right: 2px;"/></span>
-                            <span><img  src="https://ptetutorials.com/images/user-profile.png" alt="sunil" style="width: 20px;height: 20px;margin-right: 2px;"/></span>
-                            <span><img  src="https://ptetutorials.com/images/user-profile.png" alt="sunil" style="width: 20px;height: 20px;margin-right: 2px;"/></span>
-                            <span><img  src="https://ptetutorials.com/images/user-profile.png" alt="sunil" style="width: 20px;height: 20px;margin-right: 2px;"/></span>
+                <li class="adjustments-line" style="padding-top: 0;">
+                    <a href="javascript:void(0)" class="switch-trigger active-color" style="padding-top: 0;float: left;" >
+                        <div class="ml-auto mr-auto" style="overflow-x: auto;padding-top: 0;
+                            white-space: nowrap; "  >
+                            <a style="background: none; position: relative;border-bottom: none; max-width: 28px;"
+                               data-toggle="tooltip" title="{{user.name}}" *ngFor="let user of userChatList">
+                                <img src="http://localhost:8000/api/images/default-avatar.png" alt="sunil"
+                                     style="width: 25px;height: 25px; border-radius: 50%; margin-right: 2px;"/><span
+                                    style="position: relative;right: 5px;color: #74e4a2;font-size: 30px;"
+                                     *ngIf="user.online">&bull;</span></a>
+
                         </div>
-                        <div class="clearfix"></div>
-                        <div class="ripple-container"></div>
                     </a>
                 </li>
                 <li class="button-container text-center" style="max-height: 140px;overflow-y: auto;">
@@ -128,23 +106,23 @@
                         <div class="inbox_msg">
                             <div class="mesgs">
                                 <div class="msg_history" id="msg_history">
-<!--                                    <div class="incoming_msg">-->
-<!--                                        <div class="incoming_msg_img"><img-->
-<!--                                                src="https://ptetutorials.com/images/user-profile.png" alt="sunil">-->
-<!--                                        </div>-->
-<!--                                        <div class="received_msg">-->
-<!--                                            <div class="received_withd_msg">-->
-<!--                                                <p>Test which is a new approach to have all-->
-<!--                                                    solutions</p>-->
-<!--                                                <span class="time_date"> 11:01 AM    |    June 9</span></div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
+                                    <!--                                    <div class="incoming_msg">-->
+                                    <!--                                        <div class="incoming_msg_img"><img-->
+                                    <!--                                                src="https://ptetutorials.com/images/user-profile.png" alt="sunil">-->
+                                    <!--                                        </div>-->
+                                    <!--                                        <div class="received_msg">-->
+                                    <!--                                            <div class="received_withd_msg">-->
+                                    <!--                                                <p>Test which is a new approach to have all-->
+                                    <!--                                                    solutions</p>-->
+                                    <!--                                                <span class="time_date"> 11:01 AM    |    June 9</span></div>-->
+                                    <!--                                        </div>-->
+                                    <!--                                    </div>-->
 
-<!--                                    <div class="outgoing_msg">-->
-<!--                                        <div class="sent_msg" *ngFor=" let mess of userMessages">-->
-<!--                                            <p>{{mess.message}}</p>-->
-<!--                                            <span class="time_date"> {{mess.time}}</span></div>-->
-<!--                                    </div>-->
+                                    <!--                                    <div class="outgoing_msg">-->
+                                    <!--                                        <div class="sent_msg" *ngFor=" let mess of userMessages">-->
+                                    <!--                                            <p>{{mess.message}}</p>-->
+                                    <!--                                            <span class="time_date"> {{mess.time}}</span></div>-->
+                                    <!--                                    </div>-->
                                 </div>
 
                             </div>
@@ -154,9 +132,10 @@
                 <li class="button-container text-center">
                     <div class="type_msg">
                         <div class="input_msg_write">
-                            <input type="text" [(ngModel)]="message"  class="write_msg" placeholder="Type a message"/>
-                            <button class="msg_send_btn" type="button" (click)="sendMessage()"><i class="fa fa-paper-plane-o"
-                                                                          aria-hidden="true"></i></button>
+                            <input type="text" [(ngModel)]="message" class="write_msg" placeholder="Type a message"/>
+                            <button class="msg_send_btn" type="button" (click)="sendMessage()"><i
+                                    class="fa fa-paper-plane-o"
+                                    aria-hidden="true"></i></button>
                         </div>
                     </div>
                 </li>
