@@ -140,6 +140,11 @@ export class UserService {
             .get<User[]>(`${this.baseUrl}/getUsers`)
             .pipe(tap(_ => console.log('load users')));
     };
+    getActiveUsers = (): Observable<User[]> => {
+        return this._http
+            .get<User[]>(`${this.baseUrl}/getActiveUsers`)
+            .pipe(tap(_ => console.log('load users')));
+    };
     getNewUsers = (): Observable<User[]> => {
         return this._http
             .get<User[]>(`${this.baseUrl}/getNewUsers`)

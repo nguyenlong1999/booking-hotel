@@ -11,6 +11,7 @@ import {ChatService} from "../../shared/service/chat.service";
 import {Message} from "../../shared/model/message";
 import {CookieService} from "ngx-cookie-service";
 import {UserService} from "../../shared/service/user.service.";
+import {User} from "../../shared/model/user";
 
 @Component({
     selector: 'app-admin-layout',
@@ -18,14 +19,15 @@ import {UserService} from "../../shared/service/user.service.";
     styleUrls: ['./admin-layout.component.scss']
 })
 export class AdminLayoutComponent implements OnInit, AfterViewInit {
-    private _router: Subscription;
-    private lastPoppedUrl: string;
-    private yScrollStack: number[] = [];
-    private newMessage = false;
-    private userMessages: Message[] = [];
-    private guessMessages: Message[] = [];
+    _router: Subscription;
+    lastPoppedUrl: string;
+    yScrollStack: number[] = [];
+    newMessage = false;
+    userMessages: Message[] = [];
+    userChatList: User [] = [];
+    guessMessages: Message[] = [];
     @Input('ngModel') message;
-    private userOnline: String[] = [];
+    userOnline: String[] = [];
 
     constructor(
         public location: Location, private router: Router,
@@ -38,6 +40,25 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
         translate.setDefaultLang('vi');
         sessionStorage.setItem('currentLang', 'vi');
         this.mailBox();
+        this.userService.getActiveUsers().subscribe(data => {
+            console.log(data)
+            this.userChatList = data;
+            let id = this.cookieService.get('ObjectId');
+            this.userChatList = this.userChatList.filter(user => user._id !== id);
+            this.userChatList.forEach(user => {
+                user.online = false;
+                if (this.userOnline.length > 0) {
+                    this.userOnline.forEach(id => {
+                        if (id === user._id) {
+                            user.online = true;
+                        }
+                    });
+                }
+            });
+
+            console.log(this.userOnline);
+            console.log(this.userChatList);
+        });
     }
 
     ngOnInit() {
@@ -152,6 +173,7 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
         });
         setTimeout(() => {
             this.getListOnline();
+
         }, 5000);
     }
 
@@ -193,11 +215,22 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
                             }
                         }
                     });
-                    this.userService.getUserOnlineInfo(this.userOnline).subscribe(data => {
+                    this.userService.getActiveUsers().subscribe(data => {
                         console.log(data)
-                    });
-                    console.log(this.userOnline);
+                        this.userChatList = data;
+                        let id = this.cookieService.get('ObjectId');
+                        this.userChatList = this.userChatList.filter(user => user._id !== id);
+                        this.userChatList.forEach(user => {
+                            this.userOnline.forEach(id => {
+                                if (id === user._id) {
+                                    user.online = true;
+                                }
+                            });
+                        });
 
+                        console.log(this.userOnline);
+                        console.log(this.userChatList);
+                    });
                 } else {
                     this.userMessages.push(mess);
                 }
@@ -245,7 +278,7 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
         console.log(message)
         const radio: HTMLElement = document.getElementById('msg_history');
         radio.innerHTML += ' <div class="outgoing_msg" style="float: left;display: block;clear: both;">\n' +
-            '<img  src="https://ptetutorials.com/images/user-profile.png" alt="sunil" style="width: 20px;height: 20px;float:left;"/>' +
+            '<img  src="http://localhost:8000/api/images/default-avatar.png" alt="sunil" style="border-radius: 50%;width: 25px;height: 25px;float:left;"/>' +
             '<span class="time_date" style="font-size: 8px;">' + message.time + '</span>' +
             '<div class="sent_msg" style="overflow:hidden; margin:6px 0 6px;">\n' +
             '<p style="background: lightgrey none repeat scroll 0 0;\n' +

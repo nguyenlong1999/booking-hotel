@@ -53,7 +53,14 @@
       "all": "All"
     },
     "login": {
-      "login": "Login"
+      "login": "Login",
+      "email": "Please enter your Email",
+      "emailError": "Email invalidate",
+      "password": "Please enter your password",
+      "validPassword": "Password must be greater than 6 characters",
+      "newAccount": "New account?",
+      "forget": "Forgot password",
+      "register": "Register"
     }
   },
   "demo.title": "Translation demo",
