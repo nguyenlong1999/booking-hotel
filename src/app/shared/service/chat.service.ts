@@ -3,15 +3,24 @@ import {Socket} from 'ngx-socket-io';
 import {Observable} from 'rxjs';
 import * as io from 'socket.io-client';
 import {AppSetting} from '../../appsetting';
+import {HttpClient} from "@angular/common/http";
 declare var $: any;
 @Injectable({
     providedIn: 'root'
 })
 export class ChatService {
-    constructor(private socket: Socket) { }
+    private baseUrl: string = AppSetting.BASE_SERVER_URL;
+    constructor(
+        private socket: Socket,
+        private _http: HttpClient) { }
     public sendMessage(message) {
         console.log('gưi thong báo socket' + message)
         this.socket.emit('new-message', message);
+        return this._http.post(
+            `${this.baseUrl}/createChatMessage`,
+            {chatMessage: message},
+            {observe: 'response'}
+        );
     }
     public getMessages = () => {
         return Observable.create((observer) => {
@@ -57,5 +66,12 @@ export class ChatService {
                 '<a href="{3}" target="{4}" data-notify="url"></a>' +
                 '</div>'
         });
+    }
+    findChatMessage(chatMessage: any) {
+        return this._http.post(
+            `${this.baseUrl}/findChatMessage`,
+            {chatMessage: chatMessage},
+            {observe: 'response'}
+        );
     }
 }

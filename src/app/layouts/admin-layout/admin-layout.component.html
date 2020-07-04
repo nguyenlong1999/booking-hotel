@@ -92,8 +92,8 @@
                         <div class="ml-auto mr-auto" style="overflow-x: auto;padding-top: 0;
                             white-space: nowrap; "  >
                             <a style="background: none; position: relative;border-bottom: none; max-width: 28px;"
-                               data-toggle="tooltip" title="{{user.name}}" *ngFor="let user of userChatList">
-                                <img src="http://localhost:8000/api/images/default-avatar.png" alt="sunil"
+                               data-toggle="tooltip" title="{{user.name}}" *ngFor="let user of userChatList" (click)="findMessage(user._id)">
+                                <img src="http://localhost:8000/api/images/{{user.imageUrl}}" alt="sunil"
                                      style="width: 25px;height: 25px; border-radius: 50%; margin-right: 2px;"/><span
                                     style="position: relative;right: 5px;color: #74e4a2;font-size: 30px;"
                                      *ngIf="user.online">&bull;</span></a>
@@ -133,7 +133,7 @@
                     <div class="type_msg">
                         <div class="input_msg_write">
                             <input type="text" [(ngModel)]="message" class="write_msg" placeholder="Type a message"/>
-                            <button class="msg_send_btn" type="button" (click)="sendMessage()"><i
+                            <button class="msg_send_btn" type="button" (click)="sendMessage($event)"><i
                                     class="fa fa-paper-plane-o"
                                     aria-hidden="true"></i></button>
                         </div>
