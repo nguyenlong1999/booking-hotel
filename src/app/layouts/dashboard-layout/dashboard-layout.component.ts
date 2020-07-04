@@ -53,7 +53,7 @@ export class DashboardLayoutComponent implements OnInit {
     user = '';
     isModeration = false;
     showModal = false;
-    imageUrl = 'jbiajl3qqdzshdw0z749'
+    imageUrl = 'assets/img/new_logo.png'
     message = '';
     searchHotel = new SearchHotel('', 1, 1, 1);
 
@@ -203,6 +203,12 @@ export class DashboardLayoutComponent implements OnInit {
         return 'Dashboard';
     }
 
+    logoutUser() {
+        this._loginService.logoutUser()
+        this.router.navigateByUrl('/index')
+        window.location.reload();
+    }
+
     logout() {
         this._loginService.logoutUser()
         this.router.navigateByUrl('/login')
@@ -240,13 +246,15 @@ export class DashboardLayoutComponent implements OnInit {
                 this._loginService.updateAuthStatus(true);
                 const user = userData.body;
                 let role;
+                console.log(user);
 
                 for (const key of Object.keys(user)) {
+                    console.log(key)
                     if (key === 'role') {
                         role = user[key];
                     }
                     if (key === 'image') {
-                        this.imageUrl = user[key];
+                        // this.imageUrl = user[key];
                     }
                     if (parseInt(role) === -1) {
                         this.errorMessage = 'Bạn chưa xác thực email đã đăng ký';
