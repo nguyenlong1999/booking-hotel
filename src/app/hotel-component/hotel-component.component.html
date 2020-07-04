@@ -27,7 +27,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-3">
+                                <div class="col-lg-4">
                                     <mat-form-field appearance="fill">
                                         <mat-label>{{"common.user.status" | translate}}</mat-label>
                                         <mat-select formControlName="status">
@@ -38,16 +38,19 @@
                                         </mat-select>
                                     </mat-form-field>
                                 </div>
-                                <div class="col-lg-3">
-                                    <mat-form-field appearance="fill">
-                                        <mat-label>{{"common.hotel.star" | translate}}</mat-label>
-                                        <mat-select formControlName="starHotel">
-                                            <mat-option>{{"common.user.all" | translate}}</mat-option>
-                                            <mat-option *ngFor="let star of selectListStarhotel" [value]="star.value">
-                                                {{star.title}}
-                                            </mat-option>
-                                        </mat-select>
-                                    </mat-form-field>
+                                <div class="col-lg-4">
+                                    <div class="row" style="padding-top: 7%;">
+                                        <div class="col">
+                                            <app-star-rating [rating]="rating" [starCount]="starCount"
+                                                             [color]="starColor"
+                                                             (ratingUpdated)="onRatingChanged($event)"></app-star-rating>
+                                        </div>
+                                        <div class="col">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
                                 </div>
                             </div>
                         </form>

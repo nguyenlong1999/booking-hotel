@@ -19,8 +19,8 @@ export class HotelAccessComponent implements OnInit {
     countAccommodates = 0;
     countBedrooms = 0;
     countBathrooms = 0;
-    private address;
-    private name;
+    private address: any;
+    name;
     isEdited = false
     lat = 19.973349;
     lng = 105.468750;
