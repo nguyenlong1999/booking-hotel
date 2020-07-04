@@ -2,7 +2,9 @@
   "common": {
     "button": {
       "back": "Previos",
-      "next": "Next"
+      "next": "Next",
+      "cancel": "Cancel",
+      "systemNotification": "System notification"
     },
     "userRegister": {
       "username": "User name",
@@ -51,6 +53,27 @@
       "searchEmail": "Search email",
       "undefined": "Undefined",
       "all": "All"
+    },
+    "hotel": {
+      "hotelName": "Hotel name",
+      "quality": "Quality",
+      "starNumber": "Number of stars",
+      "star": "star",
+      "sqm": "Square meter",
+      "roomType": "Room types",
+      "approval": "Approval",
+      "unapproval": "Unapproval",
+      "approvalHotel": "Approval hotel",
+      "unapprovalHotel": "Unapproval hotel",
+      "hotelBlocked": "The hotel is blocked",
+      "blockTitle": "Block hotel",
+      "blockHotel": "Block hotel",
+      "unblockHotel": "Unblock hotel",
+      "active": "Active",
+      "blocked": "Blocked",
+      "waitApproval": "Waiting approval",
+      "addHotel": "Add hotel",
+      "editHotel": "Edit hotel"
     },
     "login": {
       "login": "Login",

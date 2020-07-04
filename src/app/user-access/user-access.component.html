@@ -33,7 +33,7 @@
                                     <mat-form-field appearance="fill">
                                         <mat-label>{{"common.user.status" | translate}}</mat-label>
                                         <mat-select formControlName="status">
-                                            <mat-option value=""><!--{{"common.user.all" | translate}}-->All</mat-option>
+                                            <mat-option>{{"common.user.all" | translate}}</mat-option>
                                             <mat-option *ngFor="let status of selectListStatus" [value]="status.value">
                                                 {{status.title}}
                                             </mat-option>
@@ -44,7 +44,7 @@
                                     <mat-form-field appearance="fill">
                                         <mat-label>{{"common.user.role" | translate}}</mat-label>
                                         <mat-select placeholder="Vai trò" formControlName="role">
-                                            <mat-option value=""><!--{{"common.user.all" | translate}}-->All</mat-option>
+                                            <mat-option>{{"common.user.all" | translate}}</mat-option>
                                             <mat-option *ngFor="let role of selectListRole" [value]="role">
                                                 {{role}}
                                             </mat-option>
