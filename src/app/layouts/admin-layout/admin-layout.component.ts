@@ -5,15 +5,15 @@ import {NavigationEnd, NavigationStart, Router} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
 import PerfectScrollbar from 'perfect-scrollbar';
 
-import * as $ from "jquery";
-import {TranslateService} from "@ngx-translate/core";
-import {Title} from "@angular/platform-browser";
-import {ChatService} from "../../shared/service/chat.service";
-import {Message} from "../../shared/model/message";
-import {CookieService} from "ngx-cookie-service";
-import {UserService} from "../../shared/service/user.service.";
-import {User} from "../../shared/model/user";
-import {ChatMessage} from "../../shared/model/chat-message";
+import * as $ from 'jquery';
+import {TranslateService} from '@ngx-translate/core';
+import {Title} from '@angular/platform-browser';
+import {ChatService} from '../../shared/service/chat.service';
+import {Message} from '../../shared/model/message';
+import {CookieService} from 'ngx-cookie-service';
+import {UserService} from '../../shared/service/user.service.';
+import {User} from '../../shared/model/user';
+import {ChatMessage} from '../../shared/model/chat-message';
 
 @Component({
     selector: 'app-admin-layout',
@@ -30,7 +30,8 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
     guessMessages: ChatMessage[] = [];
     @Input('ngModel') message;
     userOnline: String[] = [];
-    toUser='';
+    toUser = '';
+
     constructor(
         public location: Location, private router: Router,
         private translate: TranslateService,
@@ -247,7 +248,7 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
             fromUser: this.cookieService.get('ObjectId'),
             toUser: userId
         };
-        this.toUser=userId;
+        this.toUser = userId;
         this.chatService.findChatMessage(chatMessage).subscribe(data => {
             console.log(data);
         })
@@ -257,17 +258,17 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
         console.log(this.message)
         let message = new ChatMessage();
         message.fromUser = this.cookieService.get('ObjectId');
-        message.toUser=this.toUser;
+        message.toUser = this.toUser;
         message.objectId = this.toUser;
         message.content = this.message;
         message.message = this.message;
         let time = new Date();
         message.time = this.formatDate(time);
         this.userMessages.push(message);
-        this.chatService.sendMessage(message).subscribe(data=>{
-            if(data['status']===200){
+        this.chatService.sendMessage(message).subscribe(data => {
+            if (data['status'] === 200) {
                 this.addChatBoxSendMessage(message);
-            }else{
+            } else {
                 console.log(data);
                 this.addChatBoxSendMessage(message);
             }
@@ -275,7 +276,8 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
         });
         console.log(message)
     }
-    addChatBoxSendMessage(message){
+
+    addChatBoxSendMessage(message) {
         const radio: HTMLElement = document.getElementById('msg_history');
         radio.innerHTML += ' <div class="outgoing_msg" style="float: right;display:block;overflow:hidden;clear: both;">\n' +
             '<div class="sent_msg" style="overflow:hidden; margin:6px 0 6px;">\n' +
@@ -291,10 +293,12 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
             '</div>\n' +
             '                                    </div>';
     }
-    clearChatBox(){
+
+    clearChatBox() {
         const radio: HTMLElement = document.getElementById('msg_history');
-        radio.innerHTML=''
+        radio.innerHTML = ''
     };
+
     reponse() {
         let message = new ChatMessage();
         message.objectId = this.cookieService.get('ObjectId');
