@@ -5,7 +5,7 @@
                 <h2 style="color: #403131; font-weight: 400;">{{ "user.profile" | translate}}</h2>
             </div>
         </div>
-        <div class="row">
+        <div class="row" style="margin-right: 0px">
             <div class="col-lg-3">
                 <app-image [imageProp]="imageProp" [url]="url" (imageSrcUrl)="getImageSrc($event)"></app-image>
             </div>
@@ -14,273 +14,249 @@
                 <mat-tab-group>
                     <form [formGroup]="profileForm" (ngSubmit)="updateProfile()">
                         <mat-tab [label]="'user.profile.changeInfo'| translate">
-                            <div class="row">
-                                <div class="col">
-                                    <h3 style="text-transform: none;">{{ "user.profile.edit" | translate}}</h3>
+                            <div class="main-content" style="padding: 3%">
+                                <div class="row">
+                                    <div class="col">
+                                        <h3 style="text-transform: none;">{{ "user.profile.edit" | translate}}</h3>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-3">
-                                    <p class="input-title">{{ "common.userRegister.email" | translate}}:</p>
+                                <div class="row">
+                                    <div class="col-lg-3" style="margin-top: 2%">
+                                        <p class="input-title">{{ "common.userRegister.email" | translate}}:</p>
+                                    </div>
+                                    <div class="col-lg-5">
+                                        <mat-form-field>
+                                            <input matInput formControlName="email" name="email" type="text">
+                                        </mat-form-field>
+                                    </div>
                                 </div>
-                                <div class="col-lg-3">
-                                    <mat-form-field>
-                                        <input matInput disabled formControlName="email" name="email" type="text">
-                                    </mat-form-field>
+                                <div class="row">
+                                    <div class="col-lg-3" style="margin-top: 2%">
+                                        <p class="input-title">{{ "common.userRegister.username" | translate}}:</p>
+                                    </div>
+                                    <div class="col-lg-5">
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput formControlName="name" name="name" type="text">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3" style="margin-top: 2%">
+                                        <p class="input-title">{{ "common.userRegister.phone" | translate}}:</p>
+                                    </div>
+                                    <div class="col-lg-5">
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput formControlName="phone" name="phone" type="text">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3" style="margin-top: 2%">
+                                        <p class="input-title">{{ "common.userRegister.address" | translate}}:</p>
+                                    </div>
+                                    <div class="col-lg-5">
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput formControlName="address" name="address" type="text">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3" style="margin-top: 2%">
+                                        <p class="input-title">{{ "user.profile.birthday" | translate}}:</p>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <mat-form-field class="example-full-width">
+                                            <mat-select matNativeControl formControlName="birthday" name="birthday">
+                                                <mat-option *ngFor="let year of years" [value]="year">
+                                                    {{year}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3 " style="margin-top: 2%">
+                                        <p class="input-title">{{ "user.profile.gender" | translate}}:</p>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <mat-form-field>
+                                            <mat-select formControlName="gender" name="gender">
+                                                <mat-option *ngFor="let gender of genders" [value]="gender.value">
+                                                    {{gender.viewValue}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3" style="margin-top: 2%">
+                                        <p class="input-title">{{ "user.profile.materialStatus" | translate}}:</p>
+                                    </div>
+                                    <div class="col-lg-5">
+                                        <mat-form-field class="example-full-width">
+                                            <mat-select formControlName="materialStatus" name="materialStatus">
+                                                <mat-option *ngFor="let material of materials" [value]="material.value">
+                                                    {{material.viewValue}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3" style="margin-top: 2%">
+                                        <p class="input-title">{{ "user.profile.signature" | translate}}:</p>
+                                    </div>
+                                    <div class="col-lg-5">
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput type="text" formControlName="signature" name="signature">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3" style="margin-top: 2%">
+                                        <p class="input-about">{{ "user.profile.introduction" | translate}}:</p>
+                                    </div>
+                                    <div class="col-lg-5">
+                                        <mat-form-field class="example-full-width">
+                                            <textarea matInput placeholder="" formControlName="introduction"
+                                                      name="introduction"></textarea>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row" style="padding-left: 2%">
+                                    <div class="submit">
+                                        <button mat-raised-button type="submit" (click)="updateProfile()"
+                                                class="btn btn-outline-primary">
+                                            {{ "user.profile.saveChang" | translate}}
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </mat-tab>
                     </form>
-                    <mat-tab label="Second"> Content 2</mat-tab>
-                    <mat-tab label="Third"> Content 3</mat-tab>
+                    <form [formGroup]="changePasswordForm" (ngSubmit)="changePassword()">
+                        <mat-tab [label]="'user.profile.changPassword'| translate">
+                            <div class="main-content" style="padding: 3%">
+                                <div class="row">
+                                    <div class="col">
+                                        <h3 style="text-transform: none;">{{ "user.profile.edit" | translate}}</h3>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3" style="margin-top: 2%">
+                                        <p class="input-title">{{ "common.userRegister.oldPassword" | translate}}:</p>
+                                    </div>
+                                    <div class="col-lg-5">
+                                        <mat-form-field>
+                                            <input matInput disabled formControlName="oldPassword" name="oldPassword"
+                                                   type="password"
+                                                   [ngClass]="{ 'is-invalid': passSubmitted && f.oldPassword.errors }"
+                                                   [placeholder]="'common.userRegister.oldPassword' | translate"
+                                                   title="Vui lòng điền mật khẩu cũ"></mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3"></div>
+                                    <div class="col-lg-5">
+                                        <div *ngIf="passSubmitted && f.oldPassword.errors" class="is-invalid">
+                                            <div *ngIf="f.oldPassword.errors.required">
+                                                <i class="material-icons message-error">error</i>
+                                                <span class="message-error">
+                                                    {{ "common.userRegister.errorPasswordOld" | translate}}
+                                                </span>
+                                            </div>
+                                            <div *ngIf="f .oldPassword.errors.minlength">
+                                                <i class="material-icons message-error">error</i>
+                                                <span class="message-error">
+                                                    {{ "common.userRegister.errorPasswordValidate" | translate}}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <p class="input-title">{{ "common.userRegister.newPassword" | translate}}:</p>
+                                    </div>
+                                    <div class="col-lg-5">
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput formControlName="password" name="password" type="password"
+                                                   [ngClass]="{ 'is-invalid': passSubmitted && f.password.errors }"
+                                                   [placeholder]="'common.userRegister.newPassword' | translate"
+                                                   title="Please enter the password">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3"></div>
+                                    <div class="col-lg-5">
+                                        <div *ngIf="passSubmitted && f.password.errors" class="is-invalid">
+                                            <div *ngIf="f.password.errors.required">
+                                                <i class="material-icons message-error">error</i>
+                                                <span class="message-error">
+                                                    {{ "common.userRegister.errorPasswordNew" | translate}}
+                                                </span>
+                                            </div>
+                                            <div *ngIf="f.password.errors.minlength">
+                                                <i class="material-icons message-error">error</i>
+                                                <span class="message-error">
+                                                    {{ "common.userRegister.errorPasswordValidate" | translate}}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-3" style="margin-top: 2%">
+                                        <p class="input-title">{{ "common.userRegister.errorPasswordConfirm" | translate}}
+                                            :</p></div>
+                                    <div class="col-lg-5">
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput formControlName="confirmPassword" name="confirmPassword"
+                                                   type="password"
+                                                   [ngClass]="{ 'is-invalid': passSubmitted && f.confirmPassword.errors }"
+                                                   [placeholder]="'common.userRegister.errorPasswordConfirm' | translate">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3"></div>
+                                    <div class="col-lg-5">
+                                        <div *ngIf="passSubmitted && f.confirmPassword.errors" class="is-invalid">
+                                            <div *ngIf="f.confirmPassword.errors.required">
+                                                <i class="material-icons message-error">error</i>
+                                                <span class="message-error">
+                                                    {{ "common.userRegister.errorPasswordConfirm" | translate}}
+                                                </span>
+                                            </div>
+                                            <div *ngIf="f.confirmPassword.errors.mustMatch">
+                                                <i class="material-icons message-error">error</i>
+                                                <span class="message-error">
+                                                    {{ "common.userRegister.errorPasswordConfirmFalse" | translate}}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <hr>
+                                <div class="row" style="padding-left: 2%">
+                                    <div class="submit">
+                                        <button mat-raised-button type="submit" (click)="changePassword()" class="btn btn-outline-primary">
+                                            {{"user.profile.changPassword"|translate}}
+                                        </button>
+                                        <p style="text-align:center; color: red;font-size: 12px;">
+                                            {{ errorPassMessage }}
+                                    </div>
+                                </div>
+                            </div>
+                        </mat-tab>
+                    </form>
                 </mat-tab-group>
-                <!--                <mat-tab-group>-->
-                <!--                    <mat-tab>-->
-                <!--                        <ng-template mat-tab-label>-->
-                <!--                            {{ "user.profile.changeInfo" | translate}}-->
-                <!--                        </ng-template>-->
-                <!--                        <div class="main-content">-->
-                <!--                            <form  [formGroup]="profileForm" (ngSubmit)="updateProfile()">-->
-
-                <!--                                xxx-->
-                <!--&lt;!&ndash;                                <div class="row">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    <h3 style="text-transform: none;">{{ "user.profile.edit" | translate}}</h3>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                <div class="row">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    <div class="col-lg-4">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                        <p class="input-title">{{ "common.userRegister.email" | translate}}:</p>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    <div class="col-lg-6">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                        <mat-form-field class="example-full-width">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                            <input matInput disabled formControlName="email" name="email" type="text">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                        </mat-form-field>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                <div class="row">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    <div class="col-lg-4">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                        <p class="input-title">{{ "common.userRegister.username" | translate}}:</p>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    <div class="col-lg-6">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                        <mat-form-field class="example-full-width">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                            <input matInput formControlName="name" name="name" type="text">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                        </mat-form-field>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                <div class="row">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    <div class="col-lg-4">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                        <p class="input-title">{{ "common.userRegister.phone" | translate}}:</p>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    <div class="col-lg-6">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                        <mat-form-field class="example-full-width">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                            <input matInput formControlName="phone" name="phone" type="text">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                        </mat-form-field>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                <div class="row">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    <div class="col-lg-4">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                        <p class="input-title">{{ "common.userRegister.address" | translate}}:</p>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    <div class="col-lg-6">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                        <mat-form-field class="example-full-width">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                            <input matInput formControlName="address" name="address" type="text">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                        </mat-form-field>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                <div class="row">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    <div class="col-lg-3">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                        <p class="input-title">{{ "user.profile.birthday" | translate}}:</p>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    <div class="col-lg-3">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                        <mat-form-field class="example-full-width">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                            <mat-select matNativeControl formControlName="birthday" name="birthday">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                                <mat-option *ngFor="let year of years" [value]="year">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                                    {{year}}&ndash;&gt;-->
-                <!--&lt;!&ndash;                                                </mat-option>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                            </mat-select>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                        </mat-form-field>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    <div class="col-lg-3">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                        <p class="input-title">{{ "user.profile.gender" | translate}}:</p>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    <div class="col-lg-3">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                        <mat-form-field class="example-full-width">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                            <mat-select formControlName="gender" name="gender">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                                <mat-option *ngFor="let gender of genders" [value]="gender.value">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                                    {{gender.viewValue}}&ndash;&gt;-->
-                <!--&lt;!&ndash;                                                </mat-option>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                            </mat-select>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                        </mat-form-field>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                <div class="row">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    <div class="col-lg-4">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                        <p class="input-title">{{ "user.profile.materialStatus" | translate}}:</p>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    <div class="col-lg-6">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                        <mat-form-field class="example-full-width">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                            <mat-select formControlName="materialStatus" name="materialStatus">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                                <mat-option *ngFor="let material of materials" [value]="material.value">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                                    {{material.viewValue}}&ndash;&gt;-->
-                <!--&lt;!&ndash;                                                </mat-option>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                            </mat-select>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                        </mat-form-field>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                <div class="row">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    <div class="col-lg-4">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                        <p class="input-title">{{ "user.profile.signature" | translate}}:</p>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    <div class="col-lg-6">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                        <mat-form-field class="example-full-width">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                            <input matInput type="text" formControlName="signature" name="signature">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                        </mat-form-field>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                <div class="row">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    <div class="col-lg-4">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                        <p class="input-about">{{ "user.profile.introduction" | translate}}:</p>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    <div class="col-lg-6">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                        <mat-form-field class="example-full-width">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                            <textarea matInput placeholder="" formControlName="introduction"&ndash;&gt;-->
-                <!--&lt;!&ndash;                                                      name="introduction"></textarea>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                        </mat-form-field>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                <div class="clearfix"></div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                <div class="row">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    <div class="submit">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                        <button mat-raised-button type="submit" class="btn btn-outline-primary">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                            {{ "user.profile.saveChang" | translate}}&ndash;&gt;-->
-                <!--&lt;!&ndash;                                        </button>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                </div>&ndash;&gt;-->
-                <!--                            </form>-->
-                <!--                        </div>-->
-                <!--                    </mat-tab>-->
-                <!--                    <mat-tab>-->
-                <!--                        <ng-template mat-tab-label>-->
-                <!--                            {{ "user.profile.changPassword" | translate}}-->
-                <!--                        </ng-template>-->
-                <!--&lt;!&ndash;                        <div class="main-content">&ndash;&gt;-->
-                <!--&lt;!&ndash;                            <form style="width: 100%;" [formGroup]="changePasswordForm" (ngSubmit)="changePassword()">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                <div class="row">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    <h3 style="text-transform: none;font-weight: 400;">{{ "user.profile.changPassword" | translate}}</h3>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                <div class="row">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    <div class="col-lg-4">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                        <p class="input-title">{{ "common.userRegister.oldPassword" | translate}}:</p>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    <div class="col-lg-6">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                        <mat-form-field class="example-full-width">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                            <input matInput disabled formControlName="oldPassword" name="oldPassword"&ndash;&gt;-->
-                <!--&lt;!&ndash;                                                   type="password"&ndash;&gt;-->
-                <!--&lt;!&ndash;                                                   [ngClass]="{ 'is-invalid': passSubmitted && f.oldPassword.errors }"&ndash;&gt;-->
-                <!--&lt;!&ndash;                                                   [placeholder] = "'common.userRegister.oldPassword' | translate"&ndash;&gt;-->
-                <!--&lt;!&ndash;                                                   title="Vui lòng điền mật khẩu cũ">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                        </mat-form-field>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                <div class="row">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    <div class="col-lg-4"></div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    <div class="col-lg-6">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                        <div *ngIf="passSubmitted && f.oldPassword.errors" class="is-invalid">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                            <div *ngIf="f.oldPassword.errors.required">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                                <i class="material-icons message-error">error</i>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                                <span class="message-error">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                                    {{ "common.userRegister.errorPasswordOld" | translate}}&ndash;&gt;-->
-                <!--&lt;!&ndash;                                                </span>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                            </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                            <div *ngIf="f .oldPassword.errors.minlength">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                                <i class="material-icons message-error">error</i>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                                <span class="message-error">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                                    {{ "common.userRegister.errorPasswordValidate" | translate}}&ndash;&gt;-->
-                <!--&lt;!&ndash;                                                </span>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                            </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                        </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                <div class="row">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    <div class="col-lg-4">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                        <p class="input-title">{{ "common.userRegister.newPassword" | translate}}:</p>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    <div class="col-lg-6">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                        <mat-form-field class="example-full-width">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                            <input matInput formControlName="password" name="password" type="password"&ndash;&gt;-->
-                <!--&lt;!&ndash;                                                   [ngClass]="{ 'is-invalid': passSubmitted && f.password.errors }"&ndash;&gt;-->
-                <!--&lt;!&ndash;                                                   [placeholder]="'common.userRegister.newPassword' | translate"&ndash;&gt;-->
-                <!--&lt;!&ndash;                                                   title="Please enter the password">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                        </mat-form-field>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                <div class="row">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    <div class="col-lg-4"></div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    <div class="col-lg-6">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                        <div *ngIf="passSubmitted && f.password.errors" class="is-invalid">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                            <div *ngIf="f.password.errors.required">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                                <i class="material-icons message-error">error</i>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                                <span class="message-error">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                                    {{ "common.userRegister.errorPasswordNew" | translate}}&ndash;&gt;-->
-                <!--&lt;!&ndash;                                                </span>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                            </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                            <div *ngIf="f.password.errors.minlength">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                                <i class="material-icons message-error">error</i>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                                <span class="message-error">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                                    {{ "common.userRegister.errorPasswordValidate" | translate}}&ndash;&gt;-->
-                <!--&lt;!&ndash;                                                </span>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                            </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                        </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                <div class="row">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    <div class="col-lg-4">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                        <p class="input-title">{{ "common.userRegister.errorPasswordConfirm" | translate}}&ndash;&gt;-->
-                <!--&lt;!&ndash;                                            :</p>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    <div class="col-lg-6">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                        <mat-form-field class="example-full-width">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                            <input matInput formControlName="confirmPassword" name="confirmPassword"&ndash;&gt;-->
-                <!--&lt;!&ndash;                                                   type="password"&ndash;&gt;-->
-                <!--&lt;!&ndash;                                                   [ngClass]="{ 'is-invalid': passSubmitted && f.confirmPassword.errors }"&ndash;&gt;-->
-                <!--&lt;!&ndash;                                                   [placeholder]="'common.userRegister.errorPasswordConfirm' | translate">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                        </mat-form-field>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                <div class="row">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    <div class="col-lg-4"></div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    <div class="col-lg-6">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                        <div *ngIf="passSubmitted && f.confirmPassword.errors" class="is-invalid">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                            <div *ngIf="f.confirmPassword.errors.required">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                                <i class="material-icons message-error">error</i>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                                <span class="message-error">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                                    {{ "common.userRegister.errorPasswordConfirm" | translate}}&ndash;&gt;-->
-                <!--&lt;!&ndash;                                                </span>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                            </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                            <div *ngIf="f.confirmPassword.errors.mustMatch">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                                <i class="material-icons message-error">error</i>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                                <span class="message-error">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                                    {{ "common.userRegister.errorPasswordConfirmFalse" | translate}}&ndash;&gt;-->
-                <!--&lt;!&ndash;                                                </span>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                            </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                        </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                <div class="clearfix"></div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                <div class="row">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    <div class="submit">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                        <button mat-raised-button type="submit" class="btn btn-outline-primary">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                            {{"user.profile.changPassword"|translate}}&ndash;&gt;-->
-                <!--&lt;!&ndash;                                        </button>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                        <p style="text-align:center; color: red;font-size: 12px;">&ndash;&gt;-->
-                <!--&lt;!&ndash;                                            {{ errorPassMessage }}&ndash;&gt;-->
-                <!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                                </div>&ndash;&gt;-->
-                <!--&lt;!&ndash;                            </form>&ndash;&gt;-->
-                <!--&lt;!&ndash;                        </div>&ndash;&gt;-->
-                <!--                    </mat-tab>-->
-                <!--                </mat-tab-group>-->
             </div>
-
+            <div class="col-lg-2"></div>
         </div>
     </div>
 </div>
