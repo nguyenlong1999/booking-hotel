@@ -103,12 +103,13 @@ export class DashboardLayoutComponent implements OnInit {
             }
         });
         this.getImage()
-        this.isModeration = this.cookie.get('role') !== '' ? true : false;
+        this.isModeration = this.cookie.get('role') === '2' ? true : false;
         this.isAuthenicate = this.cookie.get('email') !== '' ? true : false;
         this.registerForm = this.formBuilder.group({
             email: ['', [Validators.required, Validators.email]],
             password: ['', [Validators.required, Validators.minLength(6)]]
         });
+        console.log('hhehe' + this.isModeration)
     }
 
     sidebarOpen() {
@@ -129,6 +130,12 @@ export class DashboardLayoutComponent implements OnInit {
         } else {
             this._router.navigate(['/dashboard']);
         }
+    }
+
+    closeButtonRegister() {
+        this._router.navigate(['/user-register']);
+        const radio: HTMLElement = document.getElementById('close-modal');
+        radio.click();
     }
 
     sidebarClose() {
@@ -212,13 +219,21 @@ export class DashboardLayoutComponent implements OnInit {
 
     logoutUser() {
         this._loginService.logoutUser()
-        this.router.navigateByUrl('/index')
-        window.location.reload();
-    }
 
-    logout() {
-        this._loginService.logoutUser()
-        this.router.navigateByUrl('/login')
+        this.isAuthenicate = false;
+        this.showModal = false;
+        let token = this.cookie.get('token');
+        if (token !== '') {
+            this.cookie.set('token', '');
+        }
+        this.href = this._router.url;
+        console.log(this.href)
+        if (this.href === '/index') {
+            window.location.reload();
+        } else {
+            this._router.navigate(['/'])
+        }
+        this.cookie.deleteAll();
     }
 
     useLanguage(language: string) {
@@ -282,7 +297,7 @@ export class DashboardLayoutComponent implements OnInit {
                         role = user[key];
                         this.cookie.set('role', role);
                         console.log(role)
-                        if (role !== undefined && role !== '') {
+                        if (role !== undefined && role !== '' && role === 2) { // admin = 2
                             this.isModeration = true
                             console.log(role)
                         }

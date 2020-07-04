@@ -83,9 +83,10 @@ export class UserAccessComponent implements OnInit {
                     user.imageUrl = 'default-avatar.png';
                 }
                 user.isAdmin === false;
-                if (user.role === -1) {
-                    user.role = 'Chưa xác thực';
-                } else if (user.role === 0) {
+                // if (user.role === -1) {
+                //     user.role = 'Chưa xác thực';
+                // } else
+                if (user.role === 0) {
                     user.role = 'Thành viên';
                 } else if (user.role === 1) {
                     user.role = 'Quản trị KS';
@@ -208,9 +209,10 @@ export class UserAccessComponent implements OnInit {
                     if (userAccess.email === user.email) {
                         userAccess = user;
                         this.users = this.users.filter(user => user._id !== userAccess._id);
-                        if (user.role === -1) {
-                            user.role = 'Chưa xác thực';
-                        } else if (user.role === 0) {
+                        // if (user.role === -1) {
+                        //     user.role = 'Chưa xác thực';
+                        // } else
+                        if (user.role === 0) {
                             user.role = 'Thành viên';
                         } else if (user.role === 1) {
                             user.role = 'Quản trị KS';
@@ -305,9 +307,10 @@ export class UserAccessComponent implements OnInit {
                         if (user.imageUrl === undefined) {
                             user.imageUrl = 'default-avatar.png';
                         }
-                        if (user.role === -1) {
-                            user.role = 'Chưa xác thực';
-                        } else if (user.role === 0) {
+                        // if (user.role === -1) {
+                        //     user.role = 'Chưa xác thực';
+                        // } else
+                        if (user.role === 0) {
                             user.role = 'Thành viên';
                         } else if (user.role === 1) {
                             user.role = 'Quản trị KS';

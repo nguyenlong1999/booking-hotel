@@ -4,14 +4,14 @@ import 'rxjs/add/operator/filter';
 import {NavigationEnd, NavigationStart, Router} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
 import PerfectScrollbar from 'perfect-scrollbar';
-import * as $ from "jquery";
-import {TranslateService} from "@ngx-translate/core";
-import {Title} from "@angular/platform-browser";
-import {ChatService} from "../../shared/service/chat.service";
-import {Message} from "../../shared/model/message";
-import {CookieService} from "ngx-cookie-service";
-import {UserService} from "../../shared/service/user.service.";
-import {User} from "../../shared/model/user";
+import * as $ from 'jquery';
+import {TranslateService} from '@ngx-translate/core';
+import {Title} from '@angular/platform-browser';
+import {ChatService} from '../../shared/service/chat.service';
+import {Message} from '../../shared/model/message';
+import {CookieService} from 'ngx-cookie-service';
+import {UserService} from '../../shared/service/user.service.';
+import {User} from '../../shared/model/user';
 
 @Component({
     selector: 'app-admin-layout',
@@ -82,14 +82,16 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
         });
         this.router.events.subscribe((event: any) => {
             if (event instanceof NavigationStart) {
-                if (event.url != this.lastPoppedUrl)
+                if (event.url != this.lastPoppedUrl) {
                     this.yScrollStack.push(window.scrollY);
+                }
             } else if (event instanceof NavigationEnd) {
                 if (event.url == this.lastPoppedUrl) {
                     this.lastPoppedUrl = undefined;
                     window.scrollTo(0, this.yScrollStack.pop());
-                } else
+                } else {
                     window.scrollTo(0, 0);
+                }
             }
         });
         this._router = this.router.events.filter(event => event instanceof NavigationEnd).subscribe((event: NavigationEnd) => {
@@ -150,7 +152,7 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
             $(this).parent('li').addClass('active');
 
 
-            var new_image = $(this).find("img").attr('src');
+            var new_image = $(this).find('img').attr('src');
 
             if ($sidebar_img_container.length != 0) {
                 $sidebar_img_container.fadeOut('fast', function () {
@@ -191,7 +193,7 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
 
     mailBox() {
         this.chatService.getMessages().subscribe(mail => {
-            console.log("mail", mail)
+            console.log('mail', mail)
             if (mail !== undefined) {
                 this.newMessage = true;
                 let mess = new Message;
