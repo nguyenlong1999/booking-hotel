@@ -89,9 +89,9 @@ export class UserProfileComponent implements OnInit {
     ngOnInit() {
         // this.changePassword();
         this.getAllYear();
-        const email = this.cookies.get('email');
-        if (email !== '') {
-            this.userService.getMemberInfo(email).subscribe(user => {
+        const id = this.cookies.get('ObjectId');
+        if (id) {
+            this.userService.getMemberInfo(id).subscribe(user => {
                 console.log('get User data:');
                 console.log(user);
                 if (user !== undefined) {
