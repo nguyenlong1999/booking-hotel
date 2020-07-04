@@ -25,13 +25,11 @@
                     <img [src]="imageUrl" width="30px" height="30px" style="border-radius: 50px"/>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" style="background-color: white; height: auto; overflow-y: hidden; padding-bottom: 0px; margin: 0">
-                    <a style="margin:0px" class="dropdown-item hover">Xin chào bạn {{user}}</a>
-                    <!--            <a class="dropdown-item hover" (click)="redirect()" *ngIf="isModeration">Trang quản trị</a>-->
+                    <a class="dropdown-item hover">Xin chào bạn {{user}}</a>
+                    <a class="dropdown-item hover" (click)="redirect()" *ngIf="isModeration">Trang quản trị</a>
 <!--                    <a style="margin:0px" class="dropdown-item hover" [routerLink]="['/user-profile/', id]">Quản lý tài khoản</a>-->
-                    <a style="margin:0px" class="dropdown-item hover" [routerLink]="['/user-info']">Quản lý tài khoản</a>
-                    <a style="margin:0px"class="dropdown-item hover" [routerLink]="['/personal/recipe/',id]">Công thức của tôi</a>
-                    <a style="margin:0px"class="dropdown-item hover" routerLink="/myGallery">Bộ sưu tập của tôi</a>
-                    <a style="margin:0px"class="dropdown-item hover" (click)="logoutUser()">Đăng xuất</a>
+                    <a  class="dropdown-item hover" [routerLink]="['/user-info']">Quản lý tài khoản</a>
+                    <a  class="dropdown-item hover" (click)="logoutUser()">Đăng xuất</a>
                 </div>
             </div>
         </ng-template>
@@ -93,7 +91,7 @@
                         <p style="text-align:center;">
                             <a routerLink="/resetPassword" class="link"> {{ "common.login.forget" | translate}}</a>&#160;&#160;&#160;&#160;
                             {{ "common.login.newAccount" | translate}}
-                            <a [routerLink]="['/user-register']"
+                            <a (click)="closeButtonRegister()" routerLink="/user-register"
                                class="link">{{ "common.login.register" | translate}}</a>
                         </p>
                         <p class="text-danger" style="text-align:center;" *ngIf="errorMessage">

@@ -30,7 +30,6 @@ export class DashboardLayoutComponent implements OnInit {
     checkLanguage = true;
     socket;
     BASE_URL = AppSetting.BASE_SERVER_URL;
-
     submitted = false;
     registerForm: FormGroup;
 
@@ -104,12 +103,13 @@ export class DashboardLayoutComponent implements OnInit {
             }
         });
         this.getImage()
-        this.isModeration = this.cookie.get('role') !== '' ? true : false;
+        this.isModeration = this.cookie.get('role') === '2' ? true : false;
         this.isAuthenicate = this.cookie.get('email') !== '' ? true : false;
         this.registerForm = this.formBuilder.group({
             email: ['', [Validators.required, Validators.email]],
             password: ['', [Validators.required, Validators.minLength(6)]]
         });
+        console.log('hhehe' + this.isModeration)
     }
 
     sidebarOpen() {
@@ -123,6 +123,20 @@ export class DashboardLayoutComponent implements OnInit {
 
         this.sidebarVisible = true;
     };
+
+    redirect() {
+        if (this.isModeration === false) {
+            alert('Vui lòng liên hệ với ban quản trị để được phép đăng nhập')
+        } else {
+            this._router.navigate(['/dashboard']);
+        }
+    }
+
+    closeButtonRegister() {
+        this._router.navigate(['/user-register']);
+        const radio: HTMLElement = document.getElementById('close-modal');
+        radio.click();
+    }
 
     sidebarClose() {
         const body = document.getElementsByTagName('body')[0];
@@ -205,13 +219,21 @@ export class DashboardLayoutComponent implements OnInit {
 
     logoutUser() {
         this._loginService.logoutUser()
-        this.router.navigateByUrl('/index')
-        window.location.reload();
-    }
 
-    logout() {
-        this._loginService.logoutUser()
-        this.router.navigateByUrl('/login')
+        this.isAuthenicate = false;
+        this.showModal = false;
+        let token = this.cookie.get('token');
+        if (token !== '') {
+            this.cookie.set('token', '');
+        }
+        this.href = this._router.url;
+        console.log(this.href)
+        if (this.href === '/index') {
+            window.location.reload();
+        } else {
+            this._router.navigate(['/'])
+        }
+        this.cookie.deleteAll();
     }
 
     useLanguage(language: string) {
@@ -255,7 +277,7 @@ export class DashboardLayoutComponent implements OnInit {
                     }
                     if (key === 'image') {
                         if (user[key] != null || !user[key].isEmpty) {
-                            this.imageUrl = user[key];
+                            this.imageUrl = this.BASE_URL + '/api/images/' + user[key];
                         }
                     }
                     if (parseInt(role) === -1) {
@@ -275,7 +297,7 @@ export class DashboardLayoutComponent implements OnInit {
                         role = user[key];
                         this.cookie.set('role', role);
                         console.log(role)
-                        if (role !== undefined && role !== '') {
+                        if (role !== undefined && role !== '' && role === 2) { // admin = 2
                             this.isModeration = true
                             console.log(role)
                         }
@@ -335,7 +357,7 @@ export class DashboardLayoutComponent implements OnInit {
             this._loginService.testEmail(email).subscribe(data => {
                 let user = data.body['user'];
                 if (user !== undefined && user.imageUrl !== '') {
-                    this.imageUrl = user.imageUrl
+                    this.imageUrl = this.BASE_URL + '/api/images/' + user.imageUrl
 
                 }
                 if (user !== undefined) {

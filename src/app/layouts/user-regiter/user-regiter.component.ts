@@ -32,7 +32,8 @@ export class UserRegiterComponent implements OnInit {
             name: ['', Validators.required],
             email: ['', [Validators.required, Validators.email]],
             password: ['', [Validators.required, Validators.minLength(6)]],
-            confirmPassword: ['', Validators.required]
+            confirmPassword: ['', Validators.required],
+            isUserHotel: false
         }, {
             validator: MustMatch('password', 'confirmPassword')
         });
@@ -49,6 +50,7 @@ export class UserRegiterComponent implements OnInit {
     registerUser() {
         this.submitted = true;
         this.userObj = this.registerForm.value;
+        console.log(this.userObj);
         if (this.registerForm.invalid || this.userObj.name.trim() == '') {
             this.errorMessage = 'Bạn hãy kiểm tra lại thông tin!'
             return;

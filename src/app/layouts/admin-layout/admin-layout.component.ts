@@ -1,17 +1,18 @@
-import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
-import {Location, PopStateEvent} from '@angular/common';
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import { Location, PopStateEvent } from '@angular/common';
 import 'rxjs/add/operator/filter';
-import {NavigationEnd, NavigationStart, Router} from '@angular/router';
-import {Subscription} from 'rxjs/Subscription';
+import { NavigationEnd, NavigationStart, Router } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
 import PerfectScrollbar from 'perfect-scrollbar';
 import * as $ from 'jquery';
-import {TranslateService} from '@ngx-translate/core';
-import {Title} from '@angular/platform-browser';
-import {ChatService} from '../../shared/service/chat.service';
-import {Message} from '../../shared/model/message';
-import {CookieService} from 'ngx-cookie-service';
-import {UserService} from '../../shared/service/user.service.';
-import {User} from '../../shared/model/user';
+import { TranslateService } from '@ngx-translate/core';
+import { Title } from '@angular/platform-browser';
+import { ChatService } from '../../shared/service/chat.service';
+import { Message } from '../../shared/model/message';
+import { CookieService } from 'ngx-cookie-service';
+import { UserService } from '../../shared/service/user.service.';
+import { User } from '../../shared/model/user';
+import { ChatMessage } from '../../shared/model/chat-message';
 
 @Component({
     selector: 'app-admin-layout',
@@ -24,26 +25,28 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
     yScrollStack: number[] = [];
     newMessage = false;
     messageEmpty = false;
-    userMessages: Message[] = [];
-    userChatList: User [] = [];
-    guessMessages: Message[] = [];
+    userMessages: ChatMessage[] = [];
+    userChatList: User[] = [];
+    guessMessages: ChatMessage[] = [];
     @Input('ngModel') message;
     userOnline: String[] = [];
     userObject = {
         email: ''
     }
+    toUser = '';
 
     constructor(
         public location: Location, private router: Router,
         private translate: TranslateService,
         private title: Title,
-        private  chatService: ChatService,
+        private chatService: ChatService,
         private cookieService: CookieService,
         private userService: UserService
     ) {
         translate.setDefaultLang('vi');
         sessionStorage.setItem('currentLang', 'vi');
         // this.mailBox();
+        this.getListOnline();
         this.userService.getActiveUsers().subscribe(data => {
             console.log(data)
             this.userChatList = data;
@@ -178,8 +181,7 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
         });
         setTimeout(() => {
             this.getListOnline();
-
-        }, 5000);
+        }, 8000);
     }
 
     ngAfterViewInit() {
@@ -188,7 +190,7 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
     }
 
     getListOnline() {
-        const message = new Message();
+        let message = new ChatMessage();
         message.objectId = this.cookieService.get('ObjectId');
         message.message = 'get list user';
         this.chatService.getListMember(message);
@@ -245,16 +247,91 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
     //         }
     //     })
     // }
-    sendMessage() {
+
+    mailBox() {
+        this.chatService.getMessages().subscribe(mail => {
+            console.log('mail', mail)
+            if (mail !== undefined) {
+                this.newMessage = true;
+                let mess = new ChatMessage;
+                mess.content = mail;
+                mess.news = true;
+                if (mess['content']['get-list-online'] !== undefined) {
+                    console.log(mess['content']['get-list-online']);
+                    let userOnline = JSON.stringify(mess['content']['get-list-online']);
+                    userOnline = userOnline.substring(1);
+                    userOnline = userOnline.substring(0, userOnline.length - 1);
+                    let userOnlineArray = userOnline.split(',');
+                    userOnlineArray.forEach(user => {
+                        let tempArr = user.split(':');
+                        if (tempArr.length > 0) {
+                            let mystring = tempArr[0];
+                            mystring = mystring.substring(1);
+                            mystring = mystring.substring(0, mystring.length - 1);
+                            if (!this.userOnline.includes(mystring)) {
+                                this.userOnline.push(mystring);
+                            }
+                        }
+                    });
+                    this.userService.getActiveUsers().subscribe(data => {
+                        console.log(data)
+                        this.userChatList = data;
+                        let id = this.cookieService.get('ObjectId');
+                        this.userChatList = this.userChatList.filter(user => user._id !== id);
+                        this.userChatList.forEach(user => {
+                            this.userOnline.forEach(id => {
+                                if (id === user._id) {
+                                    user.online = true;
+                                }
+                            });
+                        });
+
+                        console.log(this.userOnline);
+                        console.log(this.userChatList);
+                    });
+                } else {
+                    this.userMessages.push(mess);
+                }
+                console.log(this.userMessages);
+            }
+        });
+    }
+
+    findMessage(userId) {
+        let chatMessage = {
+            fromUser: this.cookieService.get('ObjectId'),
+            toUser: userId
+        };
+        this.toUser = userId;
+        this.chatService.findChatMessage(chatMessage).subscribe(data => {
+            console.log(data);
+        })
+    }
+
+    sendMessage(event) {
         console.log(this.message)
-        const message = new Message();
-        message.objectId = this.cookieService.get('ObjectId');
+        let message = new ChatMessage();
+        message.fromUser = this.cookieService.get('ObjectId');
+        message.toUser = this.toUser;
+        message.objectId = this.toUser;
+        message.content = this.message;
         message.message = this.message;
         const time = new Date();
         message.time = this.formatDate(time);
         this.userMessages.push(message);
-        this.chatService.sendMessage(message);
+        this.chatService.sendMessage(message).subscribe(data => {
+            if (data['status'] === 200) {
+                this.addChatBoxSendMessage(message);
+            } else {
+                console.log(data);
+                this.addChatBoxSendMessage(message);
+            }
+            this.message = '';
+        });
         console.log(message)
+    }
+
+    addChatBoxSendMessage(message) {
         const radio: HTMLElement = document.getElementById('msg_history');
         radio.innerHTML += ' <div class="outgoing_msg" style="float: right;display:block;overflow:hidden;clear: both;">\n' +
             '<div class="sent_msg" style="overflow:hidden; margin:6px 0 6px;">\n' +
@@ -269,12 +346,15 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
             '<span class="time_date" style="font-size: 8px;">' + message.time + '</span>' +
             '</div>\n' +
             '                                    </div>';
-        this.message = '';
-
     }
 
+    clearChatBox() {
+        const radio: HTMLElement = document.getElementById('msg_history');
+        radio.innerHTML = ''
+    };
+
     reponse() {
-        const message = new Message();
+        let message = new ChatMessage();
         message.objectId = this.cookieService.get('ObjectId');
         message.message = 'reponse';
         const time = new Date();

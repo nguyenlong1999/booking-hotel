@@ -40,8 +40,6 @@
                                                    [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
                                         </mat-form-field>
                                     </div>
-
-                                    <!-- <label class="label-input">Không t</label> -->
                                 </div>
                                 <div *ngIf="submitted && f.email.errors" class="is-invalid row">
                                     <div *ngIf="f.email.errors.email" class="col">
@@ -54,7 +52,7 @@
                                         <i class="material-icons message-error">error</i>
                                         <span class="message-error">
                                                     Hãy nhập Email
-                                                </span>
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="row is-invalid"
@@ -119,12 +117,15 @@
                                 <div class="row">
                                     <div class="col">
                                         <div class="is-invalid"
-                                             *ngIf="!submitted">
-                                            <div class="label-input">Sử dụng 6 ký tự trở lên và kết hợp chữ cái, chữ số
-                                                và
-                                                biểu tượng
+                                             >
+                                            <div class="label-input">Mật khẩu yêu cầu sử dụng 6 ký tự trở lên và kết hợp chữ cái, chữ số và biểu tượng
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <mat-checkbox formControlName="isUserHotel" >Bạn có phải là chủ khách sạn không?</mat-checkbox>
                                     </div>
                                 </div>
                             </div>
@@ -146,16 +147,10 @@
                             </span>
                             </div>
                         </div>
-                        <div class="row" style="position: relative  ">
-                            <button mat-raised-button type="submit" class="btn btn-outline-primary" style="text-transform: none; margin: 0 auto;font-size: 17px;
-                width: 100px;height: 35px;padding: initial;">
+                        <div class="row">
+                            <button mat-raised-button type="submit" class="btn btn-outline-primary">
                                 Đăng ký
                             </button>
-                            <div style="position: absolute;left: 3%;bottom: 3%;">
-                                <a href="/login">
-                                    <h4 style="font-size: 15px; font-weight: 500;color: #1a73e8;">Đăng nhập</h4>
-                                </a>
-                            </div>
                         </div>
                         <div class="clearfix"></div>
                     </form>
@@ -182,7 +177,7 @@
                 </button>
             </div>
             <div class="modal-body text-center d-flex align-items-center justify-content-center">
-                    {{ message }}
+                {{ message }}
             </div>
         </div>
     </div>

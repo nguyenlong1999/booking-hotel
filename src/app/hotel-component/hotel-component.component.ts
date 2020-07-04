@@ -1,17 +1,18 @@
-import {AfterViewInit, Component, Inject, OnInit, ViewChild} from '@angular/core';
-import {HotelService} from '../shared/service/hotel.service.';
-import {Hotel} from '../shared/model/hotel';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
-import {Router} from '@angular/router';
-import {AbstractControl, FormBuilder} from '@angular/forms';
-import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
-import {DialogData, UserRoleDialog} from '../user-access/user-access.component';
-import {User} from '../shared/model/user';
-import {CookieService} from 'ngx-cookie-service';
-import {ChatService} from '../shared/service/chat.service';
-import {Message} from '../shared/model/message';
+import { AfterViewInit, Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { HotelService } from '../shared/service/hotel.service.';
+import { Hotel } from '../shared/model/hotel';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
+import { AbstractControl, FormBuilder } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { DialogData, UserRoleDialog } from '../user-access/user-access.component';
+import { User } from '../shared/model/user';
+import { CookieService } from 'ngx-cookie-service';
+import { ChatService } from '../shared/service/chat.service';
+import { Message } from '../shared/model/message';
+import { StarRatingColor } from "../shared/animation/star-rating/star-rating.component";
 
 export interface PeriodicElement {
     name: string;
@@ -37,23 +38,26 @@ export class HotelComponentComponent implements OnInit {
         message: ''
     }
     newMessageObject = {
-        user : '',
-        content : ''
+        user: '',
+        content: ''
     }
     updateStatusObject = {
         actionName: '',
         idUser: '',
         idHotel: ''
     }
+    rating = 3;
+    starCount = 5;
+    starColor: StarRatingColor = StarRatingColor.primary;
     message = '';
     displayedColumns = ['id', 'user', 'name', 'address', 'starHotel', 'sqm', 'totalRoom', 'status', 'active', 'block', 'add'];
     selectListApproval: string[] = ['Chưa duyệt', 'Hoạt động', 'Đã khóa'];
     selectListStarhotel: any[] = [
-        {title: '1 sao', value: 1},
-        {title: '2 sao', value: 2},
-        {title: '3 sao', value: 3},
-        {title: '4 sao', value: 4},
-        {title: '5 sao', value: 5}
+        { title: '1 sao', value: 1 },
+        { title: '2 sao', value: 2 },
+        { title: '3 sao', value: 3 },
+        { title: '4 sao', value: 4 },
+        { title: '5 sao', value: 5 }
     ];
 
     readonly formControl: AbstractControl;
@@ -108,7 +112,7 @@ export class HotelComponentComponent implements OnInit {
                 return name && email && address && status && starHotel;
             }) as (PeriodicElement, string) => boolean;
             this.formControl.valueChanges.subscribe(value => {
-                const filter = {...value, name: value.name.trim().toLowerCase()} as string;
+                const filter = { ...value, name: value.name.trim().toLowerCase() } as string;
                 // console.log(filter);
                 this.dataSource.filter = filter;
             });
@@ -154,7 +158,9 @@ export class HotelComponentComponent implements OnInit {
             }
         });
     }
-
+    onRatingChanged(rating) {
+        this.rating = rating;
+    }
     updateStatusHotel(actionName: any, hotel: any) {
         console.log('func-updateStatus');
         const idUser = this.cookies.get('ObjectId');
