@@ -196,7 +196,7 @@ export class UserProfileComponent implements OnInit {
                 } else {
                     // this.loading = false;
                     this.errorPassMessage = data.body['message'];
-                    this.chatService.showNotification('success', this.errorPassMessage);
+                    this.chatService.showNotification('warning', this.errorPassMessage);
                 }
             })
     }
