@@ -5,6 +5,7 @@ import {CookieService} from 'ngx-cookie-service';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {FileUploader} from 'ng2-file-upload';
 import {MustMatch} from 'app/shared/helper/must-match-validator';
+import {ChatService} from '../shared/service/chat.service';
 
 // import { ImageUpload } from '../shared/animation/image/image.component';
 
@@ -62,6 +63,7 @@ export class UserProfileComponent implements OnInit {
         private userService: UserService,
         private cookies: CookieService,
         private formBuilder: FormBuilder,
+        private chatService: ChatService
     ) {
         this.profileForm = this.formBuilder.group({
             id: [''],
@@ -159,6 +161,14 @@ export class UserProfileComponent implements OnInit {
                 if (this.user.signature !== undefined) {
                     this.user.signature = atob(this.user.signature)
                 }
+                this.message = 'Cập nhật tài khoản thành công!';
+                this.chatService.showNotification('success', this.message);
+                setTimeout(() => {
+                    this.message = '';
+                    window.location.reload();
+                }, 1500);
+            } else {
+                this.chatService.showNotification('warning', user.body['message']);
             }
         });
     }
@@ -174,22 +184,21 @@ export class UserProfileComponent implements OnInit {
         this.userPassObject = this.changePasswordForm.value;
         this.userPassObject.user = email;
         this.userService.changePassword(this.userPassObject)
-          .subscribe(data => {
-            const status = data.body['status']
-            if (status === 200) {
-              this.message = data.body['message']
-              // const radio: HTMLElement = document.getElementById('modal-button2');
-              // radio.click();
-              setTimeout(() => {
-                // this.loading = false;
-                window.location.reload()
-                // this.chatService.identifyUser();
-              }, 3000);
-            } else {
-              // this.loading = false;
-              this.errorPassMessage = data.body['message']
-            }
-          })
+            .subscribe(data => {
+                const status = data.body['status'];
+                if (status === 200) {
+                    this.message = data.body['message'];
+                    this.chatService.showNotification('success', this.message);
+                    setTimeout(() => {
+                        this.message = '';
+                        window.location.reload();
+                    }, 1500);
+                } else {
+                    // this.loading = false;
+                    this.errorPassMessage = data.body['message'];
+                    this.chatService.showNotification('success', this.errorPassMessage);
+                }
+            })
     }
 
     getAllYear() {
