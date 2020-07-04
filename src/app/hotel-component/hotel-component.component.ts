@@ -11,6 +11,7 @@ import {DialogData, UserRoleDialog} from '../user-access/user-access.component';
 import {User} from '../shared/model/user';
 import {CookieService} from 'ngx-cookie-service';
 import {ChatService} from '../shared/service/chat.service';
+import {Message} from '../shared/model/message';
 
 export interface PeriodicElement {
     name: string;
@@ -31,6 +32,14 @@ export class HotelComponentComponent implements OnInit {
         actionName: '',
         hotel: Hotel
     };
+    messageObject = {
+        objectId: '',
+        message: ''
+    }
+    newMessageObject = {
+        user : '',
+        content : ''
+    }
     updateStatusObject = {
         actionName: '',
         idUser: '',
@@ -84,7 +93,7 @@ export class HotelComponentComponent implements OnInit {
                 } else if (item.isBlock === 0) {
                     item.status = 'Đã khóa';
                 }
-                console.log(item.status);
+                // console.log(item.status);
             }
             this.dataSource = new MatTableDataSource(this.hotels)
             this.dataSource.paginator = this.paginator;
@@ -137,11 +146,11 @@ export class HotelComponentComponent implements OnInit {
         })
 
         dialogRef.afterClosed().subscribe(result => {
-            console.log(result);
+            // console.log(result);
             if (result) {
                 this.updateStatusHotel(result.actionName, result.hotel);
             } else {
-                console.log('hello bấy bề');
+                console.log('Cancel');
             }
         });
     }
@@ -155,21 +164,15 @@ export class HotelComponentComponent implements OnInit {
         this.updateStatusObject.actionName = actionName;
         this.hotelService.updateStatusHotel(this.updateStatusObject).subscribe(res => {
             if (res.body['status'] === 200) {
-                if (res.body['actionName'] === 'Duyệt') {
-                    this.message = 'Duyệt khách sạn thành công'
-                } else if (res.body['actionName'] === 'Bỏ duyệt') {
-                    this.message = 'Bỏ duyệt khách sạn thành công'
-                } else if (res.body['actionName'] === 'Khóa') {
-                    this.message = 'Khóa khách sạn thành công'
-                } else if (res.body['actionName'] === 'Mở khóa') {
-                    this.message = 'Mở khóa khách sạn thành công'
-                }
+                this.messageObject.objectId = hotel.user._id;
+                this.messageObject.message = res.body['message']['content'];
+                this.message = res.body['messageAdmin']['content'];
                 this.chatService.showNotification('success', this.message);
+                this.chatService.sendMessage(this.messageObject);
                 setTimeout(() => {
                     this.message = '';
-                    this.route.navigateByUrl('/dashboard', {skipLocationChange: true}).then(() => {
-                        this.route.navigate(['/hotels']);
-                    });
+                    // window.location.reload();
+                    this.chatService.identifyUser();
                 }, 1500);
             } else {
                 this.chatService.showNotification('warning', res.body['message']);

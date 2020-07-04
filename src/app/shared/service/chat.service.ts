@@ -10,7 +10,8 @@ declare var $: any;
 export class ChatService {
     constructor(private socket: Socket) { }
     public sendMessage(message) {
-        console.log('gưi thong báo socket' + message)
+        console.log('gưi thong báo socket:');
+        console.log(message);
         this.socket.emit('new-message', message);
     }
     public getMessages = () => {

@@ -1,0 +1,9 @@
+.newMessage {
+    background-color: #fde7c6;
+    margin: 0;
+    border-bottom: 1px solid #8c8b8b;
+}
+.currentMessage {
+    margin: 0;
+    border-bottom: 1px solid #8c8b8b;
+}

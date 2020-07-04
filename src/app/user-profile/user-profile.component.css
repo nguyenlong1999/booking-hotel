@@ -47,14 +47,12 @@ img {
   border-radius: 50%;
 }
 .input-title {
-  position: absolute;
-  bottom: 5px;
+  margin-top: 10%;
   font-size: 17px;
 }
 .input-about {
-  position: absolute;
-  bottom: 15px;
-  font-size: 18px;
+  margin-top: 10%;
+  font-size: 17px;
 }
 .submit {
   /* margin: 0 auto; */
