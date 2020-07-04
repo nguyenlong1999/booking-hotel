@@ -27,8 +27,7 @@ export class NavbarComponent implements OnInit {
     mobile_menu_visible: any = 0;
     private toggleButton: any;
     private sidebarVisible: boolean;
-    languageChangeImage: any
-    newMessage = 'currentMessage';
+    languageChangeImage: any;
 
     constructor(
         private title: Title,
@@ -45,7 +44,6 @@ export class NavbarComponent implements OnInit {
         this.sidebarVisible = false;
         translate.setDefaultLang('vi');
         sessionStorage.setItem('currentLang', 'vi');
-        this.getMessage();
         this.mailBox();
     }
 
@@ -61,6 +59,7 @@ export class NavbarComponent implements OnInit {
                 this.mobile_menu_visible = 0;
             }
         });
+        this.getMessage();
     }
 
     getMessage() {
@@ -73,9 +72,6 @@ export class NavbarComponent implements OnInit {
                 for (const mess of temp) {
                     if (mess.news === 0) {
                         this.countNewMessage++
-                        mess.news = 'newMessage';
-                    } else {
-                        mess.news = 'currentMessage';
                     }
                     this.userMessages.push(mess)
                 }
@@ -95,20 +91,16 @@ export class NavbarComponent implements OnInit {
                 const mess = new Message;
                 mess.content = mail;
                 mess.news = 0;
-                console.log(mess);
+                console.log('count new messages1 = ' + this.countNewMessage);
                 if (mess['content']['get-list-online'] === undefined) {
                     this.userMessages.push(mess);
-                    console.log(this.userMessages);
-                    for (const message of this.userMessages) {
-                        if (message.news === 0) {
-                            this.countNewMessage++;
-                        }
-                    }
+                    this.countNewMessage++;
+                    this.chatService.showNotification('success', mess.content);
                     if (this.userMessages.length !== 0) {
                         this.messageEmpty = false;
                     }
-                    this.chatService.showNotification('success', mess.content);
                 }
+                console.log('count new messages2 = ' + this.countNewMessage);
             }
         })
     }
