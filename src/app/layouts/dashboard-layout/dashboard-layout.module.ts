@@ -26,6 +26,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {UserRegiterComponent} from '../user-regiter/user-regiter.component';
 import {ChooseRoomTypeDialogComponent} from '../choose-room-type-dialog/choose-room-type-dialog.component';
 import {WelcomeComponent} from '../../welcome/welcome.component';
+import { UserEditComponent } from './user-edit/user-edit.component';
 
 @NgModule({
     declarations: [
@@ -34,7 +35,8 @@ import {WelcomeComponent} from '../../welcome/welcome.component';
         HotelRegisterComponent,
         UserRegiterComponent,
         ChooseRoomTypeDialogComponent,
-        WelcomeComponent
+        WelcomeComponent,
+        UserEditComponent
         // add các component của trang người dùng vào đây
     ],
     imports: [

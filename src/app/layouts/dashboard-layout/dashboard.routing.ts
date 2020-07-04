@@ -4,6 +4,7 @@ import {IndexLayoutComponent} from './index-layout/index-layout.component';
 import {HotelRegisterComponent} from '../hotel-register/hotel-register.component';
 import {UserRegiterComponent} from '../user-regiter/user-regiter.component';
 import {WelcomeComponent} from '../../welcome/welcome.component';
+import {UserEditComponent} from './user-edit/user-edit.component';
 
 export const DashBoardRoutes: Routes = [
 
@@ -32,6 +33,10 @@ export const DashBoardRoutes: Routes = [
             {
                 path: 'active/:id',
                 component: WelcomeComponent
+            },
+            {
+                path: 'user-info',
+                component: UserEditComponent
             },
             /* {
               path: 'about',

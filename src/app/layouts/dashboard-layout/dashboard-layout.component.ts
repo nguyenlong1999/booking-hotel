@@ -103,7 +103,7 @@ export class DashboardLayoutComponent implements OnInit {
                 this.mobile_menu_visible = 0;
             }
         });
-
+        this.getImage()
         this.isModeration = this.cookie.get('role') !== '' ? true : false;
         this.isAuthenicate = this.cookie.get('email') !== '' ? true : false;
         this.registerForm = this.formBuilder.group({
@@ -242,6 +242,7 @@ export class DashboardLayoutComponent implements OnInit {
 
         this._loginService.loginAuth(this.userObject).subscribe((userData) => {
             this.errorMessage = null;
+            console.log(userData)
             if (userData.body['status'] === 200) {
                 this._loginService.updateAuthStatus(true);
                 const user = userData.body;
@@ -249,12 +250,13 @@ export class DashboardLayoutComponent implements OnInit {
                 console.log(user);
 
                 for (const key of Object.keys(user)) {
-                    console.log(key)
                     if (key === 'role') {
                         role = user[key];
                     }
                     if (key === 'image') {
-                        // this.imageUrl = user[key];
+                        if (user[key] != null || !user[key].isEmpty) {
+                            this.imageUrl = user[key];
+                        }
                     }
                     if (parseInt(role) === -1) {
                         this.errorMessage = 'Bạn chưa xác thực email đã đăng ký';
@@ -291,7 +293,6 @@ export class DashboardLayoutComponent implements OnInit {
                 this.cookie.set('email', '');
                 this.cookie.set('email', this.userObject.email);
                 this.isAuthenicate = true;
-                // this.getMessage();
                 this.href = this._router.url;
 
                 this.message = '';
@@ -300,15 +301,16 @@ export class DashboardLayoutComponent implements OnInit {
                 //     this._router.navigate(['/addRecipe']);
                 //     this.addPassenger = false;
                 // } else
-                if (this.href === '/index') {
-                    window.location.reload();
-
-                } else {
-                    console.log('reload')
-
-                    this._router.navigate(['/index']);
-                    // this._router.navigate(['/index']);
-                }
+                // if (this.href === '/index') {
+                //     window.location.reload();
+                //
+                // } else {
+                //     console.log('reload')
+                //
+                //     this._router.navigate(['/index']);
+                //     // this._router.navigate(['/index']);
+                // }
+                this.getImage()
                 this.socket = io(AppSetting.BASE_SERVER_URL);
                 // this.data.name = this.cookie.get('ObjectId');
                 // this.data.userId = this.socket['id'];
@@ -325,6 +327,23 @@ export class DashboardLayoutComponent implements OnInit {
                 this.errorMessage = userData.body['message'];
             }
         })
+    }
+
+    getImage() {
+        let email = this.cookie.get('email');
+        if (email !== '') {
+            this._loginService.testEmail(email).subscribe(data => {
+                let user = data.body['user'];
+                if (user !== undefined && user.imageUrl !== '') {
+                    this.imageUrl = user.imageUrl
+
+                }
+                if (user !== undefined) {
+                    this.id = user._id
+                    this.user = user.name;
+                }
+            })
+        }
     }
 
     onChangecheck(value: any) {
