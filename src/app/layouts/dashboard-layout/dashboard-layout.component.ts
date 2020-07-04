@@ -30,7 +30,6 @@ export class DashboardLayoutComponent implements OnInit {
     checkLanguage = true;
     socket;
     BASE_URL = AppSetting.BASE_SERVER_URL;
-
     submitted = false;
     registerForm: FormGroup;
 
@@ -123,6 +122,14 @@ export class DashboardLayoutComponent implements OnInit {
 
         this.sidebarVisible = true;
     };
+
+    redirect() {
+        if (this.isModeration === false) {
+            alert('Vui lòng liên hệ với ban quản trị để được phép đăng nhập')
+        } else {
+            this._router.navigate(['/dashboard']);
+        }
+    }
 
     sidebarClose() {
         const body = document.getElementsByTagName('body')[0];
@@ -255,7 +262,7 @@ export class DashboardLayoutComponent implements OnInit {
                     }
                     if (key === 'image') {
                         if (user[key] != null || !user[key].isEmpty) {
-                            this.imageUrl = user[key];
+                            this.imageUrl = this.BASE_URL + '/api/images/' + user[key];
                         }
                     }
                     if (parseInt(role) === -1) {
@@ -335,7 +342,7 @@ export class DashboardLayoutComponent implements OnInit {
             this._loginService.testEmail(email).subscribe(data => {
                 let user = data.body['user'];
                 if (user !== undefined && user.imageUrl !== '') {
-                    this.imageUrl = user.imageUrl
+                    this.imageUrl = this.BASE_URL + '/api/images/' + user.imageUrl
 
                 }
                 if (user !== undefined) {
