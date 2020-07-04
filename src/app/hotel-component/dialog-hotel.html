@@ -1,9 +1,9 @@
-<div mat-dialog-title><h4>Thông báo hệ thống</h4></div>
+<div mat-dialog-title><h4>{{ "common.button.systemNotification" | translate }}</h4></div>
 <div mat-dialog-content>
     <p>{{data.messageDialog}}</p>
 </div>
 <div mat-dialog-actions style="position: relative; margin: 0; float: right; ">
     <button class="btn btn-outline-primary" mat-button [mat-dialog-close]="data.action"
     >{{data.action.actionName}}</button>
-    <button class="btn btn-outline-secondary" mat-raised-button (click)="onNoClick()">Hủy</button>
+    <button class="btn btn-outline-secondary" mat-raised-button (click)="onNoClick()">{{"common.button.cancel" | translate}}</button>
 </div>

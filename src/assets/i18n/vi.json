@@ -2,7 +2,9 @@
   "common": {
     "button": {
       "back": "Trở về",
-      "next": "Tiếp theo"
+      "next": "Tiếp theo",
+      "cancel": "Hủy",
+      "systemNotification": "Thông báo hệ thống"
     },
     "userRegister": {
       "username": "Tên người dùng",
@@ -50,6 +52,27 @@
       "searchEmail": "Tìm kiếm email",
       "undefined": "Chưa xác định",
       "all": "Tất cả"
+    },
+    "hotel": {
+      "hotelName": "Tên khách sạn",
+      "quality": "Chất lượng",
+      "starNumber": "Số sao",
+      "star": "sao",
+      "sqm": "Diện tích",
+      "roomType": "Số loại phòng",
+      "approval": "Xét duyệt",
+      "unapproval": "Bỏ xét duyệt",
+      "approvalHotel": "Xét duyệt khách sạn",
+      "unapprovalHotel": "Bỏ xét duyệt khách sạn",
+      "hotelBlocked": "Khách sạn đã bị khóa",
+      "blockTitle": "Khóa KS",
+      "blockHotel": "Khóa khách sạn",
+      "unblockHotel": "Mở khóa khách sạn",
+      "active": "Hoạt động",
+      "blocked": "Đã khóa",
+      "waitApproval": "Chưa duyệt",
+      "addHotel": "Thêm khách sạn",
+      "editHotel": "Sửa khách sạn"
     },
     "login": {
       "login": "Đăng nhập",
