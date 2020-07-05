@@ -7,7 +7,7 @@
                 style="position: absolute; top:65%;left: 25%;width: 50%;background: linear-gradient(rgba(255,255,255,.8), rgba(255,255,255,.8));height: 400px;">
                 <div style=" top: 100px; left:100px; width: 70%;position: absolute ;">
                     <mat-form-field>
-                        <input matInput [(ngModel)]="searchHotel.address" placeholder="Tên khách sạn hoặc địa điểm"
+                        <input matInput [(ngModel)]="searchHotel.address" [placeholder]= "'index.searchNameOrPlace' | translate"
                             type="text" style="color: white;" />
                     </mat-form-field>
                     <br>

@@ -90,6 +90,16 @@
       "register": "Đăng kí"
     }
   },
+  "index": {
+    "searchNameOrPlace" : "Tên khách sạn hoặc địa điểm"
+  } ,
+  "dialog": {
+    "alone": "Đi một mình",
+    "room" : "phòng",
+    "adult": "người lớn",
+    "couple": "Cặp đôi/2 người",
+    "": ""
+  },
   "demo.title": "Dịch tiếng việt demo",
   "demo.text": "Hà nội mùa lạnh giá",
   "index.home": "Trang chủ",

@@ -63,9 +63,7 @@ export class IndexLayoutComponent implements OnInit {
     }
 
     openDialogChooseHotelType(event) {
-
         this.ShowDialogChooseHotelType(event).subscribe(data => {
-
             const checkSearch = data[0];
             console.log(checkSearch);
             if (checkSearch !== undefined) {
@@ -82,8 +80,8 @@ export class IndexLayoutComponent implements OnInit {
         const dialogRef = this.dialog.open(ChooseRoomTypeDialogComponent, {
             width: '40vw',
             maxWidth: '40vw',
-            height: '45vh',
-            maxHeight: '45vh',
+            height: 'auto',
+            maxHeight: 'auto',
             position: {top: '360px'},
             data: {searchHotel: this.searchHotel},
         });

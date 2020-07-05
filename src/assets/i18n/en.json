@@ -91,6 +91,12 @@
       "register": "Register"
     }
   },
+  "index": {
+    "searchNameOrPlace" : "Hotel name or location"
+  } ,
+  "dialog": {
+    "alone": "Go alone"
+  },
   "demo.title": "Translation demo",
   "demo.text": "This is a simple demonstration app for ngx-translate",
   "index.home": "Home",
