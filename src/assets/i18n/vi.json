@@ -1,6 +1,6 @@
 {
   "common": {
-    "login": "Đăng nhập",
+    "logIn": "Đăng nhập",
     "logOut": "Đăng xuất",
     "button": {
       "back": "Trở về",
