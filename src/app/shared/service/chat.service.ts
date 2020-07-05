@@ -14,7 +14,8 @@ export class ChatService {
         private socket: Socket,
         private _http: HttpClient) { }
     public sendMessage(message) {
-        console.log('gưi thong báo socket' + message)
+        console.log('gưi thong báo socket:');
+        console.log(message);
         this.socket.emit('new-message', message);
         return this._http.post(
             `${this.baseUrl}/createChatMessage`,

@@ -134,6 +134,7 @@ export class UserProfileComponent implements OnInit {
                     }
                     this.profileForm.controls['id'].patchValue(this.user._id);
                     this.profileForm.controls['email'].patchValue(this.user.email);
+                    this.profileForm.controls['email'].disable();
                     this.profileForm.controls['name'].patchValue(name);
                     this.profileForm.controls['phone'].patchValue(phone);
                     this.profileForm.controls['address'].patchValue(this.user.address);

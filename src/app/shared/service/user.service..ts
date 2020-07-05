@@ -176,6 +176,10 @@ export class UserService {
         return this._http.post(`${this.baseUrl}/findMessage`, {user: user}, {observe: 'response'});
     }
 
+    updateNews(user: any) {
+        return this._http.post(`${this.baseUrl}/updateNews`, {user: user}, {observe: 'response'});
+    }
+
     getUserOnlineInfo(user: any) {
         return this._http.post(`${this.baseUrl}/getUserOnlineInfo`, {user: user}, {observe: 'response'});
     }
