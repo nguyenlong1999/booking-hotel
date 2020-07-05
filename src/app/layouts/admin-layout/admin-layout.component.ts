@@ -236,8 +236,7 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
                         console.log(this.userChatList);
                     });
                 } else {
-                    debugger;
-                    console.log(mess + 'longdz vãi loz')
+                    console.log(mess + 'longdz vãi')
                     this.addChatBoxSendMessageV2(mail);
                     this.userMessages.push(mess);
                 }
