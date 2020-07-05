@@ -16,15 +16,11 @@ import {AdminLayoutComponent} from './admin-layout.component';
 import {AuthGuardGuard} from '../../shared/guards/AuthGuard/auth-guard.guard';
 import {LoginComponent} from './login/login.component';
 import {UserRegisterComponent} from 'app/user-register/user-register.component';
+import {HotelUserComponent} from './hotel-user/hotel-user.component';
 
 // khai báo component path cho trang admin
 export const AdminLayoutRoutes: Routes = [
     {path: 'admin', redirectTo: '/login', pathMatch: 'full'},
-
-    // {
-    //     path: 'station',
-    //     component: StationComponent
-    // },
     {
         path: '', component: AdminLayoutComponent,
         canActivate: [AuthGuardGuard], // <- this line is added
@@ -48,6 +44,7 @@ export const AdminLayoutRoutes: Routes = [
             {path: 'bookings', component: BookingComponent},
             {path: 'users', component: UserAccessComponent},
             {path: 'user-register', component: UserRegisterComponent},
+            {path: 'user-hotels', component: HotelUserComponent}
         ]
     },
     {path: 'login', component: LoginComponent},

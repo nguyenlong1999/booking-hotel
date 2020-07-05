@@ -3,7 +3,6 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card card-plain">
-
                     <div class="example-header">
                         <form [formGroup]="formControl">
                             <div class="row">
@@ -104,7 +103,7 @@
                             </ng-container>
 
                             <!-- actionRole Column -->
-                            <ng-container *ngIf="admin" matColumnDef="actionRole">
+                            <ng-container matColumnDef="actionRole">
                                 <mat-header-cell *matHeaderCellDef mat-sort-header>{{"common.user.setPer" | translate}}</mat-header-cell>
                                 <mat-cell *matCellDef="let row">
                                     <button *ngIf="row.role == 'Quản trị KS'" (click)="openDialog(row,0)"

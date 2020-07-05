@@ -225,7 +225,7 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
                         let id = this.cookieService.get('ObjectId');
                         this.userChatList = this.userChatList.filter(user => user._id !== id);
                         this.userChatList.forEach(user => {
-                            this.userOnline.forEach(id => {
+                            this.userOnline.forEach( id => {
                                 if (id === user._id) {
                                     user.online = true;
                                 }

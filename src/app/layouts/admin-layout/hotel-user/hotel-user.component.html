@@ -1,0 +1,140 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-plain">
+
+                    <div class="example-header">
+                        <form [formGroup]="formControl">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <mat-form-field>
+                                        <input matInput formControlName="name"
+                                               [placeholder]="'common.user.searchName' | translate">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-lg-4">
+                                    <mat-form-field>
+                                        <input matInput formControlName="email"
+                                               [placeholder]="'common.user.searchEmail' | translate">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-lg-4">
+                                    <mat-form-field>
+                                        <input matInput formControlName="address"
+                                               [placeholder]="'common.user.searchAdd' | translate">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <mat-form-field appearance="fill">
+                                        <mat-label>{{"common.user.status" | translate}}</mat-label>
+                                        <mat-select formControlName="status">
+                                            <mat-option>{{"common.user.all" | translate}}</mat-option>
+                                            <mat-option *ngFor="let status of selectListApproval" [value]="status">
+                                                {{status}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="row" style="padding-top: 7%;">
+                                        <div class="col">
+                                            <app-star-rating [rating]="rating" [starCount]="starCount"
+                                                             [color]="starColor"
+                                                             (ratingUpdated)="onRatingChanged($event)"></app-star-rating>
+                                        </div>
+                                        <div class="col">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="card-body">
+                        <mat-table [dataSource]="dataSource" matSort>
+                            <ng-container matColumnDef="id">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
+                                <mat-cell
+                                        *matCellDef="let row ; index as i"> {{paginator.pageSize * paginator.pageIndex + i + 1}}  </mat-cell>
+                            </ng-container>
+
+                            <!-- Progress Column -->
+
+                            <ng-container matColumnDef="name">
+                                <mat-header-cell *matHeaderCellDef
+                                                 mat-sort-header>{{"common.hotel.hotelName" | translate}}
+                                </mat-header-cell>
+                                <mat-cell *matCellDef="let row"> {{row.name}}</mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="address">
+                                <mat-header-cell *matHeaderCellDef
+                                                 mat-sort-header>{{"common.user.address" | translate}}</mat-header-cell>
+                                <mat-cell *matCellDef="let row"> {{row.address}}</mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="starHotel">
+                                <mat-header-cell *matHeaderCellDef
+                                                 mat-sort-header>{{"common.hotel.quality" | translate}}
+                                </mat-header-cell>
+                                <mat-cell
+                                        *matCellDef="let row"> {{row.starHotel}} {{"common.hotel.star" | translate}}</mat-cell>
+                            </ng-container>
+
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="sqm">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header>{{"common.hotel.sqm" | translate}}
+                                </mat-header-cell>
+                                <mat-cell *matCellDef="let row"> {{row.sqm}} m<p class="caret-up"
+                                                                                 style="font-size: 0.7rem">2</p>
+                                </mat-cell>
+                            </ng-container>
+
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="totalRoom">
+                                <mat-header-cell *matHeaderCellDef
+                                                 mat-sort-header>{{"common.hotel.roomType" | translate}}
+                                </mat-header-cell>
+                                <mat-cell *matCellDef="let row"> {{row.totalRoomNumber}} </mat-cell>
+                            </ng-container>
+
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="status">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header>{{"common.user.status" | translate}}
+                                </mat-header-cell>
+                                <mat-cell *matCellDef="let row"> {{row.status}} </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="add">
+                                <mat-header-cell *matHeaderCellDef>
+                                    <button mat-icon-button style="color: blue; font-size: 1.7rem"
+                                            [title]="'common.hotel.addHotel' | translate"
+                                            (click)="this.route.navigate(['/hotel-access'])">
+                                        <mat-icon>add</mat-icon>
+                                    </button>
+                                </mat-header-cell>
+                                <mat-cell *matCellDef="let row">
+                                    <button mat-icon-button color="warn" [title]="'common.hotel.editHotel' | translate"
+                                            (click)="this.route.navigate(['/hotelEdit',row._id])">
+                                        <mat-icon>create</mat-icon>
+                                    </button>
+                                </mat-cell>
+                            </ng-container>
+
+                            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                        </mat-table>
+                        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

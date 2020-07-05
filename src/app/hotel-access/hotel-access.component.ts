@@ -356,14 +356,18 @@ export class HotelAccessComponent implements OnInit {
                     radio.click();
                     setTimeout(() => {
                         // window.location.reload()
-                        window.location.assign('/hotels')
+                        if (this.cookies.get('role') === '2') {
+                            window.location.assign('/hotels')
+                        } else {
+                            window.location.assign('/user-hotels')
+                        }
                     }, 3000);
                 }
             })
 
         } else {
-            this._hotelService.createHotel(this.registerHotelForm.value).subscribe((data) => {
-                const result = data.body
+            this._hotelService.createHotel(this.registerHotelForm.value).subscribe(async (data) => {
+                const result = await data.body
                 console.log(result)
                 if (result['status'] === 200) {
                     // this.successMessage = result['message'];
@@ -372,8 +376,13 @@ export class HotelAccessComponent implements OnInit {
                     radio.click();
                     setTimeout(() => {
                         // window.location.reload()
-                        window.location.assign('/hotels')
+                        if (this.cookies.get('role') === '2') {
+                            window.location.assign('/hotels')
+                        } else {
+                            window.location.assign('/user-hotels')
+                        }
                     }, 3000);
+                    console.log('tạo thành công rồi nè')
                 } else if (result['status'] !== 200) {
                     this.errorMessage = result['message'];
                 }
