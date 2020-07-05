@@ -11,5 +11,11 @@ export class BookingComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  openPayMent() {
+    let url = 'http://sandbox.vnpayment.vn/tryitnow/Home/CreateOrder';
+    let popUp= window.open(url, "MsgWindow", "width=1000,height=800");
+    if(popUp.closed){
 
+    }
+  }
 }
