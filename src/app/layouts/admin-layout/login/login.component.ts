@@ -13,15 +13,14 @@ import {ChatService} from '../../../shared/service/chat.service';
 })
 export class LoginComponent implements OnInit {
     registerForm: FormGroup;
-    tfaFlag: boolean = false;
+    tfaFlag = false;
     userObject = {
         email: '',
         password: ''
     };
-    submitted: boolean = false;
+    submitted = false;
     errorMessage: string = null;
     login_check = true;
-
     constructor(
         private cookie: CookieService,
         private _loginService: LoginServiceService,

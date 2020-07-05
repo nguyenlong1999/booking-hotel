@@ -27,6 +27,8 @@ import {UserRegiterComponent} from '../user-regiter/user-regiter.component';
 import {ChooseRoomTypeDialogComponent} from '../choose-room-type-dialog/choose-room-type-dialog.component';
 import {WelcomeComponent} from '../../welcome/welcome.component';
 import { UserEditComponent } from './user-edit/user-edit.component';
+import {AdminLayoutComponent} from '../admin-layout/admin-layout.component';
+import {ForgetPasswordComponent} from '../../forget-password/forget-password.component';
 
 @NgModule({
     declarations: [
@@ -36,7 +38,8 @@ import { UserEditComponent } from './user-edit/user-edit.component';
         UserRegiterComponent,
         ChooseRoomTypeDialogComponent,
         WelcomeComponent,
-        UserEditComponent
+        UserEditComponent,
+        ForgetPasswordComponent
         // add các component của trang người dùng vào đây
     ],
     imports: [

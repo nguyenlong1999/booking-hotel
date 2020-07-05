@@ -189,7 +189,6 @@ export class UserService {
         return this._http.get<User>(url).pipe(
             tap(_ => console.log('helo'))
         );
-        //return this._http.post("http://localhost:8000/findRecipe", { id: id }, { observe: "response" });
     }
 
     updateUser(user: any) {

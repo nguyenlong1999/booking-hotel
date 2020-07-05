@@ -5,6 +5,7 @@ import {HotelRegisterComponent} from '../hotel-register/hotel-register.component
 import {UserRegiterComponent} from '../user-regiter/user-regiter.component';
 import {WelcomeComponent} from '../../welcome/welcome.component';
 import {UserEditComponent} from './user-edit/user-edit.component';
+import {ForgetPasswordComponent} from '../../forget-password/forget-password.component';
 
 export const DashBoardRoutes: Routes = [
 
@@ -37,6 +38,10 @@ export const DashBoardRoutes: Routes = [
             {
                 path: 'user-info',
                 component: UserEditComponent
+            },
+            {
+                path: 'resetPassword',
+                component: ForgetPasswordComponent
             },
             /* {
               path: 'about',
@@ -102,10 +107,6 @@ export const DashBoardRoutes: Routes = [
               component: ServiceComponent
             }
             ,
-            {
-              path: 'resetPassword',
-              component: ForgetPasswordComponent
-            },
             {
               path: 'register',
               component: RegisterComponent

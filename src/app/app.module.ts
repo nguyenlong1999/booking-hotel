@@ -27,6 +27,7 @@ import {ToastrModule} from 'ngx-toastr';
 import {AgmCoreModule} from '@agm/core';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 
 const config: SocketIoConfig = {url: AppSetting.BASE_SERVER_URL, options: {}};
 

@@ -92,7 +92,7 @@
                         <div class="ml-auto mr-auto" style="overflow-x: auto;padding-top: 0;
                             white-space: nowrap; "  >
                             <a style="background: none; position: relative;border-bottom: none; max-width: 28px;"
-                               data-toggle="tooltip" title="{{user.name}}" *ngFor="let user of userChatList" (click)="findMessage(user._id)">
+                               data-toggle="tooltip" title="{{user.name}}" *ngFor="let user of userChatList" (click)="findMessage(user._id,user.imageUrl)">
                                 <img src="http://localhost:8000/api/images/{{user.imageUrl}}" alt="sunil"
                                      style="width: 25px;height: 25px; border-radius: 50%; margin-right: 2px;"/><span
                                     style="position: relative;right: 5px;color: #74e4a2;font-size: 30px;"
@@ -101,7 +101,7 @@
                         </div>
                     </a>
                 </li>
-                <li class="button-container text-center" style="max-height: 140px;overflow-y: auto;">
+                <li class="button-container text-center" style="max-height: 140px;overflow-y: auto;" >
                     <div class="messaging">
                         <div class="inbox_msg">
                             <div class="mesgs">
@@ -129,7 +129,7 @@
                         </div>
                     </div>
                 </li>
-                <li class="button-container text-center">
+                <li class="button-container text-center" *ngIf="toUser">
                     <div class="type_msg">
                         <div class="input_msg_write">
                             <input type="text" [(ngModel)]="message" class="write_msg" placeholder="Type a message"/>

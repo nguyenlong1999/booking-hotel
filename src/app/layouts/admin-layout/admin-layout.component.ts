@@ -31,6 +31,7 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
     @Input('ngModel') message;
     userOnline: String[] = [];
     toUser = '';
+    toUserImageCheck = 'default-avatar.png';
 
     constructor(
         public location: Location, private router: Router,
@@ -86,11 +87,11 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
         });
         this.router.events.subscribe((event: any) => {
             if (event instanceof NavigationStart) {
-                if (event.url != this.lastPoppedUrl) {
+                if (event.url !== this.lastPoppedUrl) {
                     this.yScrollStack.push(window.scrollY);
                 }
             } else if (event instanceof NavigationEnd) {
-                if (event.url == this.lastPoppedUrl) {
+                if (event.url === this.lastPoppedUrl) {
                     this.lastPoppedUrl = undefined;
                     window.scrollTo(0, this.yScrollStack.pop());
                 } else {
@@ -121,7 +122,9 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
         }
 
         $('.fixed-plugin a').click(function (event) {
-            // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
+            // Alex if we click on switch, stop propagation of the event,
+            // so the dropdown
+            // will not be hide, otherwise we set the  section active
             if ($(this).hasClass('switch-trigger')) {
                 if (event.stopPropagation) {
                     event.stopPropagation();
@@ -138,7 +141,7 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
             $(this).siblings().removeClass('active');
             $(this).addClass('active');
 
-            var new_color = $(this).data('color');
+            let new_color = $(this).data('color');
 
             if ($sidebar.length !== 0) {
                 $sidebar.attr('data-color', new_color);
@@ -156,16 +159,16 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
             $(this).parent('li').addClass('active');
 
 
-            var new_image = $(this).find('img').attr('src');
+            let new_image = $(this).find('img').attr('src');
 
-            if ($sidebar_img_container.length != 0) {
+            if ($sidebar_img_container.length !== 0) {
                 $sidebar_img_container.fadeOut('fast', function () {
                     $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
                     $sidebar_img_container.fadeIn('fast');
                 });
             }
 
-            if ($full_page_background.length != 0) {
+            if ($full_page_background.length !== 0) {
 
                 $full_page_background.fadeOut('fast', function () {
                     $full_page_background.css('background-image', 'url("' + new_image + '")');
@@ -173,7 +176,7 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
                 });
             }
 
-            if ($sidebar_responsive.length != 0) {
+            if ($sidebar_responsive.length !== 0) {
                 $sidebar_responsive.css('background-image', 'url("' + new_image + '")');
             }
         });
@@ -202,6 +205,8 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
                 let mess = new ChatMessage;
                 mess.content = mail;
                 mess.news = true;
+                let time = new Date();
+                mess.time = this.formatDate(time);
                 if (mess['content']['get-list-online'] !== undefined) {
                     console.log(mess['content']['get-list-online']);
                     let userOnline = JSON.stringify(mess['content']['get-list-online']);
@@ -225,7 +230,7 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
                         let id = this.cookieService.get('ObjectId');
                         this.userChatList = this.userChatList.filter(user => user._id !== id);
                         this.userChatList.forEach(user => {
-                            this.userOnline.forEach( id => {
+                            this.userOnline.forEach(id => {
                                 if (id === user._id) {
                                     user.online = true;
                                 }
@@ -237,7 +242,7 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
                     });
                 } else {
                     console.log(mess + 'longdz vãi')
-                    this.addChatBoxSendMessageV2(mail);
+                    this.addChatBoxGetMessage(mess);
                     this.userMessages.push(mess);
                 }
                 console.log(this.userMessages);
@@ -245,11 +250,12 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
         });
     }
 
-    findMessage(userId) {
+    findMessage(userId, imageUrl) {
         let chatMessage = {
             fromUser: this.cookieService.get('ObjectId'),
             toUser: userId
         };
+        this.toUserImageCheck = imageUrl;
         this.toUser = userId;
         this.chatService.findChatMessage(chatMessage).subscribe(data => {
             console.log(data);
@@ -279,19 +285,21 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
         console.log(message)
     }
 
-    addChatBoxSendMessageV2(message) {
+    addChatBoxGetMessage(message) {
         const radio: HTMLElement = document.getElementById('msg_history');
-        radio.innerHTML += ' <div class="outgoing_msg" style="float: right;display:block;overflow:hidden;clear: both;">\n' +
+        radio.innerHTML += ' <div class="outgoing_msg" style="float: left;display: block;clear: both;">\n' +
+            '<img  src="http://localhost:8000/api/images/' +
+            this.toUserImageCheck + '" alt="sunil" style="border-radius: 50%;width: 25px;height: 25px;float:left;"/>' +
+            '<span class="time_date" style="font-size: 8px;">' + message.time + '</span>' +
             '<div class="sent_msg" style="overflow:hidden; margin:6px 0 6px;">\n' +
-            '<p style="background: #05728f none repeat scroll 0 0;\n' +
+            '<p style="background: lightgrey none repeat scroll 0 0;\n' +
             '  border-radius: 3px;\n' +
             '  font-size: 10px;\n' +
             '  margin: 0; color:#fff;\n' +
             '  padding: 5px 10px 5px 12px;\n' +
             '  width:100%;\n' +
             '  display: block;\n' +
-            '  text-align: left;">' + message + '</p>\n' +
-            '<span class="time_date" style="font-size: 8px;">' + 'không thích gửi time đấy' + '</span>' +
+            '  text-align: left;">' + message.content + '</p>\n' +
             '</div>\n' +
             '                                    </div>';
     }
@@ -402,5 +410,4 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
         }
         return bool;
     }
-
 }
