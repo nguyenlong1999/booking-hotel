@@ -37,6 +37,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatDialogModule} from '@angular/material/dialog';
 import {DashboardLayoutModule} from '../dashboard-layout/dashboard-layout.module';
 import { HotelUserComponent } from './hotel-user/hotel-user.component';
+import { EditUserAdminComponent } from './edit-user-admin/edit-user-admin.component';
 
 @NgModule({
     imports: [
@@ -89,7 +90,8 @@ import { HotelUserComponent } from './hotel-user/hotel-user.component';
         UserAccessComponent,
         LoginComponent,
         UserRoleDialog,
-        HotelUserComponent
+        HotelUserComponent,
+        EditUserAdminComponent
         // add các component trang admin vào đây
     ],
     schemas: [

@@ -1,5 +1,7 @@
 {
   "common": {
+    "login": "Đăng nhập",
+    "logOut": "Đăng xuất",
     "button": {
       "back": "Trở về",
       "next": "Tiếp theo",
@@ -28,6 +30,9 @@
       "user.register.checkInfo": "Bạn hãy kiểm tra lại thông tin!"
     },
     "user": {
+      "hello": "Xin chào bạn: ",
+      "pageAdmin": "Trang quản trị",
+      "account": "Thông tin tài khoản",
       "username": "Tên người dùng",
       "phone": "Số điện thoại",
       "address": "Địa chỉ",
@@ -331,4 +336,5 @@
     "introMyHotel": "Giới thiệu hotel của tôi",
     "editMyHotel": "Chỉnh sửa hotel của tôi"
   }
+
 }

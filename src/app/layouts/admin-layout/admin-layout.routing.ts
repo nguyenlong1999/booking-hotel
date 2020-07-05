@@ -17,6 +17,7 @@ import {AuthGuardGuard} from '../../shared/guards/AuthGuard/auth-guard.guard';
 import {LoginComponent} from './login/login.component';
 import {UserRegisterComponent} from 'app/user-register/user-register.component';
 import {HotelUserComponent} from './hotel-user/hotel-user.component';
+import {EditUserAdminComponent} from './edit-user-admin/edit-user-admin.component';
 
 // khai báo component path cho trang admin
 export const AdminLayoutRoutes: Routes = [
@@ -30,7 +31,9 @@ export const AdminLayoutRoutes: Routes = [
                 redirectTo: 'dashboard',
                 pathMatch: 'full'
             },
+            {path: 'user-edit', component: EditUserAdminComponent},
             {path: 'dashboard', component: DashboardComponent},
+            // {path: 'user-profile', component: UserProfileComponent},
             {path: 'user-profile', component: UserProfileComponent},
             {path: 'table-list', component: TableListComponent},
             {path: 'typography', component: TypographyComponent},

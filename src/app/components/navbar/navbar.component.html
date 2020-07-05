@@ -65,7 +65,8 @@
                         </p>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="javascript:void(0)" (click)="logout()">Đăng xuất</a>
+                        <a class="dropdown-item" [routerLink]="['/user-edit']" >{{"common.user.account" | translate}}</a>
+                        <a class="dropdown-item" href="javascript:void(0)" (click)="logout()">{{"common.logOut" | translate}}</a>
                     </div>
                 </li>
             </ul>

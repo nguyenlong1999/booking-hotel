@@ -1,5 +1,7 @@
 {
   "common": {
+    "login": "Login",
+    "logOut": "Logout",
     "button": {
       "back": "Previos",
       "next": "Next",
@@ -28,6 +30,9 @@
       "checkInfo": "Please check the information!"
     },
     "user": {
+      "hello": "Hello you: ",
+      "pageAdmin": "Admin page",
+      "account": "Account Information",
       "username": "User name",
       "phone": "Phone",
       "address": "Address",

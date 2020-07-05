@@ -214,6 +214,10 @@ export class NavbarComponent implements OnInit {
         this.router.navigateByUrl('/login')
     }
 
+    btnInfo() {
+
+    }
+
     useLanguage(language: string) {
         console.log(this.translate)
         console.log(language);
@@ -228,6 +232,7 @@ export class NavbarComponent implements OnInit {
             });
         }
         sessionStorage.setItem('currentLang', language);
-
     }
+
+
 }

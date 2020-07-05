@@ -25,11 +25,11 @@
                     <img [src]="imageUrl" width="30px" height="30px" style="border-radius: 50px"/>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" style="background-color: white; height: auto; overflow-y: hidden; padding-bottom: 0px; margin: 0">
-                    <a class="dropdown-item hover">Xin chào bạn {{user}}</a>
-                    <a class="dropdown-item hover" (click)="redirect()" *ngIf="isModeration">Trang quản trị</a>
+                    <a class="dropdown-item hover">{{ "common.user.hello" | translate}} {{user}}</a>
+                    <a class="dropdown-item hover" (click)="redirect()" *ngIf="isModeration">{{"common.user.pageAdmin" | translate }}</a>
 <!--                    <a style="margin:0px" class="dropdown-item hover" [routerLink]="['/user-profile/', id]">Quản lý tài khoản</a>-->
-                    <a  class="dropdown-item hover" [routerLink]="['/user-info']">Quản lý tài khoản</a>
-                    <a  class="dropdown-item hover" (click)="logoutUser()">Đăng xuất</a>
+                    <a  class="dropdown-item hover" [routerLink]="['/user-info']">{{ "common.user.account" | translate }}</a>
+                    <a  class="dropdown-item hover" (click)="logoutUser()">{{ "common.logOut" | translate }}</a>
                 </div>
             </div>
         </ng-template>
