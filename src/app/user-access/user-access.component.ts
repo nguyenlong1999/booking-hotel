@@ -83,9 +83,9 @@ export class UserAccessComponent implements OnInit {
                     user.imageUrl = 'default-avatar.png';
                 }
                 user.isAdmin === false;
-                // if (user.role === -1) {
-                //     user.role = 'Chưa xác thực';
-                // } else
+                if (user.status === -1) {
+                    user.role = 'Chưa xác thực';
+                } else
                 if (user.role === 0) {
                     user.role = 'Thành viên';
                 } else if (user.role === 1) {

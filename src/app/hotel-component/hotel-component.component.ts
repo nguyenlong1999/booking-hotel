@@ -176,7 +176,7 @@ export class HotelComponentComponent implements OnInit {
                 this.messageObject.message = res.body['message']['content'];
                 this.message = res.body['messageAdmin']['content'];
                 this.chatService.showNotification('success', this.message);
-                this.chatService.sendMessage(this.messageObject);
+                this.chatService.sendNotification(this.messageObject);
                 setTimeout(() => {
                     this.message = '';
                     // window.location.reload();

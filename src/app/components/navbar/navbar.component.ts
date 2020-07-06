@@ -1,6 +1,6 @@
-import {Component, OnInit, ElementRef, Input} from '@angular/core';
+import {Component, OnInit, ElementRef} from '@angular/core';
 import {ROUTES} from '../sidebar/sidebar.component';
-import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
+import {Location} from '@angular/common';
 import {Router} from '@angular/router';
 import {LoginServiceService} from 'app/shared/service/login-service.service';
 import {TranslateService} from '@ngx-translate/core';
@@ -27,7 +27,6 @@ export class NavbarComponent implements OnInit {
     mobile_menu_visible: any = 0;
     private toggleButton: any;
     private sidebarVisible: boolean;
-    languageChangeImage: any;
 
     constructor(
         private title: Title,
@@ -78,21 +77,21 @@ export class NavbarComponent implements OnInit {
                 if (this.userMessages.length === 0) {
                     this.messageEmpty = true;
                 }
-                console.log('message is empty = ' + this.messageEmpty);
-                console.log('count new messages = ' + this.countNewMessage);
+                // console.log('message is empty = ' + this.messageEmpty);
+                // console.log('count new messages = ' + this.countNewMessage);
             });
         }
     }
 
     mailBox() {
-        this.chatService.getMessages().subscribe(mail => {
-            // console.log('mail:', mail);
+        this.chatService.getNotifications().subscribe(mail => {
+            console.log('mail-notification:', mail);
             if (mail !== undefined) {
                 const mess = new Message;
                 mess.content = mail;
                 mess.news = 0;
-                console.log('count new messages1 = ' + this.countNewMessage);
-                if (mess['content']['get-list-online'] === undefined) {
+                // console.log('count new messages1 = ' + this.countNewMessage);
+                if (!mess['content']['get-list-online']) {
                     this.userMessages.push(mess);
                     this.countNewMessage++;
                     this.chatService.showNotification('success', mess.content);
@@ -100,7 +99,7 @@ export class NavbarComponent implements OnInit {
                         this.messageEmpty = false;
                     }
                 }
-                console.log('count new messages2 = ' + this.countNewMessage);
+                // console.log('count new messages2 = ' + this.countNewMessage);
             }
         })
     }

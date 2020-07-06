@@ -199,7 +199,6 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
 
     mailBox() {
         this.chatService.getMessages().subscribe(mail => {
-            console.log('mail', mail)
             if (mail !== undefined) {
                 this.newMessage = true;
                 let mess = new ChatMessage;
@@ -241,7 +240,6 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
                         console.log(this.userChatList);
                     });
                 } else {
-                    console.log(mess + 'longdz vãi')
                     this.addChatBoxGetMessage(mess);
                     this.userMessages.push(mess);
                 }
@@ -294,8 +292,6 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
     }
 
     addChatBoxGetMessage(message) {
-        console.log('chat box get');
-        console.log(message.content);
         if (!message.time) {
             let time = new Date(message.createdAt);
             const radio: HTMLElement = document.getElementById('msg_history');
@@ -335,8 +331,6 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
     }
 
     addChatBoxSendMessage(message) {
-        console.log('chat box send');
-        console.log(message.content);
         if (!message.time) {
             let time = new Date(message.createdAt);
             const radio: HTMLElement = document.getElementById('msg_history');
