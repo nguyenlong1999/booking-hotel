@@ -13,6 +13,7 @@ import {ChatService} from '../../shared/service/chat.service';
 import {UserService} from '../../shared/service/user.service.';
 import {CookieService} from 'ngx-cookie-service';
 import * as io from 'socket.io-client';
+import {EventEmitterService} from '../../shared/service/event-emitter.service';
 
 
 @Component({
@@ -71,6 +72,7 @@ export class DashboardLayoutComponent implements OnInit {
         private route: ActivatedRoute,
         private translate: TranslateService,
         private cookie: CookieService,
+        private emitEventCus: EventEmitterService
     ) {
         this.location = location;
         this.sidebarVisible = false;
@@ -251,7 +253,8 @@ export class DashboardLayoutComponent implements OnInit {
             });
         }
         sessionStorage.setItem('currentLang', language);
-
+        // create call func in index
+        this.emitEventCus.onFirstComponentButtonClick(language);
     }
 
     loginUser() {

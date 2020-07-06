@@ -11,6 +11,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../../../shared/service/user.service.';
 import {TranslateService} from '@ngx-translate/core';
 import {CookieService} from 'ngx-cookie-service';
+import {EventEmitterService} from '../../../shared/service/event-emitter.service';
 
 @Component({
     selector: 'app-index-layout',
@@ -26,7 +27,7 @@ export class IndexLayoutComponent implements OnInit {
         userId: ''
     }
     public href = '';
-
+    isLang = true; // true is vi
     private address;
     isAuthenicate = false;
     errorMessage: string = null;
@@ -45,14 +46,29 @@ export class IndexLayoutComponent implements OnInit {
         private router: ActivatedRoute,
         private translate: TranslateService,
         private cookie: CookieService,
+        private eventEmitterService: EventEmitterService
     ) {
 
     }
 
     ngOnInit() {
+        if (this.eventEmitterService.subsVar === undefined) {
+            this.eventEmitterService.subsVar = this.eventEmitterService.invokeFirstComponentFunction.subscribe((name: string) => {
+                this.useChangeLanguage();
+            });
+        }
         this.translate.get('dialog.infoRoom').subscribe((data: any) => {
             this.searchHotel.total = data
         });
+    }
+
+    useChangeLanguage() {
+        this.isLang = !this.isLang
+        if (this.isLang) {
+            this.searchHotel.total = 'Thông tin phòng'
+        } else {
+            this.searchHotel.total = 'Information room'
+        }
     }
 
     getEstablishmentAddress(place: object) {
@@ -60,18 +76,30 @@ export class IndexLayoutComponent implements OnInit {
     }
 
     openDialogChooseHotelType(event) {
-        this.ShowDialogChooseHotelType(event).subscribe(data => {
-            const checkSearch = data[0];
-            console.log(checkSearch);
-            if (checkSearch !== undefined) {
-                this.searchHotel.total = checkSearch['roomCount'] + ' phòng, ' + checkSearch['personCount'] + ' người lớn'
-                if (checkSearch['childrenCount'] !== undefined && checkSearch['childrenCount'] > 0) {
-                    this.searchHotel.total = this.searchHotel.total + ', ' + checkSearch['childrenCount'] + ' trẻ em';
+        if (this.isLang) {
+            this.ShowDialogChooseHotelType(event).subscribe(data => {
+                const checkSearch = data[0];
+                console.log(checkSearch);
+                if (checkSearch !== undefined) {
+                    this.searchHotel.total = checkSearch['roomCount'] + ' phòng, ' + checkSearch['personCount'] + ' người lớn'
+                    if (checkSearch['childrenCount'] !== undefined && checkSearch['childrenCount'] > 0) {
+                        this.searchHotel.total = this.searchHotel.total + ', ' + checkSearch['childrenCount'] + ' trẻ em';
+                    }
                 }
-            }
-        })
+            })
+        } else {
+            this.ShowDialogChooseHotelType(event).subscribe(data => {
+                const checkSearch = data[0];
+                console.log(checkSearch);
+                if (checkSearch !== undefined) {
+                    this.searchHotel.total = checkSearch['roomCount'] + ' room, ' + checkSearch['personCount'] + ' adult'
+                    if (checkSearch['childrenCount'] !== undefined && checkSearch['childrenCount'] > 0) {
+                        this.searchHotel.total = this.searchHotel.total + ', ' + checkSearch['childrenCount'] + ' children';
+                    }
+                }
+            })
+        }
     }
-
     ShowDialogChooseHotelType(event): Observable<any> {
 
         const dialogRef = this.dialog.open(ChooseRoomTypeDialogComponent, {
