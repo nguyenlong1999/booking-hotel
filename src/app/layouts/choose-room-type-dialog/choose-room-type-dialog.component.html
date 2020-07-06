@@ -4,10 +4,10 @@
             <div class="row hover card" style="height: 35px;margin: 3px 2px;" (click)="checkIndex(1)">
                 <div class="card-body row" style="padding: 5px 3px;">
                     <div class="col-6 room-count1">
-                        <a>Đi một mình</a>
+                        <a>{{searchHotel.personCount}} {{ "dialog.alone" | translate}}</a>
                     </div>
                     <div class="col-6 room-count">
-                        <a *ngIf="checkAlone">{{searchHotel.roomCount}} phòng,{{searchHotel.roomCount}} người lớn</a>
+                        <a *ngIf="checkAlone">{{searchHotel.roomCount}} {{ "dialog.room" | translate}},{{searchHotel.roomCount}} {{ "dialog.adult" | translate}}</a>
                         <span *ngIf="!checkAlone"
                               style="float: right; font-size: 30px; padding-right: 5px;">&rsaquo;</span>
                     </div>
@@ -17,10 +17,10 @@
             <div class="row hover card" style="height: 35px;margin: 3px 2px;" (click)="checkIndex(2)">
                 <div class="card-body row" style="padding: 5px 3px;">
                     <div class="col-6 room-count1">
-                        <a>Cặp đôi/2 người</a>
+                        <a>{{ "dialog.couple" | translate}}</a>
                     </div>
                     <div class="col-6 room-count">
-                        <a *ngIf="checkPair">{{searchHotel.roomCount}} phòng,{{searchHotel.personCount}} người lớn</a>
+                        <a *ngIf="checkPair">{{searchHotel.roomCount}} {{ "dialog.room" | translate}},{{searchHotel.personCount}} {{ "dialog.adult" | translate}}</a>
                         <span *ngIf="!checkPair"
                               style="float: right; font-size: 30px; padding-right: 5px;">&rsaquo;</span>
                     </div>
@@ -30,10 +30,10 @@
             <div class="row hover card" style="height: 35px;margin: 3px 2px;" (click)="checkIndex(3)">
                 <div class="card-body row" style="padding: 5px 3px;">
                     <div class="col-6 room-count1">
-                        <a>Theo gia đình</a>
+                        <a>{{ "dialog.family" | translate}}</a>
                     </div>
                     <div class="col-6 room-count">
-                        <a *ngIf="checkFamily">{{searchHotel.roomCount}} phòng,{{searchHotel.personCount}} người lớn</a>
+                        <a *ngIf="checkFamily">{{searchHotel.roomCount}} {{ "dialog.room" | translate}} , {{searchHotel.personCount}} {{ "dialog.adult" | translate}}</a>
                         <span *ngIf="!checkFamily"
                               style="float: right; font-size: 30px; padding-right: 5px;">&rsaquo;</span>
                     </div>
@@ -42,10 +42,10 @@
             <div class="row hover card" style="height: 35px;margin: 3px 2px;" (click)="checkIndex(4)">
                 <div class="card-body row" style="padding: 5px 3px;">
                     <div class="col-6 room-count1">
-                        <a>Theo đoàn/ nhóm</a>
+                        <a>{{ "dialog.dualGroup" | translate}}</a>
                     </div>
                     <div class="col-6 room-count">
-                        <a *ngIf="checkGroup">{{searchHotel.roomCount}} phòng,{{searchHotel.personCount}} người lớn</a>
+                        <a *ngIf="checkGroup">{{searchHotel.roomCount}} {{ "dialog.room" | translate}},{{searchHotel.personCount}} {{ "dialog.adult" | translate}}</a>
                         <span *ngIf="!checkGroup"
                               style="float: right; font-size: 30px; padding-right: 5px;">&rsaquo;</span>
                     </div>
@@ -54,10 +54,10 @@
             <div class="row hover card" style="height: 35px;margin: 3px 2px;" (click)="checkIndex(5)">
                 <div class="card-body row" style="padding: 5px 3px;">
                     <div class="col-6 room-count1">
-                        <a>Đi công tác</a>
+                        <a>{{ "dialog.mission" | translate}}</a>
                     </div>
                     <div class="col-6 room-count">
-                        <a *ngIf="checkJob">{{searchHotel.roomCount}} phòng,{{searchHotel.personCount}} người lớn</a>
+                        <a *ngIf="checkJob">{{searchHotel.roomCount}} {{ "dialog.room" | translate}},{{searchHotel.personCount}} {{ "dialog.adult" | translate}}</a>
                         <span *ngIf="!checkJob"
                               style="float: right; font-size: 30px; padding-right: 5px;">&rsaquo;</span>
                     </div>
@@ -72,7 +72,7 @@
                             <span style=" font-size: 25px;padding-left: 5px; cursor: pointer;" (click)="removeRoomCount()">-</span>
                         </div>
                         <div class="col-6">
-                            <a class="room-count">{{searchHotel.roomCount}} Phòng</a>
+                            <a class="room-count">{{searchHotel.roomCount}}  {{"dialog.roomV2" | translate}}</a>
                         </div>
                         <div class="col">
                             <span style=" font-size: 25px;padding-right: 5px; cursor: pointer;" (click)="addRoomCount()">+</span>
@@ -87,7 +87,7 @@
                             <span style=" font-size: 25px;padding-left: 5px; cursor: pointer;" (click)="removePersonCount()">-</span>
                         </div>
                         <div class="col-6">
-                            <a class="room-count">{{searchHotel.personCount}} Người lớn</a>
+                            <a class="room-count">{{searchHotel.personCount}} {{"dialog.adultV2" | translate}}</a>
                         </div>
                         <div class="col">
                             <span style=" font-size: 25px;padding-right: 5px; cursor: pointer;" (click)="addPersonCount()">+</span>
@@ -102,7 +102,7 @@
                         <span style=" font-size: 25px;padding-left: 5px; cursor: pointer;" (click)="removeChildCount()">-</span>
                     </div>
                         <div class="col-6">
-                            <a class="room-count">{{searchHotel.childrenCount}} Trẻ em</a>
+                            <a class="room-count">{{searchHotel.childrenCount}} {{"dialog.childen" | translate}}</a>
                         </div>
                         <div class="col">
                             <span style=" font-size: 25px;padding-right: 5px; cursor: pointer;" (click)="addChildCount()">+</span>

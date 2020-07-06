@@ -298,12 +298,11 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
         console.log(message.content);
         if (!message.time) {
             let time = new Date(message.createdAt);
-            time = this.formatDate(time);
             const radio: HTMLElement = document.getElementById('msg_history');
             radio.innerHTML += ' <div class="outgoing_msg" style="float: left;display: block;clear: both;">\n' +
                 '<img  src="http://localhost:8000/api/images/' +
                 this.toUserImageCheck + '" alt="sunil" style="border-radius: 50%;width: 25px;height: 25px;float:left;"/>' +
-                '<span class="time_date" style="font-size: 8px;">' + time + '</span>' +
+                '<span class="time_date" style="font-size: 8px;">' + this.formatDate(time) + '</span>' +
                 '<div class="sent_msg" style="overflow:hidden; margin:6px 0 6px;">\n' +
                 '<p style="background: lightgrey none repeat scroll 0 0;\n' +
                 '  border-radius: 3px;\n' +
@@ -340,7 +339,6 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
         console.log(message.content);
         if (!message.time) {
             let time = new Date(message.createdAt);
-            time = this.formatDate(time);
             const radio: HTMLElement = document.getElementById('msg_history');
             radio.innerHTML += ' <div class="outgoing_msg" style="float: right;display:block;overflow:hidden;clear: both;">\n' +
                 '<div class="sent_msg" style="overflow:hidden; margin:6px 0 6px;">\n' +
@@ -352,7 +350,7 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
                 '  width:100%;\n' +
                 '  display: block;\n' +
                 '  text-align: left;">' + message.content + '</p>\n' +
-                '<span class="time_date" style="font-size: 8px;">' + time + '</span>' +
+                '<span class="time_date" style="font-size: 8px;">' + this.formatDate(time) + '</span>' +
                 '</div>\n' +
                 '                                    </div>';
         } else {
@@ -433,7 +431,8 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
 
     formatDate(dt) {
         let normalizeHour = dt.getHours() >= 13 ? dt.getHours() - 12 : dt.getHours()
-        return dt.getHours() >= 13 ? normalizeHour + ': ' + dt.getMinutes() + ' PM' : normalizeHour + ': ' + dt.getMinutes() + ' AM ' + dt.getDate() + '-' + dt.getMonth();
+        return dt.getHours() >= 13 ? normalizeHour + ': ' + dt.getMinutes() + ' PM' :
+            normalizeHour + ': ' + dt.getMinutes() + ' AM ' + dt.getDate() + '-' + dt.getMonth();
     }
 
     onActivate(event) {

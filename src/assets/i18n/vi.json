@@ -91,14 +91,21 @@
     }
   },
   "index": {
-    "searchNameOrPlace" : "Tên khách sạn hoặc địa điểm"
+    "searchNameOrPlace" : "Tên khách sạn hoặc địa điểm",
+    "home": "Trang chủ"
   } ,
   "dialog": {
+    "infoRoom": "Thông tin phòng",
     "alone": "Đi một mình",
     "room" : "phòng",
+    "family" : "Theo gia đình",
+    "roomV2" : "Phòng",
     "adult": "người lớn",
+    "adultV2": "Người lớn",
+    "childen": "Trẻ em",
     "couple": "Cặp đôi/2 người",
-    "": ""
+    "dualGroup": "Theo đoàn/ nhóm",
+    "mission": "Đi công tác"
   },
   "demo.title": "Dịch tiếng việt demo",
   "demo.text": "Hà nội mùa lạnh giá",

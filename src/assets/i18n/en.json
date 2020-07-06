@@ -92,10 +92,21 @@
     }
   },
   "index": {
-    "searchNameOrPlace" : "Hotel name or location"
+    "searchNameOrPlace" : "Hotel name or location",
+    "home": "Home"
   } ,
   "dialog": {
-    "alone": "Go alone"
+    "infoRoom": "Room information",
+    "alone": "Go alone",
+    "room" : "room",
+    "roomV2" : "Room",
+    "family" : "According to the family",
+    "adult": "adult",
+    "adultV2": "Adult",
+    "childen": "Children",
+    "couple": "Couples / 2 people",
+    "dualGroup": "In groups / groups",
+    "mission": "Business travel"
   },
   "demo.title": "Translation demo",
   "demo.text": "This is a simple demonstration app for ngx-translate",

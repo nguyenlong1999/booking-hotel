@@ -1,12 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {Observable} from 'rxjs';
 import {ChatService} from '../../../shared/service/chat.service';
 import {ChooseRoomTypeDialogComponent} from '../../choose-room-type-dialog/choose-room-type-dialog.component';
 import {SearchHotel} from '../../../shared/model/search-hotel';
 import {AppSetting} from '../../../appsetting';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import * as io from 'socket.io-client';
+import {FormBuilder} from '@angular/forms';
 import {LoginServiceService} from '../../../shared/service/login-service.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../../../shared/service/user.service.';
@@ -21,8 +20,6 @@ import {CookieService} from 'ngx-cookie-service';
 export class IndexLayoutComponent implements OnInit {
     socket;
     BASE_URL = AppSetting.BASE_SERVER_URL;
-
-
 
     data = {
         name: '',
@@ -53,9 +50,9 @@ export class IndexLayoutComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.searchHotel.total = 'Thông tin phòng'
-
-
+        this.translate.get('dialog.infoRoom').subscribe((data: any) => {
+            this.searchHotel.total = data
+        });
     }
 
     getEstablishmentAddress(place: object) {
