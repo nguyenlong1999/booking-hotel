@@ -8,7 +8,8 @@ export class ChatMessage {
     news: any;
     sequence: any;
     description: string;
-    objectId:string;
-    message:string;
-    time:string;
+    objectId: string;
+    message: string;
+    time: string;
+    createdAt: any;
 }

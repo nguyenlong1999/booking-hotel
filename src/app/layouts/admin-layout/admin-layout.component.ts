@@ -259,6 +259,14 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
         this.toUser = userId;
         this.chatService.findChatMessage(chatMessage).subscribe(data => {
             console.log(data);
+            for (const message of data.body['message']) {
+                this.userMessages.push(message);
+                if (message.fromUser === chatMessage.fromUser) {
+                    this.addChatBoxSendMessage(message);
+                } else {
+                    this.addChatBoxGetMessage(message);
+                }
+            }
         })
     }
 
@@ -286,39 +294,83 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
     }
 
     addChatBoxGetMessage(message) {
-        const radio: HTMLElement = document.getElementById('msg_history');
-        radio.innerHTML += ' <div class="outgoing_msg" style="float: left;display: block;clear: both;">\n' +
-            '<img  src="http://localhost:8000/api/images/' +
-            this.toUserImageCheck + '" alt="sunil" style="border-radius: 50%;width: 25px;height: 25px;float:left;"/>' +
-            '<span class="time_date" style="font-size: 8px;">' + message.time + '</span>' +
-            '<div class="sent_msg" style="overflow:hidden; margin:6px 0 6px;">\n' +
-            '<p style="background: lightgrey none repeat scroll 0 0;\n' +
-            '  border-radius: 3px;\n' +
-            '  font-size: 10px;\n' +
-            '  margin: 0; color:#fff;\n' +
-            '  padding: 5px 10px 5px 12px;\n' +
-            '  width:100%;\n' +
-            '  display: block;\n' +
-            '  text-align: left;">' + message.content + '</p>\n' +
-            '</div>\n' +
-            '                                    </div>';
+        console.log('chat box get');
+        console.log(message.content);
+        if (!message.time) {
+            let time = new Date(message.createdAt);
+            time = this.formatDate(time);
+            const radio: HTMLElement = document.getElementById('msg_history');
+            radio.innerHTML += ' <div class="outgoing_msg" style="float: left;display: block;clear: both;">\n' +
+                '<img  src="http://localhost:8000/api/images/' +
+                this.toUserImageCheck + '" alt="sunil" style="border-radius: 50%;width: 25px;height: 25px;float:left;"/>' +
+                '<span class="time_date" style="font-size: 8px;">' + time + '</span>' +
+                '<div class="sent_msg" style="overflow:hidden; margin:6px 0 6px;">\n' +
+                '<p style="background: lightgrey none repeat scroll 0 0;\n' +
+                '  border-radius: 3px;\n' +
+                '  font-size: 10px;\n' +
+                '  margin: 0; color:#fff;\n' +
+                '  padding: 5px 10px 5px 12px;\n' +
+                '  width:100%;\n' +
+                '  display: block;\n' +
+                '  text-align: left;">' + message.content + '</p>\n' +
+                '</div>\n' +
+                '                                    </div>';
+        } else {
+            const radio: HTMLElement = document.getElementById('msg_history');
+            radio.innerHTML += ' <div class="outgoing_msg" style="float: left;display: block;clear: both;">\n' +
+                '<img  src="http://localhost:8000/api/images/' +
+                this.toUserImageCheck + '" alt="sunil" style="border-radius: 50%;width: 25px;height: 25px;float:left;"/>' +
+                '<span class="time_date" style="font-size: 8px;">' + message.time + '</span>' +
+                '<div class="sent_msg" style="overflow:hidden; margin:6px 0 6px;">\n' +
+                '<p style="background: lightgrey none repeat scroll 0 0;\n' +
+                '  border-radius: 3px;\n' +
+                '  font-size: 10px;\n' +
+                '  margin: 0; color:#fff;\n' +
+                '  padding: 5px 10px 5px 12px;\n' +
+                '  width:100%;\n' +
+                '  display: block;\n' +
+                '  text-align: left;">' + message.content + '</p>\n' +
+                '</div>\n' +
+                '                                    </div>';
+        }
     }
 
     addChatBoxSendMessage(message) {
-        const radio: HTMLElement = document.getElementById('msg_history');
-        radio.innerHTML += ' <div class="outgoing_msg" style="float: right;display:block;overflow:hidden;clear: both;">\n' +
-            '<div class="sent_msg" style="overflow:hidden; margin:6px 0 6px;">\n' +
-            '<p style="background: #05728f none repeat scroll 0 0;\n' +
-            '  border-radius: 3px;\n' +
-            '  font-size: 10px;\n' +
-            '  margin: 0; color:#fff;\n' +
-            '  padding: 5px 10px 5px 12px;\n' +
-            '  width:100%;\n' +
-            '  display: block;\n' +
-            '  text-align: left;">' + this.message + '</p>\n' +
-            '<span class="time_date" style="font-size: 8px;">' + message.time + '</span>' +
-            '</div>\n' +
-            '                                    </div>';
+        console.log('chat box send');
+        console.log(message.content);
+        if (!message.time) {
+            let time = new Date(message.createdAt);
+            time = this.formatDate(time);
+            const radio: HTMLElement = document.getElementById('msg_history');
+            radio.innerHTML += ' <div class="outgoing_msg" style="float: right;display:block;overflow:hidden;clear: both;">\n' +
+                '<div class="sent_msg" style="overflow:hidden; margin:6px 0 6px;">\n' +
+                '<p style="background: #05728f none repeat scroll 0 0;\n' +
+                '  border-radius: 3px;\n' +
+                '  font-size: 10px;\n' +
+                '  margin: 0; color:#fff;\n' +
+                '  padding: 5px 10px 5px 12px;\n' +
+                '  width:100%;\n' +
+                '  display: block;\n' +
+                '  text-align: left;">' + message.content + '</p>\n' +
+                '<span class="time_date" style="font-size: 8px;">' + time + '</span>' +
+                '</div>\n' +
+                '                                    </div>';
+        } else {
+            const radio: HTMLElement = document.getElementById('msg_history');
+            radio.innerHTML += ' <div class="outgoing_msg" style="float: right;display:block;overflow:hidden;clear: both;">\n' +
+                '<div class="sent_msg" style="overflow:hidden; margin:6px 0 6px;">\n' +
+                '<p style="background: #05728f none repeat scroll 0 0;\n' +
+                '  border-radius: 3px;\n' +
+                '  font-size: 10px;\n' +
+                '  margin: 0; color:#fff;\n' +
+                '  padding: 5px 10px 5px 12px;\n' +
+                '  width:100%;\n' +
+                '  display: block;\n' +
+                '  text-align: left;">' + this.message + '</p>\n' +
+                '<span class="time_date" style="font-size: 8px;">' + message.time + '</span>' +
+                '</div>\n' +
+                '                                    </div>';
+        }
     }
 
     clearChatBox() {
