@@ -16,6 +16,16 @@
                         <a>{{searchHotel.total}}</a>
                     </div>
                     <br>
+                    <mat-form-field>
+                        <input matInput
+                               placeholder="Chọn ngày"
+                               [satDatepicker]="picker2"
+                               formControlName="date">
+                        <sat-datepicker #picker2 [rangeMode]="true">
+                        </sat-datepicker>
+                        <sat-datepicker-toggle matSuffix [for]="picker2"></sat-datepicker-toggle>
+                    </mat-form-field>
+                    <br>
                     <button class="btn btn-outline-primary" (click)="searchHotelServer($event)"
                         style="float: right;border: 0.5px solid blue; color: #0c83e2;">
                         {{"common.button.next"|translate}}

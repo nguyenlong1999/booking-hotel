@@ -16,7 +16,7 @@ import {EventEmitterService} from '../../../shared/service/event-emitter.service
 @Component({
     selector: 'app-index-layout',
     templateUrl: './index-layout.component.html',
-    styleUrls: ['./index-layout.component.scss']
+    styleUrls: ['./index-layout.component.css']
 })
 export class IndexLayoutComponent implements OnInit {
     socket;

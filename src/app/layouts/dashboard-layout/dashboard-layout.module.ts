@@ -29,6 +29,8 @@ import {WelcomeComponent} from '../../welcome/welcome.component';
 import { UserEditComponent } from './user-edit/user-edit.component';
 import {AdminLayoutComponent} from '../admin-layout/admin-layout.component';
 import {ForgetPasswordComponent} from '../../forget-password/forget-password.component';
+import {SatDatepickerModule, SatNativeDateModule} from 'saturn-datepicker';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 @NgModule({
     declarations: [
@@ -59,6 +61,9 @@ import {ForgetPasswordComponent} from '../../forget-password/forget-password.com
         SharedModule,
         MatCheckboxModule,
         MatButtonToggleModule,
+        SatDatepickerModule,
+        SatNativeDateModule,
+        MatDatepickerModule,
         MatDialogModule,
         TranslateModule.forRoot({
             loader: {
