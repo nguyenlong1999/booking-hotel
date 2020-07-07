@@ -92,7 +92,8 @@
   },
   "index": {
     "searchNameOrPlace" : "Tên khách sạn hoặc địa điểm",
-    "home": "Trang chủ"
+    "home": "Trang chủ",
+    "search": "Tìm kiếm"
   } ,
   "dialog": {
     "infoRoom": "Thông tin phòng",

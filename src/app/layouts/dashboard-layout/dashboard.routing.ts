@@ -6,6 +6,7 @@ import {UserRegiterComponent} from '../user-regiter/user-regiter.component';
 import {WelcomeComponent} from '../../welcome/welcome.component';
 import {UserEditComponent} from './user-edit/user-edit.component';
 import {ForgetPasswordComponent} from '../../forget-password/forget-password.component';
+import {FindHotelComponent} from './find-hotel/find-hotel.component';
 
 export const DashBoardRoutes: Routes = [
 
@@ -42,6 +43,10 @@ export const DashBoardRoutes: Routes = [
             {
                 path: 'resetPassword',
                 component: ForgetPasswordComponent
+            },
+            {
+                path: 'search-hotels',
+                component: FindHotelComponent
             },
             /* {
               path: 'about',

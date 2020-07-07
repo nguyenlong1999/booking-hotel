@@ -93,7 +93,8 @@
   },
   "index": {
     "searchNameOrPlace" : "Hotel name or location",
-    "home": "Home"
+    "home": "Home",
+    "search": "Search"
   } ,
   "dialog": {
     "infoRoom": "Room information",

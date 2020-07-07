@@ -31,6 +31,8 @@ import {AdminLayoutComponent} from '../admin-layout/admin-layout.component';
 import {ForgetPasswordComponent} from '../../forget-password/forget-password.component';
 import {SatDatepickerModule, SatNativeDateModule} from 'saturn-datepicker';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { FindHotelComponent } from './find-hotel/find-hotel.component';
 
 @NgModule({
     declarations: [
@@ -41,7 +43,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
         ChooseRoomTypeDialogComponent,
         WelcomeComponent,
         UserEditComponent,
-        ForgetPasswordComponent
+        ForgetPasswordComponent,
+        FindHotelComponent
         // add các component của trang người dùng vào đây
     ],
     imports: [
@@ -72,6 +75,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
                 deps: [HttpClient]
             }
         }),
+        MatAutocompleteModule,
     ],
     providers: [],
     entryComponents: [ChooseRoomTypeDialogComponent],
