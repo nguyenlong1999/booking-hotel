@@ -143,8 +143,9 @@ export class IndexLayoutComponent implements OnInit {
     searchHotelServer() {
         console.log(this.searchHotel);
         // @ts-ignore\\\\\\\\\\\\\\\\\
-        // this.cookie.set('searchText', this.searchHotel);
-        // this._router.navigateByUrl('/search-hotels')
+         this.cookie.set('searchText',  JSON.stringify(this.searchHotel));
+         console.log(this.cookie.get('searchText'))
+        this._router.navigateByUrl('/search-hotels')
         this.chatService.showNotification('success', 'Tìm kiếm thành công');
     }
 
