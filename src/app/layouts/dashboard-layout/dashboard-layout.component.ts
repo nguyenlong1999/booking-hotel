@@ -14,6 +14,7 @@ import {UserService} from '../../shared/service/user.service.';
 import {CookieService} from 'ngx-cookie-service';
 import * as io from 'socket.io-client';
 import {EventEmitterService} from '../../shared/service/event-emitter.service';
+import {Summary} from '../../shared/model/summary';
 
 
 @Component({
@@ -45,7 +46,7 @@ export class DashboardLayoutComponent implements OnInit {
         userId: ''
     }
     public href = '';
-
+    summary: Summary;
     private address;
     isAuthenicate = false;
     errorMessage: string = null;
@@ -105,6 +106,7 @@ export class DashboardLayoutComponent implements OnInit {
             }
         });
         this.getImage()
+        this.getSummary()
         this.isModeration = this.cookie.get('role') === '2' ? true : false;
         this.isAuthenicate = this.cookie.get('email') !== '' ? true : false;
         this.registerForm = this.formBuilder.group({
@@ -112,6 +114,15 @@ export class DashboardLayoutComponent implements OnInit {
             password: ['', [Validators.required, Validators.minLength(6)]]
         });
         console.log('hhehe' + this.isModeration)
+    }
+
+    getSummary() {
+        this.userService.getSummary(1).subscribe(data => {
+            this.summary = data.body['summary']
+            // this.loadInfo == true
+            console.log('SUMARY: ')
+            console.log(this.summary);
+        })
     }
 
     sidebarOpen() {

@@ -88,3 +88,17 @@
   -webkit-transition: all 0.218s;
   transition: all 0.218s;
 }
+
+.list-unstyled li a {
+  color: #1d2023;
+}
+.list-unstyled li span {
+  color: black;
+  font-weight: 500;
+}
+.list-unstyled li:hover a {
+  text-decoration: underline;
+}
+.list-unstyled li {
+  font-size: 1rem;
+}
