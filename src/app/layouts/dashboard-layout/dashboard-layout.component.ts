@@ -6,7 +6,7 @@ import {LoginServiceService} from '../../shared/service/login-service.service';
 import {TranslateService} from '@ngx-translate/core';
 import {ROUTES} from '../../components/sidebar/sidebar.component';
 import {AppSetting} from '../../appsetting';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {SearchHotel} from '../../shared/model/search-hotel';
 import {MatDialog} from '@angular/material/dialog';
 import {ChatService} from '../../shared/service/chat.service';
@@ -15,6 +15,9 @@ import {CookieService} from 'ngx-cookie-service';
 import * as io from 'socket.io-client';
 import {EventEmitterService} from '../../shared/service/event-emitter.service';
 import {Summary} from '../../shared/model/summary';
+import {Observable} from 'rxjs';
+import {HotelService} from '../../shared/service/hotel.service.';
+import {ChooseRoomTypeDialogComponent} from '../choose-room-type-dialog/choose-room-type-dialog.component';
 
 
 @Component({
@@ -34,7 +37,7 @@ export class DashboardLayoutComponent implements OnInit {
     BASE_URL = AppSetting.BASE_SERVER_URL;
     submitted = false;
     registerForm: FormGroup;
-
+    isLang = true; // true is vi
     tfaFlag = false
     userObject = {
         email: '',
@@ -57,7 +60,10 @@ export class DashboardLayoutComponent implements OnInit {
     imageUrl = 'assets/img/new_logo.png'
     message = '';
     searchHotel = new SearchHotel('', 1, 1, 1);
-
+    myControl = new FormControl();
+    lstHotel: any;
+    options: string[] = ['Đà Nẵng', 'Hà Nội', 'Hồ Chí Minh'];
+    filteredOptions: Observable<string[]>;
 
     constructor(
         private title: Title,
@@ -73,7 +79,8 @@ export class DashboardLayoutComponent implements OnInit {
         private route: ActivatedRoute,
         private translate: TranslateService,
         private cookie: CookieService,
-        private emitEventCus: EventEmitterService
+        private emitEventCus: EventEmitterService,
+        private hotelService: HotelService
     ) {
         this.location = location;
         this.sidebarVisible = false;
@@ -84,13 +91,38 @@ export class DashboardLayoutComponent implements OnInit {
                 console.log('scrolling up');
                 const element = document.getElementById('check-point');
                 element.setAttribute('style', 'background-color:white!important;');
+
+                const element2 = document.getElementById('check-point-search');
+                element2.setAttribute('style', 'display:none');
+
             } else if (event.deltaY > 0) {
                 console.log('scrolling down');
                 // tslint:disable-next-line:no-duplicate-variable
                 const element = document.getElementById('check-point');
-                element.setAttribute('style', 'background-color:black!important;');
+                // element.setAttribute('style', 'background-color:black!important;');
+                element.setAttribute('style', 'display:none');
+
+                const element2 = document.getElementById('check-point-search');
+                element2.setAttribute('style', 'display:block');
+
             }
         });
+
+        this.hotelService.getHotels().subscribe(hotels => {
+            if (hotels === undefined) {
+                return;
+            }
+            this.lstHotel = hotels;
+            for (const item of this.lstHotel) {
+                if (item.address !== '') {
+                    this.options.push(item.address)
+                }
+                this.options.push(item.name)
+            }
+            console.log(this.options)
+        });
+
+
     }
 
     ngOnInit() {
@@ -385,5 +417,59 @@ export class DashboardLayoutComponent implements OnInit {
     onChangecheck(value: any) {
         const radio: HTMLElement = document.getElementById('modal-button');
         radio.click();
+    }
+
+    searchHotelServer() {
+        console.log(this.searchHotel);
+        // @ts-ignore\\\\\\\\\\\\\\\\\
+        this.cookie.set('searchText',  JSON.stringify(this.searchHotel));
+        console.log(this.cookie.get('searchText'))
+        this._router.navigateByUrl('/search-hotels')
+        this.chatService.showNotification('success', 'Tìm kiếm thành công');
+    }
+
+    openDialogChooseHotelType(event) {
+        if (this.isLang) {
+            this.ShowDialogChooseHotelType(event).subscribe(data => {
+                const checkSearch = data[0];
+                console.log(checkSearch);
+                if (checkSearch !== undefined) {
+                    this.searchHotel.total = checkSearch['roomCount'] + ' phòng, ' + checkSearch['personCount'] + ' người lớn'
+                    if (checkSearch['childrenCount'] !== undefined && checkSearch['childrenCount'] > 0) {
+                        this.searchHotel.total = this.searchHotel.total + ', ' + checkSearch['childrenCount'] + ' trẻ em';
+                    }
+                }
+            })
+        } else {
+            this.ShowDialogChooseHotelType(event).subscribe(data => {
+                const checkSearch = data[0];
+                console.log(checkSearch);
+                if (checkSearch !== undefined) {
+                    this.searchHotel.total = checkSearch['roomCount'] + ' room, ' + checkSearch['personCount'] + ' adult'
+                    if (checkSearch['childrenCount'] !== undefined && checkSearch['childrenCount'] > 0) {
+                        this.searchHotel.total = this.searchHotel.total + ', ' + checkSearch['childrenCount'] + ' children';
+                    }
+                }
+            })
+        }
+    }
+
+    ShowDialogChooseHotelType(event): Observable<any> {
+
+        const dialogRef = this.dialog.open(ChooseRoomTypeDialogComponent, {
+            width: '40vw',
+            maxWidth: '40vw',
+            height: 'auto',
+            maxHeight: 'auto',
+            position: {top: '360px'},
+            data: {searchHotel: this.searchHotel},
+        });
+        return dialogRef.afterClosed();
+    }
+
+    private _filter(value: string): string[] {
+        const filterValue = value.toLowerCase();
+
+        return this.options.filter(option => option.toLowerCase().includes(filterValue));
     }
 }

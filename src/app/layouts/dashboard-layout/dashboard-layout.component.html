@@ -24,17 +24,95 @@
                    style="padding: 0 10px 0 0">
                     <img [src]="imageUrl" width="30px" height="30px" style="border-radius: 50px"/>
                 </a>
-                <div class="dropdown-menu dropdown-menu-right" style="background-color: white; height: auto; overflow-y: hidden; padding-bottom: 0px; margin: 0">
+                <div class="dropdown-menu dropdown-menu-right"
+                     style="background-color: white; height: auto; overflow-y: hidden; padding-bottom: 0px; margin: 0">
                     <a class="dropdown-item hover">{{ "common.user.hello" | translate}} {{user}}</a>
-                    <a class="dropdown-item hover" (click)="redirect()" *ngIf="isModeration">{{"common.user.pageAdmin" | translate }}</a>
-<!--                    <a style="margin:0px" class="dropdown-item hover" [routerLink]="['/user-profile/', id]">Quản lý tài khoản</a>-->
-                    <a  class="dropdown-item hover" [routerLink]="['/user-info']">{{ "common.user.account" | translate }}</a>
-                    <a  class="dropdown-item hover" (click)="logoutUser()">{{ "common.logOut" | translate }}</a>
+                    <a class="dropdown-item hover" (click)="redirect()"
+                       *ngIf="isModeration">{{"common.user.pageAdmin" | translate }}</a>
+                    <!--                    <a style="margin:0px" class="dropdown-item hover" [routerLink]="['/user-profile/', id]">Quản lý tài khoản</a>-->
+                    <a class="dropdown-item hover"
+                       [routerLink]="['/user-info']">{{ "common.user.account" | translate }}</a>
+                    <a class="dropdown-item hover" (click)="logoutUser()">{{ "common.logOut" | translate }}</a>
                 </div>
             </div>
         </ng-template>
     </div>
 </nav>
+
+<nav class="navbar fixed-top navbar-light bg-light" id="check-point-search">
+    <div class="form-inline my-2 my-lg-0">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <img class="text-left" src="assets/img/logo.png" style="width: 250px; height: 50px;margin-left: 10px;" alt="Booking.com"/>
+                </div>
+                <div class="col">
+                    <mat-form-field>
+                        <input type="text"
+                               matInput
+                               [(ngModel)]="searchHotel.address"
+                               [formControl]="myControl"
+                               [matAutocomplete]="auto" [placeholder]="'index.searchNameOrPlace' | translate">
+                        <mat-autocomplete #auto="matAutocomplete">
+                            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                                {{option}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <ul class="navbar-nav mr-auto">
+    </ul>
+
+    <!--    <form class="form-inline">-->
+    <!--        <mat-form-field>-->
+    <!--            <input type="text" class=" mr-sm-2"-->
+    <!--                   matInput-->
+    <!--                   [(ngModel)]="searchHotel.address"-->
+    <!--                   [formControl]="myControl"-->
+    <!--                   [matAutocomplete]="auto" [placeholder]="'index.searchNameOrPlace' | translate">-->
+    <!--            <mat-autocomplete #auto="matAutocomplete">-->
+    <!--                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">-->
+    <!--                    {{option}}-->
+    <!--                </mat-option>-->
+    <!--            </mat-autocomplete>-->
+    <!--        </mat-form-field>-->
+    <!--        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+    <!--    </form>-->
+</nav>
+
+<!--<div class="fixed-top navbar-light bg-light" id="check-point-search" style="text-align: center">-->
+<!--    <input type="text" style="width: 300px; height: 50px; margin-top: 20px; border: red 2px solid"-->
+<!--           matInput-->
+<!--           [(ngModel)]="searchHotel.address"-->
+<!--           [formControl]="myControl"-->
+<!--           [matAutocomplete]="auto" [placeholder]="'index.searchNameOrPlace' | translate"/>-->
+<!--    <mat-autocomplete #auto="matAutocomplete">-->
+<!--        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">-->
+<!--            {{option}}-->
+<!--        </mat-option>-->
+<!--    </mat-autocomplete>-->
+<!--    <div style="border-bottom: 0.5px solid gray; margin-top: 10px; background: #00b0ff "-->
+<!--         (click)="openDialogChooseHotelType($event)">-->
+<!--        <a>{{searchHotel.total}}</a>-->
+<!--    </div>-->
+<!--    <div>-->
+<!--        <button class="btn btn-outline-primary" (click)="searchHotelServer()"-->
+<!--                style="float: right;border: 0.5px solid blue; color: #0c83e2;">-->
+<!--            {{"index.search"|translate}}-->
+<!--        </button>-->
+<!--    </div>-->
+<!--    <span style="border-bottom: 0.5px solid gray"-->
+<!--          (click)="openDialogChooseHotelType($event)">-->
+<!--            <a>{{searchHotel.total}}</a>-->
+<!--        </span>-->
+
+<!--</div>-->
+
+
 <a type="button" class="py-2 d-none d-md-inline-block register-button" hidden="true" data-toggle="modal"
    style="opacity: 0;" data-target="#exampleModalCenter" id="modal-button">
 </a>
@@ -219,55 +297,55 @@
     </div>
     <!-- Footer Links -->
 
-<!--    <hr>-->
+    <!--    <hr>-->
 
     <!-- Call to action -->
-<!--    <ul class="list-unstyled list-inline text-center py-2">-->
-<!--        <li class="list-inline-item">-->
-<!--            <h5 class="mb-1">Register for free</h5>-->
-<!--        </li>-->
-<!--        <li class="list-inline-item">-->
-<!--            <a href="#!" mdbBtn color="danger" rounded="true" mdbWavesEffect>Sign up!</a>-->
-<!--        </li>-->
-<!--    </ul>-->
+    <!--    <ul class="list-unstyled list-inline text-center py-2">-->
+    <!--        <li class="list-inline-item">-->
+    <!--            <h5 class="mb-1">Register for free</h5>-->
+    <!--        </li>-->
+    <!--        <li class="list-inline-item">-->
+    <!--            <a href="#!" mdbBtn color="danger" rounded="true" mdbWavesEffect>Sign up!</a>-->
+    <!--        </li>-->
+    <!--    </ul>-->
     <!-- Call to action -->
 
-<!--    <hr>-->
+    <!--    <hr>-->
 
     <!-- Social buttons -->
-<!--    <ul class="list-unstyled list-inline text-center">-->
-<!--        <li class="list-inline-item">-->
-<!--            <a mdbBtn floating="true" color="fb" class="mx-1" mdbWavesEffect>-->
-<!--                <mdb-icon fab icon="facebook"></mdb-icon>-->
-<!--            </a>-->
-<!--        </li>-->
-<!--        <li class="list-inline-item">-->
-<!--            <a mdbBtn floating="true" color="tw" class="mx-1" mdbWavesEffect>-->
-<!--                <mdb-icon fab icon="twitter"></mdb-icon>-->
-<!--            </a>-->
-<!--        </li>-->
-<!--        <li class="list-inline-item">-->
-<!--            <a mdbBtn floating="true" color="gplus" class="mx-1" mdbWavesEffect>-->
-<!--                <mdb-icon fab fab icon="google-plus"></mdb-icon>-->
-<!--            </a>-->
-<!--        </li>-->
-<!--        <li class="list-inline-item">-->
-<!--            <a mdbBtn floating="true" color="li" class="mx-1" mdbWavesEffect>-->
-<!--                <mdb-icon fab icon="linkedin"></mdb-icon>-->
-<!--            </a>-->
-<!--        </li>-->
-<!--        <li class="list-inline-item">-->
-<!--            <a mdbBtn floating="true" color="dribbble" class="mx-1" mdbWavesEffect>-->
-<!--                <mdb-icon fab icon="dribbble"></mdb-icon>-->
-<!--            </a>-->
-<!--        </li>-->
-<!--    </ul>-->
+    <!--    <ul class="list-unstyled list-inline text-center">-->
+    <!--        <li class="list-inline-item">-->
+    <!--            <a mdbBtn floating="true" color="fb" class="mx-1" mdbWavesEffect>-->
+    <!--                <mdb-icon fab icon="facebook"></mdb-icon>-->
+    <!--            </a>-->
+    <!--        </li>-->
+    <!--        <li class="list-inline-item">-->
+    <!--            <a mdbBtn floating="true" color="tw" class="mx-1" mdbWavesEffect>-->
+    <!--                <mdb-icon fab icon="twitter"></mdb-icon>-->
+    <!--            </a>-->
+    <!--        </li>-->
+    <!--        <li class="list-inline-item">-->
+    <!--            <a mdbBtn floating="true" color="gplus" class="mx-1" mdbWavesEffect>-->
+    <!--                <mdb-icon fab fab icon="google-plus"></mdb-icon>-->
+    <!--            </a>-->
+    <!--        </li>-->
+    <!--        <li class="list-inline-item">-->
+    <!--            <a mdbBtn floating="true" color="li" class="mx-1" mdbWavesEffect>-->
+    <!--                <mdb-icon fab icon="linkedin"></mdb-icon>-->
+    <!--            </a>-->
+    <!--        </li>-->
+    <!--        <li class="list-inline-item">-->
+    <!--            <a mdbBtn floating="true" color="dribbble" class="mx-1" mdbWavesEffect>-->
+    <!--                <mdb-icon fab icon="dribbble"></mdb-icon>-->
+    <!--            </a>-->
+    <!--        </li>-->
+    <!--    </ul>-->
     <!-- Social buttons -->
 
     <!-- Copyright -->
-<!--    <div class="footer-copyright text-center py-3">© 2020 Copyright:-->
-<!--        <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>-->
-<!--    </div>-->
+    <!--    <div class="footer-copyright text-center py-3">© 2020 Copyright:-->
+    <!--        <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>-->
+    <!--    </div>-->
     <!-- Copyright -->
 
 </footer>
