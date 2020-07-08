@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Inject, OnInit, Output} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {IndexLayoutComponent} from "../dashboard-layout/index-layout/index-layout.component";
-import {SearchHotel} from "../../shared/model/search-hotel";
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {IndexLayoutComponent} from '../dashboard-layout/index-layout/index-layout.component';
+import {SearchHotel} from '../../shared/model/search-hotel';
 
 @Component({
     selector: 'app-choose-room-type-dialog',
@@ -91,15 +91,16 @@ export class ChooseRoomTypeDialogComponent implements OnInit {
 
     addRoomCount() {
         this.searchHotel.roomCount = this.searchHotel.roomCount + 1;
-        this.searchHotel.personCount=this.searchHotel.roomCount;
+        this.searchHotel.personCount = this.searchHotel.roomCount;
     }
 
     removeRoomCount() {
-        if (this.searchHotel.roomCount > 1)
+        if (this.searchHotel.roomCount > 1) {
             this.searchHotel.roomCount = this.searchHotel.roomCount - 1;
-        if(this.searchHotel.roomCount===1){
-            this.searchHotel.childrenCount=1;
-            this.searchHotel.personCount=1;
+        }
+        if (this.searchHotel.roomCount === 1) {
+            this.searchHotel.childrenCount = 1;
+            this.searchHotel.personCount = 1;
         }
     }
 
@@ -108,8 +109,9 @@ export class ChooseRoomTypeDialogComponent implements OnInit {
     }
 
     removePersonCount() {
-        if (this.searchHotel.personCount > 0)
+        if (this.searchHotel.personCount > 0) {
             this.searchHotel.personCount = this.searchHotel.personCount - 1;
+        }
     }
 
     addChildCount() {
@@ -117,7 +119,8 @@ export class ChooseRoomTypeDialogComponent implements OnInit {
     }
 
     removeChildCount() {
-        if (this.searchHotel.childrenCount > 0)
+        if (this.searchHotel.childrenCount > 0) {
             this.searchHotel.childrenCount = this.searchHotel.childrenCount - 1;
+        }
     }
 }

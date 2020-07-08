@@ -65,7 +65,7 @@ export class IndexLayoutComponent implements OnInit {
                 if (item.address !== '') {
                     this.options.push(item.address)
                 }
-                    this.options.push(item.name)
+                this.options.push(item.name)
             }
             console.log(this.options)
         });
@@ -122,6 +122,8 @@ export class IndexLayoutComponent implements OnInit {
                     if (checkSearch['childrenCount'] !== undefined && checkSearch['childrenCount'] > 0) {
                         this.searchHotel.total = this.searchHotel.total + ', ' + checkSearch['childrenCount'] + ' children';
                     }
+                } else {
+                    this.searchHotel.total = '';
                 }
             })
         }
@@ -143,8 +145,8 @@ export class IndexLayoutComponent implements OnInit {
     searchHotelServer() {
         console.log(this.searchHotel);
         // @ts-ignore\\\\\\\\\\\\\\\\\
-         this.cookie.set('searchText',  JSON.stringify(this.searchHotel));
-         console.log(this.cookie.get('searchText'))
+        this.cookie.set('searchText', JSON.stringify(this.searchHotel));
+        console.log(this.cookie.get('searchText'))
         this._router.navigateByUrl('/search-hotels')
         this.chatService.showNotification('success', 'Tìm kiếm thành công');
     }

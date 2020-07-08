@@ -18,6 +18,7 @@ import {Summary} from '../../shared/model/summary';
 import {Observable} from 'rxjs';
 import {HotelService} from '../../shared/service/hotel.service.';
 import {ChooseRoomTypeDialogComponent} from '../choose-room-type-dialog/choose-room-type-dialog.component';
+import {map, startWith} from 'rxjs/operators';
 
 
 @Component({
@@ -60,11 +61,7 @@ export class DashboardLayoutComponent implements OnInit {
     imageUrl = 'assets/img/new_logo.png'
     message = '';
     searchHotel = new SearchHotel('', 1, 1, 1);
-    myControl = new FormControl();
-    lstHotel: any;
-    options: string[] = ['Đà Nẵng', 'Hà Nội', 'Hồ Chí Minh'];
-    filteredOptions: Observable<string[]>;
-
+    searchPerson = ''
     constructor(
         private title: Title,
         location: Location,
@@ -103,26 +100,9 @@ export class DashboardLayoutComponent implements OnInit {
                 element.setAttribute('style', 'display:none');
 
                 const element2 = document.getElementById('check-point-search');
-                element2.setAttribute('style', 'display:block');
-
+                element2.setAttribute('style', 'display:block;background-color:black!important');
             }
         });
-
-        this.hotelService.getHotelSearch().subscribe(hotels => {
-            if (hotels === undefined) {
-                return;
-            }
-            this.lstHotel = hotels;
-            for (const item of this.lstHotel) {
-                if (item.address !== '') {
-                    this.options.push(item.address)
-                }
-                this.options.push(item.name)
-            }
-            console.log(this.options)
-        });
-
-
     }
 
     ngOnInit() {
@@ -145,7 +125,7 @@ export class DashboardLayoutComponent implements OnInit {
             email: ['', [Validators.required, Validators.email]],
             password: ['', [Validators.required, Validators.minLength(6)]]
         });
-        console.log('hhehe' + this.isModeration)
+
     }
 
     getSummary() {
@@ -422,7 +402,7 @@ export class DashboardLayoutComponent implements OnInit {
     searchHotelServer() {
         console.log(this.searchHotel);
         // @ts-ignore\\\\\\\\\\\\\\\\\
-        this.cookie.set('searchText',  JSON.stringify(this.searchHotel));
+        this.cookie.set('searchText', JSON.stringify(this.searchHotel));
         console.log(this.cookie.get('searchText'))
         this._router.navigateByUrl('/search-hotels')
         this.chatService.showNotification('success', 'Tìm kiếm thành công');
@@ -467,9 +447,4 @@ export class DashboardLayoutComponent implements OnInit {
         return dialogRef.afterClosed();
     }
 
-    private _filter(value: string): string[] {
-        const filterValue = value.toLowerCase();
-
-        return this.options.filter(option => option.toLowerCase().includes(filterValue));
-    }
 }

@@ -39,49 +39,42 @@
     </div>
 </nav>
 
-<nav class="navbar fixed-top navbar-light bg-light" id="check-point-search">
+<nav class="navbar fixed-top navbar-light bg-light" id="check-point-search" style="display: none">
     <div class="form-inline my-2 my-lg-0">
-        <div class="container">
+        <div class="container" style="padding-left: 0px; padding-right: 0px">
             <div class="row">
                 <div class="col">
-                    <img class="text-left" src="assets/img/logo.png" style="width: 250px; height: 50px;margin-left: 10px;" alt="Booking.com"/>
+                    <img class="text-left" src="assets/img/logo.png"
+                         style="width: 250px; height: 50px;margin-left: 10px;" alt="Booking.com"/>
                 </div>
-                <div class="col">
+                <div class="col" style="background-color: white; border-radius: 10px;">
                     <mat-form-field>
                         <input type="text"
                                matInput
                                [(ngModel)]="searchHotel.address"
-                               [formControl]="myControl"
-                               [matAutocomplete]="auto" [placeholder]="'index.searchNameOrPlace' | translate">
-                        <mat-autocomplete #auto="matAutocomplete">
-                            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                                {{option}}
-                            </mat-option>
-                        </mat-autocomplete>
+                               [placeholder]="'index.searchNameOrPlace' | translate">
                     </mat-form-field>
+                </div>
+                <div class="col" style="background-color: white; border-radius: 10px; margin-left: 10px">
+                    <mat-form-field>
+                        <input type="text" matInput [value]="searchHotel.total"
+                               [(ngModel)]='searchPerson'
+                               (click)="openDialogChooseHotelType($event)"
+                               [placeholder]="'dialog.infoRoom' | translate"
+                        >
+                    </mat-form-field>
+                </div>
+                <div class="col" style="display: flex; align-items: center;">
+                    <button class="btn btn-outline-primary" (click)="searchHotelServer()"
+                            style=" border: 0.5px solid blue; color: #0c83e2;">
+                        {{"index.search"|translate}}
+                    </button>
                 </div>
             </div>
         </div>
 
     </div>
-    <ul class="navbar-nav mr-auto">
-    </ul>
 
-    <!--    <form class="form-inline">-->
-    <!--        <mat-form-field>-->
-    <!--            <input type="text" class=" mr-sm-2"-->
-    <!--                   matInput-->
-    <!--                   [(ngModel)]="searchHotel.address"-->
-    <!--                   [formControl]="myControl"-->
-    <!--                   [matAutocomplete]="auto" [placeholder]="'index.searchNameOrPlace' | translate">-->
-    <!--            <mat-autocomplete #auto="matAutocomplete">-->
-    <!--                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">-->
-    <!--                    {{option}}-->
-    <!--                </mat-option>-->
-    <!--            </mat-autocomplete>-->
-    <!--        </mat-form-field>-->
-    <!--        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
-    <!--    </form>-->
 </nav>
 
 <!--<div class="fixed-top navbar-light bg-light" id="check-point-search" style="text-align: center">-->
