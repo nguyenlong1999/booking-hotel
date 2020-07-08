@@ -10,14 +10,14 @@ import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
     styleUrls: ['./image.component.css']
 })
 export class ImageComponent implements OnInit {
-    @Input('imageProp') private imageProp: String;
+    @Input('imageProp')  imageProp: String;
     @Input('url') private url: any;
-    @Input('listImgCurrent') private listImgCurrent: any;
-    @Output() private imageSrcUrl = new EventEmitter();
-    @Output() private indexDelete =  new EventEmitter<string>();
+    @Input('listImgCurrent')  listImgCurrent: any;
+    @Output()  imageSrcUrl = new EventEmitter();
+    @Output()  indexDelete =  new EventEmitter<string>();
 
     // tslint:disable-next-line:no-input-rename
-    @Input('multiple') private multiple = true
+    @Input('multiple')  multiple = true
 
     public uploader: FileUploader = new FileUploader({
         url: AppSetting.BASE_SERVER_URL + '/api/upload',

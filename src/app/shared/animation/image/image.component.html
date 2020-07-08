@@ -16,7 +16,7 @@
         <div class="col-lg-2"  *ngFor="let imageCurrent of listImgCurrent; let i = index">
             <div class="row" *ngIf="imageCurrent">
                 <div class="col">
-                    <div tyle="position: relative">
+                    <div style="position: relative">
                         <img [src]="'http://localhost:8000/api/images/'+imageCurrent" style="max-width:100%; height: auto;" />
                     </div>
                 </div>
