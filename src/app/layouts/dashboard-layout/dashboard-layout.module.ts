@@ -33,6 +33,7 @@ import {SatDatepickerModule, SatNativeDateModule} from 'saturn-datepicker';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { FindHotelComponent } from './find-hotel/find-hotel.component';
+import { HotelDetailsComponent } from './hotel-details/hotel-details.component';
 
 @NgModule({
     declarations: [
@@ -44,7 +45,8 @@ import { FindHotelComponent } from './find-hotel/find-hotel.component';
         WelcomeComponent,
         UserEditComponent,
         ForgetPasswordComponent,
-        FindHotelComponent
+        FindHotelComponent,
+        HotelDetailsComponent
         // add các component của trang người dùng vào đây
     ],
     imports: [

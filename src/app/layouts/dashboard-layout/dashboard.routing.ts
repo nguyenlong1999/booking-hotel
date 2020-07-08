@@ -7,6 +7,7 @@ import {WelcomeComponent} from '../../welcome/welcome.component';
 import {UserEditComponent} from './user-edit/user-edit.component';
 import {ForgetPasswordComponent} from '../../forget-password/forget-password.component';
 import {FindHotelComponent} from './find-hotel/find-hotel.component';
+import {HotelDetailsComponent} from './hotel-details/hotel-details.component';
 
 export const DashBoardRoutes: Routes = [
 
@@ -47,6 +48,10 @@ export const DashBoardRoutes: Routes = [
             {
                 path: 'search-hotels',
                 component: FindHotelComponent
+            },
+            {
+                path: 'hotel-details',
+                component: HotelDetailsComponent
             },
             /* {
               path: 'about',
