@@ -10,16 +10,44 @@ export class HotelDetailsComponent implements OnInit {
     galleryOptions: NgxGalleryOptions[];
     galleryImages: NgxGalleryImage[];
 
+    nameHotel = ' hotel cuar long dz';
+
+    lstAddressPopular = [
+        {
+            name: 'Đường Phạm Ngũ Lão ', km: 400
+        },
+        {
+            name: 'Ben Thanh Market', km: 830
+        },
+        {
+            name: 'Dinh Độc Lập', km: 870
+        },
+        {
+            name: 'Bảo tàng Chứng tích Chiến tranh', km: 890
+        },
+        {
+            name: 'Quảng trường Hồ Chí Minh ', km: 620
+        },
+        {
+            name: 'Bưu điện Trung tâm Thành phố', km: 250
+        },
+        {
+            name: 'Chợ Lớn', km: 200
+        },
+        {
+            name: 'Chùa Giác Lâm', km: 250
+        }
+    ]
     constructor() {
     }
 
     ngOnInit(): void {
         this.galleryOptions = [
             {
-                width: '600px',
-                height: '400px',
+                width: '800px',
+                height: '500px',
                 thumbnailsColumns: 4,
-                imageAnimation: NgxGalleryAnimation.Slide
+                imageAnimation: NgxGalleryAnimation.Rotate
             },
             // max-width 800
             {

@@ -1,4 +1,4 @@
-<agm-map [latitude]="map.lat" [longitude]="map.lng" [zoom]="zoom" style="height: 700px">
+<agm-map [latitude]="map.lat" [longitude]="map.lng" [zoom]="zoom" style="height: 100%">
     <agm-marker [latitude]="map.lat" [longitude]="map.lng" [openInfoWindow]="true" (markerClick)="clickedMarker(infowindow)">
         <agm-info-window #infowindow >
            Tên: {{name}}
@@ -6,5 +6,4 @@
             <strong>{{address}}</strong>
         </agm-info-window>
     </agm-marker>
-
 </agm-map>
