@@ -34,6 +34,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { FindHotelComponent } from './find-hotel/find-hotel.component';
 import { HotelDetailsComponent } from './hotel-details/hotel-details.component';
+import {NgxGalleryModule} from '@kolkov/ngx-gallery';
 
 @NgModule({
     declarations: [
@@ -70,6 +71,7 @@ import { HotelDetailsComponent } from './hotel-details/hotel-details.component';
         SatNativeDateModule,
         MatDatepickerModule,
         MatDialogModule,
+        NgxGalleryModule,
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,

@@ -28,6 +28,7 @@ import {AgmCoreModule} from '@agm/core';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
+import {NgxGalleryModule} from '@kolkov/ngx-gallery';
 
 const config: SocketIoConfig = {url: AppSetting.BASE_SERVER_URL, options: {}};
 
@@ -53,6 +54,7 @@ const config: SocketIoConfig = {url: AppSetting.BASE_SERVER_URL, options: {}};
         MatInputModule,
         MatSelectModule,
         MatTooltipModule,
+        NgxGalleryModule,
         ToastrModule.forRoot(),
         AgmCoreModule.forRoot({
             apiKey: 'AIzaSyDbIf1-IDfQ0DGaOvAfu5lNZ0bZm0VaisM',
