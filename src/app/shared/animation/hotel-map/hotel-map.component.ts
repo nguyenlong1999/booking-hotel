@@ -10,9 +10,9 @@ export class HotelMapComponent implements OnInit, OnChanges {
 
     @Input() lat
     @Input() lng
-    @Input() zoom = 6;
+    @Input() zoom = 15;
     @Input() address = '';
-    @Input() name = '';
+    @Input() name;
     public map;
     previous
 

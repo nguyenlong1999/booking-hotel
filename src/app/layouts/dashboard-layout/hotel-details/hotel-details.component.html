@@ -1,12 +1,94 @@
-<div style="margin-top: 3rem">
+<div style="margin-top: 3rem; ">
     <div class="container" style="position: relative">
         <div class="d-flex bd-highlight">
-            <div class="p-2 w-100 bd-highlight">
-                <div class="row">
-                    <ngx-gallery [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery"></ngx-gallery>
+            <div class="p-2 bd-highlight" style="padding-right: 0px!important;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col" style="padding-right: 0px!important;">
+                            <ngx-gallery [options]="galleryOptions" [images]="galleryImages"
+                                         class="ngx-gallery"></ngx-gallery>
+                        </div>
+                    </div>
+                    <div class="row" style="padding: 20px">
+                        <div class="col">
+                            xxx
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="p-2 flex-shrink-1 bd-highlight">Flex item</div>
+            <div class=" p-2 flex-shrink-0 bd-highlight" style="padding-left: 0px!important; ">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="d-flex justify-content-center">
+                                <div class="content text-center">
+                                    <div class="ratings"><span class="product-rating">4.6</span><span>/5</span>
+                                        <div class="stars">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <div class="rating-text"><span>46 ratings & 15 reviews</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col " >
+                            <div style="height: 250px;  padding: 20px; background: white ;border: #00a5d7 1px solid; border-bottom: none">
+                                <app-hotel-map [lat]="21.014009" [lng]="105.691137" [name]="nameHotel"></app-hotel-map>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3" style="padding-right: 0px">
+                            <div style="padding: 20px; background: white; padding-top: 0px!important; padding-right: 0px!important;">
+                                <div style="width: 50px; height: 50px; text-align: center;border: #5392f9 3px solid ;line-height: 40px;">
+                                  <span style="font-size: 20px; font-weight: bold">8,9</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col" style="padding-left: 0px">
+                            <div style="padding: 20px; background: white; padding-top: 0px!important; padding-left: 0px!important;">
+                                <div style="width:200px; height: 50px;">
+                                    <span style="font-size: 25px">Tuyệt vời</span>
+                                    <br>
+                                    <span>Điểm đánh giá vị trí</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div style="padding: 0 20px; background: white; padding-top: 0px!important;">
+                                <div>
+                                    <i class="material-icons" data-notify="icon">toys</i>
+                                    <span align-top style="font-weight: bold; margin-left: 20px ;vertical-align: top">Vị trí tuyệt vời <span style="font-weight: normal">- trong nội thành</span> </span>
+                                </div>
+                                <div>
+                                    <i class="material-icons" style="color: red" data-notify="icon">location_city</i>
+                                    <span align-top style="font-weight: bold; margin-left: 20px ;vertical-align: top">Địa bàn phổ biến </span>
+                                </div>
+                                <hr>
+                                <div>
+                                    <span style="font-weight: bold">Các địa danh nổi tiếng</span>
+                                </div>
+                                <div *ngFor="let i of lstAddressPopular; let index = index">
+                                    <div class="row">
+                                        <div class="col-9">{{ i.name}}</div>
+                                        <div class="col">{{ i.km }} m</div>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
     </div>
 </div>
