@@ -56,7 +56,7 @@ export class IndexLayoutComponent implements OnInit {
         private eventEmitterService: EventEmitterService,
         private hotelService: HotelService
     ) {
-        this.hotelService.getHotels().subscribe(hotels => {
+        this.hotelService.getHotelSearch().subscribe(hotels => {
             if (hotels === undefined) {
                 return;
             }

@@ -108,7 +108,7 @@ export class DashboardLayoutComponent implements OnInit {
             }
         });
 
-        this.hotelService.getHotels().subscribe(hotels => {
+        this.hotelService.getHotelSearch().subscribe(hotels => {
             if (hotels === undefined) {
                 return;
             }
