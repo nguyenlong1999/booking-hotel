@@ -309,6 +309,13 @@
     "Smoking": "Được hút thuốc",
     "petsAllowed": "Cho phép vật nuôi"
   },
+  "Standard": "Phòng tiêu chuẩn",
+  "Superior": "Phòng view đẹp",
+  "Deluxe": "Phòng cao cấp",
+  "Suite": "Phòng siêu sang",
+  "Family": "Phòng đôi",
+  "President": "Phòng Tổng thống",
+  "Royal": "Phòng Hoàng gia",
   "room": {
     "room": "Phòng",
     "RoomInformation": "Thông tin phòng",
