@@ -1303,7 +1303,7 @@
                                         <mat-button-toggle-group
                                                 formControlName="reservationTime">
                                             <mat-button-toggle id="matBtn{{i}}"
-                                                               *ngFor="let btn of listMatButton;let i = index">
+                                                               *ngFor="let btn of listMatButton;let i = index" [value]="btn.value">
                                                 {{btn.name | translate}}
                                             </mat-button-toggle>
                                         </mat-button-toggle-group>

@@ -6,7 +6,7 @@ import {LoginServiceService} from '../shared/service/login-service.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {HotelService} from '../shared/service/hotel.service.';
 import {CookieService} from 'ngx-cookie-service';
-import {RoomTypeEnum} from "../shared/enums/RoomTypeEnum";
+import {RoomTypeEnum} from '../shared/enums/RoomTypeEnum';
 
 @Component({
     selector: 'app-hotel-access',
@@ -153,7 +153,7 @@ export class HotelAccessComponent implements OnInit {
             formArrayRoomNumber: this.formbuilder.array([
                 // this.addControlRoom()
             ]),
-            reservationTime: '',
+            reservationTime: [''],
             cancellationPolicy: ['']
         })
         this.plusTotalRoomNumber();
@@ -348,7 +348,7 @@ export class HotelAccessComponent implements OnInit {
                     roomWorkspace: this.formbuilder.control(true),
                     roomFireplace: this.formbuilder.control(true),
                     roomHotTub: this.formbuilder.control(true),
-                    roomType:['']
+                    roomType: ['']
                 }));
 
                 // xử lý push control array
@@ -393,6 +393,7 @@ export class HotelAccessComponent implements OnInit {
         this.registerHotelForm.get('totalRoomNumber').setValue(this.totaltypeRoomNumber)
         this.registerHotelForm.get('starHotel').setValue(this.rating)
 
+        console.log('data-register: ');
         console.log(this.registerHotelForm.value);
         const hoTelsObject = this.registerHotelForm.value;
         hoTelsObject.email = this.cookies.get('email');
@@ -445,7 +446,7 @@ export class HotelAccessComponent implements OnInit {
     }
     doSomething(event,index){
         console.log(event.value)
-        if(!this.isEdited){
+        if (!this.isEdited) {
             this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomTea').patchValue(true)
             this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomCoffee').patchValue(true)
             this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomBeddingSet').patchValue(true)
