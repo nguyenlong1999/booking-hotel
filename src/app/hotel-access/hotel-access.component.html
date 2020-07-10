@@ -432,9 +432,9 @@
                                                 <div class="row">
                                                     <div class="col">
                                                         <div style="height: 700px">
-                                                            <app-hotel-map  [lat]="lat" [lng]="lng"
-                                                                            [address]="address"
-                                                                            [name]="name"></app-hotel-map>
+                                                            <app-hotel-map [lat]="lat" [lng]="lng"
+                                                                           [address]="address"
+                                                                           [name]="name"></app-hotel-map>
                                                         </div>
 
                                                     </div>
@@ -1143,7 +1143,8 @@
                                                         <div class="row" style="margin-left: 20px;">
                                                             <mat-form-field>
                                                                 <mat-label>{{"room.type"|translate}}</mat-label>
-                                                                <mat-select (selectionChange)="doSomething($event,i)" formControlName="roomType">
+                                                                <mat-select (selectionChange)="doSomething($event,i)"
+                                                                            formControlName="roomType">
                                                                     <mat-option
                                                                             *ngFor="let typeRoom of lstTypeRoom;let i=index"
                                                                             [value]="typeRoom.value">
@@ -1230,13 +1231,13 @@
                                                                 <mat-checkbox color="primary"
                                                                               formControlName="roomIroningMachine">{{"facilities.ironingMachine" | translate}}
                                                                 </mat-checkbox>
-
                                                             </div>
+                                                        </div>
+                                                        <div class="row">
                                                             <div class="col">
                                                                 <mat-checkbox color="primary"
-                                                                              formControlName="roomFreeBreakfast">{{"facilities.freeBreakfast" | translate}}
+                                                                              formControlName="roomSmartKey">{{"facilities.smartKey"|translate}}
                                                                 </mat-checkbox>
-
                                                             </div>
                                                         </div>
                                                         <div class="row">
@@ -1249,7 +1250,7 @@
                                                         <div class="row">
                                                             <div class="col">
                                                                 <mat-checkbox color="primary"
-                                                                              formControlName="roomSmartKey">{{"facilities.smartKey"|translate}}
+                                                                              formControlName="roomFreeBreakfast">{{"facilities.freeBreakfast" | translate}}
                                                                 </mat-checkbox>
                                                             </div>
                                                         </div>
@@ -1303,7 +1304,8 @@
                                         <mat-button-toggle-group
                                                 formControlName="reservationTime">
                                             <mat-button-toggle id="matBtn{{i}}"
-                                                               *ngFor="let btn of listMatButton;let i = index" [value]="btn.value">
+                                                               *ngFor="let btn of listMatButton;let i = index"
+                                                               [value]="btn.value">
                                                 {{btn.name | translate}}
                                             </mat-button-toggle>
                                         </mat-button-toggle-group>

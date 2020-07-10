@@ -1,9 +1,10 @@
 <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light" id="check-point">
-    <img src="assets/img/logo.png" style="width: 250px; height: 50px;margin-left: 10px;" alt="Booking.com"/>
+    <img src="assets/img/logo.png" style="width: 250px; height: 50px;margin-left: 10px;"
+         [routerLink]="'/index'" alt="Booking-hotel.com"/>
     <ul class="navbar-nav mr-auto">
     </ul>
     <div class="form-inline my-2 my-lg-0">
-        <a class="navbar1">{{ "index.home" | translate }}</a>
+        <a class="navbar1" [routerLink]="'/index'">{{ "index.home" | translate }}</a>
         <a class="navbar1 mr-sm-2">{{ "book.room" | translate }}</a>
         <a class="navbar1 mr-sm-2">{{ "book.promotion" | translate }}</a>
         <a class="navbar1" href="javascript:void(0)" *ngIf="!checkLanguage"

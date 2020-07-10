@@ -39,7 +39,8 @@ export class DashboardLayoutComponent implements OnInit {
     submitted = false;
     registerForm: FormGroup;
     isLang = true; // true is vi
-    tfaFlag = false
+    tfaFlag = false;
+    openDialog = false;
     userObject = {
         email: '',
         password: ''
@@ -62,6 +63,7 @@ export class DashboardLayoutComponent implements OnInit {
     message = '';
     searchHotel = new SearchHotel('', 1, 1, 1);
     searchPerson = ''
+
     constructor(
         private title: Title,
         location: Location,
@@ -87,20 +89,21 @@ export class DashboardLayoutComponent implements OnInit {
             if (event.deltaY < 0) {
                 console.log('scrolling up');
                 const element = document.getElementById('check-point');
-                element.setAttribute('style', 'background-color:white!important;');
-
-                const element2 = document.getElementById('check-point-search');
-                element2.setAttribute('style', 'display:none');
-
+                if (element!== undefined){
+                    element.setAttribute('style', 'background-color:white!important;');
+                    const element2 = document.getElementById('check-point-search');
+                    element2.setAttribute('style', 'display:none');
+                }
             } else if (event.deltaY > 0) {
                 console.log('scrolling down');
                 // tslint:disable-next-line:no-duplicate-variable
                 const element = document.getElementById('check-point');
                 // element.setAttribute('style', 'background-color:black!important;');
-                element.setAttribute('style', 'display:none');
-
-                const element2 = document.getElementById('check-point-search');
-                element2.setAttribute('style', 'display:block;background-color:black!important');
+                if(element!==undefined){
+                    element.setAttribute('style', 'display:none');
+                    const element2 = document.getElementById('check-point-search');
+                    element2.setAttribute('style', 'display:block;background-color:black!important');
+                }
             }
         });
     }
@@ -409,7 +412,9 @@ export class DashboardLayoutComponent implements OnInit {
     }
 
     openDialogChooseHotelType(event) {
-        if (this.isLang) {
+        console.log('help')
+        if (this.isLang && this.openDialog === false) {
+            this.openDialog = true;
             this.ShowDialogChooseHotelType(event).subscribe(data => {
                 const checkSearch = data[0];
                 console.log(checkSearch);
@@ -418,9 +423,13 @@ export class DashboardLayoutComponent implements OnInit {
                     if (checkSearch['childrenCount'] !== undefined && checkSearch['childrenCount'] > 0) {
                         this.searchHotel.total = this.searchHotel.total + ', ' + checkSearch['childrenCount'] + ' trẻ em';
                     }
+                    this.openDialog = false;
                 }
             })
         } else {
+            if (this.openDialog === true) {
+                return;
+            }
             this.ShowDialogChooseHotelType(event).subscribe(data => {
                 const checkSearch = data[0];
                 console.log(checkSearch);
@@ -429,6 +438,7 @@ export class DashboardLayoutComponent implements OnInit {
                     if (checkSearch['childrenCount'] !== undefined && checkSearch['childrenCount'] > 0) {
                         this.searchHotel.total = this.searchHotel.total + ', ' + checkSearch['childrenCount'] + ' children';
                     }
+                    this.openDialog = false;
                 }
             })
         }
