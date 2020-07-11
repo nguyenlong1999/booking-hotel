@@ -112,10 +112,16 @@ export class HotelDetailsComponent implements OnInit {
     ngOnInit(): void {
         this.galleryOptions = [
             {
-                width: '800px',
+                width: '1200px',
                 height: '500px',
                 thumbnailsColumns: 4,
                 imageAnimation: NgxGalleryAnimation.Rotate
+            },
+            {
+                'imageAutoPlay': true,
+                'imageAutoPlayPauseOnHover': true,
+                'previewAutoPlay': true,
+                'previewAutoPlayPauseOnHover': true
             },
             // max-width 800
             {
@@ -127,11 +133,6 @@ export class HotelDetailsComponent implements OnInit {
                 thumbnailsMargin: 20,
                 thumbnailMargin: 20
             },
-            // max-width 400
-            {
-                breakpoint: 400,
-                preview: false
-            }
         ];
 
         this.galleryImages = [
@@ -164,10 +165,16 @@ export class HotelDetailsComponent implements OnInit {
 
         this.galleryOptions1 = [
             {
-                width: '250px',
-                height: '200px',
+                width: '100px',
+                height: '100px',
                 thumbnailsColumns: 2,
                 imageAnimation: NgxGalleryAnimation.Rotate
+            },
+            {
+                imageAutoPlay: true,
+                imageAutoPlayPauseOnHover: true,
+                previewAutoPlay: true,
+                previewAutoPlayPauseOnHover: true
             },
             // max-width 800
             {

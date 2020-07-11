@@ -6,7 +6,7 @@
                     <div class="row">
                         <div class="col" style="padding-right: 0px!important;">
                             <ngx-gallery [options]="galleryOptions" [images]="galleryImages"
-                                         class="ngx-gallery"></ngx-gallery>
+                                         class="ngx-gallery" style="width: 100%"></ngx-gallery>
                         </div>
                     </div>
                     <div class="row">
@@ -244,28 +244,28 @@
                     <div class="col">
                         <div class="row mt-2">
                             <div class="col-3">
-                                Loại phòng
+                                <span style="font-weight: bold; font-size: 15px">Loại phòng</span>
                             </div>
-                            <div class="col-3">
-                                Giá này đã bao gồm
+                            <div class="col-3 pl-0">
+                                <span style="font-weight: bold; font-size: 15px">Giá này đã bao gồm</span>
                             </div>
-                            <div class="col-1">
-                                Sức chứa
+                            <div class="col-1 pl-0">
+                                <span style="font-weight: bold; font-size: 15px">Sức chứa</span>
                             </div>
-                            <div class="col">
-                                Giá phòng/đêm
+                            <div class="col pl-0">
+                                <span style="font-weight: bold; font-size: 15px">Giá phòng/đêm</span>
                             </div>
-                            <div class="col-1">
-                                SL
+                            <div class="col-1 pl-0">
+                                <span style="font-weight: bold; font-size: 15px">SL</span>
                             </div>
-                            <div class="col">
-                                Đặt nhiều nhất
+                            <div class="col pl-0">
+                                <span style="font-weight: bold; font-size: 15px">Đặt nhiều nhất</span>
                             </div>
                         </div>
                         <div class="row mt-2">
-                            <div class="col-3">
+                            <div class="col-3 pb-3">
                                 <ngx-gallery [options]="galleryOptions1" [images]="galleryImages1"
-                                             class="ngx-gallery"></ngx-gallery>
+                                             class="ngx-gallery" style="width: 100%; height: 200px"></ngx-gallery>
                                 <br>
                                 <div *ngFor="let tiennghi of lstTienNghiRoom | filterByStatus: filterargsStatus; let x = index">
                                     <div *ngIf="x<7">
@@ -277,16 +277,25 @@
                                 <span style="color: #00b0ff; cursor: pointer;">Xem thêm</span>
                                 <br>
                                 <hr>
+                                <span class="mb-4">9.7 Tuyệt vời</span>
                             </div>
-                            <div class="col-3">
+                            <div class="col-3 mb-2 pt-2 pl-3" style="background: white; box-shadow: 0 3px 2px -2px #80808070;">
+                                <span style="font-weight: bold; font-size: 13px">Lợi ích</span>
+                                <br>
+                                <i class="material-icons" style="vertical-align: bottom; color: #00e676"
+                                   ata-notify="icon">done</i> Wifi miễn phí
                             </div>
-                            <div class="col-1">
+                            <div class="col-1 mb-2"
+                                 style="background: white;border-left: 1px solid #c4cccc;box-shadow: 0 3px 2px -2px #80808070;">
                             </div>
-                            <div class="col">
+                            <div class="col mb-2"
+                                 style="background: white;border-left: 1px solid #c4cccc;box-shadow: 0 3px 2px -2px #80808070;">
                             </div>
-                            <div class="col-1">
+                            <div class="col-1 mb-2"
+                                 style="background: white;border-left: 1px solid #c4cccc;box-shadow: 0 3px 2px -2px #80808070;">
                             </div>
-                            <div class="col">
+                            <div class="col mb-2 mr-3"
+                                 style="background: white;border-left: 1px solid #c4cccc;box-shadow: 0 3px 2px -2px #80808070;">
                             </div>
                         </div>
                     </div>
@@ -395,7 +404,7 @@
                                 <span style="margin-left: 14px">Lò sưởi</span></div>
                         </div>
                         <div class="row pt-2">
-                            <div class="col"><i class="material-icons" style="vertical-align: bottom" ata-notify="icon">add_shopping_cart</i>
+                            <div class="col"><i class="material-icons" style="vertical-align: bottom" ata-notify="icon">cleaning_services</i>
                                 <span style="margin-left: 14px">Dọn phòng hằng ngày</span></div>
                             <div class="col"><i class="material-icons" style="vertical-align: bottom" ata-notify="icon">smoke_free</i>
                                 <span style="margin-left: 14px">Hoàn toàn không hút thuốc</span></div>
