@@ -43,8 +43,8 @@ export class HotelMapComponent implements OnInit, OnChanges {
         if (currentVal1 !== undefined) this.lng = currentVal1;
         let prev1 = changes.previousValue
         console.log(currentVal, currentVal1)
-        if (changes.address.currentValue !== undefined) this.address = changes.address.currentValue;
-        if (changes.name.currentValue !== undefined) this.name = changes.name.currentValue;
+        if (changes.address !== undefined&&changes.address.currentValue !== undefined) this.address = changes.address.currentValue;
+        if (changes.name !== undefined&&changes.name.currentValue !== undefined) this.name = changes.name.currentValue;
         this.map = {lat: this.lat, lng: this.lng, zoom: this.zoom};
         console.log(prev, prev1)
     }

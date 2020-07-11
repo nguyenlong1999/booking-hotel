@@ -247,6 +247,7 @@
     "Placev2": "Khách hàng chỉ nhận được địa chỉ cụ thể một khi đã xác nhận đặt phòng.",
     "nameHotelOptional": "Tên tòa nhà, tầng và căn hộ (không bắt buộc)",
     "country": "Quốc gia",
+    "province": "Khu vực",
     "zipCode": "Mã Zip",
     "map": "Bản đồ",
     "item": "Vật dụng",

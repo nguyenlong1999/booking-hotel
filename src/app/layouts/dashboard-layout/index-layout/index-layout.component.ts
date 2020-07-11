@@ -19,7 +19,7 @@ import {HotelService} from '../../../shared/service/hotel.service.';
 @Component({
     selector: 'app-index-layout',
     templateUrl: './index-layout.component.html',
-    styleUrls: ['./index-layout.component.css']
+    styleUrls: ['./index-layout.component.scss']
 })
 export class IndexLayoutComponent implements OnInit {
     socket;

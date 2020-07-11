@@ -226,6 +226,7 @@
     "Placev2": "Customers will only receive a specific address once booking has been confirmed.",
     "nameHotelOptional": "Name of building, floor and apartment (optional)",
     "country": "Country",
+    "province": "Location",
     "zipCode": "Zip code",
     "map": "Map",
     "item": "Item",

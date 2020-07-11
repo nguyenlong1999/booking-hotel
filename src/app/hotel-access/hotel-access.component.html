@@ -307,7 +307,7 @@
                                                     <div class="col-lg-6">
                                                         <AutocompleteComponent id="check-input"
                                                                                (setAddress)="getEstablishmentAddress($event)"
-                                                                               adressType="geocode"></AutocompleteComponent>
+                                                                               adressType="address"></AutocompleteComponent>
                                                     </div>
                                                 </div>
                                                 <!--                                                <div class="row">-->
@@ -334,6 +334,13 @@
                                                             <input matInput
                                                                    [placeholder]="'hotelRegister.address' | translate"
                                                                    formControlName="address">
+                                                        </mat-form-field>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <mat-form-field>
+                                                            <input matInput
+                                                                   [placeholder]="'hotelRegister.province' | translate"
+                                                                   formControlName="province">
                                                         </mat-form-field>
                                                     </div>
                                                 </div>

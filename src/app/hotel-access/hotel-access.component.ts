@@ -143,8 +143,10 @@ export class HotelAccessComponent implements OnInit {
             // tab 2
             address: [''],
             country: [''],
-            // province: [''],
-            // city: [''],
+            province: [''],
+            longitude:[''],
+            latitude:[''],
+            nameSpace: [''],
             zip: [''],
 
             // tab 3
@@ -252,7 +254,8 @@ export class HotelAccessComponent implements OnInit {
                 this.listRadioCancel = [{name: 'room.flexiblev1', value: 1, checked: false},
                     {name: 'room.Strictv1', value: 2, checked: true}]
             }
-
+            this.lat= result[0][0].hotelObj.latitude;
+            this.lng=result[0][0].hotelObj.longitude;
 
             this.registerHotelForm = this.formbuilder.group({
                 id: result[0][0].hotelObj._id,
@@ -260,6 +263,10 @@ export class HotelAccessComponent implements OnInit {
                 sqm: result[0][0].hotelObj.sqm,
                 address: result[0][0].hotelObj.address,
                 country: result[0][0].hotelObj.country,
+                nameSpace: result[0][0].hotelObj.nameSpace,
+                latitude: result[0][0].hotelObj.latitude,
+                longitude: result[0][0].hotelObj.longitude,
+                province: result[0][0].hotelObj.province,
                 image: result[0][0].hotelObj.image,
                 starHotel: result[0][0].hotelObj.starHotel,
                 desHotel: result[0][0].hotelObj.desHotel,
@@ -396,11 +403,16 @@ export class HotelAccessComponent implements OnInit {
         this.registerHotelForm.get('totalRoomNumber').setValue(this.totaltypeRoomNumber)
         this.registerHotelForm.get('starHotel').setValue(this.rating)
 
+        let nameSpace = this.registerHotelForm.get('name').value;
+        nameSpace = nameSpace.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        nameSpace = nameSpace.toLowerCase();
+        let name = nameSpace.split(' ');
+        nameSpace = name.join('-');
+        this.registerHotelForm.get('nameSpace').patchValue(nameSpace) ;
         console.log('data-register: ');
         console.log(this.registerHotelForm.value);
         const hoTelsObject = this.registerHotelForm.value;
         hoTelsObject.email = this.cookies.get('email');
-
         if (this.isEdited) {
             console.log('vao day de edit')
             console.log(this.registerHotelForm.value);
@@ -753,10 +765,11 @@ export class HotelAccessComponent implements OnInit {
         // console.log(place['formatted_address']);
         // console.log(place['formatted_address'].split(',').pop());
         // console.log(place['formatted_address'].split(',').slice(0, -2)[2])
-        // this.registerHotelForm.get('province').setValue(place['formatted_address'].split(',').slice(0, -2)[2])
-
-        this.registerHotelForm.get('address').setValue(this.name)
-        this.registerHotelForm.get('country').setValue(place['formatted_address'].split(',').pop())
+        this.registerHotelForm.get('province').patchValue(place['address_components'][3].long_name)
+        this.registerHotelForm.get('address').patchValue(this.address);
+        this.registerHotelForm.get('latitude').patchValue(this.lat);
+        this.registerHotelForm.get('longitude').patchValue(this.lng);
+        this.registerHotelForm.get('country').patchValue(place['formatted_address'].split(',').pop())
         document.getElementById('check-input').focus();
     }
 
