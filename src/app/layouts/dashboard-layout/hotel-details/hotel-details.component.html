@@ -204,7 +204,8 @@
                 </div>
                 <div class="row pt-3">
                     <div class="col">
-                        <i class="material-icons" data-notify="icon" style="color: #00e676; vertical-align: bottom">check_circle</i> <span style="color: #00e676">Xác nhận ngay lập tức</span>
+                        <i class="material-icons" data-notify="icon" style="color: #00e676; vertical-align: bottom">check_circle</i>
+                        <span style="color: #00e676">Xác nhận ngay lập tức</span>
                     </div>
                 </div>
             </div>
@@ -232,17 +233,62 @@
                 </div>
             </div>
         </div>
-
         <div class="row pt-3" style="margin: 0 calc(-4em - 14px) 0px calc(1em + 7px)">
-            <div class="col" style="border: #00a5d7 1px solid; padding: 20px">
+            <div class="col" style="border: #00a5d7 1px solid;">
                 <div class="row">
-                    <div class="col">
-                        <span style="font-size: 25px; font-weight: bold">Loại 1</span>
+                    <div class="col mt-2">
+                        <span style="font-size: 20px; font-weight: bold">Supper Ấm cúng</span>
                     </div>
                 </div>
-                <div class="row pt-3">
+                <div class="row" style="background: #f7f7f7">
                     <div class="col">
-                        <i class="material-icons" data-notify="icon" style="color: #00e676; vertical-align: bottom">check_circle</i> <span style="color: #00e676">Xác nhận ngay lập tức</span>
+                        <div class="row mt-2">
+                            <div class="col-3">
+                                Loại phòng
+                            </div>
+                            <div class="col-3">
+                                Giá này đã bao gồm
+                            </div>
+                            <div class="col-1">
+                                Sức chứa
+                            </div>
+                            <div class="col">
+                                Giá phòng/đêm
+                            </div>
+                            <div class="col-1">
+                                SL
+                            </div>
+                            <div class="col">
+                                Đặt nhiều nhất
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-3">
+                                <ngx-gallery [options]="galleryOptions1" [images]="galleryImages1"
+                                             class="ngx-gallery"></ngx-gallery>
+                                <br>
+                                <div *ngFor="let tiennghi of lstTienNghiRoom | filterByStatus: filterargsStatus; let x = index">
+                                    <div *ngIf="x<7">
+                                        <i class="material-icons" style="vertical-align: bottom; color: #00e676"
+                                           ata-notify="icon"> {{tiennghi.icon}}</i>
+                                        <span style="margin-left: 14px">{{ tiennghi.name }}</span>
+                                    </div>
+                                </div>
+                                <span style="color: #00b0ff; cursor: pointer;">Xem thêm</span>
+                                <br>
+                                <hr>
+                            </div>
+                            <div class="col-3">
+                            </div>
+                            <div class="col-1">
+                            </div>
+                            <div class="col">
+                            </div>
+                            <div class="col-1">
+                            </div>
+                            <div class="col">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -438,7 +484,8 @@
                     </div>
                     <div class="col" style="border-left: lightgray 2px solid; margin-left: 10px ">
                         <div class="row">
-                            <div class="col"><span style="font-weight: bold; font-size: 14px">Trang bị trong mọi phòng</span>
+                            <div class="col"><span
+                                    style="font-weight: bold; font-size: 14px">Trang bị trong mọi phòng</span>
                             </div>
                             <div class="col"></div>
                             <div class="col"></div>

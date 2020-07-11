@@ -21,19 +21,17 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {HttpClient} from '@angular/common/http';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-import {ScrollTopComponent} from '../../shared/animation/scroll-top/scroll-top.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {UserRegiterComponent} from '../user-regiter/user-regiter.component';
 import {ChooseRoomTypeDialogComponent} from '../choose-room-type-dialog/choose-room-type-dialog.component';
 import {WelcomeComponent} from '../../welcome/welcome.component';
-import { UserEditComponent } from './user-edit/user-edit.component';
-import {AdminLayoutComponent} from '../admin-layout/admin-layout.component';
+import {UserEditComponent} from './user-edit/user-edit.component';
 import {ForgetPasswordComponent} from '../../forget-password/forget-password.component';
 import {SatDatepickerModule, SatNativeDateModule} from 'saturn-datepicker';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
-import { FindHotelComponent } from './find-hotel/find-hotel.component';
-import { HotelDetailsComponent } from './hotel-details/hotel-details.component';
+import {FindHotelComponent} from './find-hotel/find-hotel.component';
+import {FilterStatusPipe, HotelDetailsComponent} from './hotel-details/hotel-details.component';
 import {NgxGalleryModule} from '@kolkov/ngx-gallery';
 
 @NgModule({
@@ -47,7 +45,8 @@ import {NgxGalleryModule} from '@kolkov/ngx-gallery';
         UserEditComponent,
         ForgetPasswordComponent,
         FindHotelComponent,
-        HotelDetailsComponent
+        HotelDetailsComponent,
+        FilterStatusPipe
         // add các component của trang người dùng vào đây
     ],
     imports: [
