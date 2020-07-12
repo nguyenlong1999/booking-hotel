@@ -1,0 +1,451 @@
+@media screen and (max-width: 1366px) {
+    .main-column {
+        height: auto;
+        width: 1100px;
+        margin-left: 3%;
+        float: left;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .main-column {
+        height: auto;
+        width: 1100px;
+        margin-left: 3%;
+        float: left;
+    }
+}
+.loadding {
+    width: 30%;
+    /*height: 150px;*/
+    position: fixed;
+    z-index: 1040 !important;
+    background: white;
+    top: 35%;
+    left: 35%;
+    border-radius: 15px;
+    padding: 15px;
+}
+.loadding-progress {
+    margin: 0 auto;
+    animation: mat-progress-spinner-linear-rotate 3000ms linear infinite !important;
+}
+.loadding-title {
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+    color: #cf39ea;
+    font-weight: 700;
+    margin-top: 25px;
+    text-transform: uppercase;
+}
+.loadding-text {
+    text-align: center;
+    margin-top: 5px;
+    font-weight: 500;
+    font-size: 15px;
+}
+.fixed-left {
+    position: fixed;
+    z-index: 1020 !important;
+    width: 21%;
+    top: 25%;
+    padding: 0 1%;
+    transform: translateY(-70px)
+}
+no-fixed-left {
+    width: 25% !important;
+    padding: 0 1%;
+    transform: translateY(70px)
+}
+.space-fixed {
+    width: 25%;
+    padding: 0 1%;
+    float: left;
+}
+.col-3 {
+    width: 25%;
+    height: auto;
+    float: left;
+    padding: 0 1%;
+}
+.offer-text {
+    width: 100%;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    margin: 5px 0;
+}
+.offer-item {
+    width: 100%;
+    height: 120px;
+    margin: 0 0 8px;
+    border: 1px solid #dddfe2;
+}
+
+.offerItem-img {
+    float: left;
+    width: 25%;
+    height: 100%;
+    background-position: 50%;
+    background-size: cover;
+}
+
+.offerInfo-hotel {
+    float: left;
+    width: 75%;
+    padding: 8px;
+    position: relative;
+    height: 100%;
+}
+
+.offerInfoHotel-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #736363;
+    line-height: 15px;
+}
+
+.offerInfoHotel-star {
+
+}
+
+.offerInfoHotel-review {
+    position: relative;
+}
+
+.offerInfoHotel-price {
+    position: absolute;
+    right: 8px;
+    bottom: 5px;
+    text-align: right;
+}
+
+.offerReview-item {
+    display: inline-block;
+    vertical-align: top;
+    text-align: left;
+    max-width: 100%;
+}
+
+.offerReview-point {
+    margin-right: 5px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    border: #5392f9 3px solid;
+    line-height: 20px;
+}
+
+.offerReview-text {
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 15px;
+}
+
+.offerReview-count {
+    font-weight: 700;
+    font-size: 11px;
+    color: #a78d8d;
+    line-height: 14px;
+}
+
+.offerPrice-number {
+    margin-top: 5px;
+    font-size: 15px;
+    line-height: 15px;
+    font-weight: 700;
+}
+
+.offerPrice-min {
+    font-size: 11px;
+    line-height: 14px;
+    font-weight: 500;
+    color: #8a7d7d;
+}
+
+.col-9 {
+    background-color: white;
+    width: 75%;
+    float: right;
+    padding: 0 1%;
+}
+
+.sort-title {
+    width: 12%;
+    border: none;
+    border-right: 1px solid gray;
+    float: left;
+}
+
+.sort-item {
+    width: 21%;
+    border: none;
+    border-right: 1px solid gray;
+    float: left;
+}
+
+.tag-QC {
+    width: 100%;
+    height: 80px;
+    background: #3d5afe;
+    border-radius: 5px;
+    margin: 0 0 20px 0;
+    text-align: center;
+
+}
+
+.sort-bar {
+    border: 1px solid gray;
+    color: #3C4858;
+    margin: 0 0 12px !important;
+}
+
+.hotel-item {
+    height: 270px;
+    margin: 0 0 12px !important;
+    box-shadow: rgba(0, 0, 0, .12) 0 2px 2px 0;
+}
+
+.img-item {
+    width: 30%;
+    padding: 0;
+    margin: 0;
+}
+
+.thumbnail-item-list {
+    width: 100%;
+    height: 50%;
+}
+
+.thumbnail-item {
+    width: 20%;
+    float: left;
+    height: 100%;
+}
+
+.img-thumbnaill {
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    width: 100%;
+    height: 100%;
+    border-right: none;
+    border-right-width: initial;
+    border-right-style: none;
+    border-right-color: initial;
+    border-top: 0.5px solid white;
+    border-right: 0.5px solid white;
+}
+
+.img-content {
+    /*background-repeat: no-repeat;*/
+    /*background-size: 100% 100%;*/
+    width: 100%;
+    height: 100%;
+    border-right: none;
+    border-right-width: initial;
+    border-right-style: none;
+    border-right-color: initial;
+    border-top: 0.5px solid white;
+    border-right: 0.5px solid white;
+}
+
+.ngx-gallery {
+    display: inline-block;
+    margin: 0
+}
+
+.detail-item {
+    width: 47%;
+    padding: 8px;
+    margin: 0;
+    position: relative;
+    border-top: 0.5px solid #ccb9b9;
+    border-right: 0.5px solid #ccb9b9;
+    border-bottom: 0.5px solid #ccb9b9;
+}
+
+.header-title {
+    margin: 0;
+    font-weight: 700;
+}
+
+.detail-item header:hover h4 {
+    text-decoration: underline;
+}
+
+.header-star {
+    line-height: 17px;
+}
+
+.info-hotel .hehe:hover .hotel-item {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.header-star-icon {
+    font-size: 17px;
+    width: 17px;
+    height: 17px;
+    line-height: 17px;
+    font-weight: 500;
+    vertical-align: text-top;
+}
+
+.header-star-text {
+    font-size: 15px;
+    line-height: 17px;
+    font-weight: 500;
+    color: dodgerblue;
+}
+
+.pills {
+    margin-top: 0;
+    margin-bottom: 3px;
+    list-style: none;
+    outline: 0;
+    padding: 0;
+    display: inline-flex;
+}
+
+.pill {
+    margin-right: 3px;
+    height: 20px;
+    font-size: 12px;
+    padding: 3px 7px;
+    max-width: 320px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    vertical-align: bottom;
+    border: 1px solid;
+    border-radius: 2px;
+    line-height: 1;
+    font-weight: 700;
+}
+
+.pill-moni {
+    height: auto;
+    width: auto;
+    font-size: 12px;
+    vertical-align: text-top;
+}
+
+.pill-person {
+    height: auto;
+    width: auto;
+    font-size: 15px;
+    vertical-align: text-top;
+}
+
+.price-item {
+    width: 23%;
+    padding: 8px;
+    margin: 0;
+    position: relative;
+    border-top: 0.5px solid #ccb9b9;
+    border-right: 0.5px solid #ccb9b9;
+    border-bottom: 0.5px solid #ccb9b9;
+}
+
+.review-section {
+    /*width: 100%;*/
+    text-align: right;
+    position: absolute;
+    top: 8px;
+    right: 8px
+}
+
+.review-item {
+    display: inline-block;
+    vertical-align: top;
+    text-align: left;
+    max-width: 100%;
+}
+
+.review-point {
+    position: relative;
+    text-align: center;
+    vertical-align: middle;
+    display: table;
+}
+
+.review-text {
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.review-count {
+    font-weight: 700;
+    font-size: 13px;
+    color: #a78d8d;
+}
+
+.price-section {
+    text-align: right;
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    left: 8px;
+    max-width: 100%;
+}
+
+.promotion-item {
+
+}
+
+.promotion-text {
+    background-color: orangered;
+    text-align: center;
+    margin-right: -15px;
+    margin-left: 15px;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 20px;
+    border-radius: 3px;
+    color: white;
+}
+
+.promotion-type {
+    margin-top: 20px;
+    background: #ef852a;
+    margin-left: 25%;
+    margin-right: -15px;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 20px;
+    color: white;
+    text-align: center;
+    border-radius: 3px;
+}
+
+.promotion-type mat-icon {
+    height: 100% !important;
+    width: 20px !important;
+    font-size: small;
+}
+
+.price-container {
+
+}
+
+.min-price {
+    font-size: 11px;
+    font-weight: 500;
+    color: #8a7d7d;
+}
+
+.old-price {
+    margin-top: 5px;
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 25px;
+    color: gray;
+}
+
+.new-price {
+    margin-top: 5px;
+    font-size: 25px;
+    line-height: 25px;
+    font-weight: 700;
+}

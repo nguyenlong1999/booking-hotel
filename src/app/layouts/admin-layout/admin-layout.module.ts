@@ -38,6 +38,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {DashboardLayoutModule} from '../dashboard-layout/dashboard-layout.module';
 import { HotelUserComponent } from './hotel-user/hotel-user.component';
 import { EditUserAdminComponent } from './edit-user-admin/edit-user-admin.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
     imports: [
@@ -60,6 +61,7 @@ import { EditUserAdminComponent } from './edit-user-admin/edit-user-admin.compon
         MatIconModule,
         MatRadioModule,
         MatDialogModule,
+        MatProgressBarModule,
         SharedModule,
         MatCheckboxModule,
         MatButtonToggleModule,

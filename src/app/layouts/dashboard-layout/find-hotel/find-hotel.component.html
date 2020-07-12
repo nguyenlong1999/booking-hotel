@@ -1,1 +1,1229 @@
-<p>find-hotel works!</p>
+<nav class="navbar navbar-light bg-light" style="margin-bottom: 0 !important; margin-top: 100px">
+    <a class="navbar-brand" href="#">
+        <img src="/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top"
+             alt="">
+        Bootstrap
+    </a>
+</nav>
+<div class="row" style="background-color: white; margin: 0; padding-top: 30px;">
+    <div class="container-fluid">
+        <div class="main-column">
+            <div class="row" style="margin: 0 !important; position: relative !important;">
+                <div class="col-3" id="left-offer">
+                    <div style="width: 100%; height: 80px; background-color: #2dce89">
+                        BẢN ĐỒ
+                    </div>
+                    <div class="offer-text">
+                        Đề xuất cho bạn ở Hà Nội
+                    </div>
+                    <div style="width: 100%;height: 100%">
+                        <div class="offer-item">
+                            <div class="offerItem-img"
+                                 [style]="'background-image: url(' + BASE_URL+ 'default-avatar-1.png);'">
+                            </div>
+                            <div class="offerInfo-hotel">
+                                <div class="offerInfoHotel-title">
+                                    Khách sạn Quang đẹp trai
+                                </div>
+                                <div class="offerInfoHotel-star">
+                                    <mat-icon class="header-star-icon" style="color: #e67a1e">grade</mat-icon>
+                                    <mat-icon class="header-star-icon" style="color: #e67a1e">grade</mat-icon>
+                                    <mat-icon class="header-star-icon" style="color: #e67a1e">grade</mat-icon>
+                                </div>
+                                <div class="offerInfoHotel-review">
+                                    <div class="offerReview-item">
+                                        <div class="offerReview-point">
+                                            <span style="font-size: 14px; font-weight: bold">8,9</span>
+                                        </div>
+                                    </div>
+                                    <div class="offerReview-item">
+                                        <div class="offerReview-text">Trên cả tuyệt vời</div>
+                                        <div class="offerReview-count">1.068 nhận xét</div>
+                                    </div>
+                                </div>
+                                <div class="offerInfoHotel-price">
+                                    <div class="offerPrice-min">Giá mỗi đêm rẻ nhất từ</div>
+                                    <div class="offerPrice-number">
+                                        <span style="color: red">109.999 ₫</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="offer-item">
+                            <div class="offerItem-img"
+                                 [style]="'background-image: url(' + BASE_URL+ 'default-avatar-1.png);'">
+                            </div>
+                            <div class="offerInfo-hotel">
+                                <div class="offerInfoHotel-title">
+                                    Khách sạn Quang đẹp trai
+                                </div>
+                                <div class="offerInfoHotel-star">
+                                    <mat-icon class="header-star-icon" style="color: #e67a1e">grade</mat-icon>
+                                    <mat-icon class="header-star-icon" style="color: #e67a1e">grade</mat-icon>
+                                    <mat-icon class="header-star-icon" style="color: #e67a1e">grade</mat-icon>
+                                </div>
+                                <div class="offerInfoHotel-review">
+                                    <div class="offerReview-item">
+                                        <div class="offerReview-point">
+                                            <span style="font-size: 14px; font-weight: bold">8,9</span>
+                                        </div>
+                                    </div>
+                                    <div class="offerReview-item">
+                                        <div class="offerReview-text">Trên cả tuyệt vời</div>
+                                        <div class="offerReview-count">1.068 nhận xét</div>
+                                    </div>
+                                </div>
+                                <div class="offerInfoHotel-price">
+                                    <div class="offerPrice-min">Giá mỗi đêm rẻ nhất từ</div>
+                                    <div class="offerPrice-number">
+                                        <span style="color: red">109.999 ₫</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="offer-item">
+                            <div class="offerItem-img"
+                                 [style]="'background-image: url(' + BASE_URL+ 'default-avatar-1.png);'">
+                            </div>
+                            <div class="offerInfo-hotel">
+                                <div class="offerInfoHotel-title">
+                                    Khách sạn Quang đẹp trai
+                                </div>
+                                <div class="offerInfoHotel-star">
+                                    <mat-icon class="header-star-icon" style="color: #e67a1e">grade</mat-icon>
+                                    <mat-icon class="header-star-icon" style="color: #e67a1e">grade</mat-icon>
+                                    <mat-icon class="header-star-icon" style="color: #e67a1e">grade</mat-icon>
+                                </div>
+                                <div class="offerInfoHotel-review">
+                                    <div class="offerReview-item">
+                                        <div class="offerReview-point">
+                                            <span style="font-size: 14px; font-weight: bold">8,9</span>
+                                        </div>
+                                    </div>
+                                    <div class="offerReview-item">
+                                        <div class="offerReview-text">Trên cả tuyệt vời</div>
+                                        <div class="offerReview-count">1.068 nhận xét</div>
+                                    </div>
+                                </div>
+                                <div class="offerInfoHotel-price">
+                                    <div class="offerPrice-min">Giá mỗi đêm rẻ nhất từ</div>
+                                    <div class="offerPrice-number">
+                                        <span style="color: red">109.999 ₫</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="space"></div>
+                <div class="col-9">
+                    <div class="row sort-bar">
+                        <button class="col-lg-2 text-center sort-title">
+                            <span>Sắp xếp theo</span>
+                        </button>
+                        <button class="col-lg-3 text-center sort-item">
+                            <span>Giá thấp trước</span>
+                        </button>
+                        <button class="col-lg-3 text-center sort-item">
+                            <span>Giá cao trước</span>
+                        </button>
+                        <button class="col-lg-2 text-center sort-item">
+                            <span>Lượt đánh giá hàng đầu</span>
+                        </button>
+                        <button class="col-lg-2 text-center sort-item" style="border: none !important;">
+                            <span>Phù hợp nhất</span>
+                        </button>
+                    </div>
+                    <div class="info-hotel" style="width: 100%">
+                        <div class="row tag-QC">
+                            Quảng cáo nè
+                        </div>
+                        <a target="_blank" class="hehe" style="color: #0a0a0a; cursor: pointer">
+                            <div class="row hotel-item">
+                                <div class="img-item">
+                                    <div class="row" style="margin: 0; padding: 0">
+                                        <ngx-gallery [options]="galleryOptions" [images]="galleryImages"
+                                                     class="ngx-gallery"></ngx-gallery>
+                                    </div>
+                                    <!--                                <div class="row" style="height: 70%;margin: 0 !important;">-->
+                                    <!--                                    <div class="img-content"-->
+                                    <!--                                         [style]="'background-image:url(' + BASE_URL + 'default-avatar-1.png);background-repeat: no-repeat;background-size: 100% 100%;'"></div>-->
+                                    <!--                                </div>-->
+                                    <!--                                <div class="row" style="height: 30%;margin: 0 !important;">-->
+                                    <!--                                    <app-image-preview style="width: 100%">-->
+                                    <!--                                        <div [style]="'width: 500px; height: 500px; background-image: url(' + BASE_URL+ 'd);'">-->
+
+                                    <!--                                        </div>-->
+                                    <!--                                    </app-image-preview>-->
+                                    <!--                                </div>-->
+                                </div>
+                                <div class="detail-item">
+                                    <header class="detail-header">
+                                        <h4 class="header-title" style="margin: 0">Quang Hotel</h4>
+                                        <div></div>
+                                        <div class="header-star">
+                                            <mat-icon class="header-star-icon" style="color: #e67a1e">grade</mat-icon>
+                                            <mat-icon class="header-star-icon" style="color: #e67a1e">grade</mat-icon>
+                                            <mat-icon class="header-star-icon" style="color: #e67a1e">grade</mat-icon>
+
+                                            <span class="header-star-text">
+                                            <mat-icon class="header-star-icon"
+                                                      style="color: dodgerblue">location_on</mat-icon>
+                                            <span class="header-star-text">Hà nội</span>
+                                        </span>
+                                        </div>
+                                    </header>
+                                    <div></div>
+                                    <div style="margin-top: 5px;">
+                                        <ol class="pills">
+                                            <li class="pill" style="border-color: black; color: black;">Vị trí thuận
+                                                tiện
+                                            </li>
+                                            <li class="pill" style="border-color: black; color: black;">Phương tiện di
+                                                chuyển gần đây
+                                            </li>
+                                        </ol>
+                                    </div>
+                                    <div></div>
+                                    <div>
+                                        <ol class="pills">
+                                            <li class="pill" style="border-color: #66be5b; color: #66be5b;">Ăn sáng
+                                            </li>
+                                            <li class="pill" style="border-color: #66be5b; color: #66be5b;">Thanh toán
+                                                tại
+                                                nơi ở
+                                            </li>
+                                            <li class="pill" style="border-color: #66be5b; color: #66be5b;">+2
+                                            </li>
+                                        </ol>
+                                    </div>
+                                    <div></div>
+                                    <div>
+                                        <div>
+                                            <ol class="pills">
+                                                <li class="pill"
+                                                    style="background-color: #e8e1f4; color: #6b4c9f; border: none !important;">
+                                                    <mat-icon class="pill-moni">monetization_on</mat-icon>
+                                                    Mức giá hiếm thấy cho địa điểm này
+                                                </li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                    <div></div>
+                                    <div>
+                                        <div>
+                                            <ol class="pills">
+                                                <li class="pill" style="border: none !important; padding: 0 !important">
+                                                    <mat-icon class="pill-person">supervised_user_circle</mat-icon>
+                                                    Được 100% khách giới thiệu
+                                                </li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="price-item">
+                                    <div class="review-section">
+                                        <div class="review-item">
+                                            <div class="review-text">Trên cả tuyệt vời</div>
+                                            <div class="review-count">1.068 nhận xét</div>
+                                        </div>
+                                        <div class="review-item">
+                                            <div style="margin-left: 5px;width: 50px; height: 50px; text-align: center;border: #5392f9 3px solid ;line-height: 40px;">
+                                                <span style="font-size: 20px; font-weight: bold">8,9</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="price-section">
+                                        <div class="promotion-item">
+                                            <div class="promotion-text">
+                                                Còn 1 phòng giảm 50%
+                                            </div>
+                                            <div class="promotion-type">
+                                                <mat-icon>local_offer</mat-icon>
+                                                ưu đãi dài hạn
+                                            </div>
+                                        </div>
+                                        <div class="price-container">
+                                            <div class="min-price">Giá mỗi đêm rẻ nhất từ</div>
+                                            <div class="old-price">
+                                                <del>219.888</del>
+                                            </div>
+                                            <div class="new-price">
+                                                <span style="color: red">109.999</span><span
+                                                    style="color: gray;"> ₫</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="" target="_blank" class="hehe" style="color: #0a0a0a">
+                            <div class="row hotel-item">
+                                <div class="img-item">
+                                    <div class="row" style="margin: 0; padding: 0">
+                                        <ngx-gallery [options]="galleryOptions" [images]="galleryImages"
+                                                     class="ngx-gallery"></ngx-gallery>
+                                    </div>
+                                    <!--                                <div class="row" style="height: 70%;margin: 0 !important;">-->
+                                    <!--                                    <div class="img-content"-->
+                                    <!--                                         [style]="'background-image:url(' + BASE_URL + 'default-avatar-1.png);background-repeat: no-repeat;background-size: 100% 100%;'"></div>-->
+                                    <!--                                </div>-->
+                                    <!--                                <div class="row" style="height: 30%;margin: 0 !important;">-->
+                                    <!--                                    <app-image-preview style="width: 100%">-->
+                                    <!--                                        <div [style]="'width: 500px; height: 500px; background-image: url(' + BASE_URL+ 'd);'">-->
+
+                                    <!--                                        </div>-->
+                                    <!--                                    </app-image-preview>-->
+                                    <!--                                </div>-->
+                                </div>
+                                <div class="detail-item">
+                                    <header class="detail-header">
+                                        <h4 class="header-title" style="margin: 0">Quang Hotel</h4>
+                                        <div></div>
+                                        <div class="header-star">
+                                            <mat-icon class="header-star-icon" style="color: #e67a1e">grade</mat-icon>
+                                            <mat-icon class="header-star-icon" style="color: #e67a1e">grade</mat-icon>
+                                            <mat-icon class="header-star-icon" style="color: #e67a1e">grade</mat-icon>
+
+                                            <span class="header-star-text">
+                                            <mat-icon class="header-star-icon"
+                                                      style="color: dodgerblue">location_on</mat-icon>
+                                            <span class="header-star-text">Hà nội</span>
+                                        </span>
+                                        </div>
+                                    </header>
+                                    <div></div>
+                                    <div style="margin-top: 5px;">
+                                        <ol class="pills">
+                                            <li class="pill" style="border-color: black; color: black;">Vị trí thuận
+                                                tiện
+                                            </li>
+                                            <li class="pill" style="border-color: black; color: black;">Phương tiện di
+                                                chuyển gần đây
+                                            </li>
+                                        </ol>
+                                    </div>
+                                    <div></div>
+                                    <div>
+                                        <ol class="pills">
+                                            <li class="pill" style="border-color: #66be5b; color: #66be5b;">Ăn sáng
+                                            </li>
+                                            <li class="pill" style="border-color: #66be5b; color: #66be5b;">Thanh toán
+                                                tại
+                                                nơi ở
+                                            </li>
+                                            <li class="pill" style="border-color: #66be5b; color: #66be5b;">+2
+                                            </li>
+                                        </ol>
+                                    </div>
+                                    <div></div>
+                                    <div>
+                                        <div>
+                                            <ol class="pills">
+                                                <li class="pill"
+                                                    style="background-color: #e8e1f4; color: #6b4c9f; border: none !important;">
+                                                    <mat-icon class="pill-moni">monetization_on</mat-icon>
+                                                    Mức giá hiếm thấy cho địa điểm này
+                                                </li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                    <div></div>
+                                    <div>
+                                        <div>
+                                            <ol class="pills">
+                                                <li class="pill" style="border: none !important; padding: 0 !important">
+                                                    <mat-icon class="pill-person">supervised_user_circle</mat-icon>
+                                                    Được 100% khách giới thiệu
+                                                </li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="price-item">
+                                    <div class="review-section">
+                                        <div class="review-item">
+                                            <div class="review-text">Trên cả tuyệt vời</div>
+                                            <div class="review-count">1.068 nhận xét</div>
+                                        </div>
+                                        <div class="review-item">
+                                            <div style="margin-left: 5px;width: 50px; height: 50px; text-align: center;border: #5392f9 3px solid ;line-height: 40px;">
+                                                <span style="font-size: 20px; font-weight: bold">8,9</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="price-section">
+                                        <div class="promotion-item">
+                                            <div class="promotion-text">
+                                                Còn 1 phòng giảm 50%
+                                            </div>
+                                            <div class="promotion-type">
+                                                <mat-icon>local_offer</mat-icon>
+                                                ưu đãi dài hạn
+                                            </div>
+                                        </div>
+                                        <div class="price-container">
+                                            <div class="min-price">Giá mỗi đêm rẻ nhất từ</div>
+                                            <div class="old-price">
+                                                <del>219.888</del>
+                                            </div>
+                                            <div class="new-price">
+                                                <span style="color: red">109.999</span><span
+                                                    style="color: gray;"> ₫</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="" target="_blank" class="hehe" style="color: #0a0a0a">
+                            <div class="row hotel-item">
+                                <div class="img-item">
+                                    <div class="row" style="margin: 0; padding: 0">
+                                        <ngx-gallery [options]="galleryOptions" [images]="galleryImages"
+                                                     class="ngx-gallery"></ngx-gallery>
+                                    </div>
+                                    <!--                                <div class="row" style="height: 70%;margin: 0 !important;">-->
+                                    <!--                                    <div class="img-content"-->
+                                    <!--                                         [style]="'background-image:url(' + BASE_URL + 'default-avatar-1.png);background-repeat: no-repeat;background-size: 100% 100%;'"></div>-->
+                                    <!--                                </div>-->
+                                    <!--                                <div class="row" style="height: 30%;margin: 0 !important;">-->
+                                    <!--                                    <app-image-preview style="width: 100%">-->
+                                    <!--                                        <div [style]="'width: 500px; height: 500px; background-image: url(' + BASE_URL+ 'd);'">-->
+
+                                    <!--                                        </div>-->
+                                    <!--                                    </app-image-preview>-->
+                                    <!--                                </div>-->
+                                </div>
+                                <div class="detail-item">
+                                    <header class="detail-header">
+                                        <h4 class="header-title" style="margin: 0">Quang Hotel</h4>
+                                        <div></div>
+                                        <div class="header-star">
+                                            <mat-icon class="header-star-icon" style="color: #e67a1e">grade</mat-icon>
+                                            <mat-icon class="header-star-icon" style="color: #e67a1e">grade</mat-icon>
+                                            <mat-icon class="header-star-icon" style="color: #e67a1e">grade</mat-icon>
+
+                                            <span class="header-star-text">
+                                            <mat-icon class="header-star-icon"
+                                                      style="color: dodgerblue">location_on</mat-icon>
+                                            <span class="header-star-text">Hà nội</span>
+                                        </span>
+                                        </div>
+                                    </header>
+                                    <div></div>
+                                    <div style="margin-top: 5px;">
+                                        <ol class="pills">
+                                            <li class="pill" style="border-color: black; color: black;">Vị trí thuận
+                                                tiện
+                                            </li>
+                                            <li class="pill" style="border-color: black; color: black;">Phương tiện di
+                                                chuyển gần đây
+                                            </li>
+                                        </ol>
+                                    </div>
+                                    <div></div>
+                                    <div>
+                                        <ol class="pills">
+                                            <li class="pill" style="border-color: #66be5b; color: #66be5b;">Ăn sáng
+                                            </li>
+                                            <li class="pill" style="border-color: #66be5b; color: #66be5b;">Thanh toán
+                                                tại
+                                                nơi ở
+                                            </li>
+                                            <li class="pill" style="border-color: #66be5b; color: #66be5b;">+2
+                                            </li>
+                                        </ol>
+                                    </div>
+                                    <div></div>
+                                    <div>
+                                        <div>
+                                            <ol class="pills">
+                                                <li class="pill"
+                                                    style="background-color: #e8e1f4; color: #6b4c9f; border: none !important;">
+                                                    <mat-icon class="pill-moni">monetization_on</mat-icon>
+                                                    Mức giá hiếm thấy cho địa điểm này
+                                                </li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                    <div></div>
+                                    <div>
+                                        <div>
+                                            <ol class="pills">
+                                                <li class="pill" style="border: none !important; padding: 0 !important">
+                                                    <mat-icon class="pill-person">supervised_user_circle</mat-icon>
+                                                    Được 100% khách giới thiệu
+                                                </li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="price-item">
+                                    <div class="review-section">
+                                        <div class="review-item">
+                                            <div class="review-text">Trên cả tuyệt vời</div>
+                                            <div class="review-count">1.068 nhận xét</div>
+                                        </div>
+                                        <div class="review-item">
+                                            <div style="margin-left: 5px;width: 50px; height: 50px; text-align: center;border: #5392f9 3px solid ;line-height: 40px;">
+                                                <span style="font-size: 20px; font-weight: bold">8,9</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="price-section">
+                                        <div class="promotion-item">
+                                            <div class="promotion-text">
+                                                Còn 1 phòng giảm 50%
+                                            </div>
+                                            <div class="promotion-type">
+                                                <mat-icon>local_offer</mat-icon>
+                                                ưu đãi dài hạn
+                                            </div>
+                                        </div>
+                                        <div class="price-container">
+                                            <div class="min-price">Giá mỗi đêm rẻ nhất từ</div>
+                                            <div class="old-price">
+                                                <del>219.888</del>
+                                            </div>
+                                            <div class="new-price">
+                                                <span style="color: red">109.999</span><span
+                                                    style="color: gray;"> ₫</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="" target="_blank" class="hehe" style="color: #0a0a0a">
+                            <div class="row hotel-item">
+                                <div class="img-item">
+                                    <div class="row" style="margin: 0; padding: 0">
+                                        <ngx-gallery [options]="galleryOptions" [images]="galleryImages"
+                                                     class="ngx-gallery"></ngx-gallery>
+                                    </div>
+                                    <!--                                <div class="row" style="height: 70%;margin: 0 !important;">-->
+                                    <!--                                    <div class="img-content"-->
+                                    <!--                                         [style]="'background-image:url(' + BASE_URL + 'default-avatar-1.png);background-repeat: no-repeat;background-size: 100% 100%;'"></div>-->
+                                    <!--                                </div>-->
+                                    <!--                                <div class="row" style="height: 30%;margin: 0 !important;">-->
+                                    <!--                                    <app-image-preview style="width: 100%">-->
+                                    <!--                                        <div [style]="'width: 500px; height: 500px; background-image: url(' + BASE_URL+ 'd);'">-->
+
+                                    <!--                                        </div>-->
+                                    <!--                                    </app-image-preview>-->
+                                    <!--                                </div>-->
+                                </div>
+                                <div class="detail-item">
+                                    <header class="detail-header">
+                                        <h4 class="header-title" style="margin: 0">Quang Hotel</h4>
+                                        <div></div>
+                                        <div class="header-star">
+                                            <mat-icon class="header-star-icon" style="color: #e67a1e">grade</mat-icon>
+                                            <mat-icon class="header-star-icon" style="color: #e67a1e">grade</mat-icon>
+                                            <mat-icon class="header-star-icon" style="color: #e67a1e">grade</mat-icon>
+
+                                            <span class="header-star-text">
+                                            <mat-icon class="header-star-icon"
+                                                      style="color: dodgerblue">location_on</mat-icon>
+                                            <span class="header-star-text">Hà nội</span>
+                                        </span>
+                                        </div>
+                                    </header>
+                                    <div></div>
+                                    <div style="margin-top: 5px;">
+                                        <ol class="pills">
+                                            <li class="pill" style="border-color: black; color: black;">Vị trí thuận
+                                                tiện
+                                            </li>
+                                            <li class="pill" style="border-color: black; color: black;">Phương tiện di
+                                                chuyển gần đây
+                                            </li>
+                                        </ol>
+                                    </div>
+                                    <div></div>
+                                    <div>
+                                        <ol class="pills">
+                                            <li class="pill" style="border-color: #66be5b; color: #66be5b;">Ăn sáng
+                                            </li>
+                                            <li class="pill" style="border-color: #66be5b; color: #66be5b;">Thanh toán
+                                                tại
+                                                nơi ở
+                                            </li>
+                                            <li class="pill" style="border-color: #66be5b; color: #66be5b;">+2
+                                            </li>
+                                        </ol>
+                                    </div>
+                                    <div></div>
+                                    <div>
+                                        <div>
+                                            <ol class="pills">
+                                                <li class="pill"
+                                                    style="background-color: #e8e1f4; color: #6b4c9f; border: none !important;">
+                                                    <mat-icon class="pill-moni">monetization_on</mat-icon>
+                                                    Mức giá hiếm thấy cho địa điểm này
+                                                </li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                    <div></div>
+                                    <div>
+                                        <div>
+                                            <ol class="pills">
+                                                <li class="pill" style="border: none !important; padding: 0 !important">
+                                                    <mat-icon class="pill-person">supervised_user_circle</mat-icon>
+                                                    Được 100% khách giới thiệu
+                                                </li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="price-item">
+                                    <div class="review-section">
+                                        <div class="review-item">
+                                            <div class="review-text">Trên cả tuyệt vời</div>
+                                            <div class="review-count">1.068 nhận xét</div>
+                                        </div>
+                                        <div class="review-item">
+                                            <div style="margin-left: 5px;width: 50px; height: 50px; text-align: center;border: #5392f9 3px solid ;line-height: 40px;">
+                                                <span style="font-size: 20px; font-weight: bold">8,9</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="price-section">
+                                        <div class="promotion-item">
+                                            <div class="promotion-text">
+                                                Còn 1 phòng giảm 50%
+                                            </div>
+                                            <div class="promotion-type">
+                                                <mat-icon>local_offer</mat-icon>
+                                                ưu đãi dài hạn
+                                            </div>
+                                        </div>
+                                        <div class="price-container">
+                                            <div class="min-price">Giá mỗi đêm rẻ nhất từ</div>
+                                            <div class="old-price">
+                                                <del>219.888</del>
+                                            </div>
+                                            <div class="new-price">
+                                                <span style="color: red">109.999</span><span
+                                                    style="color: gray;"> ₫</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="" target="_blank" class="hehe" style="color: #0a0a0a">
+                            <div class="row hotel-item">
+                                <div class="img-item">
+                                    <div class="row" style="margin: 0; padding: 0">
+                                        <ngx-gallery [options]="galleryOptions" [images]="galleryImages"
+                                                     class="ngx-gallery"></ngx-gallery>
+                                    </div>
+                                    <!--                                <div class="row" style="height: 70%;margin: 0 !important;">-->
+                                    <!--                                    <div class="img-content"-->
+                                    <!--                                         [style]="'background-image:url(' + BASE_URL + 'default-avatar-1.png);background-repeat: no-repeat;background-size: 100% 100%;'"></div>-->
+                                    <!--                                </div>-->
+                                    <!--                                <div class="row" style="height: 30%;margin: 0 !important;">-->
+                                    <!--                                    <app-image-preview style="width: 100%">-->
+                                    <!--                                        <div [style]="'width: 500px; height: 500px; background-image: url(' + BASE_URL+ 'd);'">-->
+
+                                    <!--                                        </div>-->
+                                    <!--                                    </app-image-preview>-->
+                                    <!--                                </div>-->
+                                </div>
+                                <div class="detail-item">
+                                    <header class="detail-header">
+                                        <h4 class="header-title" style="margin: 0">Quang Hotel</h4>
+                                        <div></div>
+                                        <div class="header-star">
+                                            <mat-icon class="header-star-icon" style="color: #e67a1e">grade</mat-icon>
+                                            <mat-icon class="header-star-icon" style="color: #e67a1e">grade</mat-icon>
+                                            <mat-icon class="header-star-icon" style="color: #e67a1e">grade</mat-icon>
+
+                                            <span class="header-star-text">
+                                            <mat-icon class="header-star-icon"
+                                                      style="color: dodgerblue">location_on</mat-icon>
+                                            <span class="header-star-text">Hà nội</span>
+                                        </span>
+                                        </div>
+                                    </header>
+                                    <div></div>
+                                    <div style="margin-top: 5px;">
+                                        <ol class="pills">
+                                            <li class="pill" style="border-color: black; color: black;">Vị trí thuận
+                                                tiện
+                                            </li>
+                                            <li class="pill" style="border-color: black; color: black;">Phương tiện di
+                                                chuyển gần đây
+                                            </li>
+                                        </ol>
+                                    </div>
+                                    <div></div>
+                                    <div>
+                                        <ol class="pills">
+                                            <li class="pill" style="border-color: #66be5b; color: #66be5b;">Ăn sáng
+                                            </li>
+                                            <li class="pill" style="border-color: #66be5b; color: #66be5b;">Thanh toán
+                                                tại
+                                                nơi ở
+                                            </li>
+                                            <li class="pill" style="border-color: #66be5b; color: #66be5b;">+2
+                                            </li>
+                                        </ol>
+                                    </div>
+                                    <div></div>
+                                    <div>
+                                        <div>
+                                            <ol class="pills">
+                                                <li class="pill"
+                                                    style="background-color: #e8e1f4; color: #6b4c9f; border: none !important;">
+                                                    <mat-icon class="pill-moni">monetization_on</mat-icon>
+                                                    Mức giá hiếm thấy cho địa điểm này
+                                                </li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                    <div></div>
+                                    <div>
+                                        <div>
+                                            <ol class="pills">
+                                                <li class="pill" style="border: none !important; padding: 0 !important">
+                                                    <mat-icon class="pill-person">supervised_user_circle</mat-icon>
+                                                    Được 100% khách giới thiệu
+                                                </li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="price-item">
+                                    <div class="review-section">
+                                        <div class="review-item">
+                                            <div class="review-text">Trên cả tuyệt vời</div>
+                                            <div class="review-count">1.068 nhận xét</div>
+                                        </div>
+                                        <div class="review-item">
+                                            <div style="margin-left: 5px;width: 50px; height: 50px; text-align: center;border: #5392f9 3px solid ;line-height: 40px;">
+                                                <span style="font-size: 20px; font-weight: bold">8,9</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="price-section">
+                                        <div class="promotion-item">
+                                            <div class="promotion-text">
+                                                Còn 1 phòng giảm 50%
+                                            </div>
+                                            <div class="promotion-type">
+                                                <mat-icon>local_offer</mat-icon>
+                                                ưu đãi dài hạn
+                                            </div>
+                                        </div>
+                                        <div class="price-container">
+                                            <div class="min-price">Giá mỗi đêm rẻ nhất từ</div>
+                                            <div class="old-price">
+                                                <del>219.888</del>
+                                            </div>
+                                            <div class="new-price">
+                                                <span style="color: red">109.999</span><span
+                                                    style="color: gray;"> ₫</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="" target="_blank" class="hehe" style="color: #0a0a0a">
+                            <div class="row hotel-item">
+                                <div class="img-item">
+                                    <div class="row" style="margin: 0; padding: 0">
+                                        <ngx-gallery [options]="galleryOptions" [images]="galleryImages"
+                                                     class="ngx-gallery"></ngx-gallery>
+                                    </div>
+                                    <!--                                <div class="row" style="height: 70%;margin: 0 !important;">-->
+                                    <!--                                    <div class="img-content"-->
+                                    <!--                                         [style]="'background-image:url(' + BASE_URL + 'default-avatar-1.png);background-repeat: no-repeat;background-size: 100% 100%;'"></div>-->
+                                    <!--                                </div>-->
+                                    <!--                                <div class="row" style="height: 30%;margin: 0 !important;">-->
+                                    <!--                                    <app-image-preview style="width: 100%">-->
+                                    <!--                                        <div [style]="'width: 500px; height: 500px; background-image: url(' + BASE_URL+ 'd);'">-->
+
+                                    <!--                                        </div>-->
+                                    <!--                                    </app-image-preview>-->
+                                    <!--                                </div>-->
+                                </div>
+                                <div class="detail-item">
+                                    <header class="detail-header">
+                                        <h4 class="header-title" style="margin: 0">Quang Hotel</h4>
+                                        <div></div>
+                                        <div class="header-star">
+                                            <mat-icon class="header-star-icon" style="color: #e67a1e">grade</mat-icon>
+                                            <mat-icon class="header-star-icon" style="color: #e67a1e">grade</mat-icon>
+                                            <mat-icon class="header-star-icon" style="color: #e67a1e">grade</mat-icon>
+
+                                            <span class="header-star-text">
+                                            <mat-icon class="header-star-icon"
+                                                      style="color: dodgerblue">location_on</mat-icon>
+                                            <span class="header-star-text">Hà nội</span>
+                                        </span>
+                                        </div>
+                                    </header>
+                                    <div></div>
+                                    <div style="margin-top: 5px;">
+                                        <ol class="pills">
+                                            <li class="pill" style="border-color: black; color: black;">Vị trí thuận
+                                                tiện
+                                            </li>
+                                            <li class="pill" style="border-color: black; color: black;">Phương tiện di
+                                                chuyển gần đây
+                                            </li>
+                                        </ol>
+                                    </div>
+                                    <div></div>
+                                    <div>
+                                        <ol class="pills">
+                                            <li class="pill" style="border-color: #66be5b; color: #66be5b;">Ăn sáng
+                                            </li>
+                                            <li class="pill" style="border-color: #66be5b; color: #66be5b;">Thanh toán
+                                                tại
+                                                nơi ở
+                                            </li>
+                                            <li class="pill" style="border-color: #66be5b; color: #66be5b;">+2
+                                            </li>
+                                        </ol>
+                                    </div>
+                                    <div></div>
+                                    <div>
+                                        <div>
+                                            <ol class="pills">
+                                                <li class="pill"
+                                                    style="background-color: #e8e1f4; color: #6b4c9f; border: none !important;">
+                                                    <mat-icon class="pill-moni">monetization_on</mat-icon>
+                                                    Mức giá hiếm thấy cho địa điểm này
+                                                </li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                    <div></div>
+                                    <div>
+                                        <div>
+                                            <ol class="pills">
+                                                <li class="pill" style="border: none !important; padding: 0 !important">
+                                                    <mat-icon class="pill-person">supervised_user_circle</mat-icon>
+                                                    Được 100% khách giới thiệu
+                                                </li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="price-item">
+                                    <div class="review-section">
+                                        <div class="review-item">
+                                            <div class="review-text">Trên cả tuyệt vời</div>
+                                            <div class="review-count">1.068 nhận xét</div>
+                                        </div>
+                                        <div class="review-item">
+                                            <div style="margin-left: 5px;width: 50px; height: 50px; text-align: center;border: #5392f9 3px solid ;line-height: 40px;">
+                                                <span style="font-size: 20px; font-weight: bold">8,9</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="price-section">
+                                        <div class="promotion-item">
+                                            <div class="promotion-text">
+                                                Còn 1 phòng giảm 50%
+                                            </div>
+                                            <div class="promotion-type">
+                                                <mat-icon>local_offer</mat-icon>
+                                                ưu đãi dài hạn
+                                            </div>
+                                        </div>
+                                        <div class="price-container">
+                                            <div class="min-price">Giá mỗi đêm rẻ nhất từ</div>
+                                            <div class="old-price">
+                                                <del>219.888</del>
+                                            </div>
+                                            <div class="new-price">
+                                                <span style="color: red">109.999</span><span
+                                                    style="color: gray;"> ₫</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="" target="_blank" class="hehe" style="color: #0a0a0a">
+                            <div class="row hotel-item">
+                                <div class="img-item">
+                                    <div class="row" style="margin: 0; padding: 0">
+                                        <ngx-gallery [options]="galleryOptions" [images]="galleryImages"
+                                                     class="ngx-gallery"></ngx-gallery>
+                                    </div>
+                                    <!--                                <div class="row" style="height: 70%;margin: 0 !important;">-->
+                                    <!--                                    <div class="img-content"-->
+                                    <!--                                         [style]="'background-image:url(' + BASE_URL + 'default-avatar-1.png);background-repeat: no-repeat;background-size: 100% 100%;'"></div>-->
+                                    <!--                                </div>-->
+                                    <!--                                <div class="row" style="height: 30%;margin: 0 !important;">-->
+                                    <!--                                    <app-image-preview style="width: 100%">-->
+                                    <!--                                        <div [style]="'width: 500px; height: 500px; background-image: url(' + BASE_URL+ 'd);'">-->
+
+                                    <!--                                        </div>-->
+                                    <!--                                    </app-image-preview>-->
+                                    <!--                                </div>-->
+                                </div>
+                                <div class="detail-item">
+                                    <header class="detail-header">
+                                        <h4 class="header-title" style="margin: 0">Quang Hotel</h4>
+                                        <div></div>
+                                        <div class="header-star">
+                                            <mat-icon class="header-star-icon" style="color: #e67a1e">grade</mat-icon>
+                                            <mat-icon class="header-star-icon" style="color: #e67a1e">grade</mat-icon>
+                                            <mat-icon class="header-star-icon" style="color: #e67a1e">grade</mat-icon>
+
+                                            <span class="header-star-text">
+                                            <mat-icon class="header-star-icon"
+                                                      style="color: dodgerblue">location_on</mat-icon>
+                                            <span class="header-star-text">Hà nội</span>
+                                        </span>
+                                        </div>
+                                    </header>
+                                    <div></div>
+                                    <div style="margin-top: 5px;">
+                                        <ol class="pills">
+                                            <li class="pill" style="border-color: black; color: black;">Vị trí thuận
+                                                tiện
+                                            </li>
+                                            <li class="pill" style="border-color: black; color: black;">Phương tiện di
+                                                chuyển gần đây
+                                            </li>
+                                        </ol>
+                                    </div>
+                                    <div></div>
+                                    <div>
+                                        <ol class="pills">
+                                            <li class="pill" style="border-color: #66be5b; color: #66be5b;">Ăn sáng
+                                            </li>
+                                            <li class="pill" style="border-color: #66be5b; color: #66be5b;">Thanh toán
+                                                tại
+                                                nơi ở
+                                            </li>
+                                            <li class="pill" style="border-color: #66be5b; color: #66be5b;">+2
+                                            </li>
+                                        </ol>
+                                    </div>
+                                    <div></div>
+                                    <div>
+                                        <div>
+                                            <ol class="pills">
+                                                <li class="pill"
+                                                    style="background-color: #e8e1f4; color: #6b4c9f; border: none !important;">
+                                                    <mat-icon class="pill-moni">monetization_on</mat-icon>
+                                                    Mức giá hiếm thấy cho địa điểm này
+                                                </li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                    <div></div>
+                                    <div>
+                                        <div>
+                                            <ol class="pills">
+                                                <li class="pill" style="border: none !important; padding: 0 !important">
+                                                    <mat-icon class="pill-person">supervised_user_circle</mat-icon>
+                                                    Được 100% khách giới thiệu
+                                                </li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="price-item">
+                                    <div class="review-section">
+                                        <div class="review-item">
+                                            <div class="review-text">Trên cả tuyệt vời</div>
+                                            <div class="review-count">1.068 nhận xét</div>
+                                        </div>
+                                        <div class="review-item">
+                                            <div style="margin-left: 5px;width: 50px; height: 50px; text-align: center;border: #5392f9 3px solid ;line-height: 40px;">
+                                                <span style="font-size: 20px; font-weight: bold">8,9</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="price-section">
+                                        <div class="promotion-item">
+                                            <div class="promotion-text">
+                                                Còn 1 phòng giảm 50%
+                                            </div>
+                                            <div class="promotion-type">
+                                                <mat-icon>local_offer</mat-icon>
+                                                ưu đãi dài hạn
+                                            </div>
+                                        </div>
+                                        <div class="price-container">
+                                            <div class="min-price">Giá mỗi đêm rẻ nhất từ</div>
+                                            <div class="old-price">
+                                                <del>219.888</del>
+                                            </div>
+                                            <div class="new-price">
+                                                <span style="color: red">109.999</span><span
+                                                    style="color: gray;"> ₫</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="" target="_blank" class="hehe" style="color: #0a0a0a">
+                            <div class="row hotel-item">
+                                <div class="img-item">
+                                    <div class="row" style="margin: 0; padding: 0">
+                                        <ngx-gallery [options]="galleryOptions" [images]="galleryImages"
+                                                     class="ngx-gallery"></ngx-gallery>
+                                    </div>
+                                    <!--                                <div class="row" style="height: 70%;margin: 0 !important;">-->
+                                    <!--                                    <div class="img-content"-->
+                                    <!--                                         [style]="'background-image:url(' + BASE_URL + 'default-avatar-1.png);background-repeat: no-repeat;background-size: 100% 100%;'"></div>-->
+                                    <!--                                </div>-->
+                                    <!--                                <div class="row" style="height: 30%;margin: 0 !important;">-->
+                                    <!--                                    <app-image-preview style="width: 100%">-->
+                                    <!--                                        <div [style]="'width: 500px; height: 500px; background-image: url(' + BASE_URL+ 'd);'">-->
+
+                                    <!--                                        </div>-->
+                                    <!--                                    </app-image-preview>-->
+                                    <!--                                </div>-->
+                                </div>
+                                <div class="detail-item">
+                                    <header class="detail-header">
+                                        <h4 class="header-title" style="margin: 0">Quang Hotel</h4>
+                                        <div></div>
+                                        <div class="header-star">
+                                            <mat-icon class="header-star-icon" style="color: #e67a1e">grade</mat-icon>
+                                            <mat-icon class="header-star-icon" style="color: #e67a1e">grade</mat-icon>
+                                            <mat-icon class="header-star-icon" style="color: #e67a1e">grade</mat-icon>
+
+                                            <span class="header-star-text">
+                                            <mat-icon class="header-star-icon"
+                                                      style="color: dodgerblue">location_on</mat-icon>
+                                            <span class="header-star-text">Hà nội</span>
+                                        </span>
+                                        </div>
+                                    </header>
+                                    <div></div>
+                                    <div style="margin-top: 5px;">
+                                        <ol class="pills">
+                                            <li class="pill" style="border-color: black; color: black;">Vị trí thuận
+                                                tiện
+                                            </li>
+                                            <li class="pill" style="border-color: black; color: black;">Phương tiện di
+                                                chuyển gần đây
+                                            </li>
+                                        </ol>
+                                    </div>
+                                    <div></div>
+                                    <div>
+                                        <ol class="pills">
+                                            <li class="pill" style="border-color: #66be5b; color: #66be5b;">Ăn sáng
+                                            </li>
+                                            <li class="pill" style="border-color: #66be5b; color: #66be5b;">Thanh toán
+                                                tại
+                                                nơi ở
+                                            </li>
+                                            <li class="pill" style="border-color: #66be5b; color: #66be5b;">+2
+                                            </li>
+                                        </ol>
+                                    </div>
+                                    <div></div>
+                                    <div>
+                                        <div>
+                                            <ol class="pills">
+                                                <li class="pill"
+                                                    style="background-color: #e8e1f4; color: #6b4c9f; border: none !important;">
+                                                    <mat-icon class="pill-moni">monetization_on</mat-icon>
+                                                    Mức giá hiếm thấy cho địa điểm này
+                                                </li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                    <div></div>
+                                    <div>
+                                        <div>
+                                            <ol class="pills">
+                                                <li class="pill" style="border: none !important; padding: 0 !important">
+                                                    <mat-icon class="pill-person">supervised_user_circle</mat-icon>
+                                                    Được 100% khách giới thiệu
+                                                </li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="price-item">
+                                    <div class="review-section">
+                                        <div class="review-item">
+                                            <div class="review-text">Trên cả tuyệt vời</div>
+                                            <div class="review-count">1.068 nhận xét</div>
+                                        </div>
+                                        <div class="review-item">
+                                            <div style="margin-left: 5px;width: 50px; height: 50px; text-align: center;border: #5392f9 3px solid ;line-height: 40px;">
+                                                <span style="font-size: 20px; font-weight: bold">8,9</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="price-section">
+                                        <div class="promotion-item">
+                                            <div class="promotion-text">
+                                                Còn 1 phòng giảm 50%
+                                            </div>
+                                            <div class="promotion-type">
+                                                <mat-icon>local_offer</mat-icon>
+                                                ưu đãi dài hạn
+                                            </div>
+                                        </div>
+                                        <div class="price-container">
+                                            <div class="min-price">Giá mỗi đêm rẻ nhất từ</div>
+                                            <div class="old-price">
+                                                <del>219.888</del>
+                                            </div>
+                                            <div class="new-price">
+                                                <span style="color: red">109.999</span><span
+                                                    style="color: gray;"> ₫</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="" target="_blank" class="hehe" style="color: #0a0a0a">
+                            <div class="row hotel-item">
+                                <div class="img-item">
+                                    <div class="row" style="margin: 0; padding: 0">
+                                        <ngx-gallery [options]="galleryOptions" [images]="galleryImages"
+                                                     class="ngx-gallery"></ngx-gallery>
+                                    </div>
+                                    <!--                                <div class="row" style="height: 70%;margin: 0 !important;">-->
+                                    <!--                                    <div class="img-content"-->
+                                    <!--                                         [style]="'background-image:url(' + BASE_URL + 'default-avatar-1.png);background-repeat: no-repeat;background-size: 100% 100%;'"></div>-->
+                                    <!--                                </div>-->
+                                    <!--                                <div class="row" style="height: 30%;margin: 0 !important;">-->
+                                    <!--                                    <app-image-preview style="width: 100%">-->
+                                    <!--                                        <div [style]="'width: 500px; height: 500px; background-image: url(' + BASE_URL+ 'd);'">-->
+
+                                    <!--                                        </div>-->
+                                    <!--                                    </app-image-preview>-->
+                                    <!--                                </div>-->
+                                </div>
+                                <div class="detail-item">
+                                    <header class="detail-header">
+                                        <h4 class="header-title" style="margin: 0">Quang Hotel</h4>
+                                        <div></div>
+                                        <div class="header-star">
+                                            <mat-icon class="header-star-icon" style="color: #e67a1e">grade</mat-icon>
+                                            <mat-icon class="header-star-icon" style="color: #e67a1e">grade</mat-icon>
+                                            <mat-icon class="header-star-icon" style="color: #e67a1e">grade</mat-icon>
+
+                                            <span class="header-star-text">
+                                            <mat-icon class="header-star-icon"
+                                                      style="color: dodgerblue">location_on</mat-icon>
+                                            <span class="header-star-text">Hà nội</span>
+                                        </span>
+                                        </div>
+                                    </header>
+                                    <div></div>
+                                    <div style="margin-top: 5px;">
+                                        <ol class="pills">
+                                            <li class="pill" style="border-color: black; color: black;">Vị trí thuận
+                                                tiện
+                                            </li>
+                                            <li class="pill" style="border-color: black; color: black;">Phương tiện di
+                                                chuyển gần đây
+                                            </li>
+                                        </ol>
+                                    </div>
+                                    <div></div>
+                                    <div>
+                                        <ol class="pills">
+                                            <li class="pill" style="border-color: #66be5b; color: #66be5b;">Ăn sáng
+                                            </li>
+                                            <li class="pill" style="border-color: #66be5b; color: #66be5b;">Thanh toán
+                                                tại
+                                                nơi ở
+                                            </li>
+                                            <li class="pill" style="border-color: #66be5b; color: #66be5b;">+2
+                                            </li>
+                                        </ol>
+                                    </div>
+                                    <div></div>
+                                    <div>
+                                        <div>
+                                            <ol class="pills">
+                                                <li class="pill"
+                                                    style="background-color: #e8e1f4; color: #6b4c9f; border: none !important;">
+                                                    <mat-icon class="pill-moni">monetization_on</mat-icon>
+                                                    Mức giá hiếm thấy cho địa điểm này
+                                                </li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                    <div></div>
+                                    <div>
+                                        <div>
+                                            <ol class="pills">
+                                                <li class="pill" style="border: none !important; padding: 0 !important">
+                                                    <mat-icon class="pill-person">supervised_user_circle</mat-icon>
+                                                    Được 100% khách giới thiệu
+                                                </li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="price-item">
+                                    <div class="review-section">
+                                        <div class="review-item">
+                                            <div class="review-text">Trên cả tuyệt vời</div>
+                                            <div class="review-count">1.068 nhận xét</div>
+                                        </div>
+                                        <div class="review-item">
+                                            <div style="margin-left: 5px;width: 50px; height: 50px; text-align: center;border: #5392f9 3px solid ;line-height: 40px;">
+                                                <span style="font-size: 20px; font-weight: bold">8,9</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="price-section">
+                                        <div class="promotion-item">
+                                            <div class="promotion-text">
+                                                Còn 1 phòng giảm 50%
+                                            </div>
+                                            <div class="promotion-type">
+                                                <mat-icon>local_offer</mat-icon>
+                                                ưu đãi dài hạn
+                                            </div>
+                                        </div>
+                                        <div class="price-container">
+                                            <div class="min-price">Giá mỗi đêm rẻ nhất từ</div>
+                                            <div class="old-price">
+                                                <del>219.888</del>
+                                            </div>
+                                            <div class="new-price">
+                                                <span style="color: red">109.999</span><span
+                                                    style="color: gray;"> ₫</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="!loadding" class="loadding">
+    <mat-progress-spinner mode="indeterminate" class="loadding-progress"></mat-progress-spinner>
+    <div style="width: 100%">
+        <div class="loadding-title">
+            Giá rẻ, đầy yêu thương.
+        </div>
+        <div></div>
+        <div class="loadding-text">
+            Chúng tôi sẽ đảm báo hạ giá rẻ nhất, búc phòng nhiệt tình lên anh em !!
+        </div>
+    </div>
+</div>
