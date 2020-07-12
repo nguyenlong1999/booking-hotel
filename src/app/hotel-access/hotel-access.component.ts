@@ -7,6 +7,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {HotelService} from '../shared/service/hotel.service.';
 import {CookieService} from 'ngx-cookie-service';
 import {RoomTypeEnum} from '../shared/enums/RoomTypeEnum';
+import {ChatService} from "../shared/service/chat.service";
 
 @Component({
     selector: 'app-hotel-access',
@@ -124,7 +125,8 @@ export class HotelAccessComponent implements OnInit {
                 private _hotelService: HotelService,
                 private _router: Router,
                 private cookies: CookieService,
-                private route: ActivatedRoute
+                private route: ActivatedRoute,
+                private chatService: ChatService
     ) {
         this.registerHotelForm = this.formbuilder.group({
             name: ['', [Validators.required]],
@@ -141,8 +143,10 @@ export class HotelAccessComponent implements OnInit {
             // tab 2
             address: [''],
             country: [''],
-            // province: [''],
-            // city: [''],
+            province: [''],
+            longitude:[''],
+            latitude:[''],
+            nameSpace: [''],
             zip: [''],
 
             // tab 3
@@ -196,7 +200,7 @@ export class HotelAccessComponent implements OnInit {
         radio.click();
         const tabCount = 5;
         this.TabIndex = (this.TabIndex + 1) % tabCount;
-        document.documentElement.scrollTop=0;
+        document.documentElement.scrollTop = 0;
     }
 
     public tabPrevios() {
@@ -204,7 +208,7 @@ export class HotelAccessComponent implements OnInit {
         radio.click();
         const tabCount = 5;
         this.TabIndex = (this.TabIndex - 1) % tabCount;
-        document.documentElement.scrollTop=0;
+        document.documentElement.scrollTop = 0;
     }
 
     ngOnInit(): void {
@@ -235,6 +239,7 @@ export class HotelAccessComponent implements OnInit {
         this.registerHotelForm.reset();
         this._hotelService.getHotelById(idObject).subscribe(data => {
             const result = data;
+            console.log(result);
             this.listImgCurrent = result[0][0].hotelObj.image.split(',');
             this.tab2 = false;
             this.tab3 = false;
@@ -249,7 +254,8 @@ export class HotelAccessComponent implements OnInit {
                 this.listRadioCancel = [{name: 'room.flexiblev1', value: 1, checked: false},
                     {name: 'room.Strictv1', value: 2, checked: true}]
             }
-
+            this.lat= result[0][0].hotelObj.latitude;
+            this.lng=result[0][0].hotelObj.longitude;
 
             this.registerHotelForm = this.formbuilder.group({
                 id: result[0][0].hotelObj._id,
@@ -257,6 +263,10 @@ export class HotelAccessComponent implements OnInit {
                 sqm: result[0][0].hotelObj.sqm,
                 address: result[0][0].hotelObj.address,
                 country: result[0][0].hotelObj.country,
+                nameSpace: result[0][0].hotelObj.nameSpace,
+                latitude: result[0][0].hotelObj.latitude,
+                longitude: result[0][0].hotelObj.longitude,
+                province: result[0][0].hotelObj.province,
                 image: result[0][0].hotelObj.image,
                 starHotel: result[0][0].hotelObj.starHotel,
                 desHotel: result[0][0].hotelObj.desHotel,
@@ -327,28 +337,28 @@ export class HotelAccessComponent implements OnInit {
                     bedRoomsDetails: this.formbuilder.array([]),
                     maxDay: this.formbuilder.control(i.maxDay),
                     price: [i.price, [Validators.required, Validators.pattern(/^[0-9]\d*$/)]],
-                    roomAirConditional: this.formbuilder.control(true),
-                    roomHairdryer: this.formbuilder.control(true),
-                    roomIroningMachine: this.formbuilder.control(true),
-                    roomTelevison: this.formbuilder.control(true),
-                    roomCableTV: this.formbuilder.control(true),
-                    roomFreeWifi: this.formbuilder.control(true),
-                    roomTea: this.formbuilder.control(true),
-                    roomCoffee: this.formbuilder.control(true),
-                    roomShampoo: this.formbuilder.control(true),
-                    roomBeddingSet: this.formbuilder.control(true),
-                    roomTowelsOfAllKinds: this.formbuilder.control(true),
-                    roomWardrobe: this.formbuilder.control(true),
-                    roomPrivatePool: this.formbuilder.control(true),
-                    roomHeaters: this.formbuilder.control(true),
-                    roomDryer: this.formbuilder.control(true),
-                    roomTeaMaker: this.formbuilder.control(true),
-                    roomSmartKey: this.formbuilder.control(true),
-                    roomFreeBreakfast: this.formbuilder.control(true),
-                    roomWorkspace: this.formbuilder.control(true),
-                    roomFireplace: this.formbuilder.control(true),
-                    roomHotTub: this.formbuilder.control(true),
-                    roomType: ['']
+                    roomAirConditional: this.formbuilder.control(i.roomAirConditional),
+                    roomHairdryer: this.formbuilder.control(i.roomHairdryer),
+                    roomIroningMachine: this.formbuilder.control(i.roomIroningMachine),
+                    roomTelevison: this.formbuilder.control(i.roomTelevison),
+                    roomCableTV: this.formbuilder.control(i.roomCableTV),
+                    roomFreeWifi: this.formbuilder.control(i.roomFreeWifi),
+                    roomTea: this.formbuilder.control(i.roomTea),
+                    roomCoffee: this.formbuilder.control(i.roomCoffee),
+                    roomShampoo: this.formbuilder.control(i.roomShampoo),
+                    roomBeddingSet: this.formbuilder.control(i.roomBeddingSet),
+                    roomTowelsOfAllKinds: this.formbuilder.control(i.roomTowelsOfAllKinds),
+                    roomWardrobe: this.formbuilder.control(i.roomWardrobe),
+                    roomPrivatePool: this.formbuilder.control(i.roomPrivatePool),
+                    roomHeaters: this.formbuilder.control(i.roomHeaters),
+                    roomDryer: this.formbuilder.control(i.roomDryer),
+                    roomTeaMaker: this.formbuilder.control(i.roomTeaMaker),
+                    roomSmartKey: this.formbuilder.control(i.roomSmartKey),
+                    roomFreeBreakfast: this.formbuilder.control(i.roomFreeBreakfast),
+                    roomWorkspace: this.formbuilder.control(i.roomWorkspace),
+                    roomFireplace: this.formbuilder.control(i.roomFireplace),
+                    roomHotTub: this.formbuilder.control(i.roomHotTub),
+                    roomType: [i.roomType]
                 }));
 
                 // xử lý push control array
@@ -393,11 +403,16 @@ export class HotelAccessComponent implements OnInit {
         this.registerHotelForm.get('totalRoomNumber').setValue(this.totaltypeRoomNumber)
         this.registerHotelForm.get('starHotel').setValue(this.rating)
 
+        let nameSpace = this.registerHotelForm.get('name').value;
+        nameSpace = nameSpace.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        nameSpace = nameSpace.toLowerCase();
+        let name = nameSpace.split(' ');
+        nameSpace = name.join('-');
+        this.registerHotelForm.get('nameSpace').patchValue(nameSpace) ;
         console.log('data-register: ');
         console.log(this.registerHotelForm.value);
         const hoTelsObject = this.registerHotelForm.value;
         hoTelsObject.email = this.cookies.get('email');
-
         if (this.isEdited) {
             console.log('vao day de edit')
             console.log(this.registerHotelForm.value);
@@ -407,16 +422,18 @@ export class HotelAccessComponent implements OnInit {
                 if (result['status'] === 200) {
                     // this.successMessage = result['message'];
                     this.successMessage = result['message'];
-                    const radio: HTMLElement = document.getElementById('modal-button');
-                    radio.click();
+                    this.chatService.showNotification('success', this.successMessage);
                     setTimeout(() => {
                         // window.location.reload()
                         if (this.cookies.get('role') === '2') {
-                            window.location.assign('/hotels')
+                            this._router.navigate(['/hotels'])
                         } else {
-                            window.location.assign('/user-hotels')
+                            this._router.navigate(['/user-hotels'])
                         }
                     }, 3000);
+                } else {
+                    this.errorMessage = result['message'];
+                    this.chatService.showNotification('success', this.errorMessage);
                 }
             })
 
@@ -427,25 +444,28 @@ export class HotelAccessComponent implements OnInit {
                 if (result['status'] === 200) {
                     // this.successMessage = result['message'];
                     this.successMessage = result['message'];
-                    const radio: HTMLElement = document.getElementById('modal-button');
-                    radio.click();
+                    this.chatService.showNotification('success', this.successMessage);
                     setTimeout(() => {
                         // window.location.reload()
                         if (this.cookies.get('role') === '2') {
-                            window.location.assign('/hotels')
+                            this._router.navigate(['/hotels'])
                         } else {
-                            window.location.assign('/user-hotels')
+                            this._router.navigate(['/user-hotels'])
                         }
                     }, 3000);
                     console.log('tạo thành công rồi nè')
                 } else if (result['status'] !== 200) {
                     this.errorMessage = result['message'];
+                    this.chatService.showNotification('error', this.errorMessage);
                 }
             })
         }
     }
-    doSomething(event,index){
+
+    doSomething(event, index) {
         console.log(event.value)
+        const value = event.value;
+        this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomType').patchValue(value)
         if (!this.isEdited) {
             this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomTea').patchValue(true)
             this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomCoffee').patchValue(true)
@@ -468,8 +488,55 @@ export class HotelAccessComponent implements OnInit {
             this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomWorkspace').patchValue(true)
             this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomFireplace').patchValue(true)
             this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomHotTub').patchValue(true)
+
+        }
+        if (value !== 7 || value !== 6 || value !== 4) {
+            console.log('cao cấp')
+            this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomPrivatePool').patchValue(false)
+            this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomFireplace').patchValue(false)
+            this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomHotTub').patchValue(false)
+        }
+        if (parseInt(value) < 3) {
+            console.log('view đep')
+            this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomCableTV').patchValue(false)
+            this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomWorkspace').patchValue(false)
+            this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomDryer').patchValue(false)
+            this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomHeaters').patchValue(false)
+        }
+        if (parseInt(value) < 2) {
+            console.log('cùi')
+            this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomFreeBreakfast').patchValue(false)
+            this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomTeaMaker').patchValue(false)
+        }
+        if (value === 7 || value === 6 || value === 4) {
+            console.log('sieu sang')
+            this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomTea').patchValue(true)
+            this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomCoffee').patchValue(true)
+            this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomBeddingSet').patchValue(true)
+            this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomTowelsOfAllKinds').patchValue(true)
+            this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomHairdryer').patchValue(true)
+            this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomAirConditional').patchValue(true)
+            this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomIroningMachine').patchValue(true)
+            this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomTelevison').patchValue(true)
+            this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomCableTV').patchValue(true)
+            this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomFreeWifi').patchValue(true)
+            this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomShampoo').patchValue(true)
+            this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomWardrobe').patchValue(true)
+            this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomHeaters').patchValue(true)
+            this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomDryer').patchValue(true)
+            this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomTeaMaker').patchValue(true)
+            this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomSmartKey').patchValue(true)
+            this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomFreeBreakfast').patchValue(true)
+            this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomWorkspace').patchValue(true)
+            this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomFireplace').patchValue(true)
+            this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomHotTub').patchValue(true)
+        }
+        if (parseInt(value) >6) {
+            console.log('cùi')
+            this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomPrivatePool').patchValue(true)
         }
     }
+
     addControlRoom() {
         return this.formbuilder.group({
             accommodates: this.formbuilder.control(1),
@@ -500,7 +567,7 @@ export class HotelAccessComponent implements OnInit {
             roomWorkspace: this.formbuilder.control(true),
             roomFireplace: this.formbuilder.control(true),
             roomHotTub: this.formbuilder.control(true),
-            roomType:['']
+            roomType: ['']
         });
     }
 
@@ -698,10 +765,11 @@ export class HotelAccessComponent implements OnInit {
         // console.log(place['formatted_address']);
         // console.log(place['formatted_address'].split(',').pop());
         // console.log(place['formatted_address'].split(',').slice(0, -2)[2])
-        // this.registerHotelForm.get('province').setValue(place['formatted_address'].split(',').slice(0, -2)[2])
-
-        this.registerHotelForm.get('address').setValue(this.name)
-        this.registerHotelForm.get('country').setValue(place['formatted_address'].split(',').pop())
+        this.registerHotelForm.get('province').patchValue(place['address_components'][3].long_name)
+        this.registerHotelForm.get('address').patchValue(this.address);
+        this.registerHotelForm.get('latitude').patchValue(this.lat);
+        this.registerHotelForm.get('longitude').patchValue(this.lng);
+        this.registerHotelForm.get('country').patchValue(place['formatted_address'].split(',').pop())
         document.getElementById('check-input').focus();
     }
 

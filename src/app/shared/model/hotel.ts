@@ -19,4 +19,5 @@ export class Hotel {
     zip: string;
     status: any;
     isBlock: any;
+    nameSpace:string;
 }

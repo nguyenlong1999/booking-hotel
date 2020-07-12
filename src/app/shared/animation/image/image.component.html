@@ -18,14 +18,11 @@
                 <div class="col">
                     <div style="position: relative">
                         <img [src]="'http://localhost:8000/api/images/'+imageCurrent" style="max-width:100%; height: auto;" />
+                        <button mat-icon-button (click)="removeImageCurrent(i)"
+                                style="position: absolute;bottom: 0.1px !important;right: 1px !important;color: white;font-size: 15px;">
+                            <mat-icon>delete</mat-icon>
+                        </button>
                     </div>
-                </div>
-            </div>
-            <div class="row" *ngIf="imageCurrent">
-                <div class="col">
-                    <button mat-icon-button color="warn" (click)="removeImageCurrent(i)" style="">
-                        <mat-icon>favorite</mat-icon>Delete
-                    </button>
                 </div>
             </div>
         </div>
@@ -34,14 +31,10 @@
                 <div class="col">
                     <div tyle="position: relative">
                         <img [src]="imagePre" style="max-width:100%; height: auto;" />
+                        <button mat-icon-button (click)="removeSelectedFile(i)" style="position: absolute;bottom: 0.1px !important;right: 1px !important;color: white;font-size: 15px;">
+                            <mat-icon>delete</mat-icon>
+                        </button>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <button mat-icon-button color="warn" (click)="removeSelectedFile(i)" style="">
-                        <mat-icon>favorite</mat-icon>Delete
-                    </button>
                 </div>
             </div>
         </div>

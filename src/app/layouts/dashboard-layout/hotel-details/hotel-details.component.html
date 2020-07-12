@@ -1,12 +1,12 @@
 <div style="margin-top: 3rem;background: white ">
-    <div class="container" style="position: relative">
-        <div class="d-flex bd-highlight">
-            <div class="p-2 bd-highlight" style="padding-right: 0px!important;">
+    <div class="container">
+        <div class="d-flex">
+            <div class="bd-highlight" style="padding-right: 0px!important;">
                 <div class="container">
                     <div class="row">
                         <div class="col" style="padding-right: 0px!important;">
                             <ngx-gallery [options]="galleryOptions" [images]="galleryImages"
-                                         class="ngx-gallery"></ngx-gallery>
+                                         class="ngx-gallery" style="width: 100%"></ngx-gallery>
                         </div>
                     </div>
                     <div class="row">
@@ -56,7 +56,8 @@
                                 <div class="col" style="margin-top: calc(1rem + 10px)">
                                     <span style="font-size: 20px; font-weight: bold;color:#f90 ">Đừng bỏ lỡ</span>
                                     <br>
-                                    <span style="font-weight: bold">21</span> du khách hiện cũng đang xem chỗ này | <span style="font-weight: bold">19</span> du khách đã đặt hôm nay.
+                                    <span style="font-weight: bold">21</span> du khách hiện cũng đang xem chỗ này |
+                                    <span style="font-weight: bold">19</span> du khách đã đặt hôm nay.
                                 </div>
                             </div>
                         </div>
@@ -176,4 +177,504 @@
             </div>
         </div>
     </div>
+
+    <div class="container" style="padding-left: 42px; padding-right: 53px">
+        <div class="row">
+            <div class="col" style="border: #00a5d7 1px solid; padding: 20px">
+                <div class="row">
+                    <div class="col-0 ml-2">
+                        <img src="https://cdn6.agoda.net/images/MIN-17619/yellow-icon.svg"
+                             alt="ảnh kích thích book phòng">
+                    </div>
+                    <div class="col">
+                        <span style="font-size: 20px; font-weight: bold;color:#f90 ">Ngày quý khách chọn là ngày phổ biến đối với du khách</span>
+                        <br>
+                        <span style="font-size: 15px;">Cứ mỗi <span style="color: red">1 phút</span> ở <span
+                                style="color: red">  Hồ Chí Minh </span>trên Booking-hotel.com</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="padding-left: 42px; padding-right: 53px">
+        <!-- Danh sách các loại phòng -->
+        <div class="row pt-3">
+            <div class="col pl-0">
+                <div class="row">
+                    <div class="col">
+                        <span style="font-size: 30px; font-weight: bold">Chọn phòng</span>
+                    </div>
+                </div>
+                <div class="row pt-3">
+                    <div class="col">
+                        <i class="material-icons" data-notify="icon" style="color: #00e676; vertical-align: bottom">check_circle</i>
+                        <span style="color: #00e676">Xác nhận ngay lập tức</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row pt-2">
+            <div class="col p-0">
+                <hr>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col pl-0">
+                <div class="row">
+                    <div class="col">
+                        4 loại phòng và <span style="color: red">chỉ còn tổng cộng 4 lựa chọn</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <i class="material-icons" data-notify="icon" style="vertical-align: bottom">error_outline</i>
+                        <span style="font-size: 10px">Giá không bao gồm thuế & phí</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row pt-3">
+            <div class="col" style="border: #00a5d7 1px solid;">
+                <div class="row">
+                    <div class="col mt-2">
+                        <span style="font-size: 20px; font-weight: bold">Supper Ấm cúng</span>
+                    </div>
+                </div>
+                <div class="row" style="background: #f7f7f7">
+                    <div class="col">
+                        <div class="row mt-2">
+                            <div class="col-3">
+                                <span style="font-weight: bold; font-size: 15px">Loại phòng</span>
+                            </div>
+                            <div class="col-3 pl-0">
+                                <span style="font-weight: bold; font-size: 15px">Giá này đã bao gồm</span>
+                            </div>
+                            <div class="col-1 pl-0">
+                                <span style="font-weight: bold; font-size: 15px">Sức chứa</span>
+                            </div>
+                            <div class="col pl-0">
+                                <span style="font-weight: bold; font-size: 15px">Giá phòng/đêm</span>
+                            </div>
+                            <div class="col-1 pl-0">
+                                <span style="font-weight: bold; font-size: 15px">SL</span>
+                            </div>
+                            <div class="col pl-0">
+                                <span style="font-weight: bold; font-size: 15px">Đặt nhiều nhất</span>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-3 pb-3">
+                                <ngx-gallery [options]="galleryOptions1" [images]="galleryImages1"
+                                             class="ngx-gallery" style="width: 100%; height: 200px"></ngx-gallery>
+                                <br>
+                                <div *ngFor="let tiennghi of lstTienNghiRoom | filterByStatus: filterargsStatus; let x = index">
+                                    <div *ngIf="x<7">
+                                        <i class="material-icons" style="vertical-align: bottom; color: #00e676"
+                                           ata-notify="icon"> {{tiennghi.icon}}</i>
+                                        <span style="margin-left: 14px">{{ tiennghi.name }}</span>
+                                    </div>
+                                </div>
+                                <span style="color: #00b0ff; cursor: pointer;">Xem thêm</span>
+                                <br>
+                                <hr>
+                                <span class="mb-4">9.7 Tuyệt vời</span>
+                            </div>
+                            <div class="col-3 mb-2 pt-2 pl-3"
+                                 style="background: white; box-shadow: 0 3px 2px -2px #80808070;">
+                                <span style="font-weight: bold; font-size: 13px">Lợi ích</span>
+                                <br>
+                                <i class="material-icons" style="vertical-align: bottom; color: #00e676"
+                                   ata-notify="icon">done</i> Wifi miễn phí
+                                <br>
+                                <span style="font-weight: bold; font-size: 13px">Tặng thưởng</span>
+                            </div>
+                            <div class="col-1 mb-2 pt-2"
+                                 style="background: white;border-left: 1px solid #c4cccc;box-shadow: 0 3px 2px -2px #80808070;">
+                                <i class="material-icons"
+                                   style="vertical-align: bottom; color: #00e5ff; font-size: 50px"
+                                   ata-notify="icon">family_restroom</i>
+                                <br>
+                                <span style="font-size: 10px">2 bé dưới 13 tuổi được ở </span>
+                                <br>
+                                <span style="color: #00e676;font-size: 12px; font-weight: bold">MIỄN PHÍ!</span>
+                            </div>
+                            <div class="col mb-2 pt-3"
+                                 style="background: white;border-left: 1px solid #c4cccc;box-shadow: 0 3px 2px -2px #80808070;">
+                                <div class="row">
+                                    <div class="col-9"
+                                         style="background: red; color: white; font-size: 10px; font-weight: bold">– 75%
+                                        CHỈ HÔM NAY!
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col pr-2">
+                                        <span style="text-decoration:line-through;font-size:14px  ;float: right; font-weight: bold; color:darkgray">1.300.0000 đ</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col pr-2">
+                                        <strong style=" float: right; font-weight: bold;font-size: 24px ; color:orangered">300.0000đ</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-1 mb-2"
+                                 style="background: white;border-left: 1px solid #c4cccc;box-shadow: 0 3px 2px -2px #80808070;">
+                                <mat-form-field>
+                                    <mat-label style="font-size: 14px">Số lượng</mat-label>
+                                    <input matInput type="number" onkeypress="return event.charCode >= 48">
+                                </mat-form-field>
+                            </div>
+                            <div class="col mb-2 mr-3"
+                                 style="background: white;border-left: 1px solid #c4cccc;box-shadow: 0 3px 2px -2px #80808070;">
+                                <div class="row">
+                                    <div class="col pt-3">
+                                        xxxx
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <div class="row">
+            <div class="col-3 pl-0">
+                <hr>
+            </div>
+            <div class="col">
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3 pl-0">
+                <span style="font-size: 25px">Cơ sở vật chất</span>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col-1">
+                        <i class="material-icons" style="font-size: 50px" data-notify="icon">language</i>
+                    </div>
+                    <div class="col" style="border-left: lightgray 2px solid; margin-left: 10px ">
+                        <div class="row">
+                            <div class="col"><span style="font-weight: bold; font-size: 14px">Ngôn ngữ sử dụng</span>
+                            </div>
+                            <div class="col"></div>
+                            <div class="col"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col"><img src="assets/booking/vietnam.png" alt="" width="20px" height="20px">
+                                <span style="margin-left: 14px">Tiếng Việt</span></div>
+                            <div class="col"><img src="assets/booking/china.png" alt="" width="20px" height="20px">
+                                <span style="margin-left: 14px">Tiếng Trung (Đài loan)</span></div>
+                            <div class="col"><img src="assets/booking/japan.png" alt="" width="20px" height="20px">
+                                <span style="margin-left: 14px">Tiếng Nhật</span></div>
+                        </div>
+                        <div class="row pt-2">
+                            <div class="col"><img src="assets/booking/united-kingdom.png" alt="" width="20px"
+                                                  height="20px"> <span style="margin-left: 14px">Tiếng Anh</span></div>
+                            <div class="col"></div>
+                            <div class="col"></div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-1">
+                        <i class="material-icons" style="font-size: 50px" data-notify="icon">wifi</i>
+                    </div>
+                    <div class="col" style="border-left: lightgray 2px solid; margin-left: 10px ">
+                        <div class="row">
+                            <div class="col"><span style="font-weight: bold; font-size: 14px">Truy cập Internet</span>
+                            </div>
+                            <div class="col"></div>
+                            <div class="col"></div>
+                        </div>
+                        <div class="row pt-2">
+                            <div class="col"><i class="material-icons" style="vertical-align: bottom" ata-notify="icon">wifi</i>
+                                <span style="margin-left: 14px">Wi-Fi miễn phí trong tất cả các phòng!</span></div>
+                            <div class="col"><i class="material-icons" style="vertical-align: bottom" ata-notify="icon">tap_and_play</i>
+                                <span style="margin-left: 14px">Wi-Fi ở nơi công cộng</span></div>
+                            <div class="col"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col"></div>
+                            <div class="col"></div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-1">
+                        <i class="material-icons" style="font-size: 50px" data-notify="icon">fastfood</i>
+                    </div>
+                    <div class="col" style="border-left: lightgray 2px solid; margin-left: 10px ">
+                        <div class="row">
+                            <div class="col"><i class="material-icons" style="vertical-align: bottom" ata-notify="icon">local_cafe</i>
+                                <span style="margin-left: 14px">Ăn sáng miễn phí</span></div>
+                            <div class="col"><i class="material-icons" style="vertical-align: bottom" ata-notify="icon">room_service</i>
+                                <span style="margin-left: 14px">Dịch vụ phòng [24 giờ]</span></div>
+                            <div class="col"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-1">
+                        <i class="material-icons" style="font-size: 50px" data-notify="icon">room_service</i>
+                    </div>
+                    <div class="col" style="border-left: lightgray 2px solid; margin-left: 10px ">
+                        <div class="row pt-2">
+                            <div class="col"><span
+                                    style="font-weight: bold; font-size: 14px">Dịch vụ và tiện nghi</span></div>
+                            <div class="col"></div>
+                            <div class="col"></div>
+                        </div>
+                        <div class="row pt-2">
+                            <div class="col"><i class="material-icons" style="vertical-align: bottom" ata-notify="icon">add_shopping_cart</i>
+                                <span style="margin-left: 14px">Cửa hàng tạp hóa</span></div>
+                            <div class="col"><i class="material-icons" style="vertical-align: bottom" ata-notify="icon">rice_bowl</i>
+                                <span style="margin-left: 14px">Dịch vụ giặt là</span></div>
+                            <div class="col"><i class="material-icons" style="vertical-align: bottom" ata-notify="icon">hot_tub</i>
+                                <span style="margin-left: 14px">Lò sưởi</span></div>
+                        </div>
+                        <div class="row pt-2">
+                            <div class="col"><i class="material-icons" style="vertical-align: bottom" ata-notify="icon">cleaning_services</i>
+                                <span style="margin-left: 14px">Dọn phòng hằng ngày</span></div>
+                            <div class="col"><i class="material-icons" style="vertical-align: bottom" ata-notify="icon">smoke_free</i>
+                                <span style="margin-left: 14px">Hoàn toàn không hút thuốc</span></div>
+                            <div class="col"><i class="material-icons" style="vertical-align: bottom" ata-notify="icon">sync_alt</i>
+                                <span style="margin-left: 14px">Đổi ngoại tệ</span></div>
+                        </div>
+                        <div class="row pt-2">
+                            <div class="col"><i class="material-icons" style="vertical-align: bottom" ata-notify="icon">backpack</i>
+                                <span style="margin-left: 14px">Giữ hành lý</span></div>
+                            <div class="col"><i class="material-icons" style="vertical-align: bottom" ata-notify="icon">supervisor_account</i>
+                                <span style="margin-left: 14px">Dịch vụ phòng [24 giờ]</span></div>
+                            <div class="col"></div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-1">
+                        <i class="material-icons" style="font-size: 50px" data-notify="icon">electric_car</i>
+                    </div>
+                    <div class="col" style="border-left: lightgray 2px solid; margin-left: 10px ">
+                        <div class="row">
+                            <div class="col"><span style="font-weight: bold; font-size: 14px">Đi lại</span></div>
+                            <div class="col"></div>
+                            <div class="col"></div>
+                        </div>
+                        <div class="row pt-2">
+                            <div class="col"><i class="material-icons" style="vertical-align: bottom" ata-notify="icon">local_parking</i><span
+                                    style="margin-left: 14px">bãi đậu xe (gần đó)</span></div>
+                            <div class="col"></div>
+                            <div class="col"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col"></div>
+                            <div class="col"></div>
+                            <div class="col"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-1">
+                        <i class="material-icons" style="font-size: 50px" data-notify="icon">work_outline</i>
+                    </div>
+                    <div class="col" style="border-left: lightgray 2px solid; margin-left: 10px ">
+                        <div class="row">
+                            <div class="col"><span style="font-weight: bold; font-size: 14px">Dễ dàng tiếp cận</span>
+                            </div>
+                            <div class="col"></div>
+                            <div class="col"></div>
+                        </div>
+                        <div class="row pt-2">
+                            <div class="col">
+                                <i class="material-icons" style="vertical-align: bottom"
+                                   ata-notify="icon">support_agent</i>
+                                <span style="margin-left: 14px">Bàn tiếp tân [24 giờ]</span></div>
+                            <div class="col">
+                                <i class="material-icons" style="vertical-align: bottom"
+                                   ata-notify="icon">system_update</i>
+                                <span style="margin-left: 14px">Thang máy</span>
+                            </div>
+                            <div class="col">
+                                <i class="material-icons" style="vertical-align: bottom"
+                                   ata-notify="icon">transform</i>
+                                <span style="margin-left: 14px">Nhận phòng [24 giờ]</span>
+                            </div>
+                        </div>
+                        <div class="row pt-2">
+                            <div class="col">
+                                <i class="material-icons" style="vertical-align: bottom"
+                                   ata-notify="icon">security</i>
+                                <span style="margin-left: 14px">Bảo vệ [24 giờ]</span>
+                            </div>
+                            <div class="col">
+                                <i class="material-icons" style="vertical-align: bottom"
+                                   ata-notify="icon">multiple_stop</i>
+                                <span style="margin-left: 14px">Nhận/trả phòng [nhanh]</span>
+                            </div>
+                            <div class="col">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-1">
+                        <i class="material-icons" style="font-size: 50px" data-notify="icon">work_outline</i>
+                    </div>
+                    <div class="col" style="border-left: lightgray 2px solid; margin-left: 10px ">
+                        <div class="row">
+                            <div class="col"><span
+                                    style="font-weight: bold; font-size: 14px">Trang bị trong mọi phòng</span>
+                            </div>
+                            <div class="col"></div>
+                            <div class="col"></div>
+                        </div>
+                        <div class="row pt-2">
+                            <div class="col">
+                                <i class="material-icons" style="vertical-align: bottom"
+                                   ata-notify="icon">power_input</i>
+                                <span style="margin-left: 14px">Bàn làm việc</span></div>
+                            <div class="col">
+                                <i class="material-icons" style="vertical-align: bottom"
+                                   ata-notify="icon">notifications_active</i>
+                                <span style="margin-left: 14px">Đồng hồ báo thức</span>
+                            </div>
+                            <div class="col">
+                                <i class="material-icons" style="vertical-align: bottom"
+                                   ata-notify="icon">transform</i>
+                                <span style="margin-left: 14px">Trà miễn phí</span>
+                            </div>
+                        </div>
+                        <div class="row pt-2">
+                            <div class="col">
+                                <i class="material-icons" style="vertical-align: bottom"
+                                   ata-notify="icon">fire_extinguisher</i>
+                                <span style="margin-left: 14px">Bình chữa cháy</span>
+                            </div>
+                            <div class="col">
+                                <i class="material-icons" style="vertical-align: bottom"
+                                   ata-notify="icon">wine_bar</i>
+                                <span style="margin-left: 14px">Đồ uống mời khách miễn phí</span>
+                            </div>
+                            <div class="col">
+                                <i class="material-icons" style="vertical-align: bottom"
+                                   ata-notify="icon">wifi</i>
+                                <span style="margin-left: 14px">Truy cập Internet - không dây</span>
+                            </div>
+                        </div>
+                        <div class="row pt-2">
+                            <div class="col">
+                                <i class="material-icons" style="vertical-align: bottom"
+                                   ata-notify="icon">add</i>
+                                <span style="margin-left: 14px">Bộ dụng cụ sơ cứu</span>
+                            </div>
+                            <div class="col">
+                                <i class="material-icons" style="vertical-align: bottom"
+                                   ata-notify="icon">checkroom</i>
+                                <span style="margin-left: 14px">Giá treo quần áo</span>
+                            </div>
+                            <div class="col">
+                                <i class="material-icons" style="vertical-align: bottom"
+                                   ata-notify="icon">settings_input_antenna</i>
+                                <span style="margin-left: 14px">Truyền hình cáp/vệ tinh</span>
+                            </div>
+                        </div>
+                        <div class="row pt-2">
+                            <div class="col">
+                                <i class="material-icons" style="vertical-align: bottom"
+                                   ata-notify="icon">local_cafe</i>
+                                <span style="margin-left: 14px">Cà phê hòa tan miễn phí</span>
+                            </div>
+                            <div class="col">
+                                <i class="material-icons" style="vertical-align: bottom"
+                                   ata-notify="icon">smoke_free</i>
+                                <span style="margin-left: 14px">Không hút thuốc</span>
+                            </div>
+                            <div class="col">
+                                <i class="material-icons" style="vertical-align: bottom"
+                                   ata-notify="icon">amp_stories</i>
+                                <span style="margin-left: 14px">Tủ lạnh</span>
+                            </div>
+                        </div>
+                        <div class="row pt-2">
+                            <div class="col">
+                                <i class="material-icons" style="vertical-align: bottom"
+                                   ata-notify="icon">leak_add</i>
+                                <span style="margin-left: 14px">Máy sấy quần áo</span>
+                            </div>
+                            <div class="col">
+                                <i class="material-icons" style="vertical-align: bottom"
+                                   ata-notify="icon">flare</i>
+                                <span style="margin-left: 14px">Máy pha trà/cà phê</span>
+                            </div>
+                            <div class="col">
+                                <i class="material-icons" style="vertical-align: bottom"
+                                   ata-notify="icon">crop_16_9</i>
+                                <span style="margin-left: 14px">Tủ lạnh nhỏ trong phòng</span>
+                            </div>
+                        </div>
+                        <div class="row pt-2">
+                            <div class="col">
+                                <i class="material-icons" style="vertical-align: bottom"
+                                   ata-notify="icon">filter_tilt_shift</i>
+                                <span style="margin-left: 14px">Máy sấy tóc</span>
+                            </div>
+                            <div class="col">
+                                <i class="material-icons" style="vertical-align: bottom"
+                                   ata-notify="icon">blur_circular</i>
+                                <span style="margin-left: 14px">Vòi sen</span>
+                            </div>
+                            <div class="col">
+                                <i class="material-icons" style="vertical-align: bottom"
+                                   ata-notify="icon">phone_in_talk</i>
+                                <span style="margin-left: 14px">Điện thoại</span>
+                            </div>
+                        </div>
+                        <div class="row pt-2">
+                            <div class="col">
+                                <i class="material-icons" style="vertical-align: bottom"
+                                   ata-notify="icon">call_to_action</i>
+                                <span style="margin-left: 14px">Điều hòa</span>
+                            </div>
+                            <div class="col">
+                                <i class="material-icons" style="vertical-align: bottom"
+                                   ata-notify="icon">battery_std</i>
+                                <span style="margin-left: 14px">Nước đóng chai miễn phí</span>
+                            </div>
+                            <div class="col">
+                                <i class="material-icons" style="vertical-align: bottom"
+                                   ata-notify="icon">waves</i>
+                                <span style="margin-left: 14px">Sàn gỗ/gỗ miếng</span>
+                            </div>
+                        </div>
+                        <div class="row pt-2">
+                            <div class="col">
+                                <i class="material-icons" style="vertical-align: bottom"
+                                   ata-notify="icon">pool</i>
+                                <span style="margin-left: 14px">Bể bơi</span>
+                            </div>
+                            <div class="col">
+                                <i class="material-icons" style="vertical-align: bottom"
+                                   ata-notify="icon">soap</i>
+                                <span style="margin-left: 14px">Sà phòng miễn phí</span>
+                            </div>
+                            <div class="col">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
