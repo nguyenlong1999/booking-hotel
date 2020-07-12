@@ -15,6 +15,7 @@ export class HotelDetailsComponent implements OnInit {
 
     nameHotel = ' hotel cuar long dz';
     filterargsStatus = {status: true};
+    lstTienNghiThua = new Set()
     lstTienNghiRoom = [
         {
             key: 1, name: 'Máy điều hòa', status: false, icon: 'call_to_action'
@@ -30,7 +31,8 @@ export class HotelDetailsComponent implements OnInit {
         },
         {
             key: 5, name: 'Truyền hình cáp', status: true, icon: 'settings_input_antenna'
-        },
+        }
+        ,
         {
             key: 6, name: 'Trà', status: true, icon: 'transform'
         },
@@ -44,37 +46,37 @@ export class HotelDetailsComponent implements OnInit {
             key: 9, name: 'Bộ ga giường', status: true, icon: 'view_sidebar'
         },
         {
-            key: 9, name: 'Khăn các loại', status: false, icon: 'view_week'
+            key: 11, name: 'Khăn các loại', status: true, icon: 'view_week'
         },
         {
-            key: 10, name: 'Tủ áo', status: false, icon: 'view_column'
+            key: 12, name: 'Tủ áo', status: true, icon: 'view_column'
         },
         {
-            key: 11, name: 'Máy sấy', status: false, icon: 'leak_add'
+            key: 13, name: 'Máy sấy', status: true, icon: 'leak_add'
         },
         {
-            key: 12, name: 'Máy ủi (bàn là)', status: false, icon: 'set_meal'
+            key: 14, name: 'Máy ủi (bàn là)', status: true, icon: 'set_meal'
         },
         {
-            key: 13, name: 'Chìa khóa thông minh', status: false, icon: 'smart_button'
+            key: 15, name: 'Chìa khóa thông minh', status: true, icon: 'smart_button'
         },
         {
-            key: 14, name: 'Máy pha cà phê/trà', status: false, icon: 'surround_sound'
+            key: 16, name: 'Máy pha cà phê/trà', status: false, icon: 'surround_sound'
         },
         {
-            key: 15, name: 'Ăn sáng miễn phí', status: false, icon: 'local_cafe'
+            key: 17, name: 'Ăn sáng miễn phí', status: false, icon: 'local_cafe'
         },
         {
-            key: 16, name: 'Hồ bơi riêng', status: false, icon: 'pool'
+            key: 18, name: 'Hồ bơi riêng', status: false, icon: 'pool'
         },
         {
-            key: 17, name: 'Bàn/không gian làm việc', status: false, icon: 'power_input'
+            key: 19, name: 'Bàn/không gian làm việc', status: false, icon: 'power_input'
         },
         {
-            key: 18, name: 'Lò sưởi trong nhà', status: false, icon: 'web'
+            key: 20, name: 'Lò sưởi trong nhà', status: false, icon: 'web'
         },
         {
-            key: 19, name: 'Bồn tắm nước nóng', status: false, icon: 'hot_tub'
+            key: 21, name: 'Bồn tắm nước nóng', status: false, icon: 'hot_tub'
         }
 
     ]

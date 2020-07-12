@@ -279,9 +279,12 @@
                                                ata-notify="icon"> {{tiennghi.icon}}</i>
                                             <span style="margin-left: 14px">{{ tiennghi.name }}</span>
                                         </div>
+                                        <div *ngIf="x>7" style="display: none">
+                                           {{lstTienNghiThua.add(tiennghi)}}
+                                        </div>
                                     </div>
-                                    <span style="color: #00b0ff; cursor: pointer;"
-                                    [appTooltip]="lstTienNghiRoom">Xem thêm</span>
+                                    <span *ngIf="lstTienNghiThua.size>0" style="color: #00b0ff; cursor: pointer;"
+                                          [appTooltip]="lstTienNghiThua">Xem thêm</span>
                                     <br>
                                     <hr>
                                     <span class="mb-4">9.7 Tuyệt vời</span>
@@ -309,7 +312,8 @@
                                      style="background: white;border-left: 1px solid #c4cccc;box-shadow: 0 3px 2px -2px #80808070;">
                                     <div class="row">
                                         <div class="col-9"
-                                             style="background: red; color: white; font-size: 10px; font-weight: bold">– 75%
+                                             style="background: red; color: white; font-size: 10px; font-weight: bold">–
+                                            75%
                                             CHỈ HÔM NAY!
                                         </div>
                                     </div>
@@ -341,8 +345,10 @@
                                         </button>
                                     </div>
                                     <div class="row">
-                                        <div class="col p-2 m-2" style="text-align: center; background: #f3f9f2; border-radius: 5px">
-                                            <span class="change-content" style="font-size: 13px; font-weight: bold; color: #33775d"></span>
+                                        <div class="col p-2 m-2"
+                                             style="text-align: center; background: #f3f9f2; border-radius: 5px">
+                                            <span class="change-content"
+                                                  style="font-size: 13px; font-weight: bold; color: #33775d"></span>
                                         </div>
                                     </div>
                                 </div>
