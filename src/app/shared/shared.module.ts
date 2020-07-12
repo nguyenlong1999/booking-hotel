@@ -1,24 +1,25 @@
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { StarRatingComponent } from './animation/star-rating/star-rating.component';
+import {CommonModule} from '@angular/common';
+import {StarRatingComponent} from './animation/star-rating/star-rating.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
-import { HotelMapComponent } from './animation/hotel-map/hotel-map.component';
+import {HotelMapComponent} from './animation/hotel-map/hotel-map.component';
 import {AgmCoreModule} from '@agm/core';
-import { AutocompleteComponent } from './autocomplete/autocomplete.component';
-import {FormsModule} from "@angular/forms";
-import { ImageComponent } from './animation/image/image.component';
+import {AutocompleteComponent} from './autocomplete/autocomplete.component';
+import {FormsModule} from '@angular/forms';
+import {ImageComponent} from './animation/image/image.component';
 import {FileUploadModule} from 'ng2-file-upload';
 import {ScrollTopComponent} from './animation/scroll-top/scroll-top.component';
-import { TooltipComponent } from './animation/tooltip/tooltip.component';
-import { TooltipDirective } from './animation/tooltip/tooltip.directive';
-
+import {TooltipComponent} from './animation/tooltip/tooltip.component';
+import {TooltipDirective} from './animation/tooltip/tooltip.directive';
+import {TranslateModule} from '@ngx-translate/core';
 
 
 @NgModule({
-  declarations: [StarRatingComponent, HotelMapComponent, AutocompleteComponent, ImageComponent, ScrollTopComponent, TooltipComponent, TooltipDirective],
+    declarations: [StarRatingComponent, HotelMapComponent, AutocompleteComponent,
+        ImageComponent, ScrollTopComponent, TooltipComponent, TooltipDirective],
     imports: [
         CommonModule,
         MatTooltipModule,
@@ -28,6 +29,7 @@ import { TooltipDirective } from './animation/tooltip/tooltip.directive';
         AgmCoreModule,
         FormsModule,
         FileUploadModule,
+        TranslateModule,
     ],
     exports: [
         StarRatingComponent,
@@ -38,4 +40,5 @@ import { TooltipDirective } from './animation/tooltip/tooltip.directive';
         TooltipDirective
     ],
 })
-export class SharedModule { }
+export class SharedModule {
+}

@@ -2,6 +2,6 @@
     <div *ngFor="let i of text" @tooltip >
         <i class="material-icons" style="vertical-align: bottom; color: #00e676"
            ata-notify="icon"> {{i.icon}}</i>
-        <span style="margin-left: 14px">{{ i.name }}</span>
+        <span style="margin-left: 14px">{{ i.name | translate }}</span>
     </div>
 </div>

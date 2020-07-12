@@ -18,65 +18,65 @@ export class HotelDetailsComponent implements OnInit {
     lstTienNghiThua = new Set()
     lstTienNghiRoom = [
         {
-            key: 1, name: 'Máy điều hòa', status: false, icon: 'call_to_action'
+            key: 1, name: 'facilities.airConditional', status: true, icon: 'call_to_action'
         },
         {
-            key: 2, name: 'Máy sấy tóc', status: false, icon: 'filter_tilt_shift'
+            key: 2, name: 'facilities.Hairdryer', status: false, icon: 'filter_tilt_shift'
         },
         {
-            key: 3, name: 'Máy sưởi', status: true, icon: 'hot_tub'
+            key: 3, name: 'facilities.heaters', status: true, icon: 'hot_tub'
         },
         {
-            key: 4, name: 'Tivi', status: true, icon: 'tv'
+            key: 4, name: 'facilities.televison', status: true, icon: 'tv'
         },
         {
-            key: 5, name: 'Truyền hình cáp', status: true, icon: 'settings_input_antenna'
+            key: 5, name: 'facilities.cableTV', status: true, icon: 'settings_input_antenna'
         }
         ,
         {
-            key: 6, name: 'Trà', status: true, icon: 'transform'
+            key: 6, name: 'facilities.tea', status: true, icon: 'transform'
         },
         {
-            key: 7, name: 'Cà phê', status: true, icon: 'local_cafe'
+            key: 7, name: 'facilities.coffe', status: true, icon: 'local_cafe'
         },
         {
-            key: 8, name: 'Dầu gội đầu', status: true, icon: 'confirmation_number'
+            key: 8, name: 'facilities.shampoo', status: true, icon: 'confirmation_number'
         },
         {
-            key: 9, name: 'Bộ ga giường', status: true, icon: 'view_sidebar'
+            key: 9, name: 'facilities.beddingSet', status: true, icon: 'view_sidebar'
         },
         {
-            key: 11, name: 'Khăn các loại', status: true, icon: 'view_week'
+            key: 11, name: 'facilities.TowelsOfAllKinds', status: true, icon: 'view_week'
         },
         {
-            key: 12, name: 'Tủ áo', status: true, icon: 'view_column'
+            key: 12, name: 'facilities.Wardrobe', status: true, icon: 'view_column'
         },
         {
-            key: 13, name: 'Máy sấy', status: true, icon: 'leak_add'
+            key: 13, name: 'facilities.Dryer', status: true, icon: 'leak_add'
         },
         {
-            key: 14, name: 'Máy ủi (bàn là)', status: true, icon: 'set_meal'
+            key: 14, name: 'facilities.ironingMachine', status: true, icon: 'set_meal'
         },
         {
-            key: 15, name: 'Chìa khóa thông minh', status: true, icon: 'smart_button'
+            key: 15, name: 'facilities.smartKey', status: true, icon: 'smart_button'
         },
         {
-            key: 16, name: 'Máy pha cà phê/trà', status: false, icon: 'surround_sound'
+            key: 16, name: 'facilities.teaMaker', status: false, icon: 'surround_sound'
         },
         {
-            key: 17, name: 'Ăn sáng miễn phí', status: false, icon: 'local_cafe'
+            key: 17, name: 'facilities.freeBreakfast', status: false, icon: 'local_cafe'
         },
         {
-            key: 18, name: 'Hồ bơi riêng', status: false, icon: 'pool'
+            key: 18, name: 'facilities.privatePool', status: false, icon: 'pool'
         },
         {
-            key: 19, name: 'Bàn/không gian làm việc', status: false, icon: 'power_input'
+            key: 19, name: 'facilities.workspace', status: false, icon: 'power_input'
         },
         {
-            key: 20, name: 'Lò sưởi trong nhà', status: false, icon: 'web'
+            key: 20, name: 'facilities.Fireplace', status: false, icon: 'web'
         },
         {
-            key: 21, name: 'Bồn tắm nước nóng', status: false, icon: 'hot_tub'
+            key: 21, name: 'facilities.hotTub', status: false, icon: 'hot_tub'
         }
 
     ]
