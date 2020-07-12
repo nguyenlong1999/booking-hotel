@@ -1,19 +1,35 @@
-@media screen and (max-width: 1366px) {
-    .main-column {
-        height: auto;
-        width: 1100px;
-        margin-left: 3%;
-        float: left;
-    }
-}
+/*@media screen and (max-width: 1366px) and (min-width: 1200px) {*/
+/*    .main-column {*/
+/*        height: auto;*/
+/*        width: 1100px;*/
+/*        margin-left: 3%;*/
+/*        float: left;*/
+/*    }*/
+/*}*/
 
-@media screen and (max-width: 450px) {
-    .main-column {
-        height: auto;
-        width: 1100px;
-        margin-left: 3%;
-        float: left;
-    }
+/*@media screen and (max-width: 450px) and (min-width: 350px) {*/
+/*    .main-column {*/
+/*        height: auto;*/
+/*        width: 1100px;*/
+/*        margin-left: 3%;*/
+/*        float: left;*/
+/*    }*/
+/*}*/
+
+/*@media screen and (min-width: 1800px) {*/
+/*    .main-column {*/
+/*        height: auto;*/
+/*        width: 1600px;*/
+/*        margin-left: 3%;*/
+/*        float: left;*/
+/*    }*/
+/*}*/
+
+.main-column {
+    height: auto;
+    width: 90%;
+    margin-left: 3%;
+    float: left;
 }
 .loadding {
     width: 30%;
@@ -187,14 +203,53 @@ no-fixed-left {
 
 .tag-QC {
     width: 100%;
-    height: 80px;
-    background: #3d5afe;
-    border-radius: 5px;
-    margin: 0 0 20px 0;
-    text-align: center;
+    /*height: 80px;*/
+    margin: 20px 0;
+    /*display: flex;*/
+    -webkit-box-align: center;
+    align-items: center;
+    box-shadow: none;
+    padding: 12px 16px;
+    color: rgb(42, 42, 46);
+    background: linear-gradient(90deg, rgb(247, 228, 108) 0%, rgb(236, 196, 58) 100%);
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(221, 223, 226);
+    border-image: initial;
+    border-radius: 8px;
+}
+.QC-img {
+    height: 48px;
+    width: 6%;
+    border-radius: 50%;
+    position: relative;
+    background-color: #ecc43a;
+}
+.QC-img img {
+    height: 36px;
+    width: 29px;
+    position: absolute;
+    left: 10px;
+    top: 9px;
 
 }
-
+.QC-content {
+    padding-left: 16px;
+    padding-right: 16px;
+    -webkit-box-flex: 1;
+    /*flex-grow: 1;*/
+    width: 90%;
+}
+.QCContent-title {
+    margin-bottom: 4px;
+    font-weight: 700;
+}
+.QCContent-text {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    margin: 0px;
+}
 .sort-bar {
     border: 1px solid gray;
     color: #3C4858;
