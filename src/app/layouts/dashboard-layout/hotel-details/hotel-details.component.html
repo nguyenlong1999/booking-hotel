@@ -237,103 +237,112 @@
                 </div>
             </div>
         </div>
-        <div class="row pt-3">
-            <div class="col" style="border: #00a5d7 1px solid;">
-                <div class="row">
-                    <div class="col mt-2">
-                        <span style="font-size: 20px; font-weight: bold">Supper Ấm cúng</span>
-                    </div>
-                </div>
-                <div class="row" style="background: #f7f7f7">
-                    <div class="col">
-                        <div class="row mt-2">
-                            <div class="col-3">
-                                <span style="font-weight: bold; font-size: 15px">Loại phòng</span>
-                            </div>
-                            <div class="col-3 pl-0">
-                                <span style="font-weight: bold; font-size: 15px">Giá này đã bao gồm</span>
-                            </div>
-                            <div class="col-1 pl-0">
-                                <span style="font-weight: bold; font-size: 15px">Sức chứa</span>
-                            </div>
-                            <div class="col pl-0">
-                                <span style="font-weight: bold; font-size: 15px">Giá phòng/đêm</span>
-                            </div>
-                            <div class="col-1 pl-0">
-                                <span style="font-weight: bold; font-size: 15px">SL</span>
-                            </div>
-                            <div class="col pl-0">
-                                <span style="font-weight: bold; font-size: 15px">Đặt nhiều nhất</span>
-                            </div>
+
+        <div *ngFor="let i of [0,1,2,3,4,5]">
+            <div class="row pt-3">
+                <div class="col" style="border: #00a5d7 1px solid;">
+                    <div class="row">
+                        <div class="col mt-2">
+                            <span style="font-size: 20px; font-weight: bold">Supper Ấm cúng</span>
                         </div>
-                        <div class="row mt-2">
-                            <div class="col-3 pb-3">
-                                <ngx-gallery [options]="galleryOptions1" [images]="galleryImages1"
-                                             class="ngx-gallery" style="width: 100%; height: 200px"></ngx-gallery>
-                                <br>
-                                <div *ngFor="let tiennghi of lstTienNghiRoom | filterByStatus: filterargsStatus; let x = index">
-                                    <div *ngIf="x<7">
-                                        <i class="material-icons" style="vertical-align: bottom; color: #00e676"
-                                           ata-notify="icon"> {{tiennghi.icon}}</i>
-                                        <span style="margin-left: 14px">{{ tiennghi.name }}</span>
-                                    </div>
+                    </div>
+                    <div class="row" style="background: #f7f7f7">
+                        <div class="col">
+                            <div class="row mt-2">
+                                <div class="col-3">
+                                    <span style="font-weight: bold; font-size: 15px">Loại phòng</span>
                                 </div>
-                                <span style="color: #00b0ff; cursor: pointer;">Xem thêm</span>
-                                <br>
-                                <hr>
-                                <span class="mb-4">9.7 Tuyệt vời</span>
-                            </div>
-                            <div class="col-3 mb-2 pt-2 pl-3"
-                                 style="background: white; box-shadow: 0 3px 2px -2px #80808070;">
-                                <span style="font-weight: bold; font-size: 13px">Lợi ích</span>
-                                <br>
-                                <i class="material-icons" style="vertical-align: bottom; color: #00e676"
-                                   ata-notify="icon">done</i> Wifi miễn phí
-                                <br>
-                                <span style="font-weight: bold; font-size: 13px">Tặng thưởng</span>
-                            </div>
-                            <div class="col-1 mb-2 pt-2"
-                                 style="background: white;border-left: 1px solid #c4cccc;box-shadow: 0 3px 2px -2px #80808070;">
-                                <i class="material-icons"
-                                   style="vertical-align: bottom; color: #00e5ff; font-size: 50px"
-                                   ata-notify="icon">family_restroom</i>
-                                <br>
-                                <span style="font-size: 10px">2 bé dưới 13 tuổi được ở </span>
-                                <br>
-                                <span style="color: #00e676;font-size: 12px; font-weight: bold">MIỄN PHÍ!</span>
-                            </div>
-                            <div class="col mb-2 pt-3"
-                                 style="background: white;border-left: 1px solid #c4cccc;box-shadow: 0 3px 2px -2px #80808070;">
-                                <div class="row">
-                                    <div class="col-9"
-                                         style="background: red; color: white; font-size: 10px; font-weight: bold">– 75%
-                                        CHỈ HÔM NAY!
-                                    </div>
+                                <div class="col-3 pl-0">
+                                    <span style="font-weight: bold; font-size: 15px">Giá này đã bao gồm</span>
                                 </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col pr-2">
-                                        <span style="text-decoration:line-through;font-size:14px  ;float: right; font-weight: bold; color:darkgray">1.300.0000 đ</span>
-                                    </div>
+                                <div class="col-1 pl-0">
+                                    <span style="font-weight: bold; font-size: 15px">Sức chứa</span>
                                 </div>
-                                <div class="row">
-                                    <div class="col pr-2">
-                                        <strong style=" float: right; font-weight: bold;font-size: 24px ; color:orangered">300.0000đ</strong>
-                                    </div>
+                                <div class="col pl-0">
+                                    <span style="font-weight: bold; font-size: 15px">Giá phòng/đêm</span>
+                                </div>
+                                <div class="col-1 pl-0">
+                                    <span style="font-weight: bold; font-size: 15px">SL</span>
+                                </div>
+                                <div class="col pl-0">
+                                    <span style="font-weight: bold; font-size: 15px">Đặt nhiều nhất</span>
                                 </div>
                             </div>
-                            <div class="col-1 mb-2"
-                                 style="background: white;border-left: 1px solid #c4cccc;box-shadow: 0 3px 2px -2px #80808070;">
-                                <mat-form-field>
-                                    <mat-label style="font-size: 14px">Số lượng</mat-label>
-                                    <input matInput type="number" onkeypress="return event.charCode >= 48">
-                                </mat-form-field>
-                            </div>
-                            <div class="col mb-2 mr-3"
-                                 style="background: white;border-left: 1px solid #c4cccc;box-shadow: 0 3px 2px -2px #80808070;">
-                                <div class="row">
-                                    <div class="col pt-3">
-                                        xxxx
+                            <div class="row mt-2">
+                                <div class="col-3 pb-3">
+                                    <ngx-gallery [options]="galleryOptions1" [images]="galleryImages1"
+                                                 class="ngx-gallery" style="width: 100%; height: 200px"></ngx-gallery>
+                                    <br>
+                                    <div *ngFor="let tiennghi of lstTienNghiRoom | filterByStatus: filterargsStatus; let x = index">
+                                        <div *ngIf="x<7">
+                                            <i class="material-icons" style="vertical-align: bottom; color: #00e676"
+                                               ata-notify="icon"> {{tiennghi.icon}}</i>
+                                            <span style="margin-left: 14px">{{ tiennghi.name }}</span>
+                                        </div>
+                                    </div>
+                                    <span style="color: #00b0ff; cursor: pointer;">Xem thêm</span>
+                                    <br>
+                                    <hr>
+                                    <span class="mb-4">9.7 Tuyệt vời</span>
+                                </div>
+                                <div class="col-3 mb-2 pt-2 pl-3"
+                                     style="background: white; box-shadow: 0 3px 2px -2px #80808070;">
+                                    <span style="font-weight: bold; font-size: 13px">Lợi ích</span>
+                                    <br>
+                                    <i class="material-icons" style="vertical-align: bottom; color: #00e676"
+                                       ata-notify="icon">done</i> Wifi miễn phí
+                                    <br>
+                                    <span style="font-weight: bold; font-size: 13px">Tặng thưởng</span>
+                                </div>
+                                <div class="col-1 mb-2 pt-2"
+                                     style="background: white;border-left: 1px solid #c4cccc;box-shadow: 0 3px 2px -2px #80808070;">
+                                    <i class="material-icons"
+                                       style="vertical-align: bottom; color: #00e5ff; font-size: 50px"
+                                       ata-notify="icon">family_restroom</i>
+                                    <br>
+                                    <span style="font-size: 10px">2 bé dưới 13 tuổi được ở </span>
+                                    <br>
+                                    <span style="color: #00e676;font-size: 12px; font-weight: bold">MIỄN PHÍ!</span>
+                                </div>
+                                <div class="col mb-2 pt-3"
+                                     style="background: white;border-left: 1px solid #c4cccc;box-shadow: 0 3px 2px -2px #80808070;">
+                                    <div class="row">
+                                        <div class="col-9"
+                                             style="background: red; color: white; font-size: 10px; font-weight: bold">– 75%
+                                            CHỈ HÔM NAY!
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col pr-2">
+                                            <span style="text-decoration:line-through;font-size:14px  ;float: right; font-weight: bold; color:darkgray">1.300.0000 đ</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col pr-2">
+                                            <strong style=" float: right; font-weight: bold;font-size: 24px ; color:orangered">300.0000đ</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-1 mb-2"
+                                     style="background: white;border-left: 1px solid #c4cccc;box-shadow: 0 3px 2px -2px #80808070;">
+                                    <mat-form-field>
+                                        <mat-label style="font-size: 14px">Số lượng</mat-label>
+                                        <input matInput type="number" onkeypress="return event.charCode >= 48">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col mb-2 mr-3"
+                                     style="background: white;border-left: 1px solid #c4cccc;box-shadow: 0 3px 2px -2px #80808070;">
+                                    <div class="row">
+                                        <button class="col pt-4 pb-4 pl-2 pr-2 m-2 btn btn-primary hoverBtn"
+                                                style="background: #0c83e2; text-align: center; border-radius: 5px; ">
+                                            <span style="color: white; font-weight: bold">Đặt trước</span>
+                                        </button>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col p-2 m-2" style="text-align: center; background: #f3f9f2; border-radius: 5px">
+                                            <span class="change-content" style="font-size: 13px; font-weight: bold; color: #33775d"></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -342,7 +351,6 @@
                 </div>
             </div>
         </div>
-
         <br>
         <div class="row">
             <div class="col-3 pl-0">

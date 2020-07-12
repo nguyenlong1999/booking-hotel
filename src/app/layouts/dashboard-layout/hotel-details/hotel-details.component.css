@@ -22,3 +22,14 @@
 .rating-text {
     margin-top: 10px
 }
+
+.change-content:after{
+    content: '';
+    animation: changetext 10s infinite linear ;
+}
+
+@keyframes changetext{
+    0% { content:"Không thanh toán hôm nay"; }
+    100% { content:"KHÔNG SỢ RỦI RO.  Hủy không tốn phí"; }
+
+}
