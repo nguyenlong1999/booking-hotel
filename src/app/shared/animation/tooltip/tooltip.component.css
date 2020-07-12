@@ -3,6 +3,6 @@
 }
 
 div {
-    background-color: red;
-    color: white;
+    background-color: white;
+    border: 1px solid #00acc1;
 }

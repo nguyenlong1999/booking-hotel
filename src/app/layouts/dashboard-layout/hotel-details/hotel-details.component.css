@@ -25,7 +25,7 @@
 
 .change-content:after{
     content: '';
-    animation: changetext 10s infinite linear ;
+    animation: changetext 5s infinite linear ;
 }
 
 @keyframes changetext{
