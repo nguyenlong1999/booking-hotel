@@ -31,6 +31,7 @@
     margin-left: 3%;
     float: left;
 }
+
 .loadding {
     width: 30%;
     /*height: 150px;*/
@@ -42,10 +43,12 @@
     border-radius: 15px;
     padding: 15px;
 }
+
 .loadding-progress {
     margin: 0 auto;
     animation: mat-progress-spinner-linear-rotate 3000ms linear infinite !important;
 }
+
 .loadding-title {
     width: 100%;
     text-align: center;
@@ -55,36 +58,76 @@
     margin-top: 25px;
     text-transform: uppercase;
 }
+
 .loadding-text {
     text-align: center;
     margin-top: 5px;
     font-weight: 500;
     font-size: 15px;
 }
+
 .fixed-left {
-    position: fixed;
+    position: sticky;
     z-index: 1020 !important;
-    width: 21%;
+    width: 25%;
     top: 25%;
     padding: 0 1%;
     transform: translateY(-70px)
 }
+
 no-fixed-left {
     width: 25% !important;
     padding: 0 1%;
     transform: translateY(70px)
 }
+
 .space-fixed {
     width: 25%;
     padding: 0 1%;
     float: left;
 }
+
 .col-3 {
     width: 25%;
     height: auto;
     float: left;
     padding: 0 1%;
 }
+
+.offer-map {
+    width: 100%;
+    height: 100px;
+    position: relative;
+    cursor: pointer;
+}
+
+.map-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 3px;
+}
+
+.map-maker {
+    position: absolute;
+    bottom: calc(50% - 15px);
+    left: calc(50% - 15px);
+    width: 30px;
+    height: 50px;
+}
+
+.map-text {
+    position: absolute;
+    display: block;
+    bottom: 10%;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700;
+    color: #3c3c3c;
+    text-transform: uppercase;
+}
+
 .offer-text {
     width: 100%;
     font-size: 14px;
@@ -92,6 +135,7 @@ no-fixed-left {
     line-height: 20px;
     margin: 5px 0;
 }
+
 .offer-item {
     width: 100%;
     height: 120px;
@@ -218,6 +262,7 @@ no-fixed-left {
     border-image: initial;
     border-radius: 8px;
 }
+
 .QC-img {
     height: 48px;
     width: 6%;
@@ -225,6 +270,7 @@ no-fixed-left {
     position: relative;
     background-color: #ecc43a;
 }
+
 .QC-img img {
     height: 36px;
     width: 29px;
@@ -233,6 +279,7 @@ no-fixed-left {
     top: 9px;
 
 }
+
 .QC-content {
     padding-left: 16px;
     padding-right: 16px;
@@ -240,28 +287,115 @@ no-fixed-left {
     /*flex-grow: 1;*/
     width: 90%;
 }
+
 .QCContent-title {
     margin-bottom: 4px;
     font-weight: 700;
 }
+
 .QCContent-text {
     font-size: 14px;
     line-height: 20px;
     font-weight: 400;
     margin: 0px;
 }
+
 .sort-bar {
-    border: 1px solid gray;
+    /*border: 1px solid gray;*/
     color: #3C4858;
     margin: 0 0 12px !important;
 }
 
+.btn-price:hover {
+    background: #0a6ebd;
+}
+
+.btn-star:hover {
+    background: #0a6ebd;
+}
+
+.btn-review:hover {
+    background: #0a6ebd;
+}
+.btn-peole:hover {
+    background: #0a6ebd;
+}
+.btn-sale:hover {
+    background: #0a6ebd;
+}
+
+.btn-price {
+    width: 100%;
+    background: #6c757d;
+    border-radius: 20px;
+    color: #fff;
+    font-weight: 700;
+    text-transform: none;
+    font-size: 15px;
+    padding: 8px;
+}
+
+.btn-star {
+    width: 100%;
+    background: #6c757d;
+    border-radius: 20px;
+    color: #fff;
+    font-weight: 700;
+    text-transform: none;
+    font-size: 15px;
+    padding: 8px;
+}
+
+.btn-review {
+    width: 100%;
+    background: #6c757d;
+    border-radius: 20px;
+    color: #fff;
+    font-weight: 700;
+    text-transform: none;
+    font-size: 15px;
+    padding: 8px;
+}
+.dropdown-item mat-icon {
+    font-size: 18px;
+    color: yellow;
+}
+.btn-peole {
+    width: 100%;
+    background: #6c757d;
+    border-radius: 20px;
+    color: #fff;
+    font-weight: 700;
+    text-transform: none;
+    font-size: 15px;
+    padding: 8px;
+}
+.dropdown-item:hover {
+    background: #7ea6f6;
+}
+.btn-sale {
+    width: 100%;
+    background: #6c757d;
+    border-radius: 20px;
+    color: #fff;
+    font-weight: 700;
+    text-transform: none;
+    font-size: 15px;
+    padding: 8px;
+}
 .hotel-item {
     height: 270px;
     margin: 0 0 12px !important;
     box-shadow: rgba(0, 0, 0, .12) 0 2px 2px 0;
 }
-
+:host >>> ngx-skeleton-loader .loader {
+    border-radius: 0;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    /*background-color: #992929;*/
+    /*border: 1px solid white;*/
+}
 .img-item {
     width: 30%;
     padding: 0;
