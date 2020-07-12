@@ -12,11 +12,13 @@ import {FormsModule} from "@angular/forms";
 import { ImageComponent } from './animation/image/image.component';
 import {FileUploadModule} from 'ng2-file-upload';
 import {ScrollTopComponent} from './animation/scroll-top/scroll-top.component';
+import { TooltipComponent } from './animation/tooltip/tooltip.component';
+import { TooltipDirective } from './animation/tooltip/tooltip.directive';
 
 
 
 @NgModule({
-  declarations: [StarRatingComponent, HotelMapComponent, AutocompleteComponent, ImageComponent, ScrollTopComponent],
+  declarations: [StarRatingComponent, HotelMapComponent, AutocompleteComponent, ImageComponent, ScrollTopComponent, TooltipComponent, TooltipDirective],
     imports: [
         CommonModule,
         MatTooltipModule,
@@ -32,7 +34,8 @@ import {ScrollTopComponent} from './animation/scroll-top/scroll-top.component';
         HotelMapComponent,
         AutocompleteComponent,
         ImageComponent,
-        ScrollTopComponent
+        ScrollTopComponent,
+        TooltipDirective
     ],
 })
 export class SharedModule { }
