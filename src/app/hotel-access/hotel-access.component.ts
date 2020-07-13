@@ -7,7 +7,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {HotelService} from '../shared/service/hotel.service.';
 import {CookieService} from 'ngx-cookie-service';
 import {RoomTypeEnum} from '../shared/enums/RoomTypeEnum';
-import {ChatService} from "../shared/service/chat.service";
+import {ChatService} from '../shared/service/chat.service';
 
 @Component({
     selector: 'app-hotel-access',
@@ -28,6 +28,7 @@ export class HotelAccessComponent implements OnInit {
     lng = 105.468750;
     successMessage = '';
     listImgCurrent = [];
+    lstImageTypeRoom = [];
     a = [];
     // rating
     rating = 3;
@@ -144,8 +145,8 @@ export class HotelAccessComponent implements OnInit {
             address: [''],
             country: [''],
             province: [''],
-            longitude:[''],
-            latitude:[''],
+            longitude: [''],
+            latitude: [''],
             nameSpace: [''],
             zip: [''],
 
@@ -254,8 +255,8 @@ export class HotelAccessComponent implements OnInit {
                 this.listRadioCancel = [{name: 'room.flexiblev1', value: 1, checked: false},
                     {name: 'room.Strictv1', value: 2, checked: true}]
             }
-            this.lat= result[0][0].hotelObj.latitude;
-            this.lng=result[0][0].hotelObj.longitude;
+            this.lat = result[0][0].hotelObj.latitude;
+            this.lng = result[0][0].hotelObj.longitude;
 
             this.registerHotelForm = this.formbuilder.group({
                 id: result[0][0].hotelObj._id,
@@ -388,6 +389,7 @@ export class HotelAccessComponent implements OnInit {
     }
 
     onSubmit() {
+
         if (this.checked === false) {
             this.isSubmitted = true
             return
@@ -404,11 +406,11 @@ export class HotelAccessComponent implements OnInit {
         this.registerHotelForm.get('starHotel').setValue(this.rating)
 
         let nameSpace = this.registerHotelForm.get('name').value;
-        nameSpace = nameSpace.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        nameSpace = nameSpace.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
         nameSpace = nameSpace.toLowerCase();
-        let name = nameSpace.split(' ');
+        const name = nameSpace.split(' ');
         nameSpace = name.join('-');
-        this.registerHotelForm.get('nameSpace').patchValue(nameSpace) ;
+        this.registerHotelForm.get('nameSpace').patchValue(nameSpace);
         console.log('data-register: ');
         console.log(this.registerHotelForm.value);
         const hoTelsObject = this.registerHotelForm.value;
@@ -531,7 +533,7 @@ export class HotelAccessComponent implements OnInit {
             this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomFireplace').patchValue(true)
             this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomHotTub').patchValue(true)
         }
-        if (parseInt(value) >6) {
+        if (parseInt(value) > 6) {
             console.log('cùi')
             this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomPrivatePool').patchValue(true)
         }
@@ -567,7 +569,8 @@ export class HotelAccessComponent implements OnInit {
             roomWorkspace: this.formbuilder.control(true),
             roomFireplace: this.formbuilder.control(true),
             roomHotTub: this.formbuilder.control(true),
-            roomType: ['']
+            roomType: [''],
+            lstImg: ['']
         });
     }
 
@@ -786,6 +789,17 @@ export class HotelAccessComponent implements OnInit {
         // let evt = JSON.parse(event.toString());
         // this.arrayImage += evt.filePath + ','
         // event.path
+    }
+
+    getImageSrcTypeRoom(event: any, i) {
+        console.log(i)
+        const pshArrayImage = new Set()
+        const str = '[' + event.toString().replace(/}\n?{/g, '},{') + ']';
+        JSON.parse(str).forEach((obj) => {
+            pshArrayImage.add(obj.filePath)
+        });
+
+        this.registerHotelForm.get('formArrayRoomNumber').get([i]).get('lstImg').setValue(Array.from(pshArrayImage).join(','))
     }
 
     getIndexDelete(event: any) {

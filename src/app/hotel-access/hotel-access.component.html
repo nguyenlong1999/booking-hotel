@@ -1107,6 +1107,14 @@
                                                             </div>
                                                         </div>
 
+                                                        <div>
+                                                            <hr>
+                                                            <app-image (imageSrcUrl)="getImageSrcTypeRoom($event,i)"
+                                                                       (indexDelete)="getIndexDelete($event)"
+                                                                       [multiple]="true"
+                                                                       [imageProp]="imageProp"
+                                                                       [listImgCurrent]="lstImageTypeRoom"></app-image>
+                                                        </div>
                                                         <hr>
 
                                                         <div>
