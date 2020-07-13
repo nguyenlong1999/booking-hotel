@@ -15,11 +15,13 @@ import {ScrollTopComponent} from './animation/scroll-top/scroll-top.component';
 import {TooltipComponent} from './animation/tooltip/tooltip.component';
 import {TooltipDirective} from './animation/tooltip/tooltip.directive';
 import {TranslateModule} from '@ngx-translate/core';
+import {TooltipImgPreviewComponent} from './animation/tooltip-img-preview/tooltip-img-preview.component';
+import {TooltipImgPreviewDirective} from './animation/tooltip-img-preview/tooltip-img-preview.directive';
 
 
 @NgModule({
     declarations: [StarRatingComponent, HotelMapComponent, AutocompleteComponent,
-        ImageComponent, ScrollTopComponent, TooltipComponent, TooltipDirective],
+        ImageComponent, ScrollTopComponent, TooltipComponent, TooltipDirective, TooltipImgPreviewComponent, TooltipImgPreviewDirective],
     imports: [
         CommonModule,
         MatTooltipModule,
@@ -37,7 +39,10 @@ import {TranslateModule} from '@ngx-translate/core';
         AutocompleteComponent,
         ImageComponent,
         ScrollTopComponent,
-        TooltipDirective
+        TooltipDirective,
+        TooltipComponent,
+        TooltipImgPreviewComponent,
+        TooltipImgPreviewDirective
     ],
 })
 export class SharedModule {
