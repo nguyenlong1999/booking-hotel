@@ -35,6 +35,7 @@ export class TooltipDirective implements OnInit {
     const tooltipRef: ComponentRef<TooltipComponent>
         = this.overlayRef.attach(new ComponentPortal(TooltipComponent));
     tooltipRef.instance.text = this.text;
+    console.log(this.text)
   }
 
   @HostListener('mouseout')
