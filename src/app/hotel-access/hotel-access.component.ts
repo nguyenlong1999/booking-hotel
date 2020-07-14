@@ -191,7 +191,6 @@ export class HotelAccessComponent implements OnInit {
             this.tab3 = false
         }
         if (event.index === 3) {
-            console.log('xxx')
             this.tab4 = false
         }
         if (event.index === 4) {
@@ -247,6 +246,8 @@ export class HotelAccessComponent implements OnInit {
             console.log(result);
             this.listImgCurrent = result[0][0].hotelObj.image.split(',');
             result[1][0].forEach((room, i) => {
+                console.log('heheh')
+                console.log(room)
                 if (room.lstImg !== '' && room.lstImg !== null) {
                     const item = room.lstImg.split(',');
                     this.listRoomImgCurrent.push(item);
@@ -373,7 +374,8 @@ export class HotelAccessComponent implements OnInit {
                     roomWorkspace: this.formbuilder.control(i.roomWorkspace),
                     roomFireplace: this.formbuilder.control(i.roomFireplace),
                     roomHotTub: this.formbuilder.control(i.roomHotTub),
-                    roomType: [i.roomType]
+                    roomType: [i.roomType],
+                    lstImg: [i.lstImg]
                 }));
 
                 // xử lý push control array
@@ -414,7 +416,7 @@ export class HotelAccessComponent implements OnInit {
                 imgCurrent = imgCurrent + ',';
                 this.arrayImage = imgCurrent.concat(this.arrayImage);
             }
-        }this.listRoomImgCurrent
+        }
 
         this.registerHotelForm.get('image').setValue(this.arrayImage)
         this.registerHotelForm.get('totalRoomNumber').setValue(this.totaltypeRoomNumber)
@@ -432,7 +434,7 @@ export class HotelAccessComponent implements OnInit {
         hoTelsObject.email = this.cookies.get('email');
         if (this.isEdited) {
             console.log('vao day de edit')
-            console.log(this.registerHotelForm.value);
+
             this._hotelService.editHotel(this.registerHotelForm.value).subscribe((data) => {
                 const result = data.body
                 console.log(result)
@@ -813,19 +815,17 @@ export class HotelAccessComponent implements OnInit {
             pshArrayImage.add(obj.filePath)
         });
         let newImage = Array.from(pshArrayImage).join(',')
-        if (this.listRoomImgCurrent[i].length > 0) {
-            let imgCurrent = Array.from(this.listRoomImgCurrent[i]).join();
-            if (pshArrayImage.size > 0) {
-                imgCurrent = imgCurrent + ',';
-                newImage = imgCurrent.concat(newImage);
+        if (this.isEdited) {
+            if (this.listRoomImgCurrent[i].length > 0) {
+                let imgCurrent = Array.from(this.listRoomImgCurrent[i]).join();
+                if (pshArrayImage.size > 0) {
+                    imgCurrent = imgCurrent + ',';
+                    newImage = imgCurrent.concat(newImage);
+                }
             }
         }
         console.log('đây là mảng ảnh mới:' + newImage);
-        try {
-            this.registerHotelForm.get('formArrayRoomNumber').get([i]).get('lstImg').setValue(newImage);
-        } catch (e) {
-            console.log('lỗi của long');
-        }
+        this.registerHotelForm.get('formArrayRoomNumber').get([i]).get('lstImg').setValue(newImage);
     }
 
     getIndexDelete(event: any) {

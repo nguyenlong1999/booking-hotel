@@ -12,6 +12,8 @@ export class Hotel {
     rulerHotel: string;
     sqm: number;
     starHotel: any;
+    latitude: string;
+    longitude: string;
     suggestPlayground: string;
     totalRoomNumber: number;
     pointRating: number;
@@ -19,5 +21,5 @@ export class Hotel {
     zip: string;
     status: any;
     isBlock: any;
-    nameSpace:string;
+    nameSpace: string;
 }
