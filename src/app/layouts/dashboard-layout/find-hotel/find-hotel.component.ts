@@ -16,24 +16,6 @@ export class FindHotelComponent implements OnInit {
     fixed = false;
     loadding = false;
     hotels: any;
-    listPriceFacilities = [
-        {
-            key: 0, name: 'facilities.freeWifi', status: true, icon: 'wifi'
-        },
-        {
-            key: 1, name: 'facilities.freeInternet', status: true, icon: 'network_check'
-        },
-        {
-            key: 2, name: 'facilities.freeBreakfast', status: true, icon: 'free_breakfast'
-        },
-        {
-            key: 3, name: 'facilities.freeParking', status: true, icon: 'tv'
-        },
-        {
-            key: 5, name: 'Hủy miễn phí', status: true, icon: 'wifi_protected_setup'
-        }
-    ];
-
     constructor(
         private cookie: CookieService,
         private hotelService: HotelService
@@ -43,25 +25,8 @@ export class FindHotelComponent implements OnInit {
                 return;
             }
             this.hotels = hotels['hotels'];
-            let listPriceFacilities = [
-                // {
-                //     name: 'facilities.freeWifi', status: false, icon: 'wifi'
-                // },
-                // {
-                //     name: 'facilities.freeInternet', status: false, icon: 'network_check'
-                // },
-                // {
-                //     name: 'facilities.freeBreakfast', status: false, icon: 'free_breakfast'
-                // },
-                // {
-                //     name: 'facilities.freeParking', status: false, icon: 'tv'
-                // },
-                // {
-                //     name: 'Hủy miễn phí', status: true, false: 'wifi_protected_setup'
-                // }
-            ];
             this.hotels.forEach(item => {
-                item.listPriceFacilities = listPriceFacilities;
+                item.listPriceFacilities = [];
                 if (item.faciliti.freeWifi === true) {
                     const a = {name: 'facilities.freeWifi', status: true, icon: 'wifi'}
                     item.listPriceFacilities.push(a)
@@ -80,7 +45,7 @@ export class FindHotelComponent implements OnInit {
                 }
                 const e = {name: 'Hủy miễn phí', status: true, icon: 'wifi_protected_setup'}
                 item.listPriceFacilities.push(e)
-                console.log(item.listPriceFacilities);
+                console.log(item.listPriceFacilities.length);
             });
         });
     }

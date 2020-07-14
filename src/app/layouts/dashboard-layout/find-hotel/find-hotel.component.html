@@ -417,7 +417,7 @@
                                     quý khách ở linh hoạt nhất có thể bằng cách cung cấp việc hủy miễn phí.</p>
                             </div>
                         </div>
-                        <a *ngFor="let p of [].constructor(15)" target="_blank" class="hehe"
+                        <a *ngFor="let hotel of hotels" target="_blank" class="hehe"
                            style="color: #0a0a0a; cursor: pointer">
                             <div class="row hotel-item">
                                 <div class="img-item">
@@ -484,12 +484,12 @@
                                     <div></div>
                                     <div class="tooltipFacilitiHotel">
                                         <ol class="pills">
-                                            <li *ngFor="let item of listPriceFacilities | slice:0:2" class="pill"
+                                            <li *ngFor="let item of hotel.listPriceFacilities | slice:0:2" class="pill"
                                                 style="border-color: #66be5b; color: #66be5b;">
                                                 {{item.name | translate}}
                                             </li>
-                                            <li *ngIf="listPriceFacilities.length > 2" class="pill" style="border-color: #66be5b; color: #66be5b;">
-                                                +{{listPriceFacilities.length - 2}}
+                                            <li *ngIf="hotel.listPriceFacilities.length > 2" class="pill" style="border-color: #66be5b; color: #66be5b;">
+                                                +{{hotel.listPriceFacilities.length - 2}}
                                             </li>
                                         </ol>
                                         <div class="tooltiptextFacilitiHotel">
@@ -500,7 +500,7 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div *ngFor="let item of listPriceFacilities" class="col-lg-6"
+                                                <div *ngFor="let item of hotel.listPriceFacilities" class="col-lg-6"
                                                      style="text-align: left; padding-left: 8%">
                                                     <mat-icon style="font-size: medium; color: #66be5b;">{{item.icon}}
                                                     </mat-icon>
