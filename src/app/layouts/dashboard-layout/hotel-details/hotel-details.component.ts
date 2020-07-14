@@ -6,6 +6,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {CookieService} from 'ngx-cookie-service';
 import {ChatService} from '../../../shared/service/chat.service';
 import {AppSetting} from '../../../appsetting';
+import {Hotel} from '../../../shared/model/hotel';
 
 
 @Component({
@@ -19,10 +20,11 @@ export class HotelDetailsComponent implements OnInit {
     galleryOptions: NgxGalleryOptions[]; // imgOfHotel
     galleryImages: NgxGalleryImage[];
     galleryOptions1: NgxGalleryOptions[];
-    galleryImages1: NgxGalleryImage[];
-    lstDetaiHotel: []
+    lstDetaiHotel = []
+    lstFacilitisDetails = []
     imageList: any;
-    nameHotel = '';
+    hotel = Hotel;
+    lstLocationNear: any
     filterargsStatus = {status: true};
     lstTienNghiThua = new Set(['Danh sách tiện nghi'])
     lstTienNghiRoom = [
@@ -30,64 +32,65 @@ export class HotelDetailsComponent implements OnInit {
             key: 1, name: 'facilities.airConditional', status: true, icon: 'call_to_action'
         },
         {
-            key: 2, name: 'facilities.Hairdryer', status: false, icon: 'filter_tilt_shift'
+            key: 2, name: 'facilities.beddingSet', status: true, icon: 'view_sidebar'
         },
         {
-            key: 3, name: 'facilities.heaters', status: true, icon: 'hot_tub'
+            key: 3, name: 'facilities.cableTV', status: true, icon: 'settings_input_antenna'
         },
         {
-            key: 4, name: 'facilities.televison', status: true, icon: 'tv'
+            key: 4, name: 'facilities.coffe', status: true, icon: 'local_cafe'
         },
         {
-            key: 5, name: 'facilities.cableTV', status: true, icon: 'settings_input_antenna'
-        }
-        ,
-        {
-            key: 6, name: 'facilities.tea', status: true, icon: 'transform'
+            key: 5, name: 'facilities.Dryer', status: true, icon: 'leak_add'
         },
         {
-            key: 7, name: 'facilities.coffe', status: true, icon: 'local_cafe'
+            key: 6, name: 'facilities.Fireplace', status: false, icon: 'web'
         },
         {
-            key: 8, name: 'facilities.shampoo', status: true, icon: 'confirmation_number'
+            key: 7, name: 'facilities.freeBreakfast', status: false, icon: 'local_cafe'
         },
         {
-            key: 9, name: 'facilities.beddingSet', status: true, icon: 'view_sidebar'
+            key: 8, name: 'facilities.Hairdryer', status: false, icon: 'filter_tilt_shift'
         },
         {
-            key: 11, name: 'facilities.TowelsOfAllKinds', status: true, icon: 'view_week'
+            key: 9, name: 'facilities.heaters', status: true, icon: 'hot_tub'
         },
         {
-            key: 12, name: 'facilities.Wardrobe', status: true, icon: 'view_column'
+            key: 10, name: 'facilities.hotTub', status: false, icon: 'hot_tub'
         },
         {
-            key: 13, name: 'facilities.Dryer', status: true, icon: 'leak_add'
+            key: 11, name: 'facilities.ironingMachine', status: true, icon: 'set_meal'
         },
         {
-            key: 14, name: 'facilities.ironingMachine', status: true, icon: 'set_meal'
+            key: 12, name: 'facilities.privatePool', status: false, icon: 'pool'
         },
         {
-            key: 15, name: 'facilities.smartKey', status: true, icon: 'smart_button'
+            key: 13, name: 'facilities.shampoo', status: true, icon: 'confirmation_number'
+        },
+        {
+            key: 14, name: 'facilities.smartKey', status: true, icon: 'smart_button'
+        },
+        {
+            key: 15, name: 'facilities.tea', status: true, icon: 'transform'
         },
         {
             key: 16, name: 'facilities.teaMaker', status: false, icon: 'surround_sound'
         },
         {
-            key: 17, name: 'facilities.freeBreakfast', status: false, icon: 'local_cafe'
+            key: 17, name: 'facilities.televison', status: true, icon: 'tv'
         },
         {
-            key: 18, name: 'facilities.privatePool', status: false, icon: 'pool'
+            key: 18, name: 'facilities.TowelsOfAllKinds', status: true, icon: 'view_week'
         },
         {
-            key: 19, name: 'facilities.workspace', status: false, icon: 'power_input'
+            key: 19, name: 'facilities.Wardrobe', status: true, icon: 'view_column'
         },
         {
-            key: 20, name: 'facilities.Fireplace', status: false, icon: 'web'
+            key: 20, name: 'facilities.workspace', status: false, icon: 'power_input'
         },
         {
-            key: 21, name: 'facilities.hotTub', status: false, icon: 'hot_tub'
+            key: 21, name: 'facilities.wifiFree', status: false, icon: 'wifi'
         }
-
     ]
     lstAddressPopular = [
         {
@@ -127,18 +130,46 @@ export class HotelDetailsComponent implements OnInit {
         this._hotelService.getHotelById(idObject).subscribe(data => {
             const result = data;
             console.log(result)
-            this.nameHotel = result[0][0].hotelObj.name
+            this.hotel = result[0][0].hotelObj
             this.galleryImages = this.getImage(result[0][0].hotelObj.image.split(','))
             this.lstDetaiHotel = result[1][0];
             this.imageList = []
-            result[1][0].forEach((image) => {
-                console.log(image.lstImg.split(','))
-                // @ts-ignore
-                this.galleryImages1 = this.getImage(image.lstImg.split(','));
-                this.imageList.push(this.galleryImages1)
+            result[1][0].forEach((roomOrder) => {
+                this.imageList.push(this.getImage(roomOrder.lstImg.split(',')))
+                // xử lý facilities của từng room
+                console.log(roomOrder);
+                this.lstTienNghiRoom[0].status = roomOrder.roomAirConditional;
+                this.lstTienNghiRoom[1].status = roomOrder.roomAirConditional;
+                this.lstTienNghiRoom[2].status = roomOrder.roomAirConditional;
+                this.lstTienNghiRoom[3].status = roomOrder.roomAirConditional;
+                this.lstTienNghiRoom[4].status = roomOrder.roomAirConditional;
+                this.lstTienNghiRoom[5].status = roomOrder.roomAirConditional;
+                this.lstTienNghiRoom[6].status = roomOrder.roomAirConditional;
+                this.lstTienNghiRoom[7].status = roomOrder.roomAirConditional;
+                this.lstTienNghiRoom[8].status = roomOrder.roomAirConditional;
+                this.lstTienNghiRoom[9].status = roomOrder.roomAirConditional;
+                this.lstTienNghiRoom[10].status = roomOrder.roomAirConditional;
+                this.lstTienNghiRoom[11].status = roomOrder.roomAirConditional;
+                this.lstTienNghiRoom[12].status = roomOrder.roomAirConditional;
+                this.lstTienNghiRoom[13].status = roomOrder.roomAirConditional;
+                this.lstTienNghiRoom[14].status = roomOrder.roomAirConditional;
+                this.lstTienNghiRoom[15].status = roomOrder.roomAirConditional;
+                this.lstTienNghiRoom[16].status = roomOrder.roomAirConditional;
+                this.lstTienNghiRoom[17].status = roomOrder.roomAirConditional;
+                this.lstTienNghiRoom[18].status = roomOrder.roomAirConditional;
+                this.lstTienNghiRoom[19].status = roomOrder.roomAirConditional;
+                this.lstTienNghiRoom[20].status = roomOrder.roomAirConditional;
+                this.lstFacilitisDetails.push(this.lstTienNghiRoom)
             })
-            console.log(this.imageList)
+
+
+            // this.lstFacilitisDetails.push()
+            // result[1][0].forEach((image) => {
+            //     console.log()
+            // })
+
         })
+
     }
 
     ngOnInit(): void {
@@ -198,43 +229,9 @@ export class HotelDetailsComponent implements OnInit {
             }
         ];
 
-        this.galleryImages1 = [
-            {
-                small: 'assets/img/500_F_271970300_UIGOT5pqS08ymy5U2cXTB73Z7lWASGMm.jpg',
-                medium: 'assets/img/1616895.jpg',
-                big: 'assets/img/1993652.jpg'
-            },
-            {
-                small: 'assets/img/26049717.jpg',
-                medium: 'assets/img/76247377-reception-in-hostel-visitors-with-luggage-and-new-keys-.jpg',
-                big: 'assets/img/109970629-happy-group-of-teen-and-family-traveler-vector-illustration-cartoon-character-.jpg'
-            },
-            {
-                small: 'assets/img/26049717.jpg',
-                medium: 'assets/img/76247377-reception-in-hostel-visitors-with-luggage-and-new-keys-.jpg',
-                big: 'assets/img/109970629-happy-group-of-teen-and-family-traveler-vector-illustration-cartoon-character-.jpg'
-            },
-            {
-                small: 'assets/img/26049717.jpg',
-                medium: 'assets/img/76247377-reception-in-hostel-visitors-with-luggage-and-new-keys-.jpg',
-                big: 'assets/img/109970629-happy-group-of-teen-and-family-traveler-vector-illustration-cartoon-character-.jpg'
-            },
-            {
-                small: 'assets/img/26049717.jpg',
-                medium: 'assets/img/76247377-reception-in-hostel-visitors-with-luggage-and-new-keys-.jpg',
-                big: 'assets/img/109970629-happy-group-of-teen-and-family-traveler-vector-illustration-cartoon-character-.jpg'
-            },
-        ];
     }
 
-    // setImage(i) {
-    //     let imageUrls = [];
-    //     imageUrls = this.getImage(i.lstImg.split(','))
-    //     return imageUrls;
-    // }
-
     getImage(imgArray) {
-        console.log('gọi nè')
         const imageUrls = [];
         for (let i = 0; i < imgArray.length; i++) {
             imageUrls.push({
