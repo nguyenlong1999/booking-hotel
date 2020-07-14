@@ -417,7 +417,8 @@
                                     quý khách ở linh hoạt nhất có thể bằng cách cung cấp việc hủy miễn phí.</p>
                             </div>
                         </div>
-                        <a *ngFor="let p of [].constructor(15)" target="_blank" class="hehe" style="color: #0a0a0a; cursor: pointer">
+                        <a *ngFor="let hotel of hotels" target="_blank" class="hehe"
+                           style="color: #0a0a0a; cursor: pointer">
                             <div class="row hotel-item">
                                 <div class="img-item">
                                     <!--                                    <div class="row" style="margin: 0; padding: 0">-->
@@ -431,7 +432,8 @@
                                     <div class="row" style="height: 30%;margin: 0 !important;">
                                         <div class="thumbnail-item-list">
                                             <div *ngFor="let i of [].constructor(10)" class="thumbnail-item">
-                                                <div class="img-thumbnaill" [appTooltipImgPre]="BASE_URL+'default-avatar-1.png'"
+                                                <div class="img-thumbnaill"
+                                                     [appTooltipImgPre]="BASE_URL+'default-avatar-1.png'"
                                                      [style]="'background-image:url(' + BASE_URL + 'default-avatar.png);background-repeat: no-repeat;background-size: 100% 100%;'"></div>
                                             </div>
                                         </div>
@@ -442,9 +444,12 @@
                                         <h4 class="header-title" style="margin: 0">Quang Hotel</h4>
                                         <div></div>
                                         <div class="header-star">
-                                            <mat-icon *ngFor="let i of [].constructor(5)" class="header-star-icon"
-                                                      style="color: #e67a1e">grade
-                                            </mat-icon>
+                                            <span class="tooltipStar">
+                                                <mat-icon *ngFor="let i of [].constructor(5)" class="header-star-icon"
+                                                          style="color: #e67a1e">grade
+                                                </mat-icon>
+                                                <span class="tooltipStarText">Số sao đánh giá này do nơi lưu trú cung cấp, phản ánh độ thoải mái, cơ sở vật chất và tiện nghi mà khách hàng có thể mong đợi</span>
+                                            </span>
                                             <span class="header-star-text">
                                             <mat-icon class="header-star-icon"
                                                       style="color: dodgerblue">location_on</mat-icon>
@@ -453,7 +458,7 @@
                                         </div>
                                     </header>
                                     <div></div>
-                                    <div style="margin-top: 5px;">
+                                    <div class="tooltipFacilitiPlace" style="margin-top: 5px;">
                                         <ol class="pills">
                                             <li class="pill" style="border-color: black; color: black;">Vị trí thuận
                                                 tiện
@@ -463,20 +468,46 @@
                                                 chuyển gần đây
                                             </li>
                                         </ol>
+                                        <div class="tooltiptextFacilitiPlace">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <mat-icon style="font-size: medium;">where_to_vote</mat-icon>
+                                                    Vị trí thuận tiện
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <mat-icon style="font-size: medium;">train</mat-icon>
+                                                    Phương tiện di chuyển gần đây
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div></div>
-                                    <div>
+                                    <div class="tooltipFacilitiHotel">
                                         <ol class="pills">
-                                            <li class="pill" style="border-color: #66be5b; color: #66be5b;">Ăn sáng
+                                            <li *ngFor="let item of hotel.listPriceFacilities | slice:0:2" class="pill"
+                                                style="border-color: #66be5b; color: #66be5b;">
+                                                {{item.name | translate}}
                                             </li>
-                                            <li class="pill" style="border-color: #66be5b; color: #66be5b;">Thanh
-                                                toán
-                                                tại
-                                                nơi ở
-                                            </li>
-                                            <li class="pill" style="border-color: #66be5b; color: #66be5b;">+2
+                                            <li *ngIf="hotel.listPriceFacilities.length > 2" class="pill" style="border-color: #66be5b; color: #66be5b;">
+                                                +{{hotel.listPriceFacilities.length - 2}}
                                             </li>
                                         </ol>
+                                        <div class="tooltiptextFacilitiHotel">
+                                            <div class="row">
+                                                <div class="col"
+                                                     style="text-align: left;padding-left: 6%;font-weight: 700;font-size: 14px;margin-bottom: 10px;">
+                                                    Một số gói giá sẽ có:
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div *ngFor="let item of hotel.listPriceFacilities" class="col-lg-6"
+                                                     style="text-align: left; padding-left: 8%">
+                                                    <mat-icon style="font-size: medium; color: #66be5b;">{{item.icon}}
+                                                    </mat-icon>
+                                                    {{item.name | translate}}
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div></div>
                                     <div>

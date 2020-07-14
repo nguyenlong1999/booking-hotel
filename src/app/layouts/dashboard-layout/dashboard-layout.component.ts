@@ -408,7 +408,7 @@ export class DashboardLayoutComponent implements OnInit {
         this.cookie.set('searchText', JSON.stringify(this.searchHotel));
         console.log(this.cookie.get('searchText'))
         this._router.navigateByUrl('/search-hotels')
-        this.chatService.showNotification('success', 'Tìm kiếm thành công');
+        // this.chatService.showNotification('success', 'Tìm kiếm thành công');
     }
 
     openDialogChooseHotelType(event) {

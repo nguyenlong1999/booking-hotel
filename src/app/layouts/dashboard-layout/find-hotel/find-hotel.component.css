@@ -317,9 +317,11 @@ no-fixed-left {
 .btn-review:hover {
     background: #0a6ebd;
 }
+
 .btn-peole:hover {
     background: #0a6ebd;
 }
+
 .btn-sale:hover {
     background: #0a6ebd;
 }
@@ -356,10 +358,12 @@ no-fixed-left {
     font-size: 15px;
     padding: 8px;
 }
+
 .dropdown-item mat-icon {
     font-size: 18px;
     color: yellow;
 }
+
 .btn-peole {
     width: 100%;
     background: #6c757d;
@@ -370,9 +374,11 @@ no-fixed-left {
     font-size: 15px;
     padding: 8px;
 }
+
 .dropdown-item:hover {
     background: #7ea6f6;
 }
+
 .btn-sale {
     width: 100%;
     background: #6c757d;
@@ -383,11 +389,13 @@ no-fixed-left {
     font-size: 15px;
     padding: 8px;
 }
+
 .hotel-item {
     height: 270px;
     margin: 0 0 12px !important;
     box-shadow: rgba(0, 0, 0, .12) 0 2px 2px 0;
 }
+
 :host >>> ngx-skeleton-loader .loader {
     border-radius: 0;
     height: 100%;
@@ -396,6 +404,7 @@ no-fixed-left {
     /*background-color: #992929;*/
     /*border: 1px solid white;*/
 }
+
 .img-item {
     width: 30%;
     padding: 0;
@@ -426,9 +435,11 @@ no-fixed-left {
     border-right: 0.5px solid white;
     opacity: 1;
 }
+
 .img-thumbnaill:hover {
     opacity: 0.7;
 }
+
 .img-content {
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -642,6 +653,7 @@ no-fixed-left {
     font-weight: 700;
 }
 
+/* tooltip for price */
 .tooltip {
     position: relative;
     opacity: 1;
@@ -681,5 +693,132 @@ no-fixed-left {
 }
 
 .tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+/* tooltip for star */
+.tooltipStar {
+    position: relative;
+    opacity: 1;
+    z-index: 1 !important;
+    display: inline-block;
+}
+
+.tooltipStar .tooltipStarText {
+    visibility: hidden;
+    width: 200px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 150%;
+    left: 0;
+    margin-left: -60px;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 15px;
+    /*opacity: 0.8;*/
+}
+
+.tooltipStar .tooltipStarText::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+}
+
+.tooltipStar:hover .tooltipStarText {
+    visibility: visible;
+}
+
+/* tooltip for FacilitiPlace */
+.tooltipFacilitiPlace {
+    position: relative;
+    opacity: 1;
+    z-index: 1 !important;
+    display: inline-block;
+}
+
+.tooltipFacilitiPlace .tooltiptextFacilitiPlace {
+    visibility: hidden;
+    width: 100%;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 150%;
+    left: 0;
+    /*margin-left: -60px;*/
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 15px;
+    /*opacity: 0.8;*/
+}
+
+.tooltipFacilitiPlace .tooltiptextFacilitiPlace::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 10%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+}
+
+.tooltipFacilitiPlace:hover .tooltiptextFacilitiPlace {
+    visibility: visible;
+}
+
+/* tooltip for FacilitiHotel */
+.tooltipFacilitiHotel {
+    position: relative;
+    opacity: 1;
+    z-index: 1 !important;
+    display: inline-block;
+    width: 85%;
+}
+
+.tooltipFacilitiHotel .tooltiptextFacilitiHotel {
+    visibility: hidden;
+    width: 150%;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 15px 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 150%;
+    left: 0;
+    /*margin-left: -60px;*/
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 15px;
+    /*opacity: 0.8;*/
+}
+
+.tooltipFacilitiHotel .tooltiptextFacilitiHotel::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 10%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+}
+
+.tooltipFacilitiHotel:hover .tooltiptextFacilitiHotel {
     visibility: visible;
 }
