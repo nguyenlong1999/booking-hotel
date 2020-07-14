@@ -10,14 +10,18 @@ import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
     styleUrls: ['./image.component.scss']
 })
 export class ImageComponent implements OnInit {
-    @Input('imageProp')  imageProp: String;
+    @Input('imageProp') imageProp: String;
+    @Input('imageRoomProp') imageRoomProp: String;
     @Input('url') private url: any;
-    @Input('listImgCurrent')  listImgCurrent: any;
-    @Output()  imageSrcUrl = new EventEmitter();
-    @Output()  indexDelete =  new EventEmitter<string>();
+    @Input('listImgCurrent') listImgCurrent: any;
+    @Input('listRoomImgCurrent') listRoomImgCurrent: any;
+    @Input('indexRoom') index: number;
+    @Output() imageSrcUrl = new EventEmitter();
+    // @Output() indexRoomDelete = new EventEmitter();
+    @Output() indexDelete = new EventEmitter<string>();
 
     // tslint:disable-next-line:no-input-rename
-    @Input('multiple')  multiple = true
+    @Input('multiple') multiple = true
 
     public uploader: FileUploader = new FileUploader({
         url: AppSetting.BASE_SERVER_URL + '/api/upload',
@@ -25,6 +29,7 @@ export class ImageComponent implements OnInit {
     });
     public imageUrl = '';
     listImgPreview: SafeUrl[] = [];
+    BASE_URL = 'http://localhost:8000/api/images/';
 
     // previewImg: SafeUrl;
 
@@ -32,6 +37,9 @@ export class ImageComponent implements OnInit {
     }
 
     ngOnInit() {
+        console.log('IMAGE :');
+        console.log(this.listRoomImgCurrent);
+        console.log(this.index);
         this.uploader.onAfterAddingFile = (file) => {
             file.withCredentials = false;
             console.log('Uploaded File Details:', this.uploader);
@@ -53,6 +61,13 @@ export class ImageComponent implements OnInit {
         this.uploader.queue[i].remove()
         this.indexDelete.emit(i)
     }
+
+    removeImageRoomCurrent(i: any) {
+        console.log('zô');
+        this.listRoomImgCurrent[this.index].splice(i, 1);
+        console.log(this.listRoomImgCurrent[this.index]);
+    }
+
     removeImageCurrent(i) {
         this.listImgCurrent.splice(i, 1);
     }

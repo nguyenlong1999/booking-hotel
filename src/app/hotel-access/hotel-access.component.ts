@@ -8,6 +8,7 @@ import {HotelService} from '../shared/service/hotel.service.';
 import {CookieService} from 'ngx-cookie-service';
 import {RoomTypeEnum} from '../shared/enums/RoomTypeEnum';
 import {ChatService} from '../shared/service/chat.service';
+import {tryCatch} from 'rxjs/internal-compatibility';
 
 @Component({
     selector: 'app-hotel-access',
@@ -28,12 +29,13 @@ export class HotelAccessComponent implements OnInit {
     lng = 105.468750;
     successMessage = '';
     listImgCurrent = [];
-    lstImageTypeRoom = [];
+    listRoomImgCurrent = [];
     a = [];
     // rating
     rating = 3;
     starCount = 5;
     imageProp = 'hotelAccess';
+    imageRoomProp = 'roomDetail';
     starColor: StarRatingColor = StarRatingColor.accent;
     starColorP: StarRatingColor = StarRatingColor.primary;
     starColorW: StarRatingColor = StarRatingColor.warn;
@@ -129,6 +131,8 @@ export class HotelAccessComponent implements OnInit {
                 private route: ActivatedRoute,
                 private chatService: ChatService
     ) {
+        console.log('hotel access');
+        console.log(this.listRoomImgCurrent);
         this.registerHotelForm = this.formbuilder.group({
             name: ['', [Validators.required]],
             sqm: ['', [Validators.pattern(/^[0-9]\d*$/)]],
@@ -242,6 +246,16 @@ export class HotelAccessComponent implements OnInit {
             const result = data;
             console.log(result);
             this.listImgCurrent = result[0][0].hotelObj.image.split(',');
+            result[1][0].forEach((room, i) => {
+                if (room.lstImg !== '' && room.lstImg !== null) {
+                    const item = room.lstImg.split(',');
+                    this.listRoomImgCurrent.push(item);
+                } else if (room.lstImg === '') {
+                    const item = [];
+                    this.listRoomImgCurrent.push(item);
+                }
+            });
+            // console.log(this.listRoomImgCurrent);
             this.tab2 = false;
             this.tab3 = false;
             this.tab4 = false;
@@ -400,7 +414,8 @@ export class HotelAccessComponent implements OnInit {
                 imgCurrent = imgCurrent + ',';
                 this.arrayImage = imgCurrent.concat(this.arrayImage);
             }
-        }
+        }this.listRoomImgCurrent
+
         this.registerHotelForm.get('image').setValue(this.arrayImage)
         this.registerHotelForm.get('totalRoomNumber').setValue(this.totaltypeRoomNumber)
         this.registerHotelForm.get('starHotel').setValue(this.rating)
@@ -783,7 +798,6 @@ export class HotelAccessComponent implements OnInit {
             pshArrayImage.add(obj.filePath)
             // console.log(obj.filePath)
         });
-        // console.log(pshArrayImage)
         // this.arrayImage = [...pshArrayImage].join(',')
         this.arrayImage = Array.from(pshArrayImage).join(',')
         // let evt = JSON.parse(event.toString());
@@ -798,8 +812,20 @@ export class HotelAccessComponent implements OnInit {
         JSON.parse(str).forEach((obj) => {
             pshArrayImage.add(obj.filePath)
         });
-
-        this.registerHotelForm.get('formArrayRoomNumber').get([i]).get('lstImg').setValue(Array.from(pshArrayImage).join(','))
+        let newImage = Array.from(pshArrayImage).join(',')
+        if (this.listRoomImgCurrent[i].length > 0) {
+            let imgCurrent = Array.from(this.listRoomImgCurrent[i]).join();
+            if (pshArrayImage.size > 0) {
+                imgCurrent = imgCurrent + ',';
+                newImage = imgCurrent.concat(newImage);
+            }
+        }
+        console.log('đây là mảng ảnh mới:' + newImage);
+        try {
+            this.registerHotelForm.get('formArrayRoomNumber').get([i]).get('lstImg').setValue(newImage);
+        } catch (e) {
+            console.log('lỗi của long');
+        }
     }
 
     getIndexDelete(event: any) {
@@ -807,6 +833,12 @@ export class HotelAccessComponent implements OnInit {
         arraySlice.splice(event, 1)
         this.arrayImage = arraySlice.toString();
     }
+
+    // getIndexRoomDelete(event: any, index: any) {
+    //     const arraySlice = this.arrayImage.split(',')
+    //     arraySlice.splice(event, 1)
+    //     this.arrayImage = arraySlice.toString();
+    // }
 
     changeValueAccept(value) {
         this.checked = !value;
