@@ -16,6 +16,7 @@ export class FindHotelComponent implements OnInit {
     fixed = false;
     loadding = false;
     hotels: any;
+
     constructor(
         private cookie: CookieService,
         private hotelService: HotelService
@@ -28,24 +29,24 @@ export class FindHotelComponent implements OnInit {
             this.hotels.forEach(item => {
                 item.listPriceFacilities = [];
                 if (item.faciliti.freeWifi === true) {
-                    const a = {name: 'facilities.freeWifi', status: true, icon: 'wifi'}
+                    const a = {name: 'facilities.freeWifi', icon: 'wifi'}
                     item.listPriceFacilities.push(a)
                 }
                 if (item.faciliti.freeInternet === true) {
-                    const b = {name: 'facilities.freeInternet', status: true, icon: 'network_check'}
+                    const b = {name: 'facilities.freeInternet', icon: 'network_check'}
                     item.listPriceFacilities.push(b)
                 }
                 if (item.faciliti.freeBreakfast === true) {
-                    const c = {name: 'facilities.freeBreakfast', status: true, icon: 'free_breakfast'}
+                    const c = {name: 'facilities.freeBreakfast', icon: 'free_breakfast'}
                     item.listPriceFacilities.push(c)
                 }
                 if (item.faciliti.freeParking === true) {
-                    const d = {name: 'facilities.freeParking', status: true, icon: 'wifi_protected_setup'}
+                    const d = {name: 'facilities.freeParking', icon: 'wifi_protected_setup'}
                     item.listPriceFacilities.push(d)
                 }
-                const e = {name: 'Hủy miễn phí', status: true, icon: 'wifi_protected_setup'}
+                const e = {name: 'Hủy miễn phí', icon: 'wifi_protected_setup'}
                 item.listPriceFacilities.push(e)
-                console.log(item.listPriceFacilities.length);
+                console.log(item.listPriceFacilities);
             });
         });
     }
