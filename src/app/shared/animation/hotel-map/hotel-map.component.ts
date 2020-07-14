@@ -32,21 +32,33 @@ export class HotelMapComponent implements OnInit, OnChanges {
     }
 
     ngOnChanges(changes: SimpleChanges) {
+        try {
+            //current value
+            let currentVal = changes.lat.currentValue;
+            // previouse value
+            let prev = changes.previousValue
 
-        //current value
-        let currentVal = changes.lat.currentValue;
-        // previouse value
-        let prev = changes.previousValue
+            if (currentVal !== undefined) {
+                this.lat = currentVal;
+            }
+            let currentVal1 = changes.lng.currentValue;
+            if (currentVal1 !== undefined) {
+                this.lng = currentVal1;
+            }
+            let prev1 = changes.previousValue
+            console.log(currentVal, currentVal1)
+            if (changes.address !== undefined && changes.address.currentValue !== undefined) {
+                this.address = changes.address.currentValue;
+            }
+            if (changes.name !== undefined && changes.name.currentValue !== undefined) {
+                this.name = changes.name.currentValue;
+            }
+            this.map = {lat: this.lat, lng: this.lng, zoom: this.zoom};
+            console.log(prev, prev1)
+        } catch (e) {
+            console.log('ehheheh')
+        }
 
-        if (currentVal !== undefined) this.lat = currentVal;
-        let currentVal1 = changes.lng.currentValue;
-        if (currentVal1 !== undefined) this.lng = currentVal1;
-        let prev1 = changes.previousValue
-        console.log(currentVal, currentVal1)
-        if (changes.address !== undefined&&changes.address.currentValue !== undefined) this.address = changes.address.currentValue;
-        if (changes.name !== undefined&&changes.name.currentValue !== undefined) this.name = changes.name.currentValue;
-        this.map = {lat: this.lat, lng: this.lng, zoom: this.zoom};
-        console.log(prev, prev1)
     }
 }
 

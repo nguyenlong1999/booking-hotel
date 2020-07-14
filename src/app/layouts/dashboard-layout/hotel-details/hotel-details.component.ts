@@ -1,21 +1,30 @@
 import {Component, OnInit, Pipe, PipeTransform} from '@angular/core';
 import {NgxGalleryAnimation, NgxGalleryImage, NgxGalleryOptions} from '@kolkov/ngx-gallery';
+import {HotelService} from '../../../shared/service/hotel.service.';
+import {FormBuilder} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {CookieService} from 'ngx-cookie-service';
+import {ChatService} from '../../../shared/service/chat.service';
+import {AppSetting} from '../../../appsetting';
+
 
 @Component({
     selector: 'app-hotel-details',
     templateUrl: './hotel-details.component.html',
     styleUrls: ['./hotel-details.component.css']
 })
-export class HotelDetailsComponent implements OnInit {
-    galleryOptions: NgxGalleryOptions[];
-    galleryImages: NgxGalleryImage[];
 
+export class HotelDetailsComponent implements OnInit {
+    private baseUrl: string = AppSetting.BASE_SERVER_URL;
+    galleryOptions: NgxGalleryOptions[]; // imgOfHotel
+    galleryImages: NgxGalleryImage[];
     galleryOptions1: NgxGalleryOptions[];
     galleryImages1: NgxGalleryImage[];
-
-    nameHotel = ' hotel cuar long dz';
+    lstDetaiHotel: []
+    imageList: any;
+    nameHotel = '';
     filterargsStatus = {status: true};
-    lstTienNghiThua = new Set()
+    lstTienNghiThua = new Set(['Danh sách tiện nghi'])
     lstTienNghiRoom = [
         {
             key: 1, name: 'facilities.airConditional', status: true, icon: 'call_to_action'
@@ -80,7 +89,6 @@ export class HotelDetailsComponent implements OnInit {
         }
 
     ]
-
     lstAddressPopular = [
         {
             name: 'Đường Phạm Ngũ Lão ', km: 400
@@ -108,10 +116,33 @@ export class HotelDetailsComponent implements OnInit {
         }
     ]
 
-    constructor() {
+    constructor(private formbuilder: FormBuilder,
+                private _hotelService: HotelService,
+                private _router: Router,
+                private cookies: CookieService,
+                private route: ActivatedRoute,
+                private chatService: ChatService,
+    ) {
+        const idObject = 'khach-san-cua-long'
+        this._hotelService.getHotelById(idObject).subscribe(data => {
+            const result = data;
+            console.log(result)
+            this.nameHotel = result[0][0].hotelObj.name
+            this.galleryImages = this.getImage(result[0][0].hotelObj.image.split(','))
+            this.lstDetaiHotel = result[1][0];
+            this.imageList = []
+            result[1][0].forEach((image) => {
+                console.log(image.lstImg.split(','))
+                // @ts-ignore
+                this.galleryImages1 = this.getImage(image.lstImg.split(','));
+                this.imageList.push(this.galleryImages1)
+            })
+            console.log(this.imageList)
+        })
     }
 
     ngOnInit(): void {
+
         this.galleryOptions = [
             {
                 width: '1200px',
@@ -134,34 +165,6 @@ export class HotelDetailsComponent implements OnInit {
                 thumbnailsPercent: 20,
                 thumbnailsMargin: 20,
                 thumbnailMargin: 20
-            },
-        ];
-
-        this.galleryImages = [
-            {
-                small: 'assets/img/500_F_271970300_UIGOT5pqS08ymy5U2cXTB73Z7lWASGMm.jpg',
-                medium: 'assets/img/1616895.jpg',
-                big: 'assets/img/1993652.jpg'
-            },
-            {
-                small: 'assets/img/26049717.jpg',
-                medium: 'assets/img/76247377-reception-in-hostel-visitors-with-luggage-and-new-keys-.jpg',
-                big: 'assets/img/109970629-happy-group-of-teen-and-family-traveler-vector-illustration-cartoon-character-.jpg'
-            },
-            {
-                small: 'assets/img/26049717.jpg',
-                medium: 'assets/img/76247377-reception-in-hostel-visitors-with-luggage-and-new-keys-.jpg',
-                big: 'assets/img/109970629-happy-group-of-teen-and-family-traveler-vector-illustration-cartoon-character-.jpg'
-            },
-            {
-                small: 'assets/img/26049717.jpg',
-                medium: 'assets/img/76247377-reception-in-hostel-visitors-with-luggage-and-new-keys-.jpg',
-                big: 'assets/img/109970629-happy-group-of-teen-and-family-traveler-vector-illustration-cartoon-character-.jpg'
-            },
-            {
-                small: 'assets/img/26049717.jpg',
-                medium: 'assets/img/76247377-reception-in-hostel-visitors-with-luggage-and-new-keys-.jpg',
-                big: 'assets/img/109970629-happy-group-of-teen-and-family-traveler-vector-illustration-cartoon-character-.jpg'
             },
         ];
 
@@ -222,6 +225,25 @@ export class HotelDetailsComponent implements OnInit {
                 big: 'assets/img/109970629-happy-group-of-teen-and-family-traveler-vector-illustration-cartoon-character-.jpg'
             },
         ];
+    }
+
+    // setImage(i) {
+    //     let imageUrls = [];
+    //     imageUrls = this.getImage(i.lstImg.split(','))
+    //     return imageUrls;
+    // }
+
+    getImage(imgArray) {
+        console.log('gọi nè')
+        const imageUrls = [];
+        for (let i = 0; i < imgArray.length; i++) {
+            imageUrls.push({
+                small: this.baseUrl + '/api/images/' + imgArray[i],
+                medium: this.baseUrl + '/api/images/' + imgArray[i],
+                big: this.baseUrl + '/api/images/' + imgArray[i]
+            });
+        }
+        return imageUrls;
     }
 
 }
