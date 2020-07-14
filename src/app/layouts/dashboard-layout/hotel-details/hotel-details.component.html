@@ -35,7 +35,7 @@
                             </div>
                             <div class="row ">
                                 <div class="col" style="padding-top: 30px">
-                                    <span style="font-size: 30px; font-weight: bold">The Chill Suites- Trung Tâm Thành phố</span>
+                                    <span style="font-size: 30px; font-weight: bold">{{ this.nameHotel }}</span>
                                 </div>
                             </div>
                             <div class="row ">
@@ -238,7 +238,7 @@
             </div>
         </div>
 
-        <div *ngFor="let i of [0,1,2,3,4,5]">
+        <div *ngFor="let i of lstDetaiHotel; let index = index">
             <div class="row pt-3">
                 <div class="col" style="border: #00a5d7 1px solid;">
                     <div class="row">
@@ -270,7 +270,7 @@
                             </div>
                             <div class="row mt-2">
                                 <div class="col-3 pb-3">
-                                    <ngx-gallery [options]="galleryOptions1" [images]="galleryImages1"
+                                    <ngx-gallery [options]="galleryOptions1" [images]="this.imageList[index]"
                                                  class="ngx-gallery" style="width: 100%; height: 200px"></ngx-gallery>
                                     <br>
                                     <div *ngFor="let tiennghi of lstTienNghiRoom | filterByStatus: filterargsStatus; let x = index">
@@ -283,7 +283,7 @@
                                            {{lstTienNghiThua.add(tiennghi)}}
                                         </div>
                                     </div>
-                                    <span *ngIf="lstTienNghiThua.size>0" style="color: #00b0ff; cursor: pointer;"
+                                    <span *ngIf="lstTienNghiThua.size > 0" style="color: #00b0ff; cursor: pointer;"
                                           [appTooltip]="lstTienNghiThua">{{ "hotelUserHome.seeMore" | translate}}</span>
                                     <br>
                                     <hr>

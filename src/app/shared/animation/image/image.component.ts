@@ -3,6 +3,7 @@ import {FileUploader} from 'ng2-file-upload';
 import {AppSetting} from '../../../appsetting';
 import {ToastrService} from 'ngx-toastr';
 import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
+import {ChatService} from '../../service/chat.service';
 
 @Component({
     selector: 'app-image',
@@ -33,7 +34,7 @@ export class ImageComponent implements OnInit {
 
     // previewImg: SafeUrl;
 
-    constructor(private toastr: ToastrService, private sanitizer: DomSanitizer) {
+    constructor(private toastr: ToastrService, private sanitizer: DomSanitizer, private chatService: ChatService) {
     }
 
     ngOnInit() {
@@ -52,14 +53,18 @@ export class ImageComponent implements OnInit {
             console.log('Uploaded File Details:', data._xhr.response);
             this.imageUrl += data._xhr.response;
             this.imageSrcUrl.emit(this.imageUrl)
-            this.toastr.success('File successfully uploaded!');
         };
+        this.uploader.onCompleteAll = () => {
+            this.chatService.showNotification('success', 'File successfully uploaded!')
+        }
     }
 
     removeSelectedFile(i) {
         this.listImgPreview.splice(i, 1)
         this.uploader.queue[i].remove()
         this.indexDelete.emit(i)
+        this.chatService.showNotification('success', 'File remove Thành công')
+
     }
 
     removeImageRoomCurrent(i: any) {
