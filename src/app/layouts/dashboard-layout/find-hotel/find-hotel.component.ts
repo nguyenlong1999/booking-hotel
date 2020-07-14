@@ -2,6 +2,7 @@ import {Component, HostListener, OnInit} from '@angular/core';
 import {CookieService} from 'ngx-cookie-service';
 import {AppSetting} from '../../../appsetting';
 import {NgxGalleryAnimation, NgxGalleryImage, NgxGalleryOptions} from '@kolkov/ngx-gallery';
+import {HotelService} from '../../../shared/service/hotel.service.';
 
 @Component({
     selector: 'app-find-hotel',
@@ -14,11 +15,74 @@ export class FindHotelComponent implements OnInit {
     BASE_URL = AppSetting.BASE_SERVER_URL + '/api/images/';
     fixed = false;
     loadding = false;
-    // image = 'quang';
+    hotels: any;
+    listPriceFacilities = [
+        {
+            key: 0, name: 'facilities.freeWifi', status: true, icon: 'wifi'
+        },
+        {
+            key: 1, name: 'facilities.freeInternet', status: true, icon: 'network_check'
+        },
+        {
+            key: 2, name: 'facilities.freeBreakfast', status: true, icon: 'free_breakfast'
+        },
+        {
+            key: 3, name: 'facilities.freeParking', status: true, icon: 'tv'
+        },
+        {
+            key: 5, name: 'Hủy miễn phí', status: true, icon: 'wifi_protected_setup'
+        }
+    ];
 
-    constructor(private cookie: CookieService,
+    constructor(
+        private cookie: CookieService,
+        private hotelService: HotelService
     ) {
-
+        this.hotelService.getHotelFind().subscribe(hotels => {
+            if (hotels === undefined) {
+                return;
+            }
+            this.hotels = hotels['hotels'];
+            let listPriceFacilities = [
+                // {
+                //     name: 'facilities.freeWifi', status: false, icon: 'wifi'
+                // },
+                // {
+                //     name: 'facilities.freeInternet', status: false, icon: 'network_check'
+                // },
+                // {
+                //     name: 'facilities.freeBreakfast', status: false, icon: 'free_breakfast'
+                // },
+                // {
+                //     name: 'facilities.freeParking', status: false, icon: 'tv'
+                // },
+                // {
+                //     name: 'Hủy miễn phí', status: true, false: 'wifi_protected_setup'
+                // }
+            ];
+            this.hotels.forEach(item => {
+                item.listPriceFacilities = listPriceFacilities;
+                if (item.faciliti.freeWifi === true) {
+                    const a = {name: 'facilities.freeWifi', status: true, icon: 'wifi'}
+                    item.listPriceFacilities.push(a)
+                }
+                if (item.faciliti.freeInternet === true) {
+                    const b = {name: 'facilities.freeInternet', status: true, icon: 'network_check'}
+                    item.listPriceFacilities.push(b)
+                }
+                if (item.faciliti.freeBreakfast === true) {
+                    const c = {name: 'facilities.freeBreakfast', status: true, icon: 'free_breakfast'}
+                    item.listPriceFacilities.push(c)
+                }
+                if (item.faciliti.freeParking === true) {
+                    const d = {name: 'facilities.freeParking', status: true, icon: 'wifi_protected_setup'}
+                    item.listPriceFacilities.push(d)
+                }
+                const e = {name: 'Hủy miễn phí', status: true, icon: 'wifi_protected_setup'}
+                item.listPriceFacilities.push(e)
+                console.log(item.listPriceFacilities);
+            });
+        });
     }
 
     ngOnInit(): void {
