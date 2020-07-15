@@ -190,7 +190,7 @@
 </div>
 <router-outlet></router-outlet>
 <!-- Footer -->
-<footer *ngIf="summary" class="page-footer font-small stylish-color-dark pt-4">
+<footer class="page-footer font-small stylish-color-dark pt-4">
 
     <!-- Footer Links -->
     <div class="container text-center text-md-left">
@@ -217,16 +217,16 @@
 
                 <ul class="list-unstyled">
                     <li>
-                        <!--<span>{{summary.placeCount}} </span>--><span>100 </span><a href="#!">Địa điểm du lịch</a>
+                        <!--<span>{{summary.placeCount}} </span>--><span *ngIf="summary">100 </span><a href="#!">Địa điểm du lịch</a>
                     </li>
                     <li>
-                        <span>{{summary.hotelCount}} </span><a href="#!">Khách sạn</a>
+                        <span *ngIf="summary">{{summary.hotelCount}} </span><a href="#!">Khách sạn</a>
                     </li>
-                    <li>
-                        <span>{{summary.userCount}} </span><a href="#!">Thành viên</a>
+                    <li >
+                        <span *ngIf="summary">{{summary.userCount}} </span><a href="#!">Thành viên</a>
                     </li>
-                    <li>
-                        <span>{{summary.connectCount}} </span><a href="#!">Lượt truy cập</a>
+                    <li >
+                        <span *ngIf="summary">{{summary.connectCount}} </span><a href="#!">Lượt truy cập</a>
                     </li>
                 </ul>
 

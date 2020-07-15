@@ -85,6 +85,7 @@ export class DashboardLayoutComponent implements OnInit {
         this.sidebarVisible = false;
         translate.setDefaultLang('vi');
         sessionStorage.setItem('currentLang', 'vi');
+        this.getSummary();
         window.addEventListener('wheel', function (event) {
             if (event.deltaY < 0) {
                 console.log('scrolling up');
@@ -121,7 +122,6 @@ export class DashboardLayoutComponent implements OnInit {
             }
         });
         this.getImage()
-        this.getSummary()
         this.isModeration = this.cookie.get('role') === '2' ? true : false;
         this.isAuthenicate = this.cookie.get('email') !== '' ? true : false;
         this.registerForm = this.formBuilder.group({
