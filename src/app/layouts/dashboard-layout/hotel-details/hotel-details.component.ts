@@ -6,6 +6,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {CookieService} from 'ngx-cookie-service';
 import {ChatService} from '../../../shared/service/chat.service';
 import {AppSetting} from '../../../appsetting';
+import {Hotel} from '../../../shared/model/hotel';
 
 
 @Component({
@@ -19,76 +20,14 @@ export class HotelDetailsComponent implements OnInit {
     galleryOptions: NgxGalleryOptions[]; // imgOfHotel
     galleryImages: NgxGalleryImage[];
     galleryOptions1: NgxGalleryOptions[];
-    galleryImages1: NgxGalleryImage[];
-    lstDetaiHotel: []
+    lstDetaiHotel = []
+    lstFacilitisDetails = []
     imageList: any;
-    nameHotel = '';
+    hotel = Hotel;
+    lstLocationNear: any
     filterargsStatus = {status: true};
-    lstTienNghiThua = new Set(['Danh sách tiện nghi'])
-    lstTienNghiRoom = [
-        {
-            key: 1, name: 'facilities.airConditional', status: true, icon: 'call_to_action'
-        },
-        {
-            key: 2, name: 'facilities.Hairdryer', status: false, icon: 'filter_tilt_shift'
-        },
-        {
-            key: 3, name: 'facilities.heaters', status: true, icon: 'hot_tub'
-        },
-        {
-            key: 4, name: 'facilities.televison', status: true, icon: 'tv'
-        },
-        {
-            key: 5, name: 'facilities.cableTV', status: true, icon: 'settings_input_antenna'
-        }
-        ,
-        {
-            key: 6, name: 'facilities.tea', status: true, icon: 'transform'
-        },
-        {
-            key: 7, name: 'facilities.coffe', status: true, icon: 'local_cafe'
-        },
-        {
-            key: 8, name: 'facilities.shampoo', status: true, icon: 'confirmation_number'
-        },
-        {
-            key: 9, name: 'facilities.beddingSet', status: true, icon: 'view_sidebar'
-        },
-        {
-            key: 11, name: 'facilities.TowelsOfAllKinds', status: true, icon: 'view_week'
-        },
-        {
-            key: 12, name: 'facilities.Wardrobe', status: true, icon: 'view_column'
-        },
-        {
-            key: 13, name: 'facilities.Dryer', status: true, icon: 'leak_add'
-        },
-        {
-            key: 14, name: 'facilities.ironingMachine', status: true, icon: 'set_meal'
-        },
-        {
-            key: 15, name: 'facilities.smartKey', status: true, icon: 'smart_button'
-        },
-        {
-            key: 16, name: 'facilities.teaMaker', status: false, icon: 'surround_sound'
-        },
-        {
-            key: 17, name: 'facilities.freeBreakfast', status: false, icon: 'local_cafe'
-        },
-        {
-            key: 18, name: 'facilities.privatePool', status: false, icon: 'pool'
-        },
-        {
-            key: 19, name: 'facilities.workspace', status: false, icon: 'power_input'
-        },
-        {
-            key: 20, name: 'facilities.Fireplace', status: false, icon: 'web'
-        },
-        {
-            key: 21, name: 'facilities.hotTub', status: false, icon: 'hot_tub'
-        }
-
-    ]
+    lstTienNghiThua = []
+    lstTienNghiRoom = []
     lstAddressPopular = [
         {
             name: 'Đường Phạm Ngũ Lão ', km: 400
@@ -127,22 +66,51 @@ export class HotelDetailsComponent implements OnInit {
         this._hotelService.getHotelById(idObject).subscribe(data => {
             const result = data;
             console.log(result)
-            this.nameHotel = result[0][0].hotelObj.name
+            this.hotel = result[0][0].hotelObj
             this.galleryImages = this.getImage(result[0][0].hotelObj.image.split(','))
             this.lstDetaiHotel = result[1][0];
             this.imageList = []
-            result[1][0].forEach((image) => {
-                console.log(image.lstImg.split(','))
-                // @ts-ignore
-                this.galleryImages1 = this.getImage(image.lstImg.split(','));
-                this.imageList.push(this.galleryImages1)
+            result[1][0].forEach((roomOrder) => {
+                this.imageList.push(this.getImage(roomOrder.lstImg.split(',')))
+                // xử lý facilities của từng room
+                this.lstTienNghiRoom = []
+                this.lstTienNghiRoom.push({name: 'facilities.airConditional', status: roomOrder.roomAirConditional, icon: 'call_to_action'})
+                this.lstTienNghiRoom.push({name: 'facilities.beddingSet', status: roomOrder.roomBeddingSet, icon: 'view_sidebar'})
+                this.lstTienNghiRoom.push({name: 'facilities.cableTV', status: roomOrder.roomCableTV, icon: 'settings_input_antenna'})
+                this.lstTienNghiRoom.push({name: 'facilities.coffe', status: roomOrder.roomCoffee, icon: 'local_cafe'})
+                this.lstTienNghiRoom.push({name: 'facilities.Dryer', status: roomOrder.roomDryer, icon: 'leak_add'})
+                this.lstTienNghiRoom.push({name: 'facilities.Fireplace', status: roomOrder.roomFireplace, icon: 'web'})
+                this.lstTienNghiRoom.push({name: 'facilities.freeBreakfast', status: roomOrder.roomFreeBreakfast, icon: 'local_cafe'})
+                this.lstTienNghiRoom.push({name: 'facilities.freeWifi', status: roomOrder.roomFreeWifi, icon: 'wifi'})
+                this.lstTienNghiRoom.push({name: 'facilities.Hairdryer', status: roomOrder.roomHairdryer, icon: 'filter_tilt_shift'})
+                this.lstTienNghiRoom.push({name: 'facilities.heaters', status: roomOrder.roomHeaters, icon: 'hot_tub'})
+                this.lstTienNghiRoom.push({name: 'facilities.hotTub', status: roomOrder.roomHotTub, icon: 'hot_tub'})
+                this.lstTienNghiRoom.push({name: 'facilities.ironingMachine', status: roomOrder.roomIroningMachine, icon: 'set_meal'})
+                this.lstTienNghiRoom.push({name: 'facilities.privatePool', status: roomOrder.roomPrivatePool, icon: 'pool'})
+                this.lstTienNghiRoom.push({name: 'facilities.shampoo', status: roomOrder.roomShampoo, icon: 'confirmation_number'})
+                this.lstTienNghiRoom.push({name: 'facilities.smartKey', status: roomOrder.roomSmartKey, icon: 'smart_button'})
+                this.lstTienNghiRoom.push({name: 'facilities.tea', status: roomOrder.roomTea, icon: 'transform'})
+                this.lstTienNghiRoom.push({name: 'facilities.teaMaker', status: roomOrder.roomTeaMaker, icon: 'surround_sound'})
+                this.lstTienNghiRoom.push({name: 'facilities.televison', status: roomOrder.roomTelevison, icon: 'tv'})
+                this.lstTienNghiRoom.push({name: 'facilities.TowelsOfAllKinds', status: roomOrder.roomTowelsOfAllKinds, icon: 'view_week'})
+                this.lstTienNghiRoom.push({name: 'facilities.Wardrobe', status: roomOrder.roomWardrobe, icon: 'view_column'})
+                this.lstTienNghiRoom.push({name: 'facilities.workspace', status: roomOrder.roomWorkspace, icon: 'power_input'})
+                this.lstFacilitisDetails.push(this.lstTienNghiRoom.filter(function (obj) {
+                    return obj.status === true // push all status  true
+                }))
             })
-            console.log(this.imageList)
+            for (let i = 0; i < this.lstFacilitisDetails.length; i++) {
+                    let lstArraythua = []
+                    for (let y = 8; y < this.lstFacilitisDetails[i].length; y++) {
+                        lstArraythua.push(this.lstFacilitisDetails[i][y])
+                    }
+                    this.lstTienNghiThua.push(lstArraythua)
+            }
+            console.log(this.lstTienNghiThua)
         })
     }
 
     ngOnInit(): void {
-
         this.galleryOptions = [
             {
                 width: '1200px',
@@ -198,43 +166,9 @@ export class HotelDetailsComponent implements OnInit {
             }
         ];
 
-        this.galleryImages1 = [
-            {
-                small: 'assets/img/500_F_271970300_UIGOT5pqS08ymy5U2cXTB73Z7lWASGMm.jpg',
-                medium: 'assets/img/1616895.jpg',
-                big: 'assets/img/1993652.jpg'
-            },
-            {
-                small: 'assets/img/26049717.jpg',
-                medium: 'assets/img/76247377-reception-in-hostel-visitors-with-luggage-and-new-keys-.jpg',
-                big: 'assets/img/109970629-happy-group-of-teen-and-family-traveler-vector-illustration-cartoon-character-.jpg'
-            },
-            {
-                small: 'assets/img/26049717.jpg',
-                medium: 'assets/img/76247377-reception-in-hostel-visitors-with-luggage-and-new-keys-.jpg',
-                big: 'assets/img/109970629-happy-group-of-teen-and-family-traveler-vector-illustration-cartoon-character-.jpg'
-            },
-            {
-                small: 'assets/img/26049717.jpg',
-                medium: 'assets/img/76247377-reception-in-hostel-visitors-with-luggage-and-new-keys-.jpg',
-                big: 'assets/img/109970629-happy-group-of-teen-and-family-traveler-vector-illustration-cartoon-character-.jpg'
-            },
-            {
-                small: 'assets/img/26049717.jpg',
-                medium: 'assets/img/76247377-reception-in-hostel-visitors-with-luggage-and-new-keys-.jpg',
-                big: 'assets/img/109970629-happy-group-of-teen-and-family-traveler-vector-illustration-cartoon-character-.jpg'
-            },
-        ];
     }
 
-    // setImage(i) {
-    //     let imageUrls = [];
-    //     imageUrls = this.getImage(i.lstImg.split(','))
-    //     return imageUrls;
-    // }
-
     getImage(imgArray) {
-        console.log('gọi nè')
         const imageUrls = [];
         for (let i = 0; i < imgArray.length; i++) {
             imageUrls.push({
@@ -248,17 +182,17 @@ export class HotelDetailsComponent implements OnInit {
 
 }
 
-@Pipe({
-    name: 'filterByStatus',
-    pure: false
-})
-export class FilterStatusPipe implements PipeTransform {
-    transform(items: any[], filter: Object): any {
-        if (!items || !filter) {
-            return items;
-        }
-        // filter items array, items which match and return true will be
-        // kept, false will be filtered out
-        return items.filter(item => item.status === true);
-    }
-}
+// @Pipe({
+//     name: 'filterByStatus',
+//     pure: false
+// })
+// export class FilterStatusPipe implements PipeTransform {
+//     transform(items: any[], filter: Object): any {
+//         if (!items || !filter) {
+//             return items;
+//         }
+//         // filter items array, items which match and return true will be
+//         // kept, false will be filtered out
+//         return items.filter(item => item.status === true);
+//     }
+// }

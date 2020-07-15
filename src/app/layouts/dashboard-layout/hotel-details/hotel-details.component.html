@@ -1,12 +1,12 @@
 <div style="margin-top: 3rem;background: white ">
     <div class="container">
         <div class="d-flex">
-            <div class="bd-highlight" style="padding-right: 0px!important;">
+            <div class="bd-highlight pt-2" style="padding-right: 0px!important;">
                 <div class="container">
                     <div class="row">
                         <div class="col" style="padding-right: 0px!important;">
                             <ngx-gallery [options]="galleryOptions" [images]="galleryImages"
-                                         class="ngx-gallery" style="width: 100%"></ngx-gallery>
+                                         class="ngx-gallery" style="width: 100%; height: 500px"></ngx-gallery>
                         </div>
                     </div>
                     <div class="row">
@@ -22,7 +22,7 @@
                                 </div>
                                 <div class="col-3 pt-2">
                                     <div style="background: #e9ebee;text-align: center;border-radius: 5px;">
-                                        <span style="font-size: 13px;">Khách sạn 3.5-star| sửa</span>
+                                        <span style="font-size: 13px;">Khách sạn {{this.hotel.starHotel}}-star</span>
                                     </div>
                                 </div>
                                 <div class="col pt-2">
@@ -35,12 +35,12 @@
                             </div>
                             <div class="row ">
                                 <div class="col" style="padding-top: 30px">
-                                    <span style="font-size: 30px; font-weight: bold">{{ this.nameHotel }}</span>
+                                    <span style="font-size: 30px; font-weight: bold">{{ this.hotel.name }}</span>
                                 </div>
                             </div>
                             <div class="row ">
                                 <div class="col" style="padding-top: 10px">
-                                    <span style="">21B, Bui Thi Xuan, Phuong Ben Thanh, Quan 1, Quận 1, Hồ Chí Minh, Việt Nam, 000000</span>
+                                    <span style="">{{this.hotel.address}}</span>
                                 </div>
                             </div>
 
@@ -124,7 +124,7 @@
                     <div class="row mt-4">
                         <div class="col ">
                             <div style="height: 250px;  padding: 20px; background: white ;border: #00a5d7 1px solid; border-bottom: none">
-                                <app-hotel-map [lat]="21.014009" [lng]="105.691137" [name]="nameHotel"></app-hotel-map>
+                                <app-hotel-map [zoom]="12" [lat]="this.hotel.latitude" [lng]="this.hotel.longitude" [name]="this.hotel.name"></app-hotel-map>
                             </div>
                         </div>
                     </div>
@@ -226,7 +226,7 @@
             <div class="col pl-0">
                 <div class="row">
                     <div class="col">
-                        4 {{ "hotelUserHome.loaiPhongva" | translate}} <span style="color: red">{{ "hotelUserHome.onlyInTotal" | translate}} 4 {{ "hotelUserHome.Selection" | translate}}lựa chọn</span>
+                        {{ this.lstDetaiHotel.length}} {{ "hotelUserHome.loaiPhongva" | translate}} <span style="color: red">{{ "hotelUserHome.onlyInTotal" | translate}} {{ this.lstDetaiHotel.length}} {{ "hotelUserHome.Selection" | translate}}</span>
                     </div>
                 </div>
                 <div class="row">
@@ -243,7 +243,27 @@
                 <div class="col" style="border: #00a5d7 1px solid;">
                     <div class="row">
                         <div class="col mt-2">
-                            <span style="font-size: 20px; font-weight: bold">Supper Ấm cúng</span>
+                            <div *ngIf="i.roomType == 1">
+                                <span style="font-size: 20px; font-weight: bold">{{"Standard" | translate}}</span>
+                            </div>
+                            <div *ngIf="i.roomType == 2">
+                                <span style="font-size: 20px; font-weight: bold">{{"Superior" | translate}}</span>
+                            </div>
+                            <div *ngIf="i.roomType == 3">
+                                <span style="font-size: 20px; font-weight: bold">{{"Deluxe" | translate}}</span>
+                            </div>
+                            <div *ngIf="i.roomType == 4">
+                                <span style="font-size: 20px; font-weight: bold">{{"Suite" | translate}}</span>
+                            </div>
+                            <div *ngIf="i.roomType == 5">
+                                <span style="font-size: 20px; font-weight: bold">{{"Family" | translate}}</span>
+                            </div>
+                            <div *ngIf="i.roomType == 6">
+                                <span style="font-size: 20px; font-weight: bold">{{"President" | translate}}</span>
+                            </div>
+                            <div *ngIf="i.roomType == 7">
+                                <span style="font-size: 20px; font-weight: bold">{{"Royal" | translate}}</span>
+                            </div>
                         </div>
                     </div>
                     <div class="row" style="background: #f7f7f7">
@@ -273,18 +293,13 @@
                                     <ngx-gallery [options]="galleryOptions1" [images]="this.imageList[index]"
                                                  class="ngx-gallery" style="width: 100%; height: 200px"></ngx-gallery>
                                     <br>
-                                    <div *ngFor="let tiennghi of lstTienNghiRoom | filterByStatus: filterargsStatus; let x = index">
-                                        <div *ngIf="x<7">
+                                    <div *ngFor="let tiennghi of lstFacilitisDetails[index] | slice: 0:7; let x = index">
                                             <i class="material-icons" style="vertical-align: bottom; color: #00e676"
                                                ata-notify="icon"> {{tiennghi.icon}}</i>
                                             <span style="margin-left: 14px">{{ tiennghi.name | translate}}</span>
-                                        </div>
-                                        <div *ngIf="x>7" style="display: none">
-                                           {{lstTienNghiThua.add(tiennghi)}}
-                                        </div>
                                     </div>
-                                    <span *ngIf="lstTienNghiThua.size > 0" style="color: #00b0ff; cursor: pointer;"
-                                          [appTooltip]="lstTienNghiThua">{{ "hotelUserHome.seeMore" | translate}}</span>
+                                    <span *ngIf="lstTienNghiThua[index].length > 0" style="color: #00b0ff; cursor: pointer;"
+                                          [appTooltip]="lstTienNghiThua[index]">{{ "hotelUserHome.seeMore" | translate}}</span>
                                     <br>
                                     <hr>
                                     <span class="mb-4">9.7 Tuyệt vời</span>

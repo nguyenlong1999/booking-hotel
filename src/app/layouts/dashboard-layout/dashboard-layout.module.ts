@@ -31,7 +31,7 @@ import {SatDatepickerModule, SatNativeDateModule} from 'saturn-datepicker';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {FindHotelComponent} from './find-hotel/find-hotel.component';
-import {FilterStatusPipe, HotelDetailsComponent} from './hotel-details/hotel-details.component';
+import {HotelDetailsComponent} from './hotel-details/hotel-details.component';
 import {NgxGalleryModule} from '@kolkov/ngx-gallery';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
@@ -48,7 +48,6 @@ import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
         ForgetPasswordComponent,
         FindHotelComponent,
         HotelDetailsComponent,
-        FilterStatusPipe
         // add các component của trang người dùng vào đây
     ],
     imports: [
