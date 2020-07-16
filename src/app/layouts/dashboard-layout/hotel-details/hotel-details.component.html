@@ -178,7 +178,7 @@
         </div>
     </div>
 
-    <div class="container" style="padding-left: 42px; padding-right: 53px">
+    <div class="container" style="padding-left: 44px; padding-right: 53px">
         <div class="row">
             <div class="col" style="border: #00a5d7 1px solid; padding: 20px">
                 <div class="row">
@@ -190,7 +190,7 @@
                         <span style="font-size: 20px; font-weight: bold;color:#f90 ">{{ "hotelUserHome.theDayYouChoose" | translate}}</span>
                         <br>
                         <span style="font-size: 15px;">{{ "hotelUserHome.justEvery" | translate}}<span style="color: red">1 {{ "hotelUserHome.minute" | translate}}</span> {{ "hotelUserHome.at" | translate}} <span
-                                style="color: red">  Hồ Chí Minh </span>{{ "hotelUserHome.on" | translate}}</span>
+                                style="color: red">  {{this.hotel.province}} </span>{{ "hotelUserHome.on" | translate}}</span>
                     </div>
                 </div>
             </div>
@@ -428,9 +428,9 @@
                         </div>
                         <div class="row pt-2">
                             <div class="col"><i class="material-icons" style="vertical-align: bottom" ata-notify="icon">wifi</i>
-                                <span style="margin-left: 14px">{{ "hotelUserHome.freeWifiAllroom" | translate}}</span></div>
+                                <span style="margin-left: 14px" [ngClass]="{textDecorationUnderline: this.lstFacilitis.freeWifi === false}">{{ "hotelUserHome.freeWifiAllroom" | translate}}</span></div>
                             <div class="col"><i class="material-icons" style="vertical-align: bottom" ata-notify="icon">tap_and_play</i>
-                                <span style="margin-left: 14px">{{ "hotelUserHome.publicWifiIn" | translate}}</span></div>
+                                <span style="margin-left: 14px" [ngClass]="{textDecorationUnderline: this.lstFacilitis.freeWifi === false}">{{ "hotelUserHome.publicWifiIn" | translate}}</span></div>
                             <div class="col"></div>
                         </div>
                         <div class="row">

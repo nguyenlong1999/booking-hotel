@@ -21,11 +21,10 @@ export class HotelDetailsComponent implements OnInit {
     galleryImages: NgxGalleryImage[];
     galleryOptions1: NgxGalleryOptions[];
     lstDetaiHotel = []
+    lstFacilitis = []
     lstFacilitisDetails = []
     imageList: any;
     hotel = Hotel;
-    lstLocationNear: any
-    filterargsStatus = {status: true};
     lstTienNghiThua = []
     lstTienNghiRoom = []
     lstAddressPopular = [
@@ -69,6 +68,7 @@ export class HotelDetailsComponent implements OnInit {
             this.hotel = result[0][0].hotelObj
             this.galleryImages = this.getImage(result[0][0].hotelObj.image.split(','))
             this.lstDetaiHotel = result[1][0];
+            this.lstFacilitis = result[0][0];
             this.imageList = []
             result[1][0].forEach((roomOrder) => {
                 this.imageList.push(this.getImage(roomOrder.lstImg.split(',')))
@@ -106,7 +106,7 @@ export class HotelDetailsComponent implements OnInit {
                     }
                     this.lstTienNghiThua.push(lstArraythua)
             }
-            console.log(this.lstTienNghiThua)
+            console.log(this.lstFacilitis)
         })
     }
 

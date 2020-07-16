@@ -33,3 +33,7 @@
     100% { content:"KHÔNG SỢ RỦI RO.  Hủy không tốn phí"; }
 
 }
+
+.textDecorationUnderline {
+    text-decoration: line-through;
+}
