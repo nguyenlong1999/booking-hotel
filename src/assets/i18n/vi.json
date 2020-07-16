@@ -363,6 +363,11 @@
     "editMyHotel": "Chỉnh sửa hotel của tôi"
   },
   "hotelUserHome": {
+    "groundArea": "Diện tích mặt bằng",
+    "HotelDescription": "Mô tả khách sạn",
+    "SuggestionsPlaces": "Gợi ý địa điểm vui chơi ăn uống",
+    "rulesOfHotel": "Quy định của khách sạn",
+    "GuideOfHotel": "Hướng dẫn của khách sạn",
     "bookEasy": "Booking.com Đặt Dễ Dàng",
     "wifiFree": "Wifi miễn phí",
     "doNotMiss": "Đừng bỏ lỡ",

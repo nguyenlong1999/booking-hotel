@@ -335,6 +335,11 @@
     "editMyHotel": "Edit Hotel"
   },
   "hotelUserHome": {
+    "groundArea": "Ground area",
+    "HotelDescription": "Hotel description",
+    "SuggestionsPlaces": "Suggestions places to eat and drink",
+    "rulesOfHotel": "Rules of the hotel",
+    "GuideOfHotel": "Guide of the hotel",
     "bookEasy": "Booking.com Book Easy",
     "wifiFree": "Free wifi",
     "doNotMiss": "Do not miss",

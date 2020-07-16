@@ -1,4 +1,4 @@
-<div style="margin-top: 3rem;background: white ">
+<div class="pb-5" style="margin-top: 3rem;background: white; ">
     <div class="container">
         <div class="d-flex">
             <div class="bd-highlight pt-2" style="padding-right: 0px!important;">
@@ -56,7 +56,8 @@
                                 <div class="col" style="margin-top: calc(1rem + 10px)">
                                     <span style="font-size: 20px; font-weight: bold;color:#f90 ">{{ "hotelUserHome.doNotMiss" | translate}}</span>
                                     <br>
-                                    <span style="font-weight: bold">21</span> {{ "hotelUserHome.numberDuKhach" | translate}} |
+                                    <span style="font-weight: bold">21</span> {{ "hotelUserHome.numberDuKhach" | translate}}
+                                    |
                                     <span style="font-weight: bold">19</span> {{ "hotelUserHome.todayDuKhach" | translate}}
                                 </div>
                             </div>
@@ -124,7 +125,8 @@
                     <div class="row mt-4">
                         <div class="col ">
                             <div style="height: 250px;  padding: 20px; background: white ;border: #00a5d7 1px solid; border-bottom: none">
-                                <app-hotel-map [zoom]="12" [lat]="this.hotel.latitude" [lng]="this.hotel.longitude" [name]="this.hotel.name"></app-hotel-map>
+                                <app-hotel-map [zoom]="12" [lat]="this.hotel.latitude" [lng]="this.hotel.longitude"
+                                               [name]="this.hotel.name"></app-hotel-map>
                             </div>
                         </div>
                     </div>
@@ -151,12 +153,15 @@
                             <div style="padding: 0 20px; background: white; padding-top: 0px!important;border: #00a5d7 1px solid; border-top: none; min-height: 369px">
                                 <div>
                                     <i class="material-icons" data-notify="icon">toys</i>
-                                    <span align-top style="font-weight: bold; margin-left: 20px ;vertical-align: top">{{ "hotelUserHome.locationGreat" | translate}} <span
-                                            style="font-weight: normal">- {{ "hotelUserHome.inUrban" | translate}}</span> </span>
+                                    <span align-top
+                                          style="font-weight: bold; margin-left: 20px ;vertical-align: top">{{ "hotelUserHome.locationGreat" | translate}}
+                                        <span
+                                                style="font-weight: normal">- {{ "hotelUserHome.inUrban" | translate}}</span> </span>
                                 </div>
                                 <div>
                                     <i class="material-icons" style="color: red" data-notify="icon">location_city</i>
-                                    <span align-top style="font-weight: bold; margin-left: 20px ;vertical-align: top">{{ "hotelUserHome.popularAreas" | translate}} </span>
+                                    <span align-top
+                                          style="font-weight: bold; margin-left: 20px ;vertical-align: top">{{ "hotelUserHome.popularAreas" | translate}} </span>
                                 </div>
                                 <hr>
                                 <div>
@@ -189,15 +194,17 @@
                     <div class="col">
                         <span style="font-size: 20px; font-weight: bold;color:#f90 ">{{ "hotelUserHome.theDayYouChoose" | translate}}</span>
                         <br>
-                        <span style="font-size: 15px;">{{ "hotelUserHome.justEvery" | translate}}<span style="color: red">1 {{ "hotelUserHome.minute" | translate}}</span> {{ "hotelUserHome.at" | translate}} <span
-                                style="color: red">  {{this.hotel.province}} </span>{{ "hotelUserHome.on" | translate}}</span>
+                        <span style="font-size: 15px;">{{ "hotelUserHome.justEvery" | translate}}<span
+                                style="color: red">1 {{ "hotelUserHome.minute" | translate}}</span> {{ "hotelUserHome.at" | translate}}
+                            <span
+                                    style="color: red">  {{this.hotel.province}} </span>{{ "hotelUserHome.on" | translate}}</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="container" style="padding-left: 42px; padding-right: 53px">
+    <div class="container pb-5" style="padding-left: 42px; padding-right: 53px">
         <!-- Danh sách các loại phòng -->
         <div class="row pt-3">
             <div class="col pl-0">
@@ -226,7 +233,8 @@
             <div class="col pl-0">
                 <div class="row">
                     <div class="col">
-                        {{ this.lstDetaiHotel.length}} {{ "hotelUserHome.loaiPhongva" | translate}} <span style="color: red">{{ "hotelUserHome.onlyInTotal" | translate}} {{ this.lstDetaiHotel.length}} {{ "hotelUserHome.Selection" | translate}}</span>
+                        {{ this.lstDetaiHotel.length}} {{ "hotelUserHome.loaiPhongva" | translate}} <span
+                            style="color: red">{{ "hotelUserHome.onlyInTotal" | translate}} {{ this.lstDetaiHotel.length}} {{ "hotelUserHome.Selection" | translate}}</span>
                     </div>
                 </div>
                 <div class="row">
@@ -294,11 +302,12 @@
                                                  class="ngx-gallery" style="width: 100%; height: 200px"></ngx-gallery>
                                     <br>
                                     <div *ngFor="let tiennghi of lstFacilitisDetails[index] | slice: 0:7; let x = index">
-                                            <i class="material-icons" style="vertical-align: bottom; color: #00e676"
-                                               ata-notify="icon"> {{tiennghi.icon}}</i>
-                                            <span style="margin-left: 14px">{{ tiennghi.name | translate}}</span>
+                                        <i class="material-icons" style="vertical-align: bottom; color: #00e676"
+                                           ata-notify="icon"> {{tiennghi.icon}}</i>
+                                        <span style="margin-left: 14px">{{ tiennghi.name | translate}}</span>
                                     </div>
-                                    <span *ngIf="lstTienNghiThua[index].length > 0" style="color: #00b0ff; cursor: pointer;"
+                                    <span *ngIf="lstTienNghiThua[index].length > 0"
+                                          style="color: #00b0ff; cursor: pointer;"
                                           [appTooltip]="lstTienNghiThua[index]">{{ "hotelUserHome.seeMore" | translate}}</span>
                                     <br>
                                     <hr>
@@ -312,6 +321,14 @@
                                        ata-notify="icon">done</i> Wifi miễn phí
                                     <br>
                                     <span style="font-weight: bold; font-size: 13px">{{ "hotelUserHome.bonus" | translate}}</span>
+                                    <br>
+                                    <span style="font-weight: bold; font-size: 13px">{{ "hotelUserHome.Thông tin phòng" | translate}}</span>
+                                    <br>
+                                    Số phòng Phòng tắm
+                                    <br>
+                                    Số phòng ngủ & số giường + loại giường
+
+
                                 </div>
                                 <div class="col-1 mb-2 pt-2"
                                      style="background: white;border-left: 1px solid #c4cccc;box-shadow: 0 3px 2px -2px #80808070;">
@@ -340,16 +357,19 @@
                                     </div>
                                     <div class="row">
                                         <div class="col pr-2">
-                                            <strong style=" float: right; font-weight: bold;font-size: 24px ; color:orangered">300.0000đ</strong>
+                                            <strong style=" float: right; font-weight: bold;font-size: 24px ; color:orangered">{{i.price}} VNĐ</strong>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-1 mb-2"
                                      style="background: white;border-left: 1px solid #c4cccc;box-shadow: 0 3px 2px -2px #80808070;">
                                     <mat-form-field>
-                                        <mat-label style="font-size: 14px">{{ "hotelUserHome.Amount" | translate}}</mat-label>
+                                        <mat-label
+                                                style="font-size: 14px">{{ "hotelUserHome.Amount" | translate}}</mat-label>
                                         <input matInput type="number" onkeypress="return event.charCode >= 48">
                                     </mat-form-field>
+                                    <br>
+                                    Số lượng00*
                                 </div>
                                 <div class="col mb-2 mr-3"
                                      style="background: white;border-left: 1px solid #c4cccc;box-shadow: 0 3px 2px -2px #80808070;">
@@ -393,7 +413,8 @@
                     </div>
                     <div class="col" style="border-left: lightgray 2px solid; margin-left: 10px ">
                         <div class="row">
-                            <div class="col"><span style="font-weight: bold; font-size: 14px">{{ "hotelUserHome.languageUsed" | translate}}</span>
+                            <div class="col"><span
+                                    style="font-weight: bold; font-size: 14px">{{ "hotelUserHome.languageUsed" | translate}}</span>
                             </div>
                             <div class="col"></div>
                             <div class="col"></div>
@@ -408,7 +429,8 @@
                         </div>
                         <div class="row pt-2">
                             <div class="col"><img src="assets/booking/united-kingdom.png" alt="" width="20px"
-                                                  height="20px"> <span style="margin-left: 14px">{{ "hotelUserHome.english" | translate}}</span></div>
+                                                  height="20px"> <span
+                                    style="margin-left: 14px">{{ "hotelUserHome.english" | translate}}</span></div>
                             <div class="col"></div>
                             <div class="col"></div>
                         </div>
@@ -421,16 +443,21 @@
                     </div>
                     <div class="col" style="border-left: lightgray 2px solid; margin-left: 10px ">
                         <div class="row">
-                            <div class="col"><span style="font-weight: bold; font-size: 14px">{{ "hotelUserHome.internetAccess" | translate}}</span>
+                            <div class="col"><span
+                                    style="font-weight: bold; font-size: 14px">{{ "hotelUserHome.internetAccess" | translate}}</span>
                             </div>
                             <div class="col"></div>
                             <div class="col"></div>
                         </div>
                         <div class="row pt-2">
                             <div class="col"><i class="material-icons" style="vertical-align: bottom" ata-notify="icon">wifi</i>
-                                <span style="margin-left: 14px" [ngClass]="{textDecorationUnderline: this.lstFacilitis.freeWifi === false}">{{ "hotelUserHome.freeWifiAllroom" | translate}}</span></div>
+                                <span style="margin-left: 14px"
+                                      [ngClass]="{textDecorationUnderline: this.lstFacilitis.freeWifi === false}">{{ "hotelUserHome.freeWifiAllroom" | translate}}</span>
+                            </div>
                             <div class="col"><i class="material-icons" style="vertical-align: bottom" ata-notify="icon">tap_and_play</i>
-                                <span style="margin-left: 14px" [ngClass]="{textDecorationUnderline: this.lstFacilitis.freeWifi === false}">{{ "hotelUserHome.publicWifiIn" | translate}}</span></div>
+                                <span style="margin-left: 14px"
+                                      [ngClass]="{textDecorationUnderline: this.lstFacilitis.freeWifi === false}">{{ "hotelUserHome.publicWifiIn" | translate}}</span>
+                            </div>
                             <div class="col"></div>
                         </div>
                         <div class="row">
@@ -447,9 +474,12 @@
                     <div class="col" style="border-left: lightgray 2px solid; margin-left: 10px ">
                         <div class="row">
                             <div class="col"><i class="material-icons" style="vertical-align: bottom" ata-notify="icon">local_cafe</i>
-                                <span style="margin-left: 14px">{{ "hotelUserHome.freeBreakfast" | translate}}</span></div>
+                                <span style="margin-left: 14px"
+                                      [ngClass]="{textDecorationUnderline: this.lstFacilitis.freeBreakfast === false}">{{ "hotelUserHome.freeBreakfast" | translate}}</span>
+                            </div>
                             <div class="col"><i class="material-icons" style="vertical-align: bottom" ata-notify="icon">room_service</i>
-                                <span style="margin-left: 14px">{{ "hotelUserHome.roomService24h" | translate}}</span></div>
+                                <span style="margin-left: 14px">{{ "hotelUserHome.roomService24h" | translate}}</span>
+                            </div>
                             <div class="col"></div>
                         </div>
                     </div>
@@ -461,7 +491,8 @@
                     <div class="col" style="border-left: lightgray 2px solid; margin-left: 10px ">
                         <div class="row pt-2">
                             <div class="col"><span
-                                    style="font-weight: bold; font-size: 14px">{{ "hotelUserHome.serviceAndFacilities" | translate}}</span></div>
+                                    style="font-weight: bold; font-size: 14px">{{ "hotelUserHome.serviceAndFacilities" | translate}}</span>
+                            </div>
                             <div class="col"></div>
                             <div class="col"></div>
                         </div>
@@ -469,23 +500,32 @@
                             <div class="col"><i class="material-icons" style="vertical-align: bottom" ata-notify="icon">add_shopping_cart</i>
                                 <span style="margin-left: 14px">{{ "hotelUserHome.grocery" | translate}}</span></div>
                             <div class="col"><i class="material-icons" style="vertical-align: bottom" ata-notify="icon">rice_bowl</i>
-                                <span style="margin-left: 14px">{{ "hotelUserHome.laundryService" | translate}}</span></div>
-                            <div class="col"><i class="material-icons" style="vertical-align: bottom" ata-notify="icon">hot_tub</i>
-                                <span style="margin-left: 14px">{{ "hotelUserHome.reserve" | translate}}</span></div>
+                                <span style="margin-left: 14px">{{ "hotelUserHome.laundryService" | translate}}</span>
+                            </div>
+                            <div class="col">
+                                <!--                                <i class="material-icons" style="vertical-align: bottom" ata-notify="icon">hot_tub</i>-->
+                                <!--                                <span style="margin-left: 14px">{{ "hotelUserHome.reserve" | translate}}</span>-->
+                            </div>
                         </div>
                         <div class="row pt-2">
                             <div class="col"><i class="material-icons" style="vertical-align: bottom" ata-notify="icon">cleaning_services</i>
-                                <span style="margin-left: 14px">{{ "hotelUserHome.cleanRoomDaily" | translate}}</span></div>
+                                <span style="margin-left: 14px">{{ "hotelUserHome.cleanRoomDaily" | translate}}</span>
+                            </div>
                             <div class="col"><i class="material-icons" style="vertical-align: bottom" ata-notify="icon">smoke_free</i>
-                                <span style="margin-left: 14px">{{ "hotelUserHome.absolutelyNoSmoking" | translate}}</span></div>
+                                <span style="margin-left: 14px"
+                                      [ngClass]="{textDecorationUnderline: this.lstFacilitis.Smoking === false}">{{ "hotelUserHome.absolutelyNoSmoking" | translate}}</span>
+                            </div>
                             <div class="col"><i class="material-icons" style="vertical-align: bottom" ata-notify="icon">sync_alt</i>
-                                <span style="margin-left: 14px">{{ "hotelUserHome.currencyExchange" | translate}}</span></div>
+                                <span style="margin-left: 14px">{{ "hotelUserHome.currencyExchange" | translate}}</span>
+                            </div>
                         </div>
                         <div class="row pt-2">
                             <div class="col"><i class="material-icons" style="vertical-align: bottom" ata-notify="icon">backpack</i>
-                                <span style="margin-left: 14px">{{ "hotelUserHome.luggageStorage" | translate}}</span></div>
+                                <span style="margin-left: 14px">{{ "hotelUserHome.luggageStorage" | translate}}</span>
+                            </div>
                             <div class="col"><i class="material-icons" style="vertical-align: bottom" ata-notify="icon">supervisor_account</i>
-                                <span style="margin-left: 14px">{{ "hotelUserHome.roomService24h" | translate}}</span></div>
+                                <span style="margin-left: 14px">{{ "hotelUserHome.roomService24h" | translate}}</span>
+                            </div>
                             <div class="col"></div>
                         </div>
 
@@ -497,7 +537,9 @@
                     </div>
                     <div class="col" style="border-left: lightgray 2px solid; margin-left: 10px ">
                         <div class="row">
-                            <div class="col"><span style="font-weight: bold; font-size: 14px">{{ "hotelUserHome.go" | translate}}</span></div>
+                            <div class="col"><span
+                                    style="font-weight: bold; font-size: 14px">{{ "hotelUserHome.go" | translate}}</span>
+                            </div>
                             <div class="col"></div>
                             <div class="col"></div>
                         </div>
@@ -520,7 +562,8 @@
                     </div>
                     <div class="col" style="border-left: lightgray 2px solid; margin-left: 10px ">
                         <div class="row">
-                            <div class="col"><span style="font-weight: bold; font-size: 14px">{{ "hotelUserHome.easyAccess" | translate}}</span>
+                            <div class="col"><span
+                                    style="font-weight: bold; font-size: 14px">{{ "hotelUserHome.easyAccess" | translate}}</span>
                             </div>
                             <div class="col"></div>
                             <div class="col"></div>
@@ -529,7 +572,8 @@
                             <div class="col">
                                 <i class="material-icons" style="vertical-align: bottom"
                                    ata-notify="icon">support_agent</i>
-                                <span style="margin-left: 14px">{{ "hotelUserHome.receptionDesk" | translate}}</span></div>
+                                <span style="margin-left: 14px">{{ "hotelUserHome.receptionDesk" | translate}}</span>
+                            </div>
                             <div class="col">
                                 <i class="material-icons" style="vertical-align: bottom"
                                    ata-notify="icon">system_update</i>
@@ -573,7 +617,9 @@
                             <div class="col">
                                 <i class="material-icons" style="vertical-align: bottom"
                                    ata-notify="icon">power_input</i>
-                                <span style="margin-left: 14px">{{ "hotelUserHome.deskTableWork" | translate}}</span></div>
+                                <span style="margin-left: 14px"
+                                      [ngClass]="{textDecorationUnderline: this.lstFacilitis.workspace === false}">{{ "hotelUserHome.deskTableWork" | translate}}</span>
+                            </div>
                             <div class="col">
                                 <i class="material-icons" style="vertical-align: bottom"
                                    ata-notify="icon">notifications_active</i>
@@ -582,14 +628,16 @@
                             <div class="col">
                                 <i class="material-icons" style="vertical-align: bottom"
                                    ata-notify="icon">transform</i>
-                                <span style="margin-left: 14px">{{ "hotelUserHome.freeTeaa" | translate}}</span>
+                                <span style="margin-left: 14px"
+                                      [ngClass]="{textDecorationUnderline: this.lstFacilitis.tea === false}">{{ "hotelUserHome.freeTeaa" | translate}}</span>
                             </div>
                         </div>
                         <div class="row pt-2">
                             <div class="col">
                                 <i class="material-icons" style="vertical-align: bottom"
                                    ata-notify="icon">fire_extinguisher</i>
-                                <span style="margin-left: 14px">{{ "hotelUserHome.fireExiting" | translate}}</span>
+                                <span style="margin-left: 14px"
+                                      [ngClass]="{textDecorationUnderline: this.lstFacilitis.fireExtinguisher === false}">{{ "hotelUserHome.fireExiting" | translate}}</span>
                             </div>
                             <div class="col">
                                 <i class="material-icons" style="vertical-align: bottom"
@@ -599,7 +647,8 @@
                             <div class="col">
                                 <i class="material-icons" style="vertical-align: bottom"
                                    ata-notify="icon">wifi</i>
-                                <span style="margin-left: 14px">{{ "hotelUserHome.internetAccessWireLess" | translate}}</span>
+                                <span style="margin-left: 14px"
+                                      [ngClass]="{textDecorationUnderline: this.lstFacilitis.freeWifi === false}">{{ "hotelUserHome.internetAccessWireLess" | translate}}</span>
                             </div>
                         </div>
                         <div class="row pt-2">
@@ -616,19 +665,22 @@
                             <div class="col">
                                 <i class="material-icons" style="vertical-align: bottom"
                                    ata-notify="icon">settings_input_antenna</i>
-                                <span style="margin-left: 14px">{{ "hotelUserHome.cableSatellite" | translate}}</span>
+                                <span style="margin-left: 14px"
+                                      [ngClass]="{textDecorationUnderline: this.lstFacilitis.cableTelevision=== false}">{{ "hotelUserHome.cableSatellite" | translate}}</span>
                             </div>
                         </div>
                         <div class="row pt-2">
                             <div class="col">
                                 <i class="material-icons" style="vertical-align: bottom"
                                    ata-notify="icon">local_cafe</i>
-                                <span style="margin-left: 14px">{{ "hotelUserHome.freeInstantCoffe" | translate}}</span>
+                                <span style="margin-left: 14px"
+                                      [ngClass]="{textDecorationUnderline: this.lstFacilitis.coffee=== false}">{{ "hotelUserHome.freeInstantCoffe" | translate}}</span>
                             </div>
                             <div class="col">
                                 <i class="material-icons" style="vertical-align: bottom"
                                    ata-notify="icon">smoke_free</i>
-                                <span style="margin-left: 14px">{{ "hotelUserHome.noSmoking" | translate}}</span>
+                                <span style="margin-left: 14px"
+                                      [ngClass]="{textDecorationUnderline: this.lstFacilitis.Smoking=== false}">{{ "hotelUserHome.noSmoking" | translate}}</span>
                             </div>
                             <div class="col">
                                 <i class="material-icons" style="vertical-align: bottom"
@@ -640,12 +692,14 @@
                             <div class="col">
                                 <i class="material-icons" style="vertical-align: bottom"
                                    ata-notify="icon">leak_add</i>
-                                <span style="margin-left: 14px">{{ "hotelUserHome.clothesDryer" | translate}}</span>
+                                <span style="margin-left: 14px"
+                                      [ngClass]="{textDecorationUnderline: this.lstFacilitis.Dryer=== false}">{{ "hotelUserHome.clothesDryer" | translate}}</span>
                             </div>
                             <div class="col">
                                 <i class="material-icons" style="vertical-align: bottom"
                                    ata-notify="icon">flare</i>
-                                <span style="margin-left: 14px">{{ "hotelUserHome.teaCoffeMaker" | translate}}</span>
+                                <span style="margin-left: 14px"
+                                      [ngClass]="{textDecorationUnderline: this.lstFacilitis.teaMaker=== false}">{{ "hotelUserHome.teaCoffeMaker" | translate}}</span>
                             </div>
                             <div class="col">
                                 <i class="material-icons" style="vertical-align: bottom"
@@ -657,7 +711,8 @@
                             <div class="col">
                                 <i class="material-icons" style="vertical-align: bottom"
                                    ata-notify="icon">filter_tilt_shift</i>
-                                <span style="margin-left: 14px">{{ "hotelUserHome.hairdryer" | translate}}</span>
+                                <span style="margin-left: 14px"
+                                      [ngClass]="{textDecorationUnderline: this.lstFacilitis.Hairdryer=== false}">{{ "hotelUserHome.hairdryer" | translate}}</span>
                             </div>
                             <div class="col">
                                 <i class="material-icons" style="vertical-align: bottom"
@@ -674,7 +729,8 @@
                             <div class="col">
                                 <i class="material-icons" style="vertical-align: bottom"
                                    ata-notify="icon">call_to_action</i>
-                                <span style="margin-left: 14px">{{ "hotelUserHome.airConditioning" | translate}}</span>
+                                <span style="margin-left: 14px"
+                                      [ngClass]="{textDecorationUnderline: this.lstFacilitis.airConditional=== false}">{{ "hotelUserHome.airConditioning" | translate}}</span>
                             </div>
                             <div class="col">
                                 <i class="material-icons" style="vertical-align: bottom"
@@ -691,7 +747,8 @@
                             <div class="col">
                                 <i class="material-icons" style="vertical-align: bottom"
                                    ata-notify="icon">pool</i>
-                                <span style="margin-left: 14px">{{ "hotelUserHome.Pool" | translate}}</span>
+                                <span style="margin-left: 14px"
+                                      [ngClass]="{textDecorationUnderline: this.lstFacilitis.outdoorSwimmingPool=== false}">{{ "hotelUserHome.Pool" | translate}}</span>
                             </div>
                             <div class="col">
                                 <i class="material-icons" style="vertical-align: bottom"
@@ -705,6 +762,167 @@
                 </div>
             </div>
         </div>
+        <br>
+        <div class="row">
+            <div class="col-3 pl-0">
+                <hr>
+            </div>
+            <div class="col">
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3 pl-0">
+                <span style="font-size: 25px">{{ "hotelUserHome.groundArea" | translate}}</span>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col-1">
+                        <i class="material-icons" style="font-size: 50px" data-notify="icon">api</i>
+                    </div>
+                    <div class="col" style="border-left: lightgray 2px solid; margin-left: 10px ">
+                        <div class="row">
+                            <div class="col">
+                                <span style=" font-size: 14px">{{this.hotel.sqm}} m2</span>
+                            </div>
+                            <div class="col"></div>
+                            <div class="col"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-3 pl-0">
+                <hr>
+            </div>
+            <div class="col">
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3 pl-0">
+                <span style="font-size: 25px">{{ "hotelUserHome.HotelDescription" | translate}}</span>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col-1">
+                        <i class="material-icons" style="font-size: 50px" data-notify="icon">description</i>
+                    </div>
+                    <div class="col" style="border-left: lightgray 2px solid; margin-left: 10px ">
+                        <div class="row">
+                            <div class="col"><span
+                                    style="font-size: 14px">{{ this.hotel.desHotel}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row" *ngIf="this.hotel.suggestPlayground != null || '' ">
+            <div class="col-3 pl-0">
+                <hr>
+            </div>
+            <div class="col">
+                <hr>
+            </div>
+        </div>
+        <div class="row" *ngIf="this.hotel.suggestPlayground != null || '' ">
+            <div class="col-3 pl-0">
+                <span style="font-size: 25px">{{ "hotelUserHome.SuggestionsPlaces" | translate}}</span>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col-1">
+                        <i class="material-icons" style="font-size: 50px" data-notify="icon">satellite</i>
+                    </div>
+                    <div class="col" style="border-left: lightgray 2px solid; margin-left: 10px ">
+                        <div class="row">
+                            <div class="col"><span
+                                    style=" font-size: 14px">{{this.hotel.suggestPlayground}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-3 pl-0">
+                <hr>
+            </div>
+            <div class="col">
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3 pl-0">
+                <span style="font-size: 25px">{{ "hotelUserHome.rulesOfHotel" | translate}}</span>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col-1">
+                        <i class="material-icons" style="font-size: 50px" data-notify="icon">rule</i>
+                    </div>
+                    <div class="col" style="border-left: lightgray 2px solid; margin-left: 10px ">
+                        <div class="row">
+                            <div class="col"><span
+                                    style=" font-size: 14px">{{this.hotel.rulerHotel}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3 pl-0">
+                <hr>
+            </div>
+            <div class="col">
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3 pl-0">
+                <span style="font-size: 25px">{{ "hotelUserHome.GuideOfHotel" | translate}}</span>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col-1">
+                        <i class="material-icons" style="font-size: 50px" data-notify="icon">transfer_within_a_station</i>
+                    </div>
+                    <div class="col" style="border-left: lightgray 2px solid; margin-left: 10px ">
+                        <div class="row">
+                            <div class="col"><span
+                                    style=" font-size: 14px">{{this.hotel.guideToHotel}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </div>
 </div>
+<!--        <div class="row pt-3">-->
+<!--            <div class="col pl-0">-->
+<!--                <div class="row">-->
+<!--                    <div class="col">-->
+<!--                        <span style="font-size: 30px; font-weight: bold">Giới thiệu về khách sạn</span>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="row">-->
+<!--                    <div class="col">-->
+<!--                        Diện tích mặt bằng: 20m2-->
+<!--                        Mô tả ăn uống:-->
+<!--                        Gợi ý ăn uống-->
+<!--                        Quy định khách sạn:-->
+<!--                        Hướng dẫn khách hàng-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
 
