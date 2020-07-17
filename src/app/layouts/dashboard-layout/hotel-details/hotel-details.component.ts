@@ -7,6 +7,7 @@ import {CookieService} from 'ngx-cookie-service';
 import {ChatService} from '../../../shared/service/chat.service';
 import {AppSetting} from '../../../appsetting';
 import {Hotel} from '../../../shared/model/hotel';
+import {formatNumber} from '@angular/common';
 
 
 @Component({
@@ -16,11 +17,14 @@ import {Hotel} from '../../../shared/model/hotel';
 })
 
 export class HotelDetailsComponent implements OnInit {
+    Object = Object
+    Array = Array
     private baseUrl: string = AppSetting.BASE_SERVER_URL;
     galleryOptions: NgxGalleryOptions[]; // imgOfHotel
     galleryImages: NgxGalleryImage[];
     galleryOptions1: NgxGalleryOptions[];
     lstDetaiHotel = []
+    lstBedRoomDetails = []
     lstFacilitis = []
     lstFacilitisDetails = []
     imageList: any;
@@ -100,13 +104,14 @@ export class HotelDetailsComponent implements OnInit {
                 }))
             })
             for (let i = 0; i < this.lstFacilitisDetails.length; i++) {
-                    let lstArraythua = []
-                    for (let y = 8; y < this.lstFacilitisDetails[i].length; y++) {
-                        lstArraythua.push(this.lstFacilitisDetails[i][y])
-                    }
-                    this.lstTienNghiThua.push(lstArraythua)
+                let lstArraythua = []
+                for (let y = 8; y < this.lstFacilitisDetails[i].length; y++) {
+                    lstArraythua.push(this.lstFacilitisDetails[i][y])
+                }
+                this.lstTienNghiThua.push(lstArraythua)
             }
-            console.log(this.lstFacilitis)
+            console.log(this.lstDetaiHotel)
+            // this.lstBedRoomDetails.push()
         })
     }
 
@@ -168,6 +173,11 @@ export class HotelDetailsComponent implements OnInit {
 
     }
 
+    ngAfterInit(): void {
+        console.log('xxx')
+
+    }
+
     getImage(imgArray) {
         const imageUrls = [];
         for (let i = 0; i < imgArray.length; i++) {
@@ -180,7 +190,11 @@ export class HotelDetailsComponent implements OnInit {
         return imageUrls;
     }
 
+    convertNumber(s) {
+        return parseInt(s)
+    }
 }
+
 
 // @Pipe({
 //     name: 'filterByStatus',

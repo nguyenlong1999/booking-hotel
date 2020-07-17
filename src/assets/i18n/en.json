@@ -195,6 +195,11 @@
   "user.register.createAccountBooking": "Create a Booking account",
   "///": "bookinghotelcualongdeptrai",
   "hotelRegister": {
+    "details": "Details",
+    "bedDoi": "bed Dual",
+    "bedDon": "bed Single",
+    "bedKing": "bed King",
+    "bedQueen": "bed Queen",
     "price.errorRequired": "Price per night must not be empty",
     "price.errorTypeNumber": "Price per night must be numeric",
     "basicInfo": "Basic information",

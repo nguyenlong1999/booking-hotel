@@ -71,19 +71,19 @@ export class HotelAccessComponent implements OnInit {
     lstTypeBedRoom = [
         {
             value: 1,
-            name: 'Giường đôi'
+            name: 'hotelRegister.bedDoi'
         },
         {
             value: 2,
-            name: 'Giường đơn'
+            name: 'hotelRegister.bedDon'
         },
         {
             value: 3,
-            name: 'Giường King'
+            name: 'hotelRegister.bedKing'
         },
         {
             value: 4,
-            name: 'Giường Queen'
+            name: 'hotelRegister.bedQueen'
         }
 
     ]

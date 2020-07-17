@@ -217,7 +217,10 @@
     "nameError": "Tên khách sạn không được để trống",
     "desError": "Mô tả khách sạn không được để trống",
     "guideToHotelError": "Hướng dẫn khách không được để trống",
-
+    "bedDoi": "giường Đôi",
+    "bedDon": "giường Đơn",
+    "bedKing": "giường King",
+    "bedQueen": "giường Queen",
     "basicInfo": "Thông tin cơ bản",
     "helpyoureach": "Giúp bạn tiếp cận đối tượng khách hàng phù hợp nhất.",
     "provideInformation": "Vui lòng cung cấp mọi thông tin được yêu cầu trừ khi có đánh dấu không bắt buộc.",
@@ -318,6 +321,7 @@
   "President": "Phòng Tổng thống",
   "Royal": "Phòng Hoàng gia",
   "room": {
+    "details": "Chi tiết",
     "room": "Phòng",
     "RoomInformation": "Thông tin phòng",
     "RoomInformationYourProvide": "Thông tin phòng bạn cung cấp",
