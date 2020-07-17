@@ -1,4 +1,4 @@
-import {Component, OnInit, Pipe, PipeTransform} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NgxGalleryAnimation, NgxGalleryImage, NgxGalleryOptions} from '@kolkov/ngx-gallery';
 import {HotelService} from '../../../shared/service/hotel.service.';
 import {FormBuilder} from '@angular/forms';
@@ -7,7 +7,6 @@ import {CookieService} from 'ngx-cookie-service';
 import {ChatService} from '../../../shared/service/chat.service';
 import {AppSetting} from '../../../appsetting';
 import {Hotel} from '../../../shared/model/hotel';
-import {formatNumber} from '@angular/common';
 
 
 @Component({
@@ -24,39 +23,39 @@ export class HotelDetailsComponent implements OnInit {
     galleryImages: NgxGalleryImage[];
     galleryOptions1: NgxGalleryOptions[];
     lstDetaiHotel = []
-    lstBedRoomDetails = []
     lstFacilitis = []
     lstFacilitisDetails = []
     imageList: any;
     hotel = Hotel;
     lstTienNghiThua = []
     lstTienNghiRoom = []
-    lstAddressPopular = [
-        {
-            name: 'Đường Phạm Ngũ Lão ', km: 400
-        },
-        {
-            name: 'Ben Thanh Market', km: 830
-        },
-        {
-            name: 'Dinh Độc Lập', km: 870
-        },
-        {
-            name: 'Bảo tàng Chứng tích Chiến tranh', km: 890
-        },
-        {
-            name: 'Quảng trường Hồ Chí Minh ', km: 620
-        },
-        {
-            name: 'Bưu điện Trung tâm Thành phố', km: 250
-        },
-        {
-            name: 'Chợ Lớn', km: 200
-        },
-        {
-            name: 'Chùa Giác Lâm', km: 250
-        }
-    ]
+    // lstAddressPopular = [
+    //     {
+    //         name: 'Đường Phạm Ngũ Lão ', km: 400
+    //     },
+    //     {
+    //         name: 'Ben Thanh Market', km: 830
+    //     },
+    //     {
+    //         name: 'Dinh Độc Lập', km: 870
+    //     },
+    //     {
+    //         name: 'Bảo tàng Chứng tích Chiến tranh', km: 890
+    //     },
+    //     {
+    //         name: 'Quảng trường Hồ Chí Minh ', km: 620
+    //     },
+    //     {
+    //         name: 'Bưu điện Trung tâm Thành phố', km: 250
+    //     },
+    //     {
+    //         name: 'Chợ Lớn', km: 200
+    //     },
+    //     {
+    //         name: 'Chùa Giác Lâm', km: 250
+    //     }
+    // ]
+    lstAddressPopular = [];
 
     constructor(private formbuilder: FormBuilder,
                 private _hotelService: HotelService,
@@ -110,8 +109,10 @@ export class HotelDetailsComponent implements OnInit {
                 }
                 this.lstTienNghiThua.push(lstArraythua)
             }
-            console.log(this.lstDetaiHotel)
-            // this.lstBedRoomDetails.push()
+            const country = result[0][0].hotelObj.province.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+                .toLocaleLowerCase().split(' ').join('-')
+            this.getDuLich(country);
+            console.log(this.lstAddressPopular)
         })
     }
 
@@ -175,7 +176,17 @@ export class HotelDetailsComponent implements OnInit {
 
     ngAfterInit(): void {
         console.log('xxx')
+    }
 
+    async getDuLich(address) {
+        console.log('chay toi day')
+        const proxyurl = 'https://cors-anywhere.herokuapp.com/';
+        const url = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=' + address +
+            '+city+point+of+interest&language=en&key=AIzaSyDbIf1-IDfQ0DGaOvAfu5lNZ0bZm0VaisM'; // site that doesn’t send Access-Control-*
+        fetch(proxyurl + url) // https://cors-anywhere.herokuapp.com/https://example.com
+            .then(response => response.json())
+            .then(contents => this.lstAddressPopular.push(Object(contents.results)))
+            .catch(() => console.log('Can’t access ' + url + ' response. Blocked by browser?'))
     }
 
     getImage(imgArray) {
