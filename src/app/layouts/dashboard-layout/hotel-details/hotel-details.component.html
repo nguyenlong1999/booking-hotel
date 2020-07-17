@@ -318,7 +318,7 @@
                                     <span style="font-weight: bold; font-size: 13px">{{ "hotelUserHome.benefit" | translate}}</span>
                                     <br>
                                     <i class="material-icons" style="vertical-align: bottom; color: #00e676"
-                                       ata-notify="icon">done</i> Wifi miễn phí
+                                       ata-notify="icon">done</i>{{"room.wifiFreexx" | translate}}
                                     <br>
                                     <span style="font-weight: bold; font-size: 13px">{{ "hotelUserHome.bonus" | translate}}</span>
                                     <br>
@@ -329,18 +329,18 @@
                                         <span style="font-size: 13px">{{"room.BedRoom"|translate}}:</span> {{bedRoom.length}} <i class="material-icons" style="vertical-align: sub; color: #00e676"
                                                                                                                                  ata-notify="icon">night_shelter</i>
                                         <div *ngFor="let roomType of Array(bedRoom)">
-                                            <div *ngFor="let xx of Object.keys(roomType)" style="padding:10px">
+                                            <div *ngFor="let xx of Object.keys(roomType)" style="padding:5px">
                                                 <div style="font-size: 13px">{{"room.room" | translate }}: {{convertNumber(xx) + 1}} </div>
                                                 <span style="font-size: 10px; font-weight: bold"> {{ "room.details" | translate}} :</span>
                                                     <div *ngFor="let bed of roomType[xx].arrayTypeBedRooms">
                                                         <div *ngIf="bed.bedType==1" style="font-size: 12px">{{"room.bedType" | translate}}: <span style="color: #00e5ff">{{"hotelRegister.bedDoi" | translate}}</span> ,<i class="material-icons" style="vertical-align: bottom; color: #00e5ff"
-                                                                                                                                                                                                                           ata-notify="icon">view_stream</i>  số lượng:{{bed.bedQuantity}}</div>
+                                                                                                                                                                                                                           ata-notify="icon">view_stream</i> {{"room.quantity" | translate}}:{{bed.bedQuantity}}</div>
                                                         <div *ngIf="bed.bedType==2" style="font-size: 12px">{{"room.bedType" | translate}}: <span style="color: #00cae3">{{"hotelRegister.bedDon" | translate}}</span>,<i class="material-icons" style="vertical-align: bottom; color: #00cae3"
-                                                                                                                                                                                                                          ata-notify="icon">single_bed</i>  số lượng:{{bed.bedQuantity}}</div>
+                                                                                                                                                                                                                          ata-notify="icon">single_bed</i>  {{"room.quantity" | translate}}:{{bed.bedQuantity}}</div>
                                                         <div *ngIf="bed.bedType==3" style="font-size: 12px">{{"room.bedType" | translate}}: <span style="color: #0a6ebd">{{"hotelRegister.bedKing" | translate}}</span> <i class="material-icons" style="vertical-align: bottom; color: #0a6ebd"
-                                                                                                                                                                                                                           ata-notify="icon">king_bed</i>, số lượng:{{bed.bedQuantity}}</div>
+                                                                                                                                                                                                                           ata-notify="icon">king_bed</i>, {{"room.quantity" | translate}}:{{bed.bedQuantity}}</div>
                                                         <div *ngIf="bed.bedType==4" style="font-size: 12px">{{"room.bedType" | translate}}: <span style="color: orange">{{"hotelRegister.bedQueen" | translate}}</span>,<i class="material-icons" style="vertical-align: bottom; color: orange"
-                                                                                                                                                                                                                           ata-notify="icon">view_sidebar</i> số lượng:{{bed.bedQuantity}}</div>
+                                                                                                                                                                                                                           ata-notify="icon">view_sidebar</i> {{"room.quantity" | translate}}:{{bed.bedQuantity}}</div>
                                                     </div>
                                             </div>
                                         </div>
@@ -348,11 +348,15 @@
                                 </div>
                                 <div class="col-1 mb-2 pt-2"
                                      style="background: white;border-left: 1px solid #c4cccc;box-shadow: 0 3px 2px -2px #80808070;">
+                                    <span style="font-size: 13px">{{"room.maxHuman" | translate}}</span>
+                                    <br>
+                                    <span style="text-align: center; color: orangered">{{i.accommodates}}</span>  {{"room.nguoi"|translate}}
+                                    <br>
                                     <i class="material-icons"
                                        style="vertical-align: bottom; color: #00e5ff; font-size: 50px"
                                        ata-notify="icon">family_restroom</i>
                                     <br>
-                                    <span style="font-size: 10px">2 bé dưới 13 tuổi được ở </span>
+                                    <span style="font-size: 10px">{{"room.duoi13"|translate}}</span>
                                     <br>
                                     <span style="color: #00e676;font-size: 12px; font-weight: bold">{{ "hotelUserHome.free!" | translate}}</span>
                                 </div>
@@ -385,7 +389,6 @@
                                         <input matInput type="number" onkeypress="return event.charCode >= 48">
                                     </mat-form-field>
                                     <br>
-                                    Số lượng00*
                                 </div>
                                 <div class="col mb-2 mr-3"
                                      style="background: white;border-left: 1px solid #c4cccc;box-shadow: 0 3px 2px -2px #80808070;">

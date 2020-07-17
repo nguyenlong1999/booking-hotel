@@ -245,9 +245,8 @@ export class HotelAccessComponent implements OnInit {
             const result = data;
             console.log(result);
             this.listImgCurrent = result[0][0].hotelObj.image.split(',');
+            console.log('lstImge nè' + this.listImgCurrent)
             result[1][0].forEach((room, i) => {
-                console.log('heheh')
-                console.log(room)
                 if (room.lstImg !== '' && room.lstImg !== null) {
                     const item = room.lstImg.split(',');
                     this.listRoomImgCurrent.push(item);
@@ -272,7 +271,6 @@ export class HotelAccessComponent implements OnInit {
             }
             this.lat = result[0][0].hotelObj.latitude;
             this.lng = result[0][0].hotelObj.longitude;
-
             this.registerHotelForm = this.formbuilder.group({
                 id: result[0][0].hotelObj._id,
                 name: result[0][0].hotelObj.name,
@@ -410,14 +408,10 @@ export class HotelAccessComponent implements OnInit {
             this.isSubmitted = true
             return
         }
+        console.log(this.listImgCurrent)
         if (this.listImgCurrent.length > 0) {
-            let imgCurrent = Array.from(this.listImgCurrent).join();
-            if (this.arrayImage.length > 0) {
-                imgCurrent = imgCurrent + ',';
-                this.arrayImage = imgCurrent.concat(this.arrayImage);
-            }
+            this.arrayImage = Array.from(this.listImgCurrent).join();
         }
-
         this.registerHotelForm.get('image').setValue(this.arrayImage)
         this.registerHotelForm.get('totalRoomNumber').setValue(this.totaltypeRoomNumber)
         this.registerHotelForm.get('starHotel').setValue(this.rating)

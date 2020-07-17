@@ -941,7 +941,7 @@
                                                             </div>
                                                         </div>
 
-                                                        <div>
+                                                        <div style="display: none">
                                                             <div class="row">
                                                                 <div class="col">
                                                                     <h3><span
@@ -977,7 +977,6 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-
                                                         <div>
                                                             <div class="row">
                                                                 <div class="col">
@@ -1308,23 +1307,25 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <div class="row">
-                                    <div class="col">
-                                        <h3><span
-                                                style="font-weight: bold">{{"room.HowLongCanCustomersBookYourAccommodation"|translate}}</span>
-                                        </h3>
+                                <div style="display: none">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h3><span
+                                                    style="font-weight: bold">{{"room.HowLongCanCustomersBookYourAccommodation"|translate}}</span>
+                                            </h3>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <mat-button-toggle-group
-                                                formControlName="reservationTime">
-                                            <mat-button-toggle id="matBtn{{i}}"
-                                                               *ngFor="let btn of listMatButton;let i = index"
-                                                               [value]="btn.value">
-                                                {{btn.name | translate}}
-                                            </mat-button-toggle>
-                                        </mat-button-toggle-group>
+                                    <div class="row">
+                                        <div class="col">
+                                            <mat-button-toggle-group
+                                                    formControlName="reservationTime">
+                                                <mat-button-toggle id="matBtn{{i}}"
+                                                                   *ngFor="let btn of listMatButton;let i = index"
+                                                                   [value]="btn.value">
+                                                    {{btn.name | translate}}
+                                                </mat-button-toggle>
+                                            </mat-button-toggle-group>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">

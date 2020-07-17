@@ -195,7 +195,7 @@
   "user.register.createAccountBooking": "Create a Booking account",
   "///": "bookinghotelcualongdeptrai",
   "hotelRegister": {
-    "details": "Details",
+
     "bedDoi": "bed Dual",
     "bedDon": "bed Single",
     "bedKing": "bed King",
@@ -295,6 +295,11 @@
     "petsAllowed": "Pets allowed"
   },
   "room": {
+    "wifiFreexx": " Wifi free",
+    "duoi13": "2 children under 13 years old stay",
+    "maxHuman": "Max",
+    "nguoi": "Human",
+    "details": "Details",
     "room": "Room",
     "RoomInformation": "Room information",
     "RoomInformationYourProvide": "Information of the room you provide",

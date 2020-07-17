@@ -321,6 +321,10 @@
   "President": "Phòng Tổng thống",
   "Royal": "Phòng Hoàng gia",
   "room": {
+    "wifiFreexx": " Wifi miễn phí",
+    "duoi13": "2 bé dưới 13 tuổi được ở ",
+    "maxHuman": "Tối đa",
+    "nguoi": "Người",
     "details": "Chi tiết",
     "room": "Phòng",
     "RoomInformation": "Thông tin phòng",
