@@ -35,6 +35,7 @@ import {HotelDetailsComponent} from './hotel-details/hotel-details.component';
 import {NgxGalleryModule} from '@kolkov/ngx-gallery';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
+import {MatSliderModule} from '@angular/material/slider';
 
 @NgModule({
     declarations: [
@@ -82,6 +83,7 @@ import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
         }),
         MatAutocompleteModule,
         MatProgressSpinnerModule,
+        MatSliderModule,
     ],
     providers: [],
     entryComponents: [ChooseRoomTypeDialogComponent],

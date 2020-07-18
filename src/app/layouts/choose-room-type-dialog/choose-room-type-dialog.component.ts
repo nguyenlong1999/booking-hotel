@@ -40,19 +40,19 @@ export class ChooseRoomTypeDialogComponent implements OnInit {
             this.searchHotel.personCount = 1;
             this.searchHotel.roomCount = 1;
             this.searchHotel.childrenCount = 0;
-        } else if (index == 2) {
+        } else if (index === 2) {
             this.checkPair = true;
             this.searchHotel.personCount = 2;
             this.searchHotel.roomCount = 1;
             this.searchHotel.childrenCount = 0;
-        } else if (index == 3) {
+        } else if (index === 3) {
             this.checkFamily = true;
             this.openCount = true;
             this.searchHotel.personCount = 2;
             this.searchHotel.roomCount = 1;
             this.searchHotel.childrenCount = 1;
             this.childrenCheck = true;
-        } else if (index == 4) {
+        } else if (index === 4) {
             this.checkGroup = true;
             this.openCount = true;
             this.searchHotel.personCount = 2;

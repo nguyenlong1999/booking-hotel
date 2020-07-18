@@ -293,18 +293,18 @@
                         Đề xuất cho bạn ở Hà Nội
                     </div>
                     <div style="width: 100%;height: 100%">
-                        <div *ngFor="let p of [].constructor(3)" class="offer-item">
-                            <div class="offerItem-img"
-                                 [style]="'background-image: url(' + BASE_URL+ 'default-avatar-1.png);'">
+                        <div *ngFor="let p of hotels | slice: 0: 3" class="offer-item">
+                            <div class="offerItem-img" *ngIf="p.hotel.image[0]"
+                                 [style]="'background-image: url(' + BASE_URL+ p.hotel.image[0]+');'">
                             </div>
                             <div class="offerInfo-hotel">
                                 <div class="offerInfoHotel-title">
-                                    Khách sạn Quang đẹp trai
+                                    {{p.hotel.name}}
                                 </div>
                                 <div class="offerInfoHotel-star">
-                                    <mat-icon class="header-star-icon" style="color: #e67a1e">grade</mat-icon>
-                                    <mat-icon class="header-star-icon" style="color: #e67a1e">grade</mat-icon>
-                                    <mat-icon class="header-star-icon" style="color: #e67a1e">grade</mat-icon>
+                                    <mat-icon *ngFor="let i of [].constructor(p.hotel.starHotel)"
+                                              class="header-star-icon" style="color: #e67a1e">grade
+                                    </mat-icon>
                                 </div>
                                 <div class="offerInfoHotel-review">
                                     <div class="offerReview-item">
@@ -320,7 +320,7 @@
                                 <div class="offerInfoHotel-price">
                                     <div class="offerPrice-min">Giá mỗi đêm rẻ nhất từ</div>
                                     <div class="offerPrice-number">
-                                        <span style="color: red">109.999 ₫</span>
+                                        <span style="color: red">{{p.roomDetail[0].price}} ₫</span>
                                     </div>
                                 </div>
                             </div>
@@ -329,15 +329,48 @@
                 </div>
                 <div class="col-lg-9" id="hotel-item">
                     <div class="row sort-bar">
-                        <!--                    <button class="col-lg-2 text-center sort-title">-->
-                        <!--                        <span>Sắp xếp theo</span>-->
-                        <!--                    </button>-->
                         <div class="col-lg-3" style="padding: 2px;">
-                            <button class="btn btn-peole" type="button">
+                            <button class="btn btn-peole" type="button" id="dropdownPHButton"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="material-icons">people</span>
-                                <span style="margin: 0 5px">Phù hợp nhất</span>
+                                <span style="margin: 0 5px">Tiện ích</span>
                                 <!--                            <span class="material-icons">arrow_drop_down</span>-->
                             </button>
+                            <div class="dropdown-menu dropdown-menu-top-left" aria-labelledby="dropdownPHButton"
+                                 style="width: 500px;">
+                                <div class="row" style="padding: 0.5rem 1.5rem">
+                                    <div class="col-lg-6">
+                                        <mat-checkbox (change)="addFacilitiFilter($event,'freeWifi')">{{"facilities.freeWifi"|translate}}</mat-checkbox>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <mat-checkbox (change)="addFacilitiFilter($event,'freeInternet')">{{"facilities.freeInternet"|translate}}</mat-checkbox>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <mat-checkbox (change)="addFacilitiFilter($event,'freeParking')">{{"facilities.freeParking"|translate}}</mat-checkbox>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <mat-checkbox (change)="addFacilitiFilter($event,'freeBreakfast')">{{"facilities.freeBreakfast"|translate}}</mat-checkbox>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <mat-checkbox (change)="addFacilitiFilter($event,'Smoking')">{{"facilities.Smoking"|translate}}</mat-checkbox>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <mat-checkbox (change)="addFacilitiFilter($event,'gymRoom')">{{"facilities.gymRoom"|translate}}</mat-checkbox>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <mat-checkbox (change)="addFacilitiFilter($event,'hotTub')">{{"facilities.hotTub"|translate}}</mat-checkbox>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <mat-checkbox (change)="addFacilitiFilter($event,'Fireplace')">{{"facilities.Fireplace"|translate}}</mat-checkbox>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <mat-checkbox (change)="addFacilitiFilter($event,'elevatorInHotel')">{{"facilities.elevatorInHotel"|translate}}</mat-checkbox>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <mat-checkbox (change)="addFacilitiFilter($event,'privatePool')">{{"facilities.privatePool"|translate}}</mat-checkbox>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-lg-2" style="padding: 2px;">
                             <button class="btn btn-price" type="button" id="dropdownPriceButton"
@@ -352,55 +385,67 @@
                             </div>
                         </div>
                         <div class="col-lg-2" style="padding: 2px;">
-                            <div class="dropdown-menu" aria-labelledby="dropdownStarButton">
-                                <a class="dropdown-item" href="#">
-                                    <mat-icon>grade</mat-icon>
-                                    <mat-icon>grade</mat-icon>
-                                    <mat-icon>grade</mat-icon>
-                                    <mat-icon>grade</mat-icon>
-                                    <mat-icon>grade</mat-icon>
-                                    <span>(5 sao)</span>
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <mat-icon>grade</mat-icon>
-                                    <mat-icon>grade</mat-icon>
-                                    <mat-icon>grade</mat-icon>
-                                    <mat-icon>grade</mat-icon>
-                                    <span>(4 sao)</span>
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <mat-icon>grade</mat-icon>
-                                    <mat-icon>grade</mat-icon>
-                                    <mat-icon>grade</mat-icon>
-                                    <span>(3 sao)</span>
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <mat-icon>grade</mat-icon>
-                                    <mat-icon>grade</mat-icon>
-                                    <span>(2 sao)</span>
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    Chưa xếp hạng
-                                </a>
-                            </div>
                             <button class="btn btn-star" type="button" id="dropdownStarButton"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                            >
                                 <span class="material-icons">grade</span>
                                 <span style="margin: 0 5px">Sao</span>
                                 <span class="material-icons">arrow_drop_down</span>
                             </button>
+                            <div class="dropdown-menu keep-open" aria-labelledby="dropdownStarButton">
+                                <a class="dropdown-item">
+                                    <mat-checkbox (change)="addStartFilter($event,5)">
+                                        <mat-icon>grade</mat-icon>
+                                        <mat-icon>grade</mat-icon>
+                                        <mat-icon>grade</mat-icon>
+                                        <mat-icon>grade</mat-icon>
+                                        <mat-icon>grade</mat-icon>
+                                        <span style="color: black">(5 sao)</span></mat-checkbox>
+                                </a>
+                                <a class="dropdown-item">
+                                    <mat-checkbox (change)="addStartFilter($event,4)">
+                                        <mat-icon>grade</mat-icon>
+                                        <mat-icon>grade</mat-icon>
+                                        <mat-icon>grade</mat-icon>
+                                        <mat-icon>grade</mat-icon>
+                                        <span style="color: black">(4 sao)</span>
+                                    </mat-checkbox>
+                                </a>
+                                <a class="dropdown-item">
+                                    <mat-checkbox (change)="addStartFilter($event,3)">
+                                        <mat-icon>grade</mat-icon>
+                                        <mat-icon>grade</mat-icon>
+                                        <mat-icon>grade</mat-icon>
+                                        <span style="color: black">(3 sao)</span></mat-checkbox>
+                                </a>
+                                <a class="dropdown-item">
+                                    <mat-checkbox (change)="addStartFilter($event,2)">
+                                        <mat-icon>grade</mat-icon>
+                                        <mat-icon>grade</mat-icon>
+                                        <span style="color: black">(2 sao)</span></mat-checkbox>
+                                </a>
+                            </div>
                         </div>
                         <div class="col-lg-3" style="padding: 2px;">
                             <button class="btn btn-review" type="button">
                                 <span class="material-icons">rate_review</span>
-                                <span style="margin: 0 5px">Điểm đánh giá</span>
+                                <span style="margin: 0 5px">Đánh giá hàng đầu</span>
                                 <!--                            <span class="material-icons">arrow_drop_down</span>-->
                             </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownRatingButton">
+
+                                <mat-slider style="margin-left: 15px; color: #00a5bb;"
+                                            thumbLabel
+                                            [displayWith]="formatLabel"
+                                            tickInterval="5"
+                                            min="1"
+                                            max="10"></mat-slider>
+                            </div>
                         </div>
                         <div class="col-lg-2" style="padding: 2px;">
                             <button class="btn btn-sale" type="button">
                                 <span class="material-icons">local_offer</span>
-                                <span style="margin: 0 5px">Ưu đãi</span>
+                                <span style="margin: 0 5px">Vị trí</span>
                                 <!--                            <span class="material-icons">arrow_drop_down</span>-->
                             </button>
                         </div>
@@ -417,35 +462,33 @@
                                     quý khách ở linh hoạt nhất có thể bằng cách cung cấp việc hủy miễn phí.</p>
                             </div>
                         </div>
-                        <a *ngFor="let hotel of hotels" target="_blank" class="hehe"
+                        <a *ngFor="let p of hotels" target="_blank" [routerLink]="'/hotel-details/'+p.hotel.nameSpace"
+                           class="hehe"
                            style="color: #0a0a0a; cursor: pointer">
                             <div class="row hotel-item">
                                 <div class="img-item">
-                                    <!--                                    <div class="row" style="margin: 0; padding: 0">-->
-                                    <!--                                        <ngx-gallery [options]="galleryOptions" [images]="galleryImages"-->
-                                    <!--                                                     class="ngx-gallery"></ngx-gallery>-->
-                                    <!--                                    </div>-->
                                     <div class="row" style="height: 70%;margin: 0 !important;">
-                                        <div class="img-content"
-                                             [style]="'background-image:url(' + BASE_URL + 'default-avatar-1.png);background-repeat: no-repeat;background-size: 100% 100%;'"></div>
+                                        <div class="img-content" *ngIf="p.hotel.image[0]"
+                                             [style]="'background-image:url(' + BASE_URL + p.hotel.image[0] +');background-repeat: no-repeat;background-size: 100% 100%;'"></div>
                                     </div>
                                     <div class="row" style="height: 30%;margin: 0 !important;">
                                         <div class="thumbnail-item-list">
-                                            <div *ngFor="let i of [].constructor(10)" class="thumbnail-item">
-                                                <div class="img-thumbnaill"
-                                                     [appTooltipImgPre]="BASE_URL+'default-avatar-1.png'"
-                                                     [style]="'background-image:url(' + BASE_URL + 'default-avatar.png);background-repeat: no-repeat;background-size: 100% 100%;'"></div>
+                                            <div *ngFor="let i of p.hotel.image | slice:1:11" class="thumbnail-item">
+                                                <div class="img-thumbnaill" *ngIf="i"
+                                                     [appTooltipImgPre]="BASE_URL+ i"
+                                                     [style]="'background-image:url(' + BASE_URL + i +');background-repeat: no-repeat;background-size: 100% 100%;'"></div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="detail-item">
                                     <header class="detail-header">
-                                        <h4 class="header-title" style="margin: 0">Quang Hotel</h4>
+                                        <h4 class="header-title" style="margin: 0">{{p.hotel.name}}</h4>
                                         <div></div>
                                         <div class="header-star">
                                             <span class="tooltipStar">
-                                                <mat-icon *ngFor="let i of [].constructor(5)" class="header-star-icon"
+                                                <mat-icon *ngFor="let i of [].constructor(p.hotel.starHotel)"
+                                                          class="header-star-icon"
                                                           style="color: #e67a1e">grade
                                                 </mat-icon>
                                                 <span class="tooltipStarText">Số sao đánh giá này do nơi lưu trú cung cấp, phản ánh độ thoải mái, cơ sở vật chất và tiện nghi mà khách hàng có thể mong đợi</span>
@@ -453,7 +496,7 @@
                                             <span class="header-star-text">
                                             <mat-icon class="header-star-icon"
                                                       style="color: dodgerblue">location_on</mat-icon>
-                                            <span class="header-star-text">Hà nội</span>
+                                            <span class="header-star-text">{{p.hotel.address}}</span>
                                         </span>
                                         </div>
                                     </header>
@@ -484,12 +527,13 @@
                                     <div></div>
                                     <div class="tooltipFacilitiHotel">
                                         <ol class="pills">
-                                            <li *ngFor="let item of hotel.listPriceFacilities | slice:0:2" class="pill"
+                                            <li *ngFor="let item of p.listPriceFacilities | slice:0:2" class="pill"
                                                 style="border-color: #66be5b; color: #66be5b;">
                                                 {{item.name | translate}}
                                             </li>
-                                            <li *ngIf="hotel.listPriceFacilities.length > 2" class="pill" style="border-color: #66be5b; color: #66be5b;">
-                                                +{{hotel.listPriceFacilities.length - 2}}
+                                            <li *ngIf="p.listPriceFacilities.length > 2" class="pill"
+                                                style="border-color: #66be5b; color: #66be5b;">
+                                                +{{p.listPriceFacilities.length - 2}}
                                             </li>
                                         </ol>
                                         <div class="tooltiptextFacilitiHotel">
@@ -500,7 +544,7 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div *ngFor="let item of hotel.listPriceFacilities" class="col-lg-6"
+                                                <div *ngFor="let item of p.listPriceFacilities" class="col-lg-6"
                                                      style="text-align: left; padding-left: 8%">
                                                     <mat-icon style="font-size: medium; color: #66be5b;">{{item.icon}}
                                                     </mat-icon>
@@ -548,8 +592,8 @@
                                     </div>
                                     <div class="price-section">
                                         <div class="promotion-item">
-                                            <div class="promotion-text">
-                                                Còn 1 phòng giảm 50%
+                                            <div *ngIf="p.roomDetail[0].promotion > 0" class="promotion-text">
+                                                Giảm giá 50%
                                             </div>
                                             <div class="promotion-type">
                                                 <mat-icon>local_offer</mat-icon>
@@ -563,7 +607,7 @@
                                                 <span class="tooltiptext">Đây là giá phòng thông thường của khách sạn</span>
                                             </div>
                                             <div class="new-price">
-                                                <span style="color: red">109.999</span><span
+                                                <span style="color: red">{{p.roomDetail[0].price}}</span><span
                                                     style="color: gray;"> ₫</span>
                                             </div>
                                         </div>

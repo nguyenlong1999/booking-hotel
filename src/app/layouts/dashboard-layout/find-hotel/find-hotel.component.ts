@@ -1,7 +1,6 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {CookieService} from 'ngx-cookie-service';
 import {AppSetting} from '../../../appsetting';
-import {NgxGalleryAnimation, NgxGalleryImage, NgxGalleryOptions} from '@kolkov/ngx-gallery';
 import {HotelService} from '../../../shared/service/hotel.service.';
 
 @Component({
@@ -10,22 +9,137 @@ import {HotelService} from '../../../shared/service/hotel.service.';
     styleUrls: ['./find-hotel.component.css']
 })
 export class FindHotelComponent implements OnInit {
-    galleryOptions: NgxGalleryOptions[];
-    galleryImages: NgxGalleryImage[];
-    BASE_URL = AppSetting.BASE_SERVER_URL + '/api/images/';
-    fixed = false;
-    loadding = false;
     hotels: any;
+    hotelFilter: any;
+    BASE_URL = AppSetting.BASE_SERVER_URL + '/api/images/';
+    loadding = false;
+    imageDf = ['image-1593099960393.png', 'image-1593099960393.png'];
+    facilitiFilterArray = []
+    starFilterArray = []
+    searchText;
+    ratingValue = 0;
+    minPrice = 0;
+    maxPrice = 0;
+    priceCheckAll = false;
+
+    // falcilityCheckAll = [];
 
     constructor(
         private cookie: CookieService,
         private hotelService: HotelService
     ) {
+        $('.btn-star').on('click', function (e) {
+            $(this).next().toggle();
+        });
+        $('.dropdown-menu.keep-open').on('click', function (e) {
+            e.stopPropagation();
+        });
+    }
+
+    ngOnInit() {
+        this.loadding = true;
+        this.getHotels();
+        setTimeout(() => {
+
+        }, 2000);
+        this.searchText = JSON.parse(this.cookie.get('searchText'));
+        console.log(this.searchText)
+    }
+
+    addStartFilter(event, star) {
+        if (event.checked === true) {
+            this.starFilterArray.push(star);
+        } else {
+            this.starFilterArray = this.starFilterArray.filter((value) => value !== star);
+        }
+        console.log('star filter array : ')
+        console.log(this.starFilterArray)
+        this.loadHotelFilter();
+    }
+
+    addFacilitiFilter(event, faciliti) {
+        if (event.checked === true) {
+            this.facilitiFilterArray.push(faciliti);
+        } else {
+            this.facilitiFilterArray = this.facilitiFilterArray.filter((value) => value !== faciliti);
+        }
+        console.log('faciliti filter array : ')
+        console.log(this.facilitiFilterArray)
+        this.loadHotelFilter();
+    }
+
+    formatLabel(value: number) {
+        if (value >= 1) {
+            this.ratingValue = value;
+            return Math.round(value) + '*';
+        } else {
+            this.ratingValue = 0
+        }
+        return value;
+    }
+
+    changePriceFiler(event) {
+        this.loadHotelFilter()
+    }
+
+    loadHotelFilter() {
+        let temp = [];
+        this.hotels = [];
+        let a = 'freeWifi'
+        for (const hotel of this.hotelFilter) {
+            let starCheck = false;
+            let ratingCheck = false;
+            let falcilityCheck = false;
+            let priceCheck = false;
+            if (this.facilitiFilterArray !== undefined && this.facilitiFilterArray.length > 0) {
+                this.facilitiFilterArray.forEach(faciliti => {
+                    for (const value of Object.entries(hotel.faciliti)) {
+                        if (faciliti === value[0] && value[1] === true) {
+                            falcilityCheck = true;
+                        }
+                    }
+                })
+            } else {
+                falcilityCheck = true;
+            }
+            if (this.starFilterArray !== undefined && this.starFilterArray.length > 0) {
+                this.starFilterArray.forEach(star => {
+                    if (hotel.hotel.starHotel === star) {
+                        console.log('ok check')
+                        starCheck = true;
+                    }
+                })
+            } else {
+                starCheck = true;
+            }
+            if (this.ratingValue > 0) {
+                console.log(this.ratingValue, 'checking hotel rating')
+                ratingCheck = true;
+                // nếu điểm lớn hơn
+            } else {
+                ratingCheck = true;
+            }
+            if (this.priceCheckAll === true && this.maxPrice > 0) {
+                // filter theo giá
+                priceCheck = true;
+            } else {
+                priceCheck = true;
+            }
+            if (falcilityCheck === true && starCheck === true && ratingCheck === true && priceCheck === true) {
+                temp.push(hotel)
+            }
+        }
+        this.hotels = temp;
+        console.log(this.hotels);
+    }
+
+    getHotels() {
         this.hotelService.getHotelFind().subscribe(hotels => {
             if (hotels === undefined) {
                 return;
             }
             this.hotels = hotels['hotels'];
+            console.log(this.hotels);
             this.hotels.forEach(item => {
                 item.listPriceFacilities = [];
                 if (item.faciliti.freeWifi === true) {
@@ -46,100 +160,19 @@ export class FindHotelComponent implements OnInit {
                 }
                 const e = {name: 'Hủy miễn phí', icon: 'wifi_protected_setup'}
                 item.listPriceFacilities.push(e)
-                console.log(item.listPriceFacilities);
+                item.hotel.image = item.hotel.image.split(',');
+                const valueToRemove = '';
+                item.hotel.image = item.hotel.image.filter(item => item !== valueToRemove);
+                if (item.hotel.image.length === 0) {
+                    console.log('hehe')
+                    item.hotel.image = this.imageDf;
+                }
+                console.log(item.hotel.image.length);
+                this.hotelFilter = this.hotels;
+                this.loadding = false;
+                // console.log(item.listPriceFacilities);
             });
         });
-    }
-
-    ngOnInit(): void {
-        this.loadding = true;
-        setTimeout(() => {
-            this.loadding = false;
-        }, 2000);
-        const arr = JSON.parse(this.cookie.get('searchText'));
-        console.log(arr)
-
-        this.galleryOptions = [
-            {
-                width: '100%',
-                height: '270px',
-                thumbnailsColumns: 5,
-                // thumbnailsRows: 5,
-                imageAnimation: NgxGalleryAnimation.Slide
-            },
-            // max-width 800
-            {
-                breakpoint: 400,
-                width: '100%',
-                height: '500px',
-                imagePercent: 25,
-                thumbnailsPercent: 5,
-                thumbnailsMargin: 5,
-                thumbnailMargin: 5
-            },
-            // max-width 400
-            {
-                breakpoint: 300,
-                preview: false
-            }
-        ];
-
-        this.galleryImages = [
-            {
-                small: this.BASE_URL + 'default-avatar-1.png',
-                medium: this.BASE_URL + 'default-avatar-1.png',
-                big: this.BASE_URL + 'default-avatar-1.png'
-            },
-            {
-                small: this.BASE_URL + 'default-avatar-1.png',
-                medium: this.BASE_URL + 'default-avatar-1.png',
-                big: this.BASE_URL + 'default-avatar-1.png'
-            },
-            {
-                small: this.BASE_URL + 'default-avatar-1.png',
-                medium: this.BASE_URL + 'default-avatar-1.png',
-                big: this.BASE_URL + 'default-avatar-1.png'
-            },
-            {
-                small: this.BASE_URL + 'default-avatar-1.png',
-                medium: this.BASE_URL + 'default-avatar-1.png',
-                big: this.BASE_URL + 'default-avatar-1.png'
-            },
-            {
-                small: this.BASE_URL + 'default-avatar-1.png',
-                medium: this.BASE_URL + 'default-avatar-1.png',
-                big: this.BASE_URL + 'default-avatar-1.png'
-            },
-            {
-                small: this.BASE_URL + 'default-avatar-1.png',
-                medium: this.BASE_URL + 'default-avatar-1.png',
-                big: this.BASE_URL + 'default-avatar-1.png'
-            },
-            {
-                small: this.BASE_URL + 'default-avatar-1.png',
-                medium: this.BASE_URL + 'default-avatar-1.png',
-                big: this.BASE_URL + 'default-avatar-1.png'
-            },
-            {
-                small: this.BASE_URL + 'default-avatar-1.png',
-                medium: this.BASE_URL + 'default-avatar-1.png',
-                big: this.BASE_URL + 'default-avatar-1.png'
-            },
-            {
-                small: this.BASE_URL + 'default-avatar-1.png',
-                medium: this.BASE_URL + 'default-avatar-1.png',
-                big: this.BASE_URL + 'default-avatar-1.png'
-            },
-            {
-                small: this.BASE_URL + 'default-avatar-1.png',
-                medium: this.BASE_URL + 'default-avatar-1.png',
-                big: this.BASE_URL + 'default-avatar-1.png'
-            },
-        ];
-    }
-
-    hehe() {
-        console.log('hehe')
     }
 
     @HostListener('window:scroll', ['$event'])

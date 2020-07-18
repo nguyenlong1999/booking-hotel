@@ -599,7 +599,8 @@ no-fixed-left {
 .promotion-text {
     background-color: orangered;
     text-align: center;
-    margin-right: -15px;
+    padding: 2px;
+    margin-right: -0.7rem;
     margin-left: 15px;
     font-size: 14px;
     font-weight: 700;
@@ -609,10 +610,10 @@ no-fixed-left {
 }
 
 .promotion-type {
-    margin-top: 20px;
     background: #ef852a;
     margin-left: 25%;
-    margin-right: -15px;
+    margin-top: 0.5rem;
+    margin-right: -0.7rem;
     text-transform: uppercase;
     font-size: 13px;
     font-weight: 500;

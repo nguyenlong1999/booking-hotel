@@ -61,7 +61,7 @@ export class DashboardLayoutComponent implements OnInit {
     showModal = false;
     imageUrl = 'assets/img/new_logo.png'
     message = '';
-    searchHotel = new SearchHotel('', 1, 1, 1);
+    searchHotel = new SearchHotel('', '1', '1', '1');
     searchPerson = ''
 
     constructor(
@@ -90,7 +90,7 @@ export class DashboardLayoutComponent implements OnInit {
             if (event.deltaY < 0) {
                 console.log('scrolling up');
                 const element = document.getElementById('check-point');
-                if (element!== undefined){
+                if (element !== undefined) {
                     element.setAttribute('style', 'background-color:white!important;');
                     const element2 = document.getElementById('check-point-search');
                     element2.setAttribute('style', 'display:none');
@@ -100,7 +100,7 @@ export class DashboardLayoutComponent implements OnInit {
                 // tslint:disable-next-line:no-duplicate-variable
                 const element = document.getElementById('check-point');
                 // element.setAttribute('style', 'background-color:black!important;');
-                if(element!==undefined){
+                if (element !== undefined) {
                     element.setAttribute('style', 'display:none');
                     const element2 = document.getElementById('check-point-search');
                     element2.setAttribute('style', 'display:block;background-color:black!important');
@@ -403,9 +403,9 @@ export class DashboardLayoutComponent implements OnInit {
     }
 
     searchHotelServer() {
-        console.log(this.searchHotel);
+        console.log(this.searchHotel, this.searchPerson);
         // @ts-ignore\\\\\\\\\\\\\\\\\
-        this.cookie.set('searchText', JSON.stringify(this.searchHotel));
+        this.cookie.set('searchText', this.searchHotel.address + ' ' + this.searchPerson);
         console.log(this.cookie.get('searchText'))
         this._router.navigateByUrl('/search-hotels')
         // this.chatService.showNotification('success', 'Tìm kiếm thành công');

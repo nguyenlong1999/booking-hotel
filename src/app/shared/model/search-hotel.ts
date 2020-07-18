@@ -1,9 +1,9 @@
 export class SearchHotel {
-    total: string;
-    address: string;
-    roomCount: number;
-    childrenCount: number;
-    personCount: number;
+    total: any;
+    address: any;
+    roomCount: any;
+    childrenCount: any;
+    personCount: any;
 
     constructor(address, roomCount, childrenCount, personCount) {
         this.address = address;
