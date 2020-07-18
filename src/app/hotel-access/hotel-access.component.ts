@@ -410,7 +410,14 @@ export class HotelAccessComponent implements OnInit {
         }
         console.log(this.listImgCurrent)
         if (this.listImgCurrent.length > 0) {
-            this.arrayImage = Array.from(this.listImgCurrent).join();
+            let imgCurrent = Array.from(this.listImgCurrent).join();
+            if (this.arrayImage.length > 0) {
+                imgCurrent = imgCurrent + ',';
+                this.arrayImage = imgCurrent.concat(this.arrayImage);
+                console.log(this.arrayImage)
+            } else {
+                this.arrayImage = imgCurrent
+            }
         }
         this.registerHotelForm.get('image').setValue(this.arrayImage)
         this.registerHotelForm.get('totalRoomNumber').setValue(this.totaltypeRoomNumber)

@@ -7,6 +7,7 @@ import {CookieService} from 'ngx-cookie-service';
 import {ChatService} from '../../../shared/service/chat.service';
 import {AppSetting} from '../../../appsetting';
 import {Hotel} from '../../../shared/model/hotel';
+import {TranslateService} from '@ngx-translate/core';
 
 
 @Component({
@@ -29,37 +30,11 @@ export class HotelDetailsComponent implements OnInit {
     hotel = Hotel;
     lstTienNghiThua = []
     lstTienNghiRoom = []
-    // lstAddressPopular = [
-    //     {
-    //         name: 'Đường Phạm Ngũ Lão ', km: 400
-    //     },
-    //     {
-    //         name: 'Ben Thanh Market', km: 830
-    //     },
-    //     {
-    //         name: 'Dinh Độc Lập', km: 870
-    //     },
-    //     {
-    //         name: 'Bảo tàng Chứng tích Chiến tranh', km: 890
-    //     },
-    //     {
-    //         name: 'Quảng trường Hồ Chí Minh ', km: 620
-    //     },
-    //     {
-    //         name: 'Bưu điện Trung tâm Thành phố', km: 250
-    //     },
-    //     {
-    //         name: 'Chợ Lớn', km: 200
-    //     },
-    //     {
-    //         name: 'Chùa Giác Lâm', km: 250
-    //     }
-    // ]
     lstAddressPopular = [];
-
     constructor(private formbuilder: FormBuilder,
                 private _hotelService: HotelService,
                 private _router: Router,
+                private  translate: TranslateService,
                 private cookies: CookieService,
                 private route: ActivatedRoute,
                 private chatService: ChatService,
@@ -187,6 +162,22 @@ export class HotelDetailsComponent implements OnInit {
             .then(response => response.json())
             .then(contents => this.lstAddressPopular.push(Object(contents.results)))
             .catch(() => console.log('Can’t access ' + url + ' response. Blocked by browser?'))
+    }
+
+    payInforRouting(roomId, nameSpace, index) {
+        const amount = $('#amount' + index).val()
+        console.log(amount)
+        if (amount <= 0 || amount === null || amount === '') {
+            if (this.translate.currentLang === 'en') {
+                $('#errorMessage' + index).html('You must enter a room number greater than 0').show()
+            } else {
+                $('#errorMessage' + index).html('Bạn phải nhập số phòng lớn hơn 0').show()
+            }
+            return;
+        }
+        const param = nameSpace + '#' + roomId + '#' + amount
+        console.log(param)
+        this._router.navigate(['/booking-room/' + param]);
     }
 
     getImage(imgArray) {
