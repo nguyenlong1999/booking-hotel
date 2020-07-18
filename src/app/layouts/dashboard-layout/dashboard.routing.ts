@@ -51,7 +51,7 @@ export const DashBoardRoutes: Routes = [
                 component: FindHotelComponent
             },
             {
-                path: 'hotel-details',
+                path: 'hotel-details/:nameSpace',
                 component: HotelDetailsComponent
             },
             {

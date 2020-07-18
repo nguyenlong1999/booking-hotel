@@ -39,7 +39,7 @@ export class HotelDetailsComponent implements OnInit {
                 private route: ActivatedRoute,
                 private chatService: ChatService,
     ) {
-        const idObject = 'khach-san-cua-long'
+        const idObject = this.route.snapshot.paramMap.get('nameSpace')
         this._hotelService.getHotelById(idObject).subscribe(data => {
             const result = data;
             console.log(result)
