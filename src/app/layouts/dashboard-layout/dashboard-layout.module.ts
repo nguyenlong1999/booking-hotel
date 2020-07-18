@@ -36,6 +36,7 @@ import {NgxGalleryModule} from '@kolkov/ngx-gallery';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
 import {MatSliderModule} from '@angular/material/slider';
+import { PayInfoComponent } from './pay-info/pay-info.component';
 
 @NgModule({
     declarations: [
@@ -49,6 +50,7 @@ import {MatSliderModule} from '@angular/material/slider';
         ForgetPasswordComponent,
         FindHotelComponent,
         HotelDetailsComponent,
+        PayInfoComponent,
         // add các component của trang người dùng vào đây
     ],
     imports: [

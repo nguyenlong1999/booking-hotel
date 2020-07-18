@@ -8,6 +8,7 @@ import {UserEditComponent} from './user-edit/user-edit.component';
 import {ForgetPasswordComponent} from '../../forget-password/forget-password.component';
 import {FindHotelComponent} from './find-hotel/find-hotel.component';
 import {HotelDetailsComponent} from './hotel-details/hotel-details.component';
+import {PayInfoComponent} from './pay-info/pay-info.component';
 
 export const DashBoardRoutes: Routes = [
 
@@ -52,6 +53,10 @@ export const DashBoardRoutes: Routes = [
             {
                 path: 'hotel-details',
                 component: HotelDetailsComponent
+            },
+            {
+                path: 'booking-room/:id',
+                component: PayInfoComponent
             },
             /* {
               path: 'about',

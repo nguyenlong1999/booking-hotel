@@ -1,0 +1,89 @@
+<div class="pb-5" style="margin-top: 3rem;background: #e6eaed;border-bottom: #0b75c9 1px solid">
+    <div class="container pt-4">
+        <span style="font-size: 32px;">Đặt phòng khách sạn</span>
+        <div class="d-flex">
+            <div class="bd-highlight pt-2" style="padding-right: 0px!important;width: 65% !important;">
+                <div class="container">
+                    <div class="row" style="border-radius: 5px; background: white">
+                        <div class="col-3 pt-3 pb-3">
+                            <img src="https://d1785e74lyxkqq.cloudfront.net/godwit/lib/_/_/node_modules/@traveloka/web-ui/shared/images/LoginBenefits-296b03a171e13f7eb131dd83e7ee6c21.png"
+                                 alt="">
+                        </div>
+                        <div class="col pt-3">
+                            <span style="font-weight: bold">Đăng nhập ngay và tận hưởng ưu đãi thành viên!</span>
+                            <br>
+                            <span>Đặt chỗ nhanh hơn và được tích điểm thưởng khi đăng nhập.</span>
+                            <br>
+                            <br>
+                            <span style="color: #0c83e2">Đăng nhập hoặc Đăng ký</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col">
+                        <span class="mt-3" style="font-size: 25px; font-weight: bold; padding-left: 0px">Thời gian đặt phòng</span>
+                    </div>
+                </div>
+                <div class="container mt-4">
+                    <div class="row" style="border-radius: 5px; background: white">
+                        <div class="col p-3">
+                            <mat-form-field>
+                                <input matInput
+                                       placeholder="Chọn ngày"
+                                       [satDatepicker]="picker2"
+                                       formControlName="date">
+                                <sat-datepicker #picker2 [rangeMode]="true">
+                                </sat-datepicker>
+                                <sat-datepicker-toggle matSuffix [for]="picker2"></sat-datepicker-toggle>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col">
+                        <span class="mt-3" style="font-size: 25px; font-weight: bold; padding-left: 0px">Thông tin của bạn</span>
+                    </div>
+                </div>
+                <div class="container mt-4 p-3" style="border-radius: 5px; background: white;border-left: #0c83e2 3px solid;">
+                    <div class="row " >
+                        <div class="col">
+                            <span style="font-weight: bold">Tên người liên hệ:</span><span style="color: red"> *</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field>
+                                <mat-label>Tên</mat-label>
+                                <input matInput placeholder="*Nhập tên như trên CMND/hộ chiếu (không dấu)">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row " >
+                        <div class="col">
+                            <span style="font-weight: bold">Số di động:</span><span style="color: red"> *</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class=" p-2 flex-shrink-1 bd-highlight" style="width: 35% !important;">
+                <div class="container">
+                    <div style="background: white;border-radius: 5px; ">
+                        <div class="row p-3" style="padding-bottom: 0!important;">
+                            <div class="col" style="text-align: center"><span
+                                    style="font-size: 18px; font-weight: bold; ">Kiểm tra thông tin phòng</span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

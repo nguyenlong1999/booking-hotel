@@ -22,7 +22,8 @@
                                 </div>
                                 <div class="col-3 pt-2">
                                     <div style="background: #e9ebee;text-align: center;border-radius: 5px;">
-                                        <span style="font-size: 13px;">{{"room.hotels" | translate }} {{this.hotel.starHotel}}-star</span>
+                                        <span style="font-size: 13px;">{{"room.hotels" | translate }} {{this.hotel.starHotel}}
+                                            -star</span>
                                     </div>
                                 </div>
                                 <div class="col pt-2">
@@ -170,7 +171,9 @@
                                 <div *ngFor="let i of lstAddressPopular[0] | slice:0:5 let index = index">
                                     <div class="row">
                                         <div class="col-8">{{ i.name}}</div>
-                                        <div class="col">{{ i.rating }}/5<i class="material-icons" style="font-size: 10px; color: yellow;vertical-align:top" data-notify="icon">star</i></div>
+                                        <div class="col">{{ i.rating }}/5<i class="material-icons"
+                                                                            style="font-size: 10px; color: yellow;vertical-align:top"
+                                                                            data-notify="icon">star</i></div>
                                     </div>
                                 </div>
                                 <span style="color: #00b0ff; cursor: pointer;"
@@ -415,15 +418,18 @@
                                     <mat-form-field>
                                         <mat-label
                                                 style="font-size: 14px">{{ "hotelUserHome.Amount" | translate}}</mat-label>
-                                        <input matInput type="number" onkeypress="return event.charCode >= 48">
+                                        <input matInput id="amount{{index}}" type="number" value="0"
+                                               onkeypress="return event.charCode >= 48" required>
                                     </mat-form-field>
+                                    <p id="errorMessage{{index}}" style="color: red; font-size: 13px"></p>
                                     <br>
                                 </div>
                                 <div class="col mb-2 mr-3"
                                      style="background: white;border-left: 1px solid #c4cccc;box-shadow: 0 3px 2px -2px #80808070;">
                                     <div class="row">
                                         <button class="col pt-4 pb-4 pl-2 pr-2 m-2 btn btn-primary hoverBtn"
-                                                style="background: #0c83e2; text-align: center; border-radius: 5px; ">
+                                                style="background: #0c83e2; text-align: center; border-radius: 5px; "
+                                                (click)="payInforRouting(i._id, i.hotelObj.nameSpace, index)">
                                             <span style="color: white; font-weight: bold">{{ "hotelUserHome.reserve" | translate}}</span>
                                         </button>
                                     </div>
