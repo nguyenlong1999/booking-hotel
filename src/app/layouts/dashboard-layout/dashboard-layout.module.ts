@@ -27,13 +27,11 @@ import {ChooseRoomTypeDialogComponent} from '../choose-room-type-dialog/choose-r
 import {WelcomeComponent} from '../../welcome/welcome.component';
 import {UserEditComponent} from './user-edit/user-edit.component';
 import {ForgetPasswordComponent} from '../../forget-password/forget-password.component';
-import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter'
 
 import {
     DateAdapter,
     MAT_DATE_FORMATS,
     MAT_DATE_LOCALE,
-    NativeDateAdapter,
     SatDatepickerModule,
     SatNativeDateModule
 } from 'saturn-datepicker';
@@ -96,10 +94,7 @@ import {Moment} from 'moment';
         MatProgressSpinnerModule,
         MatSliderModule,
     ],
-    providers: [
-        {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
-        {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS},
-        ],
+    providers: [],
     entryComponents: [ChooseRoomTypeDialogComponent],
     schemas: [
         CUSTOM_ELEMENTS_SCHEMA
