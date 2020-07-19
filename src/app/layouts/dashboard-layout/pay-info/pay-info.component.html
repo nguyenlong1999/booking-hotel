@@ -1,29 +1,31 @@
 <form [formGroup]="formBooking" class="form-signin" (ngSubmit)="onSubmit()">
     <div class="pb-5" style="margin-top: 3rem;background: #e6eaed;border-bottom: #0b75c9 1px solid">
         <div class="container pt-4">
-            <span style="font-size: 32px;">Đặt phòng khách sạn</span>
+            <span style="font-size: 32px;">{{"book.book1" | translate}}</span>
             <div class="d-flex">
                 <div class="bd-highlight pt-2" style="padding-right: 0px!important;width: 65% !important;">
-                    <div class="container">
+                    <div *ngIf="!currentEmail" class="container">
                         <div class="row" style="border-radius: 5px; background: white">
                             <div class="col-3 pt-3 pb-3">
                                 <img src="https://d1785e74lyxkqq.cloudfront.net/godwit/lib/_/_/node_modules/@traveloka/web-ui/shared/images/LoginBenefits-296b03a171e13f7eb131dd83e7ee6c21.png"
                                      alt="">
                             </div>
                             <div class="col pt-3">
-                                <span style="font-weight: bold">Đăng nhập ngay và tận hưởng ưu đãi thành viên!</span>
+                                <span style="font-weight: bold">{{"book.book2" | translate}}</span>
                                 <br>
-                                <span>Đặt chỗ nhanh hơn và được tích điểm thưởng khi đăng nhập.</span>
+                                <span>{{"book.book3" | translate}}</span>
                                 <br>
                                 <br>
-                                <span style="color: #0c83e2">Đăng nhập hoặc Đăng ký</span>
+                                <span style="color: #0c83e2; cursor: pointer"
+                                      (click)="onChangecheck()">{{"book.book4" | translate}}</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="row mt-4">
                         <div class="col">
-                            <span class="mt-3" style="font-size: 25px; font-weight: bold; padding-left: 0px">Thời gian đặt phòng</span>
+                            <span class="mt-3"
+                                  style="font-size: 25px; font-weight: bold; padding-left: 0px">{{"book.book5" | translate}}</span>
                         </div>
                     </div>
                     <div class="container mt-4">
@@ -31,7 +33,7 @@
                             <div class="col p-3">
                                 <mat-form-field>
                                     <input matInput
-                                           placeholder="Chọn ngày"
+                                           [placeholder]="'book.book6'|translate"
                                            formControlName="date"
                                            [satDatepicker]="picker2" (dateChange)="dateChange()  ">
 
@@ -45,14 +47,14 @@
 
                     <div class="row mt-4">
                         <div class="col">
-                            <span class="mt-3" style="font-size: 25px; font-weight: bold; padding-left: 0px">Thông tin của bạn</span>
+                            <span class="mt-3" style="font-size: 25px; font-weight: bold; padding-left: 0px">{{"book.book7"|translate}}</span>
                         </div>
                     </div>
                     <div class="container mt-4 p-3"
                          style="border-radius: 5px; background: white;border-left: #0c83e2 3px solid;">
                         <div class="row ">
                             <div class="col">
-                                <span style="font-weight: bold">Tên người liên hệ:</span><span
+                                <span style="font-weight: bold">{{"book.book8"|translate}}</span><span
                                     style="color: red"> *</span>
                             </div>
                         </div>
@@ -60,29 +62,30 @@
                             <div class="col">
                                 <mat-form-field>
                                     <mat-label>Tên</mat-label>
-                                    <input matInput placeholder="*Nhập tên như trên CMND/hộ chiếu (không dấu)">
+                                    <input matInput [placeholder]="'book.book9'|translate"
+                                           formControlName="name">
                                 </mat-form-field>
                             </div>
                         </div>
                         <div class="row ">
                             <div class="col">
-                                <span style="font-weight: bold">Số di động:</span><span style="color: red"> *</span>
+                                <span style="font-weight: bold">{{"book.book10"|translate}}</span><span style="color: red"> *</span>
                             </div>
                             <div class="col">
-                                <span style="font-weight: bold">Email:</span><span style="color: red"> *</span>
+                                <span style="font-weight: bold">{{"book.book11"|translate}}</span><span style="color: red"> *</span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
                                 <mat-form-field>
-                                    <mat-label>Số di động</mat-label>
-                                    <input matInput placeholder="Số điện thoại">
+                                    <mat-label>{{"book.book10"|translate}}</mat-label>
+                                    <input matInput [placeholder]="'book.book12' | translate" formControlName="phone">
                                 </mat-form-field>
                             </div>
                             <div class="col">
                                 <mat-form-field>
                                     <mat-label>Email</mat-label>
-                                    <input matInput placeholder="Email">
+                                    <input matInput placeholder="Email" formControlName="email">
                                 </mat-form-field>
                             </div>
                         </div>
@@ -91,7 +94,7 @@
                          style="border-radius: 5px; background: white;border-left: #00e676 3px solid;">
                         <div class="row ">
                             <div class="col">
-                                <span style="font-weight: bold">Chính sách hủy đặt phòng</span>
+                                <span style="font-weight: bold">{{"book.book13"|translate}}</span>
                             </div>
                         </div>
                         <div class="row">
@@ -104,7 +107,7 @@
                     <div class="row mt-4">
                         <div class="col">
                         <span class="mt-3"
-                              style="font-size: 25px; font-weight: bold; padding-left: 0px">Chi tiết giá</span>
+                              style="font-size: 25px; font-weight: bold; padding-left: 0px">{{"book.book14"|translate}}</span>
                         </div>
                     </div>
                     <div class="container mt-4 p-3"
@@ -116,7 +119,7 @@
                         </div>
                         <div class="row">
                             <div class="col">
-                                <div class="col">Giá 1 phòng/1 đêm</div>
+                                <div class="col">{{"book.book15"|translate}}</div>
                             </div>
                         </div>
                         <div class="row ml-3">
@@ -144,7 +147,7 @@
                         </div>
                         <div class="row">
                             <div class="col">
-                                <div class="col">Bạn đã đặt</div>
+                                <div class="col">{{"book.book16"|translate}}</div>
                             </div>
                         </div>
                         <div class="row ml-3">
@@ -164,7 +167,7 @@
                                       style="font-weight: bold">{{"President" | translate}}</span>
                                 <span *ngIf="currentRoom.roomType == 7"
                                       style="font-weight: bold">{{"Royal" | translate}}</span>
-                                ({{this.dayBooking}} đêm)
+                                ({{this.dayBooking}} {{"book.book17"|translate}})
                             </div>
                             <div class="col">
                                 <span style="font-weight: bold">{{currentRoom.price * this.dayBooking * convertNumber(this.numberAmountRoom)}}
@@ -176,20 +179,24 @@
                          style=" background: whitesmoke;">
                         <div class="row ">
                             <div class="col">
-                                <span style="font-weight: bold;font-size: 20px">Tổng tiền bạn phải thanh toán: {{currentRoom.price * this.dayBooking * convertNumber(this.numberAmountRoom)}} VND</span>
+                                <span style="font-weight: bold;font-size: 20px">{{"book.book18"|translate}} {{currentRoom.price * this.dayBooking * convertNumber(this.numberAmountRoom)}}
+                                    VND</span>
                             </div>
                         </div>
                     </div>
                     <div class="row mt-4">
                         <div class="col">
                             <span style="font-size: 13px">
-                                Khi nhấn vào nút này bạn công nhận mình đã đọc và đồng ý với các <span style="color: #00e5ff;cursor:pointer">Điều khoản & Điều kiện </span>và
-                                <span style="color: #00e5ff; cursor:pointer">Chính sách quyền riêng tư</span>
-                            của Booking-hotel.com
+                                {{"book.book19"|translate}} <span
+                                    style="color: #00e5ff;cursor:pointer">{{"book.book20"|translate}} </span>{{"book.book21"|translate}}
+                                <span style="color: #00e5ff; cursor:pointer">{{"book.book22"|translate}}</span>
+                            {{"book.book23"|translate}}
                             </span>
                         </div>
                         <div class="col-3">
-                            <button type="button" class="btn btn-light" style="background: #f96d01">Thanh toán</button>
+                            <button type="button" class="btn btn-light" style="background: #f96d01"
+                                    (click)="onSubmit()">{{"book.book24"|translate}}
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -198,7 +205,7 @@
                         <div style="background: white;border-radius: 5px; ">
                             <div class="row p-3" style="padding-bottom: 0!important;">
                                 <div class="col" style="text-align: center"><span
-                                        style="font-size: 18px; font-weight: bold; ">Kiểm tra thông tin phòng</span>
+                                        style="font-size: 18px; font-weight: bold; ">{{"book.book25"|translate}}</span>
                                 </div>
                             </div>
                             <div class="row">
@@ -206,11 +213,84 @@
                                     <hr>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col" style="text-align: center">
+                                    <img [src]="BASE_URL + ImgHotel" alt="" style="height: 150px; width: 200px"/>
+                                </div>
+                            </div>
+                            <div class="row m-2">
+                                <div class="col" style="text-align: center">
+                                    <span style="font-size: 25px;">{{this.hotelName}}</span>
+                                </div>
+                            </div>
+                            <div class="row m-2">
+                                <div class="col">
+                                    <hr>
+                                </div>
+                            </div>
+                            <div class="row m-2">
+                                <div class="col">
+                                    <span style="font-size: 15px">{{"book.book26"|translate}}</span>
+                                </div>
+                                <div class="col text-right">
+                                    <span style="font-size: 15px">{{this.dayBooking}} {{"book.book17"|translate}}</span>
+                                </div>
+                            </div>
+                            <div class="row m-2">
+                                <div class="col">
+                                    <span style="font-size: 15px">{{"book.book27"|translate}}</span>
+                                </div>
+                                <div class="col text-right">
+                                    <span style="font-size: 15px">{{this.fromDate}}</span>
+                                </div>
+                            </div>
+                            <div class="row m-2">
+                                <div class="col">
+                                    <span style="font-size: 15px">{{"book.book28"|translate}}</span>
+                                </div>
+                                <div class="col text-right">
+                                    <span style="font-size: 15px">{{this.toDate}}</span>
+                                </div>
+                            </div>
+                            <div class="row m-2">
+                                <div class="col">
+                                    <hr>
+                                </div>
+                            </div>
+                            <div class="row m-2">
+                                <div class="col">
+                                    <span style="font-size: 15px">{{"book.book29"|translate}}</span>
+                                </div>
+                                <div class="col text-right">
+                                     <span *ngIf="currentRoom.roomType == 1"
+                                           style="font-size: 15px">{{"Standard" | translate}}</span>
+                                    <span *ngIf="currentRoom.roomType == 2"
+                                          style="font-size: 15px">{{"Superior" | translate}}</span>
+                                    <span *ngIf="currentRoom.roomType == 3"
+                                          style="font-size: 15px">{{"Deluxe" | translate}}</span>
+                                    <span *ngIf="currentRoom.roomType == 4"
+                                          style="font-size: 15px">{{"Suite" | translate}}</span>
+                                    <span *ngIf="currentRoom.roomType == 5"
+                                          style="font-size: 15px">{{"Family" | translate}}</span>
+                                    <span *ngIf="currentRoom.roomType == 6"
+                                          style="font-size: 15px">{{"President" | translate}}</span>
+                                    <span *ngIf="currentRoom.roomType == 7"
+                                          style="font-size: 15px">{{"Royal" | translate}}</span>
+                                </div>
+                            </div>
+                            <div class="row m-2 pb-3">
+                                <div class="col">
+                                    <span style="font-size: 15px">{{"book.book30"|translate}}</span>
+                                </div>
+                                <div class="col text-right">
+                                    <span style="font-size: 15px">{{this.numberAmountRoom}} {{"book.book31"|translate}}</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </form>
+

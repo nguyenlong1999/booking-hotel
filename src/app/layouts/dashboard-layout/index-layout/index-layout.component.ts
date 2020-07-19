@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {Observable} from 'rxjs';
 import {ChatService} from '../../../shared/service/chat.service';
@@ -13,7 +13,6 @@ import {TranslateService} from '@ngx-translate/core';
 import {CookieService} from 'ngx-cookie-service';
 import {EventEmitterService} from '../../../shared/service/event-emitter.service';
 import {map, startWith} from 'rxjs/operators';
-import {MatTableDataSource} from '@angular/material/table';
 import {HotelService} from '../../../shared/service/hotel.service.';
 
 @Component({

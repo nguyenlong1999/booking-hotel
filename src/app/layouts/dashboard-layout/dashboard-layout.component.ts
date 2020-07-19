@@ -79,7 +79,8 @@ export class DashboardLayoutComponent implements OnInit {
         private translate: TranslateService,
         private cookie: CookieService,
         private emitEventCus: EventEmitterService,
-        private hotelService: HotelService
+        private hotelService: HotelService,
+        private eventEmitterService: EventEmitterService,
     ) {
         this.location = location;
         this.sidebarVisible = false;
@@ -110,6 +111,12 @@ export class DashboardLayoutComponent implements OnInit {
     }
 
     ngOnInit() {
+        // call fuc login
+        if (this.eventEmitterService.subsVar === undefined) {
+            this.eventEmitterService.subsVar = this.eventEmitterService.invokeFirstComponentFunction.subscribe(() => {
+                this.onChangecheck(1);
+            });
+        }
         this.listTitles = ROUTES.filter(listTitle => listTitle);
         const navbar: HTMLElement = this.element.nativeElement;
         this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];

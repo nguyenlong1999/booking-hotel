@@ -78,35 +78,6 @@
 
 </nav>
 
-<!--<div class="fixed-top navbar-light bg-light" id="check-point-search" style="text-align: center">-->
-<!--    <input type="text" style="width: 300px; height: 50px; margin-top: 20px; border: red 2px solid"-->
-<!--           matInput-->
-<!--           [(ngModel)]="searchHotel.address"-->
-<!--           [formControl]="myControl"-->
-<!--           [matAutocomplete]="auto" [placeholder]="'index.searchNameOrPlace' | translate"/>-->
-<!--    <mat-autocomplete #auto="matAutocomplete">-->
-<!--        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">-->
-<!--            {{option}}-->
-<!--        </mat-option>-->
-<!--    </mat-autocomplete>-->
-<!--    <div style="border-bottom: 0.5px solid gray; margin-top: 10px; background: #00b0ff "-->
-<!--         (click)="openDialogChooseHotelType($event)">-->
-<!--        <a>{{searchHotel.total}}</a>-->
-<!--    </div>-->
-<!--    <div>-->
-<!--        <button class="btn btn-outline-primary" (click)="searchHotelServer()"-->
-<!--                style="float: right;border: 0.5px solid blue; color: #0c83e2;">-->
-<!--            {{"index.search"|translate}}-->
-<!--        </button>-->
-<!--    </div>-->
-<!--    <span style="border-bottom: 0.5px solid gray"-->
-<!--          (click)="openDialogChooseHotelType($event)">-->
-<!--            <a>{{searchHotel.total}}</a>-->
-<!--        </span>-->
-
-<!--</div>-->
-
-
 <a type="button" class="py-2 d-none d-md-inline-block register-button" hidden="true" data-toggle="modal"
    style="opacity: 0;" data-target="#exampleModalCenter" id="modal-button">
 </a>
@@ -217,15 +188,16 @@
 
                 <ul class="list-unstyled">
                     <li>
-                        <!--<span>{{summary.placeCount}} </span>--><span *ngIf="summary">100 </span><a href="#!">Địa điểm du lịch</a>
+                        <!--<span>{{summary.placeCount}} </span>--><span *ngIf="summary">100 </span><a href="#!">Địa
+                        điểm du lịch</a>
                     </li>
                     <li>
                         <span *ngIf="summary">{{summary.hotelCount}} </span><a href="#!">Khách sạn</a>
                     </li>
-                    <li >
+                    <li>
                         <span *ngIf="summary">{{summary.userCount}} </span><a href="#!">Thành viên</a>
                     </li>
-                    <li >
+                    <li>
                         <span *ngIf="summary">{{summary.connectCount}} </span><a href="#!">Lượt truy cập</a>
                     </li>
                 </ul>

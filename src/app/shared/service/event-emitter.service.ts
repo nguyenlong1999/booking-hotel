@@ -15,4 +15,8 @@ export class EventEmitterService {
     onFirstComponentButtonClick(language) {
         this.invokeFirstComponentFunction.emit(language);
     }
+
+    onCallLogin() {
+        this.invokeFirstComponentFunction.emit();
+    }
 }
