@@ -35,7 +35,7 @@
                                            formControlName="date"
                                            [satDatepicker]="picker2" (dateChange)="dateChange()  ">
 
-                                    <sat-datepicker #picker2 [rangeMode]="true" >
+                                    <sat-datepicker #picker2 [rangeMode]="true">
                                     </sat-datepicker>
                                     <sat-datepicker-toggle matSuffix [for]="picker2"></sat-datepicker-toggle>
                                 </mat-form-field>
@@ -108,7 +108,7 @@
                         </div>
                     </div>
                     <div class="container mt-4 p-3"
-                         style="border-radius: 5px; background: white;border-left: #00ad5f 3px solid;">
+                         style="border-radius: 5px 5px 0px 0px;background: white;border-left: #00ad5f 3px solid;">
                         <div class="row ">
                             <div class="col">
                                 <span style="font-weight: bold;font-size: 20px">{{hotelName}}</span>
@@ -116,7 +116,12 @@
                         </div>
                         <div class="row">
                             <div class="col">
-                                (x{{this.numberAmountRoom}})
+                                <div class="col">Giá 1 phòng/1 đêm</div>
+                            </div>
+                        </div>
+                        <div class="row ml-3">
+                            <div class="col">
+                                <span style="font-weight: bold">(1x)</span>
                                 <span *ngIf="currentRoom.roomType == 1"
                                       style="font-weight: bold">{{"Standard" | translate}}</span>
                                 <span *ngIf="currentRoom.roomType == 2"
@@ -131,8 +136,60 @@
                                       style="font-weight: bold">{{"President" | translate}}</span>
                                 <span *ngIf="currentRoom.roomType == 7"
                                       style="font-weight: bold">{{"Royal" | translate}}</span>
-                                ()
+                                1 đêm)
                             </div>
+                            <div class="col">
+                                <span style="font-weight: bold">{{currentRoom.price}} VND</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="col">Bạn đã đặt</div>
+                            </div>
+                        </div>
+                        <div class="row ml-3">
+                            <div class="col">
+                                <span style="font-weight: bold">({{this.numberAmountRoom}}x)</span>
+                                <span *ngIf="currentRoom.roomType == 1"
+                                      style="font-weight: bold">{{"Standard" | translate}}</span>
+                                <span *ngIf="currentRoom.roomType == 2"
+                                      style="font-weight: bold">{{"Superior" | translate}}</span>
+                                <span *ngIf="currentRoom.roomType == 3"
+                                      style="font-weight: bold">{{"Deluxe" | translate}}</span>
+                                <span *ngIf="currentRoom.roomType == 4"
+                                      style="font-weight: bold">{{"Suite" | translate}}</span>
+                                <span *ngIf="currentRoom.roomType == 5"
+                                      style="font-weight: bold">{{"Family" | translate}}</span>
+                                <span *ngIf="currentRoom.roomType == 6"
+                                      style="font-weight: bold">{{"President" | translate}}</span>
+                                <span *ngIf="currentRoom.roomType == 7"
+                                      style="font-weight: bold">{{"Royal" | translate}}</span>
+                                ({{this.dayBooking}} đêm)
+                            </div>
+                            <div class="col">
+                                <span style="font-weight: bold">{{currentRoom.price * this.dayBooking * convertNumber(this.numberAmountRoom)}}
+                                    VND</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container p-3"
+                         style=" background: whitesmoke;">
+                        <div class="row ">
+                            <div class="col">
+                                <span style="font-weight: bold;font-size: 20px">Tổng tiền bạn phải thanh toán: {{currentRoom.price * this.dayBooking * convertNumber(this.numberAmountRoom)}} VND</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col">
+                            <span style="font-size: 13px">
+                                Khi nhấn vào nút này bạn công nhận mình đã đọc và đồng ý với các <span style="color: #00e5ff;cursor:pointer">Điều khoản & Điều kiện </span>và
+                                <span style="color: #00e5ff; cursor:pointer">Chính sách quyền riêng tư</span>
+                            của Booking-hotel.com
+                            </span>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn btn-light" style="background: #f96d01">Thanh toán</button>
                         </div>
                     </div>
                 </div>
@@ -150,7 +207,6 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>

@@ -21,8 +21,7 @@ export class PayInfoComponent implements OnInit {
     numberAmountRoom: string
     roomType: string
     currentRoom = []
-    dayBooking: string;
-
+    dayBooking = 1;
     constructor(private formbuilder: FormBuilder,
                 private _hotelService: HotelService,
                 private _router: Router,
@@ -53,28 +52,21 @@ export class PayInfoComponent implements OnInit {
 
         const range = this.formBooking.value.date;
         if (range) {
-            console.log(range.begin)
-
-            // tslint:disable-next-line:no-unused-expression
-            // const startDate = range.begin
-            // const endDate = moment(range.end);
-            // console.log(startDate)
-            // console.log(endDate)
-            // if (moment(startDate).isSame(endDate, 'day')) {
-            //     const newValue = { begin: startDate, end: endDate.add(1, 'day').toDate() };
-            //     this.formBooking.patchValue({ date: newValue });
-            // }
+            let fromDate = new Date(moment(JSON.stringify(range.begin).split('"')[1]).format('MM/DD/YYYY'))
+            let toDate =  new Date(moment(JSON.stringify(range.end).split('"')[1]).format('MM/DD/YYYY'))
+            console.log(fromDate)
+            console.log(toDate)
+            let Difference_In_Time = toDate.getTime() - fromDate.getTime();
+            this.dayBooking = Difference_In_Time / (1000 * 3600 * 24) + 1;
         }
-        // console.log(date)
-        // // sử dụng moment format date
-        // console.log(date.value.begin)
-        // console.log(date.value.end)
     }
 
     onSubmit() {
         console.log('hehe')
     }
-
+    convertNumber(s) {
+        return parseInt(s)
+    }
     ngOnInit(): void {
     }
 
