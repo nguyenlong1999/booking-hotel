@@ -27,7 +27,16 @@ import {ChooseRoomTypeDialogComponent} from '../choose-room-type-dialog/choose-r
 import {WelcomeComponent} from '../../welcome/welcome.component';
 import {UserEditComponent} from './user-edit/user-edit.component';
 import {ForgetPasswordComponent} from '../../forget-password/forget-password.component';
-import {SatDatepickerModule, SatNativeDateModule} from 'saturn-datepicker';
+import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter'
+
+import {
+    DateAdapter,
+    MAT_DATE_FORMATS,
+    MAT_DATE_LOCALE,
+    NativeDateAdapter,
+    SatDatepickerModule,
+    SatNativeDateModule
+} from 'saturn-datepicker';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {FindHotelComponent} from './find-hotel/find-hotel.component';
@@ -37,7 +46,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
 import {MatSliderModule} from '@angular/material/slider';
 import { PayInfoComponent } from './pay-info/pay-info.component';
-
+import {Moment} from 'moment';
 @NgModule({
     declarations: [
         DashboardLayoutComponent,
@@ -87,7 +96,10 @@ import { PayInfoComponent } from './pay-info/pay-info.component';
         MatProgressSpinnerModule,
         MatSliderModule,
     ],
-    providers: [],
+    providers: [
+        {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
+        {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS},
+        ],
     entryComponents: [ChooseRoomTypeDialogComponent],
     schemas: [
         CUSTOM_ELEMENTS_SCHEMA

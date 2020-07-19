@@ -354,9 +354,10 @@
     "ThreeMonth": "Ba tháng",
     "CancellationPolicy": "Chính sách hủy phòng",
     "flexible": "Linh hoạt",
-    "flexiblev1": "Khách hàng hủy trước ngày nhận phòng 1 ngày sẽ được hoàn lại tiền 100%. Trong trường hợp khách không đến, bạn được nhận 100% giá tiền đặt phòng.",
     "Strict": "Nghiêm ngặt",
-    "Strictv1": "Khách hàng hủy trước ngày nhận phòng 7 ngày sẽ được hoàn lại tiền 50%. Trong trường hợp khách không đến, bạn được nhận 100% giá tiền đặt phòng.\n"
+    "flexiblev1": "Không hoàn tiền.",
+    "Strictv1": "Khách hàng hủy trước ngày nhận phòng 7 ngày sẽ được hoàn lại tiền 50%.\n",
+    "Strictv2": "Khách hàng hủy trước ngày nhận phòng 1 ngày sẽ được hoàn lại tiền 70%.\n"
   },
   "post": {
     "post": "Đăng bài",

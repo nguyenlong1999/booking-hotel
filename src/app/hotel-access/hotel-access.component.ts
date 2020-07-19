@@ -50,8 +50,11 @@ export class HotelAccessComponent implements OnInit {
     tab5 = true;
 
 
-    listRadioCancel = [{name: 'room.flexiblev1', value: 1, checked: true},
-        {name: 'room.Strictv1', value: 2, checked: false}];
+    listRadioCancel = [
+        {name: 'room.flexiblev1', value: 1, checked: true},
+        {name: 'room.Strictv1', value: 2, checked: false},
+        {name: 'room.Strictv2', value: 3, checked: false}
+    ];
     listMatButton = [
         {
             name: 'room.Anytime', value: 1
@@ -264,10 +267,18 @@ export class HotelAccessComponent implements OnInit {
             this.rating = result[0][0].hotelObj.starHotel;
             if (result[0][0].hotelObj.cancellationPolicy === 1) {
                 this.listRadioCancel = [{name: 'room.flexiblev1', value: 1, checked: true},
-                    {name: 'room.Strictv1', value: 2, checked: false}]
-            } else {
+                    {name: 'room.Strictv1', value: 2, checked: false},
+                    {name: 'room.Strictv2', value: 3, checked: false}
+                ]
+            } else if (result[0][0].hotelObj.cancellationPolicy === 2) {
                 this.listRadioCancel = [{name: 'room.flexiblev1', value: 1, checked: false},
-                    {name: 'room.Strictv1', value: 2, checked: true}]
+                    {name: 'room.Strictv1', value: 2, checked: true},
+                    {name: 'room.Strictv2', value: 3, checked: false}
+                    ]
+            } else {
+                this.listRadioCancel = [{name: 'room.flexiblev2', value: 1, checked: false},
+                    {name: 'room.Strictv1', value: 2, checked: false},
+                    {name: 'room.Strictv2', value: 3, checked: true}]
             }
             this.lat = result[0][0].hotelObj.latitude;
             this.lng = result[0][0].hotelObj.longitude;

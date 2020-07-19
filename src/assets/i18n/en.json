@@ -328,9 +328,10 @@
     "ThreeMonth": "Three months",
     "CancellationPolicy": "Cancellation policy",
     "flexible": "Flexible",
-    "flexiblev1": "Guests who cancel 1 days prior to check-in date will receive a 100% refund. In case of no-show, you will receive 100% of the booking price.",
     "Strict": "Strict",
-    "Strictv1": "Guests who cancel 7 days before check-in date will receive a 50% refund. In case of no-show, you will receive 100% of the booking price."
+    "flexiblev1": "No refunds.",
+    "Strictv1": "Guests who cancel 7 days before check-in date will receive a 50% refund.\n",
+    "Strictv2": "Guests who cancel 1 days prior to check-in date will receive a 70% refund.\n"
   },
   "post": {
     "post": "Post",

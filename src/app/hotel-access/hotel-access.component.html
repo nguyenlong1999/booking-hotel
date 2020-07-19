@@ -1338,9 +1338,11 @@
                                 <mat-radio-group formControlName="cancellationPolicy">
                                     <div class="row">
                                         <div class="col">
-                                            <mat-radio-button *ngFor="let op of listRadioCancel" color="primary"
-                                                              [checked]="op.checked" [value]="op.value"
-                                                              name="cancelPolicy">{{ op.name|translate}}</mat-radio-button>
+                                            <div *ngFor="let op of listRadioCancel">
+                                                <mat-radio-button color="primary"
+                                                                  [checked]="op.checked" [value]="op.value"
+                                                                  name="cancelPolicy">{{ op.name|translate}}</mat-radio-button>
+                                            </div>
                                         </div>
                                     </div>
                                 </mat-radio-group>
