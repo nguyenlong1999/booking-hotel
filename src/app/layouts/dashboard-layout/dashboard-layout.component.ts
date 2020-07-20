@@ -19,6 +19,7 @@ import {Observable} from 'rxjs';
 import {HotelService} from '../../shared/service/hotel.service.';
 import {ChooseRoomTypeDialogComponent} from '../choose-room-type-dialog/choose-room-type-dialog.component';
 import {map, startWith} from 'rxjs/operators';
+import {Message} from '../../shared/model/message';
 
 
 @Component({
@@ -28,12 +29,15 @@ import {map, startWith} from 'rxjs/operators';
 })
 export class DashboardLayoutComponent implements OnInit {
     private listTitles: any[];
+    userMessages: Message[] = [];
     location: Location;
     mobile_menu_visible: any = 0;
     private toggleButton: any;
     private sidebarVisible: boolean;
     languageChangeImage: any
     checkLanguage = true;
+    countNewMessage = 0;
+    messageEmpty = false;
     socket;
     BASE_URL = AppSetting.BASE_SERVER_URL;
     submitted = false;
@@ -81,6 +85,7 @@ export class DashboardLayoutComponent implements OnInit {
         private emitEventCus: EventEmitterService,
         private hotelService: HotelService,
         private eventEmitterService: EventEmitterService,
+        private cookieService: CookieService,
     ) {
         this.location = location;
         this.sidebarVisible = false;
@@ -135,7 +140,6 @@ export class DashboardLayoutComponent implements OnInit {
             email: ['', [Validators.required, Validators.email]],
             password: ['', [Validators.required, Validators.minLength(6)]]
         });
-
     }
 
     getSummary() {
@@ -292,8 +296,6 @@ export class DashboardLayoutComponent implements OnInit {
 
     loginUser() {
         this.submitted = true;
-
-
         if (this.registerForm.invalid) {
             return;
         }
@@ -369,6 +371,7 @@ export class DashboardLayoutComponent implements OnInit {
                 //     // this._router.navigate(['/index']);
                 // }
                 this.getImage()
+                this.getMessage();
                 this.socket = io(AppSetting.BASE_SERVER_URL);
                 // this.data.name = this.cookie.get('ObjectId');
                 // this.data.userId = this.socket['id'];
@@ -462,6 +465,41 @@ export class DashboardLayoutComponent implements OnInit {
             data: {searchHotel: this.searchHotel},
         });
         return dialogRef.afterClosed();
+    }
+
+    updateNews() {
+        const email = this.cookieService.get('email');
+        if (email !== '') {
+            this.userObject.email = email;
+            this.userService.updateNews(this.userObject).subscribe(res => {
+                if (res.body['status'] === 200) {
+                    this.countNewMessage = 0;
+                }
+            });
+        }
+        console.log(this.userMessages);
+    }
+
+    getMessage() {
+        this.userMessages = [];
+        const email = this.cookieService.get('email');
+        if (email !== '') {
+            this.userObject.email = email
+            this.userService.findMessage(this.userObject).subscribe(data => {
+                const temp = data.body['message']
+                for (const mess of temp) {
+                    if (mess.news === 0) {
+                        this.countNewMessage++
+                    }
+                    this.userMessages.push(mess)
+                }
+                if (this.userMessages.length === 0) {
+                    this.messageEmpty = true;
+                }
+                // console.log('message is empty = ' + this.messageEmpty);
+                // console.log('count new messages = ' + this.countNewMessage);
+            });
+        }
     }
 
 }
