@@ -20,9 +20,14 @@ export class HotelService {
     constructor(private _http: HttpClient, private cookie: CookieService) {
     }
 
+    bookingHotel(book: any) {
+        return this._http.post(`${this.baseUrl}/createBooking`, {book: book}, {observe: 'response'});
+    }
+
     createHotel(hotel: any) {
         return this._http.post(`${this.baseUrl}/createHotel`, {hotel: hotel}, {observe: 'response'});
     }
+
 
     editHotel(hotel: any) {
         return this._http.post(`${this.baseUrl}/updateHotel`, {hotel: hotel}, {observe: 'response'});

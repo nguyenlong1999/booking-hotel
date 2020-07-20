@@ -1,5 +1,5 @@
 import {Component, ElementRef, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {HotelService} from '../../../shared/service/hotel.service.';
 import {ActivatedRoute, Router} from '@angular/router';
 import {TranslateService} from '@ngx-translate/core';
@@ -37,6 +37,10 @@ export class PayInfoComponent implements OnInit {
     currentEmail: string
     currentPhone: string
     roomID: string
+    hotelNameSpace: string
+
+    errorMessage: String;
+    successMessage = '';
 
 
     constructor(private formbuilder: FormBuilder,
@@ -60,9 +64,10 @@ export class PayInfoComponent implements OnInit {
     ) {
         this.currentRoom = []
         this.formBooking = formbuilder.group({
-            name: [''],
-            phone: [''],
-            email: [''],
+            name: ['', Validators.required],
+            phone: ['', Validators.required],
+            email: ['', [Validators.required, Validators.email]],
+            hotelNameSpace: [''],
             roomDetailID: [''],
             date: [{begin: new Date(), end: new Date()}],
             totalAmountRoom: [''],
@@ -87,6 +92,7 @@ export class PayInfoComponent implements OnInit {
         this.numberAmountRoom = paramReq[2]
         const idObject = paramReq[0]
         this.roomID = paramReq[1]
+        this.hotelNameSpace = paramReq[0]
         this._hotelService.getHotelById(idObject).subscribe(data => {
             const result = data;
             this.policiesCancelRom = result[0][0].hotelObj.cancellationPolicy
@@ -115,11 +121,34 @@ export class PayInfoComponent implements OnInit {
     }
 
     onSubmit() {
+        if (this.formBooking.invalid) {
+            this.formBooking.markAllAsTouched()
+            const radio: HTMLElement = document.getElementById('scroll-to-top');
+            radio.click();
+            return
+        }
+
         this.formBooking.get('totalMoney').setValue(this.currentRoom.price * this.dayBooking * this.convertNumber(this.numberAmountRoom))
         this.formBooking.get('roomDetailID').setValue(this.roomID)
+        this.formBooking.get('hotelNameSpace').setValue(this.hotelNameSpace)
         this.formBooking.get('totalAmountRoom').setValue(this.numberAmountRoom)
         console.log(this.formBooking.value)
-        console.log('hehe')
+
+        this._hotelService.bookingHotel(this.formBooking.value).subscribe((data) => {
+            const result = data.body
+            console.log(result)
+            if (result['status'] === 200) {
+                // this.successMessage = result['message'];
+                this.successMessage = result['message'];
+                this.chatService.showNotification('success', this.successMessage);
+                setTimeout(() => {
+                    this._router.navigate(['/hotel-details/' + this.hotelNameSpace])
+                }, 3000);
+            } else {
+                this.errorMessage = result['message'];
+                this.chatService.showNotification('success', this.errorMessage);
+            }
+        })
     }
 
     convertNumber(s) {
@@ -127,11 +156,9 @@ export class PayInfoComponent implements OnInit {
     }
 
     ngOnInit(): void {
-
     }
 
     onChangecheck() {
-        console.log('xxx')
         this.emitEventCus.onCallLogin();
     }
 }

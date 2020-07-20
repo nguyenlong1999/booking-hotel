@@ -64,6 +64,9 @@
                                     <mat-label>Tên</mat-label>
                                     <input matInput [placeholder]="'book.book9'|translate"
                                            formControlName="name">
+                                    <mat-error *ngIf="formBooking.get('email').hasError('required') ">
+                                        {{"book.requiredname" | translate}}
+                                    </mat-error>
                                 </mat-form-field>
                             </div>
                         </div>
@@ -80,12 +83,17 @@
                                 <mat-form-field>
                                     <mat-label>{{"book.book10"|translate}}</mat-label>
                                     <input matInput [placeholder]="'book.book12' | translate" formControlName="phone">
+                                    <mat-error *ngIf="formBooking.get('email').hasError('required') ">
+                                        {{"book.requiredPhone" | translate}}
+                                    </mat-error>
                                 </mat-form-field>
                             </div>
                             <div class="col">
                                 <mat-form-field>
                                     <mat-label>Email</mat-label>
                                     <input matInput placeholder="Email" formControlName="email">
+                                    <mat-error *ngIf="formBooking.get('email').hasError('required')
+                                     || formBooking.get('email').hasError('email')" >{{"book.requiredEmail" | translate}}</mat-error>
                                 </mat-form-field>
                             </div>
                         </div>
@@ -294,3 +302,25 @@
     </div>
 </form>
 
+<button type="button" class="btn btn-primary" hidden="true" data-toggle="modal" data-target="#exampleModalCenterxxxxxxxxx"
+        id="modal-buttonCheck">
+    Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenterxxxxxxxxx" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background:  #00a5d7;">
+                <h5 class="modal-title" id="exampleModalLongTitle" style="color: white;">Thông báo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="color: red;">
+                <a> Bạn chưa hoàn thành form </a>
+            </div>
+        </div>
+    </div>
+</div>

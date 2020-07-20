@@ -97,6 +97,10 @@
     "search": "Search"
   } ,
   "book": {
+    "requiredEmail": "Wrong email format",
+    "requiredEmail1": "Email may not be blank",
+    "requiredname": "Name may not be blank",
+    "requiredPhone": "Phone number can not be left blank",
     "room": "Booking",
     "promotion": "Promotion",
     "book1": "Book hotel room",
