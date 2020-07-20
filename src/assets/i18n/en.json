@@ -97,6 +97,8 @@
     "search": "Search"
   } ,
   "book": {
+    "fromDate": "From Date",
+    "toDate": "To Date",
     "requiredEmail": "Wrong email format",
     "requiredEmail1": "Email may not be blank",
     "requiredname": "Name may not be blank",

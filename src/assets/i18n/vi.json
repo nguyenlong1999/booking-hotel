@@ -96,6 +96,8 @@
     "search": "Tìm kiếm"
   } ,
   "book": {
+    "fromDate": "Từ ngày",
+    "toDate": "Đến ngày",
     "requiredEmail": "Sai định dạng email",
     "requiredEmail1": "Email không được để trống",
     "requiredname": "Tên không được để trống",

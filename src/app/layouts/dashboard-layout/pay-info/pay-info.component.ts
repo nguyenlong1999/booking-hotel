@@ -123,7 +123,7 @@ export class PayInfoComponent implements OnInit {
             let fromDate = new Date(moment(JSON.stringify(range.begin).split('"')[1]).format('MM/DD/YYYY'))
             let toDate = new Date(moment(JSON.stringify(range.end).split('"')[1]).format('MM/DD/YYYY'))
             this.fromDate = fromDate.toLocaleDateString()
-            this.toDate = fromDate.toLocaleDateString()
+            this.toDate = toDate.toLocaleDateString()
             console.log(fromDate)
             console.log(toDate)
             let Difference_In_Time = toDate.getTime() - fromDate.getTime();

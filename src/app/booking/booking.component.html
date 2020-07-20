@@ -1,3 +1,115 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-plain">
+                    <div class="card-body">
+                        <mat-table [dataSource]="dataSource" matSort>
+                            <ng-container matColumnDef="id">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
+                                <mat-cell
+                                        *matCellDef="let row ; index as i"> {{paginator.pageSize * paginator.pageIndex + i + 1}}  </mat-cell>
+                            </ng-container>
+
+                            <!-- Progress Column -->
+                            <ng-container matColumnDef="name">
+                                <mat-header-cell *matHeaderCellDef
+                                                 mat-sort-header>{{"hotelRegister.hotelName" | translate}}</mat-header-cell>
+                                <mat-cell *matCellDef="let row"> {{row.name}}</mat-cell>
+                            </ng-container>
+
+
+                            <ng-container matColumnDef="roomType">
+                                <mat-header-cell *matHeaderCellDef
+                                                 mat-sort-header>{{"book.book29" | translate}}
+                                </mat-header-cell>
+                                <mat-cell *matCellDef="let row"> {{row.roomType | translate}}</mat-cell>
+                            </ng-container>
+
+
+                            <ng-container matColumnDef="fromDate">
+                                <mat-header-cell *matHeaderCellDef
+                                                 mat-sort-header>{{"book.fromDate" | translate}}</mat-header-cell>
+                                <mat-cell *matCellDef="let row"> {{row.fromDate}}</mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="toDate">
+                                <mat-header-cell *matHeaderCellDef
+                                                 mat-sort-header>{{"book.toDate" | translate}}
+                                </mat-header-cell>
+                                <mat-cell
+                                        *matCellDef="let row"> {{row.toDate}}</mat-cell>
+                            </ng-container>
+
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="totalAmountRoom">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header>{{"book.book26" | translate}}
+                                </mat-header-cell>
+                                <mat-cell *matCellDef="let row"> {{row.totalAmountRoom}}
+                                </mat-cell>
+                            </ng-container>
+
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="status">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header>{{"common.user.status" | translate}}
+                                </mat-header-cell>
+                                <mat-cell *matCellDef="let row"> {{row.status}} </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="accept">
+                                <mat-header-cell *matHeaderCellDef
+                                                 mat-sort-header>{{"common.hotel.approval" | translate}}
+                                </mat-header-cell>
+                                <mat-cell *matCellDef="let row">
+                                    <button *ngIf="row.status === 'Chưa duyệt'" mat-icon-button style="color: green"
+                                            [title]="'common.hotel.approvalHotel' | translate"
+                                            (click)="openDialog(row,1)">
+                                        <mat-icon>check_circle</mat-icon>
+                                    </button>
+                                    <button *ngIf="row.status === 'Hoạt động'" mat-icon-button style="color: red"
+                                            [title]="'common.hotel.unapprovalHotel' | translate"
+                                            (click)="openDialog(row,0)">
+                                        <mat-icon>trending_down</mat-icon>
+                                    </button>
+                                    <button *ngIf="row.status === 'Đã khóa'" mat-icon-button style="color: gray"
+                                            [title]="'common.hotel.hotelBlocked' | translate">
+                                        <mat-icon>lock</mat-icon>
+                                    </button>
+                                </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="refuse">
+                                <mat-header-cell *matHeaderCellDef
+                                                 mat-sort-header>{{"common.hotel.blockTitle" | translate}}</mat-header-cell>
+                                <mat-cell *matCellDef="let row">
+                                    <button *ngIf="row.status === 'Đã khóa'; else otherStatus" mat-icon-button
+                                            style="color: green"
+                                            [title]="'common.hotel.unblockHotel' | translate"
+                                            (click)="openDialog(row,3)">
+                                        <mat-icon>lock_open</mat-icon>
+                                    </button>
+                                    <ng-template #otherStatus>
+                                        <button mat-icon-button style="color: yellow"
+                                                [title]="'common.hotel.blockHotel' | translate"
+                                                (click)="openDialog(row,2)">
+                                            <mat-icon>lock</mat-icon>
+                                        </button>
+                                    </ng-template>
+                                </mat-cell>
+                            </ng-container>
+
+                            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                        </mat-table>
+                        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <div class="container-fluid" style="margin-top: 10%;">
     <a (click)="openPayMent()"> Thanh toán trực tuyến</a>
 </div>

@@ -24,6 +24,12 @@ export class HotelService {
         return this._http.post(`${this.baseUrl}/createBooking`, {book: book}, {observe: 'response'});
     }
 
+    getBookingByUser = (idUser): Observable<any> => {
+        return this._http
+            .get<any>(`${this.baseUrl}/getBookingByHotel/${idUser}`)
+            .pipe(tap(_ => console.log('load booking')));
+    };
+
     createHotel(hotel: any) {
         return this._http.post(`${this.baseUrl}/createHotel`, {hotel: hotel}, {observe: 'response'});
     }
