@@ -20,6 +20,7 @@ import {HotelService} from '../../shared/service/hotel.service.';
 import {ChooseRoomTypeDialogComponent} from '../choose-room-type-dialog/choose-room-type-dialog.component';
 import {map, startWith} from 'rxjs/operators';
 import {Message} from '../../shared/model/message';
+import {isSuccess} from '@angular/http/src/http_utils';
 
 
 @Component({
@@ -41,6 +42,7 @@ export class DashboardLayoutComponent implements OnInit {
     socket;
     BASE_URL = AppSetting.BASE_SERVER_URL;
     submitted = false;
+    isLogined = false
     registerForm: FormGroup;
     isLang = true; // true is vi
     tfaFlag = false;
@@ -121,6 +123,11 @@ export class DashboardLayoutComponent implements OnInit {
             this.eventEmitterService.subsVar = this.eventEmitterService.invokeFirstComponentFunction.subscribe(() => {
                 this.onChangecheck(1);
             });
+        }
+        console.log('aaaaaaaa')
+        console.log(this.cookie.get('email') !== '' ? true : false)
+        if ( this.cookie.get('email') !== '' ? true : false) {
+            this.getMessage();
         }
         this.listTitles = ROUTES.filter(listTitle => listTitle);
         const navbar: HTMLElement = this.element.nativeElement;
@@ -265,6 +272,7 @@ export class DashboardLayoutComponent implements OnInit {
         if (token !== '') {
             this.cookie.set('token', '');
         }
+        this.isLogined = false
         this.href = this._router.url;
         console.log(this.href)
         if (this.href === '/index') {
@@ -308,7 +316,6 @@ export class DashboardLayoutComponent implements OnInit {
                 const user = userData.body;
                 let role;
                 console.log(user);
-
                 for (const key of Object.keys(user)) {
                     if (key === 'role') {
                         role = user[key];

@@ -149,7 +149,6 @@ export class PayInfoComponent implements OnInit {
         this.messageObject.objectId = this.objIdHotel;
         this.messageObject.message = 'Bạn có 1 yêu cầu đặt phòng mới';
         console.log(this.messageObject)
-
         this._hotelService.bookingHotel(this.formBooking.value).subscribe((data) => {
             const result = data.body
             console.log(result)
