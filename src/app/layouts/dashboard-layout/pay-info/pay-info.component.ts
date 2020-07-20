@@ -38,9 +38,15 @@ export class PayInfoComponent implements OnInit {
     currentPhone: string
     roomID: string
     hotelNameSpace: string
+    objIdHotel: string
+    objUserHotel: string
 
     errorMessage: String;
     successMessage = '';
+    messageObject = {
+        objectId: '',
+        message: ''
+    }
 
 
     constructor(private formbuilder: FormBuilder,
@@ -72,6 +78,8 @@ export class PayInfoComponent implements OnInit {
             date: [{begin: new Date(), end: new Date()}],
             totalAmountRoom: [''],
             totalMoney: [''],
+            hotelUser: [''],
+            hotelObjId: [''],
             status: 0 // 0 book -1 không còn 1 còn 2 đã thanh toán
 
         });
@@ -95,9 +103,12 @@ export class PayInfoComponent implements OnInit {
         this.hotelNameSpace = paramReq[0]
         this._hotelService.getHotelById(idObject).subscribe(data => {
             const result = data;
+            console.log(result)
             this.policiesCancelRom = result[0][0].hotelObj.cancellationPolicy
             this.hotelName = result[0][0].hotelObj.name
             this.ImgHotel = result[0][0].hotelObj.image.split(',', 1)
+            this.objIdHotel = result[0][0].hotelObj.user._id
+            this.objUserHotel = result[0][0].hotelObj.user.email
             for (let room of result[1][0]) {
                 if (room._id === paramReq[1]) {
                     this.currentRoom = room
@@ -130,20 +141,33 @@ export class PayInfoComponent implements OnInit {
 
         this.formBooking.get('totalMoney').setValue(this.currentRoom.price * this.dayBooking * this.convertNumber(this.numberAmountRoom))
         this.formBooking.get('roomDetailID').setValue(this.roomID)
+        this.formBooking.get('hotelObjId').setValue(this.objIdHotel)
+        this.formBooking.get('hotelUser').setValue(this.objUserHotel)
         this.formBooking.get('hotelNameSpace').setValue(this.hotelNameSpace)
         this.formBooking.get('totalAmountRoom').setValue(this.numberAmountRoom)
-        console.log(this.formBooking.value)
+        console.log(this.objIdHotel)
+        this.messageObject.objectId = this.objIdHotel;
+        this.messageObject.message = 'Bạn có 1 yêu cầu đặt phòng mới';
+        console.log(this.messageObject)
 
         this._hotelService.bookingHotel(this.formBooking.value).subscribe((data) => {
             const result = data.body
             console.log(result)
             if (result['status'] === 200) {
-                // this.successMessage = result['message'];
+                // send mess to hotel
+                this.chatService.sendNotification(this.messageObject);
+                setTimeout(() => {
+                    this.chatService.identifyUser();
+                }, 1500);
+
+                // phần này là để reload
                 this.successMessage = result['message'];
                 this.chatService.showNotification('success', this.successMessage);
                 setTimeout(() => {
                     this._router.navigate(['/hotel-details/' + this.hotelNameSpace])
                 }, 3000);
+
+
             } else {
                 this.errorMessage = result['message'];
                 this.chatService.showNotification('success', this.errorMessage);
