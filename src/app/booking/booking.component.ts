@@ -14,6 +14,7 @@ import moment = require('moment');
 import {HotelDialogComponent} from '../hotel-component/hotel-component.component';
 import {DialogData} from '../user-access/user-access.component';
 import {Hotel} from '../shared/model/hotel';
+import {UserService} from '../shared/service/user.service.';
 
 @Component({
     selector: 'app-booking',
@@ -33,6 +34,18 @@ export class BookingComponent implements OnInit {
         booking: Booking
     };
     message = '';
+    updateStatusObject = {
+        actionName: '',
+        idUserBook: '',
+        idBooking: '',
+        idUserHotel: ''
+    }
+
+    errorMessage: String;
+    messageObject = {
+        objectId: '',
+        message: ''
+    }
 
     constructor(
         private hotelService: HotelService,
@@ -40,7 +53,8 @@ export class BookingComponent implements OnInit {
         private formBuilder: FormBuilder,
         private dialog: MatDialog,
         private cookies: CookieService,
-        private chatService: ChatService
+        private chatService: ChatService,
+        private userService: UserService
     ) {
         const email = this.cookies.get('email');
         this.hotelService.getBookingByUser(email).subscribe(booking => {
@@ -131,26 +145,37 @@ export class BookingComponent implements OnInit {
         const idUser = this.cookies.get('ObjectId');
         // const idHotel = hotel._id;
         console.log(booking)
-        // this.updateStatusObject.idUser = idUser;
-        // this.updateStatusObject.idHotel = idHotel;
-        // this.updateStatusObject.actionName = actionName;
-        // this.hotelService.updateStatusHotel(this.updateStatusObject).subscribe(res => {
-        //     if (res.body['status'] === 200) {
-        //         this.messageObject.objectId = hotel.user._id;
-        //         this.messageObject.message = res.body['message']['content'];
-        //         this.message = res.body['messageAdmin']['content'];
-        //         this.chatService.showNotification('success', this.message);
-        //         this.chatService.sendNotification(this.messageObject);
-        //         console.log(this.messageObject)
-        //         setTimeout(() => {
-        //             this.message = '';
-        //             // window.location.reload();
-        //             this.chatService.identifyUser();
-        //         }, 1500);
-        //     } else {
-        //         this.chatService.showNotification('warning', res.body['message']);
-        //     }
-        // });
+        this.updateStatusObject.idBooking = booking._id
+        this.updateStatusObject.idUserBook = booking.email
+        this.updateStatusObject.idUserHotel = booking.hotelUser
+        this.updateStatusObject.actionName = actionName
+        this.hotelService.updateStatusBook(this.updateStatusObject).subscribe(async res => {
+            if (res.body['status'] === 200) {
+               // console.log(res)
+                console.log(res.body['book'].email)
+                let objUse = ''
+                await this.userService.testEmail(res.body['book'].email).subscribe(use => {
+                   objUse = use.body['user']._id
+                    console.log(objUse + 'hehe')
+                })
+                // tslint:disable-next-line:no-unused-expression
+                await this.messageObject.objectId === objUse;
+                console.log(objUse + 'hahaha')
+                this.messageObject.message = res.body['message']['content'];
+                console.log(this.messageObject)
+
+                // this.message = res.body['messageAdmin']['content'];
+                // this.chatService.showNotification('success', this.message);
+                // this.chatService.sendNotification(this.messageObject);
+                setTimeout(() => {
+                    this.message = '';
+                    // window.location.reload();
+                    this.chatService.identifyUser();
+                }, 1500);
+            } else {
+                this.chatService.showNotification('warning', res.body['message']);
+            }
+        });
     }
 
     openDialog(booking: any, actionValue: any) {
