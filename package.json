@@ -48,7 +48,6 @@
     "jquery": "^3.5.1",
     "moment": "2.24.0",
     "ng2-file-upload": "^1.4.0",
-    "ng5-slider": "^1.2.4",
     "ngx-cookie-service": "^3.0.4",
     "ngx-order-pipe": "^2.0.4",
     "ngx-skeleton-loader": "^1.2.7",

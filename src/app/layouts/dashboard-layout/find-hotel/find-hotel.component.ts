@@ -2,7 +2,6 @@ import {Component, HostListener, OnInit} from '@angular/core';
 import {CookieService} from 'ngx-cookie-service';
 import {AppSetting} from '../../../appsetting';
 import {HotelService} from '../../../shared/service/hotel.service.';
-import {Options} from 'ng5-slider';
 
 @Component({
     selector: 'app-find-hotel',
@@ -17,23 +16,22 @@ export class FindHotelComponent implements OnInit {
     imageDf = ['image-1593099960393.png', 'image-1593099960393.png'];
     facilitiFilterArray = []
     starFilterArray = []
+    filterPrice = false
+    priceFilterValue: number;
     searchText;
     ratingValue = 0;
-    minPrice = 0;
-    maxPrice = 0;
-    priceCheckAll = false;
     searchOption = {
         nameSpace: '',
         roomCount: '',
         childrenCount: '',
         personCount: ''
     }
-    minValue = 0;
-    maxValue = 10000;
-    options: Options = {
-        floor: 0,
-        ceil: 10000
-    };
+    // minValue = 0;
+    // maxValue = 10000;
+    // options: Options = {
+    //     floor: 0,
+    //     ceil: 10000
+    // };
 
     constructor(
         private cookie: CookieService,
@@ -84,13 +82,21 @@ export class FindHotelComponent implements OnInit {
         return value;
     }
 
-    minValueChange(event) {
-        this.minValue = event;
-        // this.loadHotelFilter()
-    }
-
-    maxValueChange(event) {
-        this.maxValue = event;
+    addPriceFilter(value: number) {
+        // value = 0 : giá thấp trước, value = 1: giá cao trước
+        this.filterPrice = true;
+        this.priceFilterValue = value;
+        if (value === 0) {
+            console.log('gia cao trước')
+            this.hotels.sort(function (a, b) {
+                return a.roomDetail[0].price - b.roomDetail[0].price
+            })
+        } else if (value === 1) {
+            console.log('gia thap truoc')
+            this.hotels.sort(function (a, b) {
+                return b.roomDetail[0].price - a.roomDetail[0].price
+            })
+        }
         // this.loadHotelFilter()
     }
 
@@ -134,7 +140,7 @@ export class FindHotelComponent implements OnInit {
                 ratingCheck = true;
             }
             // check filter price
-            if (this.priceCheckAll === true && this.maxPrice > 0) {
+            if (this.filterPrice === true) {
                 // filter theo giá
                 priceCheck = true;
             } else {
@@ -239,6 +245,9 @@ export class FindHotelComponent implements OnInit {
         });
     }
 
+    formatNumber(num) {
+        return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+    }
     @HostListener('window:scroll', ['$event'])
     onWindowScroll() {
         // console.log(window.scrollY);

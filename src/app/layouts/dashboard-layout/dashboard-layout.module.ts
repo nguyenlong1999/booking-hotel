@@ -45,7 +45,6 @@ import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
 import {MatSliderModule} from '@angular/material/slider';
 import { PayInfoComponent } from './pay-info/pay-info.component';
 import {Moment} from 'moment';
-import { Ng5SliderModule } from 'ng5-slider';
 @NgModule({
     declarations: [
         DashboardLayoutComponent,
@@ -94,7 +93,6 @@ import { Ng5SliderModule } from 'ng5-slider';
         MatAutocompleteModule,
         MatProgressSpinnerModule,
         MatSliderModule,
-        Ng5SliderModule
     ],
     providers: [],
     entryComponents: [ChooseRoomTypeDialogComponent],

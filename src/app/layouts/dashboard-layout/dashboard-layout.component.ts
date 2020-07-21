@@ -112,7 +112,7 @@ export class DashboardLayoutComponent implements OnInit {
                 if (element !== undefined) {
                     element.setAttribute('style', 'display:none');
                     const element2 = document.getElementById('check-point-search');
-                    element2.setAttribute('style', 'display:block;background-color:black!important');
+                    element2.setAttribute('style', 'display:block;background-color:#230a6f!important');
                 }
             }
         });

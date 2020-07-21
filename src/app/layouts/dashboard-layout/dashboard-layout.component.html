@@ -21,7 +21,7 @@
         <ng-template #other_content>
             <div class="nav-item dropdown">
                 <a class="nav-link" (click)="updateNews()" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
+                   aria-haspopup="true" aria-expanded="false" style="cursor: pointer">
                     <i class="material-icons">notifications</i>
                     <span *ngIf="countNewMessage > 0" class="notification">{{countNewMessage}}</span>
                 </a>

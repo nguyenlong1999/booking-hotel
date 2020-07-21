@@ -320,7 +320,7 @@
                                 <div class="offerInfoHotel-price">
                                     <div class="offerPrice-min">Giá mỗi đêm rẻ nhất từ</div>
                                     <div class="offerPrice-number">
-                                        <span style="color: red">{{p.roomDetail[0].price}} ₫</span>
+                                        <span style="color: red">{{formatNumber(p.roomDetail[0].price)}} ₫</span>
                                     </div>
                                 </div>
                             </div>
@@ -388,11 +388,13 @@
                                 <span class="material-icons">monetization_on</span>
                                 <span style="margin: 0 5px">Giá</span>
                             </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownPriceButton" style="width: 500px;">
+                            <div class="dropdown-menu" aria-labelledby="dropdownPriceButton">
                                 <!--                                <nouislider #slider [config]="someKeyboardConfig" [(ngModel)]="a"></nouislider>-->
-                                <ng5-slider (highValueChange)="minValueChange($event)"
-                                            (valueChange)="maxValueChange($event)" [(highValue)]="maxValue"
-                                            [(value)]="minValue" [options]="options"></ng5-slider>
+<!--                                <ng5-slider (highValueChange)="minValueChange($event)"-->
+<!--                                            (valueChange)="maxValueChange($event)" [(highValue)]="maxValue"-->
+<!--                                            [(value)]="minValue" [options]="options"></ng5-slider>-->
+                                <a class="dropdown-item" style="cursor: pointer" (click)="addPriceFilter(0)">Giá thấp trước</a>
+                                <a class="dropdown-item" style="cursor: pointer" (click)="addPriceFilter(1)">Giá cao trước</a>
                             </div>
                         </div>
                         <div class="col-lg-2" style="padding: 2px;">
@@ -607,7 +609,7 @@
                                                 <span class="tooltiptext">Đây là giá phòng thông thường của khách sạn</span>
                                             </div>
                                             <div class="new-price">
-                                                <span style="color: red">{{p.roomDetail[0].price}}</span><span
+                                                <span style="color: red">{{formatNumber(p.roomDetail[0].price)}}</span><span
                                                     style="color: gray;"> ₫</span>
                                             </div>
                                         </div>
