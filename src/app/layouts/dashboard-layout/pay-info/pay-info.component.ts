@@ -184,4 +184,8 @@ export class PayInfoComponent implements OnInit {
     onChangecheck() {
         this.emitEventCus.onCallLogin();
     }
+
+    formatNumber(num) {
+        return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+    }
 }

@@ -31,6 +31,8 @@ export class HotelDetailsComponent implements OnInit {
     lstTienNghiThua = []
     lstTienNghiRoom = []
     lstAddressPopular = [];
+    loadding = false;
+
     constructor(private formbuilder: FormBuilder,
                 private _hotelService: HotelService,
                 private _router: Router,
@@ -38,13 +40,76 @@ export class HotelDetailsComponent implements OnInit {
                 private cookies: CookieService,
                 private route: ActivatedRoute,
                 private chatService: ChatService,
-    ) {
+    ) {}
+
+    ngOnInit(): void {
+        this.loadding = true;
+        this.getHotel();
+        this.galleryOptions = [
+            {
+                width: '1200px',
+                height: '500px',
+                thumbnailsColumns: 4,
+                imageAnimation: NgxGalleryAnimation.Rotate
+            },
+            {
+                'imageAutoPlay': true,
+                'imageAutoPlayPauseOnHover': true,
+                'previewAutoPlay': true,
+                'previewAutoPlayPauseOnHover': true
+            },
+            // max-width 800
+            {
+                breakpoint: 800,
+                width: '100%',
+                height: '600px',
+                imagePercent: 80,
+                thumbnailsPercent: 20,
+                thumbnailsMargin: 20,
+                thumbnailMargin: 20
+            },
+        ];
+        this.galleryOptions1 = [
+            {
+                width: '100px',
+                height: '100px',
+                thumbnailsColumns: 2,
+                imageAnimation: NgxGalleryAnimation.Rotate
+            },
+            {
+                imageAutoPlay: true,
+                imageAutoPlayPauseOnHover: true,
+                previewAutoPlay: true,
+                previewAutoPlayPauseOnHover: true
+            },
+            // max-width 800
+            {
+                breakpoint: 200,
+                width: '100%',
+                height: '150px',
+                imagePercent: 80,
+                thumbnailsPercent: 100,
+                thumbnailsMargin: 20,
+                thumbnailMargin: 20
+            },
+            // max-width 400
+            {
+                breakpoint: 400,
+                preview: true
+            }
+        ];
+    }
+
+    getHotel() {
         const idObject = this.route.snapshot.paramMap.get('nameSpace')
         this._hotelService.getHotelById(idObject).subscribe(data => {
             const result = data;
             console.log(result)
             this.hotel = result[0][0].hotelObj
-            this.galleryImages = this.getImage(result[0][0].hotelObj.image.split(','))
+            const valueToRemove = '';
+            console.log(result[0][0].hotelObj.image)
+            const a = result[0][0].hotelObj.image.split(',');
+            this.galleryImages = this.getImage(a.filter(item => item !== valueToRemove))
             this.lstDetaiHotel = result[1][0];
             this.lstFacilitis = result[0][0];
             this.imageList = []
@@ -88,65 +153,8 @@ export class HotelDetailsComponent implements OnInit {
                 .toLocaleLowerCase().split(' ').join('-')
             this.getDuLich(country);
             console.log(this.lstAddressPopular)
+            this.loadding = false;
         })
-    }
-
-    ngOnInit(): void {
-        this.galleryOptions = [
-            {
-                width: '1200px',
-                height: '500px',
-                thumbnailsColumns: 4,
-                imageAnimation: NgxGalleryAnimation.Rotate
-            },
-            {
-                'imageAutoPlay': true,
-                'imageAutoPlayPauseOnHover': true,
-                'previewAutoPlay': true,
-                'previewAutoPlayPauseOnHover': true
-            },
-            // max-width 800
-            {
-                breakpoint: 800,
-                width: '100%',
-                height: '600px',
-                imagePercent: 80,
-                thumbnailsPercent: 20,
-                thumbnailsMargin: 20,
-                thumbnailMargin: 20
-            },
-        ];
-
-        this.galleryOptions1 = [
-            {
-                width: '100px',
-                height: '100px',
-                thumbnailsColumns: 2,
-                imageAnimation: NgxGalleryAnimation.Rotate
-            },
-            {
-                imageAutoPlay: true,
-                imageAutoPlayPauseOnHover: true,
-                previewAutoPlay: true,
-                previewAutoPlayPauseOnHover: true
-            },
-            // max-width 800
-            {
-                breakpoint: 200,
-                width: '100%',
-                height: '150px',
-                imagePercent: 80,
-                thumbnailsPercent: 100,
-                thumbnailsMargin: 20,
-                thumbnailMargin: 20
-            },
-            // max-width 400
-            {
-                breakpoint: 400,
-                preview: true
-            }
-        ];
-
     }
 
     ngAfterInit(): void {
@@ -195,6 +203,7 @@ export class HotelDetailsComponent implements OnInit {
     convertNumber(s) {
         return parseInt(s)
     }
+
     formatNumber(num) {
         return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
     }
