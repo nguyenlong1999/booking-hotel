@@ -59,12 +59,6 @@ export class HotelService {
             .pipe(tap(_ => console.log('load hotels')));
     };
 
-    getHotelFind = (): Observable<Hotel[]> => {
-        return this._http
-            .get<Hotel[]>(`${this.baseUrl}/getHotelFind`)
-            .pipe(tap(_ => console.log('load hotels')));
-    };
-
     getHotelsByUser = (idUser): Observable<any> => {
         return this._http
             .get<any>(`${this.baseUrl}/getHotelsByUser/${idUser}`)
