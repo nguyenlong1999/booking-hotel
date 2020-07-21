@@ -434,7 +434,7 @@ export class HotelAccessComponent implements OnInit {
         this.registerHotelForm.get('totalRoomNumber').setValue(this.totaltypeRoomNumber)
         this.registerHotelForm.get('starHotel').setValue(this.rating)
 
-        let nameSpace = this.registerHotelForm.get('name').value;
+        let nameSpace = this.registerHotelForm.get('name').value + ' ' + this.registerHotelForm.get('province').value;
         nameSpace = nameSpace.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
         nameSpace = nameSpace.toLowerCase();
         const name = nameSpace.split(' ');

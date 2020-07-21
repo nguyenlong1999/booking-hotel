@@ -127,7 +127,7 @@ export class DashboardLayoutComponent implements OnInit {
         console.log('aaaaaaaa')
         console.log(this.cookie.get('email') !== '' ? true : false)
         if ( this.cookie.get('email') !== '' ? true : false) {
-            this.getMessage();
+            this.getNotification();
         }
         this.listTitles = ROUTES.filter(listTitle => listTitle);
         const navbar: HTMLElement = this.element.nativeElement;
@@ -378,7 +378,7 @@ export class DashboardLayoutComponent implements OnInit {
                 //     // this._router.navigate(['/index']);
                 // }
                 this.getImage()
-                this.getMessage();
+                this.getNotification();
                 this.socket = io(AppSetting.BASE_SERVER_URL);
                 // this.data.name = this.cookie.get('ObjectId');
                 // this.data.userId = this.socket['id'];
@@ -487,7 +487,7 @@ export class DashboardLayoutComponent implements OnInit {
         console.log(this.userMessages);
     }
 
-    getMessage() {
+    getNotification() {
         this.userMessages = [];
         const email = this.cookieService.get('email');
         if (email !== '') {

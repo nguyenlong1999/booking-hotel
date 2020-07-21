@@ -39,6 +39,10 @@ export class HotelService {
         return this._http.post(`${this.baseUrl}/updateHotel`, {hotel: hotel}, {observe: 'response'});
     }
 
+    getHotelFind(searchOption: any) {
+        return this._http.post(`${this.baseUrl}/getHotelFind`, {searchOption: searchOption}, {observe: 'response'});
+    }
+
     updateStatusHotel(hotel: any) {
         return this._http.post(`${this.baseUrl}/updateStatusHotel`, {hotel: hotel}, {observe: 'response'});
     }

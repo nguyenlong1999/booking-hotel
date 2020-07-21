@@ -2,6 +2,7 @@ import {Component, HostListener, OnInit} from '@angular/core';
 import {CookieService} from 'ngx-cookie-service';
 import {AppSetting} from '../../../appsetting';
 import {HotelService} from '../../../shared/service/hotel.service.';
+import { Options } from 'ng5-slider';
 
 @Component({
     selector: 'app-find-hotel',
@@ -21,14 +22,24 @@ export class FindHotelComponent implements OnInit {
     minPrice = 0;
     maxPrice = 0;
     priceCheckAll = false;
-
-    // falcilityCheckAll = [];
+    searchOption = {
+        nameSpace: '',
+        roomCount: '',
+        childrenCount: '',
+        personCount: ''
+    }
+    minValue = 0;
+    maxValue = 10000;
+    options: Options = {
+        floor: 0,
+        ceil: 10000
+    };
 
     constructor(
         private cookie: CookieService,
         private hotelService: HotelService
     ) {
-        $('.btn-star').on('click', function (e) {
+        $('..dropdown-toggle').on('click', function (e) {
             $(this).next().toggle();
         });
         $('.dropdown-menu.keep-open').on('click', function (e) {
@@ -39,11 +50,6 @@ export class FindHotelComponent implements OnInit {
     ngOnInit() {
         this.loadding = true;
         this.getHotels();
-        setTimeout(() => {
-
-        }, 2000);
-        this.searchText = JSON.parse(this.cookie.get('searchText'));
-        console.log(this.searchText)
     }
 
     addStartFilter(event, star) {
@@ -78,19 +84,25 @@ export class FindHotelComponent implements OnInit {
         return value;
     }
 
-    changePriceFiler(event) {
-        this.loadHotelFilter()
+    minValueChange(event) {
+        this.minValue = event;
+        // this.loadHotelFilter()
+    }
+
+    maxValueChange(event) {
+        this.maxValue = event;
+        // this.loadHotelFilter()
     }
 
     loadHotelFilter() {
         let temp = [];
         this.hotels = [];
-        let a = 'freeWifi'
         for (const hotel of this.hotelFilter) {
             let starCheck = false;
             let ratingCheck = false;
             let falcilityCheck = false;
             let priceCheck = false;
+            // check filter faciliti
             if (this.facilitiFilterArray !== undefined && this.facilitiFilterArray.length > 0) {
                 this.facilitiFilterArray.forEach(faciliti => {
                     for (const value of Object.entries(hotel.faciliti)) {
@@ -102,6 +114,7 @@ export class FindHotelComponent implements OnInit {
             } else {
                 falcilityCheck = true;
             }
+            // check filter star
             if (this.starFilterArray !== undefined && this.starFilterArray.length > 0) {
                 this.starFilterArray.forEach(star => {
                     if (hotel.hotel.starHotel === star) {
@@ -112,6 +125,7 @@ export class FindHotelComponent implements OnInit {
             } else {
                 starCheck = true;
             }
+            // check filter rating
             if (this.ratingValue > 0) {
                 console.log(this.ratingValue, 'checking hotel rating')
                 ratingCheck = true;
@@ -119,6 +133,7 @@ export class FindHotelComponent implements OnInit {
             } else {
                 ratingCheck = true;
             }
+            // check filter price
             if (this.priceCheckAll === true && this.maxPrice > 0) {
                 // filter theo giá
                 priceCheck = true;
@@ -134,11 +149,18 @@ export class FindHotelComponent implements OnInit {
     }
 
     getHotels() {
-        this.hotelService.getHotelFind().subscribe(hotels => {
+        this.searchText = JSON.parse(this.cookie.get('searchText'));
+        this.searchOption.nameSpace = this.searchText.address;
+        this.searchOption.roomCount = this.searchText.roomCount;
+        this.searchOption.childrenCount = this.searchText.childrenCount;
+        this.searchOption.personCount = this.searchText.personCount;
+        this.hotelService.getHotelFind(this.searchOption).subscribe(hotels => {
             if (hotels === undefined) {
                 return;
             }
-            this.hotels = hotels['hotels'];
+            console.log('tằng tằng tằng tằng')
+            console.log(hotels)
+            this.hotels = hotels.body['hotels'];
             console.log(this.hotels);
             this.hotels.forEach(item => {
                 item.listPriceFacilities = [];

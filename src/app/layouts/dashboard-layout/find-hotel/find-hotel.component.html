@@ -332,42 +332,53 @@
                         <div class="col-lg-3" style="padding: 2px;">
                             <button class="btn btn-peole" type="button" id="dropdownPHButton"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="material-icons">people</span>
+                                <span class="material-icons">construction</span>
                                 <span style="margin: 0 5px">Tiện ích</span>
+                                <span class="material-icons">arrow_drop_down</span>
                                 <!--                            <span class="material-icons">arrow_drop_down</span>-->
                             </button>
                             <div class="dropdown-menu dropdown-menu-top-left" aria-labelledby="dropdownPHButton"
                                  style="width: 500px;">
                                 <div class="row" style="padding: 0.5rem 1.5rem">
                                     <div class="col-lg-6">
-                                        <mat-checkbox (change)="addFacilitiFilter($event,'freeWifi')">{{"facilities.freeWifi"|translate}}</mat-checkbox>
+                                        <mat-checkbox
+                                                (change)="addFacilitiFilter($event,'freeWifi')">{{"facilities.freeWifi"|translate}}</mat-checkbox>
                                     </div>
                                     <div class="col-lg-6">
-                                        <mat-checkbox (change)="addFacilitiFilter($event,'freeInternet')">{{"facilities.freeInternet"|translate}}</mat-checkbox>
+                                        <mat-checkbox
+                                                (change)="addFacilitiFilter($event,'freeInternet')">{{"facilities.freeInternet"|translate}}</mat-checkbox>
                                     </div>
                                     <div class="col-lg-6">
-                                        <mat-checkbox (change)="addFacilitiFilter($event,'freeParking')">{{"facilities.freeParking"|translate}}</mat-checkbox>
+                                        <mat-checkbox
+                                                (change)="addFacilitiFilter($event,'freeParking')">{{"facilities.freeParking"|translate}}</mat-checkbox>
                                     </div>
                                     <div class="col-lg-6">
-                                        <mat-checkbox (change)="addFacilitiFilter($event,'freeBreakfast')">{{"facilities.freeBreakfast"|translate}}</mat-checkbox>
+                                        <mat-checkbox
+                                                (change)="addFacilitiFilter($event,'freeBreakfast')">{{"facilities.freeBreakfast"|translate}}</mat-checkbox>
                                     </div>
                                     <div class="col-lg-6">
-                                        <mat-checkbox (change)="addFacilitiFilter($event,'Smoking')">{{"facilities.Smoking"|translate}}</mat-checkbox>
+                                        <mat-checkbox
+                                                (change)="addFacilitiFilter($event,'Smoking')">{{"facilities.Smoking"|translate}}</mat-checkbox>
                                     </div>
                                     <div class="col-lg-6">
-                                        <mat-checkbox (change)="addFacilitiFilter($event,'gymRoom')">{{"facilities.gymRoom"|translate}}</mat-checkbox>
+                                        <mat-checkbox
+                                                (change)="addFacilitiFilter($event,'gymRoom')">{{"facilities.gymRoom"|translate}}</mat-checkbox>
                                     </div>
                                     <div class="col-lg-6">
-                                        <mat-checkbox (change)="addFacilitiFilter($event,'hotTub')">{{"facilities.hotTub"|translate}}</mat-checkbox>
+                                        <mat-checkbox
+                                                (change)="addFacilitiFilter($event,'hotTub')">{{"facilities.hotTub"|translate}}</mat-checkbox>
                                     </div>
                                     <div class="col-lg-6">
-                                        <mat-checkbox (change)="addFacilitiFilter($event,'Fireplace')">{{"facilities.Fireplace"|translate}}</mat-checkbox>
+                                        <mat-checkbox
+                                                (change)="addFacilitiFilter($event,'Fireplace')">{{"facilities.Fireplace"|translate}}</mat-checkbox>
                                     </div>
                                     <div class="col-lg-6">
-                                        <mat-checkbox (change)="addFacilitiFilter($event,'elevatorInHotel')">{{"facilities.elevatorInHotel"|translate}}</mat-checkbox>
+                                        <mat-checkbox
+                                                (change)="addFacilitiFilter($event,'elevatorInHotel')">{{"facilities.elevatorInHotel"|translate}}</mat-checkbox>
                                     </div>
                                     <div class="col-lg-6">
-                                        <mat-checkbox (change)="addFacilitiFilter($event,'privatePool')">{{"facilities.privatePool"|translate}}</mat-checkbox>
+                                        <mat-checkbox
+                                                (change)="addFacilitiFilter($event,'privatePool')">{{"facilities.privatePool"|translate}}</mat-checkbox>
                                     </div>
                                 </div>
                             </div>
@@ -379,13 +390,15 @@
                                 <span style="margin: 0 5px">Giá</span>
                                 <span class="material-icons">arrow_drop_down</span>
                             </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownPriceButton">
-                                <a class="dropdown-item" href="#">Giá thấp trước</a>
-                                <a class="dropdown-item" href="#">Giá cao trước</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownPriceButton" style="width: 500px;">
+                                <!--                                <nouislider #slider [config]="someKeyboardConfig" [(ngModel)]="a"></nouislider>-->
+                                <ng5-slider (highValueChange)="minValueChange($event)"
+                                            (valueChange)="maxValueChange($event)" [(highValue)]="maxValue"
+                                            [(value)]="minValue" [options]="options"></ng5-slider>
                             </div>
                         </div>
                         <div class="col-lg-2" style="padding: 2px;">
-                            <button class="btn btn-star" type="button" id="dropdownStarButton"
+                            <button class="btn btn-star dropdown-toggle" type="button" id="dropdownStarButton"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                             >
                                 <span class="material-icons">grade</span>
