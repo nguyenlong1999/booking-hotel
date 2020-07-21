@@ -150,7 +150,7 @@
                                 1 đêm)
                             </div>
                             <div class="col">
-                                <span style="font-weight: bold">{{currentRoom.price}} VND</span>
+                                <span style="font-weight: bold">{{formatNumber(currentRoom.price)}} VND</span>
                             </div>
                         </div>
                         <div class="row">
@@ -178,7 +178,7 @@
                                 ({{this.dayBooking}} {{"book.book17"|translate}})
                             </div>
                             <div class="col">
-                                <span style="font-weight: bold">{{currentRoom.price * this.dayBooking * convertNumber(this.numberAmountRoom)}}
+                                <span style="font-weight: bold">{{formatNumber(currentRoom.price * this.dayBooking * convertNumber(this.numberAmountRoom))}}
                                     VND</span>
                             </div>
                         </div>
@@ -187,7 +187,7 @@
                          style=" background: whitesmoke;">
                         <div class="row ">
                             <div class="col">
-                                <span style="font-weight: bold;font-size: 20px">{{"book.book18"|translate}} {{currentRoom.price * this.dayBooking * convertNumber(this.numberAmountRoom)}}
+                                <span style="font-weight: bold;font-size: 20px">{{"book.book18"|translate}} {{formatNumber(currentRoom.price * this.dayBooking * convertNumber(this.numberAmountRoom))}}
                                     VND</span>
                             </div>
                         </div>

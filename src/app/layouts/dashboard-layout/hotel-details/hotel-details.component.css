@@ -37,3 +37,81 @@
 .textDecorationUnderline {
     text-decoration: line-through;
 }
+
+/* tooltip for FacilitiHotel */
+.tooltipFacilitiHotel {
+    position: relative;
+    opacity: 1;
+    z-index: 1 !important;
+    display: inline-block;
+    width: 85%;
+}
+
+.tooltipFacilitiHotel .tooltiptextFacilitiHotel {
+    visibility: hidden;
+    width: 150%;
+    bottom: -15px;
+    right: 105%;
+    /*margin-left: -60px;*/
+    background-color: white;
+    color: #000;
+    text-align: center;
+    border-radius: 6px;
+    padding: 15px 5px;
+    position: absolute;
+    z-index: 1;
+    /*margin-left: -60px;*/
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 15px;
+    /*opacity: 0.8;*/
+}
+
+.tooltipFacilitiHotel .tooltiptextFacilitiHotel::after {
+    content: " ";
+    position: absolute;
+    bottom: 10%;
+    left: 100%; /* To the right of the tooltip */
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent transparent white;
+}
+
+.tooltipFacilitiHotel:hover .tooltiptextFacilitiHotel {
+    visibility: visible;
+}
+
+.loadding {
+    width: 35%;
+    /*height: 150px;*/
+    position: fixed;
+    z-index: 1040 !important;
+    background: white;
+    top: 30%;
+    left: 35%;
+    border-radius: 15px;
+    padding: 15px;
+}
+
+.loadding-progress {
+    margin: 0 auto;
+    animation: mat-progress-spinner-linear-rotate 3000ms linear infinite !important;
+}
+
+.loadding-title {
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+    color: #cf39ea;
+    font-weight: 700;
+    margin-top: 25px;
+    text-transform: uppercase;
+}
+
+.loadding-text {
+    text-align: center;
+    margin-top: 5px;
+    font-weight: 500;
+    font-size: 15px;
+}

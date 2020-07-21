@@ -5,8 +5,8 @@
     </ul>
     <div class="form-inline my-2 my-lg-0">
         <a class="navbar1" [routerLink]="'/index'">{{ "index.home" | translate }}</a>
-        <a class="navbar1 mr-sm-2">{{ "book.room" | translate }}</a>
-        <a class="navbar1 mr-sm-2">{{ "book.promotion" | translate }}</a>
+        <a class="navbar1 mr-sm-2" routerLink="/search-hotels">{{ "book.room" | translate }}</a>
+<!--        <a class="navbar1 mr-sm-2">{{ "book.promotion" | translate }}</a>-->
         <a class="navbar1" href="javascript:void(0)" *ngIf="!checkLanguage"
            (click)="useLanguage('vi')"><img src="/assets/img/vi.png"
                                             style="width: 30px;height: auto; padding-right: 3px;"

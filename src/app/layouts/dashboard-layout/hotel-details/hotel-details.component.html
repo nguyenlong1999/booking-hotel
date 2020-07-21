@@ -1,4 +1,4 @@
-<div class="pb-5" style="margin-top: 3rem;background: white; ">
+<div *ngIf="!loadding" class="pb-5" style="margin-top: 3rem;background: white; ">
     <div class="container">
         <div class="d-flex">
             <div class="bd-highlight pt-2" style="padding-right: 0px!important;">
@@ -176,8 +176,30 @@
                                                                             data-notify="icon">star</i></div>
                                     </div>
                                 </div>
-                                <span style="color: #00b0ff; cursor: pointer;"
-                                      [appTooltip]="lstAddressPopular[0]">{{ "hotelUserHome.seeMore" | translate}}</span>
+                                <span style="color: #00b0ff; cursor: pointer;" class="tooltipFacilitiHotel">
+                                <!--                                      lstAddressPopular[0]-->
+                                    {{ "hotelUserHome.seeMore" | translate}}
+                                    <div class="tooltiptextFacilitiHotel">
+                                    <div class="row">
+                                        <div class="col"
+                                             style="text-align: left;padding-left: 6%;font-weight: 700;font-size: 14px;margin-bottom: 10px;">
+                                            {{"hotelUserHome.famousLandmarks" | translate}}
+                                        </div>
+                                    </div>
+                                    <div class="row" *ngFor="let item of lstAddressPopular[0]">
+                                        <div class="col-lg-8"
+                                             style="text-align: left; padding-left: 8%">
+                                            {{item.name | translate}}
+                                        </div>
+                                        <div class="col">
+                                            {{ item.rating }}/5
+                                            <i class="material-icons"
+                                               style="font-size: 10px; color: yellow;vertical-align:top"
+                                               data-notify="icon">star</i>
+                                        </div>
+                                    </div>
+                                </div>
+                                </span>
                                 <hr>
                             </div>
                         </div>
@@ -980,4 +1002,16 @@
 <!--                </div>-->
 <!--            </div>-->
 <!--        </div>-->
+<div *ngIf="loadding" class="loadding">
+    <mat-progress-spinner mode="indeterminate" class="loadding-progress"></mat-progress-spinner>
+    <div style="width: 100%">
+        <div class="loadding-title">
+            {{"common.hotel.loaddingTitle" | translate}}
+        </div>
+        <div></div>
+        <div class="loadding-text">
+            {{"common.hotel.loaddingText" | translate}}
+        </div>
+    </div>
+</div>
 
