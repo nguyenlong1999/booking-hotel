@@ -9,10 +9,10 @@
                              src="https://cdn6.agoda.net/images/MAPS-1213/default/bkg-map-entry.svg">
                         <img class="map-maker"
                              src="https://cdn6.agoda.net/images/MAPS-1213/default/img-map-pin-red.svg">
-                        <figcaption class="map-text">Xem vị trí</figcaption>
+                        <figcaption class="map-text">{{"common.hotel.viewLocation" | translate}}</figcaption>
                     </div>
                     <div class="offer-text">
-                        Đề xuất cho bạn ở Hà Nội
+                        {{"common.hotel.recommendedIn" | translate}} Hà Nội
                     </div>
                     <div style="width: 100%;height: 100%">
                         <div class="offer-item">
@@ -287,10 +287,10 @@
                              src="https://cdn6.agoda.net/images/MAPS-1213/default/bkg-map-entry.svg">
                         <img class="map-maker"
                              src="https://cdn6.agoda.net/images/MAPS-1213/default/img-map-pin-red.svg">
-                        <figcaption class="map-text">Xem vị trí</figcaption>
+                        <figcaption class="map-text">{{"common.hotel.viewLocation" | translate}}</figcaption>
                     </div>
                     <div class="offer-text">
-                        Đề xuất cho bạn ở Hà Nội
+                        {{"common.hotel.recommendedIn" | translate}} Hà Nội
                     </div>
                     <div style="width: 100%;height: 100%">
                         <div *ngFor="let p of hotels | slice: 0: 3" class="offer-item">
@@ -313,12 +313,13 @@
                                         </div>
                                     </div>
                                     <div class="offerReview-item">
-                                        <div class="offerReview-text">Trên cả tuyệt vời</div>
-                                        <div class="offerReview-count">1.068 nhận xét</div>
+                                        <div class="offerReview-text">{{"common.hotel.great" | translate}}</div>
+                                        <div class="offerReview-count">
+                                            1.068 {{"common.hotel.comment" | translate}}</div>
                                     </div>
                                 </div>
                                 <div class="offerInfoHotel-price">
-                                    <div class="offerPrice-min">Giá mỗi đêm rẻ nhất từ</div>
+                                    <div class="offerPrice-min">{{"common.hotel.minPrice" | translate}}</div>
                                     <div class="offerPrice-number">
                                         <span style="color: red">{{formatNumber(p.roomDetail[0].price)}} ₫</span>
                                     </div>
@@ -333,7 +334,7 @@
                             <button class="btn btn-peole dropdown-toggle" type="button" id="dropdownPHButton"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="material-icons">construction</span>
-                                <span style="margin: 0 5px">Tiện ích</span>
+                                <span style="margin: 0 5px">{{"common.hotel.faciliti" | translate}}</span>
                                 <!--                            <span class="material-icons">arrow_drop_down</span>-->
                             </button>
                             <div class="dropdown-menu dropdown-menu-top-left" aria-labelledby="dropdownPHButton"
@@ -386,15 +387,19 @@
                             <button class="btn btn-price dropdown-toggle" type="button" id="dropdownPriceButton"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="material-icons">monetization_on</span>
-                                <span style="margin: 0 5px">Giá</span>
+                                <span style="margin: 0 5px">{{"common.hotel.price" | translate}}</span>
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownPriceButton">
                                 <!--                                <nouislider #slider [config]="someKeyboardConfig" [(ngModel)]="a"></nouislider>-->
-<!--                                <ng5-slider (highValueChange)="minValueChange($event)"-->
-<!--                                            (valueChange)="maxValueChange($event)" [(highValue)]="maxValue"-->
-<!--                                            [(value)]="minValue" [options]="options"></ng5-slider>-->
-                                <a class="dropdown-item" style="cursor: pointer" (click)="addPriceFilter(0)">Giá thấp trước</a>
-                                <a class="dropdown-item" style="cursor: pointer" (click)="addPriceFilter(1)">Giá cao trước</a>
+                                <!--                                <ng5-slider (highValueChange)="minValueChange($event)"-->
+                                <!--                                            (valueChange)="maxValueChange($event)" [(highValue)]="maxValue"-->
+                                <!--                                            [(value)]="minValue" [options]="options"></ng5-slider>-->
+                                <a class="dropdown-item" style="cursor: pointer" (click)="addPriceFilter(0)">
+                                    {{"common.hotel.lowPrice" | translate}}
+                                </a>
+                                <a class="dropdown-item" style="cursor: pointer" (click)="addPriceFilter(1)">
+                                    {{"common.hotel.highPrice" | translate}}
+                                </a>
                             </div>
                         </div>
                         <div class="col-lg-2" style="padding: 2px;">
@@ -402,37 +407,40 @@
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                             >
                                 <span class="material-icons">grade</span>
-                                <span style="margin: 0 5px">Sao</span>
+                                <span style="margin: 0 5px">{{"common.hotel.star" | translate}}</span>
                             </button>
                             <div class="dropdown-menu keep-open" aria-labelledby="dropdownStarButton">
                                 <a class="dropdown-item">
                                     <mat-checkbox (change)="addStartFilter($event,5)">
                                         <mat-icon *ngFor="let star of [].constructor(5)">grade</mat-icon>
-                                        <span style="color: black">(5 sao)</span></mat-checkbox>
+                                        <span style="color: black">(5 {{"common.hotel.star" | translate}})</span>
+                                    </mat-checkbox>
                                 </a>
                                 <a class="dropdown-item">
                                     <mat-checkbox (change)="addStartFilter($event,4)">
                                         <mat-icon *ngFor="let star of [].constructor(4)">grade</mat-icon>
-                                        <span style="color: black">(4 sao)</span>
+                                        <span style="color: black">(4 {{"common.hotel.star" | translate}})</span>
                                     </mat-checkbox>
                                 </a>
                                 <a class="dropdown-item">
                                     <mat-checkbox (change)="addStartFilter($event,3)">
                                         <mat-icon *ngFor="let star of [].constructor(3)">grade</mat-icon>
-                                        <span style="color: black">(3 sao)</span></mat-checkbox>
+                                        <span style="color: black">(3 {{"common.hotel.star" | translate}})</span>
+                                    </mat-checkbox>
                                 </a>
                                 <a class="dropdown-item">
                                     <mat-checkbox (change)="addStartFilter($event,2)">
                                         <mat-icon>grade</mat-icon>
                                         <mat-icon>grade</mat-icon>
-                                        <span style="color: black">(2 sao)</span></mat-checkbox>
+                                        <span style="color: black">(2 {{"common.hotel.star" | translate}})</span>
+                                    </mat-checkbox>
                                 </a>
                             </div>
                         </div>
                         <div class="col-lg-3" style="padding: 2px;">
                             <button class="btn btn-review dropdown-toggle" type="button">
                                 <span class="material-icons">rate_review</span>
-                                <span style="margin: 0 5px">Đánh giá hàng đầu</span>
+                                <span style="margin: 0 5px">{{"common.hotel.mostComment" | translate}}</span>
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownRatingButton">
 
@@ -458,10 +466,9 @@
                                 <img src="https://cdn6.agoda.net/images/FUSION-2927/agoda-easy-cancel.png">
                             </div>
                             <div class="QC-content">
-                                <div class="QCContent-title">Booking Hotel Hủy Dễ Dàng</div>
-                                <p class="QCContent-text">Booking Hotel Hủy Dễ Dàng cho thấy các chỗ nghỉ hàng đầu đang
-                                    giúp
-                                    quý khách ở linh hoạt nhất có thể bằng cách cung cấp việc hủy miễn phí.</p>
+                                <div class="QCContent-title">{{"common.hotel.cancleEasyBookingTitle" | translate}}</div>
+                                <p class="QCContent-text">
+                                    {{"common.hotel.cancleEasyBookingText" | translate}}</p>
                             </div>
                         </div>
                         <a *ngFor="let p of hotels" target="_blank" [routerLink]="'/hotel-details/'+p.hotel.nameSpace"
@@ -493,7 +500,9 @@
                                                           class="header-star-icon"
                                                           style="color: #e67a1e">grade
                                                 </mat-icon>
-                                                <span class="tooltipStarText">Số sao đánh giá này do nơi lưu trú cung cấp, phản ánh độ thoải mái, cơ sở vật chất và tiện nghi mà khách hàng có thể mong đợi</span>
+                                                <span class="tooltipStarText">
+                                                    {{"common.hotel.starText" | translate}}
+                                                </span>
                                             </span>
                                             <span class="header-star-text">
                                             <mat-icon class="header-star-icon"
@@ -505,23 +514,22 @@
                                     <div></div>
                                     <div class="tooltipFacilitiPlace" style="margin-top: 5px;">
                                         <ol class="pills">
-                                            <li class="pill" style="border-color: black; color: black;">Vị trí thuận
-                                                tiện
+                                            <li class="pill" style="border-color: black; color: black;">
+                                                {{"common.hotel.convenientLocation" | translate}}
                                             </li>
-                                            <li class="pill" style="border-color: black; color: black;">Phương tiện
-                                                di
-                                                chuyển gần đây
+                                            <li class="pill" style="border-color: black; color: black;">
+                                                {{"common.hotel.transportationRecently" | translate}}
                                             </li>
                                         </ol>
                                         <div class="tooltiptextFacilitiPlace">
                                             <div class="row">
                                                 <div class="col-lg-6">
                                                     <mat-icon style="font-size: medium;">where_to_vote</mat-icon>
-                                                    Vị trí thuận tiện
+                                                    {{"common.hotel.convenientLocation" | translate}}
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <mat-icon style="font-size: medium;">train</mat-icon>
-                                                    Phương tiện di chuyển gần đây
+                                                    {{"common.hotel.transportationRecently" | translate}}
                                                 </div>
                                             </div>
                                         </div>
@@ -542,7 +550,7 @@
                                             <div class="row">
                                                 <div class="col"
                                                      style="text-align: left;padding-left: 6%;font-weight: 700;font-size: 14px;margin-bottom: 10px;">
-                                                    Một số gói giá sẽ có:
+                                                    {{"common.hotel.pricePacks" | translate}}
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -562,7 +570,7 @@
                                                 <li class="pill"
                                                     style="background-color: #e8e1f4; color: #6b4c9f; border: none !important;">
                                                     <mat-icon class="pill-moni">monetization_on</mat-icon>
-                                                    Mức giá hiếm thấy cho địa điểm này
+                                                    {{"common.hotel.rarePriceText" | translate}}
                                                 </li>
                                             </ol>
                                         </div>
@@ -574,7 +582,7 @@
                                                 <li class="pill"
                                                     style="border: none !important; padding: 0 !important">
                                                     <mat-icon class="pill-person">supervised_user_circle</mat-icon>
-                                                    Được 100% khách giới thiệu
+                                                    {{"common.hotel.guestIntroduction" | translate}}
                                                 </li>
                                             </ol>
                                         </div>
@@ -583,8 +591,8 @@
                                 <div class="price-item">
                                     <div class="review-section">
                                         <div class="review-item">
-                                            <div class="review-text">Trên cả tuyệt vời</div>
-                                            <div class="review-count">1.068 nhận xét</div>
+                                            <div class="review-text"><span>{{"common.hotel.great" | translate}}</span></div>
+                                            <div class="review-count">1.068 {{"common.hotel.comment" | translate}}</div>
                                         </div>
                                         <div class="review-item">
                                             <div style="margin-left: 5px;width: 50px; height: 50px; text-align: center;border: #5392f9 3px solid ;line-height: 40px;">
@@ -595,19 +603,19 @@
                                     <div class="price-section">
                                         <div class="promotion-item">
                                             <div *ngIf="p.roomDetail[0].promotion > 0" class="promotion-text">
-                                                Giảm giá 50%
+                                                {{"common.hotel.sale" | translate}} 50%
                                             </div>
                                             <div class="promotion-type">
                                                 <mat-icon>local_offer</mat-icon>
-                                                ưu đãi dài hạn
+                                                {{"common.hotel.longtermDeals" | translate}}
                                             </div>
                                         </div>
                                         <div class="price-container">
-                                            <div class="min-price">Giá mỗi đêm rẻ nhất từ</div>
-<!--                                            <div class="old-price tooltip">-->
-<!--                                                <del>219.888</del>-->
-<!--                                                <span class="tooltiptext">Đây là giá phòng thông thường của khách sạn</span>-->
-<!--                                            </div>-->
+                                            <div class="min-price">{{"common.hotel.minPrice" | translate}}</div>
+                                            <!--                                            <div class="old-price tooltip">-->
+                                            <!--                                                <del>219.888</del>-->
+                                            <!--                                                <span class="tooltiptext">{{"common.hotel.oldPriceText" | translate}}</span>-->
+                                            <!--                                            </div>-->
                                             <div class="new-price">
                                                 <span style="color: red">{{formatNumber(p.roomDetail[0].price)}}</span><span
                                                     style="color: gray;"> ₫</span>
@@ -627,11 +635,11 @@
     <mat-progress-spinner mode="indeterminate" class="loadding-progress"></mat-progress-spinner>
     <div style="width: 100%">
         <div class="loadding-title">
-            Giá rẻ, đầy yêu thương.
+            {{"common.hotel.loaddingTitle" | translate}}
         </div>
         <div></div>
         <div class="loadding-text">
-            Chúng tôi sẽ đảm báo hạ giá rẻ nhất, búc phòng nhiệt tình lên anh em !!
+            {{"common.hotel.loaddingText" | translate}}
         </div>
     </div>
 </div>
