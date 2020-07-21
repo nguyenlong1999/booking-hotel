@@ -58,43 +58,35 @@
 
                             <ng-container matColumnDef="accept">
                                 <mat-header-cell *matHeaderCellDef
-                                                 mat-sort-header>{{"common.hotel.approval" | translate}}
+                                                 mat-sort-header>{{"book.accept" | translate}}
                                 </mat-header-cell>
                                 <mat-cell *matCellDef="let row">
-                                    <button *ngIf="row.status === 'Chưa duyệt'" mat-icon-button style="color: green"
+                                    <button *ngIf="row.status === 'Chờ phản hồi'" mat-icon-button style="color: green"
                                             [title]="'common.hotel.approvalHotel' | translate"
-                                            (click)="openDialog(row,1)">
-                                        <mat-icon>check_circle</mat-icon>
-                                    </button>
-                                    <button *ngIf="row.status === 'Hoạt động'" mat-icon-button style="color: red"
-                                            [title]="'common.hotel.unapprovalHotel' | translate"
                                             (click)="openDialog(row,0)">
-                                        <mat-icon>trending_down</mat-icon>
-                                    </button>
-                                    <button *ngIf="row.status === 'Đã khóa'" mat-icon-button style="color: gray"
-                                            [title]="'common.hotel.hotelBlocked' | translate">
-                                        <mat-icon>lock</mat-icon>
+                                        Duyệt
                                     </button>
                                 </mat-cell>
                             </ng-container>
 
                             <ng-container matColumnDef="refuse">
                                 <mat-header-cell *matHeaderCellDef
-                                                 mat-sort-header>{{"common.hotel.blockTitle" | translate}}</mat-header-cell>
+                                                 mat-sort-header>{{"book.refuse" | translate}}</mat-header-cell>
                                 <mat-cell *matCellDef="let row">
-                                    <button *ngIf="row.status === 'Đã khóa'; else otherStatus" mat-icon-button
+                                    <button *ngIf="row.status === 'Chờ phản hồi'" mat-icon-button
                                             style="color: green"
                                             [title]="'common.hotel.unblockHotel' | translate"
-                                            (click)="openDialog(row,3)">
-                                        <mat-icon>lock_open</mat-icon>
+                                            (click)="openDialog(row,1)">
+<!--                                        <mat-icon>lock_open</mat-icon>-->
+                                        Từ chối
                                     </button>
-                                    <ng-template #otherStatus>
-                                        <button mat-icon-button style="color: yellow"
-                                                [title]="'common.hotel.blockHotel' | translate"
-                                                (click)="openDialog(row,2)">
-                                            <mat-icon>lock</mat-icon>
-                                        </button>
-                                    </ng-template>
+<!--                                    <ng-template #otherStatus>-->
+<!--                                        <button mat-icon-button style="color: yellow"-->
+<!--                                                [title]="'common.hotel.blockHotel' | translate"-->
+<!--                                                (click)="openDialog(row,2)">-->
+<!--                                            <mat-icon>lock</mat-icon>-->
+<!--                                        </button>-->
+<!--                                    </ng-template>-->
                                 </mat-cell>
                             </ng-container>
 

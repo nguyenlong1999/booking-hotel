@@ -1,17 +1,19 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, Inject, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
-import {Hotel} from '../shared/model/hotel';
 import {Booking} from '../shared/model/booking';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {HotelService} from '../shared/service/hotel.service.';
 import {Router} from '@angular/router';
 import {FormBuilder} from '@angular/forms';
-import {MatDialog} from '@angular/material/dialog';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {CookieService} from 'ngx-cookie-service';
 import {ChatService} from '../shared/service/chat.service';
 // @ts-ignore
 import moment = require('moment');
+import {HotelDialogComponent} from '../hotel-component/hotel-component.component';
+import {DialogData} from '../user-access/user-access.component';
+import {Hotel} from '../shared/model/hotel';
 
 @Component({
     selector: 'app-booking',
@@ -25,7 +27,12 @@ export class BookingComponent implements OnInit {
     @ViewChild(MatSort) sort: MatSort;
     displayedColumns = ['id', 'name', 'roomType', 'fromDate', 'toDate', 'totalAmountRoom', 'status', 'accept', 'refuse'];
     booking: Booking[] = [];
-    hotel: any
+    hotel: any;
+    actionObject = {
+        actionName: '',
+        booking: Booking
+    };
+    message = '';
 
     constructor(
         private hotelService: HotelService,
@@ -37,17 +44,13 @@ export class BookingComponent implements OnInit {
     ) {
         const email = this.cookies.get('email');
         this.hotelService.getBookingByUser(email).subscribe(booking => {
-            // console.log(hotels);
             if (booking === undefined) {
                 return;
             }
-            console.log(booking)
             this.booking = booking;
 
 
             for (const item of this.booking) {
-                console.log(item)
-                console.log(item.date.begin)
                 this.hotelService.getHotelById(item.hotelNameSpace).subscribe(hotel => {
                     item.name = hotel[0][0].hotelObj.name
                     this.hotel = hotel
@@ -122,4 +125,90 @@ export class BookingComponent implements OnInit {
                 }
             }, 500);
     }
+
+    updateStatusBooking(actionName: any, booking: any) {
+        console.log('func-updateStatus');
+        const idUser = this.cookies.get('ObjectId');
+        // const idHotel = hotel._id;
+        console.log(booking)
+        // this.updateStatusObject.idUser = idUser;
+        // this.updateStatusObject.idHotel = idHotel;
+        // this.updateStatusObject.actionName = actionName;
+        // this.hotelService.updateStatusHotel(this.updateStatusObject).subscribe(res => {
+        //     if (res.body['status'] === 200) {
+        //         this.messageObject.objectId = hotel.user._id;
+        //         this.messageObject.message = res.body['message']['content'];
+        //         this.message = res.body['messageAdmin']['content'];
+        //         this.chatService.showNotification('success', this.message);
+        //         this.chatService.sendNotification(this.messageObject);
+        //         console.log(this.messageObject)
+        //         setTimeout(() => {
+        //             this.message = '';
+        //             // window.location.reload();
+        //             this.chatService.identifyUser();
+        //         }, 1500);
+        //     } else {
+        //         this.chatService.showNotification('warning', res.body['message']);
+        //     }
+        // });
+    }
+
+    openDialog(booking: any, actionValue: any) {
+        this.actionObject.booking = booking;
+        if (actionValue === 0 && booking.status === 'Chờ phản hồi') {
+            this.actionObject.actionName = 'Chấp nhận';
+            this.message = 'Xác nhận khách sạn của bạn còn đủ phòng?';
+        } else if (actionValue === 1 && booking.status === 'Chờ phản hồi') {
+            this.actionObject.actionName = 'Chấp nhận';
+            this.message = 'Xác nhận khách sạn của bạn hết phòng?';
+        }
+        // else if (actionValue === 2 && hotel.isBlock === 1) {
+        //     this.message = 'Bạn muốn khóa khách sạn này?';
+        //     this.actionObject.actionName = 'Khóa';
+        // } else if (actionValue === 3 && hotel.isBlock === 0) {
+        //     this.message = 'Bạn muốn mở khóa khách sạn này?';
+        //     this.actionObject.actionName = 'Mở khóa';
+        // }
+        // else if (hotel.user.role === 'Admin') {
+        //     this.message = 'Bạn không có quyền khóa, thay đổi quyền của tài khoản ADMIN';
+        //     this.actionObject.actionName = 'ADMIN';
+        // }
+        console.log(this.message + 'xxxxxx')
+        console.log(this.actionObject)
+        const dialogRef = this.dialog.open(BookingDialogComponent, {
+            width: '500px',
+            data: {
+                messageDialog: this.message,
+                action: this.actionObject
+            }
+        })
+
+        dialogRef.afterClosed().subscribe(result => {
+            console.log(result);
+            if (result) {
+                this.updateStatusBooking(result.actionName, result.booking);
+            } else {
+                console.log('Cancel');
+            }
+        });
+    }
 }
+
+
+@Component({
+    selector: 'app-dialog-booking',
+    templateUrl: 'dialog-booking.html',
+    styleUrls: ['./booking.component.css']
+})
+export class BookingDialogComponent {
+    constructor(
+        public dialogRef: MatDialogRef<BookingDialogComponent>,
+        @Inject(MAT_DIALOG_DATA) public data: DialogData
+    ) {
+    }
+
+    onNoClick(): void {
+        this.dialogRef.close();
+    }
+}
+

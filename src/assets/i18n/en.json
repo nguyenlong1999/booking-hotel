@@ -97,6 +97,10 @@
     "search": "Search"
   } ,
   "book": {
+
+    "accept": "Accept",
+    "refuse": "Refuse",
+
     "fromDate": "From Date",
     "toDate": "To Date",
     "requiredEmail": "Wrong email format",

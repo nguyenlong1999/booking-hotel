@@ -103,6 +103,9 @@
     "requiredname": "Tên không được để trống",
     "requiredPhone": "Số điện thoại không được để trống",
 
+    "accept": "Chấp nhận",
+    "refuse": "Từ chối",
+
     "room": "Đặt phòng",
     "promotion": "Ưu đãi",
     "book1": "Đặt phòng khách sạn",
