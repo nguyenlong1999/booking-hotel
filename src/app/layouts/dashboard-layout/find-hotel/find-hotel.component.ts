@@ -188,7 +188,7 @@ export class FindHotelComponent implements OnInit {
                         const d = {name: 'facilities.freeParking', icon: 'wifi_protected_setup'}
                         item.listPriceFacilities.push(d)
                     }
-                    const e = {name: 'Hủy miễn phí', icon: 'wifi_protected_setup'}
+                    const e = {name: 'common.hotel.freeCancle', icon: 'wifi_protected_setup'}
                     item.listPriceFacilities.push(e)
                     item.hotel.image = item.hotel.image.split(',');
                     const valueToRemove = '';
