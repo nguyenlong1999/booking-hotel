@@ -94,6 +94,7 @@ export class DashboardLayoutComponent implements OnInit {
         translate.setDefaultLang('vi');
         sessionStorage.setItem('currentLang', 'vi');
         this.getSummary();
+        this.mailBox();
         window.addEventListener('wheel', function (event) {
             if (event.deltaY < 0) {
                 console.log('scrolling up');
@@ -420,12 +421,21 @@ export class DashboardLayoutComponent implements OnInit {
     }
 
     searchHotelServer() {
-        console.log(this.searchHotel, this.searchPerson);
+        // console.log(this.searchHotel, this.searchPerson);
         // @ts-ignore\\\\\\\\\\\\\\\\\
-        this.cookie.set('searchText', this.searchHotel.address + ' ' + this.searchPerson);
-        console.log(this.cookie.get('searchText'))
-        this._router.navigateByUrl('/search-hotels')
+        // this.cookie.set('searchText', this.searchHotel.address + ' ' + this.searchPerson);
+        // console.log(this.cookie.get('searchText'))
+        // this._router.navigateByUrl('/search-hotels')
         // this.chatService.showNotification('success', 'Tìm kiếm thành công');
+        // console.log(this.searchHotel);
+        // @ts-ignore\\\\\\\\\\\\\\\\\
+        this.cookie.set('searchText', JSON.stringify(this.searchHotel));
+        // console.log(this.cookie.get('searchText'))
+        if (this.router.url === '/search-hotels') {
+            window.location.reload();
+        } else {
+            this._router.navigateByUrl('/search-hotels')
+        }
     }
 
     openDialogChooseHotelType(event) {
@@ -509,4 +519,24 @@ export class DashboardLayoutComponent implements OnInit {
         }
     }
 
+    mailBox() {
+        this.chatService.getNotifications().subscribe(mail => {
+            console.log('mail-notification:', mail);
+            if (mail !== undefined) {
+                const mess = new Message;
+                mess.content = mail;
+                mess.news = 0;
+                // console.log('count new messages1 = ' + this.countNewMessage);
+                if (!mess['content']['get-list-online']) {
+                    this.userMessages.push(mess);
+                    this.countNewMessage++;
+                    this.chatService.showNotification('success', mess.content);
+                    if (this.userMessages.length !== 0) {
+                        this.messageEmpty = false;
+                    }
+                }
+                // console.log('count new messages2 = ' + this.countNewMessage);
+            }
+        })
+    }
 }
