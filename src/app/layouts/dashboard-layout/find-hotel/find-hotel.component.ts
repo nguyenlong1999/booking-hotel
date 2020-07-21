@@ -2,7 +2,7 @@ import {Component, HostListener, OnInit} from '@angular/core';
 import {CookieService} from 'ngx-cookie-service';
 import {AppSetting} from '../../../appsetting';
 import {HotelService} from '../../../shared/service/hotel.service.';
-import { Options } from 'ng5-slider';
+import {Options} from 'ng5-slider';
 
 @Component({
     selector: 'app-find-hotel',
@@ -158,42 +158,83 @@ export class FindHotelComponent implements OnInit {
             if (hotels === undefined) {
                 return;
             }
-            console.log('tằng tằng tằng tằng')
-            console.log(hotels)
-            this.hotels = hotels.body['hotels'];
-            console.log(this.hotels);
-            this.hotels.forEach(item => {
-                item.listPriceFacilities = [];
-                if (item.faciliti.freeWifi === true) {
-                    const a = {name: 'facilities.freeWifi', icon: 'wifi'}
-                    item.listPriceFacilities.push(a)
+            console.log('tằng tằng tằng tằng find hotel is start =========>')
+            if (hotels.body['hotels'].length > 0) {
+                this.hotels = hotels.body['hotels'];
+                console.log('hotel search: ')
+                console.log(this.hotels)
+                this.hotels.forEach(item => {
+                    item.listPriceFacilities = [];
+                    if (item.faciliti.freeWifi === true) {
+                        const a = {name: 'facilities.freeWifi', icon: 'wifi'}
+                        item.listPriceFacilities.push(a)
+                    }
+                    if (item.faciliti.freeInternet === true) {
+                        const b = {name: 'facilities.freeInternet', icon: 'network_check'}
+                        item.listPriceFacilities.push(b)
+                    }
+                    if (item.faciliti.freeBreakfast === true) {
+                        const c = {name: 'facilities.freeBreakfast', icon: 'free_breakfast'}
+                        item.listPriceFacilities.push(c)
+                    }
+                    if (item.faciliti.freeParking === true) {
+                        const d = {name: 'facilities.freeParking', icon: 'wifi_protected_setup'}
+                        item.listPriceFacilities.push(d)
+                    }
+                    const e = {name: 'Hủy miễn phí', icon: 'wifi_protected_setup'}
+                    item.listPriceFacilities.push(e)
+                    item.hotel.image = item.hotel.image.split(',');
+                    const valueToRemove = '';
+                    item.hotel.image = item.hotel.image.filter(item => item !== valueToRemove);
+                    if (item.hotel.image.length === 0) {
+                        item.hotel.image = this.imageDf;
+                    }
+                    console.log(item.hotel.image.length);
+                });
+                if (this.hotels !== undefined) {
+                    this.loadding = false;
+                    this.hotelFilter = this.hotels;
                 }
-                if (item.faciliti.freeInternet === true) {
-                    const b = {name: 'facilities.freeInternet', icon: 'network_check'}
-                    item.listPriceFacilities.push(b)
-                }
-                if (item.faciliti.freeBreakfast === true) {
-                    const c = {name: 'facilities.freeBreakfast', icon: 'free_breakfast'}
-                    item.listPriceFacilities.push(c)
-                }
-                if (item.faciliti.freeParking === true) {
-                    const d = {name: 'facilities.freeParking', icon: 'wifi_protected_setup'}
-                    item.listPriceFacilities.push(d)
-                }
-                const e = {name: 'Hủy miễn phí', icon: 'wifi_protected_setup'}
-                item.listPriceFacilities.push(e)
-                item.hotel.image = item.hotel.image.split(',');
-                const valueToRemove = '';
-                item.hotel.image = item.hotel.image.filter(item => item !== valueToRemove);
-                if (item.hotel.image.length === 0) {
-                    console.log('hehe')
-                    item.hotel.image = this.imageDf;
-                }
-                console.log(item.hotel.image.length);
-                this.hotelFilter = this.hotels;
-                this.loadding = false;
-                // console.log(item.listPriceFacilities);
-            });
+            } else {
+                this.hotelService.getHotelFindAll().subscribe(hotelAll => {
+                    this.hotels = hotelAll['hotels'];
+                    console.log('hotel find all ')
+                    console.log(this.hotels)
+                    this.hotels.forEach(item => {
+                        item.listPriceFacilities = [];
+                        if (item.faciliti.freeWifi === true) {
+                            const a = {name: 'facilities.freeWifi', icon: 'wifi'}
+                            item.listPriceFacilities.push(a)
+                        }
+                        if (item.faciliti.freeInternet === true) {
+                            const b = {name: 'facilities.freeInternet', icon: 'network_check'}
+                            item.listPriceFacilities.push(b)
+                        }
+                        if (item.faciliti.freeBreakfast === true) {
+                            const c = {name: 'facilities.freeBreakfast', icon: 'free_breakfast'}
+                            item.listPriceFacilities.push(c)
+                        }
+                        if (item.faciliti.freeParking === true) {
+                            const d = {name: 'facilities.freeParking', icon: 'wifi_protected_setup'}
+                            item.listPriceFacilities.push(d)
+                        }
+                        const e = {name: 'Hủy miễn phí', icon: 'wifi_protected_setup'}
+                        item.listPriceFacilities.push(e)
+                        item.hotel.image = item.hotel.image.split(',');
+                        const valueToRemove = '';
+                        item.hotel.image = item.hotel.image.filter(item => item !== valueToRemove);
+                        if (item.hotel.image.length === 0) {
+                            item.hotel.image = this.imageDf;
+                        }
+                        console.log(item.hotel.image.length);
+                    });
+                    if (this.hotels !== undefined) {
+                        this.loadding = false;
+                        this.hotelFilter = this.hotels;
+                    }
+                })
+            }
+            console.log(this.loadding);
         });
     }
 

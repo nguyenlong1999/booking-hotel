@@ -408,27 +408,18 @@
                             <div class="dropdown-menu keep-open" aria-labelledby="dropdownStarButton">
                                 <a class="dropdown-item">
                                     <mat-checkbox (change)="addStartFilter($event,5)">
-                                        <mat-icon>grade</mat-icon>
-                                        <mat-icon>grade</mat-icon>
-                                        <mat-icon>grade</mat-icon>
-                                        <mat-icon>grade</mat-icon>
-                                        <mat-icon>grade</mat-icon>
+                                        <mat-icon *ngFor="let star of [].constructor(5)">grade</mat-icon>
                                         <span style="color: black">(5 sao)</span></mat-checkbox>
                                 </a>
                                 <a class="dropdown-item">
                                     <mat-checkbox (change)="addStartFilter($event,4)">
-                                        <mat-icon>grade</mat-icon>
-                                        <mat-icon>grade</mat-icon>
-                                        <mat-icon>grade</mat-icon>
-                                        <mat-icon>grade</mat-icon>
+                                        <mat-icon *ngFor="let star of [].constructor(4)">grade</mat-icon>
                                         <span style="color: black">(4 sao)</span>
                                     </mat-checkbox>
                                 </a>
                                 <a class="dropdown-item">
                                     <mat-checkbox (change)="addStartFilter($event,3)">
-                                        <mat-icon>grade</mat-icon>
-                                        <mat-icon>grade</mat-icon>
-                                        <mat-icon>grade</mat-icon>
+                                        <mat-icon *ngFor="let star of [].constructor(3)">grade</mat-icon>
                                         <span style="color: black">(3 sao)</span></mat-checkbox>
                                 </a>
                                 <a class="dropdown-item">
