@@ -27,6 +27,7 @@ import {ChooseRoomTypeDialogComponent} from '../choose-room-type-dialog/choose-r
 import {WelcomeComponent} from '../../welcome/welcome.component';
 import {UserEditComponent} from './user-edit/user-edit.component';
 import {ForgetPasswordComponent} from '../../forget-password/forget-password.component';
+import {UpgradeComponent} from '../../upgrade/upgrade.component';
 
 import {
     DateAdapter,
@@ -58,6 +59,7 @@ import {Moment} from 'moment';
         FindHotelComponent,
         HotelDetailsComponent,
         PayInfoComponent,
+        UpgradeComponent
         // add các component của trang người dùng vào đây
     ],
     imports: [

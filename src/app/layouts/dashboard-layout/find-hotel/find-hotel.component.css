@@ -141,6 +141,7 @@ no-fixed-left {
     height: 120px;
     margin: 0 0 8px;
     border: 1px solid #dddfe2;
+    cursor: pointer;
 }
 
 .offerItem-img {
@@ -164,6 +165,10 @@ no-fixed-left {
     font-weight: 700;
     color: #736363;
     line-height: 15px;
+}
+
+.offerInfoHotel-title:hover {
+    text-decoration: underline;
 }
 
 .offerInfoHotel-star {

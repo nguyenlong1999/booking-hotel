@@ -293,7 +293,7 @@
                         {{"common.hotel.recommendedIn" | translate}} Hà Nội
                     </div>
                     <div style="width: 100%;height: 100%">
-                        <div *ngFor="let p of hotels | slice: 0: 3" class="offer-item">
+                        <div *ngFor="let p of hotels | slice: 0: 3" [routerLink]="'/hotel-details/'+p.hotel.nameSpace" class="offer-item">
                             <div class="offerItem-img" *ngIf="p.hotel.image[0]"
                                  [style]="'background-image: url(' + BASE_URL+ p.hotel.image[0]+');'">
                             </div>
