@@ -55,7 +55,6 @@ import {QRCodeModule} from 'angularx-qrcode';
         FindHotelComponent,
         HotelDetailsComponent,
         PayInfoComponent,
-        UpgradeComponent,
         ViewPayComponent
         // add các component của trang người dùng vào đây
     ],
