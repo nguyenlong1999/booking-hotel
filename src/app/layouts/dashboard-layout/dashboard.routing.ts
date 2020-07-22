@@ -64,11 +64,11 @@ export const DashBoardRoutes: Routes = [
                 path: 'pay/:id',
                 component: ViewPayComponent
             },
-            /* {
-              path: 'about',
-              component: AboutComponent
-            },
             {
+              path: 'about',
+              component: UpgradeComponent
+            },
+            /* {
                 path: 'about',
                 component: UpgradeComponent
             },
