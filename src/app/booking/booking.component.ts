@@ -103,25 +103,13 @@ export class BookingComponent implements OnInit {
                     item.status = 'Còn phòng';
                 } else if (item.status === '2') {
                     item.status = 'Đã thanh toán';
+                } else if (item.status === '-1') {
+                    item.status = 'Đã hủy';
                 }
             }
             this.dataSource = new MatTableDataSource(this.booking)
             this.dataSource.paginator = this.paginator;
             this.dataSource.sort = this.sort;
-            // this.dataSource.filterPredicate = ((data, filter) => {
-            //     // console.log(data);
-            //     const name = !filter.name || data.name.trim().toLowerCase().includes(filter.name);
-            //     const email = !filter.email || data.user.email.trim().toLowerCase().includes(filter.email);
-            //     const address = !filter.address || data.address.trim().toLowerCase().includes(filter.address);
-            //     const status = !filter.status || data.status === filter.status;
-            //     const starHotel = !filter.starHotel || data.starHotel === filter.starHotel;
-            //     return name && email && address && status && starHotel;
-            // }) as (PeriodicElement, string) => boolean;
-            // this.formControl.valueChanges.subscribe(value => {
-            //     const filter = {...value, name: value.name.trim().toLowerCase()} as string;
-            //     // console.log(filter);
-            //     this.dataSource.filter = filter;
-            // });
         });
     }
 
