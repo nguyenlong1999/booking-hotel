@@ -168,7 +168,7 @@ export class BookingComponent implements OnInit {
             this.actionObject.actionName = 'Chấp nhận';
             this.message = 'Xác nhận khách sạn của bạn còn đủ phòng?';
         } else if (actionValue === 1 && booking.status === 'Chờ phản hồi') {
-            this.actionObject.actionName = 'Chấp nhận';
+            this.actionObject.actionName = 'Từ chối';
             this.message = 'Xác nhận khách sạn của bạn hết phòng?';
         }
         // else if (actionValue === 2 && hotel.isBlock === 1) {
