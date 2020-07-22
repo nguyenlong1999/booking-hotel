@@ -97,7 +97,7 @@ export class DashboardLayoutComponent implements OnInit {
         this.mailBox();
         window.addEventListener('wheel', function (event) {
             if (event.deltaY < 0) {
-                console.log('scrolling up');
+                // console.log('scrolling up');
                 const element = document.getElementById('check-point');
                 if (element !== undefined) {
                     element.setAttribute('style', 'background-color:white!important;');
@@ -105,7 +105,7 @@ export class DashboardLayoutComponent implements OnInit {
                     element2.setAttribute('style', 'display:none');
                 }
             } else if (event.deltaY > 0) {
-                console.log('scrolling down');
+                // console.log('scrolling down');
                 // tslint:disable-next-line:no-duplicate-variable
                 const element = document.getElementById('check-point');
                 // element.setAttribute('style', 'background-color:black!important;');
@@ -135,6 +135,8 @@ export class DashboardLayoutComponent implements OnInit {
         this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
         this.router.events.subscribe((event) => {
             // this.sidebarClose();
+            console.log('hehehehe');
+            console.log(event)
             var $layer: any = document.getElementsByClassName('close-layer')[0];
             if ($layer) {
                 $layer.remove();
