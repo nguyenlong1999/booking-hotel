@@ -29,13 +29,7 @@ import {UserEditComponent} from './user-edit/user-edit.component';
 import {ForgetPasswordComponent} from '../../forget-password/forget-password.component';
 import {UpgradeComponent} from '../../upgrade/upgrade.component';
 
-import {
-    DateAdapter,
-    MAT_DATE_FORMATS,
-    MAT_DATE_LOCALE,
-    SatDatepickerModule,
-    SatNativeDateModule
-} from 'saturn-datepicker';
+import {SatDatepickerModule, SatNativeDateModule} from 'saturn-datepicker';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {FindHotelComponent} from './find-hotel/find-hotel.component';
@@ -44,8 +38,10 @@ import {NgxGalleryModule} from '@kolkov/ngx-gallery';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
 import {MatSliderModule} from '@angular/material/slider';
-import { PayInfoComponent } from './pay-info/pay-info.component';
-import {Moment} from 'moment';
+import {PayInfoComponent} from './pay-info/pay-info.component';
+import {ViewPayComponent} from '../../view-pay/view-pay.component';
+import {QRCodeModule} from 'angularx-qrcode';
+
 @NgModule({
     declarations: [
         DashboardLayoutComponent,
@@ -60,6 +56,7 @@ import {Moment} from 'moment';
         HotelDetailsComponent,
         PayInfoComponent,
         UpgradeComponent
+        ViewPayComponent
         // add các component của trang người dùng vào đây
     ],
     imports: [
@@ -95,6 +92,8 @@ import {Moment} from 'moment';
         MatAutocompleteModule,
         MatProgressSpinnerModule,
         MatSliderModule,
+        QRCodeModule,
+
     ],
     providers: [],
     entryComponents: [ChooseRoomTypeDialogComponent],

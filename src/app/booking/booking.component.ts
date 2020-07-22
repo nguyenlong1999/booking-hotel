@@ -151,27 +151,23 @@ export class BookingComponent implements OnInit {
         this.updateStatusObject.actionName = actionName
         this.hotelService.updateStatusBook(this.updateStatusObject).subscribe(async res => {
             if (res.body['status'] === 200) {
-               // console.log(res)
-                console.log(res.body['book'].email)
-                let objUse = ''
-                await this.userService.testEmail(res.body['book'].email).subscribe(use => {
-                   objUse = use.body['user']._id
-                    console.log(objUse + 'hehe')
-                })
-                // tslint:disable-next-line:no-unused-expression
-                await this.messageObject.objectId === objUse;
-                console.log(objUse + 'hahaha')
-                this.messageObject.message = res.body['message']['content'];
-                console.log(this.messageObject)
-
-                // this.message = res.body['messageAdmin']['content'];
-                // this.chatService.showNotification('success', this.message);
-                // this.chatService.sendNotification(this.messageObject);
-                setTimeout(() => {
-                    this.message = '';
-                    // window.location.reload();
-                    this.chatService.identifyUser();
-                }, 1500);
+                await this.userService.testEmail(res.body['book'].email).subscribe(
+                    use => {
+                        let user = use.body['user'];
+                        if (user !== undefined) {
+                            this.messageObject.objectId = use.body['user']._id
+                        }
+                        this.messageObject.message = res.body['message']['content'];
+                        console.log(this.messageObject)
+                        this.message = res.body['messageAdmin']['content'];
+                        this.chatService.showNotification('success', this.message);
+                        this.chatService.sendNotification(this.messageObject);
+                        setTimeout(() => {
+                            this.message = '';
+                            // window.location.reload();
+                            this.chatService.identifyUser();
+                        }, 1500);
+                    })
             } else {
                 this.chatService.showNotification('warning', res.body['message']);
             }

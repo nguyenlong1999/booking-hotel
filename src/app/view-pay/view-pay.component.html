@@ -1,0 +1,11 @@
+<div class="text-center d-flex align-items-center justify-content-center mt-5">
+    <div class="geeks" style="margin-top: 3%">
+        <h1 class="dep">Thanh toán hóa đơn của bạn</h1>
+        <h3>Số tiền: {{this.amount}} </h3>
+        <a (click)="openPayMent()">Thanh toán trực tuyến</a>
+        <qrcode [qrdata]="'Chúc mừng bạn thanh toán thành công: '+this.amount" [width]="256"
+                [errorCorrectionLevel]="'M'"></qrcode>
+        <button type="button" class="btn btn-primary btn-sm w-25">Thanh toán</button>
+        <button type="button" class="btn btn-secondary btn-sm w-25">Từ chối</button>
+    </div>
+</div>
