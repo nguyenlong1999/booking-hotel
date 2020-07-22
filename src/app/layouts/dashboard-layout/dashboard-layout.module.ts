@@ -39,6 +39,7 @@ import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
 import {MatSliderModule} from '@angular/material/slider';
 import {PayInfoComponent} from './pay-info/pay-info.component';
 import {ViewPayComponent} from '../../view-pay/view-pay.component';
+import {QRCodeModule} from 'angularx-qrcode';
 
 @NgModule({
     declarations: [
@@ -89,6 +90,7 @@ import {ViewPayComponent} from '../../view-pay/view-pay.component';
         MatAutocompleteModule,
         MatProgressSpinnerModule,
         MatSliderModule,
+        QRCodeModule,
 
     ],
     providers: [],

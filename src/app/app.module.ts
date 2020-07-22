@@ -30,6 +30,7 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import {NgxGalleryModule} from '@kolkov/ngx-gallery';
 import { ViewPayComponent } from './view-pay/view-pay.component';
+import {QRCodeModule} from 'angularx-qrcode';
 
 const config: SocketIoConfig = {url: AppSetting.BASE_SERVER_URL, options: {}};
 
@@ -56,6 +57,7 @@ const config: SocketIoConfig = {url: AppSetting.BASE_SERVER_URL, options: {}};
         MatSelectModule,
         MatTooltipModule,
         NgxGalleryModule,
+        QRCodeModule,
         ToastrModule.forRoot(),
         AgmCoreModule.forRoot({
             apiKey: 'AIzaSyDbIf1-IDfQ0DGaOvAfu5lNZ0bZm0VaisM',
