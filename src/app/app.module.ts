@@ -29,6 +29,7 @@ import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import {NgxGalleryModule} from '@kolkov/ngx-gallery';
+import { ViewPayComponent } from './view-pay/view-pay.component';
 
 const config: SocketIoConfig = {url: AppSetting.BASE_SERVER_URL, options: {}};
 

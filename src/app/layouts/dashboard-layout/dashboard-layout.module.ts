@@ -28,13 +28,7 @@ import {WelcomeComponent} from '../../welcome/welcome.component';
 import {UserEditComponent} from './user-edit/user-edit.component';
 import {ForgetPasswordComponent} from '../../forget-password/forget-password.component';
 
-import {
-    DateAdapter,
-    MAT_DATE_FORMATS,
-    MAT_DATE_LOCALE,
-    SatDatepickerModule,
-    SatNativeDateModule
-} from 'saturn-datepicker';
+import {SatDatepickerModule, SatNativeDateModule} from 'saturn-datepicker';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {FindHotelComponent} from './find-hotel/find-hotel.component';
@@ -43,8 +37,9 @@ import {NgxGalleryModule} from '@kolkov/ngx-gallery';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
 import {MatSliderModule} from '@angular/material/slider';
-import { PayInfoComponent } from './pay-info/pay-info.component';
-import {Moment} from 'moment';
+import {PayInfoComponent} from './pay-info/pay-info.component';
+import {ViewPayComponent} from '../../view-pay/view-pay.component';
+
 @NgModule({
     declarations: [
         DashboardLayoutComponent,
@@ -58,6 +53,7 @@ import {Moment} from 'moment';
         FindHotelComponent,
         HotelDetailsComponent,
         PayInfoComponent,
+        ViewPayComponent
         // add các component của trang người dùng vào đây
     ],
     imports: [
@@ -93,6 +89,7 @@ import {Moment} from 'moment';
         MatAutocompleteModule,
         MatProgressSpinnerModule,
         MatSliderModule,
+
     ],
     providers: [],
     entryComponents: [ChooseRoomTypeDialogComponent],
