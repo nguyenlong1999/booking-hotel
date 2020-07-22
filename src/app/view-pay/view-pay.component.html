@@ -1,1 +1,12 @@
-<p>view-pay works!</p>
+<div class="text-center d-flex align-items-center justify-content-center mt-5" >
+    <div class="geeks" style="margin-top: 3%">
+        <h1 class="dep">Thanh toán hóa đơn của bạn</h1>
+        <h3>Số tiền: {{this.amount}} </h3>
+        <a (click)="openPayMent()"> Thanh toán trực tuyến</a>
+        <div fxFlex fxLayoutAlign="center center" style="height: 100%; width: 100%" [innerHTML]="html"></div>
+        <!--        <a routerLink="/index" title="Chào mừng bạn đến với website Đặt phòng">-->
+<!--            <img src="assets/img/wallpaper2you_259268.jpg" alt="Welcome"/>-->
+<!--            <span class="span dep">Welcome to booking.hotel.2020.com</span>-->
+<!--        </a>-->
+    </div>
+</div>
