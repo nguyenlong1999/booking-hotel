@@ -135,8 +135,6 @@ export class DashboardLayoutComponent implements OnInit {
         this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
         this.router.events.subscribe((event) => {
             // this.sidebarClose();
-            console.log('hehehehe');
-            console.log(event)
             var $layer: any = document.getElementsByClassName('close-layer')[0];
             if ($layer) {
                 $layer.remove();

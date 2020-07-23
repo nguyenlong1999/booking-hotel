@@ -155,7 +155,16 @@ export class FindHotelComponent implements OnInit {
     }
 
     getHotels() {
-        this.searchText = JSON.parse(this.cookie.get('searchText'));
+        if (this.cookie.get('searchText')) {
+            this.searchText = JSON.parse(this.cookie.get('searchText'));
+        } else {
+            this.searchText = {
+                address: '',
+                roomCount: 1,
+                childrenCount: 1,
+                personCount: 1
+            }
+        }
         console.log(this.searchText)
         this.searchOption.nameSpace = this.searchText.address;
         this.searchOption.roomCount = this.searchText.roomCount;
@@ -248,6 +257,7 @@ export class FindHotelComponent implements OnInit {
     formatNumber(num) {
         return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
     }
+
     @HostListener('window:scroll', ['$event'])
     onWindowScroll() {
         // console.log(window.scrollY);

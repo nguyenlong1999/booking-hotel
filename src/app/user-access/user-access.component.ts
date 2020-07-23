@@ -238,7 +238,7 @@ export class UserAccessComponent implements OnInit {
                         }
                         setTimeout(() => {
                             this.message = '';
-                            this.route.navigateByUrl('/dashboard', {skipLocationChange: true}).then(() => {
+                            this.route.navigateByUrl('/', {skipLocationChange: true}).then(() => {
                                 this.route.navigate(['/users']);
                             });
                         }, 1500);
@@ -281,7 +281,7 @@ export class UserAccessComponent implements OnInit {
                         this.chatService.showNotification('success', this.message);
                         setTimeout(() => {
                             this.message = '';
-                            this.route.navigateByUrl('/dashboard', {skipLocationChange: true}).then(() => {
+                            this.route.navigateByUrl('/', {skipLocationChange: true}).then(() => {
                                 this.route.navigate(['/users']);
                             });
                         }, 1000);
@@ -325,7 +325,7 @@ export class UserAccessComponent implements OnInit {
                         this.chatService.showNotification('success', this.message);
                         setTimeout(() => {
                             this.message = '';
-                            this.route.navigateByUrl('/dashboard', {skipLocationChange: true}).then(() => {
+                            this.route.navigateByUrl('/', {skipLocationChange: true}).then(() => {
                                 this.route.navigate(['/users']);
                             });
                         }, 1000);
