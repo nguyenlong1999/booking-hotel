@@ -60,6 +60,11 @@ export class BookingComponent implements OnInit {
         message: ''
     }
 
+    messageObjectUpdate = {
+        objectId: '',
+        message: ''
+    }
+
     constructor(
         private hotelService: HotelService,
         private route: Router,
@@ -185,17 +190,26 @@ export class BookingComponent implements OnInit {
         this.updateStatusObject.actionName = actionName
         this.hotelService.updateStatusBook(this.updateStatusObject).subscribe(async res => {
             if (res.body['status'] === 200) {
+                console.log(res)
                 await this.userService.testEmail(res.body['book'].email).subscribe(
                     use => {
                         let user = use.body['user'];
                         if (user !== undefined) {
                             this.messageObject.objectId = use.body['user']._id
                         }
+                        // cho thằng use sử dụng mail khác
+                        this.messageObjectUpdate.objectId = res.body['book'].userUpdateId;
+                        this.messageObjectUpdate.message = res.body['messageUseUpadte']['content'];
+                        console.log(this.messageObjectUpdate)
                         this.messageObject.message = res.body['message']['content'];
-                        console.log(this.messageObject)
                         this.message = res.body['messageAdmin']['content'];
                         this.chatService.showNotification('success', this.message);
-                        this.chatService.sendNotification(this.messageObject);
+                        this.chatService.sendNotification(this.messageObject); // send tới thằng đã có mail
+                        console.log(this.messageObject)
+                        if (this.messageObjectUpdate.objectId != null && this.messageObjectUpdate.objectId !== '') {
+                            this.chatService.sendNotification(this.messageObjectUpdate);
+                            console.log(this.messageObjectUpdate)
+                        }
                         setTimeout(() => {
                             this.message = '';
                             this.route.navigateByUrl('/', {skipLocationChange: true}).then(() => {
@@ -219,17 +233,6 @@ export class BookingComponent implements OnInit {
             this.actionObject.actionName = 'Từ chối';
             this.message = 'Xác nhận khách sạn của bạn hết phòng?';
         }
-        // else if (actionValue === 2 && hotel.isBlock === 1) {
-        //     this.message = 'Bạn muốn khóa khách sạn này?';
-        //     this.actionObject.actionName = 'Khóa';
-        // } else if (actionValue === 3 && hotel.isBlock === 0) {
-        //     this.message = 'Bạn muốn mở khóa khách sạn này?';
-        //     this.actionObject.actionName = 'Mở khóa';
-        // }
-        // else if (hotel.user.role === 'Admin') {
-        //     this.message = 'Bạn không có quyền khóa, thay đổi quyền của tài khoản ADMIN';
-        //     this.actionObject.actionName = 'ADMIN';
-        // }
         console.log(this.message + 'xxxxxx')
         console.log(this.actionObject)
         const dialogRef = this.dialog.open(BookingDialogComponent, {
