@@ -64,7 +64,8 @@
 
             </div>
             <div class="col-2 pt-3 pl-0" style="margin: auto">
-                <button type="button" class="btn btn-info w-100">Hủy phòng</button>
+                <button type="button" *ngIf="i.status != -1 &&
+                 i.status != -2 " class="btn btn-info w-100" (click)="cancelRoom(i)">Hủy phòng</button>
                 <br>
                 <button type="button" *ngIf="i.status==1" class="btn btn-light w-100" (click)="pay(i)">Thanh toán</button>
             </div>

@@ -8,10 +8,9 @@ import {CookieService} from 'ngx-cookie-service';
 import {ChatService} from '../../../shared/service/chat.service';
 import {UserService} from '../../../shared/service/user.service.';
 import {AppSetting} from '../../../appsetting';
+import {DialogData} from '../../../user-access/user-access.component';
 // @ts-ignore
 import moment = require('moment');
-import {DialogData} from '../../../user-access/user-access.component';
-import {BookingDialogComponent} from '../../../booking/booking.component';
 
 @Component({
     selector: 'app-history-book',
@@ -100,6 +99,44 @@ export class HistoryBookComponent implements OnInit {
     }
 
     ngOnInit(): void {
+    }
+
+    cancelRoom(book) {
+        console.log(book)
+        if (book.status == 0 || book.status == 1) { // cấm sửa ===
+            console.log(book.status)
+            this.updateStatusObject.actionName = 'Hủy phòng'
+            this.updateStatusObject.idBooking = book._id
+            console.log(this.updateStatusObject)
+            console.log('Hủy phòng nè')
+            this._hotelService.updateStatusBook(this.updateStatusObject).subscribe(async res => {
+                console.log('hủy đi còn gì nữa')
+                if (res.body['status'] === 200) {
+                    await this.userService.testEmail(res.body['hotelUSe']).subscribe(
+                        use => {
+                            console.log(res);
+                            let user = use.body['user'];
+                            if (user !== undefined) {
+                                this.messageObject.objectId = use.body['user']._id
+                            }
+                            this.messageObject.message = res.body['messageAdmin']['content'];
+                            this.message = res.body['message']['content'];
+                            this.chatService.showNotification('success', this.message);
+                            this.chatService.sendNotification(this.messageObject);
+                            console.log(this.messageObject.message)
+                            setTimeout(() => {
+                                this.message = '';
+                                this.chatService.identifyUser();
+                                // this.router.navigate(['/index'])
+                            }, 1500);
+                        })
+                } else {
+                    this.chatService.showNotification('warning', res.body['message']);
+                }
+            })
+        } else {
+            
+        }
     }
 
     pay(book) {
