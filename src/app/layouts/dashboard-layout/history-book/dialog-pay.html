@@ -1,0 +1,12 @@
+<div mat-dialog-title><h4>Thanh toán hóa đơn</h4></div>
+<div class="text-center d-flex align-items-center justify-content-center mt-5">
+    <div class="geeks">
+        <h3>Số tiền: {{this.amount}} </h3>
+        <a (click)="openPayMent()">Thanh toán trực tuyến</a>
+        <qrcode [qrdata]="'Chúc mừng bạn thanh toán thành công: '+this.amount" [width]="256"
+                [errorCorrectionLevel]="'M'"></qrcode>
+        <button type="button" class="btn btn-primary btn-sm w-100" [mat-dialog-close]="this.pay">Thanh toán</button>
+        <button type="button" class="btn btn-secondary btn-sm w-100" (click)="onNoClick()">Từ chối</button>
+    </div>
+</div>
+
