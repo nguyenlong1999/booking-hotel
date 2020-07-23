@@ -15,6 +15,7 @@ import {HotelDialogComponent} from '../hotel-component/hotel-component.component
 import {DialogData} from '../user-access/user-access.component';
 import {Hotel} from '../shared/model/hotel';
 import {UserService} from '../shared/service/user.service.';
+import {equal} from 'assert';
 
 export interface PeriodicElement {
     name: string;
@@ -206,8 +207,8 @@ export class BookingComponent implements OnInit {
                         this.message = res.body['messageAdmin']['content'];
                         this.chatService.showNotification('success', this.message);
                         this.chatService.sendNotification(this.messageObject); // send tới thằng đã có mail
-                        console.log(this.messageObject)
-                        if (this.messageObjectUpdate.objectId != null && this.messageObjectUpdate.objectId !== '') {
+                        if (this.messageObjectUpdate.objectId != null && this.messageObjectUpdate.objectId !== ''
+                            && this.messageObjectUpdate.objectId !== this.messageObject.objectId) {
                             this.chatService.sendNotification(this.messageObjectUpdate);
                             console.log(this.messageObjectUpdate)
                         }
