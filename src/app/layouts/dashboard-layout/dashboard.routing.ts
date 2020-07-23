@@ -12,6 +12,8 @@ import {PayInfoComponent} from './pay-info/pay-info.component';
 import {UpgradeComponent} from '../../upgrade/upgrade.component';
 import {ViewPayComponent} from '../../view-pay/view-pay.component';
 import {HistoryBookComponent} from './history-book/history-book.component';
+import {RuleComponent} from '../../rule/rule.component';
+import {PolicyComponent} from '../../policy/policy.component';
 
 export const DashBoardRoutes: Routes = [
 
@@ -70,81 +72,17 @@ export const DashBoardRoutes: Routes = [
               component: UpgradeComponent
             },
             {
+                path: 'rule',
+                component: RuleComponent
+            },
+            {
+                path: 'policy',
+                component: PolicyComponent
+            },
+            {
                 path: 'history-book',
                 component: HistoryBookComponent
             }
-            /* {
-                path: 'about',
-                component: UpgradeComponent
-            },
-            /* {
-              path: 'routing',
-              component: RoutingComponent
-            },
-            {
-              path: 'loginMember',
-              component: LoginComponent
-            },
-            {
-              path: 'combobox',
-              component: ComboBoxComponent
-            },
-            {
-              path: 'detail/:id',
-              component: RecipeDetailComponent
-            },
-            {
-              path: 'recipe',
-              component: RecipeComponent
-            },
-
-            {
-
-              path: 'gallery',
-              component: GalleryComponent
-            }, {
-
-              path: 'user/info/:id',
-              component: UserinforComponent
-            },
-            {
-              path: 'member/info/:id',
-              component: MemberinforComponent
-            },
-            {
-              path: 'personal/recipe/:id',
-              component: MyrecipeComponent
-            },
-            {
-              path: 'galleryDetail/:id',
-              component: GalleryDetailComponent
-            },
-            {
-              path: 'quydinh',
-              component: QuyDinhComponent
-            }
-            ,
-            {
-              path: 'chinhsachbaomat',
-              component: ChinhSachBaoMatComponent
-            },
-            {
-              path: 'chinhsachdiem',
-              component: ChinhsachdiemComponent
-            },
-            {
-              path: 'gioithieu',
-              component: ServiceComponent
-            }
-            ,
-            {
-              path: 'register',
-              component: RegisterComponent
-            },
-            {
-              path: 'myGallery',
-              component: MygalleryComponent
-            }*/
         ]
     }
 ];

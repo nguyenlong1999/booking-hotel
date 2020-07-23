@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./upgrade.component.css']
 })
 export class UpgradeComponent implements OnInit {
-
+  URL = 'Booking Hotel'
   constructor() { }
 
   ngOnInit() {

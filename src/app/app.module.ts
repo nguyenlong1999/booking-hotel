@@ -74,7 +74,7 @@ const config: SocketIoConfig = {url: AppSetting.BASE_SERVER_URL, options: {}};
     ],
     declarations: [
         AppComponent,
-        AdminLayoutComponent
+        AdminLayoutComponent,
         // không add các component vào đây
     ],
     schemas: [
