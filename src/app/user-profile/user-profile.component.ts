@@ -6,6 +6,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {FileUploader} from 'ng2-file-upload';
 import {MustMatch} from 'app/shared/helper/must-match-validator';
 import {ChatService} from '../shared/service/chat.service';
+import {Router} from '@angular/router';
 
 // import { ImageUpload } from '../shared/animation/image/image.component';
 
@@ -63,7 +64,8 @@ export class UserProfileComponent implements OnInit {
         private userService: UserService,
         private cookies: CookieService,
         private formBuilder: FormBuilder,
-        private chatService: ChatService
+        private chatService: ChatService,
+        private route: Router,
     ) {
         this.profileForm = this.formBuilder.group({
             id: [''],
@@ -166,7 +168,9 @@ export class UserProfileComponent implements OnInit {
                 this.chatService.showNotification('success', this.message);
                 setTimeout(() => {
                     this.message = '';
-                    window.location.reload();
+                    this.route.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+                        this.route.navigate(['/user-profile']);
+                    });
                 }, 1500);
             } else {
                 this.chatService.showNotification('warning', user.body['message']);

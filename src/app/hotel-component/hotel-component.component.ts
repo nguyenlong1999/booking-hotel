@@ -53,11 +53,11 @@ export class HotelComponentComponent implements OnInit {
     displayedColumns = ['id', 'user', 'name', 'address', 'starHotel', 'sqm', 'totalRoom', 'status', 'active', 'block', 'add'];
     selectListApproval: string[] = ['Chưa duyệt', 'Hoạt động', 'Đã khóa'];
     selectListStarhotel: any[] = [
-        {title: '1 sao', value: 1},
-        {title: '2 sao', value: 2},
-        {title: '3 sao', value: 3},
+        {title: '5 sao', value: 5},
         {title: '4 sao', value: 4},
-        {title: '5 sao', value: 5}
+        {title: '3 sao', value: 3},
+        {title: '2 sao', value: 2},
+        {title: '1 sao', value: 1}
     ];
 
     readonly formControl: AbstractControl;
