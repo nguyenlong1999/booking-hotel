@@ -17,4 +17,7 @@ export class Booking {
     roomType: string;
     fromDate: string;
     toDate: string;
+    ImgHotel: string;
+    address: string;
+    policiesCancelRom: number;
 }
