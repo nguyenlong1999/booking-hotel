@@ -35,6 +35,7 @@
       "history": "History Book",
       "hello": "Hello you: ",
       "pageAdmin": "Admin page",
+      "pageClient": "Client page",
       "account": "Account Information",
       "username": "User name",
       "phone": "Phone",
@@ -127,7 +128,8 @@
 
     "accept": "Accept",
     "refuse": "Refuse",
-
+    "view": "View",
+    "viewDetail": "View detail",
     "fromDate": "From Date",
     "toDate": "To Date",
     "requiredEmail": "Wrong email format",
@@ -166,7 +168,9 @@
     "book28": "Check-out date:",
     "book29": "Room category:",
     "book30": "Amount:",
-    "book31": "Room"
+    "book31": "Room",
+    "book32": "Total nights",
+    "book33": "User name"
   },
   "dialog": {
     "infoRoom": "Room information",

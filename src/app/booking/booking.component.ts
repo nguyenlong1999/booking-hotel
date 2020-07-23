@@ -123,6 +123,14 @@ export class BookingComponent implements OnInit {
                 })
                 item.fromDate = new Date(moment(JSON.stringify(item.date.begin).split('"')[1]).format('MM/DD/YYYY')).toLocaleDateString()
                 item.toDate = new Date(moment(JSON.stringify(item.date.end).split('"')[1]).format('MM/DD/YYYY')).toLocaleDateString()
+                const oneDay = 24 * 60 * 60 * 1000;
+                const fromD = item.fromDate.split('/');
+                const toD = item.toDate.split('/');
+                const firstDate = new Date(Number(fromD[2]), Number(fromD[1]), Number(fromD[0]));
+                const secondDate = new Date(Number(toD[2]), Number(toD[1]), Number(toD[0]));
+                // @ts-ignore
+                item.totalNight = Math.round(Math.abs((firstDate - secondDate) / oneDay));
+                item.totalNight = item.totalNight === 0 ? 1 : item.totalNight
                 if (item.status === '0') {
                     item.status = 'Chờ phản hồi';
                 } else if (item.status === '1') {
@@ -301,5 +309,11 @@ export class ViewBookingDialogComponent {
 
     onNoClick(): void {
         this.dialogRef.close();
+    }
+
+    formatNumber(num) {
+        if (num) {
+            return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+        }
     }
 }

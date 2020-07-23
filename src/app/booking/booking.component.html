@@ -131,9 +131,9 @@
                                     <mat-cell *matCellDef="let row">
                                         <button mat-icon-button
                                                 style="color: green"
-                                                title="Xem chi tiết"
+                                                [title]="'book.viewDetail' | translate"
                                                 (click)="openDialogView(row)">
-                                            Xem
+                                            {{"book.view" | translate}}
                                         </button>
                                     </mat-cell>
                             </ng-container>
