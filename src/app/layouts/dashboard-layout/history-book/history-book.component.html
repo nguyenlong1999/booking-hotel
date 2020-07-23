@@ -63,12 +63,10 @@
             </span>
 
             </div>
-            <div class="col-2 pt-3 pl-0">
-                <span>Sự kiện</span>
-                <br>
+            <div class="col-2 pt-3 pl-0" style="margin: auto">
                 <button type="button" class="btn btn-info w-100">Hủy phòng</button>
                 <br>
-                <button type="button" *ngIf="i.status==1" class="btn btn-light w-100">Thanh toán</button>
+                <button type="button" *ngIf="i.status==1" class="btn btn-light w-100" (click)="pay(i)">Thanh toán</button>
             </div>
         </div>
     </div>

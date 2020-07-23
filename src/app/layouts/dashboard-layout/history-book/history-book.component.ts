@@ -86,4 +86,11 @@ export class HistoryBookComponent implements OnInit {
     ngOnInit(): void {
     }
 
+    pay(book) {
+        console.log('thanh toán nè')
+        console.log(book)
+        const money = book.totalMoney.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') + 'VND'
+        this.route.navigate(['/pay/' + book._id + '#' + money]);
+    }
+
 }
