@@ -18,12 +18,12 @@
                                                [placeholder]="'book.book26' | translate">
                                     </mat-form-field>
                                 </div>
-<!--                                <div class="col-lg-4">-->
-<!--                                    <mat-form-field>-->
-<!--                                        <input matInput formControlName="address"-->
-<!--                                               [placeholder]="'common.user.searchAdd' | translate">-->
-<!--                                    </mat-form-field>-->
-<!--                                </div>-->
+                                <!--                                <div class="col-lg-4">-->
+                                <!--                                    <mat-form-field>-->
+                                <!--                                        <input matInput formControlName="address"-->
+                                <!--                                               [placeholder]="'common.user.searchAdd' | translate">-->
+                                <!--                                    </mat-form-field>-->
+                                <!--                                </div>-->
                             </div>
                             <div class="row">
                                 <div class="col-lg-3">
@@ -62,7 +62,7 @@
                             <ng-container matColumnDef="name">
                                 <mat-header-cell *matHeaderCellDef
                                                  mat-sort-header>{{"hotelRegister.hotelName" | translate}}</mat-header-cell>
-                                <mat-cell *matCellDef="let row"> {{row.name}}</mat-cell>
+                                <mat-cell *matCellDef="let row"> {{row.nameHotel}}</mat-cell>
                             </ng-container>
 
                             <ng-container matColumnDef="roomType">
@@ -123,6 +123,19 @@
                                         Từ chối
                                     </button>
                                 </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="view">
+                                <mat-header-cell *matHeaderCellDef
+                                                 mat-sort-header></mat-header-cell>
+                                    <mat-cell *matCellDef="let row">
+                                        <button mat-icon-button
+                                                style="color: green"
+                                                title="Xem chi tiết"
+                                                (click)="openDialogView(row)">
+                                            Xem
+                                        </button>
+                                    </mat-cell>
                             </ng-container>
 
                             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

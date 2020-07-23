@@ -3,10 +3,12 @@
     "login": "Login",
     "logOut": "Logout",
     "button": {
+      "ok": "Ok",
       "back": "Previos",
       "next": "Next",
       "cancel": "Cancel",
-      "systemNotification": "System notification"
+      "systemNotification": "System notification",
+      "titleBookingView": "Booking details"
     },
     "userRegister": {
       "username": "User name",
@@ -159,7 +161,7 @@
     "book23": "by Booking-hotel.com",
     "book24": "Pay",
     "book25": "Check room information",
-    "book26": "Number of nights:",
+    "book26": "Number of rooms:",
     "book27": "Check-in date:",
     "book28": "Check-out date:",
     "book29": "Room category:",

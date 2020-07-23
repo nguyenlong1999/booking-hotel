@@ -3,10 +3,12 @@
     "logIn": "Đăng nhập",
     "logOut": "Đăng xuất",
     "button": {
+      "ok": "Ok",
       "back": "Trở về",
       "next": "Tiếp theo",
       "cancel": "Hủy",
-      "systemNotification": "Thông báo hệ thống"
+      "systemNotification": "Thông báo hệ thống",
+      "titleBookingView": "Chi tiết đặt phòng"
     },
     "userRegister": {
       "username": "Tên người dùng",
@@ -158,7 +160,7 @@
     "book23": "của Booking-hotel.com",
     "book24": "Thanh toán",
     "book25": "Kiểm tra thông tin phòng",
-    "book26": "Số đêm nghỉ:",
+    "book26": "Số lượng phòng:",
     "book27": "Ngày nhận phòng:",
     "book28": "Ngày trả phòng:",
     "book29": "Hạng phòng:",

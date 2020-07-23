@@ -17,7 +17,7 @@ import {MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule} from '@angular/mater
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSelectModule} from '@angular/material/select';
 import {HotelComponentComponent, HotelDialogComponent} from '../../hotel-component/hotel-component.component';
-import {BookingComponent, BookingDialogComponent} from '../../booking/booking.component';
+import {BookingComponent, BookingDialogComponent, ViewBookingDialogComponent} from '../../booking/booking.component';
 import {HotelAccessComponent} from '../../hotel-access/hotel-access.component';
 import {UserAccessComponent, UserRoleDialog} from '../../user-access/user-access.component';
 import {LoginComponent} from './login/login.component';
@@ -92,13 +92,14 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
         UserRoleDialog,
         HotelUserComponent,
         EditUserAdminComponent,
-        BookingDialogComponent
+        BookingDialogComponent,
+        ViewBookingDialogComponent
         // add các component trang admin vào đây
     ],
     schemas: [
         CUSTOM_ELEMENTS_SCHEMA
     ],
-    entryComponents: [UserAccessComponent, UserRoleDialog, HotelComponentComponent, HotelDialogComponent],
+    entryComponents: [UserAccessComponent, UserRoleDialog, HotelComponentComponent, HotelDialogComponent, ViewBookingDialogComponent],
     bootstrap: [UserAccessComponent],
     providers: [
       { provide: MatFormFieldModule, useValue: { appearance: 'fill' } }

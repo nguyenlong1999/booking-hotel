@@ -1,0 +1,46 @@
+<div mat-dialog-title><h4>{{ "common.button.titleBookingView" | translate }}</h4></div>
+<div mat-dialog-content>
+    <div class="row">
+        <div class="col-lg-6">
+            <p>Tên người đặt: <strong>{{data.action.name}}</strong></p>
+        </div>
+        <div class="col-lg-6">
+            <p>Email: <strong>{{data.action.email}}</strong></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <p>Số điện thoại: <strong>{{data.action.phone}}</strong></p>
+        </div>
+        <div class="col-lg-6">
+            <p>Tên khách sạn: <strong>{{data.action.nameHotel}}</strong></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <p>Loại phòng: <strong>{{data.action.roomType}}</strong></p>
+        </div>
+        <div class="col-lg-6">
+            <p>Số lượng phòng: <strong>{{data.action.totalAmountRoom}}</strong></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <p>Số lượng người: <strong>{{data.action.phone}}</strong></p>
+        </div>
+        <div class="col-lg-6">
+            <p>Số đêm: <strong>{{data.action.phone}}</strong></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <p>Tổng số tiền: <strong>{{data.action.totalMoney}}</strong></p>
+        </div>
+        <div class="col-lg-6">
+            <p>Trạng thái: <strong>{{data.action.status}}</strong></p>
+        </div>
+    </div>
+</div>
+<div mat-dialog-actions style="position: relative; margin: 0; float: right; ">
+    <button class="btn btn-outline-secondary" mat-raised-button (click)="onNoClick()">{{"common.button.ok" | translate}}</button>
+</div>

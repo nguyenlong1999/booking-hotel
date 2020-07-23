@@ -22,6 +22,7 @@ export interface PeriodicElement {
     status: string;
     roomType: any;
 }
+
 @Component({
     selector: 'app-booking',
     templateUrl: './booking.component.html',
@@ -40,7 +41,7 @@ export class BookingComponent implements OnInit {
     dataSource: MatTableDataSource<Booking>;
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
-    displayedColumns = ['id', 'name', 'roomType', 'fromDate', 'toDate', 'totalAmountRoom', 'status', 'accept', 'refuse'];
+    displayedColumns = ['id', 'name', 'roomType', 'fromDate', 'toDate', 'totalAmountRoom', 'status', 'accept', 'refuse', 'view'];
     booking: Booking[] = [];
     hotel: any;
     actionObject = {
@@ -88,7 +89,7 @@ export class BookingComponent implements OnInit {
             this.booking = booking;
             for (const item of this.booking) {
                 this.hotelService.getHotelById(item.hotelNameSpace).subscribe(hotel => {
-                    item.name = hotel[0][0].hotelObj.name
+                    item.nameHotel = hotel[0][0].hotelObj.name
                     this.hotel = hotel
                     for (const i of hotel[1][0]) {
                         if (i._id === item.roomDetailID) {
@@ -252,6 +253,19 @@ export class BookingComponent implements OnInit {
             }
         });
     }
+
+    openDialogView(booking: any) {
+        console.log(booking);
+        const dialogRef = this.dialog.open(ViewBookingDialogComponent, {
+            width: '800px',
+            data: {
+                action: booking
+            }
+        })
+        dialogRef.afterClosed().subscribe(result => {
+            console.log('hehe');
+        });
+    }
 }
 
 
@@ -272,3 +286,19 @@ export class BookingDialogComponent {
     }
 }
 
+@Component({
+    selector: 'app-dialog-booking-view',
+    templateUrl: 'dialog-booking-view.html',
+    styleUrls: ['./booking.component.css']
+})
+export class ViewBookingDialogComponent {
+    constructor(
+        public dialogRef: MatDialogRef<ViewBookingDialogComponent>,
+        @Inject(MAT_DIALOG_DATA) public data: DialogData
+    ) {
+    }
+
+    onNoClick(): void {
+        this.dialogRef.close();
+    }
+}
