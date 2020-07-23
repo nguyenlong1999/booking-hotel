@@ -189,6 +189,8 @@ export class PayInfoComponent implements OnInit {
     }
 
     formatNumber(num) {
-        return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+        if (num) {
+            return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+        }
     }
 }
