@@ -40,8 +40,8 @@ export class PayInfoComponent implements OnInit {
     hotelNameSpace: string
     objIdHotel: string
     objUserHotel: string
-
-    errorMessage: String;
+    objIDUserUpdate: string
+    errorMessage: string;
     successMessage = '';
     messageObject = {
         objectId: '',
@@ -80,6 +80,7 @@ export class PayInfoComponent implements OnInit {
             totalMoney: [''],
             hotelUser: [''],
             hotelObjId: [''],
+            userUpdateId: [''],
             status: 0 // 0 book -1 không còn 1 còn 2 đã thanh toán
 
         });
@@ -101,6 +102,8 @@ export class PayInfoComponent implements OnInit {
         const idObject = paramReq[0]
         this.roomID = paramReq[1]
         this.hotelNameSpace = paramReq[0]
+        const idUser = this.cookies.get('ObjectId'); // get current login
+        this.objIDUserUpdate = idUser
         this._hotelService.getHotelById(idObject).subscribe(data => {
             const result = data;
             console.log(result)
@@ -138,7 +141,7 @@ export class PayInfoComponent implements OnInit {
             radio.click();
             return
         }
-
+        this.formBooking.get('userUpdateId').setValue(this.objIDUserUpdate)
         this.formBooking.get('totalMoney').setValue(this.currentRoom.price * this.dayBooking * this.convertNumber(this.numberAmountRoom))
         this.formBooking.get('roomDetailID').setValue(this.roomID)
         this.formBooking.get('hotelObjId').setValue(this.objIdHotel)

@@ -30,6 +30,7 @@
       "user.register.checkInfo": "Bạn hãy kiểm tra lại thông tin!"
     },
     "user": {
+      "history": "Lịch sử đặt phòng",
       "hello": "Xin chào bạn: ",
       "pageAdmin": "Trang quản trị",
       "account": "Thông tin tài khoản",

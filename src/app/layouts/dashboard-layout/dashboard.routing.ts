@@ -11,6 +11,7 @@ import {HotelDetailsComponent} from './hotel-details/hotel-details.component';
 import {PayInfoComponent} from './pay-info/pay-info.component';
 import {UpgradeComponent} from '../../upgrade/upgrade.component';
 import {ViewPayComponent} from '../../view-pay/view-pay.component';
+import {HistoryBookComponent} from './history-book/history-book.component';
 
 export const DashBoardRoutes: Routes = [
 
@@ -68,6 +69,10 @@ export const DashBoardRoutes: Routes = [
               path: 'about',
               component: UpgradeComponent
             },
+            {
+                path: 'history-book',
+                component: HistoryBookComponent
+            }
             /* {
                 path: 'about',
                 component: UpgradeComponent

@@ -30,6 +30,7 @@
       "checkInfo": "Please check the information!"
     },
     "user": {
+      "history": "History Book",
       "hello": "Hello you: ",
       "pageAdmin": "Admin page",
       "account": "Account Information",

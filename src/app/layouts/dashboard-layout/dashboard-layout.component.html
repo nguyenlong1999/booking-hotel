@@ -45,6 +45,8 @@
                     <!--                    <a style="margin:0px" class="dropdown-item hover" [routerLink]="['/user-profile/', id]">Quản lý tài khoản</a>-->
                     <a class="dropdown-item hover"
                        [routerLink]="['/user-info']">{{ "common.user.account" | translate }}</a>
+                    <a class="dropdown-item hover"
+                       [routerLink]="['/history-book']">{{ "common.user.history" | translate }}</a>
                     <a class="dropdown-item hover" (click)="logoutUser()">{{ "common.logOut" | translate }}</a>
                 </div>
             </div>
