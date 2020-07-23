@@ -35,6 +35,7 @@
       "history": "Lịch sử đặt phòng",
       "hello": "Xin chào bạn: ",
       "pageAdmin": "Trang quản trị",
+      "pageClient": "Trang người dùng",
       "account": "Thông tin tài khoản",
       "username": "Tên người dùng",
       "phone": "Số điện thoại",
@@ -132,7 +133,8 @@
 
     "accept": "Chấp nhận",
     "refuse": "Từ chối",
-
+    "view": "Xem",
+    "viewDetail": "Xem chi tiết",
     "room": "Đặt phòng",
     "promotion": "Ưu đãi",
     "book1": "Đặt phòng khách sạn",
@@ -165,7 +167,9 @@
     "book28": "Ngày trả phòng:",
     "book29": "Hạng phòng:",
     "book30": "Số lượng:",
-    "book31": "phòng"
+    "book31": "phòng",
+    "book32": "Số đêm",
+    "book33": "Tên người đặt"
   },
   "dialog": {
     "infoRoom": "Thông tin phòng",

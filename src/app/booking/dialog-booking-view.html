@@ -2,42 +2,42 @@
 <div mat-dialog-content>
     <div class="row">
         <div class="col-lg-6">
-            <p>Tên người đặt: <strong>{{data.action.name}}</strong></p>
+            <p>{{"book.book33" | translate}}: <strong>{{data.action.name}}</strong></p>
         </div>
         <div class="col-lg-6">
-            <p>Email: <strong>{{data.action.email}}</strong></p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-6">
-            <p>Số điện thoại: <strong>{{data.action.phone}}</strong></p>
-        </div>
-        <div class="col-lg-6">
-            <p>Tên khách sạn: <strong>{{data.action.nameHotel}}</strong></p>
+            <p>{{"common.user.email" | translate}}: <strong>{{data.action.email}}</strong></p>
         </div>
     </div>
     <div class="row">
         <div class="col-lg-6">
-            <p>Loại phòng: <strong>{{data.action.roomType}}</strong></p>
+            <p>{{"common.user.phone" | translate}}: <strong>{{data.action.phone}}</strong></p>
         </div>
         <div class="col-lg-6">
-            <p>Số lượng phòng: <strong>{{data.action.totalAmountRoom}}</strong></p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-6">
-            <p>Số lượng người: <strong>{{data.action.phone}}</strong></p>
-        </div>
-        <div class="col-lg-6">
-            <p>Số đêm: <strong>{{data.action.phone}}</strong></p>
+            <p>{{"common.hotel.hotelName" | translate}}: <strong>{{data.action.nameHotel}}</strong></p>
         </div>
     </div>
     <div class="row">
         <div class="col-lg-6">
-            <p>Tổng số tiền: <strong>{{data.action.totalMoney}}</strong></p>
+            <p>{{"book.book29" | translate}} <strong>{{data.action.roomType}}</strong></p>
         </div>
         <div class="col-lg-6">
-            <p>Trạng thái: <strong>{{data.action.status}}</strong></p>
+            <p>{{"book.book26" | translate}} <strong>{{data.action.totalAmountRoom}}</strong></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <p>{{"book.book5" | translate}}: <strong>{{data.action.fromDate}} - {{data.action.toDate}}</strong></p>
+        </div>
+        <div class="col-lg-6">
+            <p>{{"book.book32" | translate}}: <strong>{{data.action.totalNight}}</strong></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <p>{{"book.book14" | translate}}: <strong>{{formatNumber(data.action.totalMoney)}} VNĐ</strong></p>
+        </div>
+        <div class="col-lg-6">
+            <p>{{"common.user.status" | translate}}: <strong>{{data.action.status}}</strong></p>
         </div>
     </div>
 </div>
