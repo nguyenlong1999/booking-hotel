@@ -1,0 +1,80 @@
+.mat-column-id {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 3% !important;
+    width: 3% !important;
+    word-break: break-word;
+    padding: 0 0.5% !important;
+}
+
+.mat-column-name {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 15% !important;
+    width: 15% !important;
+    word-break: break-word;
+    padding: 0 0.5% !important;
+}
+
+.mat-column-roomType {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 15% !important;
+    width: 15% !important;
+    word-break: break-word;
+    padding: 0 0.5% !important;
+}
+
+.mat-column-fromDate {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 10% !important;
+    width: 10% !important;
+    word-break: break-word;
+    padding: 0 0.5% !important;
+}
+
+.mat-column-toDate {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 10% !important;
+    width: 10% !important;
+    word-break: break-word;
+    padding: 0 0.5% !important;
+}
+
+.mat-column-totalAmountRoom {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 10% !important;
+    width: 10% !important;
+    word-break: break-word;
+    padding: 0 0.5% !important;
+}
+
+.mat-column-status {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 15% !important;
+    width: 15% !important;
+    word-break: break-word;
+    padding: 0 0.5% !important;
+}
+
+.mat-column-accept {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 10% !important;
+    width: 10% !important;
+    word-break: break-word;
+    padding: 0 0.5% !important;
+}
+
+.mat-column-refuse {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 10% !important;
+    width: 10% !important;
+    word-break: break-word;
+    padding: 0 0.5% !important;
+}

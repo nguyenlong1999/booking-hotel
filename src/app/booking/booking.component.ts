@@ -5,10 +5,10 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {HotelService} from '../shared/service/hotel.service.';
 import {Router} from '@angular/router';
-import {FormBuilder} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {CookieService} from 'ngx-cookie-service';
 import {ChatService} from '../shared/service/chat.service';
+import {AbstractControl, FormBuilder} from '@angular/forms';
 // @ts-ignore
 import moment = require('moment');
 import {HotelDialogComponent} from '../hotel-component/hotel-component.component';
@@ -16,13 +16,27 @@ import {DialogData} from '../user-access/user-access.component';
 import {Hotel} from '../shared/model/hotel';
 import {UserService} from '../shared/service/user.service.';
 
+export interface PeriodicElement {
+    name: string;
+    dayCount: string;
+    status: string;
+    roomType: any;
+}
 @Component({
     selector: 'app-booking',
     templateUrl: './booking.component.html',
     styleUrls: ['./booking.component.css']
 })
 export class BookingComponent implements OnInit {
-
+    readonly formControl: AbstractControl;
+    selectListRoomType: string[] = ['Standard', 'Superior', 'Deluxe', 'Suite', 'Family', 'President', 'Royal'];
+    selectListStatus: any[] = [
+        {title: 'Chờ phản hồi', value: 0},
+        {title: 'Đã chấp nhận', value: 1},
+        {title: 'Đã thanh toán', value: 2},
+        {title: 'Đã từ chối', value: -1},
+        {title: 'Đã hủy', value: -2},
+    ];
     dataSource: MatTableDataSource<Booking>;
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
@@ -40,7 +54,6 @@ export class BookingComponent implements OnInit {
         idBooking: '',
         idUserHotel: ''
     }
-
     errorMessage: String;
     messageObject = {
         objectId: '',
@@ -56,20 +69,27 @@ export class BookingComponent implements OnInit {
         private chatService: ChatService,
         private userService: UserService
     ) {
+        this.formControl = formBuilder.group({
+            name: [''],
+            dayCount: [''],
+            status: [''],
+            roomType: ['']
+        })
         const email = this.cookies.get('email');
         this.hotelService.getBookingByUser(email).subscribe(booking => {
             if (booking === undefined) {
                 return;
             }
             this.booking = booking;
-
-
             for (const item of this.booking) {
                 this.hotelService.getHotelById(item.hotelNameSpace).subscribe(hotel => {
                     item.name = hotel[0][0].hotelObj.name
                     this.hotel = hotel
                     for (const i of hotel[1][0]) {
                         if (i._id === item.roomDetailID) {
+                            if (i.roomType === null) {
+                                item.roomType = 'Standard'
+                            }
                             if (i.roomType === 1) {
                                 item.roomType = 'Standard'
                             }
@@ -96,24 +116,50 @@ export class BookingComponent implements OnInit {
                 })
                 item.fromDate = new Date(moment(JSON.stringify(item.date.begin).split('"')[1]).format('MM/DD/YYYY')).toLocaleDateString()
                 item.toDate = new Date(moment(JSON.stringify(item.date.end).split('"')[1]).format('MM/DD/YYYY')).toLocaleDateString()
-
                 if (item.status === '0') {
                     item.status = 'Chờ phản hồi';
                 } else if (item.status === '1') {
-                    item.status = 'Còn phòng';
+                    item.status = 'Đã chấp nhận';
                 } else if (item.status === '2') {
                     item.status = 'Đã thanh toán';
                 } else if (item.status === '-1') {
+                    item.status = 'Đã từ chối';
+                } else if (item.status === '-2') {
                     item.status = 'Đã hủy';
                 }
             }
+            console.log(this.booking)
             this.dataSource = new MatTableDataSource(this.booking)
             this.dataSource.paginator = this.paginator;
             this.dataSource.sort = this.sort;
+            this.dataSource.filterPredicate = ((data, filter) => {
+                const name = !filter.name || data.name.trim().toLowerCase().includes(filter.name);
+                const dayCount = !filter.dayCount || data.totalAmountRoom === filter.dayCount;
+                const status = !filter.status || data.status === filter.status;
+                const roomType = !filter.roomType || data.roomType === filter.roomType;
+                return name && dayCount && status && roomType;
+            }) as (PeriodicElement, string) => boolean;
+            this.formControl.valueChanges.subscribe(value => {
+                // console.log(value);
+                const filter = {
+                    ...value, name: value.name.trim().toLowerCase(),
+                    // dayCount: value.dayCount.trim().toLowerCase()
+                    // status: value.status.trim().toLowerCase(),
+                    // roomType: value.roomType.trim().toLowerCase()
+                } as string;
+                console.log(filter);
+                this.dataSource.filter = filter;
+            });
         });
     }
 
     ngOnInit(): void {
+    }
+
+    applyFilter(filterValue: string) {
+        filterValue = filterValue.trim(); // Remove whitespace
+        filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+        this.dataSource.filter = filterValue;
     }
 
     openPayMent() {
@@ -152,7 +198,9 @@ export class BookingComponent implements OnInit {
                         this.chatService.sendNotification(this.messageObject);
                         setTimeout(() => {
                             this.message = '';
-                            // window.location.reload();
+                            this.route.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+                                this.route.navigate(['/bookings']);
+                            });
                             this.chatService.identifyUser();
                         }, 1500);
                     })

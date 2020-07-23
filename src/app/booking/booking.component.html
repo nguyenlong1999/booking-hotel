@@ -3,6 +3,54 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card card-plain">
+                    <div class="example-header">
+                        <form [formGroup]="formControl">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <mat-form-field>
+                                        <input matInput formControlName="name"
+                                               [placeholder]="'common.user.searchName' | translate">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-lg-4">
+                                    <mat-form-field>
+                                        <input matInput formControlName="dayCount" type="number"
+                                               [placeholder]="'book.book26' | translate">
+                                    </mat-form-field>
+                                </div>
+<!--                                <div class="col-lg-4">-->
+<!--                                    <mat-form-field>-->
+<!--                                        <input matInput formControlName="address"-->
+<!--                                               [placeholder]="'common.user.searchAdd' | translate">-->
+<!--                                    </mat-form-field>-->
+<!--                                </div>-->
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <mat-form-field appearance="fill">
+                                        <mat-label>{{"common.user.status" | translate}}</mat-label>
+                                        <mat-select formControlName="status">
+                                            <mat-option>{{"common.user.all" | translate}}</mat-option>
+                                            <mat-option *ngFor="let status of selectListStatus" [value]="status.title">
+                                                {{status.title}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-lg-3">
+                                    <mat-form-field appearance="fill">
+                                        <mat-label>{{"book.book29" | translate}}</mat-label>
+                                        <mat-select placeholder="Vai trò" formControlName="roomType">
+                                            <mat-option>{{"common.user.all" | translate}}</mat-option>
+                                            <mat-option *ngFor="let type of selectListRoomType" [value]="type">
+                                                {{type | translate}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                     <div class="card-body">
                         <mat-table [dataSource]="dataSource" matSort>
                             <ng-container matColumnDef="id">
@@ -11,13 +59,11 @@
                                         *matCellDef="let row ; index as i"> {{paginator.pageSize * paginator.pageIndex + i + 1}}  </mat-cell>
                             </ng-container>
 
-                            <!-- Progress Column -->
                             <ng-container matColumnDef="name">
                                 <mat-header-cell *matHeaderCellDef
                                                  mat-sort-header>{{"hotelRegister.hotelName" | translate}}</mat-header-cell>
                                 <mat-cell *matCellDef="let row"> {{row.name}}</mat-cell>
                             </ng-container>
-
 
                             <ng-container matColumnDef="roomType">
                                 <mat-header-cell *matHeaderCellDef
@@ -25,7 +71,6 @@
                                 </mat-header-cell>
                                 <mat-cell *matCellDef="let row"> {{row.roomType | translate}}</mat-cell>
                             </ng-container>
-
 
                             <ng-container matColumnDef="fromDate">
                                 <mat-header-cell *matHeaderCellDef
@@ -41,7 +86,6 @@
                                         *matCellDef="let row"> {{row.toDate}}</mat-cell>
                             </ng-container>
 
-                            <!-- Name Column -->
                             <ng-container matColumnDef="totalAmountRoom">
                                 <mat-header-cell *matHeaderCellDef mat-sort-header>{{"book.book26" | translate}}
                                 </mat-header-cell>
@@ -49,7 +93,6 @@
                                 </mat-cell>
                             </ng-container>
 
-                            <!-- Name Column -->
                             <ng-container matColumnDef="status">
                                 <mat-header-cell *matHeaderCellDef mat-sort-header>{{"common.user.status" | translate}}
                                 </mat-header-cell>
@@ -85,7 +128,7 @@
                             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
                             <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
                         </mat-table>
-                        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                        <mat-paginator [pageSizeOptions]="[15, 25, 50, 100]"></mat-paginator>
                     </div>
                 </div>
             </div>
