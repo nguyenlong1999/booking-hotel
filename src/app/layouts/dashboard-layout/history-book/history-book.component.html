@@ -7,3 +7,70 @@
         </div>
     </div>
 </div>
+<div class="container">
+    <div *ngFor="let i of this.booking" >
+        <div class="row mt-3" style="border:solid 1px red; border-radius: 5px; background: white">
+            <div class="col-3 p-3 pr-0" style="margin: auto">
+                <div *ngIf="i.ImgHotel">
+                    <img class="img-thumbnail" style="height:auto;width: 100%;" [src]="this.BASE_URL+i.ImgHotel"  alt="">
+                </div>
+            </div>
+            <div class="col pt-3 pl-0 pr-0">
+                <span style="font-weight: bold; font-size: 20px">Tên khách sạn: </span>
+                <a [routerLink]="['/hotel-details/'+i.hotelNameSpace]" target="_blank">{{i.nameHotel}}</a>
+                <br>
+                <span style="font-weight: bold; font-size: 20px">Địa chỉ:</span> {{i.address}}
+                <br>
+                <span style="font-size: 15px; font-weight: bold">Chi tiết:</span>
+                <div class="row">
+                    <div class="col-4">
+                        <span style="font-size: 13px; margin-left: 10px">Loại phòng: {{ i.roomType}}</span>
+                    </div>
+                    <div class="col">
+                        <span style="font-size: 13px; margin-left: 10px">Tên người đặt: {{ i.name}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <span style="font-size: 13px; margin-left: 10px">Số lượng: {{ i.totalAmountRoom}} phòng</span>
+                    </div>
+                    <div class="col">
+                        <span style="font-size: 13px; margin-left: 10px">Email định danh: {{ i.email}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <span style="font-size: 13px; margin-left: 10px">Từ ngày: {{ i.fromDate}}</span>
+                    </div>
+                    <div class="col">
+                        <span style="font-size: 13px; margin-left: 10px">Đến ngày: {{ i.toDate}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                    <span style="font-size: 13px; margin-left: 10px">Trạng thái:
+                    <span *ngIf="i.status == -1">Đã từ chối</span>
+                    <span *ngIf="i.status == 0">Chờ phản hồi</span>
+                    <span *ngIf="i.status == 1">Đã chấp nhận</span>
+                    <span *ngIf="i.status == 2">Đã thanh toán</span>
+                    <span *ngIf="i.status == -2">Đã hủy</span></span>
+                    </div>
+                </div>
+                <span style="font-size: 17px">Chính sách hủy phòng:
+                <span *ngIf="i.policiesCancelRom==1">{{"room.flexiblev1" | translate}}</span>
+                <span *ngIf="i.policiesCancelRom==2">{{"room.Strictv1" | translate}}</span>
+                <span *ngIf="i.policiesCancelRom==3">{{"room.Strictv2" | translate}}</span>
+            </span>
+
+            </div>
+            <div class="col-2 pt-3 pl-0">
+                <span>Sự kiện</span>
+                <br>
+                <button type="button" class="btn btn-info w-100">Hủy phòng</button>
+                <br>
+                <button type="button" *ngIf="i.status==1" class="btn btn-light w-100">Thanh toán</button>
+            </div>
+        </div>
+    </div>
+
+</div>
