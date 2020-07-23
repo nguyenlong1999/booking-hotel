@@ -522,6 +522,7 @@ export class DashboardLayoutComponent implements OnInit {
     }
 
     mailBox() {
+        console.log('get mail')
         this.chatService.getNotifications().subscribe(mail => {
             console.log('mail-notification:', mail);
             if (mail !== undefined) {

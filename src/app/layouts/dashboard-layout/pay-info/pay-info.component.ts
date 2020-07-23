@@ -158,6 +158,7 @@ export class PayInfoComponent implements OnInit {
             if (result['status'] === 200) {
                 // send mess to hotel
                 this.chatService.sendNotification(this.messageObject);
+                console.log(this.messageObject)
                 setTimeout(() => {
                     this.chatService.identifyUser();
                 }, 1500);
