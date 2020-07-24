@@ -110,7 +110,7 @@ export class HistoryBookComponent implements OnInit {
             console.log(this.updateStatusObject)
             console.log('Hủy phòng nè')
             this._hotelService.updateStatusBook(this.updateStatusObject).subscribe(async res => {
-                console.log('hủy đi còn gì nữa')
+                // console.log('hủy đi còn gì nữa')
                 if (res.body['status'] === 200) {
                     await this.userService.testEmail(res.body['hotelUSe']).subscribe(
                         use => {
@@ -122,8 +122,8 @@ export class HistoryBookComponent implements OnInit {
                             this.messageObject.message = res.body['messageAdmin']['content'];
                             this.message = res.body['message']['content'];
                             this.chatService.showNotification('success', this.message);
-                            this.chatService.sendNotification(this.messageObject);
-                            console.log(this.messageObject.message)
+                            //  this.chatService.sendNotification(this.messageObject);
+                            // console.log(this.messageObject.message)
                             setTimeout(() => {
                                 this.message = '';
                                 this.chatService.identifyUser();
@@ -135,7 +135,6 @@ export class HistoryBookComponent implements OnInit {
                 }
             })
         } else {
-            
         }
     }
 

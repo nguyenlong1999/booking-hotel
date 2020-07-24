@@ -67,7 +67,7 @@ export class ViewPayComponent implements OnInit {
                         this.messageObject.message = res.body['messageAdmin']['content'];
                         this.message =  res.body['message']['content'];
                         this.chatService.showNotification('success', this.message);
-                        this.chatService.sendNotification(this.messageObject);
+                       // this.chatService.sendNotification(this.messageObject);
                         console.log(this.messageObject.message)
                         setTimeout(() => {
                             this.message = '';
