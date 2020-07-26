@@ -48,7 +48,7 @@
         <div class="col">
             <span *ngIf="this.book.policiesCancelRom==2"><span style="color: red;">
                 *Chú ý : </span>Khi bạn hủy phòng tiền của bạn sẽ được hoàn trả sau 1-3 ngày kể từ ngày bạn hủy phòng
-                theo chính sách của chúng tôi
+                theo chính sách của chúng tôi <a [routerLink]="['/policy']" target="_blank">Xem thêm</a>
             </span>
             <span *ngIf="this.book.policiesCancelRom==3">{{"room.Strictv2" | translate}}</span>
         </div>
