@@ -142,6 +142,9 @@ export class BookingComponent implements OnInit {
                 } else if (item.status === '-2') {
                     item.status = 'Đã hủy';
                 }
+                else if (item.status === '3') {
+                    item.status = 'Đã thanh toán (hủy phòng)';
+                }
             }
             console.log(this.booking)
             this.dataSource = new MatTableDataSource(this.booking)
