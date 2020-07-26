@@ -41,7 +41,7 @@ import {MatSliderModule} from '@angular/material/slider';
 import {PayInfoComponent} from './pay-info/pay-info.component';
 import {ViewPayComponent} from '../../view-pay/view-pay.component';
 import {QRCodeModule} from 'angularx-qrcode';
-import {HistoryBookComponent, PayDialogComponent} from './history-book/history-book.component';
+import {HistoryBookComponent, PayCancelDialogComponent, PayDialogComponent} from './history-book/history-book.component';
 import {RuleComponent} from '../../rule/rule.component';
 import {PolicyComponent} from '../../policy/policy.component';
 
@@ -63,7 +63,8 @@ import {PolicyComponent} from '../../policy/policy.component';
         HistoryBookComponent,
         RuleComponent,
         PolicyComponent,
-        PayDialogComponent
+        PayDialogComponent,
+        PayCancelDialogComponent
         // add các component của trang người dùng vào đây
     ],
     imports: [

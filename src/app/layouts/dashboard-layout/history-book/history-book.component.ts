@@ -66,28 +66,28 @@ export class HistoryBookComponent implements OnInit {
                     for (const i of result[1][0]) {
                         if (i._id === book.roomDetailID) {
                             if (i.roomType === null) {
-                                book.roomType = 'Standard'
+                                book.roomType = 'Tiêu chuẩn'
                             }
                             if (i.roomType === 1) {
-                                book.roomType = 'Standard'
+                                book.roomType = 'Tiêu chuẩn'
                             }
                             if (i.roomType === 2) {
-                                book.roomType = 'Superior'
+                                book.roomType = 'View đẹp'
                             }
                             if (i.roomType === 3) {
-                                book.roomType = 'Deluxe'
+                                book.roomType = 'Cao cấp'
                             }
                             if (i.roomType === 4) {
-                                book.roomType = 'Suite'
+                                book.roomType = 'Siêu sang'
                             }
                             if (i.roomType === 5) {
-                                book.roomType = 'Family'
+                                book.roomType = 'Phòng đôi'
                             }
                             if (i.roomType === 6) {
-                                book.roomType = 'President'
+                                book.roomType = 'Tổng thống'
                             }
                             if (i.roomType === 7) {
-                                book.roomType = 'Royal'
+                                book.roomType = 'Hoàng gia'
                             }
                         }
                     }
@@ -102,7 +102,6 @@ export class HistoryBookComponent implements OnInit {
     }
 
     cancelRoom(book) {
-        console.log(book)
         if (book.status == 0 || book.status == 1) { // cấm sửa ===
             console.log(book.status)
             this.updateStatusObject.actionName = 'Hủy phòng'
@@ -110,7 +109,6 @@ export class HistoryBookComponent implements OnInit {
             console.log(this.updateStatusObject)
             console.log('Hủy phòng nè')
             this._hotelService.updateStatusBook(this.updateStatusObject).subscribe(async res => {
-                // console.log('hủy đi còn gì nữa')
                 if (res.body['status'] === 200) {
                     await this.userService.testEmail(res.body['hotelUSe']).subscribe(
                         use => {
@@ -135,6 +133,47 @@ export class HistoryBookComponent implements OnInit {
                 }
             })
         } else {
+            // console.log('Thanh toán xog tôi hủy phòng nè')
+            const dialogRef = this.dialog.open(PayCancelDialogComponent, {
+                width: '500px',
+                data: {
+                    data: book
+                }
+            })
+            dialogRef.afterClosed().subscribe(result => {
+                console.log(result);
+                if (result) {
+                    this.updateStatusObject.actionName = 'Pay Cancel'
+                    this.updateStatusObject.idBooking = book._id
+                    this._hotelService.updateStatusBook(this.updateStatusObject).subscribe(async res => {
+                        if (res.body['status'] === 200) {
+                            await this.userService.testEmail(res.body['hotelUSe']).subscribe(
+                                use => {
+                                    console.log(res);
+                                    let user = use.body['user'];
+                                    if (user !== undefined) {
+                                        this.messageObject.objectId = use.body['user']._id
+                                    }
+                                    this.messageObject.message = res.body['messageAdmin']['content'];
+                                    this.message = res.body['message']['content'];
+                                    this.chatService.showNotification('success', this.message);
+                                    this.chatService.sendNotification(this.messageObject);
+                                    console.log(this.messageObject.message)
+                                    setTimeout(() => {
+                                        this.message = '';
+                                        this.chatService.identifyUser();
+                                        window.location.reload()
+                                        // this._router.navigate(['/index'])
+                                    }, 1500);
+                                })
+                        } else {
+                            this.chatService.showNotification('warning', res.body['message']);
+                        }
+                    })
+                } else {
+                    console.log('Cancel');
+                }
+            });
         }
     }
 
@@ -212,6 +251,30 @@ export class PayDialogComponent {
             }, 500);
     }
 
+
+    onNoClick(): void {
+        this.dialogRef.close();
+    }
+}
+
+@Component({
+    selector: 'app-dialog-pay-cancel',
+    templateUrl: 'dialog-pay-cancel.html',
+    styleUrls: ['./history-book.component.css']
+})
+export class PayCancelDialogComponent {
+    amount: string
+    pay = true
+    book: any;
+
+    constructor(
+        public dialogRef: MatDialogRef<PayDialogComponent>,
+        @Inject(MAT_DIALOG_DATA) public data: DialogData
+    ) {
+        this.book = data['data']
+        console.log(this.book)
+        this.book.totalMoney = data['data'].totalMoney.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') + ' VND'
+    }
 
     onNoClick(): void {
         this.dialogRef.close();
