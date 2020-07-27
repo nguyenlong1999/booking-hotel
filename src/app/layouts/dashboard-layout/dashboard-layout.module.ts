@@ -44,6 +44,7 @@ import {QRCodeModule} from 'angularx-qrcode';
 import {HistoryBookComponent, PayCancelDialogComponent, PayDialogComponent} from './history-book/history-book.component';
 import {RuleComponent} from '../../rule/rule.component';
 import {PolicyComponent} from '../../policy/policy.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
     declarations: [
@@ -101,6 +102,7 @@ import {PolicyComponent} from '../../policy/policy.component';
         MatProgressSpinnerModule,
         MatSliderModule,
         QRCodeModule,
+        NgxPaginationModule,
 
     ],
     providers: [],

@@ -1,13 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {NgxGalleryAnimation, NgxGalleryImage, NgxGalleryOptions} from '@kolkov/ngx-gallery';
 import {HotelService} from '../../../shared/service/hotel.service.';
-import {FormBuilder} from '@angular/forms';
+import {FormBuilder, FormGroup} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CookieService} from 'ngx-cookie-service';
 import {ChatService} from '../../../shared/service/chat.service';
 import {AppSetting} from '../../../appsetting';
 import {Hotel} from '../../../shared/model/hotel';
 import {TranslateService} from '@ngx-translate/core';
+import {EventEmitterService} from '../../../shared/service/event-emitter.service';
 
 
 @Component({
@@ -32,6 +33,11 @@ export class HotelDetailsComponent implements OnInit {
     lstTienNghiRoom = []
     lstAddressPopular = [];
     loadding = false;
+    commentForm: FormGroup;
+    isAuthenicate = false;
+    showModal = false;
+    isModeration = false;
+    submittedComment = false;
 
     constructor(private formbuilder: FormBuilder,
                 private _hotelService: HotelService,
@@ -40,7 +46,10 @@ export class HotelDetailsComponent implements OnInit {
                 private cookies: CookieService,
                 private route: ActivatedRoute,
                 private chatService: ChatService,
-    ) {}
+                private cookie: CookieService,
+                private emitEventCus: EventEmitterService
+    ) {
+    }
 
     ngOnInit(): void {
         this.loadding = true;
@@ -98,6 +107,35 @@ export class HotelDetailsComponent implements OnInit {
                 preview: true
             }
         ];
+        this.commentForm = this.formbuilder.group({
+            content: [''],
+        });
+        this.isModeration = this.cookie.get('role') !== '' ? true : false;
+        this.isAuthenicate = this.cookie.get('email') !== '' ? true : false;
+    }
+
+    addComment() {
+        console.log('theem comment ne')
+        const user = this.cookie.get('email');
+        this.submittedComment = true;
+        if (this.isAuthenicate == false && user === '') {
+            this.emitEventCus.onCallLogin();
+            return;
+        }
+        let doneObject = new Object({
+            user: user,
+            hotel: this.hotel,
+            content: this.commentForm.get('content').value
+        });
+        console.log(doneObject)
+        this._hotelService.addComment(doneObject).subscribe(data => {
+            const status = data.body['status'];
+            console.log(status);
+            if (status === 200) {
+                console.log('thành công rồi')
+            }
+        })
+
     }
 
     getHotel() {
@@ -143,7 +181,7 @@ export class HotelDetailsComponent implements OnInit {
                 }))
             })
             for (let i = 0; i < this.lstFacilitisDetails.length; i++) {
-                let lstArraythua = []
+                const lstArraythua = []
                 for (let y = 8; y < this.lstFacilitisDetails[i].length; y++) {
                     lstArraythua.push(this.lstFacilitisDetails[i][y])
                 }

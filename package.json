@@ -51,6 +51,7 @@
     "ng2-file-upload": "^1.4.0",
     "ngx-cookie-service": "^3.0.4",
     "ngx-order-pipe": "^2.0.4",
+    "ngx-pagination": "^5.0.0",
     "ngx-skeleton-loader": "^1.2.7",
     "ngx-socket-io": "^3.2.0",
     "ngx-toastr": "^12.1.0",
