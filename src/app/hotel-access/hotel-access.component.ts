@@ -234,19 +234,13 @@ export class HotelAccessComponent implements OnInit {
     }
 
     public tabNext() {
-        const radio: HTMLElement = document.getElementById('scroll-to-top');
-        radio.click();
         const tabCount = 5;
         this.TabIndex = (this.TabIndex + 1) % tabCount;
-        document.documentElement.scrollTop = 0;
     }
 
     public tabPrevios() {
-        const radio: HTMLElement = document.getElementById('scroll-to-top');
-        radio.click();
         const tabCount = 5;
         this.TabIndex = (this.TabIndex - 1) % tabCount;
-        document.documentElement.scrollTop = 0;
     }
 
     ngOnInit(): void {
