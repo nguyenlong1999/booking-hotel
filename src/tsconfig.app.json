@@ -10,6 +10,16 @@
   },
   "exclude": [
     "test.ts",
-    "**/*.spec.ts"
+    "**/*.spec.ts",
+    "./app/shared/animation/fadeIn.ts",
+    "./app/shared/guards/Login/login.guard.ts",
+    "./app/shared/helper/fb-like.component.ts",
+    "./app/shared/helper/google-plus.component.ts",
+    "./app/shared/helper/pin-it.component.ts",
+    "./app/shared/helper/search.pipe.ts",
+    "./app/shared/helper/tweet.component.ts",
+    "./app/shared/model/token.ts",
+    "./app/shared/service/google.service.ts",
+    "environments/environment.prod.ts"
   ]
 }
