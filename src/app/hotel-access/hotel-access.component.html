@@ -99,6 +99,10 @@
                                                                 <mat-error *ngIf="sqm.hasError('pattern')">
                                                                     {{"hotelRegister.sqm.error" | translate}}
                                                                 </mat-error>
+                                                                <mat-error
+                                                                        *ngIf="registerHotelForm.get('sqm').hasError('required')">
+                                                                    {{"hotelRegister.sqmError" | translate}}
+                                                                </mat-error>
                                                             </div>
                                                             <div class="col" style="padding: 4% 0 0 0"><h5>
                                                                 m2</h5>
@@ -118,6 +122,10 @@
                                                                     </mat-label>
                                                                     <textarea matInput
                                                                               formControlName="suggestPlayground"></textarea>
+                                                                    <mat-error
+                                                                            *ngIf="registerHotelForm.get('suggestPlayground').hasError('required')">
+                                                                        {{"hotelRegister.spError" | translate}}
+                                                                    </mat-error>
                                                                 </mat-form-field>
                                                             </div>
                                                         </div>
@@ -141,6 +149,10 @@
                                                             <textarea matInput
                                                                       [placeholder]="'hotelRegister.ruleHotelv3' | translate"
                                                                       rows="3" formControlName="rulerHotel"></textarea>
+                                                            <mat-error
+                                                                    *ngIf="registerHotelForm.get('rulerHotel').hasError('required')">
+                                                                {{"hotelRegister.rulerError" | translate}}
+                                                            </mat-error>
                                                         </mat-form-field>
                                                     </div>
                                                 </div>
@@ -334,6 +346,10 @@
                                                             <input matInput
                                                                    [placeholder]="'hotelRegister.address' | translate"
                                                                    formControlName="address">
+                                                            <mat-error
+                                                                    *ngIf="isNext &&registerHotelForm.get('address').hasError('required')">
+                                                                {{"hotelRegister.address" | translate}}
+                                                            </mat-error>
                                                         </mat-form-field>
                                                     </div>
                                                     <div class="col-lg-6">
@@ -341,6 +357,10 @@
                                                             <input matInput
                                                                    [placeholder]="'hotelRegister.province' | translate"
                                                                    formControlName="province">
+                                                            <mat-error
+                                                                    *ngIf="isNext &&registerHotelForm.get('province').hasError('required')">
+                                                                {{"hotelRegister.province" | translate}}
+                                                            </mat-error>
                                                         </mat-form-field>
                                                     </div>
                                                 </div>
@@ -399,6 +419,10 @@
                                                             <input matInput
                                                                    [placeholder]="'hotelRegister.country' | translate"
                                                                    formControlName="country">
+                                                            <mat-error
+                                                                    *ngIf="isNext &&registerHotelForm.get('country').hasError('required')">
+                                                                {{"hotelRegister.country" | translate}}
+                                                            </mat-error>
                                                         </mat-form-field>
                                                         <!--                                                            <mat-label>Thành phố</mat-label>-->
                                                         <!--                                                            <input matInput placeholder="Thành phố"-->
@@ -423,6 +447,13 @@
                                                             <input matInput
                                                                    [placeholder]="'hotelRegister.zipCode' | translate"
                                                                    formControlName="zip">
+                                                            <mat-error *ngIf="zip.hasError('pattern')">
+                                                                {{"hotelRegister.zip.error" | translate}}
+                                                            </mat-error>
+                                                            <mat-error
+                                                                    *ngIf="isNext &&registerHotelForm.get('zip').hasError('required')">
+                                                                {{"hotelRegister.zip" | translate}}
+                                                            </mat-error>
                                                         </mat-form-field>
                                                     </div>
                                                 </div>
@@ -439,7 +470,7 @@
                                                 <div class="row">
                                                     <div class="col">
                                                         <div style="height: 700px">
-                                                            <app-hotel-map  [lat]="lat" [lng]="lng" [zoom]="5"
+                                                            <app-hotel-map [lat]="lat" [lng]="lng" [zoom]="5"
                                                                            [address]="address"
                                                                            [name]="name"></app-hotel-map>
                                                         </div>
@@ -1346,6 +1377,13 @@
                                         </div>
                                     </div>
                                 </mat-radio-group>
+                                <div class="row"
+                                     style="padding-left: 1rem;padding-top: 1rem;font-size: 1rem;font-weight: 500;">
+                                    <mat-error
+                                            *ngIf="this.tab5 === true">
+                                        {{this.roomTypeErr}}
+                                    </mat-error>
+                                </div>
                                 <div class="row">
                                     <div class="col text-right">
                                         <button class="prevtab btn btn-success" (click)="tabPrevios()">
@@ -1427,12 +1465,12 @@
                                 </div>
                                 <div class="row">
                                     <div class="col" style="margin-top: 2%">
-                                        <a *ngIf="!isEdited"
-                                           style="padding: 15px 20px;background-image: linear-gradient(to right, #3cc603 0%, #3cc908  51%, #32a103  100%); cursor: pointer;color: white ; height: 80px;width: 250px;border-radius: 5px; margin-left: 40%; margin-top: 5% "
-                                           (click)="onSubmit()">{{"post.introMyHotel"|translate}}</a>
-                                        <a *ngIf="isEdited"
-                                           style="padding: 15px 20px;background-image: linear-gradient(to right, #3cc603 0%, #3cc908  51%, #32a103  100%); cursor: pointer;color: white ; height: 80px;width: 250px;border-radius: 5px; margin-left: 40%; margin-top: 5% "
-                                           (click)="onSubmit()">{{"post.editMyHotel"|translate}}</a>
+                                        <button *ngIf="!isEdited" [disabled]="this.checkSubmit"
+                                                style="padding: 15px 20px;background-image: linear-gradient(to right, #3cc603 0%, #3cc908  51%, #32a103  100%); cursor: pointer;color: white ; border-radius: 5px; margin-left: 40%; margin-top: 5% "
+                                                (click)="onSubmit()">{{"post.introMyHotel"|translate}}</button>
+                                        <button *ngIf="isEdited" [disabled]="this.checkSubmit"
+                                                style="padding: 15px 20px;background-image: linear-gradient(to right, #3cc603 0%, #3cc908  51%, #32a103  100%); cursor: pointer;color: white ;border-radius: 5px; margin-left: 40%; margin-top: 5% "
+                                                (click)="onSubmit()">{{"post.editMyHotel"|translate}}</button>
                                     </div>
                                 </div>
                                 <div class="row">

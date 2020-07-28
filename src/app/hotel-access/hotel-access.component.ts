@@ -16,6 +16,7 @@ import {tryCatch} from 'rxjs/internal-compatibility';
     styleUrls: ['./hotel-access.component.scss']
 })
 export class HotelAccessComponent implements OnInit {
+    checkSubmit = false;
     registerHotelForm: FormGroup;
     totaltypeRoomNumber = 0;
     countMaxDayNumber = 0;
@@ -48,7 +49,7 @@ export class HotelAccessComponent implements OnInit {
     tab3 = true;
     tab4 = true;
     tab5 = true;
-
+    roomTypeErr = '';
 
     listRadioCancel = [
         {name: 'room.flexiblev1', value: 1, checked: true},
@@ -138,10 +139,10 @@ export class HotelAccessComponent implements OnInit {
         console.log(this.listRoomImgCurrent);
         this.registerHotelForm = this.formbuilder.group({
             name: ['', [Validators.required]],
-            sqm: ['', [Validators.pattern(/^[0-9]\d*$/)]],
+            sqm: ['', [Validators.required, Validators.pattern(/^[0-9]\d*$/)]],
             desHotel: ['', [Validators.required]],
-            suggestPlayground: [''],
-            rulerHotel: [''],
+            suggestPlayground: ['', [Validators.required]],
+            rulerHotel: ['', [Validators.required]],
             guideToHotel: ['', [Validators.required]],
             starHotel: [''],
             image: [''],
@@ -149,13 +150,13 @@ export class HotelAccessComponent implements OnInit {
             status: 0, // 0 inActive 1: Active
 
             // tab 2
-            address: [''],
-            country: [''],
-            province: [''],
+            address: ['', [Validators.required]],
+            country: ['', [Validators.required]],
+            province: ['', [Validators.required]],
             longitude: [''],
             latitude: [''],
             nameSpace: [''],
-            zip: [''],
+            zip: ['', [Validators.required, Validators.pattern(/^[0-9]\d*$/)]],
 
             // tab 3
             // Facilities
@@ -181,7 +182,8 @@ export class HotelAccessComponent implements OnInit {
         if (event.index === 1) { // validate form 1
             this.tab2 = true;
             if (this.registerHotelForm.controls['name'].invalid || this.registerHotelForm.controls['desHotel'].invalid
-                || this.registerHotelForm.controls['guideToHotel'].invalid) {
+                || this.registerHotelForm.controls['guideToHotel'].invalid || this.registerHotelForm.controls['rulerHotel'].invalid
+                || this.registerHotelForm.controls['suggestPlayground'].invalid || this.registerHotelForm.controls['sqm'].invalid) {
                 this.TabIndex = 0;
                 this.tab3 = true
                 this.tab4 = true
@@ -191,13 +193,42 @@ export class HotelAccessComponent implements OnInit {
             this.tab2 = false
         }
         if (event.index === 2) {
+            this.tab3 = true;
+            if (this.registerHotelForm.controls['address'].invalid || this.registerHotelForm.controls['province'].invalid
+                || this.registerHotelForm.controls['country'].invalid || this.registerHotelForm.controls['zip'].invalid) {
+                this.TabIndex = 1;
+                this.tab4 = true
+                this.tab5 = true
+                return;
+            }
             this.tab3 = false
         }
         if (event.index === 3) {
             this.tab4 = false
         }
         if (event.index === 4) {
+            const a = this.registerHotelForm.get('formArrayRoomNumber').value;
+            let check = true
+            console.log(a)
+            a.forEach((item, i) => {
+                if (!item.roomType) {
+                    this.roomTypeErr = 'Bạn chưa chọn loại phòng cho loại số ' + (i + 1) + ' !!';
+                    check = false;
+                }
+                if (!item.price) {
+                    this.roomTypeErr = 'Bạn chưa nhập giá cho loại phòng số ' + (i + 1) + ' !!';
+                    check = false;
+                }
+            })
             this.isNext1 = true
+            this.tab5 = true;
+            if (!check) {
+                this.TabIndex = 3;
+                this.tab4 = true
+                this.tab5 = true
+                return;
+            }
+            this.roomTypeErr = '';
             this.tab5 = false
         }
     }
@@ -238,6 +269,10 @@ export class HotelAccessComponent implements OnInit {
         return this.registerHotelForm.get('sqm');
     }
 
+    get zip() {
+        return this.registerHotelForm.get('zip');
+    }
+
     get formArrayRoomNumber() {
         return this.registerHotelForm.get('formArrayRoomNumber') as FormArray
     }
@@ -274,7 +309,7 @@ export class HotelAccessComponent implements OnInit {
                 this.listRadioCancel = [{name: 'room.flexiblev1', value: 1, checked: false},
                     {name: 'room.Strictv1', value: 2, checked: true},
                     {name: 'room.Strictv2', value: 3, checked: false}
-                    ]
+                ]
             } else {
                 this.listRadioCancel = [{name: 'room.flexiblev2', value: 1, checked: false},
                     {name: 'room.Strictv1', value: 2, checked: false},
@@ -414,7 +449,7 @@ export class HotelAccessComponent implements OnInit {
     }
 
     onSubmit() {
-
+        this.checkSubmit = true;
         if (this.checked === false) {
             this.isSubmitted = true
             return
@@ -598,7 +633,7 @@ export class HotelAccessComponent implements OnInit {
             roomWorkspace: this.formbuilder.control(true),
             roomFireplace: this.formbuilder.control(true),
             roomHotTub: this.formbuilder.control(true),
-            roomType: [''],
+            roomType: ['', [Validators.required]],
             lstImg: ['']
         });
     }
