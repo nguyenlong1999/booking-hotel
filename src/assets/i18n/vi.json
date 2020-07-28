@@ -10,6 +10,7 @@
       "systemNotification": "Thông báo hệ thống",
       "titleBookingView": "Chi tiết đặt phòng"
     },
+    "danhgia": "Bình luận",
     "userRegister": {
       "username": "Tên người dùng",
       "phone": "Số điện thoại",
@@ -162,7 +163,7 @@
     "book23": "của Booking-hotel.com",
     "book24": "Thanh toán",
     "book25": "Kiểm tra thông tin phòng",
-    "book26": "Số lượng phòng:",
+    "book26": "Số đêm:",
     "book27": "Ngày nhận phòng:",
     "book28": "Ngày trả phòng:",
     "book29": "Hạng phòng:",
