@@ -2,7 +2,7 @@ import {Component, HostListener, OnInit} from '@angular/core';
 import {CookieService} from 'ngx-cookie-service';
 import {AppSetting} from '../../../appsetting';
 import {HotelService} from '../../../shared/service/hotel.service.';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-find-hotel',

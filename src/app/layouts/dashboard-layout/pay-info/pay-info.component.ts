@@ -105,7 +105,7 @@ export class PayInfoComponent implements OnInit {
         const idUser = this.cookies.get('ObjectId'); // get current login
         this.objIDUserUpdate = idUser
         this._hotelService.getHotelById(idObject).subscribe(data => {
-            const result = data;
+            const result = data['result'];
             console.log(result)
             this.policiesCancelRom = result[0][0].hotelObj.cancellationPolicy
             this.hotelName = result[0][0].hotelObj.name

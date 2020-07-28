@@ -6,7 +6,7 @@ import {LoginServiceService} from '../../shared/service/login-service.service';
 import {TranslateService} from '@ngx-translate/core';
 import {ROUTES} from '../../components/sidebar/sidebar.component';
 import {AppSetting} from '../../appsetting';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {SearchHotel} from '../../shared/model/search-hotel';
 import {MatDialog} from '@angular/material/dialog';
 import {ChatService} from '../../shared/service/chat.service';
@@ -18,9 +18,7 @@ import {Summary} from '../../shared/model/summary';
 import {Observable} from 'rxjs';
 import {HotelService} from '../../shared/service/hotel.service.';
 import {ChooseRoomTypeDialogComponent} from '../choose-room-type-dialog/choose-room-type-dialog.component';
-import {map, startWith} from 'rxjs/operators';
 import {Message} from '../../shared/model/message';
-import {isSuccess} from '@angular/http/src/http_utils';
 
 
 @Component({
@@ -125,7 +123,7 @@ export class DashboardLayoutComponent implements OnInit {
                 this.onChangecheck(1);
             });
         }
-        if ( this.cookie.get('email') !== '' ? true : false) {
+        if (this.cookie.get('email') !== '' ? true : false) {
             this.getNotification();
         }
         this.listTitles = ROUTES.filter(listTitle => listTitle);
@@ -140,7 +138,7 @@ export class DashboardLayoutComponent implements OnInit {
             }
         });
         this.getImage()
-        this.isModeration = this.cookie.get('role') === '2' ? true : false;
+        this.isModeration = this.cookie.get('role') === '2' || this.cookie.get('role') === '1' ? true : false;
         this.isAuthenicate = this.cookie.get('email') !== '' ? true : false;
         this.registerForm = this.formBuilder.group({
             email: ['', [Validators.required, Validators.email]],
@@ -173,7 +171,7 @@ export class DashboardLayoutComponent implements OnInit {
         if (this.isModeration === false) {
             alert('Vui lòng liên hệ với ban quản trị để được phép đăng nhập')
         } else {
-            this._router.navigate(['/dashboard']);
+            this._router.navigate(['/hotels']);
         }
     }
 
@@ -336,7 +334,7 @@ export class DashboardLayoutComponent implements OnInit {
                     if (key === 'role') {
                         role = user[key];
                         this.cookie.set('role', role);
-                        if (role !== undefined && role !== '' && role === 2) { // admin = 2
+                        if (role !== undefined && role !== '' && (role === 2 || role === 1)) { // admin = 2
                             this.isModeration = true
                         }
                     }

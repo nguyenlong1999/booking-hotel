@@ -97,7 +97,7 @@ export class LoginComponent implements OnInit {
                     this._loginService.updateAuthStatus(true);
                     console.log('log in ');
                     this.chatService.identifyUser();
-                    this._router.navigateByUrl('/dashboard');
+                    this._router.navigateByUrl('/hotels');
                 }
 
 

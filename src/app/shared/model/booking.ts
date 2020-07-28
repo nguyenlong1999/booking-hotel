@@ -9,7 +9,7 @@ export class Booking {
     roomDetailID: string;
     status: string;
     totalAmountRoom: number;
-    totalNight: number
+    totalNight: any;
     totalMoney: number;
     date: any;
     hotelObjId: string;

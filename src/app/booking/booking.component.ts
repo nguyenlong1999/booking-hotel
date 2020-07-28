@@ -87,9 +87,9 @@ export class BookingComponent implements OnInit {
             this.booking = booking;
             for (const item of this.booking) {
                 this.hotelService.getHotelById(item.hotelNameSpace).subscribe(hotel => {
-                    item.nameHotel = hotel[0][0].hotelObj.name
-                    this.hotel = hotel
-                    for (const i of hotel[1][0]) {
+                    item.nameHotel = hotel['result'][0][0].hotelObj.name
+                    this.hotel = hotel['result']
+                    for (const i of hotel['result'][1][0]) {
                         if (i._id === item.roomDetailID) {
                             if (i.roomType === null) {
                                 item.roomType = 'Standard'

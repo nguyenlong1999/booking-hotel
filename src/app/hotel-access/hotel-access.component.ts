@@ -271,7 +271,7 @@ export class HotelAccessComponent implements OnInit {
     isEdit(idObject) {
         this.registerHotelForm.reset();
         this._hotelService.getHotelById(idObject).subscribe(data => {
-            const result = data;
+            const result = data['result'];
             console.log(result);
             this.listImgCurrent = result[0][0].hotelObj.image.split(',');
             console.log('lstImge nè' + this.listImgCurrent)

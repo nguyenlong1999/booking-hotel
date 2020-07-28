@@ -76,7 +76,7 @@ export class HistoryBookComponent implements OnInit {
             this.booking = booking;
             for (let book of this.booking) {
                 this._hotelService.getHotelById(book.hotelNameSpace).subscribe(data => {
-                    const result = data;
+                    const result = data['result'];
                     book.nameHotel = result[0][0].hotelObj.name
                     book.policiesCancelRom = result[0][0].hotelObj.cancellationPolicy
                     book.ImgHotel = result[0][0].hotelObj.image.split(',', 1).toString()

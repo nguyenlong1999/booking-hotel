@@ -5,7 +5,7 @@ import {PageNotFoundComponent} from './error/page-not-found/page-not-found.compo
 export const AppRoutes: Routes = [
     {
         path: '',
-        redirectTo: 'dashboard',
+        redirectTo: 'hotels',
         pathMatch: 'full',
     },
     {
