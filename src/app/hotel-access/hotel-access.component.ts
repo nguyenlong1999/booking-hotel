@@ -318,6 +318,7 @@ export class HotelAccessComponent implements OnInit {
                 latitude: result[0][0].hotelObj.latitude,
                 longitude: result[0][0].hotelObj.longitude,
                 province: result[0][0].hotelObj.province,
+                zip: result[0][0].hotelObj.zip,
                 image: result[0][0].hotelObj.image,
                 starHotel: result[0][0].hotelObj.starHotel,
                 desHotel: result[0][0].hotelObj.desHotel,
