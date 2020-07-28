@@ -58,7 +58,7 @@ export class HistoryBookComponent implements OnInit {
         private userService: UserService
     ) {
         if (!this.cookies.get('ObjectId') || !this.cookies.get('email') ||
-            !this.cookies.get('role') || !this.cookies.get('token')) {
+            !this.cookies.get('token')) {
             this.route.navigate(['/']);
         }
         this.getInitHotel()

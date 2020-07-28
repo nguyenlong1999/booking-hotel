@@ -308,6 +308,7 @@ export class DashboardLayoutComponent implements OnInit {
             if (userData.body['status'] === 200) {
                 this._loginService.updateAuthStatus(true);
                 const user = userData.body;
+                console.log(user)
                 let role;
                 for (const key of Object.keys(user)) {
                     if (key === 'role') {
@@ -333,6 +334,7 @@ export class DashboardLayoutComponent implements OnInit {
                     }
                     if (key === 'role') {
                         role = user[key];
+                        console.log(role)
                         this.cookie.set('role', role);
                         if (role !== undefined && role !== '' && (role === 2 || role === 1)) { // admin = 2
                             this.isModeration = true
