@@ -9,6 +9,7 @@ import {AppSetting} from '../../../appsetting';
 import {Hotel} from '../../../shared/model/hotel';
 import {TranslateService} from '@ngx-translate/core';
 import {EventEmitterService} from '../../../shared/service/event-emitter.service';
+import {Comment} from '../../../shared/model/comment';
 
 
 @Component({
@@ -28,16 +29,17 @@ export class HotelDetailsComponent implements OnInit {
     lstFacilitis = []
     lstFacilitisDetails = []
     imageList: any;
-    hotel = Hotel;
+    hotel: Hotel;
     lstTienNghiThua = []
     lstTienNghiRoom = []
     lstAddressPopular = [];
     loadding = false;
     commentForm: FormGroup;
     isAuthenicate = false;
-    showModal = false;
     isModeration = false;
     submittedComment = false;
+    hotelComment: Comment[] = [];
+    lstComment: Comment[];
 
     constructor(private formbuilder: FormBuilder,
                 private _hotelService: HotelService,
@@ -132,10 +134,30 @@ export class HotelDetailsComponent implements OnInit {
             const status = data.body['status'];
             console.log(status);
             if (status === 200) {
-                console.log('thành công rồi')
+                let comment: Comment;
+                comment = data.body['comment'];
+                this.hotelComment.push(comment);
+                this.commentForm.reset();
             }
         })
+    }
 
+    get f() {
+        return this.commentForm.controls;
+    }
+
+    getComent() {
+        this.hotelComment.length = 0;
+        this._hotelService.getComments().subscribe(data => {
+            if (data !== undefined) {
+                this.lstComment = data['comments'];
+                for (const comment of this.lstComment) {
+                    if (comment.hotel.nameSpace == this.hotel.nameSpace) {
+                        this.hotelComment.push(comment);
+                    }
+                }
+            }
+        });
     }
 
     getHotel() {
@@ -191,6 +213,7 @@ export class HotelDetailsComponent implements OnInit {
                 .toLocaleLowerCase().split(' ').join('-')
             this.getDuLich(country);
             console.log(this.lstAddressPopular)
+            this.getComent();
             this.loadding = false;
         })
     }
