@@ -40,6 +40,7 @@ export class HotelDetailsComponent implements OnInit {
     submittedComment = false;
     hotelComment: Comment[] = [];
     lstComment: Comment[];
+    valueComment = ''
 
     constructor(private formbuilder: FormBuilder,
                 private _hotelService: HotelService,
@@ -137,7 +138,7 @@ export class HotelDetailsComponent implements OnInit {
                 let comment: Comment;
                 comment = data.body['comment'];
                 this.hotelComment.push(comment);
-                this.commentForm.reset();
+                this.commentForm.get('content').patchValue('');
             }
         })
     }
