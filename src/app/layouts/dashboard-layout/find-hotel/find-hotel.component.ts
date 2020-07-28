@@ -2,6 +2,7 @@ import {Component, HostListener, OnInit} from '@angular/core';
 import {CookieService} from 'ngx-cookie-service';
 import {AppSetting} from '../../../appsetting';
 import {HotelService} from '../../../shared/service/hotel.service.';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
     selector: 'app-find-hotel',
@@ -35,7 +36,8 @@ export class FindHotelComponent implements OnInit {
 
     constructor(
         private cookie: CookieService,
-        private hotelService: HotelService
+        private hotelService: HotelService,
+        private router: Router
     ) {
         $('.dropdown-toggle.btn-star').on('click', function (e) {
             $(this).next().toggle();
@@ -56,8 +58,6 @@ export class FindHotelComponent implements OnInit {
         } else {
             this.starFilterArray = this.starFilterArray.filter((value) => value !== star);
         }
-        console.log('star filter array : ')
-        console.log(this.starFilterArray)
         this.loadHotelFilter();
     }
 
@@ -67,8 +67,6 @@ export class FindHotelComponent implements OnInit {
         } else {
             this.facilitiFilterArray = this.facilitiFilterArray.filter((value) => value !== faciliti);
         }
-        console.log('faciliti filter array : ')
-        console.log(this.facilitiFilterArray)
         this.loadHotelFilter();
     }
 
@@ -87,12 +85,12 @@ export class FindHotelComponent implements OnInit {
         this.filterPrice = true;
         this.priceFilterValue = value;
         if (value === 0) {
-            console.log('gia cao trước')
+            // console.log('gia cao trước')
             this.hotels.sort(function (a, b) {
                 return a.roomDetail[0].price - b.roomDetail[0].price
             })
         } else if (value === 1) {
-            console.log('gia thap truoc')
+            // console.log('gia thap truoc')
             this.hotels.sort(function (a, b) {
                 return b.roomDetail[0].price - a.roomDetail[0].price
             })
@@ -124,7 +122,6 @@ export class FindHotelComponent implements OnInit {
             if (this.starFilterArray !== undefined && this.starFilterArray.length > 0) {
                 this.starFilterArray.forEach(star => {
                     if (hotel.hotel.starHotel === star) {
-                        console.log('ok check')
                         starCheck = true;
                     }
                 })
@@ -133,7 +130,7 @@ export class FindHotelComponent implements OnInit {
             }
             // check filter rating
             if (this.ratingValue > 0) {
-                console.log(this.ratingValue, 'checking hotel rating')
+                // console.log(this.ratingValue, 'checking hotel rating')
                 ratingCheck = true;
                 // nếu điểm lớn hơn
             } else {
@@ -151,7 +148,6 @@ export class FindHotelComponent implements OnInit {
             }
         }
         this.hotels = temp;
-        console.log(this.hotels);
     }
 
     getHotels() {
@@ -171,14 +167,14 @@ export class FindHotelComponent implements OnInit {
         this.searchOption.childrenCount = this.searchText.childrenCount;
         this.searchOption.personCount = this.searchText.personCount;
         this.hotelService.getHotelFind(this.searchOption).subscribe(hotels => {
-            if (hotels === undefined) {
-                return;
+            if (hotels['status'] !== 200) {
+                this.router.navigate(['/']);
             }
-            console.log('tằng tằng tằng tằng find hotel is start =========>')
+            // console.log('tằng tằng tằng tằng find hotel is start =========>')
             if (hotels.body['hotels'].length > 0) {
                 this.hotels = hotels.body['hotels'];
-                console.log('hotel search: ')
-                console.log(this.hotels)
+                // console.log('hotel search: ')
+                // console.log(this.hotels)
                 this.hotels.forEach(item => {
                     item.listPriceFacilities = [];
                     if (item.faciliti.freeWifi === true) {
@@ -205,7 +201,7 @@ export class FindHotelComponent implements OnInit {
                     if (item.hotel.image.length === 0) {
                         item.hotel.image = this.imageDf;
                     }
-                    console.log(item.hotel.image.length);
+                    // console.log(item.hotel.image.length);
                 });
                 if (this.hotels !== undefined) {
                     this.loadding = false;
@@ -214,8 +210,8 @@ export class FindHotelComponent implements OnInit {
             } else {
                 this.hotelService.getHotelFindAll().subscribe(hotelAll => {
                     this.hotels = hotelAll['hotels'];
-                    console.log('hotel find all ')
-                    console.log(this.hotels)
+                    // console.log('hotel find all ')
+                    // console.log(this.hotels)
                     this.hotels.forEach(item => {
                         item.listPriceFacilities = [];
                         if (item.faciliti.freeWifi === true) {
@@ -242,7 +238,7 @@ export class FindHotelComponent implements OnInit {
                         if (item.hotel.image.length === 0) {
                             item.hotel.image = this.imageDf;
                         }
-                        console.log(item.hotel.image.length);
+                        // console.log(item.hotel.image.length);
                     });
                     if (this.hotels !== undefined) {
                         this.loadding = false;
@@ -250,7 +246,7 @@ export class FindHotelComponent implements OnInit {
                     }
                 })
             }
-            console.log(this.loadding);
+            // console.log(this.loadding);
         });
     }
 

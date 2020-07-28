@@ -120,7 +120,6 @@ export class HotelDetailsComponent implements OnInit {
     }
 
     addComment() {
-        console.log('theem comment ne')
         const user = this.cookie.get('email');
         this.submittedComment = true;
         if (this.isAuthenicate == false && user === '') {
@@ -132,10 +131,8 @@ export class HotelDetailsComponent implements OnInit {
             hotel: this.hotel,
             content: this.commentForm.get('content').value
         });
-        console.log(doneObject)
         this._hotelService.addComment(doneObject).subscribe(data => {
             const status = data.body['status'];
-            console.log(status);
             if (status === 200) {
                 let comment: Comment;
                 comment = data.body['comment'];
@@ -166,68 +163,74 @@ export class HotelDetailsComponent implements OnInit {
     getHotel() {
         const idObject = this.route.snapshot.paramMap.get('nameSpace')
         this._hotelService.getHotelById(idObject).subscribe(data => {
-            const result = data;
-            console.log(result)
-            this.hotel = result[0][0].hotelObj
-            const valueToRemove = '';
-            console.log(result[0][0].hotelObj.image)
-            const a = result[0][0].hotelObj.image.split(',');
-            this.galleryImages = this.getImage(a.filter(item => item !== valueToRemove))
-            this.lstDetaiHotel = result[1][0];
-            this.lstFacilitis = result[0][0];
-            this.imageList = []
-            this.totalRating = result[2];
-            result[1][0].forEach((roomOrder) => {
-                this.imageList.push(this.getImage(roomOrder.lstImg.split(',')))
-                // xử lý facilities của từng room
-                this.lstTienNghiRoom = []
-                this.lstTienNghiRoom.push({name: 'facilities.airConditional', status: roomOrder.roomAirConditional, icon: 'call_to_action'})
-                this.lstTienNghiRoom.push({name: 'facilities.beddingSet', status: roomOrder.roomBeddingSet, icon: 'view_sidebar'})
-                this.lstTienNghiRoom.push({name: 'facilities.cableTV', status: roomOrder.roomCableTV, icon: 'settings_input_antenna'})
-                this.lstTienNghiRoom.push({name: 'facilities.coffe', status: roomOrder.roomCoffee, icon: 'local_cafe'})
-                this.lstTienNghiRoom.push({name: 'facilities.Dryer', status: roomOrder.roomDryer, icon: 'leak_add'})
-                this.lstTienNghiRoom.push({name: 'facilities.Fireplace', status: roomOrder.roomFireplace, icon: 'web'})
-                this.lstTienNghiRoom.push({name: 'facilities.freeBreakfast', status: roomOrder.roomFreeBreakfast, icon: 'local_cafe'})
-                this.lstTienNghiRoom.push({name: 'facilities.freeWifi', status: roomOrder.roomFreeWifi, icon: 'wifi'})
-                this.lstTienNghiRoom.push({name: 'facilities.Hairdryer', status: roomOrder.roomHairdryer, icon: 'filter_tilt_shift'})
-                this.lstTienNghiRoom.push({name: 'facilities.heaters', status: roomOrder.roomHeaters, icon: 'hot_tub'})
-                this.lstTienNghiRoom.push({name: 'facilities.hotTub', status: roomOrder.roomHotTub, icon: 'hot_tub'})
-                this.lstTienNghiRoom.push({name: 'facilities.ironingMachine', status: roomOrder.roomIroningMachine, icon: 'set_meal'})
-                this.lstTienNghiRoom.push({name: 'facilities.privatePool', status: roomOrder.roomPrivatePool, icon: 'pool'})
-                this.lstTienNghiRoom.push({name: 'facilities.shampoo', status: roomOrder.roomShampoo, icon: 'confirmation_number'})
-                this.lstTienNghiRoom.push({name: 'facilities.smartKey', status: roomOrder.roomSmartKey, icon: 'smart_button'})
-                this.lstTienNghiRoom.push({name: 'facilities.tea', status: roomOrder.roomTea, icon: 'transform'})
-                this.lstTienNghiRoom.push({name: 'facilities.teaMaker', status: roomOrder.roomTeaMaker, icon: 'surround_sound'})
-                this.lstTienNghiRoom.push({name: 'facilities.televison', status: roomOrder.roomTelevison, icon: 'tv'})
-                this.lstTienNghiRoom.push({name: 'facilities.TowelsOfAllKinds', status: roomOrder.roomTowelsOfAllKinds, icon: 'view_week'})
-                this.lstTienNghiRoom.push({name: 'facilities.Wardrobe', status: roomOrder.roomWardrobe, icon: 'view_column'})
-                this.lstTienNghiRoom.push({name: 'facilities.workspace', status: roomOrder.roomWorkspace, icon: 'power_input'})
-                this.lstFacilitisDetails.push(this.lstTienNghiRoom.filter(function (obj) {
-                    return obj.status === true // push all status  true
-                }))
-            })
-            for (let i = 0; i < this.lstFacilitisDetails.length; i++) {
-                const lstArraythua = []
-                for (let y = 8; y < this.lstFacilitisDetails[i].length; y++) {
-                    lstArraythua.push(this.lstFacilitisDetails[i][y])
+            if (data['status'] === 200) {
+                const result = data['result'];
+                console.log(result)
+                this.hotel = result[0][0].hotelObj
+                const valueToRemove = '';
+                const a = result[0][0].hotelObj.image.split(',');
+                this.galleryImages = this.getImage(a.filter(item => item !== valueToRemove))
+                this.lstDetaiHotel = result[1][0];
+                this.lstFacilitis = result[0][0];
+                this.imageList = []
+                this.totalRating = result[2];
+                result[1][0].forEach((roomOrder) => {
+                    this.imageList.push(this.getImage(roomOrder.lstImg.split(',')))
+                    // xử lý facilities của từng room
+                    this.lstTienNghiRoom = []
+                    this.lstTienNghiRoom.push({
+                        name: 'facilities.airConditional',
+                        status: roomOrder.roomAirConditional,
+                        icon: 'call_to_action'
+                    })
+                    this.lstTienNghiRoom.push({name: 'facilities.beddingSet', status: roomOrder.roomBeddingSet, icon: 'view_sidebar'})
+                    this.lstTienNghiRoom.push({name: 'facilities.cableTV', status: roomOrder.roomCableTV, icon: 'settings_input_antenna'})
+                    this.lstTienNghiRoom.push({name: 'facilities.coffe', status: roomOrder.roomCoffee, icon: 'local_cafe'})
+                    this.lstTienNghiRoom.push({name: 'facilities.Dryer', status: roomOrder.roomDryer, icon: 'leak_add'})
+                    this.lstTienNghiRoom.push({name: 'facilities.Fireplace', status: roomOrder.roomFireplace, icon: 'web'})
+                    this.lstTienNghiRoom.push({name: 'facilities.freeBreakfast', status: roomOrder.roomFreeBreakfast, icon: 'local_cafe'})
+                    this.lstTienNghiRoom.push({name: 'facilities.freeWifi', status: roomOrder.roomFreeWifi, icon: 'wifi'})
+                    this.lstTienNghiRoom.push({name: 'facilities.Hairdryer', status: roomOrder.roomHairdryer, icon: 'filter_tilt_shift'})
+                    this.lstTienNghiRoom.push({name: 'facilities.heaters', status: roomOrder.roomHeaters, icon: 'hot_tub'})
+                    this.lstTienNghiRoom.push({name: 'facilities.hotTub', status: roomOrder.roomHotTub, icon: 'hot_tub'})
+                    this.lstTienNghiRoom.push({name: 'facilities.ironingMachine', status: roomOrder.roomIroningMachine, icon: 'set_meal'})
+                    this.lstTienNghiRoom.push({name: 'facilities.privatePool', status: roomOrder.roomPrivatePool, icon: 'pool'})
+                    this.lstTienNghiRoom.push({name: 'facilities.shampoo', status: roomOrder.roomShampoo, icon: 'confirmation_number'})
+                    this.lstTienNghiRoom.push({name: 'facilities.smartKey', status: roomOrder.roomSmartKey, icon: 'smart_button'})
+                    this.lstTienNghiRoom.push({name: 'facilities.tea', status: roomOrder.roomTea, icon: 'transform'})
+                    this.lstTienNghiRoom.push({name: 'facilities.teaMaker', status: roomOrder.roomTeaMaker, icon: 'surround_sound'})
+                    this.lstTienNghiRoom.push({name: 'facilities.televison', status: roomOrder.roomTelevison, icon: 'tv'})
+                    this.lstTienNghiRoom.push({
+                        name: 'facilities.TowelsOfAllKinds',
+                        status: roomOrder.roomTowelsOfAllKinds,
+                        icon: 'view_week'
+                    })
+                    this.lstTienNghiRoom.push({name: 'facilities.Wardrobe', status: roomOrder.roomWardrobe, icon: 'view_column'})
+                    this.lstTienNghiRoom.push({name: 'facilities.workspace', status: roomOrder.roomWorkspace, icon: 'power_input'})
+                    this.lstFacilitisDetails.push(this.lstTienNghiRoom.filter(function (obj) {
+                        return obj.status === true // push all status  true
+                    }))
+                })
+                for (let i = 0; i < this.lstFacilitisDetails.length; i++) {
+                    const lstArraythua = []
+                    for (let y = 8; y < this.lstFacilitisDetails[i].length; y++) {
+                        lstArraythua.push(this.lstFacilitisDetails[i][y])
+                    }
+                    this.lstTienNghiThua.push(lstArraythua)
                 }
-                this.lstTienNghiThua.push(lstArraythua)
+                const country = result[0][0].hotelObj.province.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+                    .toLocaleLowerCase().split(' ').join('-')
+                this.getDuLich(country);
+                this.getComent();
+                this.loadding = false;
+            } else {
+                this.chatService.showNotification('success', data['message']);
+                this._router.navigate(['/'])
             }
-            const country = result[0][0].hotelObj.province.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-                .toLocaleLowerCase().split(' ').join('-')
-            this.getDuLich(country);
-            console.log(this.lstAddressPopular)
-            this.getComent();
-            this.loadding = false;
         })
     }
 
-    ngAfterInit(): void {
-        console.log('xxx')
-    }
-
     async getDuLich(address) {
-        console.log('chay toi day')
         const proxyurl = 'https://cors-anywhere.herokuapp.com/';
         const url = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=' + address +
             '+city+point+of+interest&language=en&key=AIzaSyDbIf1-IDfQ0DGaOvAfu5lNZ0bZm0VaisM'; // site that doesn’t send Access-Control-*
@@ -239,7 +242,6 @@ export class HotelDetailsComponent implements OnInit {
 
     payInforRouting(roomId, nameSpace, index) {
         const amount = $('#amount' + index).val()
-        console.log(amount)
         if (amount <= 0 || amount === null || amount === '') {
             if (this.translate.currentLang === 'en') {
                 $('#errorMessage' + index).html('You must enter a room number greater than 0').show()
@@ -249,7 +251,6 @@ export class HotelDetailsComponent implements OnInit {
             return;
         }
         const param = nameSpace + '#' + roomId + '#' + amount
-        console.log(param)
         this._router.navigate(['/booking-room/' + param]);
     }
 

@@ -46,7 +46,7 @@ export class HotelMapComponent implements OnInit, OnChanges {
                 this.lng = currentVal1;
             }
             let prev1 = changes.previousValue
-            console.log(currentVal, currentVal1)
+            // console.log(currentVal, currentVal1)
             if (changes.address !== undefined && changes.address.currentValue !== undefined) {
                 this.address = changes.address.currentValue;
             }
@@ -54,7 +54,7 @@ export class HotelMapComponent implements OnInit, OnChanges {
                 this.name = changes.name.currentValue;
             }
             this.map = {lat: this.lat, lng: this.lng, zoom: this.zoom};
-            console.log(prev, prev1)
+            // console.log(prev, prev1)
         } catch (e) {
             console.log('ehheheh')
         }

@@ -57,6 +57,10 @@ export class HistoryBookComponent implements OnInit {
         private chatService: ChatService,
         private userService: UserService
     ) {
+        if (!this.cookies.get('ObjectId') || !this.cookies.get('email') ||
+            !this.cookies.get('role') || !this.cookies.get('token')) {
+            this.route.navigate(['/']);
+        }
         this.getInitHotel()
     }
 
@@ -71,10 +75,8 @@ export class HistoryBookComponent implements OnInit {
             }
             this.booking = booking;
             for (let book of this.booking) {
-                console.log(book.hotelNameSpace)
                 this._hotelService.getHotelById(book.hotelNameSpace).subscribe(data => {
                     const result = data;
-                    console.log(result)
                     book.nameHotel = result[0][0].hotelObj.name
                     book.policiesCancelRom = result[0][0].hotelObj.cancellationPolicy
                     book.ImgHotel = result[0][0].hotelObj.image.split(',', 1).toString()
@@ -112,9 +114,7 @@ export class HistoryBookComponent implements OnInit {
                         }
                     }
                 })
-
             }
-            console.log(this.booking)
         })
     }
 
@@ -131,16 +131,12 @@ export class HistoryBookComponent implements OnInit {
 
     cancelRoom(book) {
         if (book.status == 0 || book.status == 1) { // cấm sửa ===
-            console.log(book.status)
             this.updateStatusObject.actionName = 'Hủy phòng'
             this.updateStatusObject.idBooking = book._id
-            console.log(this.updateStatusObject)
-            console.log('Hủy phòng nè')
             this._hotelService.updateStatusBook(this.updateStatusObject).subscribe(async res => {
                 if (res.body['status'] === 200) {
                     await this.userService.testEmail(res.body['hotelUSe']).subscribe(
                         use => {
-                            console.log(res);
                             let user = use.body['user'];
                             if (user !== undefined) {
                                 this.messageObject.objectId = use.body['user']._id
@@ -170,7 +166,6 @@ export class HistoryBookComponent implements OnInit {
                 }
             })
             dialogRef.afterClosed().subscribe(result => {
-                console.log(result);
                 if (result) {
                     this.updateStatusObject.actionName = 'Pay Cancel'
                     this.updateStatusObject.idBooking = book._id
@@ -178,7 +173,6 @@ export class HistoryBookComponent implements OnInit {
                         if (res.body['status'] === 200) {
                             await this.userService.testEmail(res.body['hotelUSe']).subscribe(
                                 use => {
-                                    console.log(res);
                                     let user = use.body['user'];
                                     if (user !== undefined) {
                                         this.messageObject.objectId = use.body['user']._id
@@ -187,7 +181,6 @@ export class HistoryBookComponent implements OnInit {
                                     this.message = res.body['message']['content'];
                                     this.chatService.showNotification('success', this.message);
                                     this.chatService.sendNotification(this.messageObject);
-                                    console.log(this.messageObject.message)
                                     setTimeout(() => {
                                         this.message = '';
                                         this.chatService.identifyUser();
@@ -215,7 +208,6 @@ export class HistoryBookComponent implements OnInit {
         })
 
         dialogRef.afterClosed().subscribe(result => {
-            console.log(result);
             if (result) {
                 this.updateStatusObject.actionName = 'Thanh toán'
                 this.updateStatusObject.idBooking = book._id
@@ -223,7 +215,6 @@ export class HistoryBookComponent implements OnInit {
                     if (res.body['status'] === 200) {
                         await this.userService.testEmail(res.body['hotelUSe']).subscribe(
                             use => {
-                                console.log(res);
                                 let user = use.body['user'];
                                 if (user !== undefined) {
                                     this.messageObject.objectId = use.body['user']._id
@@ -232,7 +223,6 @@ export class HistoryBookComponent implements OnInit {
                                 this.message = res.body['message']['content'];
                                 this.chatService.showNotification('success', this.message);
                                 this.chatService.sendNotification(this.messageObject);
-                                console.log(this.messageObject.message)
                                 setTimeout(() => {
                                     this.message = '';
                                     this.chatService.identifyUser();
@@ -301,7 +291,6 @@ export class PayCancelDialogComponent {
         @Inject(MAT_DIALOG_DATA) public data: DialogData
     ) {
         this.book = data['data']
-        console.log(this.book)
         this.book.totalMoney = data['data'].totalMoney.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') + ' VND'
     }
 
