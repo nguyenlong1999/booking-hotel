@@ -43,6 +43,10 @@ export class HotelService {
         return this._http.post(`${this.baseUrl}/updateStatusBook`, {booking: book}, {observe: 'response'});
     }
 
+    updateRatingBook(object: any) {
+        return this._http.post(`${this.baseUrl}/updateRatingBook`, {object: object}, {observe: 'response'});
+    }
+
     getBookingByUser = (idUser): Observable<any> => {
         return this._http
             .get<any>(`${this.baseUrl}/getBookingByHotel/${idUser}`)

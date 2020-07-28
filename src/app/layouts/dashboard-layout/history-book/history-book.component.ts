@@ -11,6 +11,7 @@ import {AppSetting} from '../../../appsetting';
 import {DialogData} from '../../../user-access/user-access.component';
 // @ts-ignore
 import moment = require('moment');
+import {StarRatingColor} from '../../../shared/animation/star-rating/star-rating.component';
 
 @Component({
     selector: 'app-history-book',
@@ -26,6 +27,12 @@ export class HistoryBookComponent implements OnInit {
         idBooking: '',
         idUserHotel: ''
     }
+
+    updateRatingObject = {
+        hotelId: '',
+        idBook: '',
+        rating : 0
+    }
     message = '';
 
     errorMessage: String;
@@ -33,6 +40,12 @@ export class HistoryBookComponent implements OnInit {
         objectId: '',
         message: ''
     }
+    rating = 0;
+    starCount = 5;
+    starColor: StarRatingColor = StarRatingColor.accent;
+    starColorP: StarRatingColor = StarRatingColor.primary;
+    starColorW: StarRatingColor = StarRatingColor.warn;
+    starColorX: StarRatingColor = StarRatingColor.warning;
 
 
     constructor(
@@ -101,6 +114,25 @@ export class HistoryBookComponent implements OnInit {
     ngOnInit(): void {
     }
 
+    onRatingChanged(rating, book) {
+        this.rating = rating;
+        console.log(book)
+        this.updateRatingObject.hotelId = book.hotelObjId
+        this.updateRatingObject.idBook = book._id
+        this.updateRatingObject.rating = this.rating
+        this._hotelService.updateRatingBook(this.updateRatingObject).subscribe(async res => {
+            console.log(res);
+            console.log(res.body['message'])
+            this.chatService.showNotification('success', res.body['message']);
+            setTimeout(() => {
+                this.message = '';
+                this.chatService.identifyUser();
+                window.location.reload()
+                // this._router.navigate(['/index'])
+            }, 1000);
+        })
+    }
+
     cancelRoom(book) {
         if (book.status == 0 || book.status == 1) { // cấm sửa ===
             console.log(book.status)
@@ -125,6 +157,7 @@ export class HistoryBookComponent implements OnInit {
                             setTimeout(() => {
                                 this.message = '';
                                 this.chatService.identifyUser();
+                                window.location.reload()
                                 // this.router.navigate(['/index'])
                             }, 1500);
                         })

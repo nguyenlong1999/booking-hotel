@@ -20,4 +20,5 @@ export class Booking {
     ImgHotel: string;
     address: string;
     policiesCancelRom: number;
+    rating: number
 }
