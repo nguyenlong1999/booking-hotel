@@ -41,6 +41,8 @@ export class HotelDetailsComponent implements OnInit {
     hotelComment: Comment[] = [];
     lstComment: Comment[];
     valueComment = ''
+    totalRating = 0;
+    totalPointHotel = 0;
     constructor(private formbuilder: FormBuilder,
                 private _hotelService: HotelService,
                 private _router: Router,
@@ -173,6 +175,7 @@ export class HotelDetailsComponent implements OnInit {
             this.lstDetaiHotel = result[1][0];
             this.lstFacilitis = result[0][0];
             this.imageList = []
+            this.totalRating = result[2];
             result[1][0].forEach((roomOrder) => {
                 this.imageList.push(this.getImage(roomOrder.lstImg.split(',')))
                 // xử lý facilities của từng room

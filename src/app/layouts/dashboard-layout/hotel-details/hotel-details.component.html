@@ -109,15 +109,19 @@
                         <div class="col">
                             <div class="d-flex justify-content-center">
                                 <div class="content text-center">
-                                    <div class="ratings"><span class="product-rating">4.6</span><span>/5</span>
+                                    <div class="ratings"><span
+                                            class="product-rating">{{this.hotel.pointRating}}</span><span>/5</span>
                                         <div class="stars">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
+                                            <i *ngIf="this.hotel.pointRating >= 1" class="fa fa-star"></i>
+                                            <i *ngIf="this.hotel.pointRating >= 2" class="fa fa-star"></i>
+                                            <i *ngIf="this.hotel.pointRating >= 3" class="fa fa-star"></i>
+                                            <i *ngIf="this.hotel.pointRating >= 4" class="fa fa-star"></i>
+                                            <i *ngIf="this.hotel.pointRating >= 5" class="fa fa-star"></i>
                                         </div>
-                                        <div class="rating-text"><span>46 ratings & {{this.hotelComment.length}} reviews</span></div>
+                                        <div class="rating-text">
+                                            <span>{{this.totalRating}} {{"common.luotDanhgia" |translate}}
+                                                & {{this.hotelComment.length}} {{"common.danhgia" | translate}}</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

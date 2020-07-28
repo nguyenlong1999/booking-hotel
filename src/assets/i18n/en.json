@@ -11,6 +11,7 @@
       "titleBookingView": "Booking details"
     },
     "danhgia": "reviews",
+    "luotDanhgia": "Ratings",
     "userRegister": {
       "username": "User name",
       "phone": "Phone",
