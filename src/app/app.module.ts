@@ -45,7 +45,7 @@ const config: SocketIoConfig = {url: AppSetting.BASE_SERVER_URL, options: {}};
         HttpModule,
         ComponentsModule,
         RouterModule,
-        RouterModule.forRoot(AppRoutes, { onSameUrlNavigation: 'reload' }),
+        RouterModule.forRoot(AppRoutes, { onSameUrlNavigation: 'reload', scrollPositionRestoration: 'enabled'}),
         ErrorModule,
         SharedModule,
         SocketIoModule.forRoot(config),

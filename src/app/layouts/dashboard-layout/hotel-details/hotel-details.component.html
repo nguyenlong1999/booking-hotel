@@ -117,7 +117,7 @@
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
                                         </div>
-                                        <div class="rating-text"><span>46 ratings & 15 reviews</span></div>
+                                        <div class="rating-text"><span>46 ratings & {{this.hotelComment.length}} reviews</span></div>
                                     </div>
                                 </div>
                             </div>
@@ -1000,7 +1000,7 @@
                                                id="content" [(ngModel)]="this.valueComment"
                                                class="form-control" name="content" autocomplete="off"
                                                formControlName="content"
-                                               placeholder="Bình luận" title="Please enter the content" autofocus
+                                               placeholder="Bình luận" title="Please enter the content"
                                                style="resize: none;"></textarea>
                                 </div>
                                 <div class="col-3">

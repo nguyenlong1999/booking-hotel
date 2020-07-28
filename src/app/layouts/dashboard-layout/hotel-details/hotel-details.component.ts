@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NgxGalleryAnimation, NgxGalleryImage, NgxGalleryOptions} from '@kolkov/ngx-gallery';
 import {HotelService} from '../../../shared/service/hotel.service.';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {CookieService} from 'ngx-cookie-service';
 import {ChatService} from '../../../shared/service/chat.service';
 import {AppSetting} from '../../../appsetting';
@@ -41,7 +41,6 @@ export class HotelDetailsComponent implements OnInit {
     hotelComment: Comment[] = [];
     lstComment: Comment[];
     valueComment = ''
-
     constructor(private formbuilder: FormBuilder,
                 private _hotelService: HotelService,
                 private _router: Router,
