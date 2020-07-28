@@ -24,6 +24,13 @@ export class HotelService {
         return this._http.post(`${this.baseUrl}/addComment`, {comment: comment}, {observe: 'response'});
     }
 
+    getComments = (): Observable<Comment[]> => {
+        return this._http.get<Comment[]>(`${this.baseUrl}/getComments`)
+            .pipe(
+                tap(_ => console.log('load getAllComment'))
+            );
+    }
+
     deleteComment(comment: any) {
         return this._http.post(`${this.baseUrl}/deleteComment`, {comment: comment}, {observe: 'response'});
     }
