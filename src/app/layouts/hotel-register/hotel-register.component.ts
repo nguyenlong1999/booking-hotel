@@ -1,5 +1,5 @@
-import {Component, OnInit, Renderer2} from '@angular/core';
-import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormArray, FormBuilder, FormGroup} from '@angular/forms';
 import {StarRatingColor} from '../../shared/animation/star-rating/star-rating.component';
 
 @Component({
@@ -61,7 +61,7 @@ export class HotelRegisterComponent implements OnInit {
 
             // tab 4 Thông tin phòng Room detail array và priceExtra + extra-person
             formArrayRoomNumber: this.formbuilder.array([
-               // this.addControlRoom()
+                // this.addControlRoom()
             ]),
             reservationTime: [''],
 
@@ -79,6 +79,7 @@ export class HotelRegisterComponent implements OnInit {
     get f() {
         return this.registerHotelForm.controls;
     }
+
     onChange(deviceValue, index) {
         console.log(deviceValue, index);
         const radio: HTMLElement = document.getElementById('addMoreRoom' + index);

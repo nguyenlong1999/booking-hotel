@@ -68,8 +68,8 @@ export const DashBoardRoutes: Routes = [
                 component: ViewPayComponent
             },
             {
-              path: 'about',
-              component: UpgradeComponent
+                path: 'about',
+                component: UpgradeComponent
             },
             {
                 path: 'rule',

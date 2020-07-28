@@ -47,7 +47,8 @@
 
                     <div class="row mt-4">
                         <div class="col">
-                            <span class="mt-3" style="font-size: 25px; font-weight: bold; padding-left: 0px">{{"book.book7"|translate}}</span>
+                            <span class="mt-3"
+                                  style="font-size: 25px; font-weight: bold; padding-left: 0px">{{"book.book7"|translate}}</span>
                         </div>
                     </div>
                     <div class="container mt-4 p-3"
@@ -72,10 +73,12 @@
                         </div>
                         <div class="row ">
                             <div class="col">
-                                <span style="font-weight: bold">{{"book.book10"|translate}}</span><span style="color: red"> *</span>
+                                <span style="font-weight: bold">{{"book.book10"|translate}}</span><span
+                                    style="color: red"> *</span>
                             </div>
                             <div class="col">
-                                <span style="font-weight: bold">{{"book.book11"|translate}}</span><span style="color: red"> *</span>
+                                <span style="font-weight: bold">{{"book.book11"|translate}}</span><span
+                                    style="color: red"> *</span>
                             </div>
                         </div>
                         <div class="row">
@@ -93,7 +96,7 @@
                                     <mat-label>Email</mat-label>
                                     <input matInput placeholder="Email" formControlName="email">
                                     <mat-error *ngIf="formBooking.get('email').hasError('required')
-                                     || formBooking.get('email').hasError('email')" >{{"book.requiredEmail" | translate}}</mat-error>
+                                     || formBooking.get('email').hasError('email')">{{"book.requiredEmail" | translate}}</mat-error>
                                 </mat-form-field>
                             </div>
                         </div>
@@ -196,9 +199,11 @@
                         <div class="col">
                             <span style="font-size: 13px">
                                 {{"book.book19"|translate}} <span
-                                    style="color: #00e5ff;cursor:pointer"><a [routerLink]="['/rule']" target="_blank">{{"book.book20"|translate}} </a></span>{{"book.book21"|translate}}
-                                <a [routerLink]="['/policy']" target="_blank"><span style="color: #00e5ff; cursor:pointer">{{"book.book22"|translate}}</span></a>
-                            {{"book.book23"|translate}}
+                                    style="color: #00e5ff;cursor:pointer"><a [routerLink]="['/rule']"
+                                                                             target="_blank">{{"book.book20"|translate}} </a></span>{{"book.book21"|translate}}
+                                <a [routerLink]="['/policy']" target="_blank"><span
+                                        style="color: #00e5ff; cursor:pointer">{{"book.book22"|translate}}</span></a>
+                                {{"book.book23"|translate}}
                             </span>
                         </div>
                         <div class="col-3">
@@ -302,7 +307,8 @@
     </div>
 </form>
 
-<button type="button" class="btn btn-primary" hidden="true" data-toggle="modal" data-target="#exampleModalCenterxxxxxxxxx"
+<button type="button" class="btn btn-primary" hidden="true" data-toggle="modal"
+        data-target="#exampleModalCenterxxxxxxxxx"
         id="modal-buttonCheck">
     Launch demo modal
 </button>

@@ -27,9 +27,7 @@ import {ToastrModule} from 'ngx-toastr';
 import {AgmCoreModule} from '@agm/core';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import {NgxGalleryModule} from '@kolkov/ngx-gallery';
-import { ViewPayComponent } from './view-pay/view-pay.component';
 import {QRCodeModule} from 'angularx-qrcode';
 
 const config: SocketIoConfig = {url: AppSetting.BASE_SERVER_URL, options: {}};
@@ -45,7 +43,7 @@ const config: SocketIoConfig = {url: AppSetting.BASE_SERVER_URL, options: {}};
         HttpModule,
         ComponentsModule,
         RouterModule,
-        RouterModule.forRoot(AppRoutes, { onSameUrlNavigation: 'reload', scrollPositionRestoration: 'enabled'}),
+        RouterModule.forRoot(AppRoutes, {onSameUrlNavigation: 'reload', scrollPositionRestoration: 'enabled'}),
         ErrorModule,
         SharedModule,
         SocketIoModule.forRoot(config),
@@ -80,11 +78,12 @@ const config: SocketIoConfig = {url: AppSetting.BASE_SERVER_URL, options: {}};
     schemas: [
         CUSTOM_ELEMENTS_SCHEMA
     ],
-    providers: [CookieService, { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
+    providers: [CookieService, {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}],
     bootstrap: [AppComponent]
 })
 export class AppModule {
 }
+
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http);
 }

@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'app-rule',
-  templateUrl: './rule.component.html',
-  styleUrls: ['./rule.component.css']
+    selector: 'app-rule',
+    templateUrl: './rule.component.html',
+    styleUrls: ['./rule.component.css']
 })
 export class RuleComponent implements OnInit {
-  URL = 'Booking Hotel'
-  constructor() { }
+    URL = 'Booking Hotel'
 
-  ngOnInit(): void {
-  }
+    constructor() {
+    }
+
+    ngOnInit(): void {
+    }
 
 }

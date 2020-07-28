@@ -4,15 +4,20 @@ import {Observable} from 'rxjs';
 import * as io from 'socket.io-client';
 import {AppSetting} from '../../appsetting';
 import {HttpClient} from '@angular/common/http';
+
 declare var $: any;
+
 @Injectable({
     providedIn: 'root'
 })
 export class ChatService {
     private baseUrl: string = AppSetting.BASE_SERVER_URL;
+
     constructor(
         private socket: Socket,
-        private _http: HttpClient) { }
+        private _http: HttpClient) {
+    }
+
     public sendMessage(message) {
         console.log('gưi thong báo socket:');
         console.log(message);
@@ -23,6 +28,7 @@ export class ChatService {
             {observe: 'response'}
         );
     }
+
     public getMessages = () => {
         return Observable.create((observer) => {
             this.socket.on('message', (message) => {
@@ -30,9 +36,11 @@ export class ChatService {
             });
         });
     }
+
     public sendNotification(notification) {
         this.socket.emit('new-notification', notification);
     }
+
     public getNotifications = () => {
         return Observable.create((observer) => {
             this.socket.on('notification', (notification) => {
@@ -40,6 +48,7 @@ export class ChatService {
             });
         });
     }
+
     public getListMember(message) {
         console.log('gưi thong báo socket lấy danh sach' + message)
         this.socket.emit('get-list-online', message);
@@ -59,7 +68,7 @@ export class ChatService {
             icon: 'notifications',
             message: message
 
-        },{
+        }, {
             type: type,
             timer: 4000,
             placement: {
@@ -78,6 +87,7 @@ export class ChatService {
                 '</div>'
         });
     }
+
     findChatMessage(chatMessage: any) {
         return this._http.post(
             `${this.baseUrl}/findChatMessage`,

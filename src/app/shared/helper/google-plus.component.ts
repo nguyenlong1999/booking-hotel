@@ -1,8 +1,9 @@
-﻿import { Component, ElementRef, AfterViewInit, Input } from '@angular/core';
+﻿import {AfterViewInit, Component, Input} from '@angular/core';
 
 @Component({
     selector: 'google-plus',
-    template: `<div class="g-plusone" [attr.data-href]="url" data-size="medium"></div>`
+    template: `
+        <div class="g-plusone" [attr.data-href]="url" data-size="medium"></div>`
 })
 
 export class GooglePlusComponent implements AfterViewInit {

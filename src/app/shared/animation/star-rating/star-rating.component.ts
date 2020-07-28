@@ -1,5 +1,4 @@
-import {Component, Input, Output, OnInit, ViewEncapsulation, EventEmitter} from '@angular/core';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import {Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
 
 @Component({
     selector: 'app-star-rating',

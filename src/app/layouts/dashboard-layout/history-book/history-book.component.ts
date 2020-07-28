@@ -9,9 +9,9 @@ import {ChatService} from '../../../shared/service/chat.service';
 import {UserService} from '../../../shared/service/user.service.';
 import {AppSetting} from '../../../appsetting';
 import {DialogData} from '../../../user-access/user-access.component';
+import {StarRatingColor} from '../../../shared/animation/star-rating/star-rating.component';
 // @ts-ignore
 import moment = require('moment');
-import {StarRatingColor} from '../../../shared/animation/star-rating/star-rating.component';
 
 @Component({
     selector: 'app-history-book',

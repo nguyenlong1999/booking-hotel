@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Inject, OnInit, ViewChild} from '@angular/core';
+import {Component, Inject, OnInit, ViewChild} from '@angular/core';
 import {HotelService} from '../shared/service/hotel.service.';
 import {Hotel} from '../shared/model/hotel';
 import {MatPaginator} from '@angular/material/paginator';
@@ -7,11 +7,9 @@ import {MatTableDataSource} from '@angular/material/table';
 import {Router} from '@angular/router';
 import {AbstractControl, FormBuilder} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
-import {DialogData, UserRoleDialog} from '../user-access/user-access.component';
-import {User} from '../shared/model/user';
+import {DialogData} from '../user-access/user-access.component';
 import {CookieService} from 'ngx-cookie-service';
 import {ChatService} from '../shared/service/chat.service';
-import {Message} from '../shared/model/message';
 import {StarRatingColor} from '../shared/animation/star-rating/star-rating.component';
 
 export interface PeriodicElement {

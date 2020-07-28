@@ -27,7 +27,7 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <mat-form-field class="example-full-width" disabled="true">
-                                            <input matInput  formControlName="email" name="email" type="text">
+                                            <input matInput formControlName="email" name="email" type="text">
                                         </mat-form-field>
                                     </div>
                                 </div>
@@ -151,7 +151,7 @@
                                             <input matInput disabled formControlName="oldPassword" name="oldPassword"
                                                    type="password"
                                                    [ngClass]="{ 'is-invalid': passSubmitted && f.oldPassword.errors }"
-                                                   [placeholder] = "'common.userRegister.oldPassword' | translate"
+                                                   [placeholder]="'common.userRegister.oldPassword' | translate"
                                                    title="Vui lòng điền mật khẩu cũ">
                                         </mat-form-field>
                                     </div>

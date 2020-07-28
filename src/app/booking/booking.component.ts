@@ -9,13 +9,10 @@ import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog
 import {CookieService} from 'ngx-cookie-service';
 import {ChatService} from '../shared/service/chat.service';
 import {AbstractControl, FormBuilder} from '@angular/forms';
+import {DialogData} from '../user-access/user-access.component';
+import {UserService} from '../shared/service/user.service.';
 // @ts-ignore
 import moment = require('moment');
-import {HotelDialogComponent} from '../hotel-component/hotel-component.component';
-import {DialogData} from '../user-access/user-access.component';
-import {Hotel} from '../shared/model/hotel';
-import {UserService} from '../shared/service/user.service.';
-import {equal} from 'assert';
 
 export interface PeriodicElement {
     name: string;
@@ -138,8 +135,7 @@ export class BookingComponent implements OnInit {
                     item.status = 'Đã từ chối';
                 } else if (item.status === '-2') {
                     item.status = 'Đã hủy';
-                }
-                else if (item.status === '3') {
+                } else if (item.status === '3') {
                     item.status = 'Đã thanh toán (hủy phòng)';
                 }
             }

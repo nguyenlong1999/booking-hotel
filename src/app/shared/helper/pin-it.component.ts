@@ -1,8 +1,9 @@
-﻿import { Component, ElementRef, AfterViewInit, Input } from '@angular/core';
+﻿import {AfterViewInit, Component, Input} from '@angular/core';
 
 @Component({
     selector: 'pin-it',
-    template: `<a href="//www.pinterest.com/pin/create/button/?url={{url}}&media={{media}}&description={{description}}" data-pin-do="buttonPin" data-pin-config="beside"></a>`
+    template: `<a href="//www.pinterest.com/pin/create/button/?url={{url}}&media={{media}}&description={{description}}"
+                  data-pin-do="buttonPin" data-pin-config="beside"></a>`
 })
 
 export class PinItComponent implements AfterViewInit {

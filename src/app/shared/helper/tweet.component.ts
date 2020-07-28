@@ -1,4 +1,4 @@
-﻿import { Component, ElementRef, AfterViewInit, Input } from '@angular/core';
+﻿import {AfterViewInit, Component, Input} from '@angular/core';
 
 @Component({
     selector: 'tweet',

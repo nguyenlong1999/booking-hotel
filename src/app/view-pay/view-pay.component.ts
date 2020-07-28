@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {DomSanitizer, SafeHtml, SafeResourceUrl} from '@angular/platform-browser';
-import {ActivatedRoute, Route, Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {HotelService} from '../shared/service/hotel.service.';
 import {ChatService} from '../shared/service/chat.service';
 import {UserService} from '../shared/service/user.service.';
@@ -65,9 +65,9 @@ export class ViewPayComponent implements OnInit {
                             this.messageObject.objectId = use.body['user']._id
                         }
                         this.messageObject.message = res.body['messageAdmin']['content'];
-                        this.message =  res.body['message']['content'];
+                        this.message = res.body['message']['content'];
                         this.chatService.showNotification('success', this.message);
-                       // this.chatService.sendNotification(this.messageObject);
+                        // this.chatService.sendNotification(this.messageObject);
                         console.log(this.messageObject.message)
                         setTimeout(() => {
                             this.message = '';
@@ -80,6 +80,7 @@ export class ViewPayComponent implements OnInit {
             }
         })
     }
+
     AcceptPay() {
         // const radio: HTMLElement = document.getElementById('modal-buttonPay');
         // radio.click();
@@ -96,7 +97,7 @@ export class ViewPayComponent implements OnInit {
                             this.messageObject.objectId = use.body['user']._id
                         }
                         this.messageObject.message = res.body['messageAdmin']['content'];
-                        this.message =  res.body['message']['content'];
+                        this.message = res.body['message']['content'];
                         this.chatService.showNotification('success', this.message);
                         this.chatService.sendNotification(this.messageObject);
                         console.log(this.messageObject.message)

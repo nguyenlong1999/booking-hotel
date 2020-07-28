@@ -1,14 +1,10 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Subject, Observable, throwError} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
 import {CookieService} from 'ngx-cookie-service';
-import {Token} from '../model/token';
 
 import {AppSetting} from '../../appsetting';
-import {retry, catchError, tap} from 'rxjs/operators';
-import {User} from '../model/user';
-import {Message} from '../model/message';
-import {Summary} from '../model/summary';
+import {tap} from 'rxjs/operators';
 import {Hotel} from '../model/hotel';
 
 @Injectable({

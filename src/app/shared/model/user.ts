@@ -23,6 +23,6 @@ export class User {
     isAdmin: boolean;
     dercoratingImage: string;
     introduction: string;
-    online:boolean;
+    online: boolean;
     level: any;
 }

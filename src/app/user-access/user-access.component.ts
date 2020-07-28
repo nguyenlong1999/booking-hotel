@@ -2,7 +2,7 @@ import {Component, Inject, OnInit, ViewChild} from '@angular/core';
 import {UserService} from 'app/shared/service/user.service.';
 import {User} from 'app/shared/model/user';
 import {CookieService} from 'ngx-cookie-service';
-import {MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
@@ -85,8 +85,7 @@ export class UserAccessComponent implements OnInit {
                 user.isAdmin === false;
                 if (user.status === -1) {
                     user.role = 'Chưa xác thực';
-                } else
-                if (user.role === 0) {
+                } else if (user.role === 0) {
                     user.role = 'Thành viên';
                 } else if (user.role === 1) {
                     user.role = 'Quản trị KS';

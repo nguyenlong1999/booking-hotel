@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'app-policy',
-  templateUrl: './policy.component.html',
-  styleUrls: ['./policy.component.css']
+    selector: 'app-policy',
+    templateUrl: './policy.component.html',
+    styleUrls: ['./policy.component.css']
 })
 export class PolicyComponent implements OnInit {
-  URL = 'Booking Hotel'
-  constructor() { }
+    URL = 'Booking Hotel'
 
-  ngOnInit(): void {
-  }
+    constructor() {
+    }
+
+    ngOnInit(): void {
+    }
 
 }

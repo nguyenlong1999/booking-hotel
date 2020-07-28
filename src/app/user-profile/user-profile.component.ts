@@ -2,13 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from 'app/shared/service/user.service.';
 import {User} from 'app/shared/model/user';
 import {CookieService} from 'ngx-cookie-service';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {FileUploader} from 'ng2-file-upload';
 import {MustMatch} from 'app/shared/helper/must-match-validator';
 import {ChatService} from '../shared/service/chat.service';
 import {Router} from '@angular/router';
-
-// import { ImageUpload } from '../shared/animation/image/image.component';
 
 @Component({
     selector: 'app-user-profile',

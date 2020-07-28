@@ -3,7 +3,6 @@ import {Router} from '@angular/router'
 import {LoginServiceService} from '../../../shared/service/login-service.service';
 import {CookieService} from 'ngx-cookie-service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {TranslateService} from '@ngx-translate/core';
 import {ChatService} from '../../../shared/service/chat.service';
 
 @Component({
@@ -21,6 +20,7 @@ export class LoginComponent implements OnInit {
     submitted = false;
     errorMessage: string = null;
     login_check = true;
+
     constructor(
         private cookie: CookieService,
         private _loginService: LoginServiceService,

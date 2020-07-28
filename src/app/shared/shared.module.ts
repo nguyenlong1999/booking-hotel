@@ -1,4 +1,4 @@
-import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
+import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {StarRatingComponent} from './animation/star-rating/star-rating.component';
 import {MatTooltipModule} from '@angular/material/tooltip';

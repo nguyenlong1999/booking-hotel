@@ -4,42 +4,42 @@ import {ComponentPortal} from '@angular/cdk/portal';
 import {TooltipComponent} from './tooltip.component';
 
 @Directive({
-  selector: '[appTooltip]'
+    selector: '[appTooltip]'
 })
 export class TooltipDirective implements OnInit {
 
-  @Input('appTooltip') text = [];
-  private overlayRef: OverlayRef;
+    @Input('appTooltip') text = [];
+    private overlayRef: OverlayRef;
 
-  constructor(private overlay: Overlay,
-              private overlayPositionBuilder: OverlayPositionBuilder,
-              private elementRef: ElementRef) {
-  }
+    constructor(private overlay: Overlay,
+                private overlayPositionBuilder: OverlayPositionBuilder,
+                private elementRef: ElementRef) {
+    }
 
-  ngOnInit(): void {
-    const positionStrategy = this.overlayPositionBuilder
-        .flexibleConnectedTo(this.elementRef)
-        .withPositions([{
-          originX: 'end',
-          originY: 'bottom',
-          overlayX: 'center',
-          overlayY: 'bottom',
-          offsetY: -8,
-        }]);
+    ngOnInit(): void {
+        const positionStrategy = this.overlayPositionBuilder
+            .flexibleConnectedTo(this.elementRef)
+            .withPositions([{
+                originX: 'end',
+                originY: 'bottom',
+                overlayX: 'center',
+                overlayY: 'bottom',
+                offsetY: -8,
+            }]);
 
-    this.overlayRef = this.overlay.create({ positionStrategy });
-  }
+        this.overlayRef = this.overlay.create({positionStrategy});
+    }
 
-  @HostListener('mouseenter')
-  show() {
-    const tooltipRef: ComponentRef<TooltipComponent>
-        = this.overlayRef.attach(new ComponentPortal(TooltipComponent));
-    tooltipRef.instance.text = this.text;
-    console.log(this.text)
-  }
+    @HostListener('mouseenter')
+    show() {
+        const tooltipRef: ComponentRef<TooltipComponent>
+            = this.overlayRef.attach(new ComponentPortal(TooltipComponent));
+        tooltipRef.instance.text = this.text;
+        console.log(this.text)
+    }
 
-  @HostListener('mouseout')
-  hide() {
-    this.overlayRef.detach();
-  }
+    @HostListener('mouseout')
+    hide() {
+        this.overlayRef.detach();
+    }
 }

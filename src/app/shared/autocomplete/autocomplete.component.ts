@@ -80,7 +80,7 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
         //     }
         // });
         this.setAddress.emit(place);
-        console.log('autocomplete',place);
+        console.log('autocomplete', place);
     }
 
 }

@@ -1,4 +1,4 @@
-import {Component, Directive, ElementRef, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FileUploader} from 'ng2-file-upload';
 import {AppSetting} from '../../../appsetting';
 import {ToastrService} from 'ngx-toastr';
