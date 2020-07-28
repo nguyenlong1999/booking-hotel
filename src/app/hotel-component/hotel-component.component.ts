@@ -181,8 +181,11 @@ export class HotelComponentComponent implements OnInit {
                 setTimeout(() => {
                     this.message = '';
                     // window.location.reload();
+                    this.route.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+                        this.route.navigate(['/hotels']);
+                    });
                     this.chatService.identifyUser();
-                }, 1500);
+                }, 500);
             } else {
                 this.chatService.showNotification('warning', res.body['message']);
             }
