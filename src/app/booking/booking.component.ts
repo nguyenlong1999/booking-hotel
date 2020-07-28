@@ -123,14 +123,11 @@ export class BookingComponent implements OnInit {
                 })
                 item.fromDate = new Date(moment(JSON.stringify(item.date.begin).split('"')[1]).format('MM/DD/YYYY')).toLocaleDateString()
                 item.toDate = new Date(moment(JSON.stringify(item.date.end).split('"')[1]).format('MM/DD/YYYY')).toLocaleDateString()
-                const oneDay = 24 * 60 * 60 * 1000;
-                const fromD = item.fromDate.split('/');
-                const toD = item.toDate.split('/');
-                const firstDate = new Date(Number(fromD[2]), Number(fromD[1]), Number(fromD[0]));
-                const secondDate = new Date(Number(toD[2]), Number(toD[1]), Number(toD[0]));
+                let fromDate = new Date(item.fromDate)
+                let toDate = new Date(item.toDate)
+                let Difference_In_Time = toDate.getTime() - fromDate.getTime();
                 // @ts-ignore
-                item.totalNight = Math.round(Math.abs((firstDate - secondDate) / oneDay));
-                item.totalNight = item.totalNight === 0 ? 1 : item.totalNight
+                item.totalNight = Difference_In_Time / (1000 * 3600 * 24) + 1;
                 if (item.status === '0') {
                     item.status = 'Chờ phản hồi';
                 } else if (item.status === '1') {
