@@ -31,7 +31,7 @@ export class HistoryBookComponent implements OnInit {
     updateRatingObject = {
         hotelId: '',
         idBook: '',
-        rating : 0
+        rating: 0
     }
     message = '';
 
@@ -57,6 +57,13 @@ export class HistoryBookComponent implements OnInit {
         private chatService: ChatService,
         private userService: UserService
     ) {
+        this.getInitHotel()
+    }
+
+    ngOnInit(): void {
+    }
+
+    getInitHotel() {
         const userCurrent = this.cookies.get('ObjectId');
         this._hotelService.getBookingByUserRegister(userCurrent).subscribe(booking => {
             if (booking === undefined) {
@@ -111,25 +118,14 @@ export class HistoryBookComponent implements OnInit {
         })
     }
 
-    ngOnInit(): void {
-    }
-
     onRatingChanged(rating, book) {
         this.rating = rating;
-        console.log(book)
-        this.updateRatingObject.hotelId = book.hotelObjId
+        this.updateRatingObject.hotelId = book.hotelNameSpace
         this.updateRatingObject.idBook = book._id
         this.updateRatingObject.rating = this.rating
         this._hotelService.updateRatingBook(this.updateRatingObject).subscribe(async res => {
-            console.log(res);
-            console.log(res.body['message'])
             this.chatService.showNotification('success', res.body['message']);
-            setTimeout(() => {
-                this.message = '';
-                this.chatService.identifyUser();
-                window.location.reload()
-                // this._router.navigate(['/index'])
-            }, 1000);
+            this.getInitHotel()
         })
     }
 
