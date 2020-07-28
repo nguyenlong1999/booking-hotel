@@ -449,12 +449,11 @@ export class HotelAccessComponent implements OnInit {
     }
 
     onSubmit() {
-        this.checkSubmit = true;
         if (this.checked === false) {
             this.isSubmitted = true
             return
         }
-        console.log(this.listImgCurrent)
+        // console.log(this.listImgCurrent)
         if (this.listImgCurrent.length > 0) {
             let imgCurrent = Array.from(this.listImgCurrent).join();
             if (this.arrayImage.length > 0) {
@@ -480,8 +479,8 @@ export class HotelAccessComponent implements OnInit {
         const hoTelsObject = this.registerHotelForm.value;
         hoTelsObject.email = this.cookies.get('email');
         if (this.isEdited) {
+            this.checkSubmit = true;
             console.log('vao day de edit')
-
             this._hotelService.editHotel(this.registerHotelForm.value).subscribe((data) => {
                 const result = data.body
                 console.log(result)
@@ -504,6 +503,7 @@ export class HotelAccessComponent implements OnInit {
             })
 
         } else {
+            this.checkSubmit = true;
             this._hotelService.createHotel(this.registerHotelForm.value).subscribe(async (data) => {
                 const result = await data.body
                 console.log(result)
