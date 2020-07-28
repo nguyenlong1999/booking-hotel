@@ -125,8 +125,6 @@ export class DashboardLayoutComponent implements OnInit {
                 this.onChangecheck(1);
             });
         }
-        console.log('aaaaaaaa')
-        console.log(this.cookie.get('email') !== '' ? true : false)
         if ( this.cookie.get('email') !== '' ? true : false) {
             this.getNotification();
         }
@@ -275,7 +273,6 @@ export class DashboardLayoutComponent implements OnInit {
         }
         this.isLogined = false
         this.href = this._router.url;
-        console.log(this.href)
         if (this.href === '/index') {
             window.location.reload();
         } else {
@@ -286,8 +283,6 @@ export class DashboardLayoutComponent implements OnInit {
 
     useLanguage(language: string) {
         this.checkLanguage = !this.checkLanguage;
-        console.log(this.translate)
-        console.log(language);
         this.translate.use(language);
         if (language === 'en') {
             this.translate.get('Booking Hotel').subscribe(name => {
@@ -316,7 +311,6 @@ export class DashboardLayoutComponent implements OnInit {
                 this._loginService.updateAuthStatus(true);
                 const user = userData.body;
                 let role;
-                console.log(user);
                 for (const key of Object.keys(user)) {
                     if (key === 'role') {
                         role = user[key];
@@ -342,16 +336,13 @@ export class DashboardLayoutComponent implements OnInit {
                     if (key === 'role') {
                         role = user[key];
                         this.cookie.set('role', role);
-                        console.log(role)
                         if (role !== undefined && role !== '' && role === 2) { // admin = 2
                             this.isModeration = true
-                            console.log(role)
                         }
                     }
                     if (key === 'objectId') {
                         const ObjectId = user[key];
                         this.cookie.set('ObjectId', ObjectId);
-                        console.log(ObjectId)
                     }
                 }
                 this.showModal = false;
@@ -439,12 +430,12 @@ export class DashboardLayoutComponent implements OnInit {
     }
 
     openDialogChooseHotelType(event) {
-        console.log('help')
+        // console.log('help')
         if (this.isLang && this.openDialog === false) {
             this.openDialog = true;
             this.ShowDialogChooseHotelType(event).subscribe(data => {
                 const checkSearch = data[0];
-                console.log(checkSearch);
+                // console.log(checkSearch);
                 if (checkSearch !== undefined) {
                     this.searchHotel.total = checkSearch['roomCount'] + ' phòng, ' + checkSearch['personCount'] + ' người lớn'
                     if (checkSearch['childrenCount'] !== undefined && checkSearch['childrenCount'] > 0) {
@@ -459,7 +450,7 @@ export class DashboardLayoutComponent implements OnInit {
             }
             this.ShowDialogChooseHotelType(event).subscribe(data => {
                 const checkSearch = data[0];
-                console.log(checkSearch);
+                // console.log(checkSearch);
                 if (checkSearch !== undefined) {
                     this.searchHotel.total = checkSearch['roomCount'] + ' room, ' + checkSearch['personCount'] + ' adult'
                     if (checkSearch['childrenCount'] !== undefined && checkSearch['childrenCount'] > 0) {
@@ -494,7 +485,7 @@ export class DashboardLayoutComponent implements OnInit {
                 }
             });
         }
-        console.log(this.userMessages);
+        // console.log(this.userMessages);
     }
 
     getNotification() {
@@ -520,7 +511,7 @@ export class DashboardLayoutComponent implements OnInit {
     }
 
     mailBox() {
-        console.log('get mail')
+        // console.log('get mail')
         this.chatService.getNotifications().subscribe(mail => {
             console.log('mail-notification:', mail);
             if (mail !== undefined) {
