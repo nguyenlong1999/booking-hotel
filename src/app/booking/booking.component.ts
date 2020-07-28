@@ -120,8 +120,8 @@ export class BookingComponent implements OnInit {
                 })
                 item.fromDate = new Date(moment(JSON.stringify(item.date.begin).split('"')[1]).format('MM/DD/YYYY')).toLocaleDateString()
                 item.toDate = new Date(moment(JSON.stringify(item.date.end).split('"')[1]).format('MM/DD/YYYY')).toLocaleDateString()
-                let fromDate = new Date(item.fromDate)
-                let toDate = new Date(item.toDate)
+                let fromDate = new Date(new Date(moment(JSON.stringify(item.date.begin).split('"')[1]).format('MM/DD/YYYY')))
+                let toDate = new Date(new Date(moment(JSON.stringify(item.date.end).split('"')[1]).format('MM/DD/YYYY')))
                 let Difference_In_Time = toDate.getTime() - fromDate.getTime();
                 // @ts-ignore
                 item.totalNight = Difference_In_Time / (1000 * 3600 * 24) + 1;
