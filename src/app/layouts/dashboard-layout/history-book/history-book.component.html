@@ -9,7 +9,7 @@
 </div>
 <div class="container">
     <div *ngFor="let i of this.booking" >
-        <div class="row mt-3" style="border:solid 1px red; border-radius: 5px; background: white">
+        <div class="row mt-3" style="border:solid 1px #5ab5a0; border-radius: 5px; background: white">
             <div class="col-3 p-3 pr-0" style="margin: auto">
                 <div *ngIf="i.ImgHotel">
                     <img class="img-thumbnail" style="height:auto;width: 100%;" [src]="this.BASE_URL+i.ImgHotel"  alt="">

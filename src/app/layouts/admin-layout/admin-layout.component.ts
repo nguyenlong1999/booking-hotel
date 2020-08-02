@@ -46,7 +46,7 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
         this.mailBox();
         this.getListOnline();
         this.userService.getActiveUsers().subscribe(data => {
-            console.log(data)
+            // console.log(data)
             this.userChatList = data;
             let id = this.cookieService.get('ObjectId');
             this.userChatList = this.userChatList.filter(user => user._id !== id);
@@ -61,8 +61,8 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
                 }
             });
 
-            console.log(this.userOnline);
-            console.log(this.userChatList);
+            // console.log(this.userOnline);
+            // console.log(this.userChatList);
         });
     }
 
@@ -207,7 +207,7 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
                 let time = new Date();
                 mess.time = this.formatDate(time);
                 if (mess['content']['get-list-online'] !== undefined) {
-                    console.log(mess['content']['get-list-online']);
+                    // console.log(mess['content']['get-list-online']);
                     let userOnline = JSON.stringify(mess['content']['get-list-online']);
                     userOnline = userOnline.substring(1);
                     userOnline = userOnline.substring(0, userOnline.length - 1);
@@ -224,7 +224,7 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
                         }
                     });
                     this.userService.getActiveUsers().subscribe(data => {
-                        console.log(data)
+                        // console.log(data)
                         this.userChatList = data;
                         let id = this.cookieService.get('ObjectId');
                         this.userChatList = this.userChatList.filter(user => user._id !== id);
@@ -236,14 +236,14 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
                             });
                         });
 
-                        console.log(this.userOnline);
-                        console.log(this.userChatList);
+                        // console.log(this.userOnline);
+                        // console.log(this.userChatList);
                     });
                 } else {
                     this.addChatBoxGetMessage(mess);
                     this.userMessages.push(mess);
                 }
-                console.log(this.userMessages);
+                // console.log(this.userMessages);
             }
         });
     }
@@ -256,7 +256,7 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
         this.toUserImageCheck = imageUrl;
         this.toUser = userId;
         this.chatService.findChatMessage(chatMessage).subscribe(data => {
-            console.log(data);
+            // console.log(data);
             for (const message of data.body['message']) {
                 this.userMessages.push(message);
                 if (message.fromUser === chatMessage.fromUser) {
@@ -269,7 +269,7 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
     }
 
     sendMessage(event) {
-        console.log(this.message)
+        // console.log(this.message)
         let message = new ChatMessage();
         message.fromUser = this.cookieService.get('ObjectId');
         message.toUser = this.toUser;
@@ -283,12 +283,12 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
             if (data['status'] === 200) {
                 this.addChatBoxSendMessage(message);
             } else {
-                console.log(data);
+                // console.log(data);
                 this.addChatBoxSendMessage(message);
             }
             this.message = '';
         });
-        console.log(message)
+        // console.log(message)
     }
 
     addChatBoxGetMessage(message) {
@@ -378,7 +378,7 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
         message.time = this.formatDate(time);
         this.guessMessages.push(message);
         this.chatService.sendMessage(message);
-        console.log(message)
+        // console.log(message)
         const radio: HTMLElement = document.getElementById('msg_history');
         radio.innerHTML += ' <div class="outgoing_msg" style="float: left;display: block;clear: both;">\n' +
             '<img  src="http://localhost:8000/api/images/default-avatar.png" alt="sunil" style="border-radius: 50%;width: 25px;height: 25px;float:left;"/>' +
@@ -399,7 +399,7 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
 
     useLanguage(language: string) {
         this.translate.use(language);
-        console.log(language);
+        // console.log(language);
         if (language === 'en') {
             this.translate.get('Booking Hotel').subscribe(name => {
                 this.title.setTitle(name);

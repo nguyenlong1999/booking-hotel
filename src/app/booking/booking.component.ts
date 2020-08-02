@@ -63,6 +63,8 @@ export class BookingComponent implements OnInit {
         objectId: '',
         message: ''
     }
+    role: any;
+    button = false;
 
     constructor(
         private hotelService: HotelService,
@@ -80,88 +82,178 @@ export class BookingComponent implements OnInit {
             roomType: ['']
         })
         const email = this.cookies.get('email');
-        this.hotelService.getBookingByUser(email).subscribe(booking => {
-            if (booking === undefined) {
-                return;
-            }
-            this.booking = booking;
-            for (const item of this.booking) {
-                this.hotelService.getHotelById(item.hotelNameSpace).subscribe(hotel => {
-                    item.nameHotel = hotel['result'][0][0].hotelObj.name
-                    this.hotel = hotel['result']
-                    for (const i of hotel['result'][1][0]) {
-                        if (i._id === item.roomDetailID) {
-                            if (i.roomType === null) {
-                                item.roomType = 'Standard'
-                            }
-                            if (i.roomType === 1) {
-                                item.roomType = 'Standard'
-                            }
-                            if (i.roomType === 2) {
-                                item.roomType = 'Superior'
-                            }
-                            if (i.roomType === 3) {
-                                item.roomType = 'Deluxe'
-                            }
-                            if (i.roomType === 4) {
-                                item.roomType = 'Suite'
-                            }
-                            if (i.roomType === 5) {
-                                item.roomType = 'Family'
-                            }
-                            if (i.roomType === 6) {
-                                item.roomType = 'President'
-                            }
-                            if (i.roomType === 7) {
-                                item.roomType = 'Royal'
+        this.role = parseInt(this.cookies.get('role'))
+        this.button = this.role === 2 ? this.button = true : false;
+        if (this.role === 2) {
+            console.log('ADMIN')
+            this.hotelService.getBookingAdmin().subscribe(booking => {
+                if (booking === undefined) {
+                    return;
+                }
+                console.log(booking)
+                this.booking = booking;
+                for (const item of this.booking) {
+                    this.hotelService.getHotelById(item.hotelNameSpace).subscribe(hotel => {
+                        item.nameHotel = hotel['result'][0][0].hotelObj.name
+                        this.hotel = hotel['result']
+                        for (const i of hotel['result'][1][0]) {
+                            if (i._id === item.roomDetailID) {
+                                if (i.roomType === null) {
+                                    item.roomType = 'Standard'
+                                }
+                                if (i.roomType === 1) {
+                                    item.roomType = 'Standard'
+                                }
+                                if (i.roomType === 2) {
+                                    item.roomType = 'Superior'
+                                }
+                                if (i.roomType === 3) {
+                                    item.roomType = 'Deluxe'
+                                }
+                                if (i.roomType === 4) {
+                                    item.roomType = 'Suite'
+                                }
+                                if (i.roomType === 5) {
+                                    item.roomType = 'Family'
+                                }
+                                if (i.roomType === 6) {
+                                    item.roomType = 'President'
+                                }
+                                if (i.roomType === 7) {
+                                    item.roomType = 'Royal'
+                                }
                             }
                         }
+                    })
+                    item.fromDate = new Date(moment(JSON.stringify(item.date.begin).split('"')[1]).format('MM/DD/YYYY')).toLocaleDateString()
+                    item.toDate = new Date(moment(JSON.stringify(item.date.end).split('"')[1]).format('MM/DD/YYYY')).toLocaleDateString()
+                    let fromDate = new Date(new Date(moment(JSON.stringify(item.date.begin).split('"')[1]).format('MM/DD/YYYY')))
+                    let toDate = new Date(new Date(moment(JSON.stringify(item.date.end).split('"')[1]).format('MM/DD/YYYY')))
+                    let Difference_In_Time = toDate.getTime() - fromDate.getTime();
+                    // @ts-ignore
+                    item.totalNight = Difference_In_Time / (1000 * 3600 * 24) + 1;
+                    if (item.status === '0') {
+                        item.status = 'Chờ phản hồi';
+                    } else if (item.status === '1') {
+                        item.status = 'Đã chấp nhận';
+                    } else if (item.status === '2') {
+                        item.status = 'Đã thanh toán';
+                    } else if (item.status === '-1') {
+                        item.status = 'Đã từ chối';
+                    } else if (item.status === '-2') {
+                        item.status = 'Đã hủy';
+                    } else if (item.status === '3') {
+                        item.status = 'Đã thanh toán (hủy phòng)';
                     }
-                })
-                item.fromDate = new Date(moment(JSON.stringify(item.date.begin).split('"')[1]).format('MM/DD/YYYY')).toLocaleDateString()
-                item.toDate = new Date(moment(JSON.stringify(item.date.end).split('"')[1]).format('MM/DD/YYYY')).toLocaleDateString()
-                let fromDate = new Date(new Date(moment(JSON.stringify(item.date.begin).split('"')[1]).format('MM/DD/YYYY')))
-                let toDate = new Date(new Date(moment(JSON.stringify(item.date.end).split('"')[1]).format('MM/DD/YYYY')))
-                let Difference_In_Time = toDate.getTime() - fromDate.getTime();
-                // @ts-ignore
-                item.totalNight = Difference_In_Time / (1000 * 3600 * 24) + 1;
-                if (item.status === '0') {
-                    item.status = 'Chờ phản hồi';
-                } else if (item.status === '1') {
-                    item.status = 'Đã chấp nhận';
-                } else if (item.status === '2') {
-                    item.status = 'Đã thanh toán';
-                } else if (item.status === '-1') {
-                    item.status = 'Đã từ chối';
-                } else if (item.status === '-2') {
-                    item.status = 'Đã hủy';
-                } else if (item.status === '3') {
-                    item.status = 'Đã thanh toán (hủy phòng)';
                 }
-            }
-            console.log(this.booking)
-            this.dataSource = new MatTableDataSource(this.booking)
-            this.dataSource.paginator = this.paginator;
-            this.dataSource.sort = this.sort;
-            this.dataSource.filterPredicate = ((data, filter) => {
-                const name = !filter.name || data.name.trim().toLowerCase().includes(filter.name);
-                const dayCount = !filter.dayCount || data.totalAmountRoom === filter.dayCount;
-                const status = !filter.status || data.status === filter.status;
-                const roomType = !filter.roomType || data.roomType === filter.roomType;
-                return name && dayCount && status && roomType;
-            }) as (PeriodicElement, string) => boolean;
-            this.formControl.valueChanges.subscribe(value => {
-                // console.log(value);
-                const filter = {
-                    ...value, name: value.name.trim().toLowerCase(),
-                    // dayCount: value.dayCount.trim().toLowerCase()
-                    // status: value.status.trim().toLowerCase(),
-                    // roomType: value.roomType.trim().toLowerCase()
-                } as string;
-                console.log(filter);
-                this.dataSource.filter = filter;
+                console.log(this.booking)
+                this.dataSource = new MatTableDataSource(this.booking)
+                this.dataSource.paginator = this.paginator;
+                this.dataSource.sort = this.sort;
+                this.dataSource.filterPredicate = ((data, filter) => {
+                    const name = !filter.name || data.name.trim().toLowerCase().includes(filter.name);
+                    const dayCount = !filter.dayCount || data.totalAmountRoom === filter.dayCount;
+                    const status = !filter.status || data.status === filter.status;
+                    const roomType = !filter.roomType || data.roomType === filter.roomType;
+                    return name && dayCount && status && roomType;
+                }) as (PeriodicElement, string) => boolean;
+                this.formControl.valueChanges.subscribe(value => {
+                    // console.log(value);
+                    const filter = {
+                        ...value, name: value.name.trim().toLowerCase(),
+                        // dayCount: value.dayCount.trim().toLowerCase()
+                        // status: value.status.trim().toLowerCase(),
+                        // roomType: value.roomType.trim().toLowerCase()
+                    } as string;
+                    console.log(filter);
+                    this.dataSource.filter = filter;
+                });
             });
-        });
+        } else {
+            console.log('CUSTOMER')
+            this.hotelService.getBookingByUser(email).subscribe(booking => {
+                if (booking === undefined) {
+                    return;
+                }
+                this.booking = booking;
+                for (const item of this.booking) {
+                    this.hotelService.getHotelById(item.hotelNameSpace).subscribe(hotel => {
+                        item.nameHotel = hotel['result'][0][0].hotelObj.name
+                        this.hotel = hotel['result']
+                        for (const i of hotel['result'][1][0]) {
+                            if (i._id === item.roomDetailID) {
+                                if (i.roomType === null) {
+                                    item.roomType = 'Standard'
+                                }
+                                if (i.roomType === 1) {
+                                    item.roomType = 'Standard'
+                                }
+                                if (i.roomType === 2) {
+                                    item.roomType = 'Superior'
+                                }
+                                if (i.roomType === 3) {
+                                    item.roomType = 'Deluxe'
+                                }
+                                if (i.roomType === 4) {
+                                    item.roomType = 'Suite'
+                                }
+                                if (i.roomType === 5) {
+                                    item.roomType = 'Family'
+                                }
+                                if (i.roomType === 6) {
+                                    item.roomType = 'President'
+                                }
+                                if (i.roomType === 7) {
+                                    item.roomType = 'Royal'
+                                }
+                            }
+                        }
+                    })
+                    item.fromDate = new Date(moment(JSON.stringify(item.date.begin).split('"')[1]).format('MM/DD/YYYY')).toLocaleDateString()
+                    item.toDate = new Date(moment(JSON.stringify(item.date.end).split('"')[1]).format('MM/DD/YYYY')).toLocaleDateString()
+                    let fromDate = new Date(new Date(moment(JSON.stringify(item.date.begin).split('"')[1]).format('MM/DD/YYYY')))
+                    let toDate = new Date(new Date(moment(JSON.stringify(item.date.end).split('"')[1]).format('MM/DD/YYYY')))
+                    let Difference_In_Time = toDate.getTime() - fromDate.getTime();
+                    // @ts-ignore
+                    item.totalNight = Difference_In_Time / (1000 * 3600 * 24) + 1;
+                    if (item.status === '0') {
+                        item.status = 'Chờ phản hồi';
+                    } else if (item.status === '1') {
+                        item.status = 'Đã chấp nhận';
+                    } else if (item.status === '2') {
+                        item.status = 'Đã thanh toán';
+                    } else if (item.status === '-1') {
+                        item.status = 'Đã từ chối';
+                    } else if (item.status === '-2') {
+                        item.status = 'Đã hủy';
+                    } else if (item.status === '3') {
+                        item.status = 'Đã thanh toán (hủy phòng)';
+                    }
+                }
+                console.log(this.booking)
+                this.dataSource = new MatTableDataSource(this.booking)
+                this.dataSource.paginator = this.paginator;
+                this.dataSource.sort = this.sort;
+                this.dataSource.filterPredicate = ((data, filter) => {
+                    const name = !filter.name || data.name.trim().toLowerCase().includes(filter.name);
+                    const dayCount = !filter.dayCount || data.totalAmountRoom === filter.dayCount;
+                    const status = !filter.status || data.status === filter.status;
+                    const roomType = !filter.roomType || data.roomType === filter.roomType;
+                    return name && dayCount && status && roomType;
+                }) as (PeriodicElement, string) => boolean;
+                this.formControl.valueChanges.subscribe(value => {
+                    // console.log(value);
+                    const filter = {
+                        ...value, name: value.name.trim().toLowerCase(),
+                        // dayCount: value.dayCount.trim().toLowerCase()
+                        // status: value.status.trim().toLowerCase(),
+                        // roomType: value.roomType.trim().toLowerCase()
+                    } as string;
+                    console.log(filter);
+                    this.dataSource.filter = filter;
+                });
+            });
+        }
     }
 
     ngOnInit(): void {
