@@ -25,7 +25,8 @@ export class HistoryBookComponent implements OnInit {
         actionName: '',
         idUserBook: '',
         idBooking: '',
-        idUserHotel: ''
+        idUserHotel: '',
+        payMonneyReturn: ''
     }
 
     updateRatingObject = {
@@ -167,8 +168,25 @@ export class HistoryBookComponent implements OnInit {
             })
             dialogRef.afterClosed().subscribe(result => {
                 if (result) {
+                    let fromDate = new Date(moment(JSON.stringify(book.date.begin).split('"')[1]).format('MM/DD/YYYY'))
+                    let amount = book.totalMoney
+                    let currentTime = new Date();
+                    let Difference_In_Time = fromDate.getTime() - currentTime.getTime();
+                    let DaysNumber = Difference_In_Time / (1000 * 3600 * 24) + 1;
+
+                    if (DaysNumber >= 7) {
+                        amount = (parseFloat(amount.split(' ', 1).toString()
+                            .replace(/,/g, '')) * 70 / 100).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') + ' VND'
+                    } else if (DaysNumber <= 7 && DaysNumber > 1) {
+                        amount = (parseFloat(amount.split(' ', 1).toString()
+                            .replace(/,/g, '')) * 50 / 100).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') + ' VND'
+                    } else {
+                        amount = '0 VND'
+                    }
                     this.updateStatusObject.actionName = 'Pay Cancel'
                     this.updateStatusObject.idBooking = book._id
+                    this.updateStatusObject.payMonneyReturn = amount
+
                     this._hotelService.updateStatusBook(this.updateStatusObject).subscribe(async res => {
                         if (res.body['status'] === 200) {
                             await this.userService.testEmail(res.body['hotelUSe']).subscribe(
@@ -285,6 +303,7 @@ export class PayCancelDialogComponent {
     amount: string
     pay = true
     book: any;
+    currentTime: any
 
     constructor(
         public dialogRef: MatDialogRef<PayDialogComponent>,
@@ -292,6 +311,21 @@ export class PayCancelDialogComponent {
     ) {
         this.book = data['data']
         this.book.totalMoney = data['data'].totalMoney.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') + ' VND'
+        let fromDate = new Date(moment(JSON.stringify(this.book.date.begin).split('"')[1]).format('MM/DD/YYYY'))
+        this.amount = this.book.totalMoney
+        this.currentTime = new Date();
+        let Difference_In_Time = fromDate.getTime() - this.currentTime.getTime();
+        let DaysNumber = Difference_In_Time / (1000 * 3600 * 24) + 1;
+        console.log()
+        if (DaysNumber >= 7) {
+            this.amount = (parseFloat(this.amount.split(' ', 1).toString()
+                .replace(/,/g, '')) * 70 / 100).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') + ' VND'
+        } else if (DaysNumber <= 7 && DaysNumber > 1) {
+            this.amount = (parseFloat(this.amount.split(' ', 1).toString()
+                .replace(/,/g, '')) * 50 / 100).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') + ' VND'
+        } else {
+            this.amount = '0 VND'
+        }
     }
 
     onNoClick(): void {

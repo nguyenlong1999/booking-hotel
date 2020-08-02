@@ -7,31 +7,31 @@
 </div>
 <div class="container">
     <div class="row">
-        <div class="col">Tên khách sạn: </div>
+        <div class="col">Tên khách sạn:</div>
         <div class="col">{{this.book.nameHotel}}</div>
     </div>
     <div class="row">
-        <div class="col">Địa chỉ: </div>
+        <div class="col">Địa chỉ:</div>
         <div class="col">{{ this.book.address}}</div>
     </div>
     <div class="row">
-        <div class="col">Loại phòng: </div>
+        <div class="col">Loại phòng:</div>
         <div class="col">{{ this.book.roomType}}</div>
     </div>
     <div class="row">
-        <div class="col">Số lượng: </div>
+        <div class="col">Số lượng:</div>
         <div class="col">{{ this.book.totalAmountRoom}} phòng</div>
     </div>
     <div class="row">
-        <div class="col">Từ ngày: </div>
+        <div class="col">Từ ngày:</div>
         <div class="col">{{ this.book.fromDate}}</div>
     </div>
     <div class="row">
-        <div class="col">Đến ngày: </div>
+        <div class="col">Đến ngày:</div>
         <div class="col">{{ this.book.toDate}}</div>
     </div>
     <div class="row">
-        <div class="col">Số tiền đã thanh toán: </div>
+        <div class="col">Số tiền đã thanh toán:</div>
         <div class="col">{{ this.book.totalMoney}}</div>
     </div>
     <div class="row">
@@ -39,18 +39,23 @@
     </div>
     <div class="row">
         <div class="col">
-            <span *ngIf="this.book.policiesCancelRom==1" style="font-weight: bold">{{"room.flexiblev1" | translate}}</span>
-            <span *ngIf="this.book.policiesCancelRom==2" style="font-weight: bold">{{"room.Strictv1" | translate}}</span>
-            <span *ngIf="this.book.policiesCancelRom==3" style="font-weight: bold">{{"room.Strictv2" | translate}}</span>
+            <span *ngIf="this.book.policiesCancelRom==1"
+                  style="font-weight: bold">{{"room.flexiblev1" | translate}}</span>
+            <span *ngIf="this.book.policiesCancelRom==2"
+                  style="font-weight: bold">{{"room.Strictv1" | translate}}</span>
+            <span *ngIf="this.book.policiesCancelRom==3"
+                  style="font-weight: bold">{{"room.Strictv2" | translate}}</span>
         </div>
     </div>
     <div class="row">
         <div class="col">
             <span *ngIf="this.book.policiesCancelRom==2"><span style="color: red;">
-                *Chú ý : </span>Khi bạn hủy phòng tiền của bạn sẽ được hoàn trả sau 1-3 ngày kể từ ngày bạn hủy phòng
-                theo chính sách của chúng tôi <a [routerLink]="['/policy']" target="_blank">Xem thêm</a>
+                *Chú ý : </span> Số tiền hoàn trả : {{this.amount}}
             </span>
-            <span *ngIf="this.book.policiesCancelRom==3">{{"room.Strictv2" | translate}}</span>
+            <span *ngIf="this.book.policiesCancelRom==3">
+                <span style="color: red;">
+                *Chú ý : </span> Số tiền hoàn trả : {{this.amount}}
+            </span>
         </div>
     </div>
 </div>

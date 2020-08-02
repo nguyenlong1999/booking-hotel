@@ -442,8 +442,8 @@
     "flexible": "Linh hoạt",
     "Strict": "Nghiêm ngặt",
     "flexiblev1": "Không hoàn tiền.",
-    "Strictv1": "Khách hàng hủy trước ngày nhận phòng 7 ngày sẽ được hoàn lại tiền 50%.\n",
-    "Strictv2": "Khách hàng hủy trước ngày nhận phòng 1 ngày sẽ được hoàn lại tiền 70%.\n"
+    "Strictv1": "Khách hàng hủy trước ngày nhận phòng 7 ngày sẽ được hoàn lại tiền 70%.\n",
+    "Strictv2": "Khách hàng hủy trước ngày nhận phòng 1 ngày sẽ được hoàn lại tiền 50%.\n"
   },
   "post": {
     "post": "Đăng bài",
