@@ -43,6 +43,7 @@ export class PayInfoComponent implements OnInit {
     objIDUserUpdate: string
     errorMessage: string;
     successMessage = '';
+    errorDate = false
     messageObject = {
         objectId: '',
         message: ''
@@ -125,6 +126,17 @@ export class PayInfoComponent implements OnInit {
         if (range) {
             let fromDate = new Date(moment(JSON.stringify(range.begin).split('"')[1]).format('MM/DD/YYYY'))
             let toDate = new Date(moment(JSON.stringify(range.end).split('"')[1]).format('MM/DD/YYYY'))
+            let currentDate = new Date();
+            currentDate.setDate(currentDate.getDate() - 1)
+            if (fromDate < currentDate) {
+                console.log('sai rồi')
+                console.log(fromDate)
+                console.log(currentDate)
+                this.errorDate = true
+            } else {
+                this.errorDate = false
+                console.log('đúng rồi')
+            }
             this.fromDate = fromDate.toLocaleDateString()
             this.toDate = toDate.toLocaleDateString()
             console.log(fromDate)
@@ -140,6 +152,12 @@ export class PayInfoComponent implements OnInit {
             const radio: HTMLElement = document.getElementById('scroll-to-top');
             radio.click();
             return
+        }
+        console.log(this.errorDate)
+        if (this.errorDate === true) {
+            const radio: HTMLElement = document.getElementById('scroll-to-top');
+            radio.click();
+            return;
         }
         this.formBooking.get('userUpdateId').setValue(this.objIDUserUpdate)
         this.formBooking.get('totalMoney').setValue(this.currentRoom.price * this.dayBooking * this.convertNumber(this.numberAmountRoom))

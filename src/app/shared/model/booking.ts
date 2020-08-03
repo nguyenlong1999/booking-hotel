@@ -20,5 +20,6 @@ export class Booking {
     ImgHotel: string;
     address: string;
     policiesCancelRom: number;
-    rating: number
+    rating: number;
+    isLessThanCurrentDate: boolean;
 }

@@ -86,6 +86,15 @@ export class HistoryBookComponent implements OnInit {
                         .format('MM/DD/YYYY')).toLocaleDateString()
                     book.toDate = new Date(moment(JSON.stringify(book.date.end).split('"')[1])
                         .format('MM/DD/YYYY')).toLocaleDateString()
+                    let currentDate = new Date();
+                    currentDate.setDate(currentDate.getDate() - 1)
+                    let fDate = new Date(moment(JSON.stringify(book.date.begin).split('"')[1])
+                        .format('MM/DD/YYYY'))
+                    if (fDate <= currentDate) {
+                        book.isLessThanCurrentDate = true
+                    } else {
+                        book.isLessThanCurrentDate = false
+                    }
                     for (const i of result[1][0]) {
                         if (i._id === book.roomDetailID) {
                             if (i.roomType === null) {

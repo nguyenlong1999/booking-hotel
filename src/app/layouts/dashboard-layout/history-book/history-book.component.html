@@ -67,9 +67,9 @@
             </div>
             <div class="col-2 pt-3 pl-0" style="margin: auto">
                 <button type="button" *ngIf="i.status != -1 &&
-                 i.status != -2 && i.status != 3" class="btn btn-info w-100" (click)="cancelRoom(i)">Hủy phòng</button>
+                 i.status != -2 && i.status != 3 && i.isLessThanCurrentDate === false" class="btn btn-info w-100" (click)="cancelRoom(i)">Hủy phòng</button>
                 <br>
-                <button type="button" *ngIf="i.status==1" class="btn btn-light w-100" (click)="pay(i)">Thanh toán</button>
+                <button type="button" *ngIf="i.status==1 && i.isLessThanCurrentDate === false" class="btn btn-light w-100" (click)="pay(i)">Thanh toán</button>
                 <br>
                 <div *ngIf="i.status==2">
                     <div class="row">
