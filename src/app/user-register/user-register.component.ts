@@ -55,7 +55,7 @@ export class UserRegisterComponent implements OnInit {
         }
         if (this.userObject.name.trim() !== '' && this.userObject.password.trim() !== ''
             && this.userObject.email.trim() !== '' && (this.userObject.password.trim() === this.confirmPass)) {
-            console.log(this.userObject);
+            // console.log(this.userObject);
         }
         this._loginService.registerUser(this.userObject).subscribe((data) => {
             const result = data.body

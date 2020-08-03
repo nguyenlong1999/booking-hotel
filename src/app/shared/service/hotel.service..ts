@@ -49,6 +49,12 @@ export class HotelService {
             .pipe(tap(_ => console.log('load booking admin')));
     };
 
+    getBookingById = (idBooking): Observable<any> => {
+        return this._http
+            .get<any>(`${this.baseUrl}/getBookingById/${idBooking}`)
+            .pipe(tap(_ => console.log('load booking admin')));
+    };
+
     getBookingByUser = (idUser): Observable<any> => {
         return this._http
             .get<any>(`${this.baseUrl}/getBookingByHotel/${idUser}`)

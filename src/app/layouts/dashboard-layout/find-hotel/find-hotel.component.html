@@ -309,11 +309,13 @@
                                 <div class="offerInfoHotel-review">
                                     <div class="offerReview-item">
                                         <div class="offerReview-point">
-                                            <span style="font-size: 14px; font-weight: bold">8,9</span>
+                                            <span style="font-size: 14px; font-weight: bold">{{fixPointRating(p.hotel.pointRating)}}</span>
                                         </div>
                                     </div>
                                     <div class="offerReview-item">
-                                        <div class="offerReview-text">{{"common.hotel.great" | translate}}</div>
+                                        <div *ngIf="p.hotel.pointRating >= 4" class="offerReview-text">{{"common.hotel.moreGreat" | translate}}</div>
+                                        <div *ngIf="p.hotel.pointRating >= 3 && p.hotel.pointRating < 4" class="offerReview-text">{{"common.hotel.great" | translate}}</div>
+                                        <div *ngIf="p.hotel.pointRating <= 2" class="offerReview-text">{{"common.hotel.normal" | translate}}</div>
                                         <div class="offerReview-count">
                                             1.068 {{"common.hotel.comment" | translate}}</div>
                                     </div>
@@ -591,12 +593,14 @@
                                 <div class="price-item">
                                     <div class="review-section">
                                         <div class="review-item">
-                                            <div class="review-text"><span>{{"common.hotel.great" | translate}}</span></div>
-                                            <div class="review-count">1.068 {{"common.hotel.comment" | translate}}</div>
+                                            <div *ngIf="p.hotel.pointRating >= 4" class="offerReview-text">{{"common.hotel.moreGreat" | translate}}</div>
+                                            <div *ngIf="p.hotel.pointRating >= 3 && p.hotel.pointRating < 4" class="offerReview-text">{{"common.hotel.great" | translate}}</div>
+                                            <div *ngIf="p.hotel.pointRating <= 2" class="offerReview-text">{{"common.hotel.normal" | translate}}</div>
+                                            <div class="review-count">{{p.countRating}} {{"common.hotel.comment" | translate}}</div>
                                         </div>
                                         <div class="review-item">
                                             <div style="margin-left: 5px;width: 50px; height: 50px; text-align: center;border: #5392f9 3px solid ;line-height: 40px;">
-                                                <span style="font-size: 20px; font-weight: bold">8,9</span>
+                                                <span style="font-size: 20px; font-weight: bold">{{fixPointRating(p.hotel.pointRating)}}</span>
                                             </div>
                                         </div>
                                     </div>

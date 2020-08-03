@@ -1,4 +1,74 @@
-<div class="text-center d-flex align-items-center justify-content-center mt-5">
+<div *ngIf="isPay" class="text-center d-flex align-items-center justify-content-center mt-5">
+    <div *ngIf="booking" class="geeks" style="margin-top: 3%; width: 70%">
+            <div class="row mt-3" style="border:solid 1px #5ab5a0; border-radius: 5px; background: white">
+                <div class="col-3 p-3 pr-0" style="margin: auto">
+                    <div *ngIf="booking.img">
+                        <img class="img-thumbnail" style="height:auto;width: 100%;" [src]="this.BASE_URL+booking.img"
+                             alt="">
+                    </div>
+                </div>
+                <div class="col pt-3 pl-0 pr-0">
+                    <span style="font-weight: bold; font-size: 20px">Tên khách sạn: </span>
+                    <a [routerLink]="['/hotel-details/'+booking.booking.hotelNameSpace]"
+                       target="_blank">{{booking.hotelName}}</a>
+                    <br>
+                    <span style="font-weight: bold; font-size: 20px">Địa chỉ:</span> {{booking.hotelAddress}}
+                    <br>
+                    <span style="font-size: 15px; font-weight: bold">Chi tiết:</span>
+                    <div class="row">
+                        <div class="col-4">
+                            <span style="font-size: 13px; margin-left: 10px">Loại phòng: {{ booking.roomType}}</span>
+                        </div>
+                        <div class="col">
+                            <span style="font-size: 13px; margin-left: 10px">Tên người đặt: {{ booking.booking.name}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <span style="font-size: 13px; margin-left: 10px">Số lượng: {{ booking.booking.totalAmountRoom}}
+                                phòng</span>
+                        </div>
+                        <div class="col">
+                            <span style="font-size: 13px; margin-left: 10px">Email định danh: {{ booking.booking.email}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <span style="font-size: 13px; margin-left: 10px">Từ ngày: {{ booking.booking.fromDate}}</span>
+                        </div>
+                        <div class="col">
+                            <span style="font-size: 13px; margin-left: 10px">Đến ngày: {{ booking.booking.toDate}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                    <span style="font-size: 13px; margin-left: 10px">Trạng thái:
+<!--                        <span *ngIf="booking.booking.status == -2">Đã hủy</span>-->
+<!--                        <span *ngIf="booking.booking.status == -1">Đã từ chối</span>-->
+<!--                        <span *ngIf="booking.booking.status == 0">Chờ phản hồi</span>-->
+<!--                        <span *ngIf="booking.booking.status == 1">Đã chấp nhận</span>-->
+                        <span>Đã thanh toán</span>
+<!--                        <span *ngIf="booking.booking.status == 3">Đã hủy (đã hoàn tiền)</span>-->
+                    </span>
+                        </div>
+                    </div>
+                    <span style="font-size: 17px">Chính sách hủy phòng:
+                <span *ngIf="booking.cancellationPolicy==1">{{"room.flexiblev1" | translate}}</span>
+                <span *ngIf="booking.cancellationPolicy==2">{{"room.Strictv1" | translate}}</span>
+                <span *ngIf="booking.cancellationPolicy==3">{{"room.Strictv2" | translate}}</span>
+            </span>
+
+                </div>
+                <div class="col-2 pt-3 pl-0" style="margin: auto">
+                    <button type="button" *ngIf="booking.status != -1 &&
+                 booking.status != -2 && booking.status != 3" class="btn btn-info w-100" (click)="openDialogCanle()">Hủy
+                        phòng
+                    </button>
+                </div>
+            </div>
+    </div>
+</div>
+<div *ngIf="!isPay" class="text-center d-flex align-items-center justify-content-center mt-5">
     <div class="geeks" style="margin-top: 3%">
         <h1 class="dep">Thanh toán hóa đơn của bạn</h1>
         <h3>Số tiền: {{this.amount}} </h3>

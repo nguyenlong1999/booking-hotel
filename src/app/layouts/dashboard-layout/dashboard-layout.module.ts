@@ -39,7 +39,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
 import {MatSliderModule} from '@angular/material/slider';
 import {PayInfoComponent} from './pay-info/pay-info.component';
-import {ViewPayComponent} from '../../view-pay/view-pay.component';
+import {ViewPayComponent, ViewPayDialogComponent} from '../../view-pay/view-pay.component';
 import {QRCodeModule} from 'angularx-qrcode';
 import {HistoryBookComponent, PayCancelDialogComponent, PayDialogComponent} from './history-book/history-book.component';
 import {RuleComponent} from '../../rule/rule.component';
@@ -65,7 +65,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
         RuleComponent,
         PolicyComponent,
         PayDialogComponent,
-        PayCancelDialogComponent
+        PayCancelDialogComponent,
+        ViewPayDialogComponent
         // add các component của trang người dùng vào đây
     ],
     imports: [
@@ -106,7 +107,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 
     ],
     providers: [],
-    entryComponents: [ChooseRoomTypeDialogComponent],
+    entryComponents: [ChooseRoomTypeDialogComponent, ViewPayDialogComponent],
     schemas: [
         CUSTOM_ELEMENTS_SCHEMA
     ]

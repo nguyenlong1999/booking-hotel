@@ -92,7 +92,7 @@ export class UserEditComponent implements OnInit {
         if (id) {
             this.userService.getMemberInfo(id).subscribe(user => {
                 console.log('get User data:');
-                console.log(user);
+                // console.log(user);
                 if (user !== undefined) {
                     this.user = user;
                     let name = this.user.name

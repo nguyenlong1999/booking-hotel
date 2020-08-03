@@ -1,0 +1,11 @@
+<div mat-dialog-title><h4>{{ "common.button.systemNotification" | translate }}</h4></div>
+<div mat-dialog-content>
+    <p>Bạn có chắc chắn muốn Hủy Phòng</p>
+</div>
+<div mat-dialog-actions
+     style="position: relative; margin: 0; float: right; ">
+    <button class="btn btn-outline-primary" mat-button [mat-dialog-close]="data.action"
+    >Đồng ý</button>
+    <button class="btn btn-outline-secondary" mat-raised-button
+            (click)="onNoClick()">{{"common.button.cancel" | translate}}</button>
+</div>

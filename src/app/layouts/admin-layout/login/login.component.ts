@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
         console.log('log in ')
         this.submitted = true;
         this.userObject = this.registerForm.value;
-        console.log(this.userObject)
+        // console.log(this.userObject)
         this._loginService.loginAdmin(this.userObject).subscribe((data) => {
             this.errorMessage = null;
             if (data.body['status'] === 200) {
@@ -63,16 +63,16 @@ export class LoginComponent implements OnInit {
                 for (let key in user) {
                     if (key === 'user') {
                         users = user[key];
-                        console.log(user);
+                        // console.log(user);
                         token = users.token;
-                        console.log(users.token)
+                        // console.log(users.token)
                     } else if (key === 'role') {
                         role = user[key];
-                        console.log(role);
+                        // console.log(role);
 
                     } else if (key === 'objectId') {
                         objectId = user[key];
-                        console.log(objectId);
+                        // console.log(objectId);
                     }
 
                 }

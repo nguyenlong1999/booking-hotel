@@ -162,7 +162,7 @@ export class HotelComponentComponent implements OnInit {
     }
 
     updateStatusHotel(actionName: any, hotel: any) {
-        console.log('func-updateStatus');
+        // console.log('func-updateStatus');
         const idUser = this.cookies.get('ObjectId');
         const idHotel = hotel._id;
         this.updateStatusObject.idUser = idUser;
@@ -175,7 +175,7 @@ export class HotelComponentComponent implements OnInit {
                 this.message = res.body['messageAdmin']['content'];
                 this.chatService.showNotification('success', this.message);
                 this.chatService.sendNotification(this.messageObject);
-                console.log(this.messageObject)
+                // console.log(this.messageObject)
                 setTimeout(() => {
                     this.message = '';
                     // window.location.reload();

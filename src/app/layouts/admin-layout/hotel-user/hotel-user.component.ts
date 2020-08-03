@@ -77,7 +77,7 @@ export class HotelUserComponent implements OnInit {
                 } else if (item.isBlock === 0) {
                     item.status = 'Đã khóa';
                 }
-                console.log(item.status);
+                // console.log(item.status);
             }
             this.dataSource = new MatTableDataSource(this.hotels)
             this.dataSource.paginator = this.paginator;

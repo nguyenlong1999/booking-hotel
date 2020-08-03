@@ -132,8 +132,6 @@ export class HotelAccessComponent implements OnInit {
                 private route: ActivatedRoute,
                 private chatService: ChatService
     ) {
-        console.log('hotel access');
-        console.log(this.listRoomImgCurrent);
         this.registerHotelForm = this.formbuilder.group({
             name: ['', [Validators.required]],
             sqm: ['', [Validators.required, Validators.pattern(/^[0-9]\d*$/)]],
@@ -206,7 +204,6 @@ export class HotelAccessComponent implements OnInit {
         if (event.index === 4) {
             const a = this.registerHotelForm.get('formArrayRoomNumber').value;
             let check = true
-            console.log(a)
             a.forEach((item, i) => {
                 if (!item.roomType) {
                     this.roomTypeErr = 'Bạn chưa chọn loại phòng cho loại số ' + (i + 1) + ' !!';
@@ -241,7 +238,6 @@ export class HotelAccessComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        console.log(this.address);
     }
 
     onRatingChanged(rating) {
@@ -274,7 +270,6 @@ export class HotelAccessComponent implements OnInit {
             const result = data['result'];
             console.log(result);
             this.listImgCurrent = result[0][0].hotelObj.image.split(',');
-            console.log('lstImge nè' + this.listImgCurrent)
             result[1][0].forEach((room, i) => {
                 if (room.lstImg !== '' && room.lstImg !== null) {
                     const item = room.lstImg.split(',');
@@ -284,7 +279,6 @@ export class HotelAccessComponent implements OnInit {
                     this.listRoomImgCurrent.push(item);
                 }
             });
-            // console.log(this.listRoomImgCurrent);
             this.tab2 = false;
             this.tab3 = false;
             this.tab4 = false;
@@ -445,13 +439,11 @@ export class HotelAccessComponent implements OnInit {
             this.isSubmitted = true
             return
         }
-        // console.log(this.listImgCurrent)
         if (this.listImgCurrent.length > 0) {
             let imgCurrent = Array.from(this.listImgCurrent).join();
             if (this.arrayImage.length > 0) {
                 imgCurrent = imgCurrent + ',';
                 this.arrayImage = imgCurrent.concat(this.arrayImage);
-                console.log(this.arrayImage)
             } else {
                 this.arrayImage = imgCurrent
             }
@@ -466,16 +458,12 @@ export class HotelAccessComponent implements OnInit {
         const name = nameSpace.split(' ');
         nameSpace = name.join('-');
         this.registerHotelForm.get('nameSpace').patchValue(nameSpace);
-        console.log('data-register: ');
-        console.log(this.registerHotelForm.value);
         const hoTelsObject = this.registerHotelForm.value;
         hoTelsObject.email = this.cookies.get('email');
         if (this.isEdited) {
             this.checkSubmit = true;
-            console.log('vao day de edit')
             this._hotelService.editHotel(this.registerHotelForm.value).subscribe((data) => {
                 const result = data.body
-                console.log(result)
                 if (result['status'] === 200) {
                     // this.successMessage = result['message'];
                     this.successMessage = result['message'];
@@ -498,7 +486,6 @@ export class HotelAccessComponent implements OnInit {
             this.checkSubmit = true;
             this._hotelService.createHotel(this.registerHotelForm.value).subscribe(async (data) => {
                 const result = await data.body
-                console.log(result)
                 if (result['status'] === 200) {
                     // this.successMessage = result['message'];
                     this.successMessage = result['message'];
@@ -511,7 +498,6 @@ export class HotelAccessComponent implements OnInit {
                             this._router.navigate(['/user-hotels'])
                         }
                     }, 3000);
-                    console.log('tạo thành công rồi nè')
                 } else if (result['status'] !== 200) {
                     this.errorMessage = result['message'];
                     this.chatService.showNotification('error', this.errorMessage);
@@ -521,7 +507,6 @@ export class HotelAccessComponent implements OnInit {
     }
 
     doSomething(event, index) {
-        console.log(event.value)
         const value = event.value;
         this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomType').patchValue(value)
         if (!this.isEdited) {
@@ -549,25 +534,25 @@ export class HotelAccessComponent implements OnInit {
 
         }
         if (value !== 7 || value !== 6 || value !== 4) {
-            console.log('cao cấp')
+            // console.log('cao cấp')
             this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomPrivatePool').patchValue(false)
             this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomFireplace').patchValue(false)
             this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomHotTub').patchValue(false)
         }
         if (parseInt(value) < 3) {
-            console.log('view đep')
+            // console.log('view đep')
             this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomCableTV').patchValue(false)
             this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomWorkspace').patchValue(false)
             this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomDryer').patchValue(false)
             this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomHeaters').patchValue(false)
         }
         if (parseInt(value) < 2) {
-            console.log('cùi')
+            // console.log('cùi')
             this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomFreeBreakfast').patchValue(false)
             this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomTeaMaker').patchValue(false)
         }
         if (value === 7 || value === 6 || value === 4) {
-            console.log('sieu sang')
+            // console.log('sieu sang')
             this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomTea').patchValue(true)
             this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomCoffee').patchValue(true)
             this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomBeddingSet').patchValue(true)
@@ -590,7 +575,7 @@ export class HotelAccessComponent implements OnInit {
             this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomHotTub').patchValue(true)
         }
         if (parseInt(value) > 6) {
-            console.log('cùi')
+            // console.log('cùi')
             this.registerHotelForm.get('formArrayRoomNumber').get([index]).get('roomPrivatePool').patchValue(true)
         }
     }
@@ -631,7 +616,7 @@ export class HotelAccessComponent implements OnInit {
     }
 
     deleteControlRoom() {
-        console.log(this.formArrayRoomNumber.length);
+        // console.log(this.formArrayRoomNumber.length);
         this.formArrayRoomNumber.removeAt(this.formArrayRoomNumber.length - 1);
     }
 
@@ -642,7 +627,7 @@ export class HotelAccessComponent implements OnInit {
     }
 
     addControlArrayTypeBedroom(i) {
-        console.log('thêm loại giường ngủ')
+        // console.log('thêm loại giường ngủ')
         return this.formbuilder.group({
             order: i,
             arrayTypeBedRooms: this.formbuilder.array([
@@ -665,7 +650,7 @@ export class HotelAccessComponent implements OnInit {
     }
 
     addControlFacilities() {
-        console.log('facilities nè')
+        // console.log('facilities nè')
         return this.formbuilder.group({
             airConditional: this.formbuilder.control(false),
             Hairdryer: this.formbuilder.control(false),
@@ -735,7 +720,7 @@ export class HotelAccessComponent implements OnInit {
     }
 
     minusTotalRoomNumber() {
-        console.log(this.totaltypeRoomNumber)
+        // console.log(this.totaltypeRoomNumber)
         if (this.totaltypeRoomNumber === 2) {
             $('#totalRoomNumber').addClass('disabledbutton');
         }
@@ -751,7 +736,7 @@ export class HotelAccessComponent implements OnInit {
 
 
     plusNumberOfBedrooms(i) {
-        console.log(i)
+        // console.log(i)
         $('#bedRooms' + i).removeClass('disabledbutton');
         this.countBedrooms = this.registerHotelForm.get('formArrayRoomNumber').get([i]).get('bedRooms').value
         this.countBedrooms++
@@ -847,7 +832,7 @@ export class HotelAccessComponent implements OnInit {
     }
 
     getImageSrcTypeRoom(event: any, i) {
-        console.log(i)
+        // console.log(i)
         const pshArrayImage = new Set()
         const str = '[' + event.toString().replace(/}\n?{/g, '},{') + ']';
         JSON.parse(str).forEach((obj) => {
@@ -863,7 +848,7 @@ export class HotelAccessComponent implements OnInit {
                 }
             }
         }
-        console.log('đây là mảng ảnh mới:' + newImage);
+        // console.log('đây là mảng ảnh mới:' + newImage);
         this.registerHotelForm.get('formArrayRoomNumber').get([i]).get('lstImg').setValue(newImage);
     }
 

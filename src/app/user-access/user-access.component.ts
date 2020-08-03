@@ -120,7 +120,7 @@ export class UserAccessComponent implements OnInit {
                     // status: value.status.trim().toLowerCase(),
                     // role: value.role.trim().toLowerCase()
                 } as string;
-                console.log(filter);
+                // console.log(filter);
                 this.dataSource.filter = filter;
             });
             // this.users.sort((a, b) => {
@@ -180,16 +180,16 @@ export class UserAccessComponent implements OnInit {
         })
 
         dialogRef.afterClosed().subscribe(result => {
-            console.log(result);
+            // console.log(result);
             if (result) {
                 if (result.actionName === 'Hạ cấp' || result.actionName === 'Quản trị') {
-                    console.log('func- quan tri');
+                    // console.log('func- quan tri');
                     this.updateRole(result.user);
                 } else if (result.actionName === 'Khóa') {
-                    console.log('func- khoa');
+                    // console.log('func- khoa');
                     this.bannedUser(result.user);
                 } else if (result.actionName === 'Mở khóa') {
-                    console.log('func- mo khoa');
+                    // console.log('func- mo khoa');
                     this.openUser(result.user);
                 }
             } else {
@@ -251,7 +251,7 @@ export class UserAccessComponent implements OnInit {
     }
 
     bannedUser(user: any) {
-        console.log('ban user');
+        // console.log('ban user');
         this.userObject.id = user._id;
         this.userService.bannedUser(this.userObject).subscribe(data => {
             if (data.body['status'] === 200) {
@@ -294,7 +294,7 @@ export class UserAccessComponent implements OnInit {
     }
 
     openUser(user: any) {
-        console.log('active user');
+        // console.log('active user');
         this.userObject.id = user._id;
         this.userService.openUser(this.userObject).subscribe(data => {
             if (data.body['status'] === 200) {
@@ -334,7 +334,7 @@ export class UserAccessComponent implements OnInit {
                 this.message = 'Mở khóa thành viên không thành công';
                 this.chatService.showNotification('warning', this.message);
             }
-            console.log(data.body['status'])
+            // console.log(data.body['status'])
         });
     }
 }

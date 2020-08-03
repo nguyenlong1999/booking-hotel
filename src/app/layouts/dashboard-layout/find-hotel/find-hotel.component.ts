@@ -174,7 +174,7 @@ export class FindHotelComponent implements OnInit {
             if (hotels.body['hotels'].length > 0) {
                 this.hotels = hotels.body['hotels'];
                 // console.log('hotel search: ')
-                // console.log(this.hotels)
+                console.log(this.hotels)
                 this.hotels.forEach(item => {
                     item.listPriceFacilities = [];
                     if (item.faciliti.freeWifi === true) {
@@ -252,6 +252,10 @@ export class FindHotelComponent implements OnInit {
 
     formatNumber(num) {
         return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+    }
+
+    fixPointRating(num) {
+        return num.toFixed(1);
     }
 
     @HostListener('window:scroll', ['$event'])
