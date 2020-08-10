@@ -95,14 +95,14 @@
                                                                     <input matInput
                                                                            [placeholder]="'hotelRegister.sqmv2' | translate"
                                                                            type="text" formControlName="sqm" min="0">
+                                                                    <mat-error *ngIf="sqm.hasError('pattern')">
+                                                                        {{"hotelRegister.sqm.error" | translate}}
+                                                                    </mat-error>
+                                                                    <mat-error
+                                                                            *ngIf="registerHotelForm.get('sqm').hasError('required')">
+                                                                        {{"hotelRegister.sqmError" | translate}}
+                                                                    </mat-error>
                                                                 </mat-form-field>
-                                                                <mat-error *ngIf="sqm.hasError('pattern')">
-                                                                    {{"hotelRegister.sqm.error" | translate}}
-                                                                </mat-error>
-                                                                <mat-error
-                                                                        *ngIf="registerHotelForm.get('sqm').hasError('required')">
-                                                                    {{"hotelRegister.sqmError" | translate}}
-                                                                </mat-error>
                                                             </div>
                                                             <div class="col" style="padding: 4% 0 0 0"><h5>
                                                                 m2</h5>
